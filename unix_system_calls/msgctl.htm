@@ -1,0 +1,499 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_system_calls/msgctl.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>msgctl() - Unix, Linux System Call</title>
+<meta name="Description" Content="msgctl() - Unix, Linux System Calls Manual Pages (Manpages) ,  Learning fundamentals of UNIX in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - System Calls</b></a></li>
+<li><a class="left" target="_top" href="../unix_commands/index.html">Unix - Commands List</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>msgctl() - Unix, Linux System Call</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+msgctl - message control operations
+<h1 class="manpages">SYNOPSIS</h1>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<b>#include &lt;sys/types.h&gt;</b> 
+<b>#include &lt;sys/ipc.h&gt;</b> 
+<b>#include &lt;sys/msg.h&gt;</b> 
+</pre></td></tr>
+</table>
+<p>
+<b>int msgctl(int </b><i>msqid</i><b>,</b> <b>int </b><i>cmd</i><b>,</b> <b>struct msqid_ds *</b><i>buf</i><b>);</b> <h1 class="manpages">DESCRIPTION</h1>
+<b>msgctl</b>() performs the control operation specified by
+<i>cmd</i> on the message queue with identifier
+<i>msqid</i>. <p>
+The
+<i>msqid_ds</i> data structure is defined in &lt;sys/msg.h&gt; as follows:
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .in -->
+<p>
+struct msqid_ds {
+    struct ipc_perm msg_perm;     /* Ownership and permissions
+    time_t         msg_stime;    /* Time of last msgsnd() */
+    time_t         msg_rtime;    /* Time of last msgrcv() */
+    time_t         msg_ctime;    /* Time of last change */
+    unsigned long  __msg_cbytes; /* Current number of bytes in
+                                    queue (non-standard) */
+    msgqnum_t      msg_qnum;     /* Current number of messages
+                                    in queue */
+    msglen_t       msg_qbytes;   /* Maximum number of bytes
+                                    allowed in queue */
+    pid_t          msg_lspid;    /* PID of last msgsnd() */
+    pid_t          msg_lrpid;    /* PID of last msgrcv() */
+};
+<!-- ignored unsupported tag .in -->
+</pre></td></tr>
+</table>
+<p>
+The
+<i>ipc_perm</i> structure is defined in &lt;sys/ipc.h&gt; as follows
+(the highlighted fields are settable using
+<b>IPC_SET</b>): <p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .in -->
+struct ipc_perm {
+    key_t key;            /* Key supplied to msgget() */
+    uid_t <b>uid</b>;            /* Effective UID of owner */
+    gid_t <b>gid</b>;            /* Effective GID of owner */
+    uid_t cuid;           /* Effective UID of creator */
+    gid_t cgid;           /* Effective GID of creator */
+    unsigned short <b>mode</b>;  /* Permissions */
+    unsigned short seq;   /* Sequence number */
+};
+<!-- ignored unsupported tag .in -->
+</pre></td></tr>
+</table>
+<p>
+Valid values for
+<i>cmd</i> are:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>IPC_STAT</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Copy information from the kernel data structure associated with
+<i>msqid</i> into the
+<i>msqid_ds</i> structure pointed to by
+<i>buf</i>. The caller must have read permission on the message queue.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>IPC_SET</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Write the values of some members of the
+<i>msqid_ds</i> structure pointed to by
+<i>buf</i> to the kernel data structure associated with this message queue,
+updating also its
+<i>msg_ctime</i> member.
+The following members of the structure are updated:
+<i>msg_qbytes</i>, <i>msg_perm.uid</i>, <i>msg_perm.gid</i>, and (the least significant 9 bits of)
+<i>msg_perm.mode</i>. The effective UID of the calling process must match the owner
+(<i>msg_perm.uid</i>) or creator
+(<i>msg_perm.cuid</i>) of the message queue, or the caller must be privileged.
+Appropriate privilege (Linux: the
+<b>CAP_IPC_RESOURCE</b> capability) is required to raise the
+<i>msg_qbytes</i> value beyond the system parameter
+<b>MSGMNB</b>. </td></tr>
+<tr valign="top"><td colspan="2">
+<b>IPC_RMID</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Immediately remove the message queue,
+awakening all waiting reader and writer processes (with an error
+return and
+<i>errno</i> set to
+<b>EIDRM</b>). The calling process must have appropriate privileges
+or its effective user ID must be either that of the creator or owner
+of the message queue.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>IPC_INFO</b> (Linux specific) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Returns information about system-wide message queue limits and
+parameters in the structure pointed to by
+<i>buf</i>. This structure is of type
+<i>msginfo</i> (thus, a cast is required),
+defined in
+<i>&lt;sys/msg.h&gt;</i> if the _GNU_SOURCE feature test macro is defined:
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .in -->
+<p>
+struct msginfo {
+    int msgpool; /* Size in bytes of buffer pool used
+                    to hold message data; unused */
+    int msgmap;  /* Max. # of entries in message
+                    map; unused */
+    int msgmax;  /* Max. # of bytes that can be
+                    written in a single message */
+    int msgmnb;  /* Max. # of bytes that can be written to
+                    queue; used to initialize msg_qbytes
+                    during queue creation (msgget()) */
+    int msgmni;  /* Max. # of message queues */
+    int msgssz;  /* Message segment size; unused */
+    int msgtql;  /* Max. # of messages on all queues
+                    in system; unused */
+    unsigned short int msgseg;
+                 /* Max. # of segments; unused */
+};
+<p>
+<!-- ignored unsupported tag .in -->
+</pre></td></tr>
+</table>
+The
+<i>msgmni</i>, <i>msgmax</i>, and
+<i>msgmnb</i> settings can be changed via
+<i>/proc</i> files of the same name; see
+<b>proc</b>(5)
+for details.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>MSG_INFO</b> (Linux specific) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Returns a
+<i>msginfo</i> structure containing the same information as for
+<b>IPC_INFO</b>, except that the following fields are returned with information
+about system resources consumed by message queues: the
+<i>msgpool</i> field returns the number of message queues that currently exist
+on the system; the
+<i>msgmap</i> field returns the total number of messages in all queues
+on the system; and the
+<i>msgtql</i> field returns the total number of bytes in all messages
+in all queues on the system.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>MSG_STAT</b> (Linux specific) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Returns a
+<i>msqid_ds</i> structure as for
+<b>IPC_STAT</b>. However, the
+<i>msqid</i> argument is not a queue identifier, but instead an index into
+the kernel&#146;s internal array that maintains information about
+all message queues on the system.
+</td></tr>
+</table>
+<h1 class="manpages">RETURN VALUE</h1>
+On success,
+<b>IPC_STAT</b>, <b>IPC_SET</b>, and
+<b>IPC_RMID</b> return 0.
+A successful
+<b>IPC_INFO</b> or
+<b>MSG_INFO</b> operation returns the index of the highest used entry in the
+kernel&#146;s internal array recording information about all
+message queues.
+(This information can be used with repeated
+<b>MSG_STAT</b> operations to obtain information about all queues on the system.)
+A successful
+<b>MSG_STAT</b> operation returns the identifier of the queue whose index was given in
+<i>msqid</i>. <p>
+On error, -1 is returned with
+<i>errno</i> indicating the error.
+<h1 class="manpages">ERRORS</h1>
+On failure,
+<i>errno</i> is set to one of the following:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>EACCES</b> </td><td valign="bottom">
+The argument
+<i>cmd</i> is equal to
+<b>IPC_STAT</b> or
+<b>MSG_STAT</b>, but the calling process does not have read permission on the message queue
+<i>msqid</i>, and does not have the
+<b>CAP_IPC_OWNER</b> capability.
+</td></tr>
+<tr valign="top"><td>
+<b>EFAULT</b> </td><td valign="bottom">
+The argument
+<i>cmd</i> has the value
+<b>IPC_SET</b> or
+<b>IPC_STAT</b>, but the address pointed to by
+<i>buf</i> isn&#146;t accessible.
+</td></tr>
+<tr valign="top"><td>
+<b>EIDRM</b> </td><td valign="bottom">
+The message queue was removed.
+</td></tr>
+<tr valign="top"><td>
+<b>EINVAL</b> </td><td valign="bottom">
+Invalid value for
+<i>cmd</i> or
+<i>msqid</i>. Or: for a
+<b>MSG_STAT</b> operation, the index value specified in
+<i>msqid</i> referred to an array slot that is currently unused.
+</td></tr>
+<tr valign="top"><td>
+<b>EPERM</b> </td><td valign="bottom">
+The argument
+<i>cmd</i> has the value
+<b>IPC_SET</b> or
+<b>IPC_RMID</b>, but the effective user ID of the calling process is not the creator
+(as found in
+<i>msg_perm.cuid</i>) or the owner
+(as found in
+<i>msg_perm.uid</i>) of the message queue,
+and the process is not privileged (Linux: it does not have the
+<b>CAP_SYS_ADMIN</b> capability).
+</td></tr>
+</table>
+<h1 class="manpages">NOTES</h1>
+The
+<b>IPC_INFO</b>, <b>MSG_STAT</b> and
+<b>MSG_INFO</b> operations are used by the
+<b>ipcs</b>(8)
+program to provide information on allocated resources.
+In the future these may modified or moved to a /proc file system
+interface.
+<p>
+Various fields in the <i>struct msqid_ds</i> were shorts under Linux 2.2
+and have become longs under Linux 2.4. To take advantage of this,
+a recompilation under glibc-2.1.91 or later should suffice.
+(The kernel distinguishes old and new calls by an IPC_64 flag in
+<i>cmd</i>.) <h1 class="manpages">CONFORMING TO</h1>
+SVr4, POSIX.1-2001.
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="msgget.htm">msgget (2)</a></p></li>
+<li><p><a href="msgrcv.htm">msgrcv (2)</a></p></li>
+<li><p><a href="msgsnd.htm">msgsnd (2)</a></p></li>
+</ul>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversione277.html?tutorial=unix_system_calls&amp;file=msgctl.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_system_calls/msgctl.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,3408 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/gpg.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:42 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>gpg - Unix, Linux Command</title>
+<meta name="Description" Content="gpg - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>gpg - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+gpg &#151; encryption and signing tool
+<h1 class="manpages">SYNOPSIS</h1>
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<b>gpg</b>  [--homedir <b>name</b>]  [--options <b>file</b>]  [<b>options</b>]  <b>command</b>  [<b>args</b>]   
+</pre></td></tr>
+</table>
+<h1 class="manpages">DESCRIPTION</h1>
+<p>
+<b>gpg</b> is the main program for the GnuPG system.
+<p>
+<p>
+This man page only lists the commands and options available.  For more
+verbose documentation get the GNU Privacy Handbook (GPH) or one of the
+other documents at <a href="http://www.gnupg.org/documentation">http://www.gnupg.org/documentation</a>/ .
+<p>
+Please remember that option parsing stops as soon as a non option is
+encountered, you can explicitly stop option parsing by using the
+special option "--".
+<h1 class="manpages">COMMANDS</h1>
+<p>
+<b>gpg</b> may be run with no commands, in which case it will
+perform a reasonable action depending on the type of file it is given
+as input (an encrypted message is decrypted, a signature is verified,
+a file containing keys is listed).
+<p>
+<b>gpg</b> recognizes these commands:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=10%>
+-s, --sign [<b>file</b>]
+</td><td>
+Make a signature. This command may be combined with --encrypt (for a
+signed and encrypted message), --symmetric (for a signed and
+symmetrically encrypted message), or --encrypt and --symmetric
+together (for a signed message that may be decrypted via a secret key
+or a passphrase).
+</td></tr>
+<tr valign="top"><td width=10%>
+--clearsign [<b>file</b>]
+</td><td>
+Make a clear text signature.  The content in a clear text signature is
+readable without any special software.  OpenPGP software is only
+needed to verify the signature.  Clear text signatures may modify
+end-of-line whitespace for platform independence and are not intended
+to be reversible.
+</td></tr>
+<tr valign="top"><td width=10%>
+-b, --detach-sign [<b>file</b>]
+</td><td>
+Make a detached signature.
+</td></tr>
+<tr valign="top"><td width=10%>
+-e, --encrypt [<b>file</b>]
+</td><td>
+Encrypt data. This option may be combined with --sign (for a signed
+and encrypted message), --symmetric (for a message that may be
+decrypted via a secret key or a passphrase), or --sign and --symmetric
+together (for a signed message that may be decrypted via a secret key
+or a passphrase).
+</td></tr>
+<tr valign="top"><td width=10%>
+-c, --symmetric [<b>file</b>]
+</td><td>
+Encrypt with a symmetric cipher using a passphrase.  The default
+symmetric cipher used is CAST5, but may be chosen with the
+--cipher-algo option.  This option may be combined with --sign (for a
+signed and symmetrically encrypted message), --encrypt (for a message
+that may be decrypted via a secret key or a passphrase), or --sign and
+--encrypt together (for a signed message that may be decrypted via a
+secret key or a passphrase).
+</td></tr>
+<tr valign="top"><td width=10%>
+--store [<b>file</b>]
+</td><td>
+Store only (make a simple RFC1991 packet).
+</td></tr>
+<tr valign="top"><td width=10%>
+-d, --decrypt [<b>file</b>]
+</td><td>
+Decrypt <b>file</b> (or stdin if no file is specified) and
+write it to stdout (or the file specified with
+--output). If the decrypted file is signed, the
+signature is also verified. This command differs
+from the default operation, as it never writes to the
+filename which is included in the file and it
+rejects files which don&#146;t begin with an encrypted
+message.
+</td></tr>
+<tr valign="top"><td width=10%>
+--verify [[<b>sigfile</b>]  [<b>signed-files</b>]]
+</td><td>
+Assume that <b>sigfile</b> is a signature and verify it
+without generating any output.&nbsp;&nbsp;With no arguments,
+the signature packet is read from stdin.  If
+only a sigfile is given, it may be a complete
+signature or a detached signature, in which case
+the signed stuff is expected in a file without the
+".sig" or ".asc" extension. 
+With more than
+1 argument, the first should be a detached signature
+and the remaining files are the signed stuff.  To read the signed
+stuff from stdin, use <b>-</b> as the second filename.
+For security reasons a detached signature cannot read the signed
+material from stdin without denoting it in the above way.
+</td></tr>
+<tr valign="top"><td width=10%>
+--multifile
+</td><td>
+This modifies certain other commands to accept multiple files for
+processing on the command line or read from stdin with each filename
+on a separate line.  This allows for many files to be processed at
+once.  --multifile may currently be used along with --verify,
+--encrypt, and --decrypt.  Note that &#145;--multifile --verify&#146; may not be
+used with detached signatures.
+</td></tr>
+<tr valign="top"><td width=10%>
+--verify-files [<b>files</b>]
+</td><td>
+Identical to &#145;--multifile --verify&#146;.
+</td></tr>
+<tr valign="top"><td width=10%>
+--encrypt-files [<b>files</b>]
+</td><td>
+Identical to &#145;--multifile --encrypt&#146;.
+</td></tr>
+<tr valign="top"><td width=10%>
+--decrypt-files [<b>files</b>]
+</td><td>
+Identical to &#145;--multifile --decrypt&#146;.
+</td></tr>
+<tr valign="top"><td width=10%>
+--list-keys [<b>names</b>]
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--list-public-keys [<b>names</b>]
+</td><td>
+List all keys from the public keyrings, or just the ones given on the
+command line.
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+Avoid using the output of this command in scripts or other programs as
+it is likely to change as GnuPG changes.  See --with-colons for a
+machine-parseable key listing command that is appropriate for use in
+scripts and other programs.
+</td></tr>
+<tr valign="top"><td width=10%>
+-K, --list-secret-keys [<b>names</b>]
+</td><td>
+List all keys from the secret keyrings, or just the ones given on the
+command line.  A &#146;#&#146; after the letters &#146;sec&#146; means that the secret key
+is not usable (for example, if it was created via
+--export-secret-subkeys).
+</td></tr>
+<tr valign="top"><td width=10%>
+--list-sigs [<b>names</b>]
+</td><td>
+Same as --list-keys, but the signatures are listed too.
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+For each signature listed, there are several flags in between the
+"sig" tag and keyid.  These flags give additional information about
+each signature.  From left to right, they are the numbers 1-3 for
+certificate check level (see --ask-cert-level), "L" for a local or
+non-exportable signature (see --lsign-key), "R" for a nonRevocable
+signature (see the --edit-key command "nrsign"), "P" for a signature
+that contains a policy URL (see --cert-policy-url), "N" for a
+signature that contains a notation (see --cert-notation), "X" for an
+eXpired signature (see --ask-cert-expire), and the numbers 1-9 or "T"
+for 10 and above to indicate trust signature levels (see the
+--edit-key command "tsign").
+</td></tr>
+<tr valign="top"><td width=10%>
+--check-sigs [<b>names</b>]
+</td><td>
+Same as --list-sigs, but the signatures are verified.
+</td></tr>
+<tr valign="top"><td width=10%>
+--fingerprint [<b>names</b>]
+</td><td>
+List all keys with their fingerprints. This is the
+same output as --list-keys but with the additional output
+of a line with the fingerprint. May also be combined
+with --list-sigs or --check-sigs.
+If this command is given twice, the fingerprints of all
+secondary keys are listed too.
+</td></tr>
+<tr valign="top"><td width=10%>
+--list-packets
+</td><td>
+List only the sequence of packets. This is mainly
+useful for debugging.
+</td></tr>
+<tr valign="top"><td width=10%>
+--gen-key
+</td><td>
+Generate a new key pair. This command is normally only used
+interactively.
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+There is an experimental feature which allows you to create keys
+in batch mode. See the file <b>doc/DETAILS</b> in the source distribution on how to use this.
+</td></tr>
+<tr valign="top"><td width=10%>
+--edit-key <b>name</b>
+</td><td>
+Present a menu which enables you to do all key
+related tasks:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=10%>
+sign
+</td><td>
+Make a signature on key of user <b>name</b> If the key is not yet
+signed by the default user (or the users given with -u), the program
+displays the information of the key again, together with its
+fingerprint and asks whether it should be signed. This question is
+repeated for all users specified with
+-u.
+</td></tr>
+<tr valign="top"><td width=10%>
+lsign
+</td><td>
+Same as "sign" but the signature is marked as non-exportable and will
+therefore never be used by others.  This may be used to make keys
+valid only in the local environment.
+</td></tr>
+<tr valign="top"><td width=10%>
+nrsign
+</td><td>
+Same as "sign" but the signature is marked as non-revocable and can
+therefore never be revoked.
+</td></tr>
+<tr valign="top"><td width=10%>
+tsign
+</td><td>
+Make a trust signature.  This is a signature that combines the notions
+of certification (like a regular signature), and trust (like the
+"trust" command).  It is generally only useful in distinct communities
+or groups.
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+Note that "l" (for local / non-exportable), "nr" (for non-revocable,
+and "t" (for trust) may be freely mixed and prefixed to "sign" to
+create a signature of any type desired.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=10%>
+revsig
+</td><td>
+Revoke a signature.  For every signature which has been generated by
+one of the secret keys, GnuPG asks whether a revocation certificate
+should be generated.
+</td></tr>
+<tr valign="top"><td width=10%>
+trust
+</td><td>
+Change the owner trust value. This updates the
+trust-db immediately and no save is required.
+</td></tr>
+<tr valign="top"><td width=10%>
+disable
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+enable
+</td><td>
+Disable or enable an entire key. A disabled key can not normally be
+used for encryption.
+</td></tr>
+<tr valign="top"><td width=10%>
+adduid
+</td><td>
+Create an alternate user id.
+</td></tr>
+<tr valign="top"><td width=10%>
+addphoto
+</td><td>
+Create a photographic user id.  This will prompt for a JPEG file that
+will be embedded into the user ID.  Note that a very large JPEG will
+make for a very large key.  Also note that some programs will display
+your JPEG unchanged (GnuPG), and some programs will scale it to fit in
+a dialog box (PGP).
+</td></tr>
+<tr valign="top"><td width=10%>
+deluid
+</td><td>
+Delete a user id.
+</td></tr>
+<tr valign="top"><td width=10%>
+delsig
+</td><td>
+Delete a signature.
+</td></tr>
+<tr valign="top"><td width=10%>
+revuid
+</td><td>
+Revoke a user id.
+</td></tr>
+<tr valign="top"><td width=10%>
+addkey
+</td><td>
+Add a subkey to this key.
+</td></tr>
+<tr valign="top"><td width=10%>
+addcardkey
+</td><td>
+Generate a key on a card and add it 
+to this key.
+</td></tr>
+<tr valign="top"><td width=10%>
+keytocard
+</td><td>
+Transfer the selected secret key (or the primary key if no key has
+been selected) to a smartcard.  The secret key in the keyring will be
+replaced by a stub if the key could be stored successfully on the card
+and you use the save command later.  Only certain key types may be
+transferred to the card.  A sub menu allows you to select on what card
+to store the key.  Note that it is not possible to get that key back
+from the card - if the card gets broken your secret key will be lost
+unless you have a backup somewhere.
+</td></tr>
+<tr valign="top"><td width=10%>
+bkuptocard <b>file</b>
+</td><td>
+Restore the given file to a card. This command
+may be used to restore a backup key (as generated during card
+initialization) to a new card.  In almost all cases this will be the
+encryption key. You should use this command only
+with the corresponding public key and make sure that the file
+given as argument is indeed the backup to restore.  You should
+then select 2 to restore as encryption key.
+You will first be asked to enter the passphrase of the backup key and
+then for the Admin PIN of the card.
+</td></tr>
+<tr valign="top"><td width=10%>
+delkey
+</td><td>
+Remove a subkey.
+</td></tr>
+<tr valign="top"><td width=10%>
+addrevoker [sensitive]
+</td><td>
+Add a designated revoker.  This takes one optional argument:
+"sensitive".  If a designated revoker is marked as sensitive, it will
+not be exported by default (see
+export-options).
+</td></tr>
+<tr valign="top"><td width=10%>
+revkey
+</td><td>
+Revoke a subkey.
+</td></tr>
+<tr valign="top"><td width=10%>
+expire
+</td><td>
+Change the key expiration time.  If a subkey is selected, the
+expiration time of this subkey will be changed.  With no selection,
+the key expiration of the primary key is changed.
+</td></tr>
+<tr valign="top"><td width=10%>
+passwd
+</td><td>
+Change the passphrase of the secret key.
+</td></tr>
+<tr valign="top"><td width=10%>
+primary
+</td><td>
+Flag the current user id as the primary one, removes the primary user
+id flag from all other user ids and sets the timestamp of all affected
+self-signatures one second ahead.  Note that setting a photo user ID
+as primary makes it primary over other photo user IDs, and setting a
+regular user ID as primary makes it primary over other regular user
+IDs.
+</td></tr>
+<tr valign="top"><td width=10%>
+uid <b>n</b>
+</td><td>
+Toggle selection of user id with index <b>n</b>.
+Use 0 to deselect all.
+</td></tr>
+<tr valign="top"><td width=10%>
+key <b>n</b>
+</td><td>
+Toggle selection of subkey with index <b>n</b>.
+Use 0 to deselect all.
+</td></tr>
+<tr valign="top"><td width=10%>
+check
+</td><td>
+Check all selected user ids.
+</td></tr>
+<tr valign="top"><td width=10%>
+showphoto
+</td><td>
+Display the selected photographic user
+id.
+</td></tr>
+<tr valign="top"><td width=10%>
+pref
+</td><td>
+List preferences from the selected user ID.  This shows the actual
+preferences, without including any implied preferences.
+</td></tr>
+<tr valign="top"><td width=10%>
+showpref
+</td><td>
+More verbose preferences listing for the selected user ID.  This shows
+the preferences in effect by including the implied preferences of 3DES
+(cipher), SHA-1 (digest), and Uncompressed (compression) if they are
+not already included in the preference list.  In addition, the
+preferred keyserver and signature notations (if any) are shown.
+</td></tr>
+<tr valign="top"><td width=10%>
+setpref <b>string</b>
+</td><td>
+Set the list of user ID preferences to <b>string</b> for all (or just
+the selected) user IDs.  Calling setpref with no arguments sets the
+preference list to the default (either built-in or set via
+--default-preference-list), and calling setpref with "none" as the
+argument sets an empty preference list.  Use "gpg --version" to get a
+list of available algorithms.  Note that while you can change the
+preferences on an attribute user ID (aka "photo ID"), GnuPG does not
+select keys via attribute user IDs so these preferences will not be
+used by GnuPG.
+</td></tr>
+<tr valign="top"><td width=10%>
+keyserver
+</td><td>
+Set a preferred keyserver for the specified user ID(s).  This allows
+other users to know where you prefer they get your key from.  See
+--keyserver-options honor-keyserver-url for more on how this works.
+Setting a value of "none" removes an existing preferred keyserver.
+</td></tr>
+<tr valign="top"><td width=10%>
+notation
+</td><td>
+Set a name=value notation for the specified user ID(s).  See
+--cert-notation for more on how this works.  Setting a value of "none"
+removes all notations, setting a notation prefixed with a minus sign
+(-) removes that notation, and setting a notation name (without the
+=value) prefixed with a minus sign removes all notations with that
+name.
+</td></tr>
+<tr valign="top"><td width=10%>
+toggle
+</td><td>
+Toggle between public and secret key listing.
+</td></tr>
+<tr valign="top"><td width=10%>
+clean
+</td><td>
+Compact (by removing all signatures except the selfsig) any user ID
+that is no longer usable (e.g. revoked, or expired).  Then, remove any
+signatures that are not usable by the trust calculations.
+Specifically, this removes any signature that does not validate, any
+signature that is superseded by a later signature, revoked signatures,
+and signatures issued by keys that are not present on the keyring.
+</td></tr>
+<tr valign="top"><td width=10%>
+minimize
+</td><td>
+Make the key as small as possible.  This removes all signatures from
+each user ID except for the most recent self-signature.
+</td></tr>
+<tr valign="top"><td width=10%>
+cross-certify
+</td><td>
+Add cross-certification signatures to signing subkeys that may not
+currently have them.  Cross-certification signatures protect against a
+subtle attack against signing subkeys.  See
+--require-cross-certification.
+</td></tr>
+<tr valign="top"><td width=10%>
+save
+</td><td>
+Save all changes to the key rings and quit.
+</td></tr>
+<tr valign="top"><td width=10%>
+quit
+</td><td>
+Quit the program without updating the
+key rings.
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+The listing shows you the key with its secondary
+keys and all user ids. Selected keys or user ids
+are indicated by an asterisk. The trust value is
+displayed with the primary key: the first is the
+assigned owner trust and the second is the calculated
+trust value.  Letters are used for the values:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=10%>
+-
+</td><td>
+No ownertrust assigned / not yet calculated.
+</td></tr>
+<tr valign="top"><td width=10%>
+e
+</td><td>
+Trust
+calculation has failed; probably due to an expired key.
+</td></tr>
+<tr valign="top"><td width=10%>
+q
+</td><td>
+Not enough information for calculation.
+</td></tr>
+<tr valign="top"><td width=10%>
+n
+</td><td>
+Never trust this key.
+</td></tr>
+<tr valign="top"><td width=10%>
+m
+</td><td>
+Marginally trusted.
+</td></tr>
+<tr valign="top"><td width=10%>
+f
+</td><td>
+Fully trusted.
+</td></tr>
+<tr valign="top"><td width=10%>
+u
+</td><td>
+Ultimately trusted.
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=10%>
+--card-edit
+</td><td>
+Present a menu to work with a smartcard.  The subcommand "help" provides
+an overview on available commands.  For a detailed description, please
+see the Card HOWTO at 
+<a href="http://www.gnupg.org/documentation/howtos.html#GnuPG-cardHOWTO">http://www.gnupg.org/documentation/howtos.html#GnuPG-cardHOWTO</a> .
+</td></tr>
+<tr valign="top"><td width=10%>
+--card-status
+</td><td>
+Show the content of the smart card.
+</td></tr>
+<tr valign="top"><td width=10%>
+--change-pin
+</td><td>
+Present a menu to allow changing the PIN of a smartcard.  This
+functionality is also available as the subcommand "passwd" with the
+--card-edit command.
+</td></tr>
+<tr valign="top"><td width=10%>
+--sign-key <b>name</b>
+</td><td>
+Signs a public key with your secret key. This is a shortcut version of
+the subcommand "sign" from --edit.  
+</td></tr>
+<tr valign="top"><td width=10%>
+--lsign-key <b>name</b>
+</td><td>
+Signs a public key with your secret key but marks it as
+non-exportable.  This is a shortcut version of the subcommand "lsign"
+from --edit.
+</td></tr>
+<tr valign="top"><td width=10%>
+--delete-key <b>name</b>
+</td><td>
+Remove key from the public keyring.  In batch mode either --yes is
+required or the key must be specified by fingerprint.  This is a
+safeguard against accidental deletion of multiple keys.
+</td></tr>
+<tr valign="top"><td width=10%>
+--delete-secret-key <b>name</b>
+</td><td>
+Remove key from the secret and public keyring. In batch mode the key
+must be specified by fingerprint.
+</td></tr>
+<tr valign="top"><td width=10%>
+--delete-secret-and-public-key <b>name</b>
+</td><td>
+Same as --delete-key, but if a secret key exists, it will be removed 
+first. In batch mode the key must be specified by fingerprint.
+</td></tr>
+<tr valign="top"><td width=10%>
+--gen-revoke <b>name</b>
+</td><td>
+Generate a revocation certificate for the complete key. To revoke
+a subkey or a signature, use the --edit command.
+</td></tr>
+<tr valign="top"><td width=10%>
+--desig-revoke <b>name</b>
+</td><td>
+Generate a designated revocation certificate for a key.  This allows a
+user (with the permission of the keyholder) to revoke someone else&#146;s
+key.
+</td></tr>
+<tr valign="top"><td width=10%>
+--export [<b>names</b>]
+</td><td>
+Either export all keys from all keyrings (default
+keyrings and those registered via option --keyring),
+or if at least one name is given, those of the given
+name. The new keyring is written to stdout or to
+the file given with option "output".  Use together
+with --armor to mail those keys.
+</td></tr>
+<tr valign="top"><td width=10%>
+--send-keys [<b>names</b>]
+</td><td>
+Same as --export but sends the keys to a keyserver.
+Option --keyserver must be used to give the name
+of this keyserver. Don&#146;t send your complete keyring
+to a keyserver - select only those keys which are new
+or changed by you.
+</td></tr>
+<tr valign="top"><td width=10%>
+--export-secret-keys [<b>names</b>]
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--export-secret-subkeys [<b>names</b>]
+</td><td>
+Same as --export, but exports the secret keys instead.
+This is normally not very useful and a security risk.
+The second form of the command has the special property to
+render the secret part of the primary key useless; this is
+a GNU extension to OpenPGP and other implementations can
+not be expected to successfully import such a key.
+<p>
+See the option --simple-sk-checksum if you want to import such an
+exported key with an older OpenPGP implementation.
+</td></tr>
+<tr valign="top"><td width=10%>
+--import [<b>files</b>]
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--fast-import [<b>files</b>]
+</td><td>
+Import/merge keys. This adds the given keys to the
+keyring.  The fast version is currently just a synonym.
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+There are a few other options which control how this command works.
+Most notable here is the --keyserver-options merge-only option which
+does not insert new keys but does only the merging of new signatures,
+user-IDs and subkeys.
+</td></tr>
+<tr valign="top"><td width=10%>
+--recv-keys <b>key IDs</b>
+</td><td>
+Import the keys with the given key IDs from a keyserver. Option
+--keyserver must be used to give the name of this keyserver.
+</td></tr>
+<tr valign="top"><td width=10%>
+--refresh-keys [<b>key IDs</b>]
+</td><td>
+Request updates from a keyserver for keys that already exist on the
+local keyring.  This is useful for updating a key with the latest
+signatures, user IDs, etc.  Calling this with no arguments will
+refresh the entire keyring.  Option --keyserver must be used to give
+the name of the keyserver for all keys that do not have preferred
+keyservers set (see --keyserver-options honor-keyserver-url).
+</td></tr>
+<tr valign="top"><td width=10%>
+--search-keys <b>names</b>
+</td><td>
+Search the keyserver for the given names.  Multiple names given here
+will be joined together to create the search string for the keyserver.
+Option --keyserver must be used to give the name of this keyserver.
+Keyservers that support different search methods allow using the
+syntax specified in "How to specify a user ID" below.  Note that
+different keyserver types support different search methods.  Currently
+only LDAP supports them all.
+</td></tr>
+<tr valign="top"><td width=10%>
+--fetch-keys <b>URIs</b>
+</td><td>
+Retrieve keys located at the specified URIs.  Note that different
+installations of GnuPG may support different protocols (HTTP, FTP,
+LDAP, etc.)
+</td></tr>
+<tr valign="top"><td width=10%>
+--update-trustdb
+</td><td>
+Do trust database maintenance.  This command iterates over all keys
+and builds the Web of Trust. This is an interactive command because it
+may have to ask for the "ownertrust" values for keys.  The user has to
+give an estimation of how far she trusts the owner of the displayed
+key to correctly certify (sign) other keys.  GnuPG only asks for the
+ownertrust value if it has not yet been assigned to a key.  Using the
+--edit-key menu, the assigned value can be changed at any time.
+</td></tr>
+<tr valign="top"><td width=10%>
+--check-trustdb
+</td><td>
+Do trust database maintenance without user interaction.  From time to
+time the trust database must be updated so that expired keys or
+signatures and the resulting changes in the Web of Trust can be
+tracked.  Normally, GnuPG will calculate when this is required and do
+it automatically unless --no-auto-check-trustdb is set.  This command
+can be used to force a trust database check at any time.  The
+processing is identical to that of --update-trustdb but it skips keys
+with a not yet defined "ownertrust".
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+For use with cron jobs, this command can be used together with --batch
+in which case the trust database check is done only if a check is
+needed.  To force a run even in batch mode add the option --yes.
+</td></tr>
+<tr valign="top"><td width=10%>
+--export-ownertrust
+</td><td>
+Send the ownertrust values to stdout.  This is useful for backup
+purposes as these values are the only ones which can&#146;t be re-created
+from a corrupted trust DB.
+</td></tr>
+<tr valign="top"><td width=10%>
+--import-ownertrust [<b>files</b>]
+</td><td>
+Update the trustdb with the ownertrust values stored
+in <b>files</b> (or stdin if not given); existing
+values will be overwritten.
+</td></tr>
+<tr valign="top"><td width=10%>
+--rebuild-keydb-caches
+</td><td>
+When updating from version 1.0.6 to 1.0.7 this command should be used
+to create signature caches in the keyring.  It might be handy in other
+situations too.
+</td></tr>
+<tr valign="top"><td width=10%>
+--print-md <b>algo</b> [<b>files</b>]
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--print-mds [<b>files</b>]
+</td><td>
+Print message digest of algorithm ALGO for all given files or stdin.
+With the second form (or a deprecated "*" as algo) digests for all
+available algorithms are printed.
+</td></tr>
+<tr valign="top"><td width=10%>
+--gen-random <b>0|1|2</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   [<b>count</b>]
+</td><td>
+Emit COUNT random bytes of the given quality level. If count is not given
+or zero, an endless sequence of random bytes will be emitted.
+PLEASE, don&#146;t use this command unless you know what you are doing; it may
+remove precious entropy from the system!
+</td></tr>
+<tr valign="top"><td width=10%>
+--gen-prime <b>mode</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <b>bits</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   [<b>qbits</b>]
+</td><td>
+Use the source, Luke :-). The output format is still subject to change.
+</td></tr>
+<tr valign="top"><td width=10%>
+--version
+</td><td>
+Print version information along with a list
+of supported algorithms.
+</td></tr>
+<tr valign="top"><td width=10%>
+--warranty
+</td><td>
+Print warranty information.
+</td></tr>
+<tr valign="top"><td width=10%>
+-h, --help
+</td><td>
+Print usage information.  This is a really long list even though it
+doesn&#146;t list all options.  For every option, consult this manual.
+</td></tr>
+</table>
+<h1 class="manpages">OPTIONS</h1>
+<p>
+Long options can be put in an options file (default
+"~/.gnupg/gpg.conf").  Short option names will not work - for example,
+"armor" is a valid option for the options file, while "a" is not.  Do
+not write the 2 dashes, but simply the name of the option and any
+required arguments.  Lines with a hash (&#146;#&#146;) as the first
+non-white-space character are ignored.  Commands may be put in this
+file too, but that is not generally useful as the command will execute
+automatically with every execution of gpg.
+<p>
+<b>gpg</b> recognizes these options:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=10%>
+-a, --armor
+</td><td>
+Create ASCII armored output.
+</td></tr>
+<tr valign="top"><td width=10%>
+-o, --output <b>file</b>
+</td><td>
+Write output to <b>file</b>.
+</td></tr>
+<tr valign="top"><td width=10%>
+--max-output <b>n</b>
+</td><td>
+This option sets a limit on the number of bytes that will be generated
+when processing a file.  Since OpenPGP supports various levels of
+compression, it is possible that the plaintext of a given message may
+be significantly larger than the original OpenPGP message.  While
+GnuPG works properly with such messages, there is often a desire to
+set a maximum file size that will be generated before processing is
+forced to stop by the OS limits.  Defaults to 0, which means "no
+limit".
+</td></tr>
+<tr valign="top"><td width=10%>
+--mangle-dos-filenames
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-mangle-dos-filenames
+</td><td>
+Older version of Windows cannot handle filenames with more than one
+dot.  --mangle-dos-filenames causes GnuPG to replace (rather than add
+to) the extension of an output filename to avoid this problem.  This
+option is off by default and has no effect on non-Windows platforms.
+</td></tr>
+<tr valign="top"><td width=10%>
+-u, --local-user <b>name</b>
+</td><td>
+Use <b>name</b> as the key to sign with.  Note that this option
+overrides --default-key.
+</td></tr>
+<tr valign="top"><td width=10%>
+--default-key <b>name</b>
+</td><td>
+Use <b>name</b> as the default key to sign with.  If this option is not
+used, the default key is the first key found in the secret keyring.
+Note that -u or --local-user overrides this option.
+</td></tr>
+<tr valign="top"><td width=10%>
+-r, --recipient <b>name</b>
+</td><td>
+Encrypt for user id <b>name</b>. If this option or --hidden-recipient
+is not specified, GnuPG asks for the user-id unless
+--default-recipient is given.
+</td></tr>
+<tr valign="top"><td width=10%>
+-R, --hidden-recipient <b>name</b>
+</td><td>
+Encrypt for user ID <b>name</b>, but hide the key ID of this user&#146;s
+key.  This option helps to hide the receiver of the message and is a
+limited countermeasure against traffic analysis.  If this option or
+--recipient is not specified, GnuPG asks for the user ID unless
+--default-recipient is given.
+</td></tr>
+<tr valign="top"><td width=10%>
+--default-recipient <b>name</b>
+</td><td>
+Use <b>name</b> as default recipient if option --recipient is not used and
+don&#146;t ask if this is a valid one. <b>name</b> must be non-empty.
+</td></tr>
+<tr valign="top"><td width=10%>
+--default-recipient-self
+</td><td>
+Use the default key as default recipient if option --recipient is not used and
+don&#146;t ask if this is a valid one. The default key is the first one from the
+secret keyring or the one set with --default-key.
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-default-recipient
+</td><td>
+Reset --default-recipient and --default-recipient-self.
+</td></tr>
+<tr valign="top"><td width=10%>
+--encrypt-to <b>name</b>
+</td><td>
+Same as --recipient but this one is intended for use
+in the options file and may be used with
+your own user-id as an "encrypt-to-self".  These keys
+are only used when there are other recipients given
+either by use of --recipient or by the asked user id.
+No trust checking is performed for these user ids and
+even disabled keys can be used.
+</td></tr>
+<tr valign="top"><td width=10%>
+--hidden-encrypt-to <b>name</b>
+</td><td>
+Same as --hidden-recipient but this one is intended for use in the
+options file and may be used with your own user-id as a hidden
+"encrypt-to-self".  These keys are only used when there are other
+recipients given either by use of --recipient or by the asked user id.
+No trust checking is performed for these user ids and even disabled
+keys can be used.
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-encrypt-to
+</td><td>
+Disable the use of all --encrypt-to and --hidden-encrypt-to keys.
+</td></tr>
+<tr valign="top"><td width=10%>
+-v, --verbose
+</td><td>
+Give more information during processing. If used
+twice, the input data is listed in detail.
+</td></tr>
+<tr valign="top"><td width=10%>
+-q, --quiet
+</td><td>
+Try to be as quiet as possible.
+</td></tr>
+<tr valign="top"><td width=10%>
+-z <b>n</b>
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--compress-level <b>n</b>
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--bzip2-compress-level <b>n</b>
+</td><td>
+Set compression level to <b>n</b> for the ZIP and ZLIB compression
+algorithms.  The default is to use the default compression level of
+zlib (normally 6).  --bzip2-compress-level sets the compression level
+for the BZIP2 compression algorithm (defaulting to 6 as well).  This
+is a different option from --compress-level since BZIP2 uses a
+significant amount of memory for each additional compression level.
+-z sets both.  A value of 0 for <b>n</b> disables compression.
+</td></tr>
+<tr valign="top"><td width=10%>
+--bzip2-decompress-lowmem
+</td><td>
+Use a different decompression method for BZIP2 compressed files.  This
+alternate method uses a bit more than half the memory, but also runs
+at half the speed.  This is useful under extreme low memory
+circumstances when the file was originally compressed at a high
+--bzip2-compress-level.
+</td></tr>
+<tr valign="top"><td width=10%>
+-t, --textmode
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-textmode
+</td><td>
+Treat input files as text and store them in the OpenPGP canonical text
+form with standard "CRLF" line endings.  This also sets the necessary
+flags to inform the recipient that the encrypted or signed data is
+text and may need its line endings converted back to whatever the
+local system uses.  This option is useful when communicating between
+two platforms that have different line ending conventions (UNIX-like
+to Mac, Mac to Windows, etc).  --no-textmode disables this option, and
+is the default.
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+If -t (but not --textmode) is used together with armoring and signing,
+this enables clearsigned messages.  This kludge is needed for
+command-line compatibility with command-line versions of PGP; normally
+you would use --sign or --clearsign to select the type of the
+signature.
+</td></tr>
+<tr valign="top"><td width=10%>
+-n, --dry-run
+</td><td>
+Don&#146;t make any changes (this is not completely implemented).
+</td></tr>
+<tr valign="top"><td width=10%>
+-i, --interactive
+</td><td>
+Prompt before overwriting any files.
+</td></tr>
+<tr valign="top"><td width=10%>
+--batch
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-batch
+</td><td>
+Use batch mode.  Never ask, do not allow interactive commands.
+--no-batch disables this option.
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-tty
+</td><td>
+Make sure that the TTY (terminal) is never used for any output.
+This option is needed in some cases because GnuPG sometimes prints
+warnings to the TTY if --batch is used.
+</td></tr>
+<tr valign="top"><td width=10%>
+--yes
+</td><td>
+Assume "yes" on most questions.
+</td></tr>
+<tr valign="top"><td width=10%>
+--no
+</td><td>
+Assume "no" on most questions.
+</td></tr>
+<tr valign="top"><td width=10%>
+--ask-cert-level
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-ask-cert-level
+</td><td>
+When making a key signature, prompt for a certification level.  If
+this option is not specified, the certification level used is set via
+--default-cert-level.  See --default-cert-level for information on the
+specific levels and how they are used. --no-ask-cert-level disables
+this option.  This option defaults to no.
+</td></tr>
+<tr valign="top"><td width=10%>
+--default-cert-level <b>n</b>
+</td><td>
+The default to use for the check level when signing a key.
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+0 means you make no particular claim as to how carefully you verified
+the key.
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+1 means you believe the key is owned by the person who claims to own
+it but you could not, or did not verify the key at all.  This is
+useful for a "persona" verification, where you sign the key of a
+pseudonymous user.
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+2 means you did casual verification of the key.  For example, this
+could mean that you verified that the key fingerprint and checked the
+user ID on the key against a photo ID.
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+3 means you did extensive verification of the key.  For example, this
+could mean that you verified the key fingerprint with the owner of the
+key in person, and that you checked, by means of a hard to forge
+document with a photo ID (such as a passport) that the name of the key
+owner matches the name in the user ID on the key, and finally that you
+verified (by exchange of email) that the email address on the key
+belongs to the key owner.
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+Note that the examples given above for levels 2 and 3 are just that:
+examples.  In the end, it is up to you to decide just what "casual"
+and "extensive" mean to you.
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+This option defaults to 0 (no particular claim).
+</td></tr>
+<tr valign="top"><td width=10%>
+--min-cert-level
+</td><td>
+When building the trust database, treat any signatures with a
+certification level below this as invalid.  Defaults to 2, which
+disregards level 1 signatures.  Note that level 0 "no particular
+claim" signatures are always accepted.
+</td></tr>
+<tr valign="top"><td width=10%>
+--trusted-key <b>long key ID</b>
+</td><td>
+Assume that the specified key (which must be given
+as a  full 8 byte key ID) is as trustworthy as one of
+your own secret keys. This option is useful if you
+don&#146;t want to keep your secret keys (or one of them)
+online but still want to be able to check the validity of a given
+recipient&#146;s or signator&#146;s key. 
+</td></tr>
+<tr valign="top"><td width=10%>
+--trust-model <b>pgp|classic|direct|always|auto</b>
+</td><td>
+Set what trust model GnuPG should follow.  The models are:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=10%>
+pgp
+</td><td>
+This is the Web of Trust combined with trust signatures as used in PGP
+5.x and later.  This is the default trust model when creating a new
+trust database.
+</td></tr>
+<tr valign="top"><td width=10%>
+classic
+</td><td>
+This is the standard Web of Trust as used in PGP 2.x and earlier.
+</td></tr>
+<tr valign="top"><td width=10%>
+direct
+</td><td>
+Key validity is set directly by the user and not calculated via the
+Web of Trust.
+</td></tr>
+<tr valign="top"><td width=10%>
+always
+</td><td>
+Skip key validation and assume that used keys are always fully
+trusted.  You generally won&#146;t use this unless you are using some
+external validation scheme.  This option also suppresses the
+"[uncertain]" tag printed with signature checks when there is no
+evidence that the user ID is bound to the key.
+</td></tr>
+<tr valign="top"><td width=10%>
+auto
+</td><td>
+Select the trust model depending on whatever the internal trust
+database says. This is the default model if such a database already
+exists.
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=10%>
+--always-trust
+</td><td>
+Identical to &#145;--trust-model always&#146;.  This option is deprecated.
+</td></tr>
+<tr valign="top"><td width=10%>
+--auto-key-locate <b>parameters</b>
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-auto-key-locate
+</td><td>
+GnuPG can automatically locate and retrieve keys as needed using this
+option.  This happens when encrypting to an email address (in the
+"<a href="mailto:user@example.com">user@example.com</a>" form), and there are no <a href="mailto:user@example.com">user@example.com</a> keys on
+the local keyring.  This option takes any number of the following
+arguments, in the order they are to be tried:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=10%>
+cert
+</td><td>
+locate a key using DNS CERT, as specified in 2538bis (currently in
+draft): <a href="http://www.josefsson.org/rfc2538bis">http://www.josefsson.org/rfc2538bis</a>/
+</td></tr>
+<tr valign="top"><td width=10%>
+pka
+</td><td>
+locate a key using DNS PKA.
+</td></tr>
+<tr valign="top"><td width=10%>
+ldap
+</td><td>
+locate a key using the PGP Universal method of checking
+"ldap://keys.(thedomain)".
+</td></tr>
+<tr valign="top"><td width=10%>
+keyserver
+</td><td>
+locate a key using whatever keyserver is defined using the --keyserver
+option.
+</td></tr>
+<tr valign="top"><td width=10%>
+(keyserver URL)
+</td><td>
+In addition, a keyserver URL as used in the --keyserver option may be
+used here to query that particular keyserver.
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=10%>
+--keyid-format <b>short|0xshort|long|0xlong</b>
+</td><td>
+Select how to display key IDs.  "short" is the traditional 8-character
+key ID.  "long" is the more accurate (but less convenient)
+16-character key ID.  Add an "0x" to either to include an "0x" at the
+beginning of the key ID, as in 0x99242560.
+</td></tr>
+<tr valign="top"><td width=10%>
+--keyserver <b>name</b> [name=value1 value2 value3 ...]
+</td><td>
+Use <b>name</b> as your keyserver.  This is the server that
+--recv-keys, --send-keys, and --search-keys will communicate with to
+receive keys from, send keys to, and search for keys on.  The format
+of the <b>name</b> is a URI: &#145;scheme:[//]keyservername[:port]&#146; The
+scheme is the type of keyserver: "hkp" for the HTTP (or compatible)
+keyservers, "ldap" for the LDAP keyservers, or "mailto" for the Graff
+email keyserver.  Note that your particular installation of GnuPG may
+have other keyserver types available as well.  Keyserver schemes are
+case-insensitive.  After the keyserver name, optional keyserver
+configuration options may be provided.  These are the same as the
+global --keyserver-options from below, but apply only to this
+particular keyserver.
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+Most keyservers synchronize with each other, so there is generally no
+need to send keys to more than one server.  The keyserver
+"hkp://subkeys.pgp.net" uses round robin DNS to give a different
+keyserver each time you use it.
+</td></tr>
+<tr valign="top"><td width=10%>
+--keyserver-options <b>name=value1 [value2 value3 ...]</b>
+</td><td>
+This is a space or comma delimited string that gives options for the
+keyserver.  Options can be prepended with a &#145;no-&#146; to give the opposite
+meaning.  Valid import-options or export-options may be used here as
+well to apply to importing (--recv-key) or exporting (--send-key) a
+key from a keyserver.  While not all options are available for all
+keyserver types, some common options are:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=10%>
+include-revoked
+</td><td>
+When searching for a key with --search-keys, include keys that are
+marked on the keyserver as revoked.  Note that not all keyservers
+differentiate between revoked and unrevoked keys, and for such
+keyservers this option is meaningless.  Note also that most keyservers
+do not have cryptographic verification of key revocations, and so
+turning this option off may result in skipping keys that are
+incorrectly marked as revoked.
+</td></tr>
+<tr valign="top"><td width=10%>
+include-disabled
+</td><td>
+When searching for a key with --search-keys, include keys that are
+marked on the keyserver as disabled.  Note that this option is not
+used with HKP keyservers.
+</td></tr>
+<tr valign="top"><td width=10%>
+auto-key-retrieve
+</td><td>
+This option enables the automatic retrieving of keys from a keyserver
+when verifying signatures made by keys that are not on the local
+keyring.
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+Note that this option makes a "web bug" like behavior possible.
+Keyserver operators can see which keys you request, so by sending you
+a message signed by a brand new key (which you naturally will not have
+on your local keyring), the operator can tell both your IP address and
+the time when you verified the signature.
+</td></tr>
+<tr valign="top"><td width=10%>
+honor-keyserver-url
+</td><td>
+When using --refresh-keys, if the key in question has a preferred
+keyserver URL, then use that preferred keyserver to refresh the key
+from.  In addition, if auto-key-retrieve is set, and the signature
+being verified has a preferred keyserver URL, then use that preferred
+keyserver to fetch the key from.  Defaults to yes.
+</td></tr>
+<tr valign="top"><td width=10%>
+honor-pka-record
+</td><td>
+If auto-key-retrieve is set, and the signature being verified has a
+PKA record, then use the PKA information to fetch the key.  Defaults
+to yes.
+</td></tr>
+<tr valign="top"><td width=10%>
+include-subkeys
+</td><td>
+When receiving a key, include subkeys as potential targets.  Note that
+this option is not used with HKP keyservers, as they do not support
+retrieving keys by subkey id.
+</td></tr>
+<tr valign="top"><td width=10%>
+use-temp-files
+</td><td>
+On most Unix-like platforms, GnuPG communicates with the keyserver
+helper program via pipes, which is the most efficient method.  This
+option forces GnuPG to use temporary files to communicate.  On some
+platforms (such as Win32 and RISC OS), this option is always enabled.
+</td></tr>
+<tr valign="top"><td width=10%>
+keep-temp-files
+</td><td>
+If using &#145;use-temp-files&#146;, do not delete the temp files after using
+them.  This option is useful to learn the keyserver communication
+protocol by reading the temporary files.
+</td></tr>
+<tr valign="top"><td width=10%>
+verbose
+</td><td>
+Tell the keyserver helper program to be more verbose.  This option can
+be repeated multiple times to increase the verbosity level.
+</td></tr>
+<tr valign="top"><td width=10%>
+timeout[=value]
+</td><td>
+Tell the keyserver helper program how long (in seconds) to try and
+perform a keyserver action before giving up.  Note that performing
+multiple actions at the same time uses this timeout value per action.
+For example, when retrieving multiple keys via --recv-keys, the
+timeout applies separately to each key retrieval, and not to the
+--recv-keys command as a whole.  Defaults to 30 seconds.
+</td></tr>
+<tr valign="top"><td width=10%>
+http-proxy[=value]
+</td><td>
+For HTTP-like keyserver schemes that (such as HKP and HTTP itself),
+try to access the keyserver over a proxy.  If a <b>value</b> is
+specified, use this as the HTTP proxy.  If no <b>value</b> is
+specified, the value of the environment variable "http_proxy", if any,
+will be used.
+</td></tr>
+<tr valign="top"><td width=10%>
+max-cert-size[=value]
+</td><td>
+When retrieving a key via DNS CERT, only accept keys up to this size.
+Defaults to 16384 bytes.
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=10%>
+--import-options <b>parameters</b>
+</td><td>
+This is a space or comma delimited string that gives options for
+importing keys.  Options can be prepended with a &#145;no-&#146; to give the
+opposite meaning.  The options are:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=10%>
+import-local-sigs
+</td><td>
+Allow importing key signatures marked as "local".  This is not
+generally useful unless a shared keyring scheme is being used.
+Defaults to no.
+</td></tr>
+<tr valign="top"><td width=10%>
+repair-pks-subkey-bug
+</td><td>
+During import, attempt to repair the damage caused by the PKS
+keyserver bug (pre version 0.9.6) that mangles keys with multiple
+subkeys.  Note that this cannot completely repair the damaged key as
+some crucial data is removed by the keyserver, but it does at least
+give you back one subkey.  Defaults to no for regular --import and to
+yes for keyserver --recv-keys.
+</td></tr>
+<tr valign="top"><td width=10%>
+merge-only
+</td><td>
+During import, allow key updates to existing keys, but do not allow
+any new keys to be imported.  Defaults to no.
+</td></tr>
+<tr valign="top"><td width=10%>
+import-clean
+</td><td>
+After import, compact (remove all signatures except the
+self-signature) any user IDs from the new key that are not usable.
+Then, remove any signatures from the new key that are not usable.
+This includes signatures that were issued by keys that are not present
+on the keyring.  This option is the same as running the --edit-key
+command "clean" after import.  Defaults to no.
+</td></tr>
+<tr valign="top"><td width=10%>
+import-minimal
+</td><td>
+Import the smallest key possible.  This removes all signatures except
+the most recent self-signature on each user ID.  This option is the
+same as running the --edit-key command "minimize" after import.
+Defaults to no.
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=10%>
+--export-options <b>parameters</b>
+</td><td>
+This is a space or comma delimited string that gives options for
+exporting keys.  Options can be prepended with a &#145;no-&#146; to give the
+opposite meaning.  The options are:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=10%>
+export-local-sigs
+</td><td>
+Allow exporting key signatures marked as "local".  This is not
+generally useful unless a shared keyring scheme is being used.
+Defaults to no.
+</td></tr>
+<tr valign="top"><td width=10%>
+export-attributes
+</td><td>
+Include attribute user IDs (photo IDs) while exporting.  This is
+useful to export keys if they are going to be used by an OpenPGP
+program that does not accept attribute user IDs.  Defaults to yes.
+</td></tr>
+<tr valign="top"><td width=10%>
+export-sensitive-revkeys
+</td><td>
+Include designated revoker information that was marked as
+"sensitive".  Defaults to no.
+</td></tr>
+<tr valign="top"><td width=10%>
+export-reset-subkey-passwd
+</td><td>
+When using the "--export-secret-subkeys" command, this option resets
+the passphrases for all exported subkeys to empty.  This is useful
+when the exported subkey is to be used on an unattended machine where
+a passphrase doesn&#146;t necessarily make sense.  Defaults to no.
+</td></tr>
+<tr valign="top"><td width=10%>
+export-clean
+</td><td>
+Compact (remove all signatures from) user IDs on the key being
+exported if the user IDs are not usable.  Also, do not export any
+signatures that are not usable.  This includes signatures that were
+issued by keys that are not present on the keyring.  This option is
+the same as running the --edit-key command "clean" before export
+except that the local copy of the key is not modified.  Defaults to
+no.
+</td></tr>
+<tr valign="top"><td width=10%>
+export-minimal
+</td><td>
+Export the smallest key possible.  This removes all signatures except
+the most recent self-signature on each user ID.  This option is the
+same as running the --edit-key command "minimize" before export except
+that the local copy of the key is not modified.  Defaults to no.
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=10%>
+--list-options <b>parameters</b>
+</td><td>
+This is a space or comma delimited string that gives options used when
+listing keys and signatures (that is, --list-keys, --list-sigs,
+--list-public-keys, --list-secret-keys, and the --edit-key functions).
+Options can be prepended with a &#145;no-&#146; to give the opposite meaning.
+The options are:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=10%>
+show-photos
+</td><td>
+Causes --list-keys, --list-sigs, --list-public-keys, and
+--list-secret-keys to display any photo IDs attached to the key.
+Defaults to no.  See also --photo-viewer.
+</td></tr>
+<tr valign="top"><td width=10%>
+show-policy-urls
+</td><td>
+Show policy URLs in the --list-sigs or --check-sigs listings.
+Defaults to no.
+</td></tr>
+<tr valign="top"><td width=10%>
+show-notations
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+show-std-notations
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+show-user-notations
+</td><td>
+Show all, IETF standard, or user-defined signature notations in the
+--list-sigs or --check-sigs listings.  Defaults to no.
+</td></tr>
+<tr valign="top"><td width=10%>
+show-keyserver-urls
+</td><td>
+Show any preferred keyserver URL in the --list-sigs or --check-sigs
+listings.  Defaults to no.
+</td></tr>
+<tr valign="top"><td width=10%>
+show-uid-validity
+</td><td>
+Display the calculated validity of user IDs during key listings.
+Defaults to no.
+</td></tr>
+<tr valign="top"><td width=10%>
+show-unusable-uids
+</td><td>
+Show revoked and expired user IDs in key listings.  Defaults to no.
+</td></tr>
+<tr valign="top"><td width=10%>
+show-unusable-subkeys
+</td><td>
+Show revoked and expired subkeys in key listings.  Defaults to no.
+</td></tr>
+<tr valign="top"><td width=10%>
+show-keyring
+</td><td>
+Display the keyring name at the head of key listings to show which
+keyring a given key resides on.  Defaults to no.
+</td></tr>
+<tr valign="top"><td width=10%>
+show-sig-expire
+</td><td>
+Show signature expiration dates (if any) during --list-sigs or
+--check-sigs listings.  Defaults to no.
+</td></tr>
+<tr valign="top"><td width=10%>
+show-sig-subpackets
+</td><td>
+Include signature subpackets in the key listing.  This option can take
+an optional argument list of the subpackets to list.  If no argument
+is passed, list all subpackets.  Defaults to no.  This option is only
+meaningful when using --with-colons along with --list-sigs or
+--check-sigs.
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=10%>
+--verify-options <b>parameters</b>
+</td><td>
+This is a space or comma delimited string that gives options used when
+verifying signatures.  Options can be prepended with a &#145;no-&#146; to give
+the opposite meaning.  The options are:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=10%>
+show-photos
+</td><td>
+Display any photo IDs present on the key that issued the signature.
+Defaults to no.  See also --photo-viewer.
+</td></tr>
+<tr valign="top"><td width=10%>
+show-policy-urls
+</td><td>
+Show policy URLs in the signature being verified.  Defaults to no.
+</td></tr>
+<tr valign="top"><td width=10%>
+show-notations
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+show-std-notations
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+show-user-notations
+</td><td>
+Show all, IETF standard, or user-defined signature notations in the
+signature being verified.  Defaults to IETF standard.
+</td></tr>
+<tr valign="top"><td width=10%>
+show-keyserver-urls
+</td><td>
+Show any preferred keyserver URL in the signature being verified.
+Defaults to no.
+</td></tr>
+<tr valign="top"><td width=10%>
+show-uid-validity
+</td><td>
+Display the calculated validity of the user IDs on the key that issued
+the signature.  Defaults to no.
+</td></tr>
+<tr valign="top"><td width=10%>
+show-unusable-uids
+</td><td>
+Show revoked and expired user IDs during signature verification.
+Defaults to no.
+</td></tr>
+<tr valign="top"><td width=10%>
+pka-lookups
+</td><td>
+Enable PKA lookups to verify sender addresses.  Note that PKA is based
+on DNS, and so enabling this option may disclose information on when
+and what signatures are verified or to whom data is encrypted.  This
+is similar to the "web bug" described for the auto-key-retrieve
+feature.
+</td></tr>
+<tr valign="top"><td width=10%>
+pka-trust-increase
+</td><td>
+Raise the trust in a signature to full if the signature passes PKA
+validation.  This option is only meaningful if pka-lookups is set.
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=10%>
+--enable-dsa2
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--disable-dsa2
+</td><td>
+Enables new-style DSA keys which (unlike the old style) may be larger
+than 1024 bit and use hashes other than SHA-1 and RIPEMD/160.  Note
+that very few programs currently support these keys and signatures
+from them.
+</td></tr>
+<tr valign="top"><td width=10%>
+--show-photos
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-show-photos
+</td><td>
+Causes --list-keys, --list-sigs, --list-public-keys,
+--list-secret-keys, and verifying a signature to also display the
+photo ID attached to the key, if any.  See also --photo-viewer.  These
+options are deprecated.  Use &#145;--list-options [no-]show-photos&#146; and/or
+&#145;--verify-options [no-]show-photos&#146; instead.
+</td></tr>
+<tr valign="top"><td width=10%>
+--photo-viewer <b>string</b>
+</td><td>
+This is the command line that should be run to view a photo ID.  "%i"
+will be expanded to a filename containing the photo.  "%I" does the
+same, except the file will not be deleted once the viewer exits.
+Other flags are "%k" for the key ID, "%K" for the long key ID, "%f"
+for the key fingerprint, "%t" for the extension of the image type
+(e.g. "jpg"), "%T" for the MIME type of the image (e.g. "image/jpeg"),
+and "%%" for an actual percent sign.  If neither %i or %I are present,
+then the photo will be supplied to the viewer on standard input.
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+The default viewer is "xloadimage -fork -quiet -title &#146;KeyID 0x%k&#146;
+stdin".  Note that if your image viewer program is not secure, then
+executing it from GnuPG does not make it secure.
+</td></tr>
+<tr valign="top"><td width=10%>
+--exec-path <b>string</b>
+</td><td>
+Sets a list of directories to search for photo viewers and keyserver
+helpers.  If not provided, keyserver helpers use the compiled-in
+default directory, and photo viewers use the $PATH environment
+variable.
+Note, that on W32 system this value is ignored when searching for
+keyserver helpers.
+</td></tr>
+<tr valign="top"><td width=10%>
+--show-keyring
+</td><td>
+Display the keyring name at the head of key listings to show which
+keyring a given key resides on.  This option is deprecated: use
+&#145;--list-options [no-]show-keyring&#146; instead.
+</td></tr>
+<tr valign="top"><td width=10%>
+--keyring <b>file</b>
+</td><td>
+Add <b>file</b> to the current list of keyrings.  If <b>file</b> begins
+with a tilde and a slash, these are replaced by the $HOME
+directory. If the filename does not contain a slash, it is assumed to
+be in the GnuPG home directory ("~/.gnupg" if --homedir or $GNUPGHOME
+is not used).
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+Note that this adds a keyring to the current list.  If the intent is
+to use the specified keyring alone, use --keyring along with
+--no-default-keyring.
+</td></tr>
+<tr valign="top"><td width=10%>
+--secret-keyring <b>file</b>
+</td><td>
+Same as --keyring but for the secret keyrings.
+</td></tr>
+<tr valign="top"><td width=10%>
+--primary-keyring <b>file</b>
+</td><td>
+Designate <b>file</b> as the primary public keyring.  This means that
+newly imported keys (via --import or keyserver --recv-from) will go to
+this keyring.
+</td></tr>
+<tr valign="top"><td width=10%>
+--trustdb-name <b>file</b>
+</td><td>
+Use <b>file</b> instead of the default trustdb.  If <b>file</b> begins
+with a tilde and a slash, these are replaced by the $HOME
+directory. If the filename does not contain a slash, it is assumed to
+be in the GnuPG home directory ("~/.gnupg" if --homedir or $GNUPGHOME
+is not used).
+</td></tr>
+<tr valign="top"><td width=10%>
+--homedir <b>directory</b>
+</td><td>
+Set the name of the home directory to <b>directory</b> If this option is not
+used it defaults to "~/.gnupg". It does not make sense to use this in
+a options file. This also overrides the environment variable
+$GNUPGHOME.
+</td></tr>
+<tr valign="top"><td width=10%>
+--pcsc-driver <b>file</b>
+</td><td>
+Use <b>file</b> to access the smartcard reader.  The current default is
+&#145;libpcsclite.so.1&#146; for GLIBC based systems,
+&#145;/System/Library/Frameworks/PCSC.framework/PCSC&#146; for MAC OS X,
+&#145;winscard.dll&#146; for Windows and &#145;libpcsclite.so&#146; for other systems.
+</td></tr>
+<tr valign="top"><td width=10%>
+--ctapi-driver <b>file</b>
+</td><td>
+Use <b>file</b> to access the smartcard reader.  The current default
+is &#145;libtowitoko.so&#146;.  Note that the use of this interface is
+deprecated; it may be removed in future releases.
+</td></tr>
+<tr valign="top"><td width=10%>
+--disable-ccid
+</td><td>
+Disable the integrated support for CCID compliant readers.  This
+allows to fall back to one of the other drivers even if the internal
+CCID driver can handle the reader.  Note, that CCID support is only
+available if libusb was available at build time.
+</td></tr>
+<tr valign="top"><td width=10%>
+--reader-port <b>number_or_string</b>
+</td><td>
+This option may be used to specify the port of the card terminal.  A
+value of 0 refers to the first serial device; add 32768 to access USB
+devices.  The default is 32768 (first USB device).  PC/SC or CCID
+readers might need a string here; run the program in verbose mode to get
+a list of available readers.  The default is then the first reader
+found.
+</td></tr>
+<tr valign="top"><td width=10%>
+--display-charset <b>name</b>
+</td><td>
+Set the name of the native character set.  This is used to convert
+some informational strings like user IDs to the proper UTF-8 encoding.
+Note that this has nothing to do with the character set of data to be
+encrypted or signed; GnuPG does not recode user supplied data.  If
+this option is not used, the default character set is determined from
+the current locale.  A verbosity level of 3 shows the chosen set.
+Valid values for <b>name</b> are:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=10%>
+iso-8859-1
+</td><td>
+This is the Latin 1 set.
+</td></tr>
+<tr valign="top"><td width=10%>
+iso-8859-2
+</td><td>
+The Latin 2 set.
+</td></tr>
+<tr valign="top"><td width=10%>
+iso-8859-15
+</td><td>
+This is currently an alias for
+the Latin 1 set.
+</td></tr>
+<tr valign="top"><td width=10%>
+koi8-r
+</td><td>
+The usual Russian set (rfc1489).
+</td></tr>
+<tr valign="top"><td width=10%>
+utf-8
+</td><td>
+Bypass all translations and assume
+that the OS uses native UTF-8 encoding.
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=10%>
+--utf8-strings
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-utf8-strings
+</td><td>
+Assume that command line arguments are given as UTF8 strings.  The
+default (--no-utf8-strings) is to assume that arguments are encoded in
+the character set as specified by --display-charset. These options
+affect all following arguments.  Both options may be used multiple
+times.
+</td></tr>
+<tr valign="top"><td width=10%>
+--options <b>file</b>
+</td><td>
+Read options from <b>file</b> and do not try to read
+them from the default options file in the homedir
+(see --homedir). This option is ignored if used
+in an options file.
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-options
+</td><td>
+Shortcut for "--options /dev/null".  This option is
+detected before an attempt to open an option file.
+Using this option will also prevent the creation of a 
+"~./gnupg" homedir.
+</td></tr>
+<tr valign="top"><td width=10%>
+--load-extension <b>name</b>
+</td><td>
+Load an extension module. If <b>name</b> does not contain a slash it is
+searched for in the directory configured when GnuPG was built
+(generally "/usr/local/lib/gnupg").  Extensions are not generally
+useful anymore, and the use of this option is deprecated.
+</td></tr>
+<tr valign="top"><td width=10%>
+--debug <b>flags</b>
+</td><td>
+Set debugging flags. All flags are or-ed and <b>flags</b> may
+be given in C syntax (e.g. 0x0042).
+</td></tr>
+<tr valign="top"><td width=10%>
+--debug-all
+</td><td>
+Set all useful debugging flags.
+</td></tr>
+<tr valign="top"><td width=10%>
+--debug-ccid-driver
+</td><td>
+Enable debug output from the included CCID driver for smartcards.
+Note that this option is only available on some system.
+</td></tr>
+<tr valign="top"><td width=10%>
+--enable-progress-filter
+</td><td>
+Enable certain PROGRESS status outputs.  This option allows frontends
+to display a progress indicator while gpg is processing larger files.
+There is a slight performance overhead using it.
+</td></tr>
+<tr valign="top"><td width=10%>
+--status-fd <b>n</b>
+</td><td>
+Write special status strings to the file descriptor <b>n</b>.
+See the file DETAILS in the documentation for a listing of them.
+</td></tr>
+<tr valign="top"><td width=10%>
+--status-file <b>file</b>
+</td><td>
+Same as --status-fd, except the status data is written to file
+<b>file</b>.
+</td></tr>
+<tr valign="top"><td width=10%>
+--logger-fd <b>n</b>
+</td><td>
+Write log output to file descriptor <b>n</b> and not to stderr.
+</td></tr>
+<tr valign="top"><td width=10%>
+--logger-file <b>file</b>
+</td><td>
+Same as --logger-fd, except the logger data is written to file
+<b>file</b>.
+</td></tr>
+<tr valign="top"><td width=10%>
+--attribute-fd <b>n</b>
+</td><td>
+Write attribute subpackets to the file descriptor <b>n</b>.  This is
+most useful for use with --status-fd, since the status messages are
+needed to separate out the various subpackets from the stream
+delivered to the file descriptor.
+</td></tr>
+<tr valign="top"><td width=10%>
+--attribute-file <b>file</b>
+</td><td>
+Same as --attribute-fd, except the attribute data is written to file
+<b>file</b>.
+</td></tr>
+<tr valign="top"><td width=10%>
+--comment <b>string</b>
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-comments
+</td><td>
+Use <b>string</b> as a comment string in clear text signatures and
+ASCII armored messages or keys (see --armor).  The default behavior is
+not to use a comment string.  --comment may be repeated multiple times
+to get multiple comment strings.  --no-comments removes all comments.
+It is a good idea to keep the length of a single comment below 60
+characters to avoid problems with mail programs wrapping such lines.
+Note that comment lines, like all other header lines, are not
+protected by the signature.
+</td></tr>
+<tr valign="top"><td width=10%>
+--emit-version
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-emit-version
+</td><td>
+Force inclusion of the version string in ASCII armored output.
+--no-emit-version disables this option.
+</td></tr>
+<tr valign="top"><td width=10%>
+--sig-notation <b>name=value</b>
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--cert-notation <b>name=value</b>
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+-N, --set-notation <b>name=value</b>
+</td><td>
+Put the name value pair into the signature as notation data.
+<b>name</b> must consist only of printable characters or spaces, and
+must contain a &#146;@&#146; character in the form <a href="mailto:keyname@domain.example.com">keyname@domain.example.com</a>
+(substituting the appropriate keyname and domain name, of course).
+This is to help prevent pollution of the IETF reserved notation
+namespace.  The --expert flag overrides the &#146;@&#146; check.  <b>value</b> may be any printable string; it will be encoded in UTF8, so you should
+check that your --display-charset is set correctly.  If you prefix
+<b>name</b> with an exclamation mark (!), the notation data will be
+flagged as critical (rfc2440:5.2.3.15).  --sig-notation sets a
+notation for data signatures.  --cert-notation sets a notation for key
+signatures (certifications).  --set-notation sets both.
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+There are special codes that may be used in notation names.  "%k" will
+be expanded into the key ID of the key being signed, "%K" into the
+long key ID of the key being signed, "%f" into the fingerprint of the
+key being signed, "%s" into the key ID of the key making the
+signature, "%S" into the long key ID of the key making the signature,
+"%g" into the fingerprint of the key making the signature (which might
+be a subkey), "%p" into the fingerprint of the primary key of the key
+making the signature, "%c" into the signature count from the OpenPGP
+smartcard, and "%%" results in a single "%".  %k, %K, and %f are only
+meaningful when making a key signature (certification), and %c is only
+meaningful when using the OpenPGP smartcard.
+</td></tr>
+<tr valign="top"><td width=10%>
+--show-notation
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-show-notation
+</td><td>
+Show signature notations in the --list-sigs or --check-sigs listings
+as well as when verifying a signature with a notation in it.  These
+options are deprecated.  Use &#145;--list-options [no-]show-notation&#146;
+and/or &#145;--verify-options [no-]show-notation&#146; instead.
+</td></tr>
+<tr valign="top"><td width=10%>
+--sig-policy-url <b>string</b>
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--cert-policy-url <b>string</b>
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--set-policy-url <b>string</b>
+</td><td>
+Use <b>string</b> as a Policy URL for signatures (rfc2440:5.2.3.19).
+If you prefix it with an exclamation mark (!), the policy URL packet
+will be flagged as critical.  --sig-policy-url sets a policy url for
+data signatures.  --cert-policy-url sets a policy url for key
+signatures (certifications).  --set-policy-url sets both.
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+The same %-expandos used for notation data are available here as well.
+</td></tr>
+<tr valign="top"><td width=10%>
+--show-policy-url
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-show-policy-url
+</td><td>
+Show policy URLs in the --list-sigs or --check-sigs listings as well
+as when verifying a signature with a policy URL in it.  These options
+are deprecated.  Use &#145;--list-options [no-]show-policy-url&#146; and/or
+&#145;--verify-options [no-]show-policy-url&#146; instead.
+</td></tr>
+<tr valign="top"><td width=10%>
+--sig-keyserver-url <b>string</b>
+</td><td>
+Use <b>string</b> as a preferred keyserver URL for data signatures.  If
+you prefix it with an exclamation mark, the keyserver URL packet will
+be flagged as critical.  
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+The same %-expandos used for notation data are available here as well.
+</td></tr>
+<tr valign="top"><td width=10%>
+--set-filename <b>string</b>
+</td><td>
+Use <b>string</b> as the filename which is stored inside messages.
+This overrides the default, which is to use the actual filename of the
+file being encrypted.
+</td></tr>
+<tr valign="top"><td width=10%>
+--for-your-eyes-only
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-for-your-eyes-only
+</td><td>
+Set the &#145;for your eyes only&#146; flag in the message.  This causes GnuPG
+to refuse to save the file unless the --output option is given, and
+PGP to use the "secure viewer" with a Tempest-resistant font to
+display the message.  This option overrides --set-filename.
+--no-for-your-eyes-only disables this option.
+</td></tr>
+<tr valign="top"><td width=10%>
+--use-embedded-filename
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-use-embedded-filename
+</td><td>
+Try to create a file with a name as embedded in the data.  This can be
+a dangerous option as it allows to overwrite files.  Defaults to no.
+</td></tr>
+<tr valign="top"><td width=10%>
+--completes-needed <b>n</b>
+</td><td>
+Number of completely trusted users to introduce a new
+key signer (defaults to 1).
+</td></tr>
+<tr valign="top"><td width=10%>
+--marginals-needed <b>n</b>
+</td><td>
+Number of marginally trusted users to introduce a new
+key signer (defaults to 3)
+</td></tr>
+<tr valign="top"><td width=10%>
+--max-cert-depth <b>n</b>
+</td><td>
+Maximum depth of a certification chain (default is 5).
+</td></tr>
+<tr valign="top"><td width=10%>
+--cipher-algo <b>name</b>
+</td><td>
+Use <b>name</b> as cipher algorithm. Running the program with the
+command --version yields a list of supported algorithms.  If this is
+not used the cipher algorithm is selected from the preferences stored
+with the key.  In general, you do not want to use this option as it
+allows you to violate the OpenPGP standard.
+--personal-cipher-preferences is the safe way to accomplish the same
+thing.
+</td></tr>
+<tr valign="top"><td width=10%>
+--digest-algo <b>name</b>
+</td><td>
+Use <b>name</b> as the message digest algorithm. Running the program
+with the command --version yields a list of supported algorithms.  In
+general, you do not want to use this option as it allows you to
+violate the OpenPGP standard.  --personal-digest-preferences is the
+safe way to accomplish the same thing.
+</td></tr>
+<tr valign="top"><td width=10%>
+--compress-algo <b>name</b>
+</td><td>
+Use compression algorithm <b>name</b>.  "zlib" is RFC-1950 ZLIB
+compression.  "zip" is RFC-1951 ZIP compression which is used by PGP.
+"bzip2" is a more modern compression scheme that can compress some
+things better than zip or zlib, but at the cost of more memory used
+during compression and decompression.  "uncompressed" or "none"
+disables compression.  If this option is not used, the default
+behavior is to examine the recipient key preferences to see which
+algorithms the recipient supports.  If all else fails, ZIP is used for
+maximum compatibility.
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+ZLIB may give better compression results than ZIP, as the compression
+window size is not limited to 8k.  BZIP2 may give even better
+compression results than that, but will use a significantly larger
+amount of memory while compressing and decompressing.  This may be
+significant in low memory situations.  Note, however, that PGP (all
+versions) only supports ZIP compression.  Using any algorithm other
+than ZIP or "none" will make the message unreadable with PGP.  In
+general, you do not want to use this option as it allows you to
+violate the OpenPGP standard.  --personal-compress-preferences is the
+safe way to accomplish the same thing.
+</td></tr>
+<tr valign="top"><td width=10%>
+--cert-digest-algo <b>name</b>
+</td><td>
+Use <b>name</b> as the message digest algorithm used when signing a
+key.  Running the program with the command --version yields a list of
+supported algorithms.  Be aware that if you choose an algorithm that
+GnuPG supports but other OpenPGP implementations do not, then some
+users will not be able to use the key signatures you make, or quite
+possibly your entire key.
+</td></tr>
+<tr valign="top"><td width=10%>
+--s2k-cipher-algo <b>name</b>
+</td><td>
+Use <b>name</b> as the cipher algorithm used to protect secret keys.
+The default cipher is CAST5.  This cipher is also used for
+conventional encryption if --personal-cipher-preferences and
+--cipher-algo is not given.
+</td></tr>
+<tr valign="top"><td width=10%>
+--s2k-digest-algo <b>name</b>
+</td><td>
+Use <b>name</b> as the digest algorithm used to mangle the passphrases.
+The default algorithm is SHA-1.
+</td></tr>
+<tr valign="top"><td width=10%>
+--s2k-mode <b>n</b>
+</td><td>
+Selects how passphrases are mangled. If <b>n</b> is 0 a plain
+passphrase (which is not recommended) will be used, a 1 adds a salt to
+the passphrase and a 3 (the default) iterates the whole process a
+couple of times.  Unless --rfc1991 is used, this mode is also used for
+conventional encryption.
+</td></tr>
+<tr valign="top"><td width=10%>
+--simple-sk-checksum
+</td><td>
+Secret keys are integrity protected by using a SHA-1 checksum.  This
+method is part of the upcoming enhanced OpenPGP specification but
+GnuPG already uses it as a countermeasure against certain attacks.
+Old applications don&#146;t understand this new format, so this option may
+be used to switch back to the old behaviour.  Using this option bears
+a security risk.  Note that using this option only takes effect when
+the secret key is encrypted - the simplest way to make this happen is
+to change the passphrase on the key (even changing it to the same
+value is acceptable).
+</td></tr>
+<tr valign="top"><td width=10%>
+--disable-cipher-algo <b>name</b>
+</td><td>
+Never allow the use of <b>name</b> as cipher algorithm.
+The given name will not be checked so that a later loaded algorithm
+will still get disabled.
+</td></tr>
+<tr valign="top"><td width=10%>
+--disable-pubkey-algo <b>name</b>
+</td><td>
+Never allow the use of <b>name</b> as public key algorithm.
+The given name will not be checked so that a later loaded algorithm
+will still get disabled.
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-sig-cache
+</td><td>
+Do not cache the verification status of key signatures.
+Caching gives a much better performance in key listings.  However, if
+you suspect that your public keyring is not save against write
+modifications, you can use this option to disable the caching.  It
+probably does not make sense to disable it because all kind of damage
+can be done if someone else has write access to your public keyring.
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-sig-create-check
+</td><td>
+GnuPG normally verifies each signature right after creation to protect
+against bugs and hardware malfunctions which could leak out bits from
+the secret key.  This extra verification needs some time (about 115%
+for DSA keys), and so this option can be used to disable it.
+However, due to the fact that the signature creation needs manual
+interaction, this performance penalty does not matter in most settings.
+</td></tr>
+<tr valign="top"><td width=10%>
+--auto-check-trustdb
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-auto-check-trustdb
+</td><td>
+If GnuPG feels that its information about the Web of Trust has to be
+updated, it automatically runs the --check-trustdb command internally.
+This may be a time consuming process.  --no-auto-check-trustdb
+disables this option.
+</td></tr>
+<tr valign="top"><td width=10%>
+--throw-keyids
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-throw-keyids
+</td><td>
+Do not put the recipient key IDs into encrypted messages.  This helps
+to hide the receivers of the message and is a limited countermeasure
+against traffic analysis.  On the receiving side, it may slow down the
+decryption process because all available secret keys must be tried.
+--no-throw-keyids disables this option.  This option is essentially
+the same as using --hidden-recipient for all recipients.
+</td></tr>
+<tr valign="top"><td width=10%>
+--not-dash-escaped
+</td><td>
+This option changes the behavior of cleartext signatures
+so that they can be used for patch files. You should not
+send such an armored file via email because all spaces
+and line endings are hashed too.  You can not use this
+option for data which has 5 dashes at the beginning of a
+line, patch files don&#146;t have this. A special armor header
+line tells GnuPG about this cleartext signature option.
+</td></tr>
+<tr valign="top"><td width=10%>
+--escape-from-lines
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-escape-from-lines
+</td><td>
+Because some mailers change lines starting with "From " to "&gt;From
+" it is good to handle such lines in a special way when creating
+cleartext signatures to prevent the mail system from breaking the
+signature.  Note that all other PGP versions do it this way too.
+Enabled by default.  --no-escape-from-lines disables this option.
+</td></tr>
+<tr valign="top"><td width=10%>
+--passphrase-fd <b>n</b>
+</td><td>
+Read the passphrase from file descriptor <b>n</b>.  Only the first line
+will be read from file descriptor <b>n</b>.  If you use 0 for <b>n</b>,
+the passphrase will be read from stdin.  This can only be used if only
+one passphrase is supplied.
+</td></tr>
+<tr valign="top"><td width=10%>
+--passphrase-file <b>file</b>
+</td><td>
+Read the passphrase from file <b>file</b>.  Only the first line will
+be read from file <b>file</b>.  This can only be used if only one 
+passphrase is supplied.  Obviously, a passphrase stored in a file is
+of questionable security if other users can read this file.  Don&#146;t use
+this option if you can avoid it.
+</td></tr>
+<tr valign="top"><td width=10%>
+--passphrase <b>string</b>
+</td><td>
+Use <b>string</b> as the passphrase.  This can only be used if only one
+passphrase is supplied.  Obviously, this is of very questionable
+security on a multi-user system.  Don&#146;t use this option if you can
+avoid it.
+</td></tr>
+<tr valign="top"><td width=10%>
+--command-fd <b>n</b>
+</td><td>
+This is a replacement for the deprecated shared-memory IPC mode.
+If this option is enabled, user input on questions is not expected
+from the TTY but from the given file descriptor.  It should be used
+together with --status-fd. See the file doc/DETAILS in the source
+distribution for details on how to use it.
+</td></tr>
+<tr valign="top"><td width=10%>
+--command-file <b>file</b>
+</td><td>
+Same as --command-fd, except the commands are read out of file
+<b>file</b>
+</td></tr>
+<tr valign="top"><td width=10%>
+--use-agent
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-use-agent
+</td><td>
+Try to use the GnuPG-Agent. Please note that this agent is still under
+development.  With this option, GnuPG first tries to connect to the
+agent before it asks for a passphrase.  --no-use-agent disables this
+option.
+</td></tr>
+<tr valign="top"><td width=10%>
+--gpg-agent-info
+</td><td>
+Override the value of the environment variable
+<b>GPG_AGENT_INFO</b>.  This is only used when --use-agent has been given
+</td></tr>
+<tr valign="top"><td width=10%>
+Compliance options
+</td><td>
+These options control what GnuPG is compliant to.  Only one of these
+options may be active at a time.  Note that the default setting of
+this is nearly always the correct one.  See the INTEROPERABILITY WITH
+OTHER OPENPGP PROGRAMS section below before using one of these
+options.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=10%>
+--gnupg
+</td><td>
+Use standard GnuPG behavior.  This is essentially OpenPGP behavior
+(see --openpgp), but with some additional workarounds for common
+compatibility problems in different versions of PGP.  This is the
+default option, so it is not generally needed, but it may be useful to
+override a different compliance option in the gpg.conf file.
+</td></tr>
+<tr valign="top"><td width=10%>
+--openpgp
+</td><td>
+Reset all packet, cipher and digest options to strict OpenPGP
+behavior.  Use this option to reset all previous options like
+--rfc1991, --force-v3-sigs, --s2k-*, --cipher-algo, --digest-algo and
+--compress-algo to OpenPGP compliant values.  All PGP workarounds are
+disabled.
+</td></tr>
+<tr valign="top"><td width=10%>
+--rfc2440
+</td><td>
+Reset all packet, cipher and digest options to strict RFC-2440
+behavior.  Note that this is currently the same thing as --openpgp.
+</td></tr>
+<tr valign="top"><td width=10%>
+--rfc1991
+</td><td>
+Try to be more RFC-1991 (PGP 2.x) compliant.
+</td></tr>
+<tr valign="top"><td width=10%>
+--pgp2
+</td><td>
+Set up all options to be as PGP 2.x compliant as possible, and warn if
+an action is taken (e.g. encrypting to a non-RSA key) that will create
+a message that PGP 2.x will not be able to handle.  Note that &#145;PGP
+2.x&#146; here means &#145;MIT PGP 2.6.2&#146;.  There are other versions of PGP 2.x
+available, but the MIT release is a good common baseline.
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+This option implies &#145;--rfc1991 --disable-mdc --no-force-v4-certs
+--no-sk-comment --escape-from-lines --force-v3-sigs
+--no-ask-sig-expire --no-ask-cert-expire --cipher-algo IDEA
+--digest-algo MD5 --compress-algo 1&#146;.  It also disables --textmode
+when encrypting.
+</td></tr>
+<tr valign="top"><td width=10%>
+--pgp6
+</td><td>
+Set up all options to be as PGP 6 compliant as possible.  This
+restricts you to the ciphers IDEA (if the IDEA plugin is installed),
+3DES, and CAST5, the hashes MD5, SHA1 and RIPEMD160, and the
+compression algorithms none and ZIP.  This also disables
+--throw-keyids, and making signatures with signing subkeys as PGP 6
+does not understand signatures made by signing subkeys.
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+This option implies &#145;--disable-mdc --no-sk-comment --escape-from-lines
+--force-v3-sigs --no-ask-sig-expire&#146;
+</td></tr>
+<tr valign="top"><td width=10%>
+--pgp7
+</td><td>
+Set up all options to be as PGP 7 compliant as possible.  This is
+identical to --pgp6 except that MDCs are not disabled, and the list of
+allowable ciphers is expanded to add AES128, AES192, AES256, and
+TWOFISH.
+</td></tr>
+<tr valign="top"><td width=10%>
+--pgp8
+</td><td>
+Set up all options to be as PGP 8 compliant as possible.  PGP 8 is a
+lot closer to the OpenPGP standard than previous versions of PGP, so
+all this does is disable --throw-keyids and set --escape-from-lines.
+All algorithms are allowed except for the SHA224, SHA384, and SHA512
+digests.
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=10%>
+--force-v3-sigs
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-force-v3-sigs
+</td><td>
+OpenPGP states that an implementation should generate v4 signatures
+but PGP versions 5 through 7 only recognize v4 signatures on key
+material.  This option forces v3 signatures for signatures on data.
+Note that this option overrides --ask-sig-expire, as v3 signatures
+cannot have expiration dates.  --no-force-v3-sigs disables this
+option.
+</td></tr>
+<tr valign="top"><td width=10%>
+--force-v4-certs
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-force-v4-certs
+</td><td>
+Always use v4 key signatures even on v3 keys.  This option also
+changes the default hash algorithm for v3 RSA keys from MD5 to SHA-1.
+--no-force-v4-certs disables this option.
+</td></tr>
+<tr valign="top"><td width=10%>
+--force-mdc
+</td><td>
+Force the use of encryption with a modification detection code.  This
+is always used with the newer ciphers (those with a blocksize greater
+than 64 bits), or if all of the recipient keys indicate MDC support in
+their feature flags.
+</td></tr>
+<tr valign="top"><td width=10%>
+--disable-mdc
+</td><td>
+Disable the use of the modification detection code.  Note that by
+using this option, the encrypted message becomes vulnerable to a
+message modification attack.
+</td></tr>
+<tr valign="top"><td width=10%>
+--allow-non-selfsigned-uid
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-allow-non-selfsigned-uid
+</td><td>
+Allow the import and use of keys with user IDs which are not
+self-signed.  This is not recommended, as a non self-signed user ID is
+trivial to forge.  --no-allow-non-selfsigned-uid disables.
+</td></tr>
+<tr valign="top"><td width=10%>
+--allow-freeform-uid
+</td><td>
+Disable all checks on the form of the user ID while generating a new
+one.  This option should only be used in very special environments as
+it does not ensure the de-facto standard format of user IDs.
+</td></tr>
+<tr valign="top"><td width=10%>
+--ignore-time-conflict
+</td><td>
+GnuPG normally checks that the timestamps associated with keys and
+signatures have plausible values.  However, sometimes a signature
+seems to be older than the key due to clock problems.  This option
+makes these checks just a warning.  See also --ignore-valid-from for
+timestamp issues on subkeys.
+</td></tr>
+<tr valign="top"><td width=10%>
+--ignore-valid-from
+</td><td>
+GnuPG normally does not select and use subkeys created in the future.
+This option allows the use of such keys and thus exhibits the
+pre-1.0.7 behaviour.  You should not use this option unless you there
+is some clock problem.  See also --ignore-time-conflict for timestamp
+issues with signatures.
+</td></tr>
+<tr valign="top"><td width=10%>
+--ignore-crc-error
+</td><td>
+The ASCII armor used by OpenPGP is protected by a CRC checksum against
+transmission errors.  Occasionally the CRC gets mangled somewhere on
+the transmission channel but the actual content (which is protected by
+the OpenPGP protocol anyway) is still okay.  This option allows GnuPG
+to ignore CRC errors.
+</td></tr>
+<tr valign="top"><td width=10%>
+--ignore-mdc-error
+</td><td>
+This option changes a MDC integrity protection failure into a warning.
+This can be useful if a message is partially corrupt, but it is
+necessary to get as much data as possible out of the corrupt message.
+However, be aware that a MDC protection failure may also mean that the
+message was tampered with intentionally by an attacker.
+</td></tr>
+<tr valign="top"><td width=10%>
+--lock-once
+</td><td>
+Lock the databases the first time a lock is requested
+and do not release the lock until the process
+terminates.
+</td></tr>
+<tr valign="top"><td width=10%>
+--lock-multiple
+</td><td>
+Release the locks every time a lock is no longer
+needed. Use this to override a previous --lock-once
+from a config file.
+</td></tr>
+<tr valign="top"><td width=10%>
+--lock-never
+</td><td>
+Disable locking entirely.  This option should be used only in very
+special environments, where it can be assured that only one process
+is accessing those files.  A bootable floppy with a stand-alone
+encryption system will probably use this.  Improper usage of this
+option may lead to data and key corruption.
+</td></tr>
+<tr valign="top"><td width=10%>
+--exit-on-status-write-error
+</td><td>
+This option will cause write errors on the status FD to immediately
+terminate the process.  That should in fact be the default but it
+never worked this way and thus we need an option to enable this, so
+that the change won&#146;t break applications which close their end of a
+status fd connected pipe too early.  Using this option along with
+--enable-progress-filter may be used to cleanly cancel long running
+gpg operations.
+</td></tr>
+<tr valign="top"><td width=10%>
+--limit-card-insert-tries <b>n</b>
+</td><td>
+With <b>n</b> greater than 0 the number of prompts asking to insert a
+smartcard gets limited to N-1.  Thus with a value of 1 gpg won&#146;t at
+all ask to insert a card if none has been inserted at startup. This
+option is useful in the configuration file in case an application does
+not know about the smartcard support and waits ad infinitum for an
+inserted card.
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-random-seed-file
+</td><td>
+GnuPG uses a file to store its internal random pool over invocations.
+This makes random generation faster; however sometimes write operations
+are not desired.  This option can be used to achieve that with the cost of
+slower random generation.
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-verbose
+</td><td>
+Reset verbose level to 0.
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-greeting
+</td><td>
+Suppress the initial copyright message.
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-secmem-warning
+</td><td>
+Suppress the warning about "using insecure memory".
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-permission-warning
+</td><td>
+Suppress the warning about unsafe file and home directory (--homedir)
+permissions.  Note that the permission checks that GnuPG performs are
+not intended to be authoritative, but rather they simply warn about
+certain common permission problems.  Do not assume that the lack of a
+warning means that your system is secure.
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+Note that the warning for unsafe --homedir permissions cannot be
+suppressed in the gpg.conf file, as this would allow an attacker to
+place an unsafe gpg.conf file in place, and use this file to suppress
+warnings about itself.  The --homedir permissions warning may only be
+suppressed on the command line.
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-mdc-warning
+</td><td>
+Suppress the warning about missing MDC integrity protection.
+</td></tr>
+<tr valign="top"><td width=10%>
+--require-secmem
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-require-secmem
+</td><td>
+Refuse to run if GnuPG cannot get secure memory.  Defaults to no
+(i.e. run, but give a warning).
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-armor
+</td><td>
+Assume the input data is not in ASCII armored format.
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-default-keyring
+</td><td>
+Do not add the default keyrings to the list of keyrings.  Note that
+GnuPG will not operate without any keyrings, so if you use this option
+and do not provide alternate keyrings via --keyring or
+--secret-keyring, then GnuPG will still use the default public or
+secret keyrings.
+</td></tr>
+<tr valign="top"><td width=10%>
+--skip-verify
+</td><td>
+Skip the signature verification step.  This may be
+used to make the decryption faster if the signature
+verification is not needed.
+</td></tr>
+<tr valign="top"><td width=10%>
+--with-colons
+</td><td>
+Print key listings delimited by colons.  Note that the output will be
+encoded in UTF-8 regardless of any --display-charset setting.  This
+format is useful when GnuPG is called from scripts and other programs
+as it is easily machine parsed.  The details of this format are
+documented in the file doc/DETAILS, which is included in the GnuPG
+source distribution.
+</td></tr>
+<tr valign="top"><td width=10%>
+--with-key-data
+</td><td>
+Print key listings delimited by colons (like --with-colons) and print the public key data.
+</td></tr>
+<tr valign="top"><td width=10%>
+--with-fingerprint
+</td><td>
+Same as the command --fingerprint but changes only the format of the output
+and may be used together with another command.
+</td></tr>
+<tr valign="top"><td width=10%>
+--fast-list-mode
+</td><td>
+Changes the output of the list commands to work faster; this is achieved
+by leaving some parts empty.  Some applications don&#146;t need the user ID and
+the trust information given in the listings.  By using this options they
+can get a faster listing.  The exact behaviour of this option may change
+in future versions.
+</td></tr>
+<tr valign="top"><td width=10%>
+--fixed-list-mode
+</td><td>
+Do not merge primary user ID and primary key in --with-colon listing
+mode and print all timestamps as seconds since 1970-01-01.
+</td></tr>
+<tr valign="top"><td width=10%>
+--list-only
+</td><td>
+Changes the behaviour of some commands.  This is like --dry-run but
+different in some cases.  The semantic of this command may be extended in
+the future.  Currently it only skips the actual decryption pass and
+therefore enables a fast listing of the encryption keys.
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-literal
+</td><td>
+This is not for normal use.  Use the source to see for what it might be useful.
+</td></tr>
+<tr valign="top"><td width=10%>
+--set-filesize
+</td><td>
+This is not for normal use.  Use the source to see for what it might be useful.
+</td></tr>
+<tr valign="top"><td width=10%>
+--show-session-key
+</td><td>
+Display the session key used for one message. See --override-session-key
+for the counterpart of this option.
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+We think that Key Escrow is a Bad Thing; however the user should have
+the freedom to decide whether to go to prison or to reveal the content
+of one specific message without compromising all messages ever
+encrypted for one secret key. DON&#146;T USE IT UNLESS YOU ARE REALLY
+FORCED TO DO SO.
+</td></tr>
+<tr valign="top"><td width=10%>
+--override-session-key <b>string</b>
+</td><td>
+Don&#146;t use the public key but the session key <b>string</b>.  The format of this
+string is the same as the one printed by --show-session-key.  This option
+is normally not used but comes handy in case someone forces you to reveal the
+content of an encrypted message; using this option you can do this without
+handing out the secret key.
+</td></tr>
+<tr valign="top"><td width=10%>
+--require-cross-certification
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-require-certification
+</td><td>
+When verifying a signature made from a subkey, ensure that the cross
+certification "back signature" on the subkey is present and valid.
+This protects against a subtle attack against subkeys that can sign.
+Currently defaults to --no-require-cross-certification, but will be
+changed to --require-cross-certification in the future.
+</td></tr>
+<tr valign="top"><td width=10%>
+--ask-sig-expire
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-ask-sig-expire
+</td><td>
+When making a data signature, prompt for an expiration time.  If this
+option is not specified, the expiration time set via
+--default-sig-expire is used.  --no-ask-sig-expire disables this
+option.  Note that by default, --force-v3-sigs is set which also
+disables this option.  If you want signature expiration, you must set
+--no-force-v3-sigs as well as turning --ask-sig-expire on.
+</td></tr>
+<tr valign="top"><td width=10%>
+--default-sig-expire
+</td><td>
+The default expiration time to use for signature expiration.  Valid
+values are "0" for no expiration, a number followed by the letter d
+(for days), w (for weeks), m (for months), or y (for years) (for
+example "2m" for two months, or "5y" for five years), or an absolute
+date in the form YYYY-MM-DD.  Defaults to "0".
+</td></tr>
+<tr valign="top"><td width=10%>
+--ask-cert-expire
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-ask-cert-expire
+</td><td>
+When making a key signature, prompt for an expiration time.  If this
+option is not specified, the expiration time set via
+--default-cert-expire is used.  --no-ask-cert-expire disables this
+option.
+</td></tr>
+<tr valign="top"><td width=10%>
+--default-cert-expire
+</td><td>
+The default expiration time to use for key signature expiration.
+Valid values are "0" for no expiration, a number followed by the
+letter d (for days), w (for weeks), m (for months), or y (for years)
+(for example "2m" for two months, or "5y" for five years), or an
+absolute date in the form YYYY-MM-DD.  Defaults to "0".
+</td></tr>
+<tr valign="top"><td width=10%>
+--expert
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-expert
+</td><td>
+Allow the user to do certain nonsensical or "silly" things like
+signing an expired or revoked key, or certain potentially incompatible
+things like generating unusual key types.  This also disables certain
+warning messages about potentially incompatible actions.  As the name
+implies, this option is for experts only.  If you don&#146;t fully
+understand the implications of what it allows you to do, leave this
+off.  --no-expert disables this option.
+</td></tr>
+<tr valign="top"><td width=10%>
+--allow-secret-key-import
+</td><td>
+This is an obsolete option and is not used anywhere.
+</td></tr>
+<tr valign="top"><td width=10%>
+--try-all-secrets
+</td><td>
+Don&#146;t look at the key ID as stored in the message but try all secret
+keys in turn to find the right decryption key. This option forces the
+behaviour as used by anonymous recipients (created by using
+--throw-keyids) and might come handy in case where an encrypted
+message contains a bogus key ID.
+</td></tr>
+<tr valign="top"><td width=10%>
+--allow-multisig-verification
+</td><td>
+Allow verification of concatenated signed messages.  This will run a
+signature verification for each data+signature block.  There are some
+security issues with this option and thus it is off by default.  Note
+that versions of GPG prior to version 1.4.3 implicitly allowed this.
+</td></tr>
+<tr valign="top"><td width=10%>
+--enable-special-filenames
+</td><td>
+This options enables a mode in which filenames of the form
+<b>-&n</b>, where n is a non-negative decimal number,
+refer to the file descriptor n and not to a file with that name.
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-expensive-trust-checks
+</td><td>
+Experimental use only.
+</td></tr>
+<tr valign="top"><td width=10%>
+--group <b>name=value1 [value2 value3 ...]</b>
+</td><td>
+Sets up a named group, which is similar to aliases in email programs.
+Any time the group name is a recipient (-r or --recipient), it will be
+expanded to the values specified.  Multiple groups with the same name
+are automatically merged into a single group.
+</td></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+The values are <b>key IDs</b> or fingerprints, but any key description
+is accepted.  Note that a value with spaces in it will be treated as
+two different values.  Note also there is only one level of expansion
+- you cannot make an group that points to another group.  When used
+from the command line, it may be necessary to quote the argument to
+this option to prevent the shell from treating it as multiple
+arguments.
+</td></tr>
+<tr valign="top"><td width=10%>
+--ungroup <b>name</b>
+</td><td>
+Remove a given entry from the --group list.
+</td></tr>
+<tr valign="top"><td width=10%>
+--no-groups
+</td><td>
+Remove all entries from the --group list.
+</td></tr>
+<tr valign="top"><td width=10%>
+--preserve-permissions
+</td><td>
+Don&#146;t change the permissions of a secret keyring back to user
+read/write only.  Use this option only if you really know what you are doing.
+</td></tr>
+<tr valign="top"><td width=10%>
+--personal-cipher-preferences <b>string</b>
+</td><td>
+Set the list of personal cipher preferences to <b>string</b>, this list
+should be a string similar to the one printed by the command "pref" in
+the edit menu.  This allows the user to factor in their own preferred
+algorithms when algorithms are chosen via recipient key preferences.
+The most highly ranked cipher in this list is also used for the
+--symmetric encryption command.
+</td></tr>
+<tr valign="top"><td width=10%>
+--personal-digest-preferences <b>string</b>
+</td><td>
+Set the list of personal digest preferences to <b>string</b>, this list
+should be a string similar to the one printed by the command "pref" in
+the edit menu.  This allows the user to factor in their own preferred
+algorithms when algorithms are chosen via recipient key preferences.
+The most highly ranked digest algorithm in this list is algo used when
+signing without encryption (e.g. --clearsign or --sign).  The default
+value is SHA-1.
+</td></tr>
+<tr valign="top"><td width=10%>
+--personal-compress-preferences <b>string</b>
+</td><td>
+Set the list of personal compression preferences to <b>string</b>, this
+list should be a string similar to the one printed by the command
+"pref" in the edit menu.  This allows the user to factor in their own
+preferred algorithms when algorithms are chosen via recipient key
+preferences.  The most highly ranked algorithm in this list is also
+used when there are no recipient keys to consider (e.g. --symmetric).
+</td></tr>
+<tr valign="top"><td width=10%>
+--default-preference-list <b>string</b>
+</td><td>
+Set the list of default preferences to <b>string</b>.  This preference
+list is used for new keys and becomes the default for "setpref" in the
+edit menu.
+</td></tr>
+<tr valign="top"><td width=10%>
+--default-keyserver-url <b>name</b>
+</td><td>
+Set the default keyserver URL to <b>name</b>.  This keyserver will be
+used as the keyserver URL when writing a new self-signature on a key,
+which includes key generation and changing preferences.
+</td></tr>
+<tr valign="top"><td width=10%>
+--list-config [<b>names</b>]
+</td><td>
+Display various internal configuration parameters of GnuPG.  This
+option is intended for external programs that call GnuPG to perform
+tasks, and is thus not generally useful.  See the file
+<b>doc/DETAILS</b> in the source distribution for the
+details of which configuration items may be listed.  --list-config is
+only usable with --with-colons set.
+</td></tr>
+</table>
+<h1 class="manpages">How to specify a user ID</h1>
+<p>
+There are different ways to specify a user ID to GnuPG; here are some
+examples:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=10%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+234567C4
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+0F34E556E
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+01347A56A
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+0xAB123456
+</td><td>
+Here the key ID is given in the usual short form.
+</td></tr>
+<tr valign="top"><td width=10%>
+234AABBCC34567C4
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+0F323456784E56EAB
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+01AB3FED1347A5612
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+0x234AABBCC34567C4
+</td><td>
+Here the key ID is given in the long form as used by OpenPGP
+(you can get the long key ID using the option --with-colons).
+</td></tr>
+<tr valign="top"><td width=10%>
+1234343434343434C434343434343434
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+123434343434343C3434343434343734349A3434
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+0E12343434343434343434EAB3484343434343434
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+0xE12343434343434343434EAB3484343434343434
+</td><td>
+The best way to specify a key ID is by using the fingerprint of
+the key.  This avoids any ambiguities in case that there are duplicated
+key IDs (which are really rare for the long key IDs).
+</td></tr>
+<tr valign="top"><td width=10%>
+=Heinrich Heine &lt;<a href="mailto:heinrichh@uni-duesseldorf.de">heinrichh@uni-duesseldorf.de</a>&gt;
+</td><td>
+Using an exact to match string.  The equal sign indicates this.
+</td></tr>
+<tr valign="top"><td width=10%>
+&lt;<a href="mailto:heinrichh@uni-duesseldorf.de">heinrichh@uni-duesseldorf.de</a>&gt;
+</td><td>
+Using the email address part which must match exactly.&nbsp;&nbsp;The left angle bracket
+indicates this email address mode.
+</td></tr>
+<tr valign="top"><td width=10%>
+@heinrichh
+</td><td>
+Match within the &lt;email.address&gt; part of a user ID.  The at sign
+indicates this email address mode.
+</td></tr>
+<tr valign="top"><td width=10%>
+Heine
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+*Heine
+</td><td>
+By case insensitive substring matching.  This is the default mode but
+applications may want to explicitly indicate this by putting the asterisk
+in front.
+</td></tr>
+<!-- PP ends table -->
+</table>
+Note that you can append an exclamation mark (!) to key IDs or
+fingerprints.  This flag tells GnuPG to use the specified primary or
+secondary key and not to try and calculate which primary or secondary
+key to use.
+<p>
+<h1 class="manpages">RETURN VALUE</h1>
+<p>
+The program returns 0 if everything was fine, 1 if at least
+a signature was bad, and other error codes for fatal errors.
+<p>
+<h1 class="manpages">EXAMPLES</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=10%>
+gpg -se -r <b>Bob</b> <b>file</b>
+</td><td>
+sign and encrypt for user Bob
+</td></tr>
+<tr valign="top"><td width=10%>
+gpg --clearsign <b>file</b>
+</td><td>
+make a clear text signature
+</td></tr>
+<tr valign="top"><td width=10%>
+gpg -sb  <b>file</b>
+</td><td>
+make a detached signature
+</td></tr>
+<tr valign="top"><td width=10%>
+gpg --list-keys  <b>user_ID</b>
+</td><td>
+show keys
+</td></tr>
+<tr valign="top"><td width=10%>
+gpg --fingerprint  <b>user_ID</b>
+</td><td>
+show fingerprint
+</td></tr>
+<tr valign="top"><td width=10%>
+gpg --verify  <b>pgpfile</b>
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+gpg --verify  <b>sigfile</b> [<b>files</b>]
+</td><td>
+Verify the signature of the file but do not output the data. The
+second form is used for detached signatures, where <b>sigfile</b> is the detached signature (either ASCII armored or binary) and
+[<b>files</b>] are the signed data; if this is not given, the name of
+the file holding the signed data is constructed by cutting off the
+extension (".asc" or ".sig") of <b>sigfile</b> or by asking the
+user for the filename.
+</td></tr>
+</table>
+<h1 class="manpages">ENVIRONMENT</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=10%>
+HOME
+</td><td>
+Used to locate the default home directory.
+</td></tr>
+<tr valign="top"><td width=10%>
+GNUPGHOME
+</td><td>
+If set directory used instead of "~/.gnupg".
+</td></tr>
+<tr valign="top"><td width=10%>
+GPG_AGENT_INFO
+</td><td>
+Used to locate the gpg-agent; only honored when
+--use-agent is set.  The value consists of 3 colon delimited fields: 
+The first is the path to the Unix Domain Socket, the second the PID of
+the gpg-agent and the protocol version which should be set to 1.  When
+starting the gpg-agent as described in its documentation, this
+variable is set to the correct value.  The option --gpg-agent-info can
+be used to override it.
+</td></tr>
+<tr valign="top"><td width=10%>
+COLUMNS
+</td><td>
+</td></tr>
+<tr valign="top"><td width=10%>
+LINES
+</td><td>
+Used to size some displays to the full size of the screen.
+</td></tr>
+</table>
+<h1 class="manpages">FILES</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=10%>
+~/.gnupg/secring.gpg
+</td><td>
+The secret keyring
+</td></tr>
+<tr valign="top"><td width=10%>
+~/.gnupg/secring.gpg.lock
+</td><td>
+and the lock file
+</td></tr>
+<tr valign="top"><td width=10%>
+~/.gnupg/pubring.gpg
+</td><td>
+The public keyring
+</td></tr>
+<tr valign="top"><td width=10%>
+~/.gnupg/pubring.gpg.lock
+</td><td>
+and the lock file
+</td></tr>
+<tr valign="top"><td width=10%>
+~/.gnupg/trustdb.gpg
+</td><td>
+The trust database
+</td></tr>
+<tr valign="top"><td width=10%>
+~/.gnupg/trustdb.gpg.lock
+</td><td>
+and the lock file
+</td></tr>
+<tr valign="top"><td width=10%>
+~/.gnupg/random_seed
+</td><td>
+used to preserve the internal random pool
+</td></tr>
+<tr valign="top"><td width=10%>
+~/.gnupg/gpg.conf
+</td><td>
+Default configuration file
+</td></tr>
+<tr valign="top"><td width=10%>
+~/.gnupg/options
+</td><td>
+Old style configuration file; only used when gpg.conf
+is not found
+</td></tr>
+<tr valign="top"><td width=10%>
+/usr[/local]/share/gnupg/options.skel
+</td><td>
+Skeleton options file
+</td></tr>
+<tr valign="top"><td width=10%>
+/usr[/local]/lib/gnupg/
+</td><td>
+Default location for extensions
+</td></tr>
+</table>
+<h1 class="manpages">WARNINGS</h1>
+<p>
+Use a *good* password for your user account and a *good* passphrase
+to protect your secret key.  This passphrase is the weakest part of the
+whole system.  Programs to do dictionary attacks on your secret keyring
+are very easy to write and so you should protect your "~/.gnupg/"
+directory very well.
+<p>
+Keep in mind that, if this program is used over a network (telnet), it
+is *very* easy to spy out your passphrase!
+<p>
+If you are going to verify detached signatures, make sure that the
+program knows about it; either give both filenames on the command line
+or use <b>-</b> to specify stdin.
+<h1 class="manpages">INTEROPERABILITY WITH OTHER OPENPGP PROGRAMS</h1>
+<p>
+GnuPG tries to be a very flexible implementation of the OpenPGP
+standard.  In particular, GnuPG implements many of the optional parts
+of the standard, such as the SHA-512 hash, and the ZLIB and BZIP2
+compression algorithms.  It is important to be aware that not all
+OpenPGP programs implement these optional algorithms and that by
+forcing their use via the --cipher-algo, --digest-algo,
+--cert-digest-algo, or --compress-algo options in GnuPG, it is
+possible to create a perfectly valid OpenPGP message, but one that
+cannot be read by the intended recipient.
+<p>
+There are dozens of variations of OpenPGP programs available, and each
+supports a slightly different subset of these optional algorithms.
+For example, until recently, no (unhacked) version of PGP supported
+the BLOWFISH cipher algorithm.  A message using BLOWFISH simply could
+not be read by a PGP user.  By default, GnuPG uses the standard
+OpenPGP preferences system that will always do the right thing and
+create messages that are usable by all recipients, regardless of which
+OpenPGP program they use.  Only override this safe default if you
+really know what you are doing.
+<p>
+If you absolutely must override the safe default, or if the
+preferences on a given key are invalid for some reason, you are far
+better off using the --pgp6, --pgp7, or --pgp8 options.  These options
+are safe as they do not force any particular algorithms in violation
+of OpenPGP, but rather reduce the available algorithms to a "PGP-safe"
+list.
+<h1 class="manpages">BUGS</h1>
+<p>
+On many systems this program should be installed as setuid(root). This
+is necessary to lock memory pages.  Locking memory pages prevents the
+operating system from writing memory pages (which may contain
+passphrases or other sensitive material) to disk.  If you get no
+warning message about insecure memory your operating system supports
+locking without being root.  The program drops root privileges as soon
+as locked memory is allocated.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionbf1a.html?tutorial=unix_commands&amp;file=gpg.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/gpg.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:42 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

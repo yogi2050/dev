@@ -1,0 +1,768 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/tune2fs.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>tune2fs - Unix, Linux Command</title>
+<meta name="Description" Content="tune2fs - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>tune2fs - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+tune2fs - adjust tunable filesystem parameters on ext2/ext3 filesystems
+<h1 class="manpages">SYNOPSIS</h1>
+<b>tune2fs</b> [
+<b>-l</b> ]
+[
+<b>-c</b> <i>max-mount-counts</i> ]
+[
+<b>-e</b> <i>errors-behavior</i> ]
+[
+<b>-f</b> ]
+[
+<b>-i</b> <i>interval-between-checks</i> ]
+[
+<b>-j</b> ]
+[
+<b>-J</b> <i>journal-options</i> ]
+[
+<b>-m</b> <i>reserved-blocks-percentage</i> ]
+[
+<b>-o</b> [^]mount-options<i>[,...]</i> ]
+[
+<b>-r</b> <i>reserved-blocks-count</i> ]
+[
+<b>-s</b> <i>sparse-super-flag</i> ]
+[
+<b>-u</b> <i>user</i> ]
+[
+<b>-g</b> <i>group</i> ]
+[
+<b>-C</b> <i>mount-count</i> ]
+[
+<b>-L</b> <i>volume-name</i> ]
+[
+<b>-M</b> <i>last-mounted-directory</i> ]
+[
+<b>-O</b> [^]<i>feature</i>[,...] ]
+[
+<b>-T</b> <i>time-last-checked</i> ]
+[
+<b>-U</b> <i>UUID</i> ]
+device
+<h1 class="manpages">DESCRIPTION</h1>
+<b>tune2fs</b> allows the system administrator to adjust various tunable filesystem
+parameters on Linux ext2/ext3 filesystems.
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>-c</b><i> max-mount-counts</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Adjust the number of mounts after which the filesystem will be checked by
+<b>e2fsck</b>(8).
+If
+<i>max-mount-counts</i> is 0 or -1, the number of times the filesystem is mounted will be disregarded
+by
+<b>e2fsck</b>(8)
+and the kernel.
+<p>
+Staggering the mount-counts at which filesystems are forcibly
+checked will avoid all filesystems being checked at one time
+when using journaled filesystems.
+<p>
+You should strongly consider the consequences of disabling
+mount-count-dependent checking entirely.  Bad disk drives, cables,
+memory, and kernel bugs could all corrupt a filesystem without
+marking the filesystem dirty or in error.  If you are using
+journaling on your filesystem, your filesystem will
+<b>never</b> be marked dirty, so it will not normally be checked.  A
+filesystem error detected by the kernel will still force
+an fsck on the next reboot, but it may already be too late
+to prevent data loss at that point.
+<p>
+See also the
+<b>-i</b> option for time-dependent checking.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-C</b><i> mount-count</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set the number of times the filesystem has been mounted.
+If set to a greater value than the max-mount-counts parameter
+set by the
+<b>-c</b> option,
+<b>e2fsck</b>(8)
+will check the filesystem at the next reboot.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-e</b><i> error-behavior</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Change the behavior of the kernel code when errors are detected.
+In all cases, a filesystem error will cause
+<b>e2fsck</b>(8)
+to check the filesystem on the next boot.
+<i>error-behavior</i> can be one of the following:
+</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=12%>&nbsp;</td><td>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>continue</b> </td><td valign="bottom">
+Continue normal execution.
+</td></tr>
+<tr valign="top"><td>
+<b>remount-ro</b> </td><td valign="bottom">
+Remount filesystem read-only.
+</td></tr>
+<tr valign="top"><td>
+<b>panic</b> </td><td valign="bottom">
+Cause a kernel panic.
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td>
+<b>-f</b> </td><td valign="bottom">
+Force the tune2fs operation to complete even in the face of errors.  This
+option is useful when removing the
+<b>has_journal</b> filesystem feature from a filesystem which has
+an external journal (or is corrupted
+such that it appears to have an external journal), but that
+external journal is not available.  
+<p>
+<b>WARNING:</b> Removing an external journal from a filesystem which was not cleanly unmounted
+without first replaying the external journal can result in
+severe data loss and filesystem corruption.
+</td></tr>
+<tr valign="top"><td>
+<b>-g</b><i> group</i> </td><td valign="bottom">
+Set the group which can use reserved filesystem blocks.
+The
+<i>group</i> parameter can be a numerical gid or a group name.  If a group name is given,
+it is converted to a numerical gid before it is stored in the superblock.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-i  </b><i>interval-between-checks</i>[<b>d</b>|<b>m</b>|<b>w</b>] </td></tr><tr valign="top"><td width=12%>&nbsp;</td><td>
+Adjust the maximal time between two filesystem checks.
+No postfix or
+<b>d</b> result in days,
+<b>m</b> in months, and
+<b>w</b> in weeks.  A value of zero will disable the time-dependent checking.
+<p>
+It is strongly recommended that either
+<b>-c</b> (mount-count-dependent) or
+<b>-i</b> (time-dependent) checking be enabled to force periodic full
+<b>e2fsck</b>(8)
+checking of the filesystem.  Failure to do so may lead to filesystem
+corruption due to bad disks, cables, memory, or kernel bugs to go
+unnoticed until they cause data loss or corruption.
+</td></tr>
+<tr valign="top"><td>
+<b>-j</b> </td><td valign="bottom">
+Add an ext3 journal to the filesystem.  If the
+<b>-J</b> option is not specified, the default journal parameters will be used to create
+an appropriately sized journal (given the size of the filesystem)
+stored within the filesystem.  Note that you must be using a kernel
+which has ext3 support in order to actually make use of the journal.
+</td></tr>
+<tr valign="top"><td width=12%>
+
+</td><td>
+If this option is used to create a journal on a mounted filesystem, an
+immutable file,
+<b>.journal</b>, will be created in the top-level directory of the filesystem, as it is
+the only safe way to create the journal inode while the filesystem is
+mounted.  While the ext3 journal is visible, it is not safe to
+delete it, or modify it while the filesystem is mounted; for this
+reason the file is marked immutable.
+While checking unmounted filesystems,
+<b>e2fsck</b>(8)
+will automatically move
+<b>.journal</b> files to the invisible, reserved journal inode.  For all filesystems
+except for the root filesystem,  this should happen automatically and
+naturally during the next reboot cycle.  Since the root filesystem is
+mounted read-only,
+<b>e2fsck</b>(8)
+must be run from a rescue floppy in order to effect this transition.
+</td></tr>
+<tr valign="top"><td width=12%>
+
+</td><td>
+On some distributions, such as Debian, if an initial ramdisk is used,
+the initrd scripts will automatically convert an ext2 root filesystem
+to ext3 if the 
+<b>/etc/fstab</b> file specifies the ext3 filesystem for the root filesystem in order to
+avoid requiring the use of a rescue floppy to add an ext3 journal to
+the root filesystem.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-J</b> journal-options </td></tr><tr valign="top"><td width=12%>&nbsp;</td><td>
+Override the default ext3 journal parameters. Journal options are comma
+separated, and may take an argument using the equals (&#146;=&#146;)  sign.
+The following journal options are supported:
+</td></tr>
+<tr><td width=12%>&nbsp;</td><td>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>size=</b><i>journal-size</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Create a journal stored in the filesystem of size
+<i>journal-size</i> megabytes.   The size of the journal must be at least 1024 filesystem blocks
+(i.e., 1MB if using 1k blocks, 4MB if using 4k blocks, etc.)
+and may be no more than 102,400 filesystem blocks.
+There must be enough free space in the filesystem to create a journal of
+that size.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>device=</b><i>external-journal</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Attach the filesystem to the journal block device located on
+<i>external-journal</i>. The external
+journal must have been already created using the command
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<b>mke2fs -O journal_dev</b> <i>external-journal</i> </td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+Note that
+<i>external-journal</i> must be formatted with the same block
+size as filesystems which will be using it.
+In addition, while there is support for attaching
+multiple filesystems to a single external journal,
+the Linux kernel and
+<b>e2fsck</b>(8)
+do not currently support shared external journals yet.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+Instead of specifying a device name directly,
+<i>external-journal</i> can also be specified by either
+<b>LABEL=</b><i>label</i> or
+<b>UUID=</b><i>UUID</i> to locate the external journal by either the volume label or UUID
+stored in the ext2 superblock at the start of the journal.  Use
+<b>dumpe2fs</b>(8)
+to display a journal device&#146;s volume label and UUID.  See also the
+<b>-L</b> option of
+<b>tune2fs</b>(8).
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+Only one of the
+<b>size</b> or <b>device</b> options can be given for a filesystem.
+</td></tr>
+<tr valign="top"><td>
+<b>-l</b> </td><td valign="bottom">
+List the contents of the filesystem superblock.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-L</b><i> volume-label</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set the volume label of the filesystem. 
+Ext2 filesystem labels can be at most 16 characters long; if
+<i>volume-label</i> is longer than 16 characters,
+<b>tune2fs</b> will truncate it and print a warning.  The volume label can be used
+by
+<b>mount</b>(8),
+<b>fsck</b>(8),
+and
+<b>/etc/fstab</b>(5)
+(and possibly others) by specifying
+<b>LABEL=</b><i>volume_label</i> instead of a block special device name like
+<b>/dev/hda5</b>. </td></tr>
+<tr valign="top"><td colspan="2">
+<b>-m</b><i> reserved-blocks-percentage</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set the percentage of reserved filesystem blocks.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-M</b><i> last-mounted-directory</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set the last-mounted directory for the filesystem.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-o</b> [^]<i>mount-option</i>[,...] </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set or clear the indicated default mount options in the filesystem.
+Default mount options can be overridden by mount options specified
+either in
+<b>/etc/fstab</b>(5)
+or on the command line arguments to
+<b>mount</b>(8).
+Older kernels may not support this feature; in particular,
+kernels which predate 2.4.20 will almost certainly ignore the
+default mount options field in the superblock.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+More than one mount option can be cleared or set by separating
+features with commas.  Mount options prefixed with a
+caret character (&#146;^&#146;) will be cleared in the filesystem&#146;s superblock;
+mount options without a prefix character or prefixed with a plus
+character (&#146;+&#146;) will be added to the filesystem.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+The following mount options can be set or cleared using
+<b>tune2fs</b>: </td></tr>
+<tr><td width=6%>&nbsp;</td><td>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>debug</b> </td><td valign="bottom">
+Enable debugging code for this filesystem.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>bsdgroups</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Emulate BSD behaviour when creating new files: they will take the group-id
+of the directory in which they were created.  The standard System V behaviour
+is the default, where newly created files take on the fsgid of the current
+process, unless the directory has the setgid bit set, in which case it takes
+the gid from the parent directory, and also gets the setgid bit set if it is
+directory itself.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>user_xattr</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Enable user-specified extended attributes.
+</td></tr>
+<tr valign="top"><td>
+<b>acl</b> </td><td valign="bottom">
+Enable Posix Access Control Lists.
+</td></tr>
+<tr valign="top"><td>
+<b>uid16</b> </td><td valign="bottom">
+Disables 32-bit UIDs and GIDs.  This is for interoperability with
+older kernels which only store and expect 16-bit values.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>journal_data</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+When the filesystem is mounted with journalling enabled, all data
+(not just metadata) is committed into the journal prior to being written
+into the main filesystem.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>journal_data_ordered</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+When the filesystem is mounted with journalling enabled, all data is forced
+directly out to the main file system prior to its metadata being committed
+to the journal.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>journal_data_writeback</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+When the filesystem is mounted with journalling enabled, data may be
+written into the main filesystem after its metadata has been committed
+to the journal.  This may increase throughput, however, it may allow old
+data to appear in files after a crash and journal recovery.
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-O</b> [^]<i>feature</i>[,...] </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set or clear the indicated filesystem features (options) in the filesystem.
+More than one filesystem feature can be cleared or set by separating
+features with commas.  Filesystem features prefixed with a
+caret character (&#146;^&#146;) will be cleared in the filesystem&#146;s superblock;
+filesystem features without a prefix character or prefixed with a plus
+character (&#146;+&#146;) will be added to the filesystem.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+The following filesystem features can be set or cleared using
+<b>tune2fs</b>: </td></tr>
+<tr><td width=6%>&nbsp;</td><td>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>dir_index</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Use hashed b-trees to speed up lookups in large directories.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>filetype</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Store file type information in directory entries.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>has_journal</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Use a journal to ensure filesystem consistency even across unclean shutdowns.
+Setting the filesystem feature is equivalent to using the
+<b>-j</b> option.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>sparse_super</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Limit the number of backup superblocks to save space on large filesystems.
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+After setting or clearing
+<b>sparse_super</b> and
+<b>filetype</b> filesystem features,
+<b>e2fsck</b>(8)
+must be run on the filesystem to return the filesystem to a consistent state.
+<b>Tune2fs</b> will print a message requesting that the system administrator run
+<b>e2fsck</b>(8)
+if necessary.  After setting the
+<b>dir_index</b> feature,
+<b>e2fsck -D</b> can be run to convert existing directories to the hashed B-tree format.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<b>Warning:</b> Linux kernels before 2.0.39 and many 2.1 series kernels do not support
+the filesystems that use any of these features.
+Enabling certain filesystem features may prevent the filesystem from
+being mounted by kernels which do not support those features.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-r</b><i> reserved-blocks-count</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set the number of reserved filesystem blocks.
+</td></tr>
+<tr valign="top"><td>
+<b>-s</b> [<b>0</b>|<b>1</b>] </td><td valign="bottom">
+Turn the sparse super feature off or on.  Turning this feature on
+saves space on really big filesystems.  This is the same as using the
+<b>-O sparse_super</b> option.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<b>Warning:</b> Linux kernels before 2.0.39 do not support this feature.  Neither do
+all Linux 2.1 kernels; please don&#146;t use this unless you know what you&#146;re
+doing!  You need to run
+<b>e2fsck</b>(8)
+on the filesystem after changing this feature in order to have a valid
+filesystem.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-T</b><i> time-last-checked</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set the time the filesystem was last checked using
+<b>e2fsck</b>. This can be useful in scripts which use a Logical Volume Manager to make
+a consistent snapshot of a filesystem, and then check the filesystem
+during off hours to make sure it hasn&#146;t been corrupted due to
+hardware problems, etc.  If the filesystem was clean, then this option can
+be used to set the last checked time on the original filesystem.  The format
+of
+<i>time-last-checked</i> is the international date format, with an optional time specifier, i.e.
+YYYYMMDD[[HHMM]SS].   The keyword
+<b>now</b> is also accepted, in which case the last checked time will be set to the
+current time.
+</td></tr>
+<tr valign="top"><td>
+<b>-u</b><i> user</i> </td><td valign="bottom">
+Set the user who can use the reserved filesystem blocks.
+<i>user</i> can be a numerical uid or a user name.  If a user name is given, it
+is converted to a numerical uid before it is stored in the superblock.
+</td></tr>
+<tr valign="top"><td>
+<b>-U</b><i> UUID</i> </td><td valign="bottom">
+Set the universally unique identifier (UUID) of the filesystem to
+<i>UUID</i>. The format of the UUID is a series of hex digits separated by hyphens,
+like this:
+"c1b9d5a2-f162-11cf-9ece-0020afc76f16". 
+The
+<i>UUID</i> parameter may also be one of the following:
+</td></tr>
+<tr><td width=6%>&nbsp;</td><td>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<i>clear</i> </td><td valign="bottom">
+clear the filesystem UUID
+</td></tr>
+<tr valign="top"><td>
+<i>random</i> </td><td valign="bottom">
+generate a new randomly-generated UUID
+</td></tr>
+<tr valign="top"><td>
+<i>time</i> </td><td valign="bottom">
+generate a new time-based UUID
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+The UUID may be used by
+<b>mount</b>(8),
+<b>fsck</b>(8),
+and
+<b>/etc/fstab</b>(5)
+(and possibly others) by specifying
+<b>UUID=</b><i>uuid</i> instead of a block special device name like
+<b>/dev/hda1</b>. </td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+See
+<b>uuidgen</b>(8)
+for more information.
+If the system does not have a good random number generator such as
+<i>/dev/random</i> or
+<i>/dev/urandom</i>, <b>tune2fs</b> will automatically use a time-based UUID instead of a randomly-generated UUID.
+</td></tr>
+</table>
+<h1 class="manpages">BUGS</h1>
+We haven&#146;t found any bugs yet.  That doesn&#146;t mean there aren&#146;t any...
+<h1 class="manpages">AUTHOR</h1>
+<b>tune2fs</b> was written by Remy Card &lt;<a href="mailto:Remy.Card@linux.org">Remy.Card@linux.org</a>&gt;.  It is currently being
+maintained by Theodore Ts&#146;o &lt;<a href="mailto:tytso@alum.mit.edu">tytso@alum.mit.edu</a>&gt;.
+<b>tune2fs</b> uses the ext2fs library written by Theodore Ts&#146;o &lt;<a href="mailto:tytso@mit.edu">tytso@mit.edu</a>&gt;.
+This manual page was written by Christian Kuhtz &lt;<a href="mailto:chk@data-hh.Hanse.DE">chk@data-hh.Hanse.DE</a>&gt;.
+Time-dependent checking was added by Uwe Ohse &lt;<a href="mailto:uwe@tirka.gun.de">uwe@tirka.gun.de</a>&gt;.
+<h1 class="manpages">AVAILABILITY</h1>
+<b>tune2fs</b> is part of the e2fsprogs package and is available from
+<a href="http://e2fsprogs.sourceforge.net/">http://e2fsprogs.sourceforge.net</a>.
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="dumpe2fs.html">dumpe2fs (8)</a></p></li>
+<li><p><a href="e2fsck.html">e2fsck (8)</a></p></li>
+<li><p><a href="mke2fs.htm">mke2fs (8)</a></p></li>
+</ul>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion4c97.html?tutorial=unix_commands&amp;file=tune2fs.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/tune2fs.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

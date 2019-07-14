@@ -1,0 +1,642 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/agetty.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:23 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>agetty - Unix, Linux Command</title>
+<meta name="Description" Content="agetty - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>agetty - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+agetty - alternative Linux getty
+<p>
+<h1 class="manpages">SYNOPSIS</h1>
+<b>agetty </b>[-ihLmnw] [-f <i>issue_file</i>] [-l <i>login_program</i>] [-I <i>init</i>] [-t <i>timeout</i>] [-H <i>login_host</i>] <i>port</i> <i>baud_rate,...</i> [<i>term</i>] <!-- Need break --><br />
+<b>agetty </b>[-ihLmnw] [-f <i>issue_file</i>] [-l <i>login_program</i>] [-I <i>init</i>] [-t <i>timeout</i>] [-H <i>login_host</i>] <i>baud_rate,...</i> <i>port</i> [<i>term</i>] <p>
+<h1 class="manpages">DESCRIPTION</h1>
+<!-- ignored unsupported tag .ad -->
+<b>agetty</b> opens a tty port, prompts for a login name and invokes
+the /bin/login command. It is normally invoked by <i>init(8)</i>.
+<p>
+<b>agetty</b> has several <i>non-standard</i> features that are useful
+for hard-wired and for dial-in lines:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+Adapts the tty settings to parity bits and to erase, kill,
+end-of-line and uppercase characters when it reads a login name.
+The program can handle 7-bit characters with even, odd, none or space
+parity, and 8-bit characters with no parity. The following special
+characters are recognized: @ and Control-U (kill); #, DEL and
+back space (erase); carriage return and line feed (end of line).
+</td></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+Optionally deduces the baud rate from the CONNECT messages produced by
+Hayes(tm)-compatible modems.
+</td></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+Optionally does not hang up when it is given an already opened line
+(useful for call-back applications).
+</td></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+Optionally does not display the contents of the <i>/etc/issue</i> file.
+</td></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+Optionally displays an alternative issue file instead of <i>/etc/issue</i>.
+</td></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+Optionally does not ask for a login name.
+</td></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+Optionally invokes a non-standard login program instead of
+<i>/bin/login</i>.
+</td></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+Optionally turns on hard-ware flow control
+</td></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+Optionally forces the line to be local with no need for carrier detect.
+</td></tr>
+<!-- PP ends table -->
+</table>
+This program does not use the <i>/etc/gettydefs</i> (System V) or
+<i>/etc/gettytab</i> (SunOS 4) files.
+<h1 class="manpages">ARGUMENTS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+port
+</td><td valign="bottom">
+A path name relative to the <i>/dev</i> directory. If a "-" is
+specified, <b>agetty</b> assumes that its standard input is
+already connected to a tty port and that a connection to a
+remote user has already been established.
+<p>
+Under System V, a "-" <i>port</i> argument should be preceded
+by a "--".
+</td></tr>
+<tr valign="top"><td colspan="2">
+baud_rate,...
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+A comma-separated list of one or more baud rates. Each time
+<b>agetty</b> receives a BREAK character it advances through
+the list, which is treated as if it were circular.
+<p>
+Baud rates should be specified in descending order, so that the
+null character (Ctrl-@) can also be used for baud rate switching.
+</td></tr>
+<tr valign="top"><td>
+term
+</td><td valign="bottom">
+The value to be used for the TERM environment variable. This overrides
+whatever init(8) may have set, and is inherited by login and the shell.
+</td></tr>
+</table>
+<h1 class="manpages">OPTIONS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+-h
+</td><td valign="bottom">
+Enable hardware (RTS/CTS) flow control. It is left up to the
+application to disable software (XON/XOFF) flow protocol where
+appropriate.
+</td></tr>
+<tr valign="top"><td>
+-i
+</td><td valign="bottom">
+Do not display the contents of <i>/etc/issue</i> (or other) before writing the
+login prompt. Terminals or communications hardware may become confused
+when receiving lots of text at the wrong baud rate; dial-up scripts
+may fail if the login prompt is preceded by too much text.
+</td></tr>
+<tr valign="top"><td colspan="2">
+-f <i>issue_file</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Display the contents of <i>issue_file</i> instead of <i>/etc/issue</i>.
+This allows custom messages to be displayed on different terminals.
+The -i option will override this option.
+</td></tr>
+<tr valign="top"><td colspan="2">
+-I <i>initstring</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set an initial string to be sent to the tty or modem before sending
+anything else. This may be used to initialize a modem.  Non printable
+characters may be sent by writing their octal code preceded by a
+backslash (\). For example to send a linefeed character (ASCII 10,
+octal 012) write \012.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+-l <i>login_program</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Invoke the specified <i>login_program</i> instead of /bin/login.
+This allows the use of a non-standard login program (for example,
+one that asks for a dial-up password or that uses a different
+password file).
+</td></tr>
+<tr valign="top"><td colspan="2">
+-H <i>login_host</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Write the specified <i>login_host</i> into the utmp file. (Normally,
+no login host is given, since <b>agetty</b> is used for local hardwired
+connections and consoles. However, this option can be useful for
+identifying terminal concentrators and the like.
+</td></tr>
+<tr valign="top"><td>
+-m
+</td><td valign="bottom">
+Try to extract the baud rate the CONNECT status message
+produced by Hayes(tm)-compatible modems. These status
+messages are of the form: "&lt;junk&gt;&lt;speed&gt;&lt;junk&gt;".
+<b>agetty</b> assumes that the modem emits its status message at
+the same speed as specified with (the first) <i>baud_rate</i> value
+on the command line.
+<p>
+Since the <i>-m</i> feature may fail on heavily-loaded systems,
+you still should enable BREAK processing by enumerating all
+expected baud rates on the command line.
+</td></tr>
+<tr valign="top"><td>
+-n
+</td><td valign="bottom">
+Do not prompt the user for a login name. This can be used in
+connection with -l option to invoke a non-standard login process such
+as a BBS system. Note that with the -n option, <b>agetty</b> gets no input from
+user who logs in and therefore won&#146;t be able to figure out parity,
+character size, and newline processing of the connection. It defaults to
+space parity, 7 bit characters, and ASCII CR (13) end-of-line character.
+Beware that the program that <b>agetty</b> starts (usually /bin/login)
+is run as root.
+</td></tr>
+<tr valign="top"><td colspan="2">
+-t <i>timeout</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Terminate if no user name could be read within <i>timeout</i>
+seconds. This option should probably not be used with hard-wired
+lines.
+</td></tr>
+<tr valign="top"><td>
+-L
+</td><td valign="bottom">
+Force the line to be a local line with no need for carrier detect. This can
+be useful when you have a locally attached terminal where the serial line
+does not set the carrier detect signal.
+</td></tr>
+<tr valign="top"><td>
+-w
+</td><td valign="bottom">
+Wait for the user or the modem to send a carriage-return or a
+linefeed character before sending the <i>/etc/issue</i> (or other) file
+and the login prompt. Very useful in connection with the -I option.
+</td></tr>
+<!-- PP ends table -->
+</table>
+<h1 class="manpages">EXAMPLES</h1>
+This section shows examples for the process field of an entry in the
+<i>/etc/inittab</i> file.  You&#146;ll have to prepend appropriate values
+for the other fields.  See <i>inittab(5)</i> for more details.
+<p>
+For a hard-wired line or a console tty:
+&nbsp; &nbsp;/sbin/agetty 9600 ttyS1
+<p>
+For a directly connected terminal without proper carriage detect wiring:
+(try this if your terminal just sleeps instead of giving you a password:
+prompt.)
+&nbsp; &nbsp;/sbin/agetty -L 9600 ttyS1 vt100
+<p>
+For a old style dial-in line with a 9600/2400/1200 baud modem:
+&nbsp; &nbsp;/sbin/agetty -mt60 ttyS1 9600,2400,1200
+<p>
+For a Hayes modem with a fixed 115200 bps interface to the machine:
+(the example init string turns off modem echo and result codes, makes
+modem/computer DCD track modem/modem DCD, makes a DTR drop cause a
+dis-connection and turn on auto-answer after 1 ring.)
+&nbsp; &nbsp;/sbin/agetty -w -I &#146;ATE0Q1&D2&C1S0=1\015&#146; 115200 ttyS1
+<p>
+<h1 class="manpages">ISSUE ESCAPES</h1>
+The issue-file (<i>/etc/issue</i> or the file set with the -f option)
+may contain certain escape codes to display the system name, date and
+time etc. All escape codes consist of a backslash (\) immediately
+followed by one of the letters explained below.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+b
+</td><td valign="bottom">
+Insert the baudrate of the current line.
+</td></tr>
+<tr valign="top"><td>
+d
+</td><td valign="bottom">
+Insert the current date.
+</td></tr>
+<tr valign="top"><td>
+s
+</td><td valign="bottom">
+Insert the system name, the name of the operating system.
+</td></tr>
+<tr valign="top"><td>
+l
+</td><td valign="bottom">
+Insert the name of the current tty line.
+</td></tr>
+<tr valign="top"><td>
+m
+</td><td valign="bottom">
+Insert the architecture identifier of the machine, eg. i486
+</td></tr>
+<tr valign="top"><td>
+n
+</td><td valign="bottom">
+Insert the nodename of the machine, also known as the hostname.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+Insert the domainname of the machine.
+</td></tr>
+<tr valign="top"><td>
+r
+</td><td valign="bottom">
+Insert the release number of the OS, eg. 1.1.9.
+</td></tr>
+<tr valign="top"><td>
+t
+</td><td valign="bottom">
+Insert the current time.
+</td></tr>
+<tr valign="top"><td>
+u
+</td><td valign="bottom">
+Insert the number of current users logged in.
+</td></tr>
+<tr valign="top"><td>
+U
+</td><td valign="bottom">
+Insert the string "1 user" or "&lt;n&gt; users" where &lt;n&gt; is the number of current
+users logged in.
+</td></tr>
+<tr valign="top"><td>
+v
+</td><td valign="bottom">
+Insert the version of the OS, eg. the build-date etc.
+</td></tr>
+<tr valign="top"><td colspan="2">
+Example: On my system, the following <i>/etc/issue</i> file:
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+<p>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&nbsp; &nbsp;This is \n.\o (\s \m \r) \t
+</td></tr>
+<tr valign="top"><td colspan="2">
+displays as
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+<p>
+&nbsp; &nbsp;This is thingol.orcan.dk (Linux i386 1.1.9) 18:29:30
+<p>
+</pre></td></tr>
+</table>
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">FILES</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+/var/run/utmp, the system status file.
+/etc/issue, printed before the login prompt.
+/dev/console, problem reports (if syslog(3) is not used).
+/etc/inittab, <i>init</i>(8) configuration file.
+</pre></td></tr>
+</table>
+<h1 class="manpages">BUGS</h1>
+<!-- ignored unsupported tag .ad -->
+The baud-rate detection feature (the <i>-m</i> option) requires that
+<b>agetty</b> be scheduled soon enough after completion of a dial-in
+call (within 30 ms with modems that talk at 2400 baud). For robustness,
+always use the <i>-m</i> option in combination with a multiple baud
+rate command-line argument, so that BREAK processing is enabled.
+<p>
+The text in the <i>/etc/issue</i> file (or other) and the login prompt
+are always output with 7-bit characters and space parity.
+<p>
+The baud-rate detection feature (the <i>-m</i> option) requires that
+the modem emits its status message <i>after</i> raising the DCD line.
+<h1 class="manpages">DIAGNOSTICS</h1>
+<!-- ignored unsupported tag .ad -->
+Depending on how the program was configured, all diagnostics are
+written to the console device or reported via the syslog(3) facility.
+Error messages are produced if the <i>port</i> argument does not
+specify a terminal device; if there is no utmp entry for the
+current process (System V only); and so on.
+<h1 class="manpages">AUTHOR(S)</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+W.Z. Venema &lt;<a href="mailto:wietse@wzv.win.tue.nl">wietse@wzv.win.tue.nl</a>&gt;
+Eindhoven University of Technology
+Department of Mathematics and Computer Science
+Den Dolech 2, P.O. Box 513, 5600 MB Eindhoven, The Netherlands
+<p>
+Peter Orbaek &lt;<a href="mailto:poe@daimi.aau.dk">poe@daimi.aau.dk</a>&gt;
+Linux port and more options. Still maintains the code.
+<p>
+Eric Rasmussen &lt;<a href="mailto:ear@usfirst.org">ear@usfirst.org</a>&gt;
+Added -f option to display custom login messages on different terminals.
+<p>
+</pre></td></tr>
+</table>
+<h1 class="manpages">CREATION DATE</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+Sat Nov 25 22:51:05 MET 1989
+</pre></td></tr>
+</table>
+<h1 class="manpages">LAST MODIFICATION</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+96/07/20
+</pre></td></tr>
+</table>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversione810.html?tutorial=unix_commands&amp;file=agetty.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/agetty.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:23 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

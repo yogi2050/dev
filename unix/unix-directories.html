@@ -1,0 +1,415 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/unix/unix-directories.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 17:32:45 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>Unix - Directory Management</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="description" content="Unix Directory  Management - Learning fundamentals of UNIX in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+#topmenu a:hover {text-decoration:none;color:#00afe4  !important;background-color:transparent;font-weight:bold;}
+#header{ 
+background:#00afe4  !important;
+}
+#topmenu
+{
+background-color:#113e78 !important;
+}
+#leftcol ul.menu li.heading 
+{
+background:#00afe4 !important;
+border:1px solid #113e78  !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1400px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index-2.html">Tutorials Point - Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index-2.html" target="_top">HOME </a>
+<a href="../java/index.html" target="_top">JAVA </a>
+<a href="../php/index.html" target="_top">PHP </a>
+<a href="../python/index.html" target="_top">Python </a>
+<a href="../ruby/index.html" target="_top">Ruby </a>
+<a href="../perl/index.html" target="_top">Perl </a>
+<a href="../html/index.html" target="_top">HTML </a>
+<a href="../css/index.html" target="_top">CSS </a>
+<a href="../javascript/index.html" target="_top">Javascript </a>
+<a href="../mysql/index.html" target="_top">MySQL </a>
+<a href="../cplusplus/index.html" target="_top">C++ </a>
+<a href="index.html" target="_top">UNIX </a>
+<a href="../more.html" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.html" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.html" target="_top">ABOUT</a> |
+<a href="../about/contact_us.html" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/unix-mini-logo.png" alt="Unix Tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">Unix for Beginners</li>
+<li><a target="_top" href="index.html">Unix - Home</a></li>
+<li><a target="_top" href="unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a target="_top" href="unix-file-management.html">Unix - File Management</a></li>
+<li><a target="_top" href="unix-directories.html"><b>Unix - Directories</b></a></li>
+<li><a target="_top" href="unix-file-permission.html">Unix - File Permission</a></li>
+<li><a target="_top" href="unix-environment.html">Unix - Environment</a></li>
+<li><a target="_top" href="unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a target="_top" href="unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a target="_top" href="unix-processes.html">Unix - Processes</a></li>
+<li><a target="_top" href="unix-communication.html">Unix - Communication</a></li>
+<li><a target="_top" href="unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Unix Shell Programming</li>
+<li><a target="_top" href="unix-shell.html">Unix - What is Shell?</a></li>
+<li><a target="_top" href="unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a target="_top" href="unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a target="_top" href="unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a target="_top" href="unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a target="_top" href="unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a target="_top" href="unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a target="_top" href="unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a target="_top" href="unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a target="_top" href="unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a target="_top" href="unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a target="_top" href="unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a target="_top" href="unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Advanced Unix</li>
+<li><a target="_top" href="unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a target="_top" href="unix-file-system.html">Unix - File System Basics</a></li>
+<li><a target="_top" href="unix-user-administration.html">Unix - User Administration</a></li>
+<li><a target="_top" href="unix-system-performance.html">Unix - System Performance</a></li>
+<li><a target="_top" href="unix-system-logging.html">Unix - System Logging</a></li>
+<li><a target="_top" href="unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Unix Useful Resources</li>
+<li><a target="_top" href="unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a target="_top" href="unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a target="_top" href="unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a target="_top" href="../unix_commands/index.html">Unix - Commands List</a></li>
+<li><a target="_top" href="unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.html">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+ <div class="content">
+<h1>Unix - Directory Management</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="unix-file-management.html">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="unix-file-permission.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>A directory is a file whose sole job is to store file names and related information. All files, whether ordinary, special, or directory, are contained in directories.</p>
+<p>UNIX uses a hierarchical structure for organizing files and directories. This structure is often referred to as a directory tree . The tree has a single root node, the slash character ( /), and all other directories are contained below it.</p>
+<h2>Home Directory:</h2>
+<p>The directory in which you find yourself when you first login is called your home directory.</p>
+<p>You will be doing much of your work in your home directory and subdirectories that you'll be creating to organize your files.</p>
+<p>You can go in your home directory anytime using the following command:</p>
+<pre class="prettyprint">
+$cd ~
+$
+</pre>
+<p>Here <b>~</b> indicates home directory. If you want to go in any other user's home directory then use the following command:</p>
+<pre class="prettyprint">
+$cd ~username
+$
+</pre>
+<p>To go in your last directory you can use following command:</p>
+<pre class="prettyprint">
+$cd -
+$
+</pre>
+<h2>Absolute/Relative Pathnames:</h2>
+<p>Directories are arranged in a hierarchy with root (/) at the top. The position of any file within the hierarchy is described by its pathname.</p>
+<p>Elements of a pathname are separated by a /. A pathname is absolute if it is described in relation to root, so absolute pathnames always begin with a /.</p>
+<p>These are some example of absolute filenames.</p>
+<pre class="prettyprint">
+/etc/passwd
+/users/sjones/chem/notes
+/dev/rdsk/Os3
+</pre>
+<p>A pathname can also be relative to your current working directory. Relative pathnames never begin with /. Relative to user amrood' home directory, some pathnames might look like this:</p>
+<pre class="prettyprint">
+chem/notes
+personal/res
+</pre>
+<p>To determine where you are within the filesystem hierarchy at any time, enter the command <b>pwd</b> to print the current working directory:</p>
+<pre class="prettyprint">
+$pwd
+/user0/home/amrood
+
+$
+</pre>
+<h2>Listing Directories:</h2>
+<p>To list the files in a directory you can use the following syntax:</p>
+<pre class="prettyprint">
+$ls dirname
+</pre>
+<p>Following is the example to list all the files contained in /usr/local directory:</p>
+<pre class="prettyprint">
+$ls /usr/local
+
+X11       bin          gimp       jikes       sbin
+ace       doc          include    lib         share
+atalk     etc          info       man         ami
+</pre>
+<h2>Creating Directories:</h2>
+<p>Directories are created by the following command:</p>
+<pre class="prettyprint">
+$mkdir dirname
+</pre>
+<p>Here, directory is the absolute or relative pathname of the directory you want to create. For example, the command:</p>
+<pre class="prettyprint">
+$mkdir mydir
+$
+</pre>
+<p>Creates the directory mydir in the current directory. Here is another example:</p>
+<pre class="prettyprint">
+$mkdir /tmp/test-dir
+$
+</pre>
+<p>This command creates the directory test-dir in the /tmp directory. The <b>mkdir</b> command produces no output if it successfully creates the requested directory.</p>
+<p>If you give more than one directory on the command line, mkdir creates each of the directories. For example:</p>
+<pre class="prettyprint">
+$mkdir docs pub
+$
+</pre>
+<p>Creates the directories docs and pub under the current directory.</p>
+<h2>Creating Parent Directories:</h2>
+<p>Sometimes when you want to create a directory, its parent directory or directories might not exist. In this case, mkdir issues an error message as follows:</p>
+<pre class="prettyprint">
+$mkdir /tmp/amrood/test
+mkdir: Failed to make directory "/tmp/amrood/test"; 
+No such file or directory
+$
+</pre>
+<p>In such cases, you can specify the <b>-p</b> option to the <b>mkdir</b> command. It creates all the necessary directories for you. For example:</p>
+<pre class="prettyprint">
+$mkdir -p /tmp/amrood/test
+$
+</pre>
+<p>Above command creates all the required parent directories.</p>
+<h2>Removing Directories:</h2>
+<p>Directories can be deleted using the <b>rmdir</b> command as follows:</p>
+<pre class="prettyprint">
+$rmdir dirname
+$
+</pre>
+<p><b>Note:</b> To remove a directory make sure it is empty which means there should not be any file or sub-directory inside this directory.</p>
+<p>You can create multiple directories at a time as follows:</p>
+<pre class="prettyprint">
+$rmdir dirname1 dirname2 dirname3
+$
+</pre>
+<p>Above command removes the directories dirname1, dirname2, and dirname2 if they are empty. The rmdir command produces no output if it is successful.</p>
+<h2>Changing Directories:</h2>
+<p>You can use the <b>cd</b> command to do more than change to a home directory: You can use it to change to any directory by specifying a valid absolute or relative path. The syntax is as follows:</p>
+<pre class="prettyprint">
+$cd dirname
+$
+</pre>
+<p>Here, dirname is the name of the directory that you want to change to. For example, the command:</p>
+<pre class="prettyprint">
+$cd /usr/local/bin
+$
+</pre>
+<p>Changes to the directory /usr/local/bin. From this directory you can cd to the directory /usr/home/amrood using the following relative path:</p>
+<pre class="prettyprint">
+$cd ../../home/amrood
+$
+</pre>
+<h2>Renaming Directories:</h2>
+<p>The mv (move) command can also be used to rename a directory. The syntax is as follows:</p>
+<pre class="prettyprint">
+$mv olddir newdir
+$
+</pre>
+<p>You can rename a directory <b>mydir</b> to <b>yourdir</b> as follows:</p>
+<pre class="prettyprint">
+$mv mydir yourdir
+$
+</pre>
+<h2>The directories . (dot) and .. (dot dot)</h2>
+<p>The filename . (dot) represents the current working directory; and the filename .. (dot dot) represent the directory one level above the current working directory, often referred to as the parent directory.</p>
+<p>If we enter the command to show a listing of the current working directories files and use the -a option to list all the files and the -l option provides the long listing, this is the result.</p>
+<pre class="prettyprint">
+$ls -la
+drwxrwxr-x    4    teacher   class   2048  Jul 16 17.56 .
+drwxr-xr-x    60   root              1536  Jul 13 14:18 ..
+----------    1    teacher   class   4210  May 1 08:27 .profile
+-rwxr-xr-x    1    teacher   class   1948  May 12 13:42 memo
+$
+</pre>
+<hr />
+<div class="pre-btn">
+<a href="unix-file-management.html">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/unix-directories.pdf" alt="Unix - Directory Management" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="unix-file-permission.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.html" target="_top">ASP.NET </a> |
+<a href="../jquery/index.html" target="_top">jQuery </a> |
+<a href="../ajax/index.html" target="_top">AJAX </a> |
+<a href="../ant/index.html" target="_top">ANT</a> |
+<a href="../jsp/index.html" target="_top">JSP </a> |
+<a href="../servlets/index.html" target="_top">Servlets </a> |
+<a href="../log4j/index.html" target="_top">log4j </a> |
+<a href="../ibatis/index.html" target="_top">iBATIS </a> |
+<a href="../hibernate/index.html" target="_top">Hibernate </a> |
+<a href="../jdbc/index.html" target="_top">JDBC </a> |
+<a href="../struts_2/index.html" target="_top">Struts </a> |
+<a href="../html5/index.html" target="_top">HTML5 </a> |
+<a href="../sql/index.html" target="_top">SQL </a> |
+<a href="../mysql/index.html" target="_top">MySQL </a> |
+<a href="../cplusplus/index.html" target="_top">C++ </a> |
+<a href="index.html" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix/unix-directories.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 17:32:46 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

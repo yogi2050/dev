@@ -1,0 +1,324 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/operating_system/os_process_scheduling.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:01:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>Operating System Process Scheduling</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="Keywords" content="Operating System  Process Scheduling, Tutorials, Learning, Beginners, Basics, Definition, Functions, Conceptual View, Program Execution, Program Execution, Communication,  Error Handling, User Account Management, Multitasking, Real Time System, Process, Program, Memory Management, Security" />
+<meta name="description" content="Operating System Process Scheduling - Learning operating system concepts in simple and easy steps : A beginner's tutorial containing complete knowledge about an operating system starting from its Definition, Functions, Conceptual View, Program Execution, Program Execution, Communication,  Error Handling, User Account Management, Multitasking, Real Time System, Process, Program, Memory Management, and Security." />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+/* Operating System Scheme */
+#topmenu a:link {text-decoration:none;color:#fff !important;background-color:transparent;font-weight:bold;}
+#topmenu a:visited {text-decoration:none;color:#fff !important;background-color:transparent;font-weight:bold;}
+#topmenu a:hover {text-decoration:none;color:#a6c53b !important;background-color:transparent;font-weight:bold;}
+#header{ 
+background:#a6c53b !important;
+}
+#topmenu
+{
+background-color:#4b4b4a !important;
+}
+#leftcol ul.menu li.heading 
+{
+background:#a6c53b !important;
+border:1px solid #4b4b4a !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1100px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index-2.html">Tutorials Point - Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index-2.html" target="_top">HOME </a>
+<a href="../java/index.html" target="_top">JAVA </a>
+<a href="../php/index.html" target="_top">PHP </a>
+<a href="../python/index.html" target="_top">Python </a>
+<a href="../ruby/index.html" target="_top">Ruby </a>
+<a href="../perl/index.html" target="_top">Perl </a>
+<a href="../html/index.html" target="_top">HTML </a>
+<a href="../css/index.html" target="_top">CSS </a>
+<a href="../javascript/index.html" target="_top">Javascript </a>
+<a href="../mysql/index.html" target="_top">MySQL </a>
+<a href="../cplusplus/index.html" target="_top">C++ </a>
+<a href="../unix/index.html" target="_top">UNIX </a>
+<a href="../more.html" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.html" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.html" target="_top">ABOUT</a> |
+<a href="../about/contact_us.html" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/os-mini-logo.png" alt="Operating System Tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">Operating System Tutorial</li>
+<li><a target="_top" href="index.html">OS - Home</a></li>
+<li><a target="_top" href="os_overview.html">OS - Overview</a></li>
+<li><a target="_top" href="os_types.html">OS - Types</a></li>
+<li><a target="_top" href="os_services.html">OS - Services</a></li>
+<li><a target="_top" href="os_properties.html">OS - Properties</a></li>
+<li><a target="_top" href="os_processes.html">OS - Processes</a></li>
+<li><a target="_top" href="os_process_scheduling.html"><b>OS - Process Scheduling</b></a></li>
+<li><a target="_top" href="os_process_scheduling_algorithms.html">OS - Scheduling algorithms</a></li> 
+<li><a target="_top" href="os_multi_threading.html">OS -  Multi-threading</a></li>
+<li><a target="_top" href="os_memory_management.html">OS - Memory Management</a></li>
+<li><a target="_top" href="os_virtual_memory.html">OS -  Virtual Memory</a></li>
+<li><a target="_top" href="os_io_hardware.html">OS -  I/O Hardware</a></li>
+<li><a target="_top" href="os_io_software.html">OS - I/O Software</a></li>
+<li><a target="_top" href="os_file_system.html">OS -  File System</a></li>
+<li><a target="_top" href="os_security.html">OS - Security</a></li>
+<li><a target="_top" href="os_linux.html">OS - Linux</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">OS Useful Resources</li>
+<li><a class="left" target="_top" href="os_quick_guide.html">OS Quick Guide</a></li>
+<li><a class="left" target="_top" href="os_useful_resources.html">OS Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.html">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>Operating System - Process Scheduling</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="os_processes.html">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="os_process_scheduling_algorithms.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<h2>Definition</h2>
+<p>The process scheduling is the activity of the process manager that handles the removal of the running process from the CPU and the selection of another process on the basis of a particular strategy.</p>
+<p>Process scheduling is an essential part of a Multiprogramming operating system. Such operating systems allow more than one process to be loaded into the executable memory at a time and loaded process shares the CPU using time multiplexing.</p>
+<h2>Scheduling Queues</h2>
+<p>Scheduling queues refers to queues of processes or devices. When the process enters into the system, then this process is put into a job queue. This queue consists of all processes in the system. The operating system also maintains other queues such as device queue. Device queue is a queue for which multiple processes are waiting for a particular I/O device. Each device has its own device queue.</p>
+<p>This figure shows the queuing diagram of process scheduling.</p>
+<ul class="list">
+<li><p>Queue is represented by rectangular box. </p></li>
+<li><p>The circles represent the resources that serve the queues.</p></li>
+<li><p>The arrows indicate the process flow in the system.</p></li>
+</ul>
+<img src="images/queuing_diagram.html" alt="Queuing Diagram" />
+<p>Queues are of two types</p>
+<ul class="list">
+<li><p>Ready queue</p></li>
+<li><p>Device queue</p></li>
+</ul>
+<p>A newly arrived process is put in the ready queue. Processes waits in ready queue for allocating the CPU. Once the CPU is assigned to a process, then that process will execute. While executing the process, any one of the following events can occur.</p>
+<ul class="list">
+<li><p>The process could issue an I/O request and then it would be placed in an I/O queue.</p></li>
+<li><p>The process could create new sub process and will wait for its termination.</p></li>
+<li><p>The process could be removed forcibly from the CPU, as a result of interrupt and put back in the ready queue.</p></li>
+</ul>
+<h2>Two State Process Model</h2>
+<p>Two state process model refers to running and non-running states which are described below.</p>
+<table class="src">
+<tr><th style="width:5%;">S.N.</th><th>State &amp; Description</th></tr>
+<tr><td>1</td><td><b>Running</b><br />When new process is created by Operating System that process enters into the system as in the running state.</td></tr>
+<tr><td>2</td><td><b>Not Running</b><br />Processes that are not running are kept in queue, waiting for their turn to execute. Each entry in the queue is a pointer to a particular process. Queue is implemented by using linked list. Use of dispatcher is as follows. When a process is interrupted, that process is transferred in the waiting queue. If the process has completed or aborted, the process is discarded. In either case, the dispatcher then selects a process from the queue to execute.</td></tr>
+</table>
+<h2>Schedulers</h2>
+<p>Schedulers are special system softwares which handles process scheduling in various ways.Their main task is to select the jobs to be submitted into the system and to decide which process to run. Schedulers are of three types</p>
+<ul class="list">
+<li><p>Long Term Scheduler</p></li>
+<li><p>Short Term Scheduler</p></li>
+<li><p>Medium Term Scheduler</p></li>
+</ul>
+<h2>Long Term Scheduler</h2>
+<p>It is also called job scheduler. Long term scheduler determines which programs are admitted to the system for processing. Job scheduler selects processes from the queue and loads them into memory for execution. Process loads into the memory for CPU scheduling. The primary objective of the job scheduler is to provide a balanced mix of jobs, such as I/O bound and processor bound. It also controls the degree of multiprogramming. If the degree of multiprogramming is stable, then the average rate of process creation must be equal to the average departure rate of processes leaving the system.</p>
+<p>On some systems, the long term scheduler may not be available or minimal. Time-sharing operating systems have no long term scheduler. When process changes the state from new to ready, then there is use of long term scheduler.</p>
+<h2>Short Term Scheduler</h2>
+<p>It is also called CPU scheduler. Main objective is increasing system performance in accordance with the chosen set of criteria. It is the change of ready state to running state of the process. CPU scheduler selects process among the processes that are ready to execute and allocates CPU to one of them.</p>
+<p>Short term scheduler also known as dispatcher, execute most frequently and makes the fine grained decision of which process to execute next. Short term scheduler is faster than long term scheduler.</p>
+<h2>Medium Term Scheduler</h2>
+<p>Medium term scheduling is part of the swapping. It removes the processes from the memory. It reduces the degree of multiprogramming. The medium term scheduler is in-charge of handling the swapped out-processes.</p>
+<img src="images/medium_term_scheduler.html" alt="Medium Term Scheduler" />
+<p>Running process may become suspended if it makes an I/O request. Suspended processes cannot make any progress towards completion. In this condition, to remove the process from memory and make space for other process, the suspended process is moved to the secondary storage. This process is called swapping, and the process is said to be swapped out or rolled out. Swapping may be necessary to improve the process mix.</p>
+<h2>Comparison between Scheduler</h2>
+<table class="src">
+<tr><th style="width:5%;">S.N.</th><th>Long Term Scheduler</th><th>Short Term Scheduler</th><th>Medium Term Scheduler</th></tr>
+<tr><td>1</td><td>It is a job scheduler</td><td>It is a CPU scheduler</td><td>It is a process swapping scheduler.</td></tr>
+<tr><td>2</td><td>Speed is lesser than short term scheduler</td><td>Speed is fastest among other two</td><td>Speed is in between both short and long term scheduler.</td></tr>
+<tr><td>3</td><td>It controls the degree of multiprogramming</td><td>It provides lesser control over degree of multiprogramming</td><td>It reduces the degree of multiprogramming.</td></tr>
+<tr><td>4</td><td>It is almost absent or minimal in time sharing system</td><td>It is also minimal in time sharing system</td><td>It is a part of Time sharing systems.</td></tr>
+<tr><td>5</td><td>It selects processes from pool and loads them into memory for execution</td><td>It selects those processes which are ready to execute</td><td>It can re-introduce the process into memory and execution can be continued.</td></tr>
+</table>
+<h2>Context Switch</h2>
+<p>A context switch is the mechanism to store and restore the state or context of a CPU in Process Control block so that a process execution can be resumed from the same point at a later time. Using this technique a context switcher enables multiple processes to share a single CPU. Context switching is an essential part of a multitasking operating system features.</p>
+<p>When the scheduler switches the CPU from executing one process to execute another, the context switcher saves the content of all processor registers for the process being removed from the CPU, in its process descriptor. The context of a process is represented in the process control block of a process.</p> 
+<p>Context switch time is pure overhead. Context switching can significantly affect performance as modern computers have a lot of general and status registers to be saved. Content switching times are highly dependent on hardware support. Context switch requires ( n + m ) bxK time units to save the state of the processor with n general registers, assuming b are the store operations are required to save n and m registers of two process control blocks and each store instruction requires K time units.</p>
+<img src="images/context_switch.html" alt="Context Switch" />
+<p>Some hardware systems employ two or more sets of processor registers to reduce the amount of context switching time. When the process is switched, the following information is stored. </p>
+<ul class="list">
+<li><p>Program Counter</p></li>
+<li><p>Scheduling Information</p></li>
+<li><p>Base and limit register value</p></li>
+<li><p>Currently used register</p></li>
+<li><p>Changed State</p></li>
+<li><p>I/O State</p></li>
+<li><p>Accounting</p></li>
+</ul>
+<hr />
+<div class="pre-btn">
+<a href="os_processes.html">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/os_process_scheduling.html" alt="Operating System Process Scheduling" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="os_process_scheduling_algorithms.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.html" target="_top">ASP.NET </a> |
+<a href="../jquery/index.html" target="_top">jQuery </a> |
+<a href="../ajax/index.html" target="_top">AJAX </a> |
+<a href="../ant/index.html" target="_top">ANT</a> |
+<a href="../jsp/index.html" target="_top">JSP </a> |
+<a href="../servlets/index.html" target="_top">Servlets </a> |
+<a href="../log4j/index.html" target="_top">log4j </a> |
+<a href="../ibatis/index.html" target="_top">iBATIS </a> |
+<a href="../hibernate/index.html" target="_top">Hibernate </a> |
+<a href="../jdbc/index.html" target="_top">JDBC </a> |
+<a href="../struts_2/index.html" target="_top">Struts </a> |
+<a href="../html5/index.html" target="_top">HTML5 </a> |
+<a href="../sql/index.html" target="_top">SQL </a> |
+<a href="../mysql/index.html" target="_top">MySQL </a> |
+<a href="../cplusplus/index.html" target="_top">C++ </a> |
+<a href="../unix/index.html" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2012 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/operating_system/os_process_scheduling.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:01:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

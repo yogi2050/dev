@@ -1,0 +1,570 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/tack.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>tack - Unix, Linux Command</title>
+<meta name="Description" Content="tack - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>tack - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+<b>tack</b> - <i>terminfo</i> action checker
+<h1 class="manpages">SYNOPSIS</h1>
+<b>tack</b> [-itV] [term]
+<h1 class="manpages">DESCRIPTION</h1>
+The <b>tack</b> program has three purposes:
+(1) to help you build a new terminfo entry describing an unknown terminal,
+(2) to test the correctness of an existing entry, and
+(3) to develop the correct pad timings needed to ensure that screen updates
+don&#146;t fall behind the incoming data stream.
+<p>
+<b>Tack</b> presents a series of screen-painting and interactive
+tests in ways which are intended to make any mismatches between the
+terminfo entry and reality visually obvious.
+<b>Tack</b> also provides tools that can help in understanding how
+the terminal operates.
+<h2><i>OPTIONS</i></h2>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<i>-i</i> </td><td valign="bottom">
+Usually <b>tack</b> will send the reset and init strings to the terminal
+when the program starts up.  The <i>-i</i> option will inhibit the
+terminal initialization.
+</td></tr>
+<tr valign="top"><td>
+<i>-t</i> </td><td valign="bottom">
+Tell <b>tack</b> to override the terminfo settings for basic terminal
+functions.  When this option is set <b>tack</b> will translate
+(cr) to \r, (cud1) to \n, (ind) to \n, (nel) to \r\n,
+(cub1) to \b, (bel) to \007, (ff) to \f and (ht) to \t.
+</td></tr>
+<tr valign="top"><td>
+<i>-V</i> </td><td valign="bottom">
+Display the version information and exit.
+</td></tr>
+<tr valign="top"><td>
+<i>term</i> </td><td valign="bottom">
+Terminfo terminal name to be tested.  If not present then the $TERM
+environment variable will be used.
+</td></tr>
+</table>
+<h1 class="manpages">OVERVIEW</h1>
+Since <b>tack</b> is designed to test terminfo&#146;s it is not possible
+to rely on the correctness of the terminfo data base.  Because of this
+the menuing system used with <b>tack</b> is vary primitive.  When a
+menu is printed it will scroll the entire screen.  To compensate
+for this verbose menu system <b>tack</b> permits menu selection
+type ahead.
+If you already know what action you would like <b>tack</b> to perform
+then you can enter that value immediately and avoid the menu display.
+When in doubt the question mark (?) is a good character to type.
+A carriage return will execute the default action.  These default
+actions are designed to run all the standard tests.
+<p>
+When <b>tack</b> first comes up it will display some basic information
+about the terminal.  Take some time to verify this information.
+If it is wrong many of the subsequent tests will fail.  The most
+important item is the screen size.  If the screen size is wrong there
+is no point in proceeding.  (home) and (clear) are also critical
+to the success of subsequent tests.  The values of (cr) (ind)
+(cub1) and (ht) may effect the tests if they are defined incorrectly.
+If they are undefined <b>tack</b> will set them to reasonable defaults.
+The last two entries on the display are the enquire and acknowledge strings.
+These strings are taken from the user strings (u9) and (u8).
+<p>
+By now you must be wondering why the terminfo names are enclosed
+in parenthesis.  This has no profound meaning other than it makes
+them stand out.  The <b>tack</b> program uses this convention any time
+it displays a terminfo name.  Remember <b>tack</b> is designed to
+rely on as little of the terminfo entry as possible.
+<h1 class="manpages">CREATING NEW ENTRIES</h1>
+<b>Tack</b> has a number of tools that are designed to help gather
+information about the terminal.  Although these functions are not
+dependent on terminal type, you may wish to execute <b>tack</b>
+with options <i>-it</i>.  This will turn off initialization
+and default the standard entries.
+<p>
+These tools may be reached from the main menu by selecting
+the &#146;tools&#146; entry.
+<p>
+<b>Echo tool</b>:  All data typed from the keyboard will be echoed back
+to the terminal.  Control characters are not translated to the up arrow format
+but are sent as control characters.  This allows you to test an escape
+sequence and see what it actually does.  You may also elect to
+<b>enable hex output on echo tool</b> this will echo the characters in
+hexadecimal.  Once the test is running you may enter the &#146;lines&#146;
+or &#146;columns&#146; keywords which will display a pattern that will help
+you determine your screen size.  A complete list of keywords will
+be displayed when the test starts.  Type &#146;help&#146; to redisplay
+the list of available commands.
+<p>
+<b>Reply tool</b>:  This tool acts much like the echo tool, but
+control characters that are sent from the terminal more than one character
+after a carriage return will be expanded to the up arrow format.  For example
+on a standard ANSI terminal you may type:
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CR ESC [ c
+<p>
+and the response will be echoed as something like:
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^[ [ ? 6 c
+<p>
+<b>ANSI sgr display</b>:  This test assumes you have an ANSI terminal.  It
+goes through attribute numbers 0 to 79, displaying each in turn and using that
+SGR number to write the text.  This shows you which of the SGR
+modes are actually implemented by the terminal.  Note: some terminals (such as
+Tektronix color) use the private use characters to augment the functionality of
+the SGR command.  These private use characters may be interjected into the
+escape sequence by typing the character ( &lt;, =, &gt;, ? ) after the original
+display has been shown.
+<p>
+<b>ANSI status reports</b>:  This test queries the terminal in standard
+ANSI/VT-100 fashion.  The results of this test may help
+determine what options are supported by your terminal.
+<p>
+<b>ANSI character sets</b>:  This test displays the character sets
+available on a ANSI/VT-100 style terminal.
+Character sets on a real VT-100 terminal are usually defined
+with smacs=\E(0 and rmacs=\E(B.  The first character after the
+escape defines the font bank.  The second character defines the
+character set.  This test allows you to view any of the possible
+combinations.  Private use character sets are defined by the digits.
+Standard character sets are located in the alphabetic range.
+<h1 class="manpages">VERIFYING AN EXISTING ENTRY</h1>
+<p>
+You can verify the correctness of an entry with the &#145;begin testing&#146;
+function.  This entry is the default action and will be chosen
+if you hit carriage return (or enter).  This will bring up a
+secondary menu that allows you to select more specific tests.
+<p>
+The general philosophy of the program is, for each capability, to send an
+appropriate test pattern to the terminal then send a description of
+what the user should expect.  Occasionally (as when checking function-key
+capabilities) the program will ask you to enter input for it to check.
+<p>
+If the test fails then you have the option of dynamically changing
+the terminfo entry and re-running the test.  This is done with
+the &#146;edit terminfo&#146; menu item.  The edit submenu allows you to change
+the offending terminfo entry and immediately retest the capability.
+The edit menu lets you do other things with the terminfo, such as;
+display the entire terminfo entry,
+display which caps have been tested and display which caps cannot
+be tested.  This menu also allows you to write the newly modified
+terminfo to disc.  If you have made any modifications to the
+terminfo <b>tack</b> will ask you if you want to save the file
+to disc before it exits.  The filename will be the same as the terminal name.
+After the program exits you can run the tic(1M) compiler on the
+new terminfo to install it in the terminfo data base.
+<p>
+<h1 class="manpages">CORRECTING PAD TIMINGS</h1>
+<h2><i>Theory of Overruns and Padding</i></h2>
+<p>
+Some terminals require significant amounts of time (that is, more than one
+transmitted-character interval) to do screen updates that change large
+portions of the screen, such as screen clears, line insertions,
+line deletions, and scrolls (including scrolls triggered by line feeds
+or a write to the lowest, right-hand-most cell of the screen).
+<p>
+If the computer continues to send characters to the terminal while one
+of these time-consuming operations is going on, the screen may be garbled.
+Since the length of a character transmission time varies inversely with
+transmission speed in cps, entries which function at lower speeds may
+break at higher speeds.
+<p>
+Similar problems result if the host machine is simply sending characters at a
+sustained rate faster than the terminal can buffer and process them.  In either
+case, when the terminal cannot process them and can&#146;t tell the host to stop
+soon enough, it will just drop them.  The dropped characters could be text,
+escape sequences or the escape character itself, causing some really
+strange-looking displays.  This kind of glitch is called an <i>overrun</i>.
+<p>
+In terminfo entries, you can attach a <b>pad time</b> to each string capability
+that is a number of milliseconds to delay after sending it.  This will give
+the terminal time to catch up and avoid overruns.
+<p>
+If you are running a software terminal emulator, or you are on an X pseudo-tty,
+or your terminal is on an RS-232C line which correctly handles RTS/CTS
+hardware flow control, then pads are not strictly necessary.  However, some
+display packages (such as ncurses(3X)) use the pad counts to calculate
+the fastest way to implement certain functions.
+For example: scrolling the screen may be faster than deleting the top line.
+<p>
+One common way to avoid overruns is with XON/XOFF handshaking.
+But even this handshake may have problems at high baud rates.
+This is a result of the way XON/XOFF works.  The terminal tells
+the host to stop with an XOFF.  When the host gets this character, it stops
+sending.  However, there is a small amount of time between the stop request and
+the actual stop.  During this window, the terminal must continue to accept
+characters even though it has told the host to stop.  If the terminal sends
+the stop request too late, then its internal buffer will overflow.  If it sends
+the stop character too early, then the terminal is not getting the most
+efficient use out of its internal buffers.  In a real application at high baud
+rates, a terminal could get a dozen or more characters before the host gets
+around to suspending transmission.  Connecting the terminal over a network
+will make the problem much worse.
+<p>
+(RTS/CTS handshaking does not have this problem because the UARTs are
+signal-connected and the "stop flow" is done at the lowest level, without
+software intervention).
+<p>
+<h2><i>Timing your terminal</i></h2>
+<p>
+In order to get accurate timings from your terminal <b>tack</b>
+needs to know when the terminal has finished processing all the
+characters that were sent.  This requires a different type of handshaking
+than the XON/XOFF that is supported by most terminals.  <b>Tack</b>
+needs to send a request to the terminal and wait for its reply.
+Many terminals will respond with an ACK when they receive an ENQ.
+This is the preferred method since the sequence is short.
+ANSI/VT-100 style terminals can mimic this handshake with the
+escape sequence that requests &#146;primary device attributes&#146;.
+<p>
+   ESC [ c
+<p>
+The terminal will respond with a sequence like:
+<p>
+   ESC [ ? 1 ; 0 c
+<p>
+<b>Tack</b> assumes that (u9) is the enquire sequence and that (u8) is the
+acknowledge string.  A VT-100 style terminal could set u9=\E[c
+and u8=\E[?1;0c.
+Acknowledge strings fall into two categories.
+1) Strings with a unique terminating character and,
+2) strings of fixed length.
+The acknowledge string for the VT-100 is of the first type since
+it always ends with the letter &#146;c&#146;.  Some Tektronics terminals
+have fixed length acknowledge strings.  <b>Tack</b> supports both
+types of strings by scanning for the terminating character until
+the length of the expected acknowledge string has arrived.
+(u8) should be set to some typical acknowledge that will be
+returned when (u9) is sent.
+<p>
+<b>Tack</b> will test this sequence before running any of the pad
+tests or the function key tests.  <b>Tack</b> will ask you the following:
+<p>
+    Hit lower case g to start testing...
+<p>
+After it sends this message it will send the enquire string.
+It will then read characters from the terminal until it sees the
+letter g.
+<p>
+<h2><i>Testing and Repairing Pad Timings</i></h2>
+<p>
+The pad timings in distributed terminfo entries are often incorrect.  One
+major motivation for this program is to make it relatively easy to tune these
+timings.
+<p>
+You can verify and edit the pad timings for a terminal with
+the &#145;test string capabilities&#146;
+function (this is also part of the &#145;normal test sequence&#146; function).
+<p>
+The key to determining pad times is to find out the effective baud rate of
+the terminal.  The effective baud rate determines the number of characters
+per second that the terminal can accept without either handshaking or
+losing data.  This rate is frequently less than the nominal cps rate on the
+RS-232 line.
+<p>
+<b>Tack</b> uses the effective baud rate to judge the duration of the test and
+how much a particular escape sequence will perturb the terminal.
+<p>
+Each pad test has two associated variables that can be tweaked to help verify
+the correctness of the pad timings.  One is the pad test length.  The other is
+the pad multiplier, which is used if the pad prefix includes &#145;*&#146;.  In curses
+use, it is often the first parameter of the capability (if there is one).
+For a capability like (dch) or (il) this will be the number of character
+positions or lines affected, respectively.
+<p>
+<b>Tack</b> will run the pad tests and display the results to the terminal.
+On capabilities that have multipliers <b>tack</b> will not tell you
+if the pad needs the multiplier or not.  You must make this decision
+yourself by rerunning the test with a different multiplier.
+If the padding changes in proportion to the multiplier than the
+multiplier is required.  If the multiplier has little or no effect on
+the suggested padding then the multiplier is not needed.
+Some capabilities will take several runs to get a good feel for
+the correct values.  You may wish to make the test longer
+to get more accurate results.  System load will also effect the
+results (a heavily loaded system will not stress the
+terminal as much, possibly leading to pad timings that are too short).
+<p>
+<h1 class="manpages">NOTE</h1>
+The tests done at the beginning of the program are assumed to be correct later
+in the code.  In particular, <b>tack</b> displays the number of lines and
+columns indicated in the terminfo entry as part of its initial output.
+If these values are wrong a large number of tests will fail or give incorrect
+results.
+<h1 class="manpages">FILES</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+tack.log
+</td><td valign="bottom">
+If logging is enabled then all characters written to the terminal
+will also be written to the log file.  This gives you the ability
+to see how the tests were performed.  This feature is disabled by default.
+</td></tr>
+<tr valign="top"><td>
+<i>term</i> </td><td valign="bottom">
+If you make changes to the terminfo entry <b>tack</b> will save
+the new terminfo to a file.  The file will have the same name
+as the terminal name.
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+You should also have the documentation supplied by the terminal
+manufacturer.
+<h1 class="manpages">BUGS</h1>
+If the screen size is incorrect, many of the tests will fail.
+<h1 class="manpages">AUTHOR</h1>
+Concept, design, and original implementation by
+Daniel Weaver &lt;<a href="mailto:danw@znyx.com">danw@znyx.com</a>&gt;.  Portions of the code and
+documentation are by Eric S. Raymond &lt;<a href="mailto:esr@snark.thyrsus.com">esr@snark.thyrsus.com</a>&gt;.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion72e8.html?tutorial=unix_commands&amp;file=tack.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/tack.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

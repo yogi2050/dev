@@ -1,0 +1,633 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_system_calls/sigaction.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:18 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>sigaction() - Unix, Linux System Call</title>
+<meta name="Description" Content="sigaction() - Unix, Linux System Calls Manual Pages (Manpages) ,  Learning fundamentals of UNIX in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - System Calls</b></a></li>
+<li><a class="left" target="_top" href="../unix_commands/index.html">Unix - Commands List</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>sigaction() - Unix, Linux System Call</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+sigaction - examine and change a signal action
+<h1 class="manpages">SYNOPSIS</h1>
+<b>#include &lt;signal.h&gt;</b> <p>
+<b>int sigaction(int </b><i>signum</i><b>, const struct sigaction *</b><i>act</i><b>,</b> <b>struct sigaction *</b><i>oldact</i><b>);</b> <h1 class="manpages">DESCRIPTION</h1>
+The
+<b>sigaction</b>() system call is used to change the action taken by a process on
+receipt of a specific signal.
+<p>
+<i>signum</i> specifies the signal and can be any valid signal except
+<b>SIGKILL</b> and
+<b>SIGSTOP</b>. <p>
+If
+<i>act</i> is non-null, the new action for signal
+<i>signum</i> is installed from
+<i>act</i>. If
+<i>oldact</i> is non-null, the previous action is saved in
+<i>oldact</i>. <p>
+The
+<i>sigaction</i> structure is defined as something like
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+struct sigaction {
+    void (*sa_handler)(int);
+    void (*sa_sigaction)(int, siginfo_t *, void *);
+    sigset_t sa_mask;
+    int sa_flags;
+    void (*sa_restorer)(void);
+}
+</pre></td></tr>
+</table>
+<p>
+On some architectures a union is involved: do not assign to both
+<i>sa_handler</i> and
+<i>sa_sigaction</i>. <p>
+The
+<i>sa_restorer</i> element is obsolete and should not be used.
+POSIX does not specify a
+<i>sa_restorer</i> element.
+<p>
+<i>sa_handler</i> specifies the action to be associated with
+<i>signum</i> and may be
+<b>SIG_DFL</b> for the default action,
+<b>SIG_IGN</b> to ignore this signal, or a pointer to a signal handling function.
+This function receives the signal number as its only argument.
+<p>
+If
+<b>SA_SIGINFO</b> is specified in
+<i>sa_flags</i>, then
+<i>sa_sigaction</i> (instead of
+<i>sa_handler</i>) specifies the signal-handling function for
+<i>signum</i>. This function receives the signal number as its first argument, a
+pointer to a
+<i>siginfo_t</i> as its second argument and a pointer to a
+<i>ucontext_t</i> (cast to void *) as its third argument.
+<p>
+<i>sa_mask</i> gives a mask of signals which should be blocked during execution of
+the signal handler.  In addition, the signal which triggered the handler
+will be blocked, unless the
+<b>SA_NODEFER</b> flag is used.
+<p>
+<i>sa_flags</i> specifies a set of flags which modify the behaviour of the signal handling
+process. It is formed by the bitwise OR of zero or more of the following:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>SA_NOCLDSTOP</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+If
+<i>signum</i> is
+<b>SIGCHLD</b>, do not receive notification when child processes stop (i.e., when they
+receive one of
+<b>SIGSTOP</b>, <b>SIGTSTP</b>, <b>SIGTTIN</b> or
+<b>SIGTTOU</b>) or resume (i.e., they receive
+<b>SIGCONT</b>) (see
+<b>wait</b>(2)).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>SA_NOCLDWAIT</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+(Linux 2.6 and later)
+If
+<i>signum</i> is
+<b>SIGCHLD</b>, do not transform children into zombies when they terminate.
+See also
+<b>waitpid</b>(2).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>SA_RESETHAND</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Restore the signal action to the default state once the signal handler
+has been called.
+<b>SA_ONESHOT</b> is an obsolete, non-standard synonym for this flag.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>SA_ONSTACK</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Call the signal handler on an alternate signal stack provided by
+<b>sigaltstack</b>(2).
+If an alternate stack is not available, the default stack will be used.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>SA_RESTART</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Provide behaviour compatible with BSD signal semantics by making certain
+system calls restartable across signals.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>SA_NODEFER</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Do not prevent the signal from being received from within its own signal
+handler.
+<b>SA_NOMASK</b> is an obsolete, non-standard synonym for this flag.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>SA_SIGINFO</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The signal handler takes 3 arguments, not one.  In this case,
+<i>sa_sigaction</i> should be set instead of
+<i>sa_handler</i>. (The
+<i>sa_sigaction</i> field was added in Linux 2.1.86.)
+</td></tr>
+</table>
+<p>
+The
+<i>siginfo_t</i> parameter to
+<i>sa_sigaction</i> is a struct with the following elements
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+siginfo_t {
+&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;si_signo;&nbsp;&nbsp;/* Signal number */
+&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;si_errno;&nbsp;&nbsp;/* An errno value */
+&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;si_code;&nbsp;&nbsp;&nbsp;/* Signal code */
+&nbsp;&nbsp;&nbsp;&nbsp;pid_t&nbsp;&nbsp;&nbsp;&nbsp;si_pid;&nbsp;&nbsp;&nbsp;&nbsp;/* Sending process ID */
+&nbsp;&nbsp;&nbsp;&nbsp;uid_t&nbsp;&nbsp;&nbsp;&nbsp;si_uid;&nbsp;&nbsp;&nbsp;&nbsp;/* Real user ID of sending process */
+&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;si_status;&nbsp;/* Exit value or signal */
+&nbsp;&nbsp;&nbsp;&nbsp;clock_t&nbsp;&nbsp;si_utime;&nbsp;&nbsp;/* User time consumed */
+&nbsp;&nbsp;&nbsp;&nbsp;clock_t&nbsp;&nbsp;si_stime;&nbsp;&nbsp;/* System time consumed */
+&nbsp;&nbsp;&nbsp;&nbsp;sigval_t&nbsp;si_value;&nbsp;&nbsp;/* Signal value */
+&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;si_int;&nbsp;&nbsp;&nbsp;&nbsp;/* POSIX.1b signal */
+&nbsp;&nbsp;&nbsp;&nbsp;void *&nbsp;&nbsp;&nbsp;si_ptr;&nbsp;&nbsp;&nbsp;&nbsp;/* POSIX.1b signal */
+&nbsp;&nbsp;&nbsp;&nbsp;void *&nbsp;&nbsp;&nbsp;si_addr;&nbsp;&nbsp;&nbsp;/* Memory location which caused fault */
+&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;si_band;&nbsp;&nbsp;&nbsp;/* Band event */
+&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;si_fd;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* File descriptor */
+}
+</pre></td></tr>
+</table>
+<p>
+<i>si_signo</i>, <i>si_errno</i> and <i>si_code</i> are defined for all signals.
+(<i>si_signo</i> is unused on Linux.)
+The rest of the struct may be a union, so that one should only
+read the fields that are meaningful for the given signal.
+POSIX.1b signals and
+<b>SIGCHLD</b> fill in
+<i>si_pid</i> and <i>si_uid</i>.  <b>SIGCHLD</b> also fills in
+<i>si_status</i>, <i>si_utime</i> and <i>si_stime</i>. <i>si_int</i> and <i>si_ptr</i> are specified by the sender of the POSIX.1b signal.
+<b>SIGILL</b>, <b>SIGFPE</b>, <b>SIGSEGV</b>, and
+<b>SIGBUS</b> fill in
+<i>si_addr</i> with the address of the fault.
+<b>SIGPOLL</b> fills in
+<i>si_band</i> and <i>si_fd</i>. <p>
+<i>si_code</i> indicates why this signal was sent.  It is a value, not a bitmask.  The
+values which are possible for any signal are listed in this table:
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td align="center" colspan=2><i>si_code</i></td></tr>
+<tr valign="top">
+<td>Value</td><td>Signal origin</td></tr>
+<tr valign="top">
+<td>SI_USER</td><td>kill(), sigsend(), or raise()</td></tr>
+<tr valign="top">
+<td>SI_KERNEL</td><td>The kernel</td></tr>
+<tr valign="top">
+<td>SI_QUEUE</td><td>sigqueue()</td></tr>
+<tr valign="top">
+<td>SI_TIMER</td><td>POSIX timer expired</td></tr>
+<tr valign="top">
+<td>SI_MESGQ</td><td>POSIX message queue state changed (since Linux 2.6.6)</td></tr>
+<tr valign="top">
+<td>SI_ASYNCIO</td><td>AIO completed</td></tr>
+<tr valign="top">
+<td>SI_SIGIO</td><td>queued SIGIO</td></tr>
+<tr valign="top">
+<td>SI_TKILL</td><td>tkill() or tgkill() (since Linux 2.4.19)</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td align="center" colspan=2>SIGILL</td></tr>
+<tr valign="top">
+<td>ILL_ILLOPC</td><td>illegal opcode</td></tr>
+<tr valign="top">
+<td>ILL_ILLOPN</td><td>illegal operand</td></tr>
+<tr valign="top">
+<td>ILL_ILLADR</td><td>illegal addressing mode</td></tr>
+<tr valign="top">
+<td>ILL_ILLTRP</td><td>illegal trap</td></tr>
+<tr valign="top">
+<td>ILL_PRVOPC</td><td>privileged opcode</td></tr>
+<tr valign="top">
+<td>ILL_PRVREG</td><td>privileged register</td></tr>
+<tr valign="top">
+<td>ILL_COPROC</td><td>coprocessor error</td></tr>
+<tr valign="top">
+<td>ILL_BADSTK</td><td>internal stack error</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td align="center" colspan=2>SIGFPE</td></tr>
+<tr valign="top">
+<td>FPE_INTDIV</td><td>integer divide by zero</td></tr>
+<tr valign="top">
+<td>FPE_INTOVF</td><td>integer overflow</td></tr>
+<tr valign="top">
+<td>FPE_FLTDIV</td><td>floating point divide by zero</td></tr>
+<tr valign="top">
+<td>FPE_FLTOVF</td><td>floating point overflow</td></tr>
+<tr valign="top">
+<td>FPE_FLTUND</td><td>floating point underflow</td></tr>
+<tr valign="top">
+<td>FPE_FLTRES</td><td>floating point inexact result</td></tr>
+<tr valign="top">
+<td>FPE_FLTINV</td><td>floating point invalid operation</td></tr>
+<tr valign="top">
+<td>FPE_FLTSUB</td><td>subscript out of range</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td align="center" colspan=2>SIGSEGV</td></tr>
+<tr valign="top">
+<td>SEGV_MAPERR</td><td>address not mapped to object</td></tr>
+<tr valign="top">
+<td>SEGV_ACCERR</td><td>invalid permissions for mapped object</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td align="center" colspan=2>SIGBUS</td></tr>
+<tr valign="top">
+<td>BUS_ADRALN</td><td>invalid address alignment</td></tr>
+<tr valign="top">
+<td>BUS_ADRERR</td><td>non-existent physical address</td></tr>
+<tr valign="top">
+<td>BUS_OBJERR</td><td>object specific hardware error</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td align="center" colspan=2>SIGTRAP</td></tr>
+<tr valign="top">
+<td>TRAP_BRKPT</td><td>process breakpoint</td></tr>
+<tr valign="top">
+<td>TRAP_TRACE</td><td>process trace trap</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td align="center" colspan=2>SIGCHLD</td></tr>
+<tr valign="top">
+<td>CLD_EXITED</td><td>child has exited</td></tr>
+<tr valign="top">
+<td>CLD_KILLED</td><td>child was killed</td></tr>
+<tr valign="top">
+<td>CLD_DUMPED</td><td>child terminated abnormally</td></tr>
+<tr valign="top">
+<td>CLD_TRAPPED</td><td>traced child has trapped</td></tr>
+<tr valign="top">
+<td>CLD_STOPPED</td><td>child has stopped</td></tr>
+<tr valign="top">
+<td>CLD_CONTINUED</td><td>stopped child has continued (since Linux 2.6.9)</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td align="center" colspan=2>SIGPOLL</td></tr>
+<tr valign="top">
+<td>POLL_IN</td><td>data input available</td></tr>
+<tr valign="top">
+<td>POLL_OUT</td><td>output buffers available</td></tr>
+<tr valign="top">
+<td>POLL_MSG</td><td>input message available</td></tr>
+<tr valign="top">
+<td>POLL_ERR</td><td>i/o error</td></tr>
+<tr valign="top">
+<td>POLL_PRI</td><td>high priority input available</td></tr>
+<tr valign="top">
+<td>POLL_HUP</td><td>device disconnected</td></tr>
+</table>
+<p>
+<h1 class="manpages">RETURN VALUE</h1>
+<b>sigaction</b>() returns 0 on success and -1 on error.
+<h1 class="manpages">ERRORS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>EFAULT</b> </td><td valign="bottom">
+<i>act</i> or <i>oldact</i> points to memory which is not a valid part of the process address space.
+</td></tr>
+<tr valign="top"><td>
+<b>EINVAL</b> </td><td valign="bottom">
+An invalid signal was specified.  This will also be generated if an attempt
+is made to change the action for
+<b>SIGKILL</b> or <b>SIGSTOP</b>,  which cannot be caught or ignored.
+</td></tr>
+</table>
+<h1 class="manpages">NOTES</h1>
+<p>
+According to POSIX, the behaviour of a process is undefined after it
+ignores a
+<b>SIGFPE</b>, <b>SIGILL</b>, or
+<b>SIGSEGV</b> signal that was not generated by
+<b>kill</b>() or
+<b>raise</b>(). Integer division by zero has undefined result.
+On some architectures it will generate a
+<b>SIGFPE</b> signal.
+(Also dividing the most negative integer by -1 may generate SIGFPE.)
+Ignoring this signal might lead to an endless loop.
+<p>
+POSIX.1-1990 disallowed setting the action for
+<b>SIGCHLD</b> to
+<b>SIG_IGN</b>. POSIX.1-2001 allows this possibility, so that ignoring
+<b>SIGCHLD</b> can be used to prevent the creation of zombies (see
+<b>wait</b>(2)).
+Nevertheless, the historical BSD and System V behaviours for ignoring
+<b>SIGCHLD</b> differ, so that the only completely portable method of ensuring that
+terminated children do not become zombies is to catch the
+<b>SIGCHLD</b> signal and perform a
+<b>wait</b>(2)
+or similar.
+<p>
+POSIX.1-1990 only specified
+<b>SA_NOCLDSTOP</b>. POSIX.1-2001 added
+<b>SA_NOCLDWAIT</b>, <b>SA_RESETHAND</b>, <b>SA_NODEFER</b>, and
+<b>SA_SIGINFO</b>. Use of these latter values in
+<i>sa_flags</i> may be less portable in applications intended for older
+Unix implementations.
+<p>
+Support for
+<b>SA_SIGINFO</b> was added in Linux 2.2.
+<p>
+The
+<b>SA_RESETHAND</b> flag is compatible with the SVr4 flag of the same name.
+<p>
+The
+<b>SA_NODEFER</b> flag is compatible with the SVr4 flag of the same name under kernels
+1.3.9 and newer.  On older kernels the Linux implementation
+allowed the receipt of any signal, not just the one we are installing
+(effectively overriding any
+<i>sa_mask</i> settings).
+<p>
+<b>sigaction</b>() can be called with a null second argument to query the current signal
+handler. It can also be used to check whether a given signal is valid for
+the current machine by calling it with null second and third arguments.
+<p>
+It is not possible to block
+<b>SIGKILL</b> or <b>SIGSTOP</b> (by specifying them in
+<i>sa_mask</i>). Attempts to do so are silently ignored.
+<p>
+See
+<b>sigsetops</b>(3)
+for details on manipulating signal sets.
+<h1 class="manpages">BUGS</h1>
+In kernels up to and including 2.6.13, specifying
+<b>SA_NODEFER</b> in
+<i>sa_flags</i> preventing not only the delivered signal from being masked during
+execution of the handler, but also the signals specified in
+<i>sa_mask</i>. This bug is was fixed in kernel 2.6.14.
+<h1 class="manpages">CONFORMING TO</h1>
+POSIX.1-2001, SVr4. 
+<h1 class="manpages">UNDOCUMENTED</h1>
+Before the introduction of
+<b>SA_SIGINFO</b> it was also possible to get some additional information,
+namely by using a
+<i>sa_handler</i> with second argument of type
+<i>struct sigcontext</i>. See the relevant kernel sources for details.
+This use is obsolete now.
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="../unix_commands/kill.htm">kill (1)</a></p></li>
+<li><p><a href="kill.htm">kill (2)</a></p></li>
+<li><p><a href="pause.htm">pause (2)</a></p></li>
+<li><p><a href="sigaltstack.htm">sigaltstack (2)</a></p></li>
+<li><p><a href="signal.htm">signal (2)</a></p></li>
+<li><p><a href="sigpending.htm">sigpending (2)</a></p></li>
+<li><p><a href="sigprocmask.htm">sigprocmask (2)</a></p></li>
+<li><p><a href="sigqueue.htm">sigqueue (2)</a></p></li>
+<li><p><a href="sigsuspend.htm">sigsuspend (2)</a></p></li>
+<li><p><a href="wait.htm">wait (2)</a></p></li>
+</ul>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion1a4c.html?tutorial=unix_system_calls&amp;file=sigaction.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_system_calls/sigaction.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:18 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

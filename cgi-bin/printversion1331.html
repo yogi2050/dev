@@ -1,0 +1,291 @@
+<html>
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=perl&file=perl_subroutines.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>Subroutines and Functions in PERL</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="Keywords" content="Perl, Programming, Language, Object Oriented Perl, Perl Variables, Scalars, Arrays, Hash, File I/O, Looping, Regular Expressions, Subroutines, Coding Standard, Writing Modules, Process Management, Socket, Examples, References, Special Variables, Syntax Overview, Advanced Perl, Tutorial, Tutorials, Operators, Built-in Functions, Quiz">
+<meta name="Description" content="Free tutorials and references for PERL Programming Common Gateway Interface (CGI) Database Interface (DBI) with PERL Object Oriented Perl and Perl Variables Scalars Arrays Hash File I/O Looping Regular Expressions Subroutines Coding Standard Writing Modules Process Management Socket Examples References Special Variables Syntax Overview Advanced Perl Tutorial Perl Operators Built-in Functions and Quiz">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base >
+<link rel="stylesheet" type="text/css" href="../print.css"/>
+</head>
+<body>
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+<h1>PERL Subrountines</h1>
+<a href="../perl/perl_regular_expression.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../perl/perl_format.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<br />
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr><td valign="top">
+<p>The two terms function and subroutine are used interchangeably in Perl. A function is a named code block that is generally intended to process specified input values into an output value, although this is not always the case. For example, the print function takes variables and static text and prints the values on the screen.</p>
+<ul>
+<li>Like many languages, Perl provides for user-defined subroutines.</li>
+<li>These may be located anywhere in the main program.</li>
+<li>Loaded in from other files via the do, require, or use keywords.</li>
+<li>Any arguments passed in show up in the array @_.</li>
+<li>A return statement may be used to exit a subroutine.</li>
+<li>If no return is found and if the last statement is an expression, its value is returned.</li>
+<li>If the last statement is a loop control structure like a foreach  or a while , the returned value is unspecified.</li>
+<li>Subroutines can return Scalar, Array or Hash.</li>
+</ul>
+<p>Subroutines, like variables, can be declared (without defining what they do) or declared and defined. To simply declare a subroutine, you use one of the following forms:</P>
+<pre>
+sub NAME
+sub NAME PROTO
+sub NAME ATTRS
+sub NAME PROTO ATTRS
+</pre>
+<p>where NAME is the name of the subroutine you are creating, PROTO is the prototype
+for the arguments the subroutine should expect when called, and ATTRS is a list
+of attributes that the subroutine exhibits.</p>
+<p>If you want to declare and define a function, then you need to include the BLOCK
+that defines its operation:</p>
+<pre>
+sub NAME BLOCK
+sub NAME PROTO BLOCK
+sub NAME ATTRS BLOCK
+sub NAME PROTO ATTRS BLOCK
+</pre>
+<p>You can also create anonymous subroutines - subroutines without a name  by omitting the NAME component:</P>
+<pre>
+sub BLOCK
+sub PROTO BLOCK
+sub ATTRS BLOCK
+sub PROTO ATTRS BLOCK
+</pre>
+<p>To call a function you would use one of the following forms:</p>
+<pre>
+NAME
+NAME LIST
+NAME (LIST)
+&NAME
+</pre>
+<p>To give a quick example of a simple subroutine:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+sub message
+{
+   print "Hello!\n";
+}
+</pre></td></tr></table>
+<h1>Function Arguments</h1>
+<p>The first argument you pass to the subroutine is available within the function as $_[0], the second argument is $_[1], and so on. For example, this simple function adds two numbers and prints the result:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+sub add
+{
+   $result = $_[0] + $_[1];
+   print "The result was: $result\n";
+}
+</pre></td></tr></table>
+<p>To call the subroutine and get a result:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+add(1,2);
+</pre></td></tr></table>
+<p>The preceding subroutine is fairly simple, but what if you wanted to have named
+arguments? The simple answer is to assign the values of @_ to a list of variables:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+sub add
+{
+   ($numbera, $numberb) = @_;
+
+   $result = $numbera + $numberb;
+   print "The result was: $result\n";
+}
+</pre></td></tr></table>
+<p>The <b>shift</b> function is one of the .stack. operands supported by Perl. The shift function returns (and removes) the first element of an array. For example:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+sub add
+{
+   my $numbera = shift;
+   my $numberb = shift;
+
+   my $result = $numbera + $numberb;
+   print "The result was: $result\n";
+}
+</pre></td></tr></table>
+<p>The effect is exactly the same as we have shown earlier but we have just obtained the arguments in a different way.</p>
+<h1>Return Values from a Function</h1>
+<P>The return value of any block, including those used in subroutines, is taken as the
+value of the last evaluated expression. For exampl,e the return value here is the result of the calculation.:</P>
+<table class="src" cellpadding=5><tr><td><pre>
+sub myfunc
+{
+   $_[0]+$_[1];
+}
+</pre></td></tr></table>
+<p>You can also explicitly return a value using the return keyword:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+sub myfunc
+{
+   if (@_)
+   {
+      return $_[0]+$_[1];
+   }
+   else
+   {
+      return 0;
+   }
+}
+</pre></td></tr></table>
+<p>When called, return immediately terminates the current subroutine and returns the value to the caller. If you don't specify a value then the return value is <b>undef</b>.</p>
+<h1>A Function Call Context</h1>
+<p>The context of a subroutine or statement is defined as the type of return value that is
+expected. This allows you to use a single function that returns different values based
+on what the user is expecting to receive. For example, the following two calls to the
+<b>getpwent</b> function return a list or a scalar, according to what was used in the assignation:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+$name = getpwent();
+($name, $passwd, $uid, $gid, $quota,
+$comment, %gcos, $dir, $shell) = getpwent();
+</pre></td></tr></table>
+<p>In the first case, the user expects a scalar value to be returned by the function, because
+that is what the return value is being assigned to. In the second case, the user expects
+an array as the return value, again because a list of scalars has been specified for the
+information to be inserted into.</p>
+<p>Here's another example, again from the built-in Perl functions,
+that shows the flexibility:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+my $timestr = localtime(time);
+</pre></td></tr></table>
+<p>In this example, the value of $timestr is now a string made up of the current date and
+time, for example, Thu Nov 30 15:21:33 2000. Conversely:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+($sec,$min,$hour,$mday,$mon,
+                $year,$wday,$yday,$isdst) = localtime(time);
+</pre></td></tr></table>
+<p>Now the individual variables contain the corresponding values returned by localtime.</p>
+<h1>Lvalue subroutines</h1>
+<p>
+
+<b>WARNING:</b> Lvalue subroutines are still experimental and the implementation may change in future versions of Perl.
+</p>
+<p>
+It is possible to return a modifiable value from a subroutine. To do this, you have to declare the subroutine to return an lvalue. See the following example
+</p>
+<table class="src" cellpadding=5><tr><td><pre>
+    my $val;
+    sub canmod : lvalue {
+	# return $val; this doesn't work, don't say "return"
+	$val;
+    }
+    sub nomod {
+	$val;
+    }
+</pre></td></tr></table>
+<p> Now see the magic</p>
+<table class="src" cellpadding=5><tr><td><pre>
+    canmod() = 5;   # assigns to $val in the above subroutine
+    nomod()  = 5;   # ERROR
+</pre></td></tr></table>
+<h1>Passing Lists to Subroutines</h1>
+<p>Because the @_ variable is an array, it can be used to supply lists to a subroutine. However,
+because of the way in which Perl accepts and parses lists and arrays, it can be difficult
+to extract the individual elements from @_. All the followings are valid</p>
+<table class="src" cellpadding=5><tr><td><pre>
+mysub(1,2,3);
+@args = (2,3);
+mysub(1,@args);
+@args = (1,2,3);
+mysub(@args);
+</pre></td></tr></table>
+<p>Finally when we receive thes values in@_ variable then we can not recognize if we had passed one array or two value arraysbecause finally it is getting merged into one.</p>o
+<p>If you want to work with and identify the individual lists passed to Perl, then you need to use references:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+(@listc, @listd) = simplesort(\@lista, \@listb);
+</pre></td></tr></table>
+<p>The leading \ character tells Perl to supply a reference, or pointer, to the array. A
+reference is actually just a scalar, so we can identify each list by assigning the reference
+to each array within our subroutine. Now you can write your subroutineas follows:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+sub simplesort
+{
+   my ($listaref, $listbref ) = @_;
+
+   # De-reference the array list
+   my (@lista) = @$listaref;
+   my (@listb) = @$listbref;
+   # Now you can play with both arrays.
+}
+</pre></td></tr></table>
+<h1>Passing Hashes to Subroutines</h1>
+<p>When you supply a hash to a subroutine or operator that accepts a list, the hash is
+automatically translated into a list of key/value pairs. For example:</P>
+<table class="src" cellpadding=5><tr><td><pre>
+%hash = ('name' => 'Tom', 'age' => 19);
+print %hash;
+</pre></td></tr></table>
+<p>This will output .nameTomage19.. However, the same process works in reverse, so we
+can extract a list and convert it to a hash:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+sub display_hash
+{
+   my (%hash) = @_;
+   foreach (%hash)
+   {
+      print "$_ => $hash{$_}\n";
+   }
+}
+</pre></td></tr></table>
+<p>In this case, we output the key/value pairs of the hash properly, displaying each
+pair on its own line. As with arrays, care needs to be taken if you expect to pick out a
+single hash from a list of arguments. The following will work because we extract the
+hash last:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+sub display_has_regexp
+{
+   my ($regex, %hash) = @_;
+   ...
+}
+</pre></td></tr></table>
+<p>while this one won.t because we try to extract the hash first (there will be an extra
+element, and Perl won.t know how to assign this to the hash):</p>
+<table class="src" cellpadding=5><tr><td><pre>
+sub display_has_regexp
+{
+   my (%hash, $regex) = @_;
+   ...
+}
+</pre></td></tr></table>
+<p>If you want to work with multiple hashes, then use references. For example, the
+following subroutine returns the key intersection of two hashes:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+sub intersection
+{
+   my ($hasha, $hashb) = @_;
+   my %newhash;
+   foreach my $key (keys %{$hasha})
+   {
+      $newhash{$key} = $$hasha{$key} if (exists $$hashb{$key});
+   }
+   return %newhash;
+}
+</pre></td></tr></table>
+<p>To use the subroutine:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+%hasha = ('a' => 'b',
+          'b' => 'b',
+          'c' => 'b');
+%hashb = ('b' => 'b',
+          'c' => 'b',
+          'd' => 'b');
+%newhash = intersection(\%hasha, \%hashb);
+</pre></td></tr></table>
+
+
+</td></tr></table>
+<br>
+<a href="../perl/perl_regular_expression.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../perl/perl_format.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=perl&file=perl_subroutines.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

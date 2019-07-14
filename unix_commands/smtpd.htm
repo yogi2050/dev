@@ -1,0 +1,1891 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/smtpd.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>smtpd - Unix, Linux Command</title>
+<meta name="Description" Content="smtpd - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>smtpd - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- ignored unsupported tag .ad -->
+<h1 class="manpages">NAME</h1>
+smtpd
+-
+Postfix SMTP server
+<h1 class="manpages">SYNOPSIS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<b>smtpd</b> [generic Postfix daemon options]
+</pre></td></tr>
+</table>
+<h1 class="manpages">DESCRIPTION</h1>
+<!-- ignored unsupported tag .ad -->
+The SMTP server accepts network connection requests
+and performs zero or more SMTP transactions per connection.
+Each received message is piped through the <b>cleanup</b>(8)
+daemon, and is placed into the <b>incoming</b> queue as one
+single queue file.  For this mode of operation, the program
+expects to be run from the <b>master</b>(8) process manager.
+<p>
+Alternatively, the SMTP server be can run in stand-alone
+mode; this is traditionally obtained with "<b>sendmail
+-bs</b>".  When the SMTP server runs stand-alone with non
+$<b>mail_owner</b> privileges, it receives mail even while
+the mail system is not running, deposits messages directly
+into the <b>maildrop</b> queue, and disables the SMTP server&#146;s
+access policies. As of Postfix version 2.3, the SMTP server
+refuses to receive mail from the network when it runs with
+non $<b>mail_owner</b> privileges.
+<p>
+The SMTP server implements a variety of policies for connection
+requests, and for parameters given to <b>HELO, ETRN, MAIL FROM, VRFY</b>
+and <b>RCPT TO</b> commands. They are detailed below and in the
+<b>main.cf</b> configuration file.
+<h1 class="manpages">SECURITY</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+The SMTP server is moderately security-sensitive. It talks to SMTP
+clients and to DNS servers on the network. The SMTP server can be
+run chrooted at fixed low privilege.
+<h1 class="manpages">STANDARDS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+RFC 821 (SMTP protocol)
+RFC 1123 (Host requirements)
+RFC 1652 (8bit-MIME transport)
+RFC 1869 (SMTP service extensions)
+RFC 1870 (Message Size Declaration)
+RFC 1985 (ETRN command)
+RFC 2034 (SMTP Enhanced Error Codes)
+RFC 2554 (AUTH command)
+RFC 2821 (SMTP protocol)
+RFC 2920 (SMTP Pipelining)
+RFC 3207 (STARTTLS command)
+RFC 3461 (SMTP DSN Extension)
+RFC 3463 (Enhanced Status Codes)
+</pre></td></tr>
+</table>
+<h1 class="manpages">DIAGNOSTICS</h1>
+<!-- ignored unsupported tag .ad -->
+Problems and transactions are logged to <b>syslogd</b>(8).
+<p>
+Depending on the setting of the <b>notify_classes</b> parameter,
+the postmaster is notified of bounces, protocol problems,
+policy violations, and of other trouble.
+<h1 class="manpages">CONFIGURATION PARAMETERS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+Changes to <b>main.cf</b> are picked up automatically, as <b>smtpd</b>(8)
+processes run for only a limited amount of time. Use the command
+"<b>postfix reload</b>" to speed up a change.
+<p>
+The text below provides only a parameter summary. See
+<b>postconf</b>(5) for more details including examples.
+<h1 class="manpages">COMPATIBILITY CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+The following parameters work around implementation errors in other
+software, and/or allow you to override standards in order to prevent
+undesirable use.
+<!-- ignored unsupported tag .ad -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>broken_sasl_auth_clients (no)</b>
+</td><td>
+Enable inter-operability with SMTP clients that implement an obsolete
+version of the AUTH command (RFC 2554).
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>disable_vrfy_command (no)</b>
+</td><td>
+Disable the SMTP VRFY command.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_noop_commands (empty)</b>
+</td><td>
+List of commands that the Postfix SMTP server replies to with "250
+Ok", without doing any syntax checks and without changing state.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>strict_rfc821_envelopes (no)</b>
+</td><td>
+Require that addresses received in SMTP MAIL FROM and RCPT TO
+commands are enclosed with &lt;&gt;, and that those addresses do
+not contain RFC 822 style comments or phrases.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Available in Postfix version 2.1 and later:
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>resolve_null_domain (no)</b>
+</td><td>
+Resolve an address that ends in the "@" null domain as if the
+local hostname were specified, instead of rejecting the address as
+invalid.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_reject_unlisted_sender (no)</b>
+</td><td>
+Request that the Postfix SMTP server rejects mail from unknown
+sender addresses, even when no explicit reject_unlisted_sender
+access restriction is specified.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_sasl_exceptions_networks (empty)</b>
+</td><td>
+What SMTP clients Postfix will not offer AUTH support to.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Available in Postfix version 2.2 and later:
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_discard_ehlo_keyword_address_maps (empty)</b>
+</td><td>
+Lookup tables, indexed by the remote SMTP client address, with
+case insensitive lists of EHLO keywords (pipelining, starttls, auth,
+etc.) that the SMTP server will not send in the EHLO response to a
+remote SMTP client.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_discard_ehlo_keywords (empty)</b>
+</td><td>
+A case insensitive list of EHLO keywords (pipelining, starttls,
+auth, etc.) that the SMTP server will not send in the EHLO response
+to a remote SMTP client.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_delay_open_until_valid_rcpt (yes)</b>
+</td><td>
+Postpone the start of an SMTP mail transaction until a valid
+RCPT TO command is received.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Available in Postfix version 2.3 and later:
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_tls_always_issue_session_ids (yes)</b>
+</td><td>
+Force the Postfix SMTP server to issue a TLS session id, even
+when TLS session caching is turned off (smtpd_tls_session_cache_database
+is empty).
+</td></tr>
+</table>
+<h1 class="manpages">ADDRESS REWRITING CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+See the ADDRESS_REWRITING_README document for a detailed
+discussion of Postfix address rewriting.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>receive_override_options (empty)</b>
+</td><td>
+Enable or disable recipient validation, built-in content
+filtering, or address mapping.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Available in Postfix version 2.2 and later:
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>local_header_rewrite_clients (permit_inet_interfaces)</b>
+</td><td>
+Rewrite message header addresses in mail from these clients and
+update incomplete addresses with the domain name in $myorigin or
+$mydomain; either don&#146;t rewrite message headers from other clients
+at all, or rewrite message headers and update incomplete addresses
+with the domain specified in the remote_header_rewrite_domain
+parameter.
+</td></tr>
+</table>
+<h1 class="manpages">AFTER QUEUE EXTERNAL CONTENT INSPECTION CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+As of version 1.0, Postfix can be configured to send new mail to
+an external content filter AFTER the mail is queued. This content
+filter is expected to inject mail back into a (Postfix or other)
+MTA for further delivery. See the FILTER_README document for details.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>content_filter (empty)</b>
+</td><td>
+The name of a mail delivery transport that filters mail after
+it is queued.
+</td></tr>
+</table>
+<h1 class="manpages">BEFORE QUEUE EXTERNAL CONTENT INSPECTION CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+As of version 2.1, the Postfix SMTP server can be configured
+to send incoming mail to a real-time SMTP-based content filter
+BEFORE mail is queued.  This content filter is expected to inject
+mail back into Postfix.  See the SMTPD_PROXY_README document for
+details on how to configure and operate this feature.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_proxy_filter (empty)</b>
+</td><td>
+The hostname and TCP port of the mail filtering proxy server.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_proxy_ehlo ($myhostname)</b>
+</td><td>
+How the Postfix SMTP server announces itself to the proxy filter.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_proxy_timeout (100s)</b>
+</td><td>
+The time limit for connecting to a proxy filter and for sending or
+receiving information.
+</td></tr>
+</table>
+<h1 class="manpages">BEFORE QUEUE MILTER CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+As of version 2.3, Postfix supports the Sendmail version 8
+Milter (mail filter) protocol. These content filters run
+outside Postfix. They can inspect the SMTP command stream
+and the message content, and can request modifications before
+mail is queued. For details see the MILTER_README document.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_milters (empty)</b>
+</td><td>
+A list of Milter (mail filter) applications for new mail that
+arrives via the Postfix <b>smtpd</b>(8) server.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>milter_protocol (2)</b>
+</td><td>
+The mail filter protocol version and optional protocol extensions
+for communication with a Milter (mail filter) application.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>milter_default_action (tempfail)</b>
+</td><td>
+The default action when a Milter (mail filter) application is
+unavailable or mis-configured.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>milter_macro_daemon_name ($myhostname)</b>
+</td><td>
+The {daemon_name} macro value for Milter (mail filter) applications.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>milter_macro_v ($mail_name $mail_version)</b>
+</td><td>
+The {v} macro value for Milter (mail filter) applications.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>milter_connect_timeout (30s)</b>
+</td><td>
+The time limit for connecting to a Milter (mail filter)
+application, and for negotiating protocol options.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>milter_command_timeout (30s)</b>
+</td><td>
+The time limit for sending an SMTP command to a Milter (mail
+filter) application, and for receiving the response.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>milter_content_timeout (300s)</b>
+</td><td>
+The time limit for sending message content to a Milter (mail
+filter) application, and for receiving the response.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>milter_connect_macros (see postconf -n output)</b>
+</td><td>
+The macros that are sent to Milter (mail filter) applications
+after completion of an SMTP connection.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>milter_helo_macros (see postconf -n output)</b>
+</td><td>
+The macros that are sent to Milter (mail filter) applications
+after the SMTP HELO or EHLO command.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>milter_mail_macros (see postconf -n output)</b>
+</td><td>
+The macros that are sent to Milter (mail filter) applications
+after the SMTP MAIL FROM command.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>milter_rcpt_macros (see postconf -n output)</b>
+</td><td>
+The macros that are sent to Milter (mail filter) applications
+after the SMTP RCPT TO command.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>milter_data_macros (see postconf -n output)</b>
+</td><td>
+The macros that are sent to version 4 or higher Milter (mail
+filter) applications after the SMTP DATA command.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>milter_unknown_command_macros (see postconf -n output)</b>
+</td><td>
+The macros that are sent to version 3 or higher Milter (mail
+filter) applications after an unknown SMTP command.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>milter_end_of_data_macros (see postconf -n output)</b>
+</td><td>
+The macros that are sent to Milter (mail filter) applications
+after the message end-of-data.
+</td></tr>
+</table>
+<h1 class="manpages">GENERAL CONTENT INSPECTION CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+The following parameters are applicable for both built-in
+and external content filters.
+<p>
+Available in Postfix version 2.1 and later:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>receive_override_options (empty)</b>
+</td><td>
+Enable or disable recipient validation, built-in content
+filtering, or address mapping.
+</td></tr>
+</table>
+<h1 class="manpages">EXTERNAL CONTENT INSPECTION CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+The following parameters are applicable for both before-queue
+and after-queue content filtering.
+<p>
+Available in Postfix version 2.1 and later:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_authorized_xforward_hosts (empty)</b>
+</td><td>
+What SMTP clients are allowed to use the XFORWARD feature.
+</td></tr>
+</table>
+<h1 class="manpages">SASL AUTHENTICATION CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+Postfix SASL support (RFC 2554) can be used to authenticate remote
+SMTP clients to the Postfix SMTP server, and to authenticate the
+Postfix SMTP client to a remote SMTP server.
+See the SASL_README document for details.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>broken_sasl_auth_clients (no)</b>
+</td><td>
+Enable inter-operability with SMTP clients that implement an obsolete
+version of the AUTH command (RFC 2554).
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_sasl_auth_enable (no)</b>
+</td><td>
+Enable SASL authentication in the Postfix SMTP server.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_sasl_local_domain (empty)</b>
+</td><td>
+The name of the local SASL authentication realm.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_sasl_security_options (noanonymous)</b>
+</td><td>
+SASL security options; as of Postfix 2.3 the list of available
+features depends on the SASL server implementation that is selected
+with <b>smtpd_sasl_type</b>.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_sender_login_maps (empty)</b>
+</td><td>
+Optional lookup table with the SASL login names that own sender
+(MAIL FROM) addresses.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Available in Postfix version 2.1 and later:
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_sasl_exceptions_networks (empty)</b>
+</td><td>
+What SMTP clients Postfix will not offer AUTH support to.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Available in Postfix version 2.3 and later:
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_sasl_authenticated_header (no)</b>
+</td><td>
+Report the SASL authenticated user name in the <b>smtpd</b>(8) Received
+message header.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_sasl_path (smtpd)</b>
+</td><td>
+Implementation-specific information that is passed through to
+the SASL plug-in implementation that is selected with
+<b>smtpd_sasl_type</b>.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_sasl_type (cyrus)</b>
+</td><td>
+The SASL plug-in type that the Postfix SMTP server should use
+for authentication.
+</td></tr>
+</table>
+<h1 class="manpages">STARTTLS SUPPORT CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+Detailed information about STARTTLS configuration may be
+found in the TLS_README document.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_tls_security_level (empty)</b>
+</td><td>
+The SMTP TLS security level for the Postfix SMTP server; when
+a non-empty value is specified, this overrides the obsolete parameters
+smtpd_use_tls and smtpd_enforce_tls.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_sasl_tls_security_options ($smtpd_sasl_security_options)</b>
+</td><td>
+The SASL authentication security options that the Postfix SMTP
+server uses for TLS encrypted SMTP sessions.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_starttls_timeout (300s)</b>
+</td><td>
+The time limit for Postfix SMTP server write and read operations
+during TLS startup and shutdown handshake procedures.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_tls_CAfile (empty)</b>
+</td><td>
+The file with the certificate of the certification authority
+(CA) that issued the Postfix SMTP server certificate.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_tls_CAfile (empty)</b>
+</td><td>
+The file with the certificate of the certification authority
+(CA) that issued the Postfix SMTP server certificate.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_tls_always_issue_session_ids (yes)</b>
+</td><td>
+Force the Postfix SMTP server to issue a TLS session id, even
+when TLS session caching is turned off (smtpd_tls_session_cache_database
+is empty).
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_tls_ask_ccert (no)</b>
+</td><td>
+Ask a remote SMTP client for a client certificate.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_tls_auth_only (no)</b>
+</td><td>
+When TLS encryption is optional in the Postfix SMTP server, do
+not announce or accept SASL authentication over unencrypted
+connections.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_tls_ccert_verifydepth (5)</b>
+</td><td>
+The verification depth for remote SMTP client certificates.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_tls_cert_file (empty)</b>
+</td><td>
+File with the Postfix SMTP server RSA certificate in PEM format.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_tls_exclude_ciphers (empty)</b>
+</td><td>
+List of ciphers or cipher types to exclude from the SMTP server
+cipher list at all TLS security levels.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_tls_dcert_file (empty)</b>
+</td><td>
+File with the Postfix SMTP server DSA certificate in PEM format.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_tls_dh1024_param_file (empty)</b>
+</td><td>
+File with DH parameters that the Postfix SMTP server should
+use with EDH ciphers.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_tls_dh512_param_file (empty)</b>
+</td><td>
+File with DH parameters that the Postfix SMTP server should
+use with EDH ciphers.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_tls_dkey_file ($smtpd_tls_dcert_file)</b>
+</td><td>
+File with the Postfix SMTP server DSA private key in PEM format.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_tls_key_file ($smtpd_tls_cert_file)</b>
+</td><td>
+File with the Postfix SMTP server RSA private key in PEM format.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_tls_loglevel (0)</b>
+</td><td>
+Enable additional Postfix SMTP server logging of TLS activity.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_tls_mandatory_ciphers (medium)</b>
+</td><td>
+The minimum TLS cipher grade that the Postfix SMTP server will
+use with mandatory
+TLS encryption.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_tls_mandatory_exclude_ciphers (empty)</b>
+</td><td>
+Additional list of ciphers or cipher types to exclude from the
+SMTP server cipher list at mandatory TLS security levels.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_tls_mandatory_protocols (SSLv3, TLSv1)</b>
+</td><td>
+The TLS protocols accepted by the Postfix SMTP server with
+mandatory TLS encryption.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_tls_received_header (no)</b>
+</td><td>
+Request that the Postfix SMTP server produces Received:  message
+headers that include information about the protocol and cipher used,
+as well as the client CommonName and client certificate issuer
+CommonName.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_tls_req_ccert (no)</b>
+</td><td>
+With mandatory TLS encryption, require a remote SMTP client
+certificate in order to allow TLS connections to proceed.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_tls_session_cache_database (empty)</b>
+</td><td>
+Name of the file containing the optional Postfix SMTP server
+TLS session cache.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_tls_session_cache_timeout (3600s)</b>
+</td><td>
+The expiration time of Postfix SMTP server TLS session cache
+information.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_tls_wrappermode (no)</b>
+</td><td>
+Run the Postfix SMTP server in the non-standard "wrapper" mode,
+instead of using the STARTTLS command.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>tls_daemon_random_bytes (32)</b>
+</td><td>
+The number of pseudo-random bytes that an <b>smtp</b>(8) or <b>smtpd</b>(8)
+process requests from the <b>tlsmgr</b>(8) server in order to seed its
+internal pseudo random number generator (PRNG).
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>tls_high_cipherlist (!EXPORT:!LOW:!MEDIUM:ALL:+RC4:@STRENGTH)</b>
+</td><td>
+The OpenSSL cipherlist for "HIGH" grade ciphers.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>tls_medium_cipherlist (!EXPORT:!LOW:ALL:+RC4:@STRENGTH)</b>
+</td><td>
+The OpenSSL cipherlist for "MEDIUM" or higher grade ciphers.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>tls_low_cipherlist (!EXPORT:ALL:+RC4:@STRENGTH)</b>
+</td><td>
+The OpenSSL cipherlist for "LOW" or higher grade ciphers.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>tls_export_cipherlist (ALL:+RC4:@STRENGTH)</b>
+</td><td>
+The OpenSSL cipherlist for "EXPORT" or higher grade ciphers.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>tls_null_cipherlist (!aNULL:eNULL+kRSA)</b>
+</td><td>
+The OpenSSL cipherlist for "NULL" grade ciphers that provide
+authentication without encryption.
+</td></tr>
+</table>
+<h1 class="manpages">OBSOLETE STARTTLS CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+The following configuration parameters exist for compatibility
+with Postfix versions before 2.3. Support for these will
+be removed in a future release.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_use_tls (no)</b>
+</td><td>
+Opportunistic TLS: announce STARTTLS support to SMTP clients,
+but do not require that clients use TLS encryption.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_enforce_tls (no)</b>
+</td><td>
+Mandatory TLS: announce STARTTLS support to SMTP clients,
+and require that clients use TLS encryption.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_tls_cipherlist (empty)</b>
+</td><td>
+Obsolete Postfix &lt; 2.3 control for the Postfix SMTP server TLS
+cipher list.
+</td></tr>
+</table>
+<h1 class="manpages">VERP SUPPORT CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+With VERP style delivery, each recipient of a message receives a
+customized copy of the message with his/her own recipient address
+encoded in the envelope sender address.  The VERP_README file
+describes configuration and operation details of Postfix support
+for variable envelope return path addresses.  VERP style delivery
+is requested with the SMTP XVERP command or with the "sendmail
+-V" command-line option and is available in Postfix version 1.1
+and later.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>default_verp_delimiters (+=)</b>
+</td><td>
+The two default VERP delimiter characters.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>verp_delimiter_filter (-=+)</b>
+</td><td>
+The characters Postfix accepts as VERP delimiter characters on the
+Postfix <b>sendmail</b>(1) command line and in SMTP commands.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Available in Postfix version 1.1 and 2.0:
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>authorized_verp_clients ($mynetworks)</b>
+</td><td>
+What SMTP clients are allowed to specify the XVERP command.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Available in Postfix version 2.1 and later:
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_authorized_verp_clients ($authorized_verp_clients)</b>
+</td><td>
+What SMTP clients are allowed to specify the XVERP command.
+</td></tr>
+</table>
+<h1 class="manpages">TROUBLE SHOOTING CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+The DEBUG_README document describes how to debug parts of the
+Postfix mail system. The methods vary from making the software log
+a lot of detail, to running some daemon processes under control of
+a call tracer or debugger.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>debug_peer_level (2)</b>
+</td><td>
+The increment in verbose logging level when a remote client or
+server matches a pattern in the debug_peer_list parameter.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>debug_peer_list (empty)</b>
+</td><td>
+Optional list of remote client or server hostname or network
+address patterns that cause the verbose logging level to increase
+by the amount specified in $debug_peer_level.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>error_notice_recipient (postmaster)</b>
+</td><td>
+The recipient of postmaster notifications about mail delivery
+problems that are caused by policy, resource, software or protocol
+errors.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>internal_mail_filter_classes (empty)</b>
+</td><td>
+What categories of Postfix-generated mail are subject to
+before-queue content inspection by non_smtpd_milters, header_checks
+and body_checks.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>notify_classes (resource, software)</b>
+</td><td>
+The list of error classes that are reported to the postmaster.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>soft_bounce (no)</b>
+</td><td>
+Safety net to keep mail queued that would otherwise be returned to
+the sender.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Available in Postfix version 2.1 and later:
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_authorized_xclient_hosts (empty)</b>
+</td><td>
+What SMTP clients are allowed to use the XCLIENT feature.
+</td></tr>
+</table>
+<h1 class="manpages">KNOWN VERSUS UNKNOWN RECIPIENT CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+As of Postfix version 2.0, the SMTP server rejects mail for
+unknown recipients. This prevents the mail queue from clogging up
+with undeliverable MAILER-DAEMON messages. Additional information
+on this topic is in the LOCAL_RECIPIENT_README and ADDRESS_CLASS_README
+documents.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>show_user_unknown_table_name (yes)</b>
+</td><td>
+Display the name of the recipient table in the "User unknown"
+responses.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>canonical_maps (empty)</b>
+</td><td>
+Optional address mapping lookup tables for message headers and
+envelopes.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>recipient_canonical_maps (empty)</b>
+</td><td>
+Optional address mapping lookup tables for envelope and header
+recipient addresses.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Parameters concerning known/unknown local recipients:
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>mydestination ($myhostname, localhost.$mydomain, localhost)</b>
+</td><td>
+The list of domains that are delivered via the $local_transport
+mail delivery transport.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>inet_interfaces (all)</b>
+</td><td>
+The network interface addresses that this mail system receives
+mail on.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>proxy_interfaces (empty)</b>
+</td><td>
+The network interface addresses that this mail system receives mail
+on by way of a proxy or network address translation unit.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>inet_protocols (ipv4)</b>
+</td><td>
+The Internet protocols Postfix will attempt to use when making
+or accepting connections.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>local_recipient_maps (proxy:unix:passwd.byname $alias_maps)</b>
+</td><td>
+Lookup tables with all names or addresses of local recipients:
+a recipient address is local when its domain matches $mydestination,
+$inet_interfaces or $proxy_interfaces.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>unknown_local_recipient_reject_code (550)</b>
+</td><td>
+The numerical Postfix SMTP server response code when a recipient
+address is local, and $local_recipient_maps specifies a list of
+lookup tables that does not match the recipient.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Parameters concerning known/unknown recipients of relay destinations:
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>relay_domains ($mydestination)</b>
+</td><td>
+What destination domains (and subdomains thereof) this system
+will relay mail to.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>relay_recipient_maps (empty)</b>
+</td><td>
+Optional lookup tables with all valid addresses in the domains
+that match $relay_domains.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>unknown_relay_recipient_reject_code (550)</b>
+</td><td>
+The numerical Postfix SMTP server reply code when a recipient
+address matches $relay_domains, and relay_recipient_maps specifies
+a list of lookup tables that does not match the recipient address.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Parameters concerning known/unknown recipients in virtual alias
+domains:
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>virtual_alias_domains ($virtual_alias_maps)</b>
+</td><td>
+Postfix is final destination for the specified list of virtual
+alias domains, that is, domains for which all addresses are aliased
+to addresses in other local or remote domains.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>virtual_alias_maps ($virtual_maps)</b>
+</td><td>
+Optional lookup tables that alias specific mail addresses or domains
+to other local or remote address.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>unknown_virtual_alias_reject_code (550)</b>
+</td><td>
+The SMTP server reply code when a recipient address matches
+$virtual_alias_domains, and $virtual_alias_maps specifies a list
+of lookup tables that does not match the recipient address.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Parameters concerning known/unknown recipients in virtual mailbox
+domains:
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>virtual_mailbox_domains ($virtual_mailbox_maps)</b>
+</td><td>
+Postfix is final destination for the specified list of domains;
+mail is delivered via the $virtual_transport mail delivery transport.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>virtual_mailbox_maps (empty)</b>
+</td><td>
+Optional lookup tables with all valid addresses in the domains that
+match $virtual_mailbox_domains.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>unknown_virtual_mailbox_reject_code (550)</b>
+</td><td>
+The SMTP server reply code when a recipient address matches
+$virtual_mailbox_domains, and $virtual_mailbox_maps specifies a list
+of lookup tables that does not match the recipient address.
+</td></tr>
+</table>
+<h1 class="manpages">RESOURCE AND RATE CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+The following parameters limit resource usage by the SMTP
+server and/or control client request rates.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>line_length_limit (2048)</b>
+</td><td>
+Upon input, long lines are chopped up into pieces of at most
+this length; upon delivery, long lines are reconstructed.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>queue_minfree (0)</b>
+</td><td>
+The minimal amount of free space in bytes in the queue file system
+that is needed to receive mail.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>message_size_limit (10240000)</b>
+</td><td>
+The maximal size in bytes of a message, including envelope information.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_recipient_limit (1000)</b>
+</td><td>
+The maximal number of recipients that the Postfix SMTP server
+accepts per message delivery request.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_timeout (300s)</b>
+</td><td>
+The time limit for sending a Postfix SMTP server response and for
+receiving a remote SMTP client request.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_history_flush_threshold (100)</b>
+</td><td>
+The maximal number of lines in the Postfix SMTP server command history
+before it is flushed upon receipt of EHLO, RSET, or end of DATA.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Available in Postfix version 2.3 and later:
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_peername_lookup (yes)</b>
+</td><td>
+Attempt to look up the remote SMTP client hostname, and verify that
+the name matches the client IP address.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+The per SMTP client connection count and request rate limits are
+implemented in co-operation with the <b>anvil</b>(8) service, and
+are available in Postfix version 2.2 and later.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_client_connection_count_limit (50)</b>
+</td><td>
+How many simultaneous connections any client is allowed to
+make to this service.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_client_connection_rate_limit (0)</b>
+</td><td>
+The maximal number of connection attempts any client is allowed to
+make to this service per time unit.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_client_message_rate_limit (0)</b>
+</td><td>
+The maximal number of message delivery requests that any client is
+allowed to make to this service per time unit, regardless of whether
+or not Postfix actually accepts those messages.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_client_recipient_rate_limit (0)</b>
+</td><td>
+The maximal number of recipient addresses that any client is allowed
+to send to this service per time unit, regardless of whether or not
+Postfix actually accepts those recipients.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_client_event_limit_exceptions ($mynetworks)</b>
+</td><td>
+Clients that are excluded from connection count, connection rate,
+or SMTP request rate restrictions.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Available in Postfix version 2.3 and later:
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_client_new_tls_session_rate_limit (0)</b>
+</td><td>
+The maximal number of new (i.e., uncached) TLS sessions that a
+remote SMTP client is allowed to negotiate with this service per
+time unit.
+</td></tr>
+</table>
+<h1 class="manpages">TARPIT CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+When a remote SMTP client makes errors, the Postfix SMTP server
+can insert delays before responding. This can help to slow down
+run-away software.  The behavior is controlled by an error counter
+that counts the number of errors within an SMTP session that a
+client makes without delivering mail.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_error_sleep_time (1s)</b>
+</td><td>
+With Postfix version 2.1 and later: the SMTP server response delay after
+a client has made more than $smtpd_soft_error_limit errors, and
+fewer than $smtpd_hard_error_limit errors, without delivering mail.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_soft_error_limit (10)</b>
+</td><td>
+The number of errors a remote SMTP client is allowed to make without
+delivering mail before the Postfix SMTP server slows down all its
+responses.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_hard_error_limit (20)</b>
+</td><td>
+The maximal number of errors a remote SMTP client is allowed to
+make without delivering mail.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_junk_command_limit (100)</b>
+</td><td>
+The number of junk commands (NOOP, VRFY, ETRN or RSET) that a remote
+SMTP client can send before the Postfix SMTP server starts to
+increment the error counter with each junk command.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Available in Postfix version 2.1 and later:
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_recipient_overshoot_limit (1000)</b>
+</td><td>
+The number of recipients that a remote SMTP client can send in
+excess of the limit specified with $smtpd_recipient_limit, before
+the Postfix SMTP server increments the per-session error count
+for each excess recipient.
+</td></tr>
+</table>
+<h1 class="manpages">ACCESS POLICY DELEGATION CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+As of version 2.1, Postfix can be configured to delegate access
+policy decisions to an external server that runs outside Postfix.
+See the file SMTPD_POLICY_README for more information.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_policy_service_max_idle (300s)</b>
+</td><td>
+The time after which an idle SMTPD policy service connection is
+closed.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_policy_service_max_ttl (1000s)</b>
+</td><td>
+The time after which an active SMTPD policy service connection is
+closed.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_policy_service_timeout (100s)</b>
+</td><td>
+The time limit for connecting to, writing to or receiving from a
+delegated SMTPD policy server.
+</td></tr>
+</table>
+<h1 class="manpages">ACCESS CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+The SMTPD_ACCESS_README document gives an introduction to all the
+SMTP server access control features.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_delay_reject (yes)</b>
+</td><td>
+Wait until the RCPT TO command before evaluating
+$smtpd_client_restrictions, $smtpd_helo_restrictions and
+$smtpd_sender_restrictions, or wait until the ETRN command before
+evaluating $smtpd_client_restrictions and $smtpd_helo_restrictions.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>parent_domain_matches_subdomains (see &#146;postconf -d&#146; output)</b>
+</td><td>
+What Postfix features match subdomains of "domain.tld" automatically,
+instead of requiring an explicit ".domain.tld" pattern.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_client_restrictions (empty)</b>
+</td><td>
+Optional SMTP server access restrictions in the context of a client
+SMTP connection request.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_helo_required (no)</b>
+</td><td>
+Require that a remote SMTP client introduces itself at the beginning
+of an SMTP session with the HELO or EHLO command.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_helo_restrictions (empty)</b>
+</td><td>
+Optional restrictions that the Postfix SMTP server applies in the
+context of the SMTP HELO command.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_sender_restrictions (empty)</b>
+</td><td>
+Optional restrictions that the Postfix SMTP server applies in the
+context of the MAIL FROM command.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_recipient_restrictions (permit_mynetworks, reject_unauth_destination)</b>
+</td><td>
+The access restrictions that the Postfix SMTP server applies in
+the context of the RCPT TO command.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_etrn_restrictions (empty)</b>
+</td><td>
+Optional SMTP server access restrictions in the context of a client
+ETRN request.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>allow_untrusted_routing (no)</b>
+</td><td>
+Forward mail with sender-specified routing (user[@%!]remote[@%!]site)
+from untrusted clients to destinations matching $relay_domains.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_restriction_classes (empty)</b>
+</td><td>
+User-defined aliases for groups of access restrictions.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_null_access_lookup_key (&lt;&gt;)</b>
+</td><td>
+The lookup key to be used in SMTP <b>access</b>(5) tables instead of the
+null sender address.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>permit_mx_backup_networks (empty)</b>
+</td><td>
+Restrict the use of the permit_mx_backup SMTP access feature to
+only domains whose primary MX hosts match the listed networks.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Available in Postfix version 2.0 and later:
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_data_restrictions (empty)</b>
+</td><td>
+Optional access restrictions that the Postfix SMTP server applies
+in the context of the SMTP DATA command.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_expansion_filter (see &#146;postconf -d&#146; output)</b>
+</td><td>
+What characters are allowed in $name expansions of RBL reply
+templates.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Available in Postfix version 2.1 and later:
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_reject_unlisted_sender (no)</b>
+</td><td>
+Request that the Postfix SMTP server rejects mail from unknown
+sender addresses, even when no explicit reject_unlisted_sender
+access restriction is specified.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_reject_unlisted_recipient (yes)</b>
+</td><td>
+Request that the Postfix SMTP server rejects mail for unknown
+recipient addresses, even when no explicit reject_unlisted_recipient
+access restriction is specified.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Available in Postfix version 2.2 and later:
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_end_of_data_restrictions (empty)</b>
+</td><td>
+Optional access restrictions that the Postfix SMTP server
+applies in the context of the SMTP END-OF-DATA command.
+</td></tr>
+</table>
+<h1 class="manpages">SENDER AND RECIPIENT ADDRESS VERIFICATION CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+Postfix version 2.1 introduces sender and recipient address verification.
+This feature is implemented by sending probe email messages that
+are not actually delivered.
+This feature is requested via the reject_unverified_sender and
+reject_unverified_recipient access restrictions.  The status of
+verification probes is maintained by the <b>verify</b>(8) server.
+See the file ADDRESS_VERIFICATION_README for information
+about how to configure and operate the Postfix sender/recipient
+address verification service.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>address_verify_poll_count (3)</b>
+</td><td>
+How many times to query the <b>verify</b>(8) service for the completion
+of an address verification request in progress.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>address_verify_poll_delay (3s)</b>
+</td><td>
+The delay between queries for the completion of an address
+verification request in progress.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>address_verify_sender (postmaster)</b>
+</td><td>
+The sender address to use in address verification probes.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>unverified_sender_reject_code (450)</b>
+</td><td>
+The numerical Postfix SMTP server response code when a recipient
+address is rejected by the reject_unverified_sender restriction.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>unverified_recipient_reject_code (450)</b>
+</td><td>
+The numerical Postfix SMTP server response when a recipient address
+is rejected by the reject_unverified_recipient restriction.
+</td></tr>
+</table>
+<h1 class="manpages">ACCESS CONTROL RESPONSES</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+The following parameters control numerical SMTP reply codes
+and/or text responses.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>access_map_reject_code (554)</b>
+</td><td>
+The numerical Postfix SMTP server response code when a client
+is rejected by an <b>access</b>(5) map restriction.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>defer_code (450)</b>
+</td><td>
+The numerical Postfix SMTP server response code when a remote SMTP
+client request is rejected by the "defer" restriction.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>invalid_hostname_reject_code (501)</b>
+</td><td>
+The numerical Postfix SMTP server response code when the client
+HELO or EHLO command parameter is rejected by the reject_invalid_helo_hostname
+restriction.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>maps_rbl_reject_code (554)</b>
+</td><td>
+The numerical Postfix SMTP server response code when a remote SMTP
+client request is blocked by the reject_rbl_client, reject_rhsbl_client,
+reject_rhsbl_sender or reject_rhsbl_recipient restriction.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>non_fqdn_reject_code (504)</b>
+</td><td>
+The numerical Postfix SMTP server reply code when a client request
+is rejected by the reject_non_fqdn_helo_hostname, reject_non_fqdn_sender
+or reject_non_fqdn_recipient restriction.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>plaintext_reject_code (450)</b>
+</td><td>
+The numerical Postfix SMTP server response code when a request
+is rejected by the <b>reject_plaintext_session</b> restriction.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>reject_code (554)</b>
+</td><td>
+The numerical Postfix SMTP server response code when a remote SMTP
+client request is rejected by the "reject" restriction.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>relay_domains_reject_code (554)</b>
+</td><td>
+The numerical Postfix SMTP server response code when a client
+request is rejected by the reject_unauth_destination recipient
+restriction.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>unknown_address_reject_code (450)</b>
+</td><td>
+The numerical Postfix SMTP server response code when a sender or
+recipient address is rejected by the reject_unknown_sender_domain
+or reject_unknown_recipient_domain restriction.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>unknown_client_reject_code (450)</b>
+</td><td>
+The numerical Postfix SMTP server response code when a client
+without valid address &lt;=&gt; name mapping is rejected by the
+reject_unknown_client_hostname restriction.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>unknown_hostname_reject_code (450)</b>
+</td><td>
+The numerical Postfix SMTP server response code when the hostname
+specified with the HELO or EHLO command is rejected by the
+reject_unknown_helo_hostname restriction.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Available in Postfix version 2.0 and later:
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>default_rbl_reply (see &#146;postconf -d&#146; output)</b>
+</td><td>
+The default SMTP server response template for a request that is
+rejected by an RBL-based restriction.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>multi_recipient_bounce_reject_code (550)</b>
+</td><td>
+The numerical Postfix SMTP server response code when a remote SMTP
+client request is blocked by the reject_multi_recipient_bounce
+restriction.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>rbl_reply_maps (empty)</b>
+</td><td>
+Optional lookup tables with RBL response templates.
+</td></tr>
+</table>
+<h1 class="manpages">MISCELLANEOUS CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>config_directory (see &#146;postconf -d&#146; output)</b>
+</td><td>
+The default location of the Postfix main.cf and master.cf
+configuration files.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>daemon_timeout (18000s)</b>
+</td><td>
+How much time a Postfix daemon process may take to handle a
+request before it is terminated by a built-in watchdog timer.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>command_directory (see &#146;postconf -d&#146; output)</b>
+</td><td>
+The location of all postfix administrative commands.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>double_bounce_sender (double-bounce)</b>
+</td><td>
+The sender address of postmaster notifications that are generated
+by the mail system.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>ipc_timeout (3600s)</b>
+</td><td>
+The time limit for sending or receiving information over an internal
+communication channel.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>mail_name (Postfix)</b>
+</td><td>
+The mail system name that is displayed in Received: headers, in
+the SMTP greeting banner, and in bounced mail.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>mail_owner (postfix)</b>
+</td><td>
+The UNIX system account that owns the Postfix queue and most Postfix
+daemon processes.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>max_idle (100s)</b>
+</td><td>
+The maximum amount of time that an idle Postfix daemon process
+waits for the next service request before exiting.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>max_use (100)</b>
+</td><td>
+The maximal number of connection requests before a Postfix daemon
+process terminates.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>myhostname (see &#146;postconf -d&#146; output)</b>
+</td><td>
+The internet hostname of this mail system.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>mynetworks (see &#146;postconf -d&#146; output)</b>
+</td><td>
+The list of "trusted" SMTP clients that have more privileges than
+"strangers".
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>myorigin ($myhostname)</b>
+</td><td>
+The domain name that locally-posted mail appears to come
+from, and that locally posted mail is delivered to.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>process_id (read-only)</b>
+</td><td>
+The process ID of a Postfix command or daemon process.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>process_name (read-only)</b>
+</td><td>
+The process name of a Postfix command or daemon process.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>queue_directory (see &#146;postconf -d&#146; output)</b>
+</td><td>
+The location of the Postfix top-level queue directory.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>recipient_delimiter (empty)</b>
+</td><td>
+The separator between user names and address extensions (user+foo).
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_banner ($myhostname ESMTP $mail_name)</b>
+</td><td>
+The text that follows the 220 status code in the SMTP greeting
+banner.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>syslog_facility (mail)</b>
+</td><td>
+The syslog facility of Postfix logging.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>syslog_name (postfix)</b>
+</td><td>
+The mail system name that is prepended to the process name in syslog
+records, so that "smtpd" becomes, for example, "postfix/smtpd".
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Available in Postfix version 2.2 and later:
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>smtpd_forbidden_commands (CONNECT, GET, POST)</b>
+</td><td>
+List of commands that causes the Postfix SMTP server to immediately
+terminate the session with a 221 code.
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<a href="../anvil.html">anvil(8)</a>, connection/rate limiting
+<a href="../cleanup.html">cleanup(8)</a>, message canonicalization
+<a href="../tlsmgr.html">tlsmgr(8)</a>, TLS session and PRNG management
+<a href="../trivial-rewrite.html">trivial-rewrite(8)</a>, address resolver
+<a href="../verify.html">verify(8)</a>, address verification service
+<a href="../postconf.html">postconf(5)</a>, configuration parameters
+<a href="../master.html">master(5)</a>, generic daemon options
+<a href="../master-2.html">master(8)</a>, process manager
+<a href="../syslogd.html">syslogd(8)</a>, system logging
+</pre></td></tr>
+</table>
+<h1 class="manpages">README FILES</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+Use "<b>postconf readme_directory</b>" or
+"<b>postconf html_directory</b>" to locate this information.
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+ADDRESS_CLASS_README, blocking unknown hosted or relay recipients
+ADDRESS_REWRITING_README Postfix address manipulation
+FILTER_README, external after-queue content filter
+LOCAL_RECIPIENT_README, blocking unknown local recipients
+MILTER_README, before-queue mail filter applications
+SMTPD_ACCESS_README, built-in access policies
+SMTPD_POLICY_README, external policy server
+SMTPD_PROXY_README, external before-queue content filter
+SASL_README, Postfix SASL howto
+TLS_README, Postfix STARTTLS howto
+VERP_README, Postfix XVERP extension
+XCLIENT_README, Postfix XCLIENT extension
+XFORWARD_README, Postfix XFORWARD extension
+</pre></td></tr>
+</table>
+<h1 class="manpages">LICENSE</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+The Secure Mailer license must be distributed with this software.
+<h1 class="manpages">AUTHOR(S)</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+Wietse Venema
+IBM T.J. Watson Research
+P.O. Box 704
+Yorktown Heights, NY 10598, USA
+<p>
+SASL support originally by:
+Till Franke
+SuSE Rhein/Main AG
+65760 Eschborn, Germany
+<p>
+TLS support originally by:
+Lutz Jaenicke
+BTU Cottbus
+Allgemeine Elektrotechnik
+Universitaetsplatz 3-4
+D-03044 Cottbus, Germany
+</pre></td></tr>
+</table>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion09d0.html?tutorial=unix_commands&amp;file=smtpd.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/smtpd.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

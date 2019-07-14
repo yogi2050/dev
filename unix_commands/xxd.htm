@@ -1,0 +1,602 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/xxd.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>xxd - Unix, Linux Command</title>
+<meta name="Description" Content="xxd - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>xxd - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+<i>xxd</i> - make a hexdump or do the reverse.
+<h1 class="manpages">SYNOPSIS</h1>
+<b>xxd</b> -h[elp]
+<!-- Need break --><br />
+<b>xxd</b> [options] [infile [outfile]]
+<!-- Need break --><br />
+<b>xxd</b> -r[evert] [options] [infile [outfile]]
+<h1 class="manpages">DESCRIPTION</h1>
+<i>xxd</i> creates a hex dump of a given file or standard input.
+It can also convert a hex dump back to its original binary form.
+Like
+<b>uuencode</b>(1)
+and
+<b>uudecode</b>(1)
+it allows the transmission of binary data in a &#145;mail-safe&#146; ASCII representation,
+but has the advantage of decoding to standard output.
+Moreover, it can be used to perform binary file patching.
+<h1 class="manpages">OPTIONS</h1>
+If no
+<i>infile</i> is given, standard input is read.
+If
+<i>infile</i> is specified as a
+&#96;<b>-</b>&#146; character, then input is taken from standard input.
+If no
+<i>outfile</i> is given (or a
+&#96;<b>-</b>&#146; character is in its place), results are sent to standard output.
+<p>
+Note that a "lazy" parser is used which does not check for more than the first
+option letter, unless the option is followed by a parameter.
+Spaces between a single option letter and its parameter are optional.
+Parameters to options can be specified in decimal, hexadecimal or octal
+notation.
+Thus
+<b>-c8</b>, <b>-c 8</b>, <b>-c 010</b> and
+<b>-cols 8</b> are all equivalent.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<i>-a</i> | <i>-autoskip</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+toggle autoskip: A single &#146;*&#146; replaces nul-lines.  Default off.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>-b</i> | <i>-bits</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Switch to bits (binary digits) dump, rather than hexdump.
+This option writes octets as eight digits "1"s and "0"s instead of a normal
+hexadecimal dump. Each line is preceded by a line number in hexadecimal and
+followed by an ascii (or ebcdic) representation. The command line switches
+-r, -p, -i do not work with this mode.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>-c cols </i>|<i> -cols cols</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+format
+&lt;<i>cols</i>&gt; octets per line. Default 16 (-i: 12, -ps: 30, -b: 6). Max 256.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>-E</i> | <i>-EBCDIC</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Change the character encoding in the righthand column from ASCII to EBCDIC.
+This does not change the hexadecimal representation. The option is
+meaningless in combinations with -r, -p or -i.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>-g bytes </i>|<i> -groupsize bytes</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+separate the output of every
+&lt;<i>bytes</i>&gt; bytes (two hex characters or eight bit-digits each) by a whitespace.
+Specify
+<i>-g 0</i> to suppress grouping.
+&lt;<i>Bytes</i>&gt; defaults to <i>2</i> in normal mode and <i>1</i> in bits mode.
+Grouping does not apply to postscript or include style.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>-h</i> | <i>-help</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+print a summary of available commands and exit.  No hex dumping is performed.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>-i</i> | <i>-include</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+output in C include file style. A complete static array definition is written
+(named after the input file), unless xxd reads from stdin.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>-l len </i>|<i> -len len</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+stop after writing
+&lt;<i>len</i>&gt; octets.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>-p</i> | <i>-ps</i> | <i>-postscript</i> | <i>-plain</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+output in postscript continuous hexdump style. Also known as plain hexdump
+style.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>-r</i> | <i>-revert</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+reverse operation: convert (or patch) hexdump into binary.
+If not writing to stdout, xxd writes into its output file without truncating
+it. Use the combination
+<i>-r -p</i> to read plain hexadecimal dumps without line number information and without a
+particular column layout. Additional Whitespace and line-breaks are allowed
+anywhere.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>-seek offset</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+When used after
+<i>-r</i>: revert with
+&lt;<i>offset</i>&gt; added to file positions found in hexdump.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>-s [+][-]seek</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+start at
+&lt;<i>seek</i>&gt; bytes abs. (or rel.) infile offset.
+<i>+ </i>indicates that the seek is relative to the current stdin file position
+(meaningless when not reading from stdin).  <i>- </i>indicates that the seek
+should be that many characters from the end of the input (or if combined with
+<i>+</i>: before the current stdin file position).
+Without -s option, xxd starts at the current file position.
+</td></tr>
+<tr valign="top"><td>
+<i>-u</i> </td><td valign="bottom">
+use upper case hex letters. Default is lower case.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>-v</i> | <i>-version</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+show version string.
+</td></tr>
+</table>
+<h1 class="manpages">CAVEATS</h1>
+<p>
+<i>xxd -r</i> has some builtin magic while evaluating line number information.
+If the output file is seekable, then the linenumbers at the start of each
+hexdump line may be out of order, lines may be missing, or overlapping. In
+these cases xxd will lseek(2) to the next position. If the output file is not
+seekable, only gaps are allowed, which will be filled by null-bytes.
+<p>
+<i>xxd -r</i> never generates parse errors. Garbage is silently skipped.
+<p>
+When editing hexdumps, please note that
+<i>xxd -r</i> skips everything on the input line after reading enough columns of hexadecimal
+data (see option -c). This also means, that changes to the printable ascii (or
+ebcdic) columns are always ignored. Reverting a plain (or postscript) style
+hexdump with xxd -r -p does not depend on the correct number of columns. Here anything that looks like a pair of hex-digits is interpreted.
+<p>
+Note the difference between
+<!-- Need break --><br />
+<i>% xxd -i file</i>
+<!-- Need break --><br />
+and
+<!-- Need break --><br />
+<i>% xxd -i &lt; file</i>
+<p>
+<i>xxd -s +seek</i> may be different from
+<i>xxd -s seek</i>, as lseek(2) is used to "rewind" input.  A &#146;+&#146;
+makes a difference if the input source is stdin, and if stdin&#146;s file position
+is not at the start of the file by the time xxd is started and given its input.
+The following examples may help to clarify (or further confuse!)...
+<p>
+Rewind stdin before reading; needed because the &#145;cat&#146; has already read to the
+end of stdin.
+<!-- Need break --><br />
+<i>% sh -c "cat &gt; plain_copy; xxd -s 0 &gt; hex_copy" &lt; file</i>
+<p>
+Hexdump from file position 0x480 (=1024+128) onwards.
+The &#145;+&#146; sign means "relative to the current position", thus the &#145;128&#146; adds to
+the 1k where dd left off.
+<!-- Need break --><br />
+<i>% sh -c "dd of=plain_snippet bs=1k count=1; xxd -s +128 &gt; hex_snippet" &lt; file</i>
+<p>
+Hexdump from file position 0x100 ( = 1024-768) on.
+<!-- Need break --><br />
+<i>% sh -c "dd of=plain_snippet bs=1k count=1; xxd -s +-768 &gt; hex_snippet" &lt; file</i>
+<p>
+However, this is a rare situation and the use of &#145;+&#146; is rarely needed.
+The author prefers to monitor the effect of xxd with strace(1) or truss(1), whenever -s is used.
+<h1 class="manpages">EXAMPLES</h1>
+<p>
+Print everything but the first three lines (hex 0x30 bytes) of
+<b>file</b>. <!-- Need break --><br />
+<i>% xxd -s 0x30 file</i>
+<p>
+Print 3 lines (hex 0x30 bytes) from the end of
+<b>file</b>. <!-- Need break --><br />
+<i>% xxd -s -0x30 file</i>
+<p>
+Print 120 bytes as continuous hexdump with 40 octets per line.
+<!-- Need break --><br />
+<i>% xxd -l 120 -ps -c 20 xxd.1</i>
+<!-- Need break --><br />
+2e54482058584420312022417567757374203139
+<!-- Need break --><br />
+39362220224d616e75616c207061676520666f72
+<!-- Need break --><br />
+20787864220a2e5c220a2e5c222032317374204d
+<!-- Need break --><br />
+617920313939360a2e5c22204d616e2070616765
+<!-- Need break --><br />
+20617574686f723a0a2e5c2220202020546f6e79
+<!-- Need break --><br />
+204e7567656e74203c746f6e79407363746e7567
+<p>
+Hexdump the first 120 bytes of this man page with 12 octets per line.
+<!-- Need break --><br />
+<i>% xxd -l 120 -c 12 xxd.1</i>
+<!-- Need break --><br />
+0000000: 2e54 4820 5858 4420 3120 2241  .TH XXD 1 "A
+<!-- Need break --><br />
+000000c: 7567 7573 7420 3139 3936 2220  ugust 1996"
+<!-- Need break --><br />
+0000018: 224d 616e 7561 6c20 7061 6765  "Manual page
+<!-- Need break --><br />
+0000024: 2066 6f72 2078 7864 220a 2e5c   for xxd"..\
+<!-- Need break --><br />
+0000030: 220a 2e5c 2220 3231 7374 204d  "..\" 21st M
+<!-- Need break --><br />
+000003c: 6179 2031 3939 360a 2e5c 2220  ay 1996..\"
+<!-- Need break --><br />
+0000048: 4d61 6e20 7061 6765 2061 7574  Man page aut
+<!-- Need break --><br />
+0000054: 686f 723a 0a2e 5c22 2020 2020  hor:..\"   
+<!-- Need break --><br />
+0000060: 546f 6e79 204e 7567 656e 7420  Tony Nugent
+<!-- Need break --><br />
+000006c: 3c74 6f6e 7940 7363 746e 7567  &lt;tony@sctnug
+<p>
+Display just the date from the file xxd.1
+<!-- Need break --><br />
+<i>% xxd -s 0x36 -l 13 -c 13 xxd.1</i>
+<!-- Need break --><br />
+0000036: 3231 7374 204d 6179 2031 3939 36  21st May 1996
+<p>
+Copy
+<b>input_file</b> to
+<b>output_file</b> and prepend 100 bytes of value 0x00.
+<!-- Need break --><br />
+<i>% xxd input_file | xxd -r -s 100 &gt; output_file</i>
+<p>
+Patch the date in the file xxd.1
+<!-- Need break --><br />
+<i>% echo "0000037: 3574 68" | xxd -r - xxd.1</i>
+<!-- Need break --><br />
+<i>% xxd -s 0x36 -l 13 -c 13 xxd.1</i>
+<!-- Need break --><br />
+0000036: 3235 7468 204d 6179 2031 3939 36  25th May 1996
+<p>
+Create a 65537 byte file with all bytes 0x00,
+except for the last one which is &#146;A&#146; (hex 0x41).
+<!-- Need break --><br />
+<i>% echo "010000: 41" | xxd -r &gt; file</i>
+<p>
+Hexdump this file with autoskip.
+<!-- Need break --><br />
+<i>% xxd -a -c 12 file</i>
+<!-- Need break --><br />
+0000000: 0000 0000 0000 0000 0000 0000  ............
+<!-- Need break --><br />
+*
+<!-- Need break --><br />
+000fffc: 0000 0000 40                   ....A
+<p>
+Create a 1 byte file containing a single &#146;A&#146; character.
+The number after &#146;-r -s&#146; adds to the linenumbers found in the file;
+in effect, the leading bytes are suppressed.
+<!-- Need break --><br />
+<i>% echo "010000: 41" | xxd -r -s -0x10000 &gt; file</i>
+<p>
+Use xxd as a filter within an editor such as
+<b>vim(1)</b> to hexdump a region marked between &#145;a&#146; and &#145;z&#146;.
+<!-- Need break --><br />
+<i>:&#146;a,&#146;z!xxd</i>
+<p>
+Use xxd as a filter within an editor such as
+<b>vim(1)</b> to recover a binary hexdump marked between &#145;a&#146; and &#145;z&#146;.
+<!-- Need break --><br />
+<i>:&#146;a,&#146;z!xxd -r</i>
+<p>
+Use xxd as a filter within an editor such as
+<b>vim(1)</b> to recover one line of a hexdump.  Move the cursor over the line and type:
+<!-- Need break --><br />
+<i>!!xxd -r</i>
+<p>
+Read single characters from a serial line
+<!-- Need break --><br />
+<i>% xxd -c1 &lt; /dev/term/b &</i>
+<!-- Need break --><br />
+<i>% stty &lt; /dev/term/b -echo -opost -isig -icanon min 1</i>
+<!-- Need break --><br />
+<i>% echo -n foo &gt; /dev/term/b</i>
+<p>
+<h1 class="manpages">RETURN VALUES</h1>
+The following error values are returned:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+0
+</td><td valign="bottom">
+no errors encountered.
+</td></tr>
+<tr valign="top"><td>
+-1
+</td><td valign="bottom">
+operation not supported (
+<i>xxd -r -i</i> still impossible).
+</td></tr>
+<tr valign="top"><td>
+1
+</td><td valign="bottom">
+error while parsing options.
+</td></tr>
+<tr valign="top"><td>
+2
+</td><td valign="bottom">
+problems with input file.
+</td></tr>
+<tr valign="top"><td>
+3
+</td><td valign="bottom">
+problems with output file.
+</td></tr>
+<tr valign="top"><td>
+4,5
+</td><td valign="bottom">
+desired seek position is unreachable.
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<h1 class="manpages">WARNINGS</h1>
+The tools weirdness matches its creators brain.
+Use entirely at your own risk. Copy files. Trace it. Become a wizard.
+<h1 class="manpages">VERSION</h1>
+This manual page documents xxd version 1.7
+<h1 class="manpages">AUTHOR</h1>
+(c) 1990-1997 by Juergen Weigert
+<!-- Need break --><br />
+&lt;<a href="mailto:jnweiger@informatik.uni-erlangen.de">jnweiger@informatik.uni-erlangen.de</a>&gt;
+<p>
+Distribute freely and credit me,
+<!-- Need break --><br />
+make money and share with me,
+<!-- Need break --><br />
+lose money and don&#146;t ask me.
+<p>
+Manual page started by Tony Nugent
+<!-- Need break --><br />
+&lt;<a href="mailto:tony@sctnugen.ppp.gu.edu.au">tony@sctnugen.ppp.gu.edu.au</a>&gt; &lt;<a href="mailto:T.Nugent@sct.gu.edu.au">T.Nugent@sct.gu.edu.au</a>&gt;
+<!-- Need break --><br />
+Small changes by Bram Moolenaar.
+Edited by Juergen Weigert.
+<p>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionf886.html?tutorial=unix_commands&amp;file=xxd.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/xxd.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,648 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/maven/maven_build_life_cycle.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Apr 2013 20:50:53 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>Maven Build Life Cycle</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="description" content="Maven Build Life Cycle - Learn Apache Maven in simple and easy steps starting from Environment Setup, Build Life Cycle,  Build profiles, Repositories, POM, Plug-ins, Eclispe IDE, Creating Project, Build &amp; Test Project, External Dependencies, Project Documents, Project Templates, Build Automation, Dependency Management, Deployment Automation, Web Application NetBeans,  IntelliJ IDEA." />
+<meta name="keywords" content="Maven tutorial, Beginners, Environment Setup, Build Life Cycle,  Build profiles, Repositories, POM, Plug-ins, Eclispe IDE, Creating Project, Build &amp; Test Project, External Dependencies, Project Documents, Project Templates, Build Automation, Dependency Management, Deployment Automation, Web Application NetBeans,  IntelliJ IDEA." />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+/* Android Scheme */
+#header{ 
+background:#b2286f  !important;
+}
+#topmenu
+{
+background-color:#373337 !important;
+}
+#leftcol ul.menu li.heading 
+{
+background:#b2286f !important;
+border:1px solid #373337  !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1500px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index.htm">Tutorials Point - Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index.htm" target="_top">HOME </a>
+<a href="../java/index.htm" target="_top">JAVA </a>
+<a href="../php/index.htm" target="_top">PHP </a>
+<a href="../python/index.htm" target="_top">Python </a>
+<a href="../ruby/index.htm" target="_top">Ruby </a>
+<a href="../perl/index.htm" target="_top">Perl </a>
+<a href="../html/index.htm" target="_top">HTML </a>
+<a href="../css/index.htm" target="_top">CSS </a>
+<a href="../javascript/index.htm" target="_top">Javascript </a>
+<a href="../mysql/index.htm" target="_top">MySQL </a>
+<a href="../cplusplus/index.htm" target="_top">C++ </a>
+<a href="../unix/index.htm" target="_top">UNIX </a>
+<a href="../more.htm" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.htm" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.htm" target="_top">ABOUT</a> |
+<a href="../about/contact_us.htm" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/maven-mini-logo.png" alt="Maven Tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">Maven Tutorial</li>
+<li><a target="_top" href="index.htm">Home</a></li>
+<li><a target="_top" href="maven_overview.htm">Maven Overview</a></li>
+<li><a target="_top" href="maven_environment_setup.htm">Maven Environment Setup</a></li>
+<li><a target="_top" href="maven_pom.htm">Maven POM</a></li>
+<li><a target="_top" href="maven_build_life_cycle.htm"><b>Maven Build Life Cycle</b></a></li>
+<li><a target="_top" href="maven_build_profiles.htm">Maven Build Profiles</a></li>
+<li><a target="_top" href="maven_repositories.htm">Maven Repositories</a></li>
+<li><a target="_top" href="maven_plugins.htm">Maven Plug-ins</a></li>
+<li><a target="_top" href="maven_creating_project.htm">Maven Creating Project</a></li>
+<li><a target="_top" href="maven_build_test_project.htm">Maven Build &amp; Test Project</a></li>
+<li><a target="_top" href="maven_external_dependencies.htm">Maven External Dependencies</a></li>
+<li><a target="_top" href="maven_project_documents.htm">Maven Project Documents</a></li>
+<li><a target="_top" href="maven_project_templates.htm">Maven Project Templates</a></li>
+<li><a target="_top" href="maven_snapshots.htm">Maven Snapshots</a></li>
+<li><a target="_top" href="maven_build_automation.htm">Maven Build Automation</a></li>
+<li><a target="_top" href="maven_manage_dependencies.htm">Maven Manage Dependencies</a></li>
+<li><a target="_top" href="maven_deployment_automation.htm">Maven Deployment Automation</a></li>
+<li><a target="_top" href="maven_web_application.htm">Maven Web Application</a></li>
+<li><a target="_top" href="maven_eclispe_ide.htm">Maven Eclispe IDE</a></li>
+<li><a target="_top" href="maven_netbeans.htm">Maven NetBeans</a></li>
+<li><a target="_top" href="maven_intellij_idea.htm">Maven IntelliJ IDEA</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Maven Useful Resources</li>
+<li><a target="_top" href="maven_quick_guide.htm">Maven Quick Guide</a></li>
+<li><a target="_top" href="maven_useful_resources.htm">Maven Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>Maven Build Life Cycle</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="maven_pom.htm">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="maven_build_profiles.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<h2>What is Build Lifecycle?</h2>
+<p>A <i>Build Lifecycle</i> is a well defined sequence of phases which define the order in which the goals are to be executed. Here phase represents a stage in life cycle.</p>
+<p>As an example, a typical <i>Maven Build Lifecycle</i> is consists of following sequence of phases </p>
+<table class="src">
+<tr><th style="width:25%;">Phase</th><th style="width:25%;">Handles</th><th>Description</th></tr>
+<tr><td>prepare-resources</td><td>resource copying</td><td>Resource copying can be customized in this phase.</td></tr>
+<tr><td>compile</td><td>compilation</td><td>Source code compilation is done in this phase.</td></tr>
+<tr><td>package</td><td>packaging</td><td>This phase creates the JAR / WAR package as mentioned in packaging in POM.xml.</td></tr>
+<tr><td>install</td><td>installation</td><td>This phase installs the package in local / remote maven repository.</td></tr>
+</table>
+<p>There are always <b>pre</b> and <b>post</b> phases which can be used to register <b>goals</b> which must run prior to or after a particular phase.</p>
+<p>When Maven starts building a project, it steps through a defined sequence of phases and executes goals which are registered with each phase. Maven has following three standard lifecycles:</p>
+<ul class="list">
+<li><p>clean</p></li>
+<li><p>default(or build)</p></li>
+<li><p>site</p></li>
+</ul>
+<p>A <b>goal</b> represents a specific task which contributes to the building and managing of a project. It may be bound to zero or more build phases. A goal not bound to any build phase could be executed outside of the build lifecycle by direct invocation.</p>
+<p>The order of execution depends on the order in which the goal(s) and the build phase(s) are invoked. For example, consider the command below. The clean and package arguments are build phases while the <i>dependency:copy-dependencies</i> is a goal.</p>
+<pre class="prettyprint">
+mvn clean dependency:copy-dependencies package
+</pre>
+<p>Here the <i>clean</i> phase will be executed first, and then the <i>dependency:copy-dependencies goal</i> will be executed, and finally <i>package</i> phase will be executed.</p>
+<h2>Clean Lifecycle</h2>
+<p>When we execute <i>mvn post-clean</i> command, Maven invokes the clean lifecycle consisting of the following phases.</p>
+<ul class="list">
+<li><p>pre-clean</p></li>
+<li><p>clean</p></li>
+<li><p>post-clean</p></li>
+</ul>
+<p>Maven clean goal (clean:clean) is bound to the <i>clean</i> phase in the clean lifecycle. Its <i>clean:clean</i> goal deletes the output of a build by deleting the build directory. Thus when <i>mvn clean</i> command executes, Maven deletes the build directory.</p>
+<p>We can customize this behavior by mentioning goals in any of the above phases of clean life cycle. </p>
+<p>In the following example, We'll attach  maven-antrun-plugin:run goal to the pre-clean, clean, and post-clean phases. This will allow us to echo text messages displaying the phases of the clean lifecycle.</p>
+<p>We've created a pom.xml in C:\MVN\project folder. </p>
+<pre class="prettyprint">
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+   http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+&lt;groupId&gt;com.companyname.projectgroup&lt;/groupId&gt;
+&lt;artifactId&gt;project&lt;/artifactId&gt;
+&lt;version&gt;1.0&lt;/version&gt;
+&lt;build&gt;
+&lt;plugins&gt;
+   &lt;plugin&gt;
+   &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+   &lt;artifactId&gt;maven-antrun-plugin&lt;/artifactId&gt;
+   &lt;version&gt;1.1&lt;/version&gt;
+   &lt;executions&gt;
+      &lt;execution&gt;
+         &lt;id&gt;id.pre-clean&lt;/id&gt;
+         &lt;phase&gt;pre-clean&lt;/phase&gt;
+         &lt;goals&gt;
+            &lt;goal&gt;run&lt;/goal&gt;
+         &lt;/goals&gt;
+         &lt;configuration&gt;
+            &lt;tasks&gt;
+               &lt;echo&gt;pre-clean phase&lt;/echo&gt;
+            &lt;/tasks&gt;
+         &lt;/configuration&gt;
+      &lt;/execution&gt;
+      &lt;execution&gt;
+         &lt;id&gt;id.clean&lt;/id&gt;
+         &lt;phase&gt;clean&lt;/phase&gt;
+         &lt;goals&gt;
+          &lt;goal&gt;run&lt;/goal&gt;
+         &lt;/goals&gt;
+         &lt;configuration&gt;
+            &lt;tasks&gt;
+               &lt;echo&gt;clean phase&lt;/echo&gt;
+            &lt;/tasks&gt;
+         &lt;/configuration&gt;
+      &lt;/execution&gt;
+      &lt;execution&gt;
+         &lt;id&gt;id.post-clean&lt;/id&gt;
+         &lt;phase&gt;post-clean&lt;/phase&gt;
+         &lt;goals&gt;
+            &lt;goal&gt;run&lt;/goal&gt;
+         &lt;/goals&gt;
+         &lt;configuration&gt;
+            &lt;tasks&gt;
+               &lt;echo&gt;post-clean phase&lt;/echo&gt;
+            &lt;/tasks&gt;
+         &lt;/configuration&gt;
+      &lt;/execution&gt;
+   &lt;/executions&gt;
+   &lt;/plugin&gt;
+&lt;/plugins&gt;
+&lt;/build&gt;
+&lt;/project&gt;
+</pre>
+<p>Now open command console, go to the folder containing pom.xml and execute the following <b>mvn</b> command.</p>
+<pre class="result">
+C:\MVN\project&gt;mvn post-clean
+</pre>
+<p>Maven will start processing and display all the phases of clean life cycle</p>
+<pre class="result">
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------
+[INFO] Building Unnamed - com.companyname.projectgroup:project:jar:1.0
+[INFO]    task-segment: [post-clean]
+[INFO] ------------------------------------------------------------------
+[INFO] [antrun:run {execution: id.pre-clean}]
+[INFO] Executing tasks
+     [echo] pre-clean phase
+[INFO] Executed tasks
+[INFO] [clean:clean {execution: default-clean}]
+[INFO] [antrun:run {execution: id.clean}]
+[INFO] Executing tasks
+     [echo] clean phase
+[INFO] Executed tasks
+[INFO] [antrun:run {execution: id.post-clean}]
+[INFO] Executing tasks
+     [echo] post-clean phase
+[INFO] Executed tasks
+[INFO] ------------------------------------------------------------------
+[INFO] BUILD SUCCESSFUL
+[INFO] ------------------------------------------------------------------
+[INFO] Total time: &lt; 1 second
+[INFO] Finished at: Sat Jul 07 13:38:59 IST 2012
+[INFO] Final Memory: 4M/44M
+[INFO] ------------------------------------------------------------------
+</pre>
+<p>You can try tuning  <b>mvn clean</b> command which will display <i>pre-clean</i> and <i>clean</i>, nothing will be executed for <i>post-clean</i> phase.</p>
+<h2>Default (or Build) Lifecycle</h2>
+<p>This is the primary life cycle of Maven and is used to build the application. It has following 23 phases.</p>
+<table class="src">
+<tr><th style="width:30%;">Lifecycle Phase</th><th>Description</th></tr>
+<tr><td>validate</td><td>Validates whether project is correct and all necessary information is available to complete the build process.</td></tr>
+<tr><td>initialize</td><td>Initializes build state, for example set properties</td></tr>
+<tr><td>generate-sources</td><td>Generate any source code to be included in compilation phase.</td></tr>
+<tr><td>process-sources</td><td>Process the source code, for example, filter any value.</td></tr>
+<tr><td>generate-resources</td><td>Generate resources to be included in the package.</td></tr>
+<tr><td>process-resources</td><td>Copy and process the resources into the destination directory, ready for packaging phase.</td></tr>
+<tr><td>compile</td><td>Compile the source code of the project.</td></tr>
+<tr><td>process-classes</td><td>Post-process the generated files from compilation, for example to do bytecode enhancement/optimization on Java classes.</td></tr>
+<tr><td>generate-test-sources</td><td>Generate any test source code to be included in compilation phase.</td></tr>
+<tr><td>process-test-sources</td><td>Process the test source code, for example, filter any values.</td></tr>
+<tr><td>test-compile</td><td>Compile the test source code into the test destination directory.</td></tr>
+<tr><td>process-test-classes</td><td>Process the generated files from test code file compilation.</td></tr>
+<tr><td>test</td><td>Run tests using a suitable unit testing framework(Junit is one).</td></tr>
+<tr><td>prepare-package</td><td>Perform any operations necessary to prepare a package before the actual packaging.</td></tr>
+<tr><td>package</td><td>Take the compiled code and package it in its distributable format, such as a JAR, WAR, or EAR file.</td></tr>
+<tr><td>pre-integration-test</td><td>Perform actions required before integration tests are executed. For example, setting up the required environment.</td></tr>
+<tr><td>integration-test</td><td>Process and deploy the package if necessary into an environment where integration tests can be run.</td></tr>
+<tr><td>pre-integration-test</td><td>Perform actions required after integration tests have been executed. For example, cleaning up the environment.</td></tr>
+<tr><td>verify</td><td>Run any check-ups to verify the package is valid and meets quality criterias.</td></tr>
+<tr><td>install</td><td>Install the package into the local repository, which can be used as a dependency in other projects locally.</td></tr>
+<tr><td>deploy</td><td>Copies the final package to the remote repository for sharing with other developers and projects.</td></tr>
+</table>
+<p>There are few important concepts related to Maven Lifecycles which are wroth to mention:</p>
+<ul class="list">
+<li><p>When a phase is called via Maven command, for example <i>mvn compile</i>, only phases upto and including that phase will execute.</p></li>
+<li><p>Different maven goals will be bound to different phases of Maven lifecycle depending upon the type of packaging (JAR / WAR / EAR).</p></li>
+</ul>
+<p>In the following example, We'll attach  maven-antrun-plugin:run goal to few of the phases of Build lifecycle. This will allow us to echo text messages displaying the phases of the lifecycle.</p>
+<p>We've updated pom.xml in C:\MVN\project folder. </p>
+<pre class="prettyprint"> 
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+  http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+&lt;groupId&gt;com.companyname.projectgroup&lt;/groupId&gt;
+&lt;artifactId&gt;project&lt;/artifactId&gt;
+&lt;version&gt;1.0&lt;/version&gt;
+&lt;build&gt;
+&lt;plugins&gt;
+&lt;plugin&gt;
+&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+&lt;artifactId&gt;maven-antrun-plugin&lt;/artifactId&gt;
+&lt;version&gt;1.1&lt;/version&gt;
+&lt;executions&gt;
+   &lt;execution&gt;
+      &lt;id&gt;id.validate&lt;/id&gt;
+      &lt;phase&gt;validate&lt;/phase&gt;
+      &lt;goals&gt;
+         &lt;goal&gt;run&lt;/goal&gt;
+      &lt;/goals&gt;
+      &lt;configuration&gt;
+         &lt;tasks&gt;
+            &lt;echo&gt;validate phase&lt;/echo&gt;
+         &lt;/tasks&gt;
+      &lt;/configuration&gt;
+   &lt;/execution&gt;
+   &lt;execution&gt;
+      &lt;id&gt;id.compile&lt;/id&gt;
+      &lt;phase&gt;compile&lt;/phase&gt;
+      &lt;goals&gt;
+         &lt;goal&gt;run&lt;/goal&gt;
+      &lt;/goals&gt;
+      &lt;configuration&gt;
+         &lt;tasks&gt;
+            &lt;echo&gt;compile phase&lt;/echo&gt;
+         &lt;/tasks&gt;
+      &lt;/configuration&gt;
+   &lt;/execution&gt;
+   &lt;execution&gt;
+      &lt;id&gt;id.test&lt;/id&gt;
+      &lt;phase&gt;test&lt;/phase&gt;
+      &lt;goals&gt;
+         &lt;goal&gt;run&lt;/goal&gt;
+      &lt;/goals&gt;
+      &lt;configuration&gt;
+         &lt;tasks&gt;
+            &lt;echo&gt;test phase&lt;/echo&gt;
+         &lt;/tasks&gt;
+      &lt;/configuration&gt;
+   &lt;/execution&gt;
+   &lt;execution&gt;
+         &lt;id&gt;id.package&lt;/id&gt;
+         &lt;phase&gt;package&lt;/phase&gt;
+         &lt;goals&gt;
+            &lt;goal&gt;run&lt;/goal&gt;
+         &lt;/goals&gt;
+         &lt;configuration&gt;
+         &lt;tasks&gt;
+            &lt;echo&gt;package phase&lt;/echo&gt;
+         &lt;/tasks&gt;
+      &lt;/configuration&gt;
+   &lt;/execution&gt;
+   &lt;execution&gt;
+      &lt;id&gt;id.deploy&lt;/id&gt;
+      &lt;phase&gt;deploy&lt;/phase&gt;
+      &lt;goals&gt;
+         &lt;goal&gt;run&lt;/goal&gt;
+      &lt;/goals&gt;
+      &lt;configuration&gt;
+      &lt;tasks&gt;
+         &lt;echo&gt;deploy phase&lt;/echo&gt;
+      &lt;/tasks&gt;
+      &lt;/configuration&gt;
+   &lt;/execution&gt;
+&lt;/executions&gt;
+&lt;/plugin&gt;
+&lt;/plugins&gt;
+&lt;/build&gt;
+&lt;/project&gt;
+</pre>
+<p>Now open command console, go the folder containing pom.xml and execute the following <b>mvn</b> command.</p>
+<pre class="result">
+C:\MVN\project&gt;mvn compile
+</pre>
+<p>Maven will start processing and display phases of build life cycle upto compile phase.</p>
+<pre class="result">
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------
+[INFO] Building Unnamed - com.companyname.projectgroup:project:jar:1.0
+[INFO]    task-segment: [compile]
+[INFO] ------------------------------------------------------------------
+[INFO] [antrun:run {execution: id.validate}]
+[INFO] Executing tasks
+     [echo] validate phase
+[INFO] Executed tasks
+[INFO] [resources:resources {execution: default-resources}]
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources,
+i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\MVN\project\src\main\resources
+[INFO] [compiler:compile {execution: default-compile}]
+[INFO] Nothing to compile - all classes are up to date
+[INFO] [antrun:run {execution: id.compile}]
+[INFO] Executing tasks
+     [echo] compile phase
+[INFO] Executed tasks
+[INFO] ------------------------------------------------------------------
+[INFO] BUILD SUCCESSFUL
+[INFO] ------------------------------------------------------------------
+[INFO] Total time: 2 seconds
+[INFO] Finished at: Sat Jul 07 20:18:25 IST 2012
+[INFO] Final Memory: 7M/64M
+[INFO] ------------------------------------------------------------------
+</pre>
+<h2>Site Lifecycle</h2>
+<p>Maven Site plugin is generally used to create fresh documentation to create reports, deploy site etc.</p>
+<p>Phases</p>
+<ul class="list">
+<li><p>pre-site</p></li>
+<li><p>site</p></li>
+<li><p>post-site</p></li>
+<li><p>site-deploy</p></li>
+</ul>
+<p>In the following example, We'll attach  <i>maven-antrun-plugin:run</i> goal to all the phases of Site lifecycle. This will allow us to echo text messages displaying the phases of the lifecycle.</p>
+<p>We've updated pom.xml in C:\MVN\project folder. </p>
+<pre class="prettyprint">
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+  http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+&lt;groupId&gt;com.companyname.projectgroup&lt;/groupId&gt;
+&lt;artifactId&gt;project&lt;/artifactId&gt;
+&lt;version&gt;1.0&lt;/version&gt;
+&lt;build&gt;
+&lt;plugins&gt;
+&lt;plugin&gt;
+&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+&lt;artifactId&gt;maven-antrun-plugin&lt;/artifactId&gt;
+&lt;version&gt;1.1&lt;/version&gt;
+   &lt;executions&gt;
+      &lt;execution&gt;
+         &lt;id&gt;id.pre-site&lt;/id&gt;
+         &lt;phase&gt;pre-site&lt;/phase&gt;
+         &lt;goals&gt;
+            &lt;goal&gt;run&lt;/goal&gt;
+         &lt;/goals&gt;
+         &lt;configuration&gt;
+            &lt;tasks&gt;
+               &lt;echo&gt;pre-site phase&lt;/echo&gt;
+            &lt;/tasks&gt;
+         &lt;/configuration&gt;
+      &lt;/execution&gt;
+      &lt;execution&gt;
+         &lt;id&gt;id.site&lt;/id&gt;
+         &lt;phase&gt;site&lt;/phase&gt;
+         &lt;goals&gt;
+         &lt;goal&gt;run&lt;/goal&gt;
+         &lt;/goals&gt;
+         &lt;configuration&gt;
+            &lt;tasks&gt;
+               &lt;echo&gt;site phase&lt;/echo&gt;
+            &lt;/tasks&gt;
+         &lt;/configuration&gt;
+      &lt;/execution&gt;
+      &lt;execution&gt;
+         &lt;id&gt;id.post-site&lt;/id&gt;
+         &lt;phase&gt;post-site&lt;/phase&gt;
+         &lt;goals&gt;
+            &lt;goal&gt;run&lt;/goal&gt;
+         &lt;/goals&gt;
+         &lt;configuration&gt;
+            &lt;tasks&gt;
+               &lt;echo&gt;post-site phase&lt;/echo&gt;
+            &lt;/tasks&gt;
+         &lt;/configuration&gt;
+      &lt;/execution&gt;
+      &lt;execution&gt;
+         &lt;id&gt;id.site-deploy&lt;/id&gt;
+         &lt;phase&gt;site-deploy&lt;/phase&gt;
+         &lt;goals&gt;
+            &lt;goal&gt;run&lt;/goal&gt;
+         &lt;/goals&gt;
+         &lt;configuration&gt;
+            &lt;tasks&gt;
+               &lt;echo&gt;site-deploy phase&lt;/echo&gt;
+            &lt;/tasks&gt;
+         &lt;/configuration&gt;
+      &lt;/execution&gt;
+   &lt;/executions&gt;
+&lt;/plugin&gt;
+&lt;/plugins&gt;
+&lt;/build&gt;
+&lt;/project&gt;
+</pre>
+<p>Now open command console, go the folder containing pom.xml and execute the following <b>mvn</b> command.</p>
+<pre class="result">
+C:\MVN\project&gt;mvn site
+</pre>
+<p>Maven will start processing and display phases of site life cycle upto site phase.</p>
+<pre class="result">
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------
+[INFO] Building Unnamed - com.companyname.projectgroup:project:jar:1.0
+[INFO]    task-segment: [site]
+[INFO] ------------------------------------------------------------------
+[INFO] [antrun:run {execution: id.pre-site}]
+[INFO] Executing tasks
+     [echo] pre-site phase
+[INFO] Executed tasks
+[INFO] [site:site {execution: default-site}]
+[INFO] Generating "About" report.
+[INFO] Generating "Issue Tracking" report.
+[INFO] Generating "Project Team" report.
+[INFO] Generating "Dependencies" report.
+[INFO] Generating "Project Plugins" report.
+[INFO] Generating "Continuous Integration" report.
+[INFO] Generating "Source Repository" report.
+[INFO] Generating "Project License" report.
+[INFO] Generating "Mailing Lists" report.
+[INFO] Generating "Plugin Management" report.
+[INFO] Generating "Project Summary" report.
+[INFO] [antrun:run {execution: id.site}]
+[INFO] Executing tasks
+     [echo] site phase
+[INFO] Executed tasks
+[INFO] ------------------------------------------------------------------
+[INFO] BUILD SUCCESSFUL
+[INFO] ------------------------------------------------------------------
+[INFO] Total time: 3 seconds
+[INFO] Finished at: Sat Jul 07 15:25:10 IST 2012
+[INFO] Final Memory: 24M/149M
+[INFO] ------------------------------------------------------------------
+</pre>
+<hr />
+<div class="pre-btn">
+<a href="maven_pom.htm">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/maven_build_life_cycle.pdf" alt="Maven Build Life Cycle" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="maven_build_profiles.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.htm" target="_top">ASP.NET </a> |
+<a href="../jquery/index.htm" target="_top">jQuery </a> |
+<a href="../ajax/index.htm" target="_top">AJAX </a> |
+<a href="../ant/index.htm" target="_top">ANT</a> |
+<a href="../jsp/index.htm" target="_top">JSP </a> |
+<a href="../servlets/index.htm" target="_top">Servlets </a> |
+<a href="../log4j/index.htm" target="_top">log4j </a> |
+<a href="../ibatis/index.htm" target="_top">iBATIS </a> |
+<a href="../hibernate/index.htm" target="_top">Hibernate </a> |
+<a href="../jdbc/index.htm" target="_top">JDBC </a> |
+<a href="../struts_2/index.htm" target="_top">Struts </a> |
+<a href="../html5/index.htm" target="_top">HTML5 </a> |
+<a href="../sql/index.htm" target="_top">SQL </a> |
+<a href="../mysql/index.htm" target="_top">MySQL </a> |
+<a href="../cplusplus/index.htm" target="_top">C++ </a> |
+<a href="../unix/index.htm" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/maven/maven_build_life_cycle.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Apr 2013 20:50:56 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

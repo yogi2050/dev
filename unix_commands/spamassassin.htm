@@ -1,0 +1,794 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/spamassassin.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:27 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>spamassassin - Unix, Linux Command</title>
+<meta name="Description" Content="spamassassin - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>spamassassin - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- Not defining reserved macro 'Sh' ! -->
+<!-- ignored unsupported tag .tr -->
+<!-- ignored unsupported tag .ie -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .el\{ -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .rr -->
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .hy -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .tm -->
+<h1 class="manpages">NAME</h1>
+spamassassin - extensible email filter used to identify spam
+<h1 class="manpages">DESCRIPTION</h1>
+<!-- ignored unsupported tag .tm -->
+SpamAssassin is an intelligent email filter which uses a diverse range of
+tests to identify unsolicited bulk email, more commonly known as spam.
+These tests are applied to email headers and content to classify email
+using advanced statistical methods.  In addition, SpamAssassin has a
+modular architecture that allows other technologies to be quickly wielded
+against spam and is designed for easy integration into virtually any email
+system.
+<h1 class="manpages">SYNOPSIS</h1>
+<!-- ignored unsupported tag .tm -->
+For ease of access, the SpamAssassin manual has been split up into
+several sections.  If you&#146;re intending to read these straight through
+for the first time, the suggested order will tend to reduce the number
+of forward references.
+<p>
+Extensive additional documentation for SpamAssassin is available,
+primarily on the SpamAssassin web site and wiki.
+<p>
+You should be able to view SpamAssassin&#146;s documentation with your <i>man</i>(1)
+program or <i>perldoc</i>(1).
+<h1 class="manpages"><font size="-1">OVERVIEW</font></h1>
+<!-- ignored unsupported tag .tm -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    spamassassin              SpamAssassin overview (this section)
+</tt></pre></td></tr>
+</table>
+<h1 class="manpages"><font size="-1">CONFIGURATION</font></h1>
+<!-- ignored unsupported tag .tm -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    Mail::SpamAssassin::Conf  SpamAssassin configuration files
+</tt></pre></td></tr>
+</table>
+<h1 class="manpages"><font size="-1">USAGE</font></h1>
+<!-- ignored unsupported tag .tm -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    spamassassin-run          "spamassassin" front-end filtering script
+    sa-learn                  train SpamAssassin&#146;s Bayesian classifier
+    spamc                     client for spamd (faster than spamassassin)
+    spamd                     spamassassin server (needed by spamc)
+</tt></pre></td></tr>
+</table>
+<h1 class="manpages"><font size="-1">DEFAULT</font> <font size="-1">PLUGINS</font></h1>
+<!-- ignored unsupported tag .tm -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    Mail::SpamAssassin::Plugin::Hashcash
+    Mail::SpamAssassin::Plugin::SPF
+    Mail::SpamAssassin::Plugin::URIDNSBL
+</tt></pre></td></tr>
+</table>
+<h1 class="manpages">WEB SITES</h1>
+<!-- ignored unsupported tag .tm -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    SpamAssassin web site:     <a href="http://spamassassin.apache.org/">http://spamassassin.apache.org</a>/
+    Wiki-based documentation:  <a href="http://wiki.apache.org/spamassassin">http://wiki.apache.org/spamassassin</a>/
+</tt></pre></td></tr>
+</table>
+<h1 class="manpages">USER MAILING LIST</h1>
+<!-- ignored unsupported tag .tm -->
+A users mailing list exists where other experienced users are often able
+to help and provide tips and advice.  Subscription instructions are
+located on the SpamAssassin web site.
+<h1 class="manpages">CONFIGURATION FILES</h1>
+<!-- ignored unsupported tag .tm -->
+The SpamAssassin rule base, text templates, and rule description text
+are loaded from configuration files.
+<p>
+Default configuration data is loaded from the first existing directory
+in:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+/var/lib/spamassassin/3.002005
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+/usr/share/spamassassin
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+/usr/share/spamassassin
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+/usr/local/share/spamassassin
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+/usr/share/spamassassin
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<!-- PP ends table -->
+</table>
+Site-specific configuration data is used to override any values which had
+already been set.  This is loaded from the first existing directory in:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+/etc/mail/spamassassin
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+/usr/etc/mail/spamassassin
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+/usr/etc/spamassassin
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+/usr/local/etc/spamassassin
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+/usr/pkg/etc/spamassassin
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+/usr/etc/spamassassin
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+/etc/mail/spamassassin
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+/etc/spamassassin
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<!-- PP ends table -->
+</table>
+From those three directories, SpamAssassin will first read files ending in
+&#46;pre in lexical order and then it will read files ending in .cf in
+lexical order (most files begin with two numbers to make the sorting
+order obvious).
+<p>
+In other words, it will read <i>init.pre</i> first, then <i>10_default_prefs.cf</i> before
+<i>50_scores.cf</i> and <i>20_body_tests.cf</i> before <i>20_head_tests.cf</i>.
+Options in later files will override earlier files.
+<p>
+Individual user preferences are loaded from the location specified on
+the <tt>spamassassin</tt>, <tt>sa-learn</tt>, or <tt>spamd</tt> command line (see respective
+manual page for details).  If the location is not specified,
+<i>~/.spamassassin/user_prefs</i> is used if it exists.  SpamAssassin will
+create that file if it does not already exist, using
+<i>user_prefs.template</i> as a template.  That file will be looked for in:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+/etc/mail/spamassassin
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+/usr/etc/mail/spamassassin
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+/usr/share/spamassassin
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+/etc/spamassassin
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+/etc/mail/spamassassin
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+/usr/local/share/spamassassin
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+/usr/share/spamassassin
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+</table>
+<h1 class="manpages">TAGGING</h1>
+<!-- ignored unsupported tag .tm -->
+The following two sections detail the default tagging and markup that
+takes place for messages when running <tt>spamassassin</tt> or <tt>spamc</tt> with
+<tt>spamd</tt> in the default configuration.
+<p>
+Note: before header modification and addition, all headers beginning
+with <tt>X-Spam-</tt> are removed to prevent spammer mischief and also to
+avoid potential problems caused by prior invocations of SpamAssassin.
+<h1 class="manpages"><font size="-1">TAGGING</font> <font size="-1">FOR</font> <font size="-1">SPAM</font> <font size="-1">MAILS</font></h1>
+<!-- ignored unsupported tag .tm -->
+By default, all messages with a calculated score of 5.0 or higher are
+tagged as spam.
+<p>
+If an incoming message is tagged as spam, instead of modifying the
+original message, SpamAssassin will create a new report message and
+attach the original message as a message/rfc822 <font size="-1">MIME</font> part (ensuring the
+original message is completely preserved and easier to recover).
+<p>
+The new report message inherits the following headers (if they are
+present) from the original spam message:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+From: header
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+To: header
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+Cc: header
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+Subject: header
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+Date: header
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+Message-ID: header
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<!-- PP ends table -->
+</table>
+The above headers can be modified if the relevant <tt>rewrite_header</tt>
+option is given (see <tt>Mail::SpamAssassin::Conf</tt> for more information).
+<p>
+By default these message headers are added to spam:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+X-Spam-Flag: header
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set to <tt>YES</tt>.
+</td></tr>
+<!-- PP ends table -->
+</table>
+The headers that added are fully configurable via the <tt>add_header</tt>
+option (see <tt>Mail::SpamAssassin::Conf</tt> for more information).
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+spam mail body text
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The SpamAssassin report is added to top of the mail message body,
+if the message is marked as spam.
+</td></tr>
+</table>
+<h1 class="manpages"><font size="-1">DEFAULT</font> <font size="-1">TAGGING</font> <font size="-1">FOR</font> <font size="-1">ALL</font> <font size="-1">MAILS</font></h1>
+<!-- ignored unsupported tag .tm -->
+These headers are added to all messages, both spam and ham (non-spam).
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+X-Spam-Checker-Version: header
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The version and subversion of SpamAssassin and the host where
+SpamAssassin was run.
+</td></tr>
+<tr valign="top"><td width=4%>
+X-Spam-Level: header
+</td><td>
+<!-- ignored unsupported tag .tm -->
+A series of * charactes where each one represents a full score point.
+</td></tr>
+<tr valign="top"><td width=4%>
+X-Spam-Status: header
+</td><td>
+<!-- ignored unsupported tag .tm -->
+A string, <tt>(Yes|No), score=nn required=nn tests=xxx,xxx
+autolearn=(ham|spam|no|unavailable|failed)</tt> is set in this header to
+reflect the filter status.  For the first word, Yes means spam and
+No means ham (non-spam).
+</td></tr>
+<!-- PP ends table -->
+</table>
+The headers that added are fully configurable via the <tt>add_header</tt>
+option (see <tt>Mail::SpamAssassin::Conf</tt> for more information).
+<h1 class="manpages">INSTALLATION</h1>
+<!-- ignored unsupported tag .tm -->
+The <b>spamassassin</b> command is part of the <b>Mail::SpamAssassin</b> Perl module.
+Install this as a normal Perl module, using <tt>perl -MCPAN -e shell</tt>, or by
+hand.
+<p>
+Note that it is not possible to use the <tt>PERL5LIB</tt> environment variable
+to affect where SpamAssassin finds its perl modules, due to limitations
+imposed by perl&#146;s taint security checks.
+<p>
+For further details on how to install, please read the <tt>INSTALL</tt> file
+from the SpamAssassin distribution.
+<h1 class="manpages">DEVELOPER DOCUMENTATION</h1>
+<!-- ignored unsupported tag .tm -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    Mail::SpamAssassin
+        Spam detector and markup engine
+</tt></pre></td></tr>
+</table>
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    Mail::SpamAssassin::ArchiveIterator
+        find and process messages one at a time
+</tt></pre></td></tr>
+</table>
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    Mail::SpamAssassin::AutoWhitelist
+        auto-whitelist handler for SpamAssassin
+</tt></pre></td></tr>
+</table>
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    Mail::SpamAssassin::Bayes
+        determine spammishness using a Bayesian classifier
+</tt></pre></td></tr>
+</table>
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    Mail::SpamAssassin::BayesStore
+        Bayesian Storage Module
+</tt></pre></td></tr>
+</table>
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    Mail::SpamAssassin::BayesStore::SQL
+        SQL Bayesian Storage Module Implementation
+</tt></pre></td></tr>
+</table>
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    Mail::SpamAssassin::Conf::LDAP
+        load SpamAssassin scores from LDAP database
+</tt></pre></td></tr>
+</table>
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    Mail::SpamAssassin::Conf::Parser
+        parse SpamAssassin configuration
+</tt></pre></td></tr>
+</table>
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    Mail::SpamAssassin::Conf::SQL
+        load SpamAssassin scores from SQL database
+</tt></pre></td></tr>
+</table>
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    Mail::SpamAssassin::Message
+        decode, render, and hold an RFC-2822 message
+</tt></pre></td></tr>
+</table>
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    Mail::SpamAssassin::Message::Metadata
+        extract metadata from a message
+</tt></pre></td></tr>
+</table>
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    Mail::SpamAssassin::Message::Node
+        decode, render, and make available MIME message parts
+</tt></pre></td></tr>
+</table>
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    Mail::SpamAssassin::PerMsgLearner
+        per-message status (spam or not-spam)
+</tt></pre></td></tr>
+</table>
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    Mail::SpamAssassin::PerMsgStatus
+        per-message status (spam or not-spam)
+</tt></pre></td></tr>
+</table>
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    Mail::SpamAssassin::PersistentAddrList
+        persistent address list base class
+</tt></pre></td></tr>
+</table>
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    Mail::SpamAssassin::Plugin
+        SpamAssassin plugin base class
+</tt></pre></td></tr>
+</table>
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    Mail::SpamAssassin::Plugin::Hashcash
+        perform hashcash verification tests
+</tt></pre></td></tr>
+</table>
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    Mail::SpamAssassin::Plugin::RelayCountry
+        add message metadata indicating the country code of each relay
+</tt></pre></td></tr>
+</table>
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    Mail::SpamAssassin::Plugin::SPF
+        perform SPF verification tests
+</tt></pre></td></tr>
+</table>
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    Mail::SpamAssassin::Plugin::URIDNSBL
+        look up URLs against DNS blocklists
+</tt></pre></td></tr>
+</table>
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    Mail::SpamAssassin::SQLBasedAddrList
+        SpamAssassin SQL Based Auto Whitelist
+</tt></pre></td></tr>
+</table>
+<h1 class="manpages">BUGS</h1>
+<!-- ignored unsupported tag .tm -->
+See &lt;<a href="http://issues.apache.org/SpamAssassin">http://issues.apache.org/SpamAssassin</a>/&gt;
+<h1 class="manpages">AUTHORS</h1>
+<!-- ignored unsupported tag .tm -->
+The SpamAssassin(tm) Project &lt;<a href="http://spamassassin.apache.org/">http://spamassassin.apache.org</a>/&gt;
+<h1 class="manpages">COPYRIGHT</h1>
+<!-- ignored unsupported tag .tm -->
+SpamAssassin is distributed under the Apache License, Version 2.0, as
+described in the file <tt>LICENSE</tt> included with the distribution.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion8f8a.html?tutorial=unix_commands&amp;file=spamassassin.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/spamassassin.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:27 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

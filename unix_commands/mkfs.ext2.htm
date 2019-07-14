@@ -1,0 +1,661 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/mkfs.ext2.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:59 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>mkfs.ext2 - Unix, Linux Command</title>
+<meta name="Description" Content="mkfs.ext2 - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>mkfs.ext2 - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+mke2fs - create an ext2/ext3 filesystem
+<h1 class="manpages">SYNOPSIS</h1>
+<b>mke2fs</b> [
+<b>-c</b> |
+<b>-l</b> <i>filename</i> ]
+[
+<b>-b</b> <i>block-size</i> ]
+[
+<b>-f</b> <i>fragment-size</i> ]
+[
+<b>-g</b> <i>blocks-per-group</i> ]
+[
+<b>-i</b> <i>bytes-per-inode</i> ]
+[
+<b>-j</b> ]
+[
+<b>-J</b> <i>journal-options</i> ]
+[
+<b>-N</b> <i>number-of-inodes</i> ]
+[
+<b>-n</b> ]
+[
+<b>-m</b> <i>reserved-blocks-percentage</i> ]
+[
+<b>-o</b> <i>creator-os</i> ]
+[
+<b>-O</b> <i>feature</i>[,...] ]
+[
+<b>-q</b> ]
+[
+<b>-r</b> <i>fs-revision-level</i> ]
+[
+<b>-E</b> <i>extended-options</i> ]
+[
+<b>-v</b> ]
+[
+<b>-F</b> ]
+[
+<b>-L</b> <i>volume-label</i> ]
+[
+<b>-M</b> <i>last-mounted-directory</i> ]
+[
+<b>-S</b> ]
+[
+<b>-T</b> <i>filesystem-type</i> ]
+[
+<b>-V</b> ]
+<i>device</i> [
+<i>blocks-count</i> ]
+<p>
+<b>mke2fs -O journal_dev</b> [
+<b>-b</b> <i>block-size</i> ]
+[
+<b>-L</b> <i>volume-label</i> ]
+[
+<b>-n</b> ]
+[
+<b>-q</b> ]
+[
+<b>-v</b> ]
+<i>external-journal</i> [
+<i>blocks-count</i> ]
+<h1 class="manpages">DESCRIPTION</h1>
+<b>mke2fs</b> is used to create an ext2/ext3 filesystem (usually in a disk partition).
+<i>device</i> is the special file corresponding to the device (e.g
+<i>/dev/hdXX</i>). <i>blocks-count</i> is the number of blocks on the device.  If omitted,
+<b>mke2fs</b> automagically figures the file system size.  If called as
+<b>mkfs.ext3</b> a journal is created as if the
+<b>-j</b> option was specified.
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>-b</b><i> block-size</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specify the size of blocks in bytes.  Valid block size vales are 1024,
+2048 and 4096 bytes per block.  If omitted,
+<b>mke2fs</b> block-size is heuristically determined by the file system size and
+the expected usage of the filesystem (see the
+<b>-T</b> option).  If
+<i>block-size</i> is negative, then
+<b>mke2fs</b> will use heuristics to determine the
+appropriate block size, with the constraint that the block size will be
+at least
+<i>block-size</i> bytes.  This is useful for certain hardware devices which require that
+the blocksize be a multiple of 2k.
+</td></tr>
+<tr valign="top"><td>
+<b>-c</b> </td><td valign="bottom">
+Check the device for bad blocks before creating the file system.  If
+this option is specified twice, then a slower, read-write
+test is used instead of a fast read-only test.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-E</b><i> extended-options</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set extended options for the filesystem.  Extended options are comma
+separated, and may take an argument using the equals (&#146;=&#146;) sign.  The
+<b>-E</b> option used to be
+<b>-R</b> in earlier versions of
+<b>mke2fs</b>. The
+<b>-R</b> option is still accepted for backwards compatibility.   The
+following extended options are supported:
+</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=12%>&nbsp;</td><td>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>stride=</b><i>stripe-size</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Configure the filesystem for a RAID array with
+<i>stripe-size</i> filesystem blocks per stripe.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>resize=</b><i>max-online-resize</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Reserve enough space so that the block group descriptor table can grow
+to support a filesystem that has max-online-resize blocks.
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-f</b><i> fragment-size</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specify the size of fragments in bytes.
+</td></tr>
+<tr valign="top"><td>
+<b>-F</b> </td><td valign="bottom">
+Force
+<b>mke2fs</b> to run, even if the specified device is not a
+block special device, or appears to be mounted.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-g</b><i> blocks-per-group</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specify the number of blocks in a block group.  There is generally no
+reason the user to ever set this parameter, as the default is optimal
+for the filesystem.  (For administrators who are creating
+filesystems on RAID arrays, it is preferable to use the
+<i>stride</i> RAID parameter as part of the
+<b>-R</b> option rather than manipulating the number of blocks per group.) 
+This option is generally used by developers who
+are developing test cases. 
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-i</b><i> bytes-per-inode</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specify the bytes/inode ratio.
+<b>mke2fs</b> creates an inode for every
+<i>bytes-per-inode</i> bytes of space on the disk.  The larger the
+<i>bytes-per-inode</i> ratio, the fewer inodes will be created.  This value generally shouldn&#146;t
+be smaller than the blocksize of the filesystem, since then too many
+inodes will be made.  Be warned that is not possible to expand the number
+of inodes on a filesystem after it is created, so be careful deciding the
+correct value for this parameter.
+</td></tr>
+<tr valign="top"><td>
+<b>-j</b> </td><td valign="bottom">
+Create the filesystem with an ext3 journal.  If the
+<b>-J</b> option is not specified, the default journal parameters will be used to
+create an appropriately sized journal (given the size of the filesystem)
+stored within the filesystem.  Note that you must be using a kernel
+which has ext3 support in order to actually make use of the journal.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-J</b><i> journal-options</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Create the ext3 journal using options specified on the command-line.
+Journal options are comma
+separated, and may take an argument using the equals (&#146;=&#146;)  sign.
+The following journal options are supported:
+</td></tr>
+<tr><td width=6%>&nbsp;</td><td>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>size=</b><i>journal-size</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Create an internal journal (i.e., stored inside the filesystem) of size
+<i>journal-size</i> megabytes.
+The size of the journal must be at least 1024 filesystem blocks
+(i.e., 1MB if using 1k blocks, 4MB if using 4k blocks, etc.)
+and may be no more than 102,400 filesystem blocks. 
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>device=</b><i>external-journal</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Attach the filesystem to the journal block device located on
+<i>external-journal</i>. The external
+journal must already have been created using the command
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<b>mke2fs -O journal_dev</b> <i>external-journal</i> </td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+Note that
+<i>external-journal</i> must have been created with the
+same block size as the new filesystem.
+In addition, while there is support for attaching
+multiple filesystems to a single external journal,
+the Linux kernel and
+<b>e2fsck</b>(8)
+do not currently support shared external journals yet.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+Instead of specifying a device name directly,
+<i>external-journal</i> can also be specified by either
+<b>LABEL=</b><i>label</i> or
+<b>UUID=</b><i>UUID</i> to locate the external journal by either the volume label or UUID
+stored in the ext2 superblock at the start of the journal.  Use
+<b>dumpe2fs</b>(8)
+to display a journal device&#146;s volume label and UUID.  See also the
+<b>-L</b> option of
+<b>tune2fs</b>(8).
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+Only one of the
+<b>size</b> or <b>device</b> options can be given for a filesystem.
+</td></tr>
+<tr valign="top"><td>
+<b>-l</b><i> filename</i> </td><td valign="bottom">
+Read the bad blocks list from
+<i>filename</i>. Note that the block numbers in the bad block list must be generated
+using the same block size as used by mke2fs.  As a result, the
+<b>-c</b> option to
+<b>mke2fs</b> is a much simpler and less error-prone method of checking a disk for bad
+blocks before formatting it, as
+<b>mke2fs</b> will automatically pass the correct parameters to the
+<b>badblocks</b> program.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-L</b><i> new-volume-label</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set the volume label for the filesystem to
+<i>new-volume-label</i>. The maximum length of the
+volume label is 16 bytes.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-m</b><i> reserved-blocks-percentage</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specify the percentage of the filesystem blocks reserved for
+the super-user.  This avoids fragmentation, and allows root-owned
+daemons, such as
+<b>syslogd</b>(8),
+to continue to function correctly after non-privileged processes are
+prevented from writing to the filesystem.  The default percentage
+is 5%.
+</td></tr>
+<tr valign="top"><td>
+<b>-M</b> </td><td valign="bottom">
+Set the last mounted directory for the filesystem.  This might be useful
+for the sake of utilities that key off of the last mounted directory to
+determine where the filesystem should be mounted.
+</td></tr>
+<tr valign="top"><td>
+<b>-n</b> </td><td valign="bottom">
+causes mke2fs to not actually create a filesystem, but display what it
+would do if it were to create a filesystem.  This can be used to
+determine the location of the backup superblocks for a particular
+filesystem, so long as the mke2fs parameters that were passed when the
+filesystem was originally created are used again.  (With the
+<b>-n</b> option added, of course!)
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-N</b><i> number-of-inodes</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+overrides the default calculation of the number of inodes that should be
+reserved for the filesystem (which is based on the number of blocks and
+the
+<i>bytes-per-inode</i> ratio).  This allows the user to specify the number
+of desired inodes directly.
+</td></tr>
+<tr valign="top"><td>
+<b>-o</b><i> creator-os</i> </td><td valign="bottom">
+Manually override the default value of the "creator os" field of the
+filesystem.  Normally the creator field is set by default to the native OS
+of the
+<b>mke2fs</b> executable.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-O </b><i>feature</i>[,...] </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Create filesystem with given features (filesystem options), overriding
+the default filesystem options.  The default features which are
+enabled by default are specified by the
+<i>base_features</i> relation, either in the
+<i>[libdefaults]</i> section in the
+<b>/etc/mke2fs.conf</b> configuration file, or in the subsection of the
+<i>[fs_types]</i> section for the filesystem type as specified by the
+<b>-T</b> option.  The filesystem type-specific configuration setting found in
+the
+<i>[fs_types]</i> section will override the global default found in
+<i>[libdefaults]</i>. <p>
+The filesystem feature set will be further edited
+using either the feature set specification specified by this option,
+or if this option is not specified, by the
+<i>default_features</i> relation for the filesystem type being created, or in the
+<i>[libdefaults]</i> section of the configuration file.
+<p>
+The filesystem feature set is comprised of a list of features, separated
+by commas, that are to be enabled.  To disable a feature, simply
+prefix the feature name with a  caret (&#146;^&#146;) character.  The
+pseudo-filesystem feature "none" will clear all filesystem features.
+</td></tr>
+<tr><td width=6%>&nbsp;</td><td>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>dir_index</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Use hashed b-trees to speed up lookups in large directories.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>filetype</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Store file type information in directory entries.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>has_journal</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Create an ext3 journal (as if using the
+<b>-j</b> option).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>journal_dev</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Create an external ext3 journal on the given device
+instead of a regular ext2 filesystem.
+Note that
+<i>external-journal</i> must be created with the same
+block size as the filesystems that will be using it.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>resize_inode</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Reserve space so the block group descriptor table may grow in the future.
+Useful for online resizing using
+<b>resize2fs</b>. By default
+<b>mke2fs</b> will attempt to reserve enough space so that the
+filesystem may grow to 1024 times its initial size.  This can be changed
+using
+<b>resize</b> extended option.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>sparse_super</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Create a filesystem with fewer superblock backup copies
+(saves space on large filesystems).
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td>
+<b>-q</b> </td><td valign="bottom">
+Quiet execution.  Useful if
+<b>mke2fs</b> is run in a script.
+</td></tr>
+<tr valign="top"><td>
+<b>-r</b><i> revision</i> </td><td valign="bottom">
+Set the filesystem revision for the new filesystem.  Note that 1.2
+kernels only support revision 0 filesystems.  The default is to
+create revision 1 filesystems.
+</td></tr>
+<tr valign="top"><td>
+<b>-S</b> </td><td valign="bottom">
+Write superblock and group descriptors only.  This is useful if all of
+the superblock and backup superblocks are corrupted, and a last-ditch
+recovery method is desired.  It causes
+<b>mke2fs</b> to reinitialize the
+superblock and group descriptors, while not touching the inode table
+and the block and inode bitmaps.  The
+<b>e2fsck</b> program should be run immediately after this option is used, and there
+is no guarantee that any data will be salvageable.  It is critical to
+specify the correct filesystem blocksize when using this option,
+or there is no chance of recovery.
+</td></tr>
+<tr valign="top"><td>
+<b>-T</b><i> fs-type</i> </td><td valign="bottom">
+Specify how the filesystem is going to be used, so that
+<b>mke2fs</b> can choose optimal filesystem parameters for that use.  The filesystem
+types that are can be supported are defined in the configuration file
+<b>/etc/mke2fs.conf</b>(5).
+The default configuration file contains definitions for the filesystem
+types: small, floppy, news, largefile, and largefile4. 
+</td></tr>
+<tr valign="top"><td>
+<b>-v</b> </td><td valign="bottom">
+Verbose execution.
+</td></tr>
+<tr valign="top"><td>
+<b>-V</b> </td><td valign="bottom">
+Print the version number of
+<b>mke2fs</b> and exit.
+</td></tr>
+</table>
+<h1 class="manpages">AUTHOR</h1>
+This version of
+<b>mke2fs</b> has been written by Theodore Ts&#146;o &lt;<a href="mailto:tytso@mit.edu">tytso@mit.edu</a>&gt;.
+<h1 class="manpages">BUGS</h1>
+<b>mke2fs</b> accepts the
+<b>-f</b> option but currently ignores it because the second
+extended file system does not support fragments yet.
+<!-- Need break --><br />
+There may be other ones.  Please, report them to the author.
+<h1 class="manpages">AVAILABILITY</h1>
+<b>mke2fs</b> is part of the e2fsprogs package and is available from
+<a href="http://e2fsprogs.sourceforge.net/">http://e2fsprogs.sourceforge.net</a>.
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="badblocks.htm">badblocks (8)</a></p></li>
+<li><p><a href="dumpe2fs.html">dumpe2fs (8)</a></p></li>
+<li><p><a href="e2fsck.html">e2fsck (8)</a></p></li>
+<li><p><a href="tune2fs.htm">tune2fs (8)</a></p></li>
+</ul>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion22f1.html?tutorial=unix_commands&amp;file=mkfs.ext2.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/mkfs.ext2.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:59 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

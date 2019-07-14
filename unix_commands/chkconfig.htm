@@ -1,0 +1,399 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/chkconfig.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:28 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>chkconfig - Unix, Linux Command</title>
+<meta name="Description" Content="chkconfig - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>chkconfig - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- ignored unsupported tag .UC -->
+<h1 class="manpages">NAME</h1>
+chkconfig - updates and queries runlevel information for system services
+<p>
+<h1 class="manpages">SYNOPSIS</h1>
+<b>chkconfig</b> <b>--list</b> [<i>name</i>]
+<!-- Need break --><br />
+<b>chkconfig</b> <b>--add</b> <i>name</i>
+<!-- Need break --><br />
+<b>chkconfig</b> <b>--del</b> <i>name</i>
+<!-- Need break --><br />
+<b>chkconfig</b> [<b>--level</b> <i>levels</i>] <i>name</i> &lt;<b>on</b>|<b>off</b>|<b>reset</b>&gt;
+<!-- Need break --><br />
+<b>chkconfig</b> [<b>--level</b> <i>levels</i>] <i>name</i>
+<p>
+<h1 class="manpages">DESCRIPTION</h1>
+<b>chkconfig</b> provides a simple command-line tool for maintaining the
+/etc/rc[0-6].d directory hierarchy by relieving system administrators of
+the task of directly manipulating the numerous symbolic links in those
+directories.
+<p>
+This implementation of <b>chkconfig</b> was inspired by the <b>chkconfig</b>
+command present in the IRIX operating system. Rather than maintaining
+configuration information outside of the /etc/rc[0-6].d hierarchy, however,
+this version directly manages the symlinks in /etc/rc[0-6].d. This leaves all
+of the configuration information regarding what services <i>init</i>
+starts in a single location.
+<p>
+<b>chkconfig</b> has five distinct functions: adding new services for
+management, removing services from management, listing the current
+startup information for services, changing the startup information
+for services, and checking the startup state of a particular service.
+<p>
+When <b>chkconfig</b> is run without any options, it displays usage
+information.  If only a service name is given, it checks to see if
+the service is configured to be started in the current runlevel. If
+it is, <b>chkconfig</b> returns true; otherwise it returns false. The
+<b>--level</b> option may be used to have <b>chkconfig</b> query an
+alternative runlevel rather than the current one.
+<p>
+If one of <b>on</b>, <b>off</b>, or reset is specified after the
+service name, <b>chkconfig</b> changes the startup information for the
+specified service.  The <b>on</b> and <b>off</b> flags cause the service
+to be started or stopped, respectively, in the runlevels being changed.
+The <b>reset</b> flag resets the startup information for the service to
+whatever is specified in the init script in question.
+<p>
+By default, the <b>on</b> and <b>off</b> options affect only runlevels 2, 3, 4,
+and 5, while <b>reset</b> affects all of the runlevels.  The <b>--level</b>
+option may be used to specify which runlevels are affected.
+<p>
+Note that for every service, each runlevel has either a start script
+or a stop script.  When switching runlevels, init will not re-start
+an already-started service, and will not re-stop a service that is
+not running.
+<p>
+<b>chkconfig</b> also can manage xinetd scripts via the means
+of xinetd.d configuration files. Note that only the
+<b>on</b>, <b>off</b>, and <b>--list</b> commands are supported
+for xinetd.d services.
+<p>
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>--level </b><i>levels</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies the run levels an operation should pertain to. It is given as
+a string of numbers from 0 to 7. For example, <b>--level 35</b> specifies
+runlevels 3 and 5.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--add</b> <i>name</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+<p>
+This option adds a new service for management by <b>chkconfig</b>.
+When a new service is added, <b>chkconfig</b> ensures that the service
+has either a start or a kill entry in every runlevel. If any runlevel
+is missing such an entry, <b>chkconfig</b> creates the appropriate entry
+as specified by the default values in the init script. Note that
+default entries in LSB-delimited &#146;INIT INFO&#146; sections take precedence
+over the default runlevels in the initscript.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--del</b> <i>name</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The service is removed from <b>chkconfig</b> management, and any symbolic
+links in /etc/rc[0-6].d which pertain to it are removed.
+<p>
+Note that future package installs for this service may run
+<b>chkconfig --add</b>, which will re-add such links. To disable a
+service, run <b>chkconfig </b><i>name</i> <b>off</b>.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--list</b> <i>name</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This option lists all of the services which <b>chkconfig</b> knows about,
+and whether they are stopped or started in each runlevel. If <i>name</i>
+is specified, information in only display about service <i>name</i>.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">RUNLEVEL FILES</h1>
+<p>
+Each service which should be manageable by <b>chkconfig</b> needs two
+or more commented lines added to its init.d script. The first line
+tells <b>chkconfig</b> what runlevels the service should be started in
+by default, as well as the start and stop priority levels. If the service
+should not, by default, be started in any runlevels, a <b>-</b> should be
+used in place of the runlevels list.  The second
+line contains a description for the service, and may be extended across
+multiple lines with backslash continuation.
+<p>
+For example, random.init has these three lines:
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .fn -->
+# chkconfig: 2345 20 80
+# description: Saves and restores system entropy pool for &#92;
+#              higher quality random number generation.
+<!-- ignored unsupported tag .fn -->
+</pre></td></tr>
+</table>
+This says that the random script should be started in levels 2, 3, 4,
+and 5, that its start priority should be 20, and that its stop
+priority should be 80.  You should be able to figure out what the
+description says; the &#92; causes the line to be continued.  The
+extra space in front of the line is ignored.
+<p>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<b>ntsysv</b>(8)
+<b>system-config-services</b>(8)
+<p>
+<h1 class="manpages">AUTHOR</h1>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+Erik Troan &lt;<a href="mailto:ewt@redhat.com">ewt@redhat.com</a>&gt;
+</pre></td></tr>
+</table>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion5658.html?tutorial=unix_commands&amp;file=chkconfig.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/chkconfig.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:28 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

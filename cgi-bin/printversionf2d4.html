@@ -1,0 +1,209 @@
+<html>
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=perl&file=perl_scalars.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>PERL Scalar Variables</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="Keywords" content="Perl, Programming, Language, Object Oriented Perl, Perl Variables, Scalars, Arrays, Hash, File I/O, Looping, Regular Expressions, Subroutines, Coding Standard, Writing Modules, Process Management, Socket, Examples, References, Special Variables, Syntax Overview, Advanced Perl, Tutorial, Tutorials, Operators, Built-in Functions, Quiz">
+<meta name="Description" content="Free tutorials and references for PERL Programming Common Gateway Interface (CGI) Database Interface (DBI) with PERL Object Oriented Perl and Perl Variables Scalars Arrays Hash File I/O Looping Regular Expressions Subroutines Coding Standard Writing Modules Process Management Socket Examples References Special Variables Syntax Overview Advanced Perl Tutorial Perl Operators Built-in Functions and Quiz">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base >
+<link rel="stylesheet" type="text/css" href="../print.css"/>
+</head>
+<body>
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+<h1>PERL Scalar Variable</h1>
+<a href="../perl/perl_variables.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../perl/perl_arrays.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<br />
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="top">
+<p>Scalar variables are simple variables containing only one element--a string or a number. Strings may contain any symbol, letter, or number. Numbers may contain exponents, integers, or decimal values. The bottom line here with scalar variables is that they contain only one single piece of data. What you see is what you get with scalar variables.</p>
+<p>Following are examples of Scalar Variables</p>
+<table cellpadding="5" class="src"><tr><td>
+<pre>
+#!/usr/bin/perl<br>
+$number = "5";
+$exponent = "2 ** 8";
+$string = "Hello, PERL!";
+$float = 12.39;
+
+# We can also assign a scalar an empty (undefined) value:
+$nothing = undef;
+
+# Printing all the above values
+print "$number\n"; 
+print "$exponent\n";
+print "$string\n"; 
+print "$float\n"; 
+print "There is nothing: $nothing\n"; 
+
+<b>This will give following result</b>
+5
+2 ** 8
+Hello, PERL!
+12.39
+There is nothing:
+</pre>
+</td></tr></table>
+<h1>Scalar Strings</h1>
+<p>Strings are scalar as we mentioned previously. There is no limit to the size of the string, any amount of characters, symbols, or words can make up your strings.</p>
+<p>When defining a string you may use single or double quotations, you may also define them with the q subfunction. Following are examples of how to define strings</p>
+<table cellpading="5" class="src"><tr><td>
+<p>
+$single = 'This string is single quoted';<br>
+$double = "This string is double quoted";<br>
+$userdefined = q^Carrot is now our quote^;<br>
+</p>
+</td></tr></table>
+<h1>Formatting Strings w/ Formatting Characters</h1>
+<p>Strings can be formatted to your liking using formatting characters. Some of these characters also work to format files created in PERL. Think of these characters as miniature functions.</p>
+<table BORDER="0">
+<tr><td><b>Character</b></td><td><b>Description</b></td></tr>
+<tr><td>\L</td><td>Transform all letters to lowercase</td></tr>
+<tr><td>\l</td><td>Transform the next letter to lowercase</td></tr>
+<tr><td>\U</td><td>Transform all letters to uppercase</td></tr>
+<tr><td>\u</td><td>Transform the next letter to uppercase</td></tr>
+
+<tr><td>\n</td><td>Begin on a new line</td></tr>
+<tr><td>\r</td><td>Applys a carriage return</td></tr>
+<tr><td>\t</td><td>Applys a tab to the string</td></tr>
+<tr><td>\f</td><td>Applys a formfedd to the string</td></tr>
+<tr><td>\b</td><td>Backspace</td></tr>
+<tr><td>\a</td><td>Bell</td></tr>
+
+<tr><td>\e</td><td>Escapes the next character</td></tr>
+<tr><td>\0nn</td><td>Creates Octal formatted numbers</td></tr>
+<tr><td>\xnn</td><td>Creates Hexideciamal formatted numbers</td></tr>
+<tr><td>\cX</td><td>Control characters, x may be any character</td></tr>
+<tr><td>\Q</td><td>Backslash (escape) all following non-alphanumeric characters.</td></tr>
+<tr><td>\E</td><td>Ends \U, \L, or \Q functions</td></tr>
+</table>
+<p>Here are few examples</p>
+<table cellpadding="5" class="src"><tr><td>
+<pre>
+#!/usr/bin/perl
+
+$newline = "Welcome to <span class="red">\n</span>tutorialspoint.com!";
+$small = "<span class="red">\u</span>this, Here t will become capital !"
+$ALLCAPS = "<span class="red">\U</span>This completely will become capital!";
+$PARTIALCAPS = "<span class="red">\U</span>This half will<span class="red">/E</span> become capital!";
+$backslah = "<span class="red">\Q</span>'Hello World'<span class="red">\E</span>!";
+
+print "$newline\n";
+print "$small\n";
+print "$ALLCAPS\n";
+print "$PARTAILCAPS\n";
+print "$backslah\n";
+
+<b>This will give following result</b>
+Welcome to 
+tutorialspoint.com!
+This, Here t will become capital !
+THIS COMPLETELY WILL BECOME CAPITAL!
+THIS HALF WILL become capital!
+\'Hello World\'!
+</pre>
+</td></tr></table>
+<h1>Substr() and String Indexing</h1>
+<p>The substr() function allows for the temporary replacement of characters in a string. We can change the string "Hello, PERL" to "Hello, World!" quite easily. Each character of the string is automatically assigned a numeric value by PERL, which means that we can index any of the characters in our strings with this number. PERL counts each character of the string beginning with 0 for the first character and continuing until it reaches the end of a string</p>
+<p>Two arguments must be sent with our substr() function, the string you wish to index and the index number. If two arguments are sent, PERL assumes that you are replacing every character from that index number to the end.</p>
+<table cellpadding="5" class="src"><tr><td>
+<pre>
+#!/usr/bin/perl
+
+# Define a string to replace
+$mystring = "Hello, PERL!";
+
+print "Before replacement : $mystring\n";
+
+substr($mystring, 7) = "World!";
+
+print "After replacement : $mystring\n";
+
+<b>This will give following result</b>
+Before replacement : Hello, PERL!
+After replacement : Hello, World!
+</pre>
+</td></tr></table>
+<p>Because we only specified one numeric parameter for the string, PERL assumed we wanted to replace every character after the 7th, with our new string. If we throw a third parameter in our function we can replace only a chunk of our string with a new string.</p>
+<table cellpadding="5" class="src"><tr><td>
+<pre>
+#!/usr/bin/perl
+$mystring = "Hello, PERL!";
+
+print "Before replacement : $mystring\n";
+
+substr($mystring, 3, 6) = "World!";
+
+print "After replacement : $mystring\n";
+
+<b>This will give following result</b>
+Before replacement : Hello, PERL!
+After replacement : HelWorld!RL!
+</pre>
+</td></tr></table>
+<h1>Multiline Strings</h1>
+<p>If you want to introduce multiline strings into your programs, you can use standard quotes:</p>
+<table cellpadding="5" class="src"><tr><td>
+<pre>
+$string = 'This is
+a multiline
+string';
+</pre>
+</td></tr></table>
+<p>But this is messy and is subject to the same basic laws regarding interpolation and quote usage. We could get around it using the q// or qq// operator with different delimiters.</p>
+<p>Another better way of printing multilines</p>
+<table cellpadding="5" class="src"><tr><td>
+<pre>
+print &lt;&lt;EOF;
+This is
+a multiline
+string
+EOF
+</pre>
+</td></tr></table>
+<h1>V-Strings</h1>
+<p>V-strings can be a useful way of introducing version numbers and IP addresses into Perl. They are any literal that begins with a v and is followed by one or more dot-separated elements. For example:</p>
+<table cellpadding="5" class="src"><tr><td>
+$name = v77.97.114.116.105.110;
+</td></tr></table>
+<h1>Numeric Scalars</h1>
+<p>Perl supports a number of a fairly basic methods for specifying a numeric literal in decimal:</p>
+<table cellpadding="5" class="src"><tr><td>
+<pre>
+$num = 123;      # integer
+$num = 123.45;   # floating point
+$num = 1.23e45;  # scientific notation
+</pre>
+</td></tr></table>
+<p>You can also specify literals in hexadecimal, octal, and binary by specifying a preceding character to highlight the number types:</p>
+<table cellpadding="5" class="src"><tr><td>
+<pre>
+$num = 0xff;        # Hexadecimal
+$num = 0377;        # Octal
+$num = 0b0010_0000; # Binary
+</pre>
+</td></tr></table>
+<table>
+<tr><td>
+<img src="../images/bulb.gif">
+</td><td>Note that the numbers are not stored internally using these bases.Perl converts the literal representation into a decimal internally.
+</td></tr></table>
+</td></tr></table>
+<a href="../perl/perl_variables.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../perl/perl_arrays.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=perl&file=perl_scalars.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

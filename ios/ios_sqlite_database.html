@@ -1,0 +1,521 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/ios/ios_sqlite_database.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 15:56:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>iOS - SQLite Database</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="description" content="iOS, Tutorials, Learning, Beginners, Basics, Environment, xCode, Installation, iPhone, Applications, actions and outlets, UI elements, Delegates, Objective-C, Accelerometer, Universal Applications, Camera Management, LocationHandling, SQLite Database, Sending Email, Audio & Video, File Handling, Accessing Maps, In-App Purchase, iAd Integration, GameKit, Storyboards, Auto Layouts, Twitter & Facebook, Memory Management, Application Debugging" />
+<meta name="keywords" content="iOS Getting Started-  Learning iPhone and iPad application development on iOS in simple and easy steps using this beginner's tutorial containing basic to advanced knowledge environment setup, actions and outlets, UI elements, Delegates, Objective-C, Accelerometer, Universal Applications, Camera Management, LocationHandling, SQLite Database, Sending Email, Audio & Video, File Handling, Accessing Maps, In-App Purchase, iAd Integration, GameKit, Storyboards, Auto Layouts, Twitter & Facebook, Memory Management, Application Debugging." />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+#topmenu a:hover {text-decoration:none;color:#c4c7c8 !important;background-color:transparent;font-weight:bold;}
+#header{ 
+ background:#c4c7c8 !important;
+ background:url(/images/footer.png) repeat-x !important;
+}
+#topmenu
+{
+background-color:#353435 !important;
+}
+#leftcol ul.menu li.heading 
+{
+   background:#c4c7c8 !important;
+   background:url(/images/footer.png) repeat-x !important; 
+   border:1px solid #c1c1c1 !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1275px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index-2.html">Tutorials Point - Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index-2.html" target="_top">HOME </a>
+<a href="../java/index.html" target="_top">JAVA </a>
+<a href="../php/index.html" target="_top">PHP </a>
+<a href="../python/index.html" target="_top">Python </a>
+<a href="../ruby/index.html" target="_top">Ruby </a>
+<a href="../perl/index.html" target="_top">Perl </a>
+<a href="../html/index.html" target="_top">HTML </a>
+<a href="../css/index.html" target="_top">CSS </a>
+<a href="../javascript/index.html" target="_top">Javascript </a>
+<a href="../mysql/index.html" target="_top">MySQL </a>
+<a href="../cplusplus/index.html" target="_top">C++ </a>
+<a href="../unix/index.html" target="_top">UNIX </a>
+<a href="../more.html" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.html" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.html" target="_top">ABOUT</a> |
+<a href="../about/contact_us.html" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/ios-mini-logo.png" alt="iOS Tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">iOS Tutorial</li>
+<li><a target="_top" href="index.html">iOS - Home</a></li>
+<li><a target="_top" href="ios_getting_started.html">iOS - Getting Started</a></li>
+<li><a target="_top" href="ios_environment_setup.html">iOS - Environment Setup</a></li>
+<li><a target="_top" href="ios_objective_c.html">iOS - Objective-C Basics</a></li>
+<li><a target="_top" href="ios_first_iphone_application.html">iOS - First iPhone Application</a></li>
+<li><a target="_top" href="ios_actions_and_outlets.html">iOS - Actions and Outlets</a></li>
+<li><a target="_top" href="ios_delegates.html">iOS - Delegates</a></li>
+<li><a target="_top" href="ios_ui_elements.html">iOS - UI Elements</a></li>
+<li><a target="_top" href="ios_accelerometer.html">iOS - Accelerometer</a></li>
+<li><a target="_top" href="ios_universal_applications.html">ios - Universal Applications</a></li>
+<li><a target="_top" href="ios_camera_management.html">iOS - Camera Management</a></li>
+<li><a target="_top" href="ios_location_handling.html">iOS - Location Handling</a></li>
+<li><a target="_top" href="ios_sqlite_database.html"><b>iOS - SQLite Database</b></a></li>
+<li><a target="_top" href="ios_sending_email.html">iOS - Sending Email</a></li>
+<li><a target="_top" href="ios_audio_video.html">iOS - Audio &amp; Video</a></li>
+<li><a target="_top" href="ios_file_handling.html">iOS - File Handling</a></li>
+<li><a target="_top" href="ios_accessing_maps.html">iOS - Accessing Maps</a></li>
+<li><a target="_top" href="ios_in_app_purchase.html">iOS - In-App Purchase</a></li>
+<li><a target="_top" href="ios_iad_integration.html">iOS - iAd Integration</a></li>
+<li><a target="_top" href="ios_gamekit.html">iOS - GameKit</a></li>
+<li><a target="_top" href="ios_storyboards.html">iOS - Storyboards</a></li>
+<li><a target="_top" href="ios_auto_layouts.html">iOS - Auto Layouts</a></li>
+<li><a target="_top" href="ios_twitter_facebook.html">iOS - Twitter &amp; Facebook</a></li>
+<li><a target="_top" href="ios_memory_management.html">iOS - Memory Management</a></li>
+<li><a target="_top" href="ios_application_debugging.html">iOS - Application Debugging</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">iOS Useful Resources</li>
+<li><a target="_top" href="ios_quick_guide.html">iOS - Quick Guide</a></li>
+<li><a target="_top" href="ios_useful_resources.html">iOS Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.html">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>iOS - SQLite Database</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="ios_location_handling.html">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="ios_sending_email.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<h2>Introduction</h2>
+
+<p>Sqlite can be used in iOS for handling data. It just uses the sqlite queries which make it easier for those who know sql.</p>
+
+<h2><p>Steps Involved</p></h2>
+<p>1. Create a simple <b>View based application</b>.</p>
+<p>2.	Select your project file, then select targets and then add <b>libsqlite3.dylib</b> library in choose frameworks.</p>
+<p>3.	Now create a new file by selecting File-&gt; New -&gt; File...  -&gt; select <b>Objective C class</b> and click next</p>
+<p>4.	Name the class as <b>DBManager</b> with <b>&quot;sub class of&quot;</b> as NSObject.</p>
+<p>5. Select create.</p>
+<p>6.	Now update <b>DBManager.h</b> as follows.</p>
+<pre class="prettyprint">
+#import &lt;Foundation/Foundation.h&gt;
+#import &lt;sqlite3.h&gt;
+
+@interface DBManager : NSObject
+{
+    NSString *databasePath;
+}
+
++(DBManager*)getSharedInstance;
+-(BOOL)createDB;
+-(BOOL) saveData:(NSString*)registerNumber name:(NSString*)name 
+  department:(NSString*)department year:(NSString*)year;
+-(NSArray*) findByRegisterNumber:(NSString*)registerNumber;
+
+@end
+</pre>
+<p>8.	Now update <b>DBManager.m</b> as follows</p>
+<pre class="prettyprint">
+#import "DBManager.h"
+static DBManager *sharedInstance = nil;
+static sqlite3 *database = nil;
+static sqlite3_stmt *statement = nil;
+
+@implementation DBManager
+
++(DBManager*)getSharedInstance{
+    if (!sharedInstance) {
+        sharedInstance = [[super allocWithZone:NULL]init];
+        [sharedInstance createDB];
+    }
+    return sharedInstance;
+}
+
+-(BOOL)createDB{
+    NSString *docsDir;
+    NSArray *dirPaths;    
+    // Get the documents directory
+    dirPaths = NSSearchPathForDirectoriesInDomains
+    (NSDocumentDirectory, NSUserDomainMask, YES);    
+    docsDir = dirPaths[0];
+    // Build the path to the database file
+    databasePath = [[NSString alloc] initWithString: 
+    [docsDir stringByAppendingPathComponent: @"student.db"]];
+    BOOL isSuccess = YES;
+    NSFileManager *filemgr = [NSFileManager defaultManager];    
+    if ([filemgr fileExistsAtPath: databasePath ] == NO)
+    {
+        const char *dbpath = [databasePath UTF8String];        
+        if (sqlite3_open(dbpath, &database) == SQLITE_OK)
+        {
+            char *errMsg;
+            const char *sql_stmt =
+            "create table if not exists studentsDetail (regno integer 
+            primary key, name text, department text, year text)";            
+            if (sqlite3_exec(database, sql_stmt, NULL, NULL, &errMsg) 
+               != SQLITE_OK)
+            {
+                isSuccess = NO;
+                NSLog(@"Failed to create table");
+            }
+            sqlite3_close(database);
+            return  isSuccess;
+        }
+        else {
+            isSuccess = NO;
+            NSLog(@"Failed to open/create database");
+        }
+    }    
+    return isSuccess;
+}
+
+- (BOOL) saveData:(NSString*)registerNumber name:(NSString*)name 
+  department:(NSString*)department year:(NSString*)year;
+{
+    const char *dbpath = [databasePath UTF8String];    
+    if (sqlite3_open(dbpath, &database) == SQLITE_OK)
+    {        
+        NSString *insertSQL = [NSString stringWithFormat:@"insert into
+        studentsDetail (regno,name, department, year) values
+        (\"%d\",\"%@\", \"%@\", \"%@\")",[registerNumber integerValue],
+        name, department, year];        
+        const char *insert_stmt = [insertSQL UTF8String];
+        sqlite3_prepare_v2(database, insert_stmt,-1, &statement, NULL);
+        if (sqlite3_step(statement) == SQLITE_DONE)
+        {
+            return YES;
+        } 
+        else {
+            return NO;
+        }
+        sqlite3_reset(statement);
+    }
+    return NO;
+}
+
+- (NSArray*) findByRegisterNumber:(NSString*)registerNumber
+{
+    const char *dbpath = [databasePath UTF8String];    
+    if (sqlite3_open(dbpath, &database) == SQLITE_OK)
+    {
+        NSString *querySQL = [NSString stringWithFormat:
+        @"select name, department, year from studentsDetail where 
+        regno=\"%@\"",registerNumber];        
+        const char *query_stmt = [querySQL UTF8String];
+        NSMutableArray *resultArray = [[NSMutableArray alloc]init];
+        if (sqlite3_prepare_v2(database,
+           query_stmt, -1, &statement, NULL) == SQLITE_OK)
+        {
+            if (sqlite3_step(statement) == SQLITE_ROW)
+            {                
+                NSString *name = [[NSString alloc] initWithUTF8String:
+                 (const char *) sqlite3_column_text(statement, 0)];
+                [resultArray addObject:name];
+                NSString *department = [[NSString alloc] initWithUTF8String:
+                (const char *) sqlite3_column_text(statement, 1)];
+                [resultArray addObject:department];
+                NSString *year = [[NSString alloc]initWithUTF8String:
+                (const char *) sqlite3_column_text(statement, 2)];
+                [resultArray addObject:year];
+                return resultArray;
+            }
+            else{
+                NSLog(@"Not found");
+                return nil;
+            }
+            sqlite3_reset(statement);
+        }
+    }
+    return nil;
+}
+</pre>
+<p>8.	Update <b>ViewController.xib</b> file as follows.</p>
+<p><img src="images/Sqlite_Interface.jpg" alt="iOS Tutorial" /></p>
+<p>9.	Create IBOutlets for the above text fields.</p>
+<p>10. Create IBAction for the above buttons.</p>
+<p></p>
+<p>11. Update <b>ViewController.h</b> as follows.</p>
+<pre class="prettyprint">
+#import &lt;UIKit/UIKit.h&gt;
+#import "DBManager.h"
+
+@interface ViewController : UIViewController&lt;UITextFieldDelegate&gt;
+{
+    IBOutlet UITextField *regNoTextField;
+    IBOutlet UITextField *nameTextField;
+    IBOutlet UITextField *departmentTextField;
+    IBOutlet UITextField *yearTextField;
+    IBOutlet UITextField *findByRegisterNumberTextField;
+    IBOutlet UIScrollView *myScrollView;
+}
+
+-(IBAction)saveData:(id)sender;
+-(IBAction)findData:(id)sender;
+
+@end
+</pre>
+<p>12. Update <b>ViewController.m</b> is as follows.</p>
+<pre class="prettyprint">
+#import "ViewController.h"
+
+@interface ViewController ()
+
+@end
+
+@implementation ViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)
+  nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(IBAction)saveData:(id)sender{
+    BOOL success = NO;
+    NSString *alertString = @"Data Insertion failed";
+    if (regNoTextField.text.length>0 &&nameTextField.text.length>0 &&
+    departmentTextField.text.length>0 &&yearTextField.text.length>0 )
+    {
+        success = [[DBManager getSharedInstance]saveData:
+        regNoTextField.text name:nameTextField.text department:
+        departmentTextField.text year:yearTextField.text];
+    }
+    else{
+        alertString = @"Enter all fields";
+    }     
+    if (success == NO) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:
+        alertString message:nil
+        delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+-(IBAction)findData:(id)sender{
+    NSArray *data = [[DBManager getSharedInstance]findByRegisterNumber:
+    findByRegisterNumberTextField.text];
+    if (data == nil) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:
+        @"Data not found" message:nil delegate:nil cancelButtonTitle:
+        @"OK" otherButtonTitles:nil];
+        [alert show];
+        regNoTextField.text = @"";
+        nameTextField.text =@"";
+        departmentTextField.text = @"";
+        yearTextField.text =@"";
+    }
+    else{
+        regNoTextField.text = findByRegisterNumberTextField.text;
+        nameTextField.text =[data objectAtIndex:0];
+        departmentTextField.text = [data objectAtIndex:1];
+        yearTextField.text =[data objectAtIndex:2];
+    }
+}
+
+#pragma mark - Text field delegate
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    [myScrollView setFrame:CGRectMake(10, 50, 300, 200)];
+    [myScrollView setContentSize:CGSizeMake(300, 350)];
+}
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    [myScrollView setFrame:CGRectMake(10, 50, 300, 350)];
+
+}
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    
+    [textField resignFirstResponder];
+    return YES;
+}
+@end
+</pre>
+<h2>Output</h2>
+<p>Now when we run the application we'll get the following output where we can add and find student details.</p>
+
+<p><img src="images/Sqlite_Output.jpg" alt="iOS Tutorial" /></p>
+
+<hr />
+<div class="pre-btn">
+<a href="ios_location_handling.html">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="nxt-btn">
+<a href="ios_sending_email.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.html" target="_top">ASP.NET </a> |
+<a href="../jquery/index.html" target="_top">jQuery </a> |
+<a href="../ajax/index.html" target="_top">AJAX </a> |
+<a href="../ant/index.html" target="_top">ANT</a> |
+<a href="index.html" target="_top">iOS </a> |
+<a href="../servlets/index.html" target="_top">Servlets </a> |
+<a href="../log4j/index.html" target="_top">log4j </a> |
+<a href="../ibatis/index.html" target="_top">iBATIS </a> |
+<a href="../hibernate/index.html" target="_top">Hibernate </a> |
+<a href="../jdbc/index.html" target="_top">JDBC </a> |
+<a href="../struts_2/index.html" target="_top">Struts </a> |
+<a href="../html5/index.html" target="_top">HTML5 </a> |
+<a href="../sql/index.html" target="_top">SQL </a> |
+<a href="../mysql/index.html" target="_top">MySQL </a> |
+<a href="../cplusplus/index.html" target="_top">C++ </a> |
+<a href="../unix/index.html" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/ios/ios_sqlite_database.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 15:56:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

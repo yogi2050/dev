@@ -1,0 +1,556 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/ruby/ruby_exceptions.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Apr 2013 19:45:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>Ruby Exceptions</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="Keywords" content="Ruby, Tutorials, Learning, Beginners, Basics, Scripting Language, Syntax, Classes, , Variables, Comments, Loops, File, I/O, Functions, Objects, TK, Ranges, iterators, arrays, strings, methods, blocks, Exception, Multi-Threading, Hashes, Modules, LDAP, Web Services, Web Programming." />
+<meta name="description" content="Ruby Exceptions - Learning Ruby in simple and easy steps - A beginner's tutorial containing complete knowledge of Ruby Syntax Syntax, Classes, , Variables, Comments, Loops, File, I/O, Functions, Objects, TK, Ranges, iterators, arrays, strings, methods, blocks, Exception, Multi-Threading, Hashes, Modules, LDAP, Web Services, Web Programming." />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+/* Ruby Scheme */
+#topmenu a:link {text-decoration:none;color:#fff !important;background-color:transparent;font-weight:bold;}
+#topmenu a:visited {text-decoration:none;color:#fff !important;background-color:transparent;font-weight:bold;}
+#topmenu a:hover {text-decoration:none;color:#C83932 !important;background-color:transparent;font-weight:bold;}
+#header{ 
+background:#C83932 !important;
+}
+#topmenu
+{
+background-color:#5E0500 !important;
+}
+#leftcol ul.menu li.heading 
+{
+background:#C83932 !important;
+border:1px solid #964800 !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1500px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index.htm">Tutorials Point - Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index.htm" target="_top">HOME </a>
+<a href="../java/index.htm" target="_top">JAVA </a>
+<a href="../php/index.htm" target="_top">PHP </a>
+<a href="../python/index.htm" target="_top">Python </a>
+<a href="index.htm" target="_top">Ruby </a>
+<a href="../perl/index.htm" target="_top">Perl </a>
+<a href="../html/index.htm" target="_top">HTML </a>
+<a href="../css/index.htm" target="_top">CSS </a>
+<a href="../javascript/index.htm" target="_top">Javascript </a>
+<a href="../mysql/index.htm" target="_top">MySQL </a>
+<a href="../cplusplus/index.htm" target="_top">C++ </a>
+<a href="../unix/index.htm" target="_top">UNIX </a>
+<a href="../more.htm" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.htm" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.htm" target="_top">ABOUT</a> |
+<a href="../about/contact_us.htm" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/ruby-mini-logo.png" alt="Ruby Tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">Ruby Basics</li>
+<li><a class="left" target="_top" href="index.htm">Ruby Home</a></li>
+<li><a class="left" target="_top" href="ruby_overview.htm">Ruby Overview</a></li>
+<li><a class="left" target="_top" href="ruby_environment.htm">Ruby Environment</a></li>
+<li><a class="left" target="_top" href="ruby_syntax.htm">Ruby Syntax</a></li>
+<li><a class="left" target="_top" href="ruby_classes.htm">Ruby Classes</a></li>
+<li><a class="left" target="_top" href="ruby_variables.htm">Ruby Variables</a></li>
+<li><a class="left" target="_top" href="ruby_operators.htm">Ruby Operators</a></li>
+<li><a class="left" target="_top" href="ruby_comments.htm">Ruby Comments</a></li>
+<li><a class="left" target="_top" href="ruby_if_else.htm">Ruby IF...ELSE</a></li>
+<li><a class="left" target="_top" href="ruby_loops.htm">Ruby Loops</a></li>
+<li><a class="left" target="_top" href="ruby_methods.htm">Ruby Methods</a></li>
+<li><a class="left" target="_top" href="ruby_blocks.htm">Ruby Blocks</a></li>
+<li><a class="left" target="_top" href="ruby_modules.htm">Ruby Modules</a></li>
+<li><a class="left" target="_top" href="ruby_strings.htm">Ruby Strings</a></li>
+<li><a class="left" target="_top" href="ruby_arrays.htm">Ruby Arrays</a></li>
+<li><a class="left" target="_top" href="ruby_hashes.htm">Ruby Hashes</a></li>
+<li><a class="left" target="_top" href="ruby_date_time.htm">Ruby Date &amp; Time</a></li>
+<li><a class="left" target="_top" href="ruby_ranges.htm">Ruby Ranges</a></li>
+<li><a class="left" target="_top" href="ruby_iterators.htm">Ruby Iterators</a></li>
+<li><a class="left" target="_top" href="ruby_input_output.htm">Ruby File I/O</a></li>
+<li><a class="left" target="_top" href="ruby_exceptions.htm"><b>Ruby Exceptions</b></a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Ruby Advanced</li>
+<li><a class="left" target="_top" href="ruby_object_oriented.htm">Ruby Object Oriented</a></li>
+<li><a class="left" target="_top" href="ruby_regular_expressions.htm">Ruby Regular Expressions</a></li>
+<li><a class="left" target="_top" href="ruby_database_access.htm">Ruby Database Access</a></li>
+<li><a class="left" target="_top" href="ruby_web_applications.htm">Ruby Web Applications</a></li>
+<li><a class="left" target="_top" href="ruby_sending_email.htm">Ruby Sending Email</a></li>
+<li><a class="left" target="_top" href="ruby_socket_programming.htm">Ruby Socket Programming</a></li>
+<li><a class="left" target="_top" href="ruby_xml_xslt.htm">Ruby/XML, XSLT</a></li>
+<li><a class="left" target="_top" href="ruby_web_services.htm">Ruby Web Services</a></li>
+<li><a class="left" target="_top" href="ruby_tk_guide.htm">Ruby/Tk Guide</a></li>
+<li><a class="left" target="_top" href="ruby_ldap.htm">Ruby/LDAP Tutorial</a></li>
+<li><a class="left" target="_top" href="ruby_multithreading.htm">Ruby Multithreading</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Ruby Useful Resources</li>
+<li><a class="left" target="_top" href="ruby_quick_guide.htm">Ruby Quick Guide</a></li>
+<li><a class="left" target="_top" href="ruby_builtin_functions.htm">Ruby Built-in Functions</a></li>
+<li><a class="left" target="_top" href="ruby_predefined_variables.htm">Ruby Predefined Variables</a></li>
+<li><a class="left" target="_top" href="ruby_predefined_constants.htm">Ruby Predefined Constants</a></li>
+<li><a class="left" target="_top" href="ruby_associated_tools.htm">Ruby Associated Tools</a></li>
+<li><a class="left" target="_top" href="ruby_resources.htm">Ruby Useful Resources</a></li>
+<li><a class="left" target="_top" href="../ruby-on-rails/index.htm">Ruby on Rails Tutorial</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>Ruby Exceptions</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="ruby_input_output.htm">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="ruby_object_oriented.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>The execution and the exception always go together. If you are opening a file which does not exist then if you did not handle this situation properly then your program is considered to be of bad quality.</p>
+<p>The program stops if an exception occurs. So exceptions are used to handle various type of errors which may occur during a program execution and take appropriate action instead of halting program completely.</p>
+<p>Ruby provide a nice mechanism to handle exceptions. We enclose the code that could raise an exception in a <i>begin/end</i> block and use <i>rescue</i> clauses to tell Ruby the types of exceptions we want to handle.</p>
+<h2>Syntax :</h2>
+<pre class="prettyprint">
+begin  
+# -  
+rescue OneTypeOfException  
+# -  
+rescue AnotherTypeOfException  
+# -  
+else  
+# Other exceptions
+ensure
+# Always will be executed
+end
+</pre>
+<p>Everything from <i>begin</i> to <i>rescue</i> is protected. If an exception occurs during the execution of this block of code, control is passed to the block between <i>rescue</i> and <i>end</i>.</p>
+<p>For each <i>rescue</i> clause in the <i>begin</i> block, Ruby compares the raised Exception against each of the parameters in turn. The match will succeed if the exception named in the rescue clause is the same as the type of the currently thrown exception, or is a superclass of that exception.</p>
+<p>In an event that an exception does not match any of the error types specified, we are allowed to use an <i>else</i> clause after all the <i>rescue</i> clauses.</p>
+<h2>Example:</h2>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+begin
+   file = open("/unexistant_file")
+   if file
+      puts "File opened successfully"
+   end
+rescue
+      file = STDIN
+end
+print file, "==", STDIN, "\n"
+</pre>
+<p>This will produce following result. You can see that <i>STDIN</i> is substituted to <i>file</i> because <i>open</i> failed.</p>
+<pre class="prettyprint">
+#&lt;IO:0xb7d16f84&gt;==#&lt;IO:0xb7d16f84&gt;
+</pre>
+<h2>Using <i>retry</i> Statement:</h2>
+<p>You can capture an exception using <i>rescue</i> block and then use <i>retry</i> statement to execute <i>begin</i> block from the beginning.</p> 
+<h2>Syntax:</h2>
+<pre class="prettyprint">
+begin
+    # Exceptions raised by this code will 
+	# be caught by the following rescue clause
+rescue
+    # This block will capture all types of exceptions
+    retry  # This will move control to the beginning of <i>begin</i>
+end
+</pre>
+<h2>Example:</h2>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+begin
+   file = open("/unexistant_file")
+   if file
+      puts "File opened successfully"
+   end
+rescue
+   fname = "existant_file"
+   retry
+end
+</pre>
+<p>The following is the flow of the process:</p>
+<ul class="list">
+<li><p>an exception occurred at open</p></li>
+<li><p>went to rescue. fname was re-assigned</p></li>
+<li><p>by retry went to the beginning of the begin</p></li>
+<li><p>this time file opens successfully</p></li>
+<li><p>continued the essential process.</p></li>
+</ul>
+<p><b>NOTE:</b> Notice that if the file of re-substituted name does not exist this example code retries infinitely. Be careful if you use <i>retry</i> for an exception process.</p>
+<h2>Using <i>raise</i> Statement:</h2>
+<p>You can use <i>raise</i> statement to raise an exception. The following method raises an exception whenever it's called. It's second message will be printed. Program</p>
+<h2>Syntax:</h2>
+<pre class="prettyprint">
+raise 
+
+OR
+
+raise "Error Message" 
+
+OR
+
+raise ExceptionType, "Error Message"
+
+OR
+
+raise ExceptionType, "Error Message" condition
+
+</pre>
+<p>The first form simply reraises the current exception (or a RuntimeError if there is no current exception). This is used in exception handlers that need to intercept an exception before passing it on.</p>
+<p>The second form creates a new <i>RuntimeError</i> exception, setting its message to the given string. This exception is then raised up the call stack.</p>
+<p>The third form uses the first argument to create an exception and then sets the associated message to the second argument.</p>
+<p>The fourth form  is similar to third form but you can add any conditional statement like <i>unless</i> to raise an exception.</p>
+<h2>Example:</h2>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+begin  
+    puts 'I am before the raise.'  
+    raise 'An error has occurred.'  
+    puts 'I am after the raise.'  
+rescue  
+    puts 'I am rescued.'  
+end  
+puts 'I am after the begin block.'  
+</pre>
+<p>This will produce following result:</p>
+<pre class="prettyprint">
+I am before the raise.  
+I am rescued.  
+I am after the begin block.  
+</pre>
+<p>One more example showing usage of <i>raise</i>:</p>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+begin  
+  raise 'A test exception.'  
+rescue Exception =&gt; e  
+  puts e.message  
+  puts e.backtrace.inspect  
+end  
+</pre>
+<p>This will produce following result:</p>
+<pre class="prettyprint">
+A test exception.
+["test.rb:4"]
+</pre>
+<h2>Using <i>ensure</i> Statement:</h2>
+<p>Sometimes you need to guarantee that some processing is done at the end of a block of code, regardless of whether an exception was raised. For example, you may have a file open on entry to the block, and you need to make sure it gets closed as the block exits.</p>
+<p>The <i>ensure</i> clause does just this. ensure goes after the last rescue clause and contains a chunk of code that will always be executed as the block terminates. It doesn't matter if the block exits normally, if it raises and rescues an exception, or if it is terminated by an uncaught exception . the <i>ensure</i> block will get run.</p>
+<h2>Syntax:</h2>
+<pre class="prettyprint">
+begin 
+   #.. process 
+   #..raise exception
+rescue 
+   #.. handle error 
+ensure 
+   #.. finally ensure execution
+   #.. This will always execute.
+end
+</pre>
+<h2>Example:</h2>
+<pre class="prettyprint">
+begin
+  raise 'A test exception.'
+rescue Exception =&gt; e
+  puts e.message
+  puts e.backtrace.inspect
+ensure
+  puts "Ensuring execution"
+end
+</pre>
+<p>This will produce following result:</p>
+<pre class="prettyprint">
+A test exception.
+["test.rb:4"]
+Ensuring execution
+</pre>
+<h2>Using <i>else</i> Statement:</h2>
+<p>If the <i>else</i> clause is present, it goes after the <i>rescue</i> clauses and before any <i>ensure</i>.</p>
+<p>The body of an <i>else</i> clause is executed only if no exceptions are raised by the main body of code.</p>
+<h2>Syntax:</h2>
+<pre class="prettyprint">
+begin 
+   #.. process 
+   #..raise exception
+rescue 
+   # .. handle error
+else
+   #.. executes if there is no exception
+ensure 
+   #.. finally ensure execution
+   #.. This will always execute.
+end
+</pre>
+<h2>Example:</h2>
+<pre class="prettyprint">
+begin
+ # raise 'A test exception.'
+ puts "I'm not raising exception"
+rescue Exception =&gt; e
+  puts e.message
+  puts e.backtrace.inspect
+else
+   puts "Congratulations-- no errors!"
+ensure
+  puts "Ensuring execution"
+end
+</pre>
+<p>This will produce following result:</p>
+<pre class="prettyprint">
+I'm not raising exception
+Congratulations-- no errors!
+Ensuring execution
+</pre>
+<p>Raised error message can be captured using $! variable.</p>
+<h2>Catch and Throw:</h2>
+<p>While the exception mechanism of raise and rescue is great for abandoning execution when things go wrong, it's sometimes nice to be able to jump out of some deeply nested construct during normal processing. This is where catch and throw come in handy.</p>
+<p>The <i>catch</i> defines a block that is labeled with the given name (which may be a Symbol or a String). The block is executed normally until a throw is encountered.</p>
+<h2>Syntax:</h2>
+<pre class="prettyprint">
+throw :lablename
+#.. this will not be executed
+catch :lablename do
+#.. matching catch will be executed after a throw is encountered.
+end
+
+OR
+
+throw :lablename condition
+#.. this will not be executed
+catch :lablename do
+#.. matching catch will be executed after a throw is encountered.
+end
+</pre>
+<h2>Example:</h2>
+<p>The following example uses a throw to terminate interaction with the user if '!' is typed in response to any prompt.</p>
+<pre class="prettyprint">
+def promptAndGet(prompt)
+   print prompt
+   res = readline.chomp
+   throw :quitRequested if res == "!"
+   return res
+end
+
+catch :quitRequested do
+   name = promptAndGet("Name: ")
+   age = promptAndGet("Age: ")
+   sex = promptAndGet("Sex: ")
+   # ..
+   # process information
+end
+promptAndGet("Name:")
+</pre>
+<p>This will produce following result:</p>
+<pre class="prettyprint">
+Name: Ruby on Rails
+Age: 3
+Sex: !
+Name:Just Ruby
+</pre>
+<h2>Class Exception:</h2>
+<p>Ruby's standard classes and modules raise exceptions. All the exception classes form a hierarchy, with the class Exception at the top. The next level contains seven different types:</p>
+<ul class="list">
+<li><p>Interrupt</p></li>
+<li><p>NoMemoryError</p></li>
+<li><p>SignalException</p></li>
+<li><p>ScriptError</p></li>
+<li><p>StandardError</p></li>
+<li><p>SystemExit</p></li>
+</ul>
+<p>There is one other exception at this level, Fatal, but the Ruby interpreter only uses this internally.</p>
+<p>Both ScriptError and StandardError have a number of subclasses, but we do not need to go into the details here. The important thing is that if we create our own exception classes, they need to be subclasses of either class Exception or one of its descendants.</p>
+<p>Let's look at an example:</p>
+<pre class="prettyprint">
+class FileSaveError &lt; StandardError
+   attr_reader :reason
+   def initialize(reason)
+      @reason = reason
+   end
+end
+</pre>
+<p>Now look at the following example which will use this exception:</p>
+<pre class="prettyprint">
+File.open(path, "w") do |file|
+begin
+    # Write out the data ...
+rescue
+    # Something went wrong!
+    raise FileSaveError.new($!)
+end
+end
+</pre>
+<p>The important line here is raise <i>FileSaveError.new($!)</i>. We call raise to signal that an exception has occurred, passing it a new instance of FileSaveError, with the reason being that specific exception caused the writing of the data to fail.</p>
+<hr />
+<div class="pre-btn">
+<a href="ruby_input_output.htm">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/ruby_exceptions.pdf" alt="Ruby Exceptions" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="ruby_object_oriented.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.htm" target="_top">ASP.NET </a> |
+<a href="../jquery/index.htm" target="_top">jQuery </a> |
+<a href="../ajax/index.htm" target="_top">AJAX </a> |
+<a href="../ant/index.htm" target="_top">ANT</a> |
+<a href="../jsp/index.htm" target="_top">JSP </a> |
+<a href="../servlets/index.htm" target="_top">Servlets </a> |
+<a href="../log4j/index.htm" target="_top">log4j </a> |
+<a href="../ibatis/index.htm" target="_top">iBATIS </a> |
+<a href="../hibernate/index.htm" target="_top">Hibernate </a> |
+<a href="../jdbc/index.htm" target="_top">JDBC </a> |
+<a href="../struts_2/index.htm" target="_top">Struts </a> |
+<a href="../html5/index.htm" target="_top">HTML5 </a> |
+<a href="../sql/index.htm" target="_top">SQL </a> |
+<a href="../mysql/index.htm" target="_top">MySQL </a> |
+<a href="../cplusplus/index.htm" target="_top">C++ </a> |
+<a href="../unix/index.htm" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/ruby/ruby_exceptions.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Apr 2013 19:45:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

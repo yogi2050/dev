@@ -1,0 +1,483 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/more.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:01 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>more - Unix, Linux Command</title>
+<meta name="Description" Content="more - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>more - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+<b> more</b>
+- file perusal filter for crt viewing
+<h1 class="manpages">SYNOPSIS</h1>
+<b> more</b>
+[-<b>dlfpcsu</b>]
+[-<b>num</b>]
+[+/ pattern]
+[+ linenum]
+[<i></i>]
+<h1 class="manpages">DESCRIPTION</h1>
+<b> More</b>
+is a filter for paging through text one screenful at a time.  This version
+is especially primitive.  Users should realize that
+<b>less</b>(1)
+provides
+<b>more</b>(1)
+emulation and extensive enhancements.
+<h1 class="manpages">OPTIONS</h1>
+Command line options are described below.
+Options are also taken from the environment variable
+<i> MORE</i>
+(make sure to precede them with a dash (&#145;&#145;-&#146;&#146;)) but command
+line options will override them.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">-<b>num</b> 
+</td></tr><tr><td>&nbsp;</td><td>
+This option specifies an integer which is the screen size (in lines).
+</td></tr>
+<tr valign="top"><td>-<b>d</b> 
+</td><td>
+<b> more</b>
+will prompt the user with the message "[Press space to continue, &#146;q&#146; to
+quit.]" and will display "[Press &#146;h&#146; for instructions.]" instead of ringing
+the bell when an illegal key is pressed.
+</td></tr>
+<tr valign="top"><td>-<b>l</b> 
+</td><td>
+<b> more</b>
+usually treats
+<b> ^L</b>
+(form feed) as a special character, and will pause after any line that
+contains a form feed.  The
+-<b>l</b> 
+option will prevent this behavior.
+</td></tr>
+<tr valign="top"><td>-<b>f</b> 
+</td><td>
+Causes
+<b> more</b>
+to count logical, rather than screen lines (i.e., long lines are not
+folded).
+</td></tr>
+<tr valign="top"><td>-<b>p</b> 
+</td><td>
+Do not scroll.  Instead, clear the whole screen and then display the text.
+</td></tr>
+<tr valign="top"><td>-<b>c</b> 
+</td><td>
+Do not scroll.  Instead, paint each screen from the top, clearing the
+remainder of each line as it is displayed.
+</td></tr>
+<tr valign="top"><td>-<b>s</b> 
+</td><td>
+Squeeze multiple blank lines into one.
+</td></tr>
+<tr valign="top"><td>-<b>u</b> 
+</td><td>
+Suppress underlining.
+</td></tr>
+<tr valign="top"><td><b> +/</b>
+</td><td>
+The
+<b> +/</b>
+option specifies a string that will be searched for before
+each file is displayed.
+</td></tr>
+<tr valign="top"><td><b> +num</b>
+</td><td>
+Start at line number
+<b> num</b>.
+</td></tr>
+</table>
+<h1 class="manpages">COMMANDS</h1>
+Interactive commands for
+<b> more</b>
+are based on
+<b>vi</b>(1).
+Some commands may be preceded by a decimal number, called k in the
+descriptions below.
+In the following descriptions, ^X means control-X.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td><b> h or</b><b> ?</b>
+</td><td>
+Help: display a summary of these commands.
+If you forget all the other commands, remember this one.
+</td></tr>
+<tr valign="top"><td><b> SPACE</b>
+</td><td>
+Display next k lines of text.  Defaults to current screen size.
+</td></tr>
+<tr valign="top"><td><b> z</b>
+</td><td>
+Display next k lines of text.  Defaults to current screen size.  Argument
+becomes new default.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> RETURN</b>
+</td></tr><tr><td>&nbsp;</td><td>
+Display next k lines of text.  Defaults to 1.  Argument becomes new
+default.
+</td></tr>
+<tr valign="top"><td><b> d or</b><b> ^D</b>
+</td><td>
+Scroll k lines.  Default is current scroll size, initially 11.  Argument
+becomes new default.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> q</b>
+or
+<b> Q</b>
+or
+<b> INTERRUPT</b>
+</td></tr><tr><td>&nbsp;</td><td>
+Exit.
+</td></tr>
+<tr valign="top"><td><b> s</b>
+</td><td>
+Skip forward k lines of text.  Defaults to 1.
+</td></tr>
+<tr valign="top"><td><b> f</b>
+</td><td>
+Skip forward k screenfuls of text.  Defaults to 1.
+</td></tr>
+<tr valign="top"><td><b> b or</b><b> ^B</b>
+</td><td>
+Skip backwards k screenfuls of text.  Defaults to 1.
+Only works with files, not pipes.
+</td></tr>
+<tr valign="top"><td><b> &#146;</b>
+</td><td>
+Go to place where previous search started.
+</td></tr>
+<tr valign="top"><td><b> =</b>
+</td><td>
+Display current line number.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> /</b><i> pattern</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Search for kth occurrence of regular expression.  Defaults to 1.
+</td></tr>
+<tr valign="top"><td><b> n</b>
+</td><td>
+Search for kth occurrence of last r.e.  Defaults to 1.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> !&lt;cmd&gt; or</b><b> :!&lt;cmd&gt;</b>
+</td></tr><tr><td>&nbsp;</td><td>
+Execute &lt;cmd&gt; in a subshell
+</td></tr>
+<tr valign="top"><td><b> v</b>
+</td><td>
+Start up an editor at current line.
+The editor is taken from the environment variable VISUAL if defined,
+or EDITOR if VISUAL is not defined,
+or defaults to "vi" if neither VISUAL nor EDITOR is defined.
+</td></tr>
+<tr valign="top"><td><b> ^L</b>
+</td><td>
+Redraw screen
+</td></tr>
+<tr valign="top"><td><b> :n</b>
+</td><td>
+Go to kth next file.  Defaults to 1.
+</td></tr>
+<tr valign="top"><td><b> :p</b>
+</td><td>
+Go to kth previous file.  Defaults to 1.
+</td></tr>
+<tr valign="top"><td><b> :f</b>
+</td><td>
+Display current file name and line number
+</td></tr>
+<tr valign="top"><td><b> &#46;</b>
+</td><td>
+Repeat previous command
+</td></tr>
+</table>
+<h1 class="manpages">ENVIRONMENT</h1>
+<b> More</b>
+utilizes the following environment variables, if they exist:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td><i> MORE</i>
+</td><td>
+This variable may be set with favored options to
+<b> more</b>.
+</td></tr>
+<tr valign="top"><td><i> SHELL</i>
+</td><td>
+Current shell in use (normally set by the shell at login time).
+</td></tr>
+<tr valign="top"><td><i> TERM</i>
+</td><td>
+Specifies terminal type, used by more to get the terminal
+characteristics necessary to manipulate the screen.
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<b>less</b>(1)
+<h1 class="manpages">AUTHORS</h1>
+Eric Shienbrood, UC Berkeley
+<!-- Need break --><br />
+Modified by Geoff Peck, UCB to add underlining, single spacing
+<!-- Need break --><br />
+Modified by John Foderaro, UCB to add -c and MORE environment variable
+<h1 class="manpages">HISTORY</h1>
+The
+<b> more</b>
+command appeared in
+<i>BSD 3.0 .</i>
+This man page documents
+<b> more</b>
+version 5.19 (Berkeley 6/29/88), which is currently in use in the Linux
+community.  Documentation was produced using several other versions of the
+man page, and extensive inspection of the source code.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionf633.html?tutorial=unix_commands&amp;file=more.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/more.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:01 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

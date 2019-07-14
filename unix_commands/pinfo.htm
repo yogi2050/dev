@@ -1,0 +1,884 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/pinfo.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>pinfo - Unix, Linux Command</title>
+<meta name="Description" Content="pinfo - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>pinfo - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+<b>pinfo</b> - curses based lynx-style info browser
+<h1 class="manpages">SYNTAX</h1>
+<b>pinfo</b> [<i>options</i>]
+[<b>infopage</b>]
+<h1 class="manpages">DESCRIPTION</h1>
+This is a program for viewing info files. You specify which page you want to
+read by passing it an
+<i>infopage</i> argument. This argument contains the name of an info page (i.e. &#146;bash&#146;).
+The program will then (by default) search for it in the current directory,
+<i>/usr/share/info</i>, <i>/usr/info</i>, <i>/usr/local/share/info</i>, <i>/usr/local/info</i>. and
+<i>/opt/info</i>. The search path can be adjusted by INFOPATH environment variable or in the configuration
+file. Pinfo will also automatically add the suffix &#146;-info&#146;, &#146;-info.Z&#146;, &#146;-info.gz&#146;, or &#146;-info.bz2&#146;.
+At present other suffixes are not recognized, but you can easily add them to
+the function
+<i>openinfo()</i> in
+<i>filehandling_functions.c</i>. <p>
+When the search for info pages fails, man is called with the infopage
+argument, and it&#146;s output is parsed by pinfo. This means that when you don&#146;t
+have the appropriate info page, but have a man page instead; the man page
+will be viewed.
+<p>
+When no <i>infopage</i> is specified, the default &#145;dir&#146; page is shown.
+<p>
+Supported options are
+<p>
+<b>-h</b>, <b>--help</b> - print help information and exit.
+<p>
+<b>-v</b>, <b>--version</b> - print version information and exit.
+<p>
+<b>-m</b>, <b>--manual</b> - uses manual page instead of info by default. (pinfo -m could be used as a
+manual pager). <b>Warning</b>: Everything what follows this option is passed
+to the &#145;<i>man</i>&#146; program. Don&#146;t be confused if pinfo options, which
+followed &#145;<b>-m</b>&#146; don&#146;t work. When using this option, pinfo does not parse
+the info options as usual! It invokes the man part of program.
+<p>
+You can also call the man function of pinfo in another way. When pinfo is
+called with an argv[0] (the program file name), which contains the word &#146;man&#146;
+in it&#146;s name, the man functions are enabled automatically.
+<p>
+Previously there was a symlink to pinfo, called pman, but I had to remove it
+from the distribution, since it&#146;s name was in conflict with some other
+utility. Anyway, you can feel free to create such a link if you wish.
+<p>
+<b>-r</b>, <b>--raw-filename</b> - uses a raw filename first (i.e. the name which you specified as
+<i>infopage</i> is considered to be a real file in the specified location).
+<p>
+<b>-f</b>, <b>--file</b> synonym for -r.
+<p>
+<b>-a</b>, <b>--apropos</b> - if this is set, apropos is called when no man or info page could be found.
+<p>
+<b>-c</b>, <b>--cut-man-headers</b> - if this is set, man parsing code will try to cut out the repeated man
+headers. Use with care. ;)
+<p>
+<b>-s</b>, <b>--squeeze-lines</b>- cut empty lines from manual pages. This option enables auto cutting of every
+repeated newline in a manual page.
+<p>
+<b>-t</b>, <b>--force-manual-tag-table</b>- forces manual detection of tag table. This allows you to view info pages,
+which may be corrupted. (as i.e. version of jed&#146;s pages, shipped with
+RH5.0). The tag table corruption usually appears in that the info links,
+which you follow, move you to quite unexpected nodes.
+<p>
+<b>--node=</b><i>nodename</i><b></b>, <b>--node </b><i>nodename</i><b></b>- Go to the node &#145;<i>nodename</i>&#146; of info file. Since 0.6.7 it is also
+possible to specify nodes as in standalone info via file names, like
+&#145;(gcc)Introduction&#146;.
+<p>
+<b>--rcfile=</b><i>filename</i><b></b>, <b>--rcfile </b><i>filename</i><b></b>- Use alternate configuration file.
+<p>
+<b>--long-manual-links</b>, <b>-l</b>- Use long link names in manuals. On some systems the manual hierarchy is
+divided into subsections like &#145;3ncurses&#146;, etc, while on other systems all
+belongs to section &#145;3&#146;. If this option is what your system is like, feel
+free to use it.
+<p>
+<b>--clear-at-exit</b>, <b>-x</b>- Clear screen at exit.
+<p>
+The options are handled by GNU getopt, so you can here (as in other
+programs) abbreviate the option names to the minimal number of
+characters by which the options differ.
+<p>
+Warning! If you do not have getopt, these options will not work!
+<p>
+<h1 class="manpages">DEFAULT KEYS WHEN BROWSING INFO FILE</h1>
+<p>
+Just take a look at the example configuration file (below), and at the key
+descriptions. Keys available in manual viewer differ a bit from the keys
+available in info viewer.
+<p>
+<h1 class="manpages">ENVIRONMENT</h1>
+There is a variable $INFOPATH, which can specify the paths to be searched
+for info files. It&#146;s format is similar to that of the $PATH variable. An
+example setting could look like:
+<p>
+<b>/usr/info:/usr/somewhere/info:/not/even/in/usr/info</b> <p>
+etc. Directories are separated by colons.
+<p>
+<h1 class="manpages">COLOR AND KEY DEFINITIONS</h1>
+<p>
+There are configuration files called ~/.pinforc and
+[prefix]/etc/pinforc, for local and global configuration (where prefix is the
+prefix of the directory, where pinfo is installed, i.e. /usr/local, or /).
+Here&#146;s an example of such a file; we&#146;ll discuss the contents below:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<p>
+# Here are some color setting.
+# Whitespace between the entries is optional.
+COL_NORMAL = COLOR_WHITE, COLOR_BLACK, NO_BOLD, NO_BLINK
+COL_MENUSELECTED = COLOR_RED, COLOR_BLACK, BOLD, NO_BLINK
+COL_MENU=COLOR_BLUE,COLOR_BLACK,BOLD, NO_BLINK
+COL_NOTESELECTED=COLOR_RED,COLOR_BLACK,BOLD, NO_BLINK
+COL_NOTE=COLOR_GREEN,COLOR_BLACK,BOLD, NO_BLINK
+COL_TOPLINE=COLOR_YELLOW,COLOR_BLUE,BOLD, NO_BLINK
+COL_BOTTOMLINE=COLOR_YELLOW,COLOR_BLUE,BOLD, NO_BLINK
+COL_MANUALBOLD=COLOR_WHITE,COLOR_BLACK,BOLD, NO_BLINK
+COL_MANUALITALIC=COLOR_WHITE,COLOR_BLACK,BOLD, NO_BLINK
+COL_URL=COLOR_MAGENTA,COLOR_BLACK,BOLD, NO_BLINK
+COL_URLSELECTED=COLOR_RED,COLOR_BLACK,NO_BOLD, NO_BLINK
+COL_INFOHIGHLIGHT=COLOR_WHITE,COLOR_BLACK,BOLD, NO_BLINK
+#
+# Here are some keybindings as well...
+#
+KEY_TOTALSEARCH_1 = &#146;s&#146;
+KEY_TOTALSEARCH_2 = &#146;S&#146;
+KEY_SEARCH_1 = &#146;/&#146;
+KEY_SEARCH_2 = &#146;.&#146;
+KEY_GOTO_1=&#146;g&#146;
+KEY_GOTO_2=&#146;m&#146;
+KEY_HOME_1=&#146;h&#146;
+KEY_HOME_2=&#146;H&#146;
+KEY_PREVNODE_1=&#146;p&#146;
+KEY_PREVNODE_2=&#146;P&#146;
+KEY_NEXTNODE_1=&#146;n&#146;
+KEY_NEXTNODE_2=&#146;N&#146;
+KEY_UP_1=KEY_UP
+KEY_UP_2=&#146;u&#146;
+KEY_END_1=
+KEY_END_2=&#146;e&#146;
+KEY_PGDN_1=KEY_NPAGE
+KEY_PGDN_2=&#146; &#146;
+KEY_PGDN_AUTO_1=0
+KEY_PGDN_AUTO_2=&#146; &#146;
+KEY_PGUP_1=KEY_PPAGE
+KEY_PGUP_2=&#146;b&#146;
+KEY_PGUP_AUTO_1=0
+KEY_PGUP_AUTO_2=&#146;b&#146;
+KEY_DOWN_1=KEY_DOWN
+KEY_DOWN_2=&#146;d&#146;
+KEY_TOP_1=KEY_HOME
+KEY_TOP_2=&#146;t&#146;
+KEY_BACK_1=KEY_LEFT
+KEY_BACK_2=&#146;l&#146;
+KEY_FOLLOWLINK_1=KEY_RIGHT
+KEY_FOLLOWLINK_2=&#146;0
+# 12 is a code for ctrl+l
+KEY_REFRESH_1=12
+KEY_REFRESH_2=&#146;~&#146;
+KEY_SHELLFEED_1=&#146;!&#146;
+KEY_SHELLFEED_2=&#146;1&#146;
+KEY_QUIT_1=&#146;q&#146;
+KEY_QUIT_2=&#146;Q&#146;
+KEY_DIRPAGE_1=&#146;d&#146;
+KEY_DIRPAGE_2=&#146;D&#146;
+KEY_GOLINE_1=&#146;l&#146;
+KEY_GOLINE_2=0
+KEY_PRINT_1=&#146;]&#146;
+KEY_PRINT_2=0
+#
+# Some options, explained in the man page
+#
+MANUAL=false
+CUT-MAN-HEADERS=true
+CUT-EMPTY-MAN-LINES=true
+RAW-FILENAME=false
+APROPOS=false
+DONT-HANDLE-WITHOUT-TAG-TABLE=false
+LONG-MANUAL-LINKS=false
+FILTER-0xB7=true
+QUIT-CONFIRMATION=false
+QUIT-CONFIRM-DEFAULT=no
+CLEAR-SCREEN-AT-EXIT=true
+STDERR-REDIRECTION="2&gt; /dev/null"
+HTTPVIEWER=lynx
+FTPVIEWER=lynx
+MAILEDITOR=pine
+MANLINKS=1:8:2:3:4:5:6:7:9:n:p:o:3X11:3Xt
+INFOPATH=/usr/info:/usr/share/info:/usr/local/info
+HIGHLIGHTREGEXP=Bash.*has
+SAFE-USER=nobody
+SAFE-GROUP=nobody
+</pre></td></tr>
+</table>
+<p>
+As you can see, the format is simple. First I&#146;ll explain the color
+definitions. First you must enter a color name (all available color
+names are present in the example, and they&#146;re self explanatory, I
+think. There is also a special color COLOR_DEFAULT, which stands for
+transparency). Then you enter the foreground color, and the background
+color. The BOLD attribute means that we want the foreground color to
+be highlighted. (i.e.  light blue, light green). BLINK attribute is the
+blinking attribute, or highlighted background in some other configurations.
+<p>
+Now let&#146;s move to the key definitions. Here we first put a key name (again
+all keys are present in the example); then we enter it&#146;s value -- either
+surrounded
+by apostrophes, or a keycode number (like in KEY_REFRESH_1), or its mnemonic
+code name if it&#146;s a special key (like i.e. in KEY_FOLLOWLINK_1).
+<p>
+If you wish to specify key by code value, use the supplied program &#146;testkey&#146;
+to obtain the needed value. It mainly is a feature, when you want to add
+some CTRL+letter keybindings, and similar.
+<p>
+For each function you can bind two keys, i.e. you could bind both
+Enter and Cursor Right to the FollowLink-function.  As you can see in
+the example above, the two key names are KEY_FOLLOWLINK_1 and
+KEY_FOLLOWLINK_2. 
+<p>
+Here&#146;s an explanation of the key names:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>KEY_TOTALSEARCH_1</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Key for searching through all nodes of info file.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>KEY_TOTALSEARCH_2</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Alternate key for searching through all nodes of info file.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>KEY_SEARCH_1</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Key for searching through current node (or manual).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>KEY_SEARCH_2</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Alternate key for searching through current node (or manual).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>KEY_SEARCH_AGAIN_1</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Key for repeating the last search.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>KEY_SEARCH_AGAIN_2</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Alternate key for repeating the last search.
+</td></tr>
+<tr valign="top"><td>
+<b>KEY_GOTO_1</b> </td><td valign="bottom">
+Key for explicitly going to a node (by specifying it&#146;s name).
+</td></tr>
+<tr valign="top"><td>
+<b>KEY_GOTO_2</b> </td><td valign="bottom">
+Alternate key for explicitly going to a node (by specifying it&#146;s name).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>KEY_PREVNODE_1</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Key for going to a node marked as &#146;Prev&#146; in the header. In man page viewer
+this goes to the previous man section.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>KEY_PREVNODE_2</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Alternate key for going to a node marked as &#146;Prev&#146; in the header. In man page
+viewer this goes to the previous man section.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>KEY_NEXTNODE_1</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Key for going to a node marked as &#146;Next&#146; in the header. In man page viewer
+this goes to the next man section.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>KEY_NEXTNODE_2</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Alternate key for going to a node marked as &#146;Next&#146; in the header. In man page
+viewer this goes to the next man section.
+</td></tr>
+<tr valign="top"><td>
+<b>KEY_UP_1</b> </td><td valign="bottom">
+Key for scrolling text one line up.
+</td></tr>
+<tr valign="top"><td>
+<b>KEY_UP_2</b> </td><td valign="bottom">
+Alternate key for scrolling text one line up.
+</td></tr>
+<tr valign="top"><td>
+<b>KEY_END_1</b> </td><td valign="bottom">
+Key for going to the end of the node.
+</td></tr>
+<tr valign="top"><td>
+<b>KEY_END_2</b> </td><td valign="bottom">
+Alternate key for going to the end of the node.
+</td></tr>
+<tr valign="top"><td>
+<b>KEY_PGDN_1</b> </td><td valign="bottom">
+Key for going one page down in the viewed node.
+</td></tr>
+<tr valign="top"><td>
+<b>KEY_PGDN_2</b> </td><td valign="bottom">
+Alternate key for going one page down in the viewed node.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>KEY_PGDN_AUTO_1</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Key for going to the next node when you&#146;re at the end of node (default
+is zero -- turned off).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>KEY_PGDN_AUTO_2</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Alternate key for going to the next node when you&#146;re at the end of node
+(default is space, as for pgdn_2).
+</td></tr>
+<tr valign="top"><td>
+<b>KEY_HOME_1</b> </td><td valign="bottom">
+Key for going to the beginning of the node.
+</td></tr>
+<tr valign="top"><td>
+<b>KEY_HOME_2</b> </td><td valign="bottom">
+Alternate key for going to the beginning of the node.
+</td></tr>
+<tr valign="top"><td>
+<b>KEY_PGUP_1</b> </td><td valign="bottom">
+Key for going one page up in the viewed node.
+</td></tr>
+<tr valign="top"><td>
+<b>KEY_PGUP_2</b> </td><td valign="bottom">
+Alternate key for going one page up in the viewed node.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>KEY_PGUP_AUTO_1</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Key for going to the &#145;up&#146; node, when being at the top of node. (Default value
+is zero -- turned off).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>KEY_PGUP_AUTO_2</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Alternate key for going to the &#145;up&#146; node, when being at the top of node.
+(Default value is &#145;-&#146;, as for pgup_2).
+</td></tr>
+<tr valign="top"><td>
+<b>KEY_DOWN_1</b> </td><td valign="bottom">
+Key for scrolling the text down one line.
+</td></tr>
+<tr valign="top"><td>
+<b>KEY_DOWN_2</b> </td><td valign="bottom">
+Alternate key for scrolling the text down one line.
+</td></tr>
+<tr valign="top"><td>
+<b>KEY_TOP_1</b> </td><td valign="bottom">
+Key for going to the top (first) node.
+</td></tr>
+<tr valign="top"><td>
+<b>KEY_TOP_2</b> </td><td valign="bottom">
+Alternate key for going to the top (first) node.
+</td></tr>
+<tr valign="top"><td>
+<b>KEY_BACK_1</b> </td><td valign="bottom">
+Key for going back (in the history of viewed nodes).
+</td></tr>
+<tr valign="top"><td>
+<b>KEY_BACK_2</b> </td><td valign="bottom">
+Alternate key for going back (in the history of viewed nodes).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>KEY_FOLLOWLINK_1</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Key for following a hypertext link.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>KEY_FOLLOWLINK_2</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Alternate key for following a hypertext link.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>KEY_REFRESH_1</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Key for refreshing the screen (hard coded is the ^L value).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>KEY_REFRESH_2</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Alternate key for refreshing the screen.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>KEY_SHELLFEED_1</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Key for calling a shell command, and passing the viewed node to the stdin of
+that command.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>KEY_SHELLFEED_2</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Alternate key for calling a shell command, and passing the viewed node to the
+stdin of that command.
+</td></tr>
+<tr valign="top"><td>
+<b>KEY_QUIT_1</b> </td><td valign="bottom">
+Key for exiting the program.
+</td></tr>
+<tr valign="top"><td>
+<b>KEY_QUIT_2</b> </td><td valign="bottom">
+Alternate key for exiting the program.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>KEY_GOLINE_1</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Key for going to a specified line in file.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>KEY_GOLINE_2</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Alternate key for going to a specified line in file.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>KEY_PRINT_1</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Key for printing viewed node or man page.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>KEY_PRINT_2</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Alternate key for printing viewed node or man page.
+<p>
+</td></tr>
+</table>
+<p>
+The special mnemonics for keys (which are defined at present) are:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>KEY_BREAK</b> <!-- Consumed .TP  -->
+<br />
+<b>KEY_DOWN</b> <!-- Consumed .TP  -->
+<br />
+<b>KEY_UP</b> <!-- Consumed .TP  -->
+<br />
+<b>KEY_LEFT</b> <!-- Consumed .TP  -->
+<br />
+<b>KEY_RIGHT</b> <!-- Consumed .TP  -->
+<br />
+<b>KEY_DOWN</b> <!-- Consumed .TP  -->
+<br />
+<b>KEY_HOME</b> <!-- Consumed .TP  -->
+<br />
+<b>KEY_BACKSPACE</b> <!-- Consumed .TP  -->
+<br />
+<b>KEY_NPAGE</b> <!-- Consumed .TP  -->
+<br />
+<b>KEY_PPAGE</b> <!-- Consumed .TP  -->
+<br />
+<b>KEY_END</b> [Note: this works probably <b>ONLY</b> with Linux ncurses] <!-- Consumed .TP -->
+<br />
+<b>KEY_F(x)</b> <!-- Consumed .TP -->
+<br />
+<b>KEY_CTRL(&#146;c&#146;)</b> </td><td valign="bottom">
+- this assigns the key value to a <i>ctrl+c</i> combination. <i>c</i> may be
+any letter you wish.
+</td></tr>
+<tr valign="top"><td>
+<b>KEY_ALT(&#146;c&#146;)</b> </td><td valign="bottom">
+- this assigns the key value to a <i>alt+c</i> combination. <i>c</i> may be
+any letter you wish. If <i>alt</i> key won&#146;t work, you may use <i>ESC+key</i>
+combination.
+</td></tr>
+<tr valign="top"><td>
+<b>&#146;c&#146;</b> </td><td valign="bottom">
+- this means a printable character <i>c</i>. The syntax is just like in
+C/C++ ;).
+</td></tr>
+<tr valign="top"><td>
+<b>[number]</b> </td><td valign="bottom">
+- you can also specify key as it&#146;s code number. It is useful e.g. when
+specifying control keys, and some nonstandard keys.
+A numerical value of zero turns given key binding off.
+<p>
+</td></tr>
+</table>
+See manual page for curs_getch (3x) for description of their meaning.
+<p>
+Warning! Try not to create some serious key binding conflicts!
+<p>
+The options in the last part of the example configuration file should
+be fairly self-explanatory.  The variables that can be set to true or
+false do the same things as the command line arguments with the same
+names.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>MANUAL</b> </td><td valign="bottom">
+If this is set to
+<b>true</b> the default is to first check for a man page, instead of a texinfo
+file.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>CUT-MAN-HEADERS</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+If set to true, then pinfo tries to cut off the repeated headers
+throughout man pages.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>CUT-EMPTY-MAN-LINES</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+If set to true, then pinfo tries to cut off the repeated newlines (i.e. it
+will shorten each set of consecutive newlines to one newline).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>RAW-FILENAME</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+If set to true, the file argument is taken to be the name of a file in
+the current working directory, i.e. the directories in
+<b>INFOPATH</b> will only be searched if a file with this name is not in the working
+directory.
+</td></tr>
+<tr valign="top"><td>
+<b>APROPOS</b> </td><td valign="bottom">
+If set to true,
+<b>apropos</b> is called if no info or man page is found.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>DONT-HANDLE-WITHOUT-TAG-TABLE</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+If set to
+<b>true</b> , pinfo will not attempt to display texinfo pages
+without tag tables.
+</td></tr>
+<tr valign="top"><td>
+<b>HTTPVIEWER</b> </td><td valign="bottom">
+Set this to the program you want to use to follow http links in
+documents.
+</td></tr>
+<tr valign="top"><td>
+<b>FTPVIEWER</b> </td><td valign="bottom">
+Set this to the program you want to use to follow ftp links in
+documents.
+</td></tr>
+<tr valign="top"><td>
+<b>MAILEDITOR</b> </td><td valign="bottom">
+Set this to your favorite email program, and it will be started if
+you follow an email link in a document.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>PRINTUTILITY</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Utility, which you use for printing. I.e. &#145;lpr&#146;. If you don&#146;t use any, you
+may also try something like &#145;cat &gt;/dev/lp1&#146;, or sth. ;)
+</td></tr>
+<tr valign="top"><td>
+<b>MANLINKS</b> </td><td valign="bottom">
+This specifies the section names, which may be referenced in your man pages
+(i.e. Xtoolkit man pages match the section 3Xt (see for example
+XtVaCreateWidget)
+manpage), Xlib function pages match section 3X11, etc. Such extensions may
+not be recognized by default, so it is a good idea to add them).
+</td></tr>
+<tr valign="top"><td>
+<b>INFOPATH</b> </td><td valign="bottom">
+This allows you to override the default search path for info pages. The paths
+should be separated by colons.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>MAN-OPTIONS</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+This specifies the options, which should be passed to the &#145;man&#146; program.
+(see man(1) for description of what they&#146;re like).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>STDERR-REDIRECTION</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+Pinfo allows you to redirect the stderr output of called programs. For
+example if you don&#146;t want to see man&#146;s error messages about manual page
+formatting, you can use <i>STDER-REDIRECTION="2&gt; /dev/null". This is the
+default.
+</td></tr>
+<tr valign="top"><td colspan="2">
+</i><b>LONG-MANUAL-LINKS</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+This is another true/false option, which decides whether your system
+supports long manual section names, or not. (i.e. "3ncurses" instead of "3").
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>FILTER-0xB7</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+This decides, whether you want to convert 0xb7 chars to &#145;o&#146;, or not. For
+example for iso-8859-2 fonts this makes man&#146;s list marks a bit nicer ;)
+(look for example at perl&#146;s man page, to see how those marks look like).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>QUIT-CONFIRMATION</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+This decides whether you want to use quit confirmation on exit, or not.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>QUIT-CONFIRM-DEFAULT</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+This yes/no option determines the default answer to the QUIT-CONFIRMATION
+dialog. (default answer is when you press a key, that does not match the
+asked question).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>CLEAR-SCREEN-AT-EXIT</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+This true/false option determines if you want to have your screen cleared at
+exit, or no.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>CALL-READLINE-HISTORY</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+This true/false option determines if you want to have a prompt of last
+history entry whenever calling readline wrapper, eg. in subsequent searches.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>HIGHLIGHTREGEXP</b> </td></tr><tr valign="top"><td width=10%>&nbsp;</td><td>
+This is an option, through which you may pass to pinfo regexps, which should
+be highlighted when working with document. Warning! This may turn very slow
+if you use it without care!
+</td></tr>
+<tr valign="top"><td>
+<b>SAFE-USER</b> </td><td valign="bottom">
+This option is used to pass the name of user, to which suid when pinfo is
+run with root privileges.
+</td></tr>
+<tr valign="top"><td>
+<b>SAFE-GROUP</b> </td><td valign="bottom">
+This option is used to pass the name of group, to which suid when pinfo is
+run with root privileges.
+<p>
+</td></tr>
+</table>
+<p>
+<h1 class="manpages">INTERNATIONALIZATION SUPPORT</h1>
+Pinfo implements general features of gnu gettext library (the thing, which
+you need to see national messages ;). But it is not the end. Pinfo allows
+you to use national info pages! You only need to put them to your info
+directory, into a subdirectory, which is called &#145;$LANG&#146;.
+<p>
+<h1 class="manpages">LICENSE</h1>
+This program is distributed under the terms of GPL.
+<p>
+<h1 class="manpages">BUGS</h1>
+<p>
+Please send bug reports to the author.
+<p>
+<h1 class="manpages">AUTHOR</h1>
+Przemek Borys &lt;<b><a href="mailto:pborys@dione.ids.pl">pborys@dione.ids.pl</a></b>&gt;
+<p>
+If that E-mail address wont work (since the machine where it is being
+handled is a bit damaged lately), you can try
+<b><a href="mailto:pborys@zeus.polsl.gliwice.pl">pborys@zeus.polsl.gliwice.pl</a></b>, or
+<b><a href="mailto:pborys@p-soft.silesia.linux.org.pl">pborys@p-soft.silesia.linux.org.pl</a></b>.
+<p>
+There was also a lot of other people, who contributed to this code. See the
+AUTHORS file.
+<p>
+<h1 class="manpages">COMMENTS</h1>
+The author would like to read some comments and suggestions from you, if any.
+<p>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionf22d.html?tutorial=unix_commands&amp;file=pinfo.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/pinfo.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

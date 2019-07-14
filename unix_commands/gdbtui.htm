@@ -1,0 +1,609 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/gdbtui.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:41 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>gdbtui - Unix, Linux Command</title>
+<meta name="Description" Content="gdbtui - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>gdbtui - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+gdb - The GNU Debugger
+<h1 class="manpages">SYNOPSIS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>gdb</b> </td><td valign="bottom">
+[<b>-help</b>] [<b>-nx</b>] [<b>-q</b>] [<b>-batch</b>] [<b>-cd=</b> <i>dir</i> ]
+[<b>-f</b>] [<b>-b </b> <i>bps</i>] [<b>-tty=</b> <i>dev</i>] [<b>-s </b> <i>symfile</i> ]
+[<b>-e </b> <i>prog</i> ] 
+[<b>-se </b> <i>prog</i> ]
+[<b>-c </b> <i>core</i> ]
+[<b>-x </b> <i>cmds</i> ]
+[<b>-d </b> <i>dir</i> ]
+[<b></b> <i>prog</i> [<b></b> <i>core</i>|<i>procID</i> ]]
+<!-- ignored unsupported tag .ad -->
+</td></tr>
+</table>
+<h1 class="manpages">DESCRIPTION</h1>
+The purpose of a debugger such as GDB is to allow you to see what is
+going on &#145;&#145;inside&#146;&#146; another program while it executes&#151;or what another
+program was doing at the moment it crashed.
+<p>
+GDB can do four main kinds of things (plus other things in support of
+these) to help you catch bugs in the act:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+   o
+</td><td valign="bottom">
+Start your program, specifying anything that might affect its behavior.
+<p>
+</td></tr>
+<tr valign="top"><td>
+   o
+</td><td valign="bottom">
+Make your program stop on specified conditions.
+<p>
+</td></tr>
+<tr valign="top"><td>
+   o
+</td><td valign="bottom">
+Examine what has happened, when your program has stopped.
+<p>
+</td></tr>
+<tr valign="top"><td>
+   o
+</td><td valign="bottom">
+Change things in your program, so you can experiment with correcting the
+effects of one bug and go on to learn about another.
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+<p>
+You can use GDB to debug programs written in C, C++, and Modula-2.
+Fortran support will be added when a GNU Fortran compiler is ready.
+<p>
+GDB is invoked with the shell command 
+<b>gdb</b> &#46;  Once started, it reads
+commands from the terminal until you tell it to exit with the GDB
+command 
+<b>quit</b> &#46;  You can get online help from 
+<b>gdb</b>  itself
+by using the command 
+<b>help</b> &#46;
+<p>
+You can run 
+<b>gdb</b>  with no arguments or options; but the most
+usual way to start GDB is with one argument or two, specifying an
+executable program as the argument:
+<p>
+gdb program
+<p>
+<p>
+You can also start with both an executable program and a core file specified:
+<p>
+gdb program core
+<p>
+<p>
+You can, instead, specify a process ID as a second argument, if you want
+to debug a running process:
+<p>
+gdb program 1234
+<p>
+<p>
+would attach GDB to process 
+<b>1234</b>  (unless you also have a file
+named &#145;
+<b>1234</b> &#146;; GDB does check for a core file first).
+<p>
+Here are some of the most frequently needed GDB commands:
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>break </b>[<i>file</i><b>:</b>]<i>function</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+
+Set a breakpoint at 
+<i>function</i>  (in 
+<i>file</i> ).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>run </b>[<i>arglist</i>] </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Start your program (with 
+<i>arglist</i> , if specified).
+</td></tr>
+<tr valign="top"><td>
+<b>bt</b> </td><td valign="bottom">
+Backtrace: display the program stack.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>print</b><i> expr</i><b></b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+
+Display the value of an expression.
+</td></tr>
+<tr valign="top"><td>
+<b>c</b> </td><td valign="bottom">
+Continue running your program (after stopping, e.g. at a breakpoint).
+</td></tr>
+<tr valign="top"><td>
+<b>next</b> </td><td valign="bottom">
+Execute next program line (after stopping); step 
+<i>over</i>  any
+function calls in the line.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>edit </b>[<i>file</i><b>:</b>]<i>function</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+look at the program line where it is presently stopped.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>list </b>[<i>file</i><b>:</b>]<i>function</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+type the text of the program in the vicinity of where it is presently stopped.
+</td></tr>
+<tr valign="top"><td>
+<b>step</b> </td><td valign="bottom">
+Execute next program line (after stopping); step 
+<i>into</i>  any
+function calls in the line.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>help </b>[<i>name</i>] </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Show information about GDB command 
+<i>name</i> , or general information
+about using GDB.
+</td></tr>
+<tr valign="top"><td>
+<b>quit</b> </td><td valign="bottom">
+Exit from GDB.
+</td></tr>
+<!-- PP ends table -->
+</table>
+For full details on GDB, see 
+<i></i> Using GDB: A Guide to the GNU Source-Level Debugger
+, by Richard M. Stallman and Roland H. Pesch.  The same text is available online
+as the 
+<b>gdb</b>  entry in the 
+<b>info</b>  program.
+<h1 class="manpages">OPTIONS</h1>
+Any arguments other than options specify an executable
+file and core file (or process ID); that is, the first argument
+encountered with no
+associated option flag is equivalent to a &#145;
+<b>-se</b> &#146; option, and the
+second, if any, is equivalent to a &#145;
+<b>-c</b> &#146; option if it&#146;s the name of a file.  Many options have
+both long and short forms; both are shown here.  The long forms are also
+recognized if you truncate them, so long as enough of the option is
+present to be unambiguous.  (If you prefer, you can flag option
+arguments with &#145;
+<b>+</b> &#146; rather than &#145;
+<b>-</b> &#146;, though we illustrate the
+more usual convention.)
+<p>
+All the options and command line arguments you give are processed
+in sequential order.  The order makes a difference when the
+&#145;
+<b>-x</b> &#146; option is used.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-help</b> <!-- Consumed .TP -->
+<br />
+<b>-h</b> </td><td valign="bottom">
+List all options, with brief explanations.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-symbols=</b><i>file</i><b></b> <!-- Consumed .TP -->
+<br />
+<b>-s </b><i>file</i><b></b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+
+Read symbol table from file 
+<i>file</i> &#46;
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>-write</b> </td><td valign="bottom">
+Enable writing into executable and core files.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-exec=</b><i>file</i><b></b> <!-- Consumed .TP -->
+<br />
+<b>-e </b><i>file</i><b></b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+
+Use file 
+<i>file</i>  as the executable file to execute when
+appropriate, and for examining pure data in conjunction with a core
+dump.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-se=</b><i>file</i><b></b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+
+Read symbol table from file 
+<i>file</i>  and use it as the executable
+file.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-core=</b><i>file</i><b></b> <!-- Consumed .TP -->
+<br />
+<b>-c </b><i>file</i><b></b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+
+Use file 
+<i>file</i>  as a core dump to examine.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-command=</b><i>file</i><b></b> <!-- Consumed .TP -->
+<br />
+<b>-x </b><i>file</i><b></b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+
+Execute GDB commands from file 
+<i>file</i> &#46; 
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-directory=</b><i>directory</i><b></b> <!-- Consumed .TP -->
+<br />
+<b>-d </b><i>directory</i><b></b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+
+Add 
+<i>directory</i>  to the path to search for source files.
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>-nx</b> <!-- Consumed .TP -->
+<br />
+<b>-n</b> </td><td valign="bottom">
+Do not execute commands from any &#145;
+<b>.gdbinit</b> &#146; initialization files.
+Normally, the commands in these files are executed after all the
+command options and arguments have been processed.
+<p>
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>-quiet</b> <!-- Consumed .TP -->
+<br />
+<b>-q</b> </td><td valign="bottom">
+&#145;&#145;Quiet&#146;&#146;.  Do not print the introductory and copyright messages.  These
+messages are also suppressed in batch mode.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>-batch</b> </td><td valign="bottom">
+Run in batch mode.  Exit with status 
+<b>0</b>  after processing all the command
+files specified with &#145;
+<b>-x</b> &#146; (and &#145;
+<b>.gdbinit</b> &#146;, if not inhibited).
+Exit with nonzero status if an error occurs in executing the GDB
+commands in the command files.
+<p>
+Batch mode may be useful for running GDB as a filter, for example to
+download and run a program on another computer; in order to make this
+more useful, the message
+<p>
+Program exited normally.
+<p>
+<p>
+(which is ordinarily issued whenever a program running under GDB control
+terminates) is not issued when running in batch mode.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-cd=</b><i>directory</i><b></b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+
+Run GDB using 
+<i>directory</i>  as its working directory,
+instead of the current directory.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-fullname</b> <!-- Consumed .TP -->
+<br />
+<b>-f</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Emacs sets this option when it runs GDB as a subprocess.  It tells GDB
+to output the full file name and line number in a standard,
+recognizable fashion each time a stack frame is displayed (which
+includes each time the program stops).  This recognizable format looks
+like two &#145;
+<b>&nbsp;32</b> &#146; characters, followed by the file name, line number
+and character position separated by colons, and a newline.  The
+Emacs-to-GDB interface program uses the two &#145;
+<b>&nbsp;32</b> &#146; characters as
+a signal to display the source code for the frame.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-b </b><i>bps</i><b></b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+
+Set the line speed (baud rate or bits per second) of any serial
+interface used by GDB for remote debugging.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-tty=</b><i>device</i><b></b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+
+Run using 
+<i>device</i>  for your program&#146;s standard input and output.
+</td></tr>
+<!-- PP ends table -->
+</table>
+<p>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+entry in
+<b>info</b> ;
+<i></i> Using GDB: A Guide to the GNU Source-Level Debugger
+, Richard M. Stallman and Roland H. Pesch, July 1991.
+<h1 class="manpages">COPYING</h1>
+Copyright (c) 1991 Free Software Foundation, Inc.
+<p>
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+<p>
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the
+entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+<p>
+Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions, except that this permission notice may be included in
+translations approved by the Free Software Foundation instead of in
+the original English.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionebeb.html?tutorial=unix_commands&amp;file=gdbtui.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/gdbtui.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:41 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

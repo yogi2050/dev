@@ -1,0 +1,487 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/lspci.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:56 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>lspci - Unix, Linux Command</title>
+<meta name="Description" Content="lspci - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>lspci - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- ignored unsupported tag .IX -->
+<h1 class="manpages">NAME</h1>
+lspci - list all PCI devices
+<h1 class="manpages">SYNOPSIS</h1>
+<b>lspci</b> [<b>options</b>] <h1 class="manpages">DESCRIPTION</h1>
+<b>lspci</b> is a utility for displaying information about all PCI buses in the system and
+all devices connected to them.
+<p>
+By default, it shows a brief list of devices. Use the options described
+below to request either a more verbose output or output intended for
+parsing by other programs.
+<p>
+If you are going to report bugs in PCI device drivers or in
+<i>lspci</i> itself, please include output of "lspci -vvx" or even better "lspci -vvxxx"
+(however, see below for possible caveats).
+<p>
+Some parts of the output, especially in the highly verbose modes, is probably
+intelligible only to experienced PCI hackers. For the exact definitions of
+the fields, please consult either the PCI specifications or the
+<b>header.h</b> and
+<b>/usr/include/linux/pci.h</b> include files.
+<p>
+Access to some parts of the PCI configuration space is restricted to root
+on many operating systems, so the features of
+<i>lspci</i> available to normal users are limited. However,
+<i>lspci</i> tries its best to display as much as available and mark all other
+information with
+<i>&lt;access denied&gt;</i> text.
+<p>
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-v</b> </td><td valign="bottom">
+Be verbose and display detailed information about all devices.
+</td></tr>
+<tr valign="top"><td>
+<b>-vv</b> </td><td valign="bottom">
+Be very verbose and display more details. This level includes everything deemed
+useful.
+</td></tr>
+<tr valign="top"><td>
+<b>-vvv</b> </td><td valign="bottom">
+Be even more verbose and display everything we are able to parse,
+even if it doesn&#146;t look interesting at all (e.g., undefined memory regions).
+</td></tr>
+<tr valign="top"><td>
+<b>-n</b> </td><td valign="bottom">
+Show PCI vendor and device codes as numbers instead of looking them up in the
+PCI ID list.
+</td></tr>
+<tr valign="top"><td>
+<b>-x</b> </td><td valign="bottom">
+Show hexadecimal dump of the standard part of the configuration space (the first
+64 bytes or 128 bytes for CardBus bridges).
+</td></tr>
+<tr valign="top"><td>
+<b>-xxx</b> </td><td valign="bottom">
+Show hexadecimal dump of the whole PCI configuration space. It is available only to root
+as several PCI devices
+<b>crash</b> when you try to read some parts of the config space (this behavior probably
+doesn&#146;t violate the PCI standard, but it&#146;s at least very stupid). However, such
+devices are rare, so you needn&#146;t worry much.
+</td></tr>
+<tr valign="top"><td>
+<b>-xxxx</b> </td><td valign="bottom">
+Show hexadecimal dump of the extended (4096-byte) PCI configuration space available
+on PCI-X 2.0 and PCI Express buses.
+</td></tr>
+<tr valign="top"><td>
+<b>-b</b> </td><td valign="bottom">
+Bus-centric view. Show all IRQ numbers and addresses as seen by the cards on the
+PCI bus instead of as seen by the kernel.
+</td></tr>
+<tr valign="top"><td>
+<b>-t</b> </td><td valign="bottom">
+Show a tree-like diagram containing all buses, bridges, devices and connections
+between them.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-s [[[[&lt;domain&gt;]:]&lt;bus&gt;]:][&lt;slot&gt;][.[&lt;func&gt;]]</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Show only devices in the specified domain (in case your machine has several host bridges,
+they can either share a common bus number space or each of them can address a PCI domain
+of its own; domains are numbered from 0 to ffff), bus (0 to ff), slot (0 to 1f) and function (0 to 7).
+Each component of the device address can be omitted or set to "*", both meaning "any value". All numbers are
+hexadecimal.  E.g., "0:" means all devices on bus 0, "0" means all functions of device 0
+on any bus, "0.3" selects third function of device 0 on all buses and ".4" shows only
+the fourth function of each device.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-d [&lt;vendor&gt;]:[&lt;device&gt;]</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Show only devices with specified vendor and device ID. Both ID&#146;s are given in
+hexadecimal and may be omitted or given as "*", both meaning "any value".
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-i &lt;file&gt;</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Use
+<b></b> &lt;file&gt;
+as the PCI ID list instead of /usr/share/hwdata/pci.ids.
+</td></tr>
+<tr valign="top"><td>
+<b>-m</b> </td><td valign="bottom">
+Dump PCI device data in machine readable form (both normal and verbose format supported)
+for easy parsing by scripts. Please don&#146;t use any other formats for this purpose, they
+are likely to change in the future versions of lspci.
+</td></tr>
+<tr valign="top"><td>
+<b>-D</b> </td><td valign="bottom">
+Always show PCI domain numbers. By default, lspci suppresses them on machines which
+have only domain 0.
+</td></tr>
+<tr valign="top"><td>
+<b>-M</b> </td><td valign="bottom">
+Invoke bus mapping mode which performs a thorough scan of all PCI devices, including
+those behind misconfigured bridges etc. This option is available only to root and it
+gives meaningful results only if combined with direct hardware access mode (otherwise
+the results are identical to normal listing modes, modulo bugs in lspci). Please note
+that the bus mapper doesn&#146;t support PCI domains and scans only domain 0.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--version</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Shows
+<i>lspci</i> version. This option should be used stand-alone.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">PCILIB AND ITS OPTIONS</h1>
+The PCI utilities use PCILIB (a portable library providing platform-independent
+functions for PCI configuration space access) to talk to the PCI cards. It supports
+the following access methods:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>linux_sysfs</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The
+<b>/sys</b> filesystem on Linux 2.6 and newer. The standard header of the config space is available
+to all users, the rest only to root. Supports extended configuration space and PCI domains.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>linux_proc</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The
+<b>/proc/bus/pci</b> interface supported by Linux 2.1 and newer. The standard header of the config space is available
+to all users, the rest only to root.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>intel_conf1</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Direct hardware access via Intel configuration mechanism 1. Available on i386 and compatibles
+on Linux, Solaris/x86, GNU Hurd and Windows. Requires root privileges.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>intel_conf2</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Direct hardware access via Intel configuration mechanism 2. Available on i386 and compatibles
+on Linux, Solaris/x86 and GNU Hurd. Requires root privileges. Warning: This method
+is able to address only first 16 devices on any bus and it seems to be very
+unreliable in many cases.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>fbsd_device</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The
+<b>/dev/pci</b> device on FreeBSD. Requires root privileges.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>aix_device</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Access method used on AIX. Requires root privileges.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>nbsd_libpci</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The
+<b>/dev/pci0</b> device on NetBSD accessed using the local libpci library.
+<p>
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+By default, PCILIB uses the first available access method and displays no debugging
+messages, but you can use the following switches to control its behavior:
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-P &lt;dir&gt;</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Force use of the linux_proc access method, using
+<b>&lt;dir&gt;</b> instead of /proc/bus/pci.
+</td></tr>
+<tr valign="top"><td>
+<b>-H1</b> </td><td valign="bottom">
+Use direct hardware access via Intel configuration mechanism 1.
+</td></tr>
+<tr valign="top"><td>
+<b>-H2</b> </td><td valign="bottom">
+Use direct hardware access via Intel configuration mechanism 2.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-F &lt;file&gt;</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Extract all information from given file containing output of lspci -x. This is very
+useful for analysis of user-supplied bug reports, because you can display the
+hardware configuration in any way you want without disturbing the user with
+requests for more dumps.
+</td></tr>
+<tr valign="top"><td>
+<b>-G</b> </td><td valign="bottom">
+Increase debug level of the library.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">FILES</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>/usr/share/hwdata/pci.ids</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+A list of all known PCI ID&#146;s (vendors, devices, classes and subclasses). Maintained
+at <a href="http://pciids.sourceforge.net/">http://pciids.sourceforge.net</a>/, use the
+<b>update-pciids</b> utility to download the most recent version.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>/usr/share/hwdata/pci.ids.d/*.ids</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Modified by Red Hat, so that lspci also takes all /usr/share/hwdata/pci.ids.d/*.ids files into account.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>/proc/bus/pci</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+An interface to PCI bus configuration space provided by the post-2.1.82 Linux
+kernels. Contains per-bus subdirectories with per-card config space files and a
+<i>devices</i> file containing a list of all PCI devices.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="setpci.htm">setpci (8)</a></p></li>
+<li><p><a href="update.html">update (8)</a></p></li>
+</ul>
+<h1 class="manpages">AUTHOR</h1>
+The PCI Utilities are maintained by Martin Mares &lt;<a href="mailto:mj@ucw.cz">mj@ucw.cz</a>&gt;.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversione6de.html?tutorial=unix_commands&amp;file=lspci.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/lspci.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:56 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

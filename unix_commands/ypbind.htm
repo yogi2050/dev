@@ -1,0 +1,463 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/ypbind.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>ypbind - Unix, Linux Command</title>
+<meta name="Description" Content="ypbind - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>ypbind - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+ypbind - NIS binding process
+<h1 class="manpages">SYNOPSIS</h1>
+<b></b> ypbind
+[
+<b>-c</b> ] [
+<b>-d</b>|<b>-debug</b> ] [
+<b>-v</b>|<b>-verbose</b> ] [
+<b>-broadcast</b> ] [
+<b>-broken-server</b> ] [
+<b>-ypset</b> ] [
+<b>-ypsetme</b> ] [
+<b>-no-ping</b> ] [
+<b>-p</b> port ] [
+<b>-f</b> configfile ] [
+<b>-local-only</b> ] [
+<b>-ping-interval</b> ping-interval ]
+<p>
+<b></b> ypbind
+<b>--version</b> <h1 class="manpages">DESCRIPTION</h1>
+<b>ypbind</b> finds the server for NIS domains and maintains the NIS binding
+information. The client (normaly the NIS routines in the standard C library)
+could get the information over RPC from
+<b>ypbind</b> or read the binding files. The binding files resides in the directory
+<b>/var/yp/binding</b> and are conventionally named
+<b>[domainname].[version]</b>. The supported versions are 1 and 2.
+There could be several such files since it is possible for an NIS client
+to be bound to more then one domain.
+<p>
+After a binding has been established,
+<b>ypbind</b> will send YPPROC_DOMAIN requests to the current NIS server at 20 seconds
+intervals. If it doesn&#146;t get an response or the NIS server reports that he
+doesn&#146;t have this domain any longer,
+<b>ypbind</b> will search for a new NIS server. All 15 minutes
+<b>ypbind</b> will check to see if the current NIS server is the fastest. If it find
+a server which answers faster, it will switch to this server.
+You could tell
+<b>ypbind</b> to use network broadcasts to find a new server, what is insecure,
+or you could give it a list of known secure servers.
+In this case
+<b>ypbind</b> will send a ping to all servers and binds to first one which answers.
+<p>
+Unless the option
+<b>-debug</b> is used, ypbind detaches itself from the controlling terminal and puts
+itself into background.
+<b>ypbind</b> uses
+<b>syslog</b>(3)
+for logging errors and warnings.
+At startup or when receiving signal SIGHUP,
+<b>ypbind</b> parses the file
+<b>/etc/yp.conf</b> and tries to use the entries for its initial binding. Valid entries
+are
+<p>
+<b>domain</b> <i>nisdomain</i> <b>server</b> <i>hostname</i> Use server
+<i>hostname</i> for the domain
+<i>nisdomain</i>. You could have more then one entry of this type for a single domain.
+<p>
+<b>domain</b> <i>nisdomain</i> <b>broadcast</b> Use broadcast on the local net for domain
+<i>nisdomain</i>. <p>
+<b>ypserver</b> <i>hostname</i> Use server
+<i>server</i> for the local domain.
+<p>
+A broadcast entry in the configuration file will overwrite a ypserver/server
+entry and a ypserver/server entry broadcast. If all given server are down,
+<b>ypbind</b> will
+<b>not</b> switch to use broadcast.
+<b>ypbind</b> will try at first
+<b>/etc/hosts</b> and then
+<b>DNS</b> for resolving the hosts names from
+<b>/etc/yp.conf</b>. If
+<b>ypbind</b> couldn&#146;t reconfigure the search order, it will use only
+<b>DNS</b>. If
+<b>DNS</b> isn&#146;t available, you could only use IP-addresses in
+<b>/etc/hosts</b>. <b>ypbind</b> could only reconfigure the search order with glibc 2.x.
+If the
+<b>-broadcast</b> option is specified,
+<b>ypbind</b> will ignore the configuration file.
+If the file does not exist or if there are no valid entries,
+<b>ypbind</b> exit.
+<p>
+This
+<b>ypbind</b> is a special version which uses
+<b>pthreads</b>. It will start 2 more threads.  The master process services RPC requests
+asking for binding info. The first thread initializes the binding and
+checks it periodically. Upon failure, the binding is invalidated and
+the process tries again to find a valid server. The second thread
+will handle all the signals.
+<p>
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>-broadcast</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Send a broadcast to request the information needed to bind to a
+specific NIS server. With this option,
+<b>/etc/yp.conf</b> will be ignored.
+</td></tr>
+<tr valign="top"><td>
+<b>-ypset</b> </td><td valign="bottom">
+Allow
+<b>root</b> from any remote machine to change the binding for a domain via the
+<b>ypset</b>(8)
+command. By default, no one can change the binding. This option is really
+insecure. If you change a binding for a domain, all the current known
+servers for this domain will be forgotten. If the new server goes down,
+<b>ypbind</b> will use the old searchlist.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-ypsetme</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The same as
+<b>-ypset</b>, but only
+<b>root</b> on the local machine is allowed to chang the binding. Such requests
+are only allowd from
+<b>loopback</b>. </td></tr>
+<tr valign="top"><td>
+<b>-c</b> </td><td valign="bottom">
+<b>ypbind</b> only checks if the config file has syntax errors and exits.
+</td></tr>
+<tr valign="top"><td>
+<b>-debug</b> </td><td valign="bottom">
+starts
+<b>ypbind</b> in debug mode.
+<b>ypbind</b> will not put itself into background, and error messages and debug
+output are written to standard error.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-verbose</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Causes
+<b>ypbind</b> to syslog(2) any and all changes in the server its bound to.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-broken-server</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+lets
+<b>ypbind</b> accept answers from servers running on an illegal port number. This should
+usually be avoided, but is required by some
+<b>ypserv</b>(8)
+versions.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-no-ping</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+<b>ypbind</b> will not check if the binding is alive. This option is for use with
+dialup connections to prevent
+<b>ypbind</b> from keeping the connection unnessecarily open or causing autodials.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-p</b> port </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+<b>ypbind</b> will bind itself to this port.
+This makes it possible to have a router filter packets
+to the NIS ports, so that access to this service from
+hosts on the Internet can be restricted.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-f</b> configfile </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+<b>ypbind</b> will use
+<b>configfile</b> and not
+<b>/etc/yp.conf</b> </td></tr>
+<tr valign="top"><td colspan="2">
+<b>-local-only</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+<b>ypbind</b> will only bind to the loopback device and is not reacheable from
+a remote network.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-ping-interval</b> ping-interval </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The default value for
+<b>ypbind</b> to check, if a NIS server is still reacheable, is 20 seconds.
+With this options another frequency in seconds can be specified.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--version</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Prints the version number
+</td></tr>
+<!-- LP ends table -->
+</table>
+<h1 class="manpages">NOTES</h1>
+Binding to multiple domains is tested and works.
+Load sharing between multiple servers for a single domain is
+not supported.
+<b>ypbind</b> will always try to bind a domain to a server. If there is no valid
+server in the list or answers to a broadcast, the domain is unbounded.
+<p>
+<h1 class="manpages">FILES</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>/etc/yp.conf</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+configuration file.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>/var/yp/binding/[domainname].[version]</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+binding file containing information about each NIS domain.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>/var/run/ypbind.pid</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+contains the process id of the currently running
+<b>ypbind</b> master process.
+</td></tr>
+<!-- LP ends table -->
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="domainname.htm">domainname (1)</a></p></li>
+<li><p><a href="ypdomainname.html">ypdomainname (8)</a></p></li>
+<li><p><a href="ypwhich.htm">ypwhich (1)</a></p></li>
+<li><p><a href="ypserv.html">ypserv (8)</a></p></li>
+<li><p><a href="ypset.htm">ypset (8)</a></p></li>
+</ul>
+<h1 class="manpages">AUTHOR</h1>
+<b>ypbind-mt</b> was written by Thorsten Kukuk &lt;<a href="mailto:kukuk@suse.de">kukuk@suse.de</a>&gt;.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversione162.html?tutorial=unix_commands&amp;file=ypbind.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/ypbind.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

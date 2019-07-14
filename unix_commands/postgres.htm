@@ -1,0 +1,517 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/postgres.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>postgres - Unix, Linux Command</title>
+<meta name="Description" Content="postgres - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>postgres - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- ignored unsupported tag ._DBLSLASH_ -->
+<h1 class="manpages">NAME</h1>
+postgres - run a PostgreSQL server in single-user mode
+<p>
+<h1 class="manpages">SYNOPSIS</h1>
+<p>
+<b>postgres</b> [ <b>-A  0 | 1</b>  ]  [ <b>-B </b><i>nbuffers</i><b></b> ]  [ <b>-c </b><i>name</i><b>=</b><i>value</i><b></b> ]  [ <b>-d </b><i>debug-level</i><b></b> ]  [ <b>--describe-config</b> ]  [ <b>-D </b><i>datadir</i><b></b> ]  [ <b>-e</b> ]  [ <b>-E</b> ]  [ <b>-f s | i</b> | <b>t</b> | <b>n</b> | <b>m</b> | <b>h</b>  ]  [ <b>-F</b> ]  [ <b>-N</b> ]  [ <b>-o </b><i>filename</i><b></b> ]  [ <b>-O</b> ]  [ <b>-P</b> ]  [ <b>-s</b> | <b>-t pa | pl</b> | <b>ex</b>  ]  [ <b>-S </b><i>work-mem</i><b></b> ]  [ <b>-W </b><i>seconds</i><b></b> ]  [ <b>--</b><i>name</i><b>=</b><i>value</i><b></b> ]  <b></b><i>database</i><b></b>
+<p>
+<b>postgres</b> [ <b>-A  0 | 1</b>  ]  [ <b>-B </b><i>nbuffers</i><b></b> ]  [ <b>-c </b><i>name</i><b>=</b><i>value</i><b></b> ]  [ <b>-d </b><i>debug-level</i><b></b> ]  [ <b>-D </b><i>datadir</i><b></b> ]  [ <b>-e</b> ]  [ <b>-f s | i</b> | <b>t</b> | <b>n</b> | <b>m</b> | <b>h</b>  ]  [ <b>-F</b> ]  [ <b>-o </b><i>filename</i><b></b> ]  [ <b>-O</b> ]  [ <b>-p </b><i>database</i><b></b> ]  [ <b>-P</b> ]  [ <b>-s</b> | <b>-t pa | pl</b> | <b>ex</b>  ]  [ <b>-S </b><i>work-mem</i><b></b> ]  [ <b>-v </b><i>protocol</i><b></b> ]  [ <b>-W </b><i>seconds</i><b></b> ]  [ <b>--</b><i>name</i><b>=</b><i>value</i><b></b> ]
+<h1 class="manpages">DESCRIPTION</h1>
+<p>
+The <b>postgres</b> executable is the actual
+PostgreSQL server process that processes
+queries. It is normally not called directly; instead a <b>postmaster</b>(1) multiuser server is started.
+<p>
+The second form above is how
+<b>postgres</b> is invoked by the <b>postmaster</b>(1) (only
+conceptually, since both <i>postmaster</i> and
+<i>postgres</i> are in fact the same program); it
+should not be invoked directly this way. The first form invokes
+the server directly in interactive single-user mode. The primary use
+for this mode is during bootstrapping by <b>initdb</b>(1).
+Sometimes it is used for debugging or disaster recovery.
+<p>
+When invoked in interactive mode from the shell, the user can enter
+queries and the results will be printed to the screen, but in a
+form that is more useful for developers than end users. But note
+that running a single-user server is not truly suitable for
+debugging the server since no realistic interprocess communication
+and locking will happen.
+<p>
+When running a stand-alone server, the session user will be set to
+the user with ID 1. This user does not actually have to exist, so
+a stand-alone server can be used to manually recover from certain
+kinds of accidental damage to the system catalogs. Implicit
+superuser powers are granted to the user with ID 1 in stand-alone
+mode.
+<h1 class="manpages">OPTIONS</h1>
+<p>
+When <b>postgres</b> is started by a <b>postmaster</b>(1) then it
+inherits all options set by the latter. Additionally,
+<b>postgres</b>-specific options can be passed
+from the <b>postmaster</b> with the
+<b>-o</b> switch.
+<p>
+You can avoid having to type these options by setting up a
+configuration file. See the documentation for details. Some
+(safe) options can also be set from the connecting client in an
+application-dependent way. For example, if the environment
+variable <b>PGOPTIONS</b> is set, then
+<b>libpq</b>-based clients will pass that string to the
+server, which will interpret it as
+<b>postgres</b> command-line options.
+<h2><i>GENERAL PURPOSE</i></h2>
+<p>
+The options <b>-A</b>, <b>-B</b>,
+<b>-c</b>, <b>-d</b>, <b>-D</b>,
+<b>-F</b>, and <b>--</b><i>name</i><b></b> have the same meanings
+as the <b>postmaster</b>(1) except that
+-d 0 prevents the server log level of
+the <b>postmaster</b> from being propagated to <b>postgres</b>.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-e</b>
+</td><td valign="bottom">
+Sets the default date style to &#145;&#145;European&#146;&#146;, that is
+DMY ordering of input date fields. This also causes
+the day to be printed before the month in certain date output formats.
+See the documentation for more information.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-o </b><i>filename</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Send all server log output to
+<i>filename</i>.
+If <b>postgres</b> is running under the
+<b>postmaster</b>, this option is ignored,
+and the <b>stderr</b> inherited from the
+<b>postmaster</b> is used.
+</td></tr>
+<tr valign="top"><td>
+<b>-P</b>
+</td><td valign="bottom">
+Ignore system indexes when reading system tables (but still update
+the indexes when modifying the tables). This is useful when
+recovering from damaged system indexes.
+</td></tr>
+<tr valign="top"><td>
+<b>-s</b>
+</td><td valign="bottom">
+Print time information and other statistics at the end of each command.
+This is useful for benchmarking or for use in tuning the number of
+buffers.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-S </b><i>work-mem</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies the amount of memory to be used by internal sorts and hashes
+before resorting to temporary disk files. See the description of the
+work_mem configuration parameter in the documentation.
+</td></tr>
+</table>
+<h2><i>OPTIONS FOR STAND-ALONE MODE</i></h2>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b></b><i>database</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies the name of the database to be accessed. If it is
+omitted it defaults to the user name.
+</td></tr>
+<tr valign="top"><td>
+<b>-E</b>
+</td><td valign="bottom">
+Echo all commands.
+</td></tr>
+<tr valign="top"><td>
+<b>-N</b>
+</td><td valign="bottom">
+Disables use of newline as a statement delimiter.
+</td></tr>
+</table>
+<h2><i>SEMI-INTERNAL OPTIONS</i></h2>
+<p>
+There are several other options that may be specified, used
+mainly for debugging purposes. These are listed here only for
+the use by PostgreSQL system
+developers. <b>Use of any of these options is highly
+discouraged.</b> Furthermore, any of these options may
+disappear or change in a future release without notice.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>-f { s | i | m | n | h }</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Forbids the use of particular scan and join methods:
+s and i
+disable sequential and index scans respectively, while
+n, m, and h
+disable nested-loop, merge and hash joins respectively.
+<p>
+<b>Note:</b> Neither sequential scans nor nested-loop joins can be disabled completely;
+the -fs and -fn
+options simply discourage the optimizer from using those
+plan types if it has any other alternative.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>-O</b>
+</td><td valign="bottom">
+Allows the structure of system tables to be modified. This is
+used by <b>initdb</b>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-p </b><i>database</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Indicates that this process has been started by a
+<b>postmaster</b> and specifies the database to use.
+etc.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-t pa[rser] | pl[anner] | e[xecutor]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Print timing statistics for each query relating to each of the
+major system modules. This option cannot be used together
+with the <b>-s</b> option.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-v </b><i>protocol</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies the version number of the frontend/backend protocol
+to be used for this particular session.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-W </b><i>seconds</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+As soon as this option is encountered, the process sleeps for
+the specified amount of seconds. This gives developers time
+to attach a debugger to the server process.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--describe-config</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This option dumps out the server&#146;s internal configuration variables,
+descriptions, and defaults in tab-delimited <b>COPY</b> format.
+It is designed primarily for use by administration tools.
+</td></tr>
+</table>
+<h1 class="manpages">ENVIRONMENT</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>PGDATA</b>
+</td><td valign="bottom">
+Default data directory location
+</td></tr>
+<!-- PP ends table -->
+</table>
+For others, which have little influence during single-user mode,
+see <b>postmaster</b>(1).
+<p>
+<h1 class="manpages">NOTES</h1>
+<p>
+To cancel a running query, send the SIGINT signal
+to the <b>postgres</b> process running that command.
+<p>
+To tell <b>postgres</b> to reload the configuration files,
+send a SIGHUP signal. Normally it&#146;s best to
+SIGHUP the <b>postmaster</b> instead;
+the <b>postmaster</b> will in turn SIGHUP
+each of its children. But in some cases it might be desirable to have only
+one <b>postgres</b> process reload the configuration files.
+<p>
+The <b>postmaster</b> uses SIGTERM
+to tell a <b>postgres</b> process to quit normally and
+SIGQUIT to terminate without the normal cleanup.
+These signals <b>should not</b> be used by users. It is also
+unwise to send SIGKILL to a <b>postgres</b>
+process &#151; the <b>postmaster</b> will interpret this as
+a crash in <b>postgres</b>, and will force all the sibling
+<b>postgres</b> processes to quit as part of its standard
+crash-recovery procedure.
+<h1 class="manpages">USAGE</h1>
+<p>
+Start a stand-alone server with a command like
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<b>postgres -D /usr/local/pgsql/data </b><i>other-options</i><b> my_database</b>
+<p>
+</pre></td></tr>
+</table>
+Provide the correct path to the database directory with <b>-D</b>, or
+make sure that the environment variable <b>PGDATA</b> is set.
+Also specify the name of the particular database you want to work in.
+<p>
+Normally, the stand-alone server treats newline as the command
+entry terminator; there is no intelligence about semicolons,
+as there is in <b>psql</b>. To continue a command
+across multiple lines, you must type backslash just before each
+newline except the last one.
+<p>
+But if you use the <b>-N</b> command line switch, then newline does
+not terminate command entry. In this case, the server will read the standard input
+until the end-of-file (EOF) marker, then
+process the input as a single command string. Backslash-newline is not
+treated specially in this case.
+<p>
+To quit the session, type EOF
+(<b>Control</b>+<b>D</b>, usually).
+If you&#146;ve
+used <b>-N</b>, two consecutive EOFs are needed to exit.
+<p>
+Note that the stand-alone server does not provide sophisticated
+line-editing features (no command history, for example).
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<b>initdb</b>(1),
+<b>ipcclean</b>(1),
+<b>postmaster</b>(1)
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion9919.html?tutorial=unix_commands&amp;file=postgres.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/postgres.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

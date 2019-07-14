@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=javascript&file=javascript_error_handling.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:55 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>JavaScript - Errors &amp; Exceptions Handling</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="Keywords" content="Javascript, Tutorials, Learning, Beginners, Javascript Basics, Scripting Language, Javascript Tutorials, Functions, Objects, Usage" />
+<meta name="description" content="JavaScript - Errors &amp; Exceptions Handling:  Learning Javascript in simple and easy steps. A beginner's tutorial containing complete knowledge of Javascript Syntax Objects Embedding with  HTML Validations Cookies Regular Expressions Literals Variables Loops Conditions." />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../print.css"/>
+</head>
+<body>
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+<h1>JavaScript - Errors &amp; Exceptions Handling</h1>
+<a href="../javascript/javascript_html_dom.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../javascript/javascript_form_validations.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<br />
+<br />
+<p>There are three types of errors in programming: (a) Syntax Errors and (b) Runtime Errors (c) Logical Errors:</p>
+<h1>Syntax errors:</h1>
+<p>Syntax errors, also called parsing errors, occur at compile time for traditional programming languages and at interpret time for JavaScript.</p>
+<p>For example, the following line causes a syntax error because it is missing a closing parenthesis:</p>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+&lt;script type="text/javascript"&gt;
+&lt;!--
+window.print(;
+//--&gt;
+&lt;/script&gt;
+</pre></td></tr>
+</table>
+<p>When a syntax error occurs in JavaScript, only the code contained within the same thread as the syntax error is affected and code in other threads gets executed assuming nothing in them depends on the code containing the error.</p>
+<h1>Runtime errors:</h1>
+<p>Runtime errors, also called exceptions, occur during execution (after compilation/interpretation).</p>
+<p>For example, the following line causes a run time error because here syntax is correct but at run time it is trying to call a non existed method:</p>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+&lt;script type="text/javascript"&gt;
+&lt;!--
+window.printme();
+//--&gt;
+&lt;/script&gt;
+</pre></td></tr>
+</table>
+<p>Exceptions also affect the thread in which they occur, allowing other JavaScript threads to continue normal execution.</p>
+<h1>Logical errors:</h1>
+<p>Logic errors can be the most difficult type of errors to track down. These errors are not the result of a syntax or runtime error. Instead, they occur when you make a mistake in the logic that drives your script and you do not get the result you expected.</p>
+<p>You can not catch those errors, because it depends on your business requirement what type of logic you want to put in your program.</p>
+<h1>The <i>try...catch...finally</i> Statement:</h1>
+<p>The latest versions of JavaScript added exception handling capabilities. JavaScript implements the <b>try...catch...finally</b> construct as well as the <b>throw</b> operator to handle exceptions.</p>
+<p>You can <i>catch</i> programmer-generated and <i>runtime</i> exceptions, but you cannot <i>catch</i> JavaScript syntax errors.</p>
+<p>Here is the <b>try...catch...finally</b> block syntax:</p>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+&lt;script type="text/javascript"&gt;
+&lt;!--
+try {
+    // Code to run
+    [break;]
+} catch ( e ) {
+    // Code to run if an exception occurs
+    [break;]
+}[ finally {
+    // Code that is always executed regardless of 
+    // an exception occurring
+}]
+//--&gt;
+&lt;/script&gt;
+</pre></td></tr>
+</table>
+<p>The <b>try</b> block must be followed by either exactly one <b>catch</b> block or one <b>finally</b> block (or one of both). When an exception occurs in the <b>try</b> block, the exception is placed in <b>e</b> and the <b>catch</b> block is executed. The optional <b>finally</b> block executes unconditionally after try/catch.</p>
+<h2>Examples:</h2>
+<p>Here is one example where we are trying to call a non existing function this is causing an exception raise. Let us see how it behaves without with <b>try...catch</b>:</p>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;script type="text/javascript"&gt;
+&lt;!--
+function myFunc()
+{
+   var a = 100;
+
+   alert("Value of variable a is : " + a );
+ 
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;Click the following to see the result:&lt;/p&gt;
+&lt;form&gt;
+&lt;input type="button" value="Click Me" onclick="myFunc();" /&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr>
+</table>
+<p>To understand it in better way you can <a target="_blank" href="practiceef54.html?file=javascript_35">Try it yourself</a>.</p>
+<p>Now let us try to catch this exception using <b>try...catch</b> and display a user friendly message. You can also suppress this message, if you want to hide this error from a user.</p>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;script type="text/javascript"&gt;
+&lt;!--
+function myFunc()
+{
+   var a = 100;
+   
+   try {
+      alert("Value of variable a is : " + a );
+   } catch ( e ) {
+      alert("Error: " + e.description );
+   }
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;Click the following to see the result:&lt;/p&gt;
+&lt;form&gt;
+&lt;input type="button" value="Click Me" onclick="myFunc();" /&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr>
+</table>
+<p>To understand it in better way you can <a target="_blank" href="practicea861.html?file=javascript_36">Try it yourself</a>.</p>
+<p>You can use <b>finally</b> block which will always execute unconditionally after try/catch. Here is an example:</p>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;script type="text/javascript"&gt;
+&lt;!--
+function myFunc()
+{
+   var a = 100;
+   
+   try {
+      alert("Value of variable a is : " + a );
+   }catch ( e ) {
+      alert("Error: " + e.description );
+   }finally {
+      alert("Finally block will always execute!" );
+   }
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;Click the following to see the result:&lt;/p&gt;
+&lt;form&gt;
+&lt;input type="button" value="Click Me" onclick="myFunc();" /&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr>
+</table>
+<p>To understand it in better way you can <a target="_blank" href="practice4e8b.html?file=javascript_37">Try it yourself</a>.</p>
+<h1>The <i>throw</i> Statement:</h1>
+<p>You can use <b>throw</b> statement to raise your built-in exceptions or your customized exceptions. Later these exceptions can be captured and you can take an appropriate action.</p>
+<p>Following is the example showing usage of <b>throw</b> statement.</p>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;script type="text/javascript"&gt;
+&lt;!--
+function myFunc()
+{
+   var a = 100;
+   var b = 0;
+   
+   try{
+      if ( b == 0 ){
+         throw( "Divide by zero error." ); 
+      }else{
+         var c = a / b;
+      }
+   }catch ( e ) {
+      alert("Error: " + e );
+   }
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;Click the following to see the result:&lt;/p&gt;
+&lt;form&gt;
+&lt;input type="button" value="Click Me" onclick="myFunc();" /&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr>
+</table>
+<p>To understand it in better way you can <a target="_blank" href="practicecae0.html?file=javascript_38">Try it yourself</a>.</p>
+<p>You can raise an exception in one function using a string, integer, Boolean or an object and then you can capture that exception either in the same function as we did above, or in other function using <b>try...catch</b> block.</p>
+<h1>The <i>onerror()</i> Method</h1>
+<p>The <b>onerror</b> event handler was the first feature to facilitate error handling for JavaScript. The <b>error</b>
+event is fired on the window object whenever an exception occurs on the page. Example:</p>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;script type="text/javascript"&gt;
+&lt;!--
+window.onerror = function () {
+   alert("An error occurred.");
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;Click the following to see the result:&lt;/p&gt;
+&lt;form&gt;
+&lt;input type="button" value="Click Me" onclick="myFunc();" /&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr>
+</table>
+<p>To understand it in better way you can <a target="_blank" href="practicee198.html?file=javascript_39">Try it yourself</a>.</p>
+<p>The <b>onerror</b> event handler provides three pieces of information to identify the exact nature of the error:</p>
+<ul>
+<li><p><b>Error message</b> . The same message that the browser would display for the given error</p></li>
+<li><p><b>URL</b> . The file in which the error occurred</p></li>
+<li><p><b>Line number</b> . The line number in the given URL that caused the error</p></li>
+</ul>
+<p>Here is the example to show how to extract this information</p>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;script type="text/javascript"&gt;
+&lt;!--
+window.onerror = function (msg, url, line) {
+   alert("Message : " + msg );
+   alert("url : " + url );
+   alert("Line number : " + line );
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;Click the following to see the result:&lt;/p&gt;
+&lt;form&gt;
+&lt;input type="button" value="Click Me" onclick="myFunc();" /&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr>
+</table>
+<p>You can display extracted information in whatever way you think it is better.</p>
+<p>To understand it in better way you can <a target="_blank" href="practicebdb9.html?file=javascript_40">Try it yourself</a>.</p>
+<p>You can use <b>onerror</b> method to show an error message  in case there is any problem in loading an image as follows:</p>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+&lt;img src="myimage.gif"
+    onerror="alert('An error occurred loading the image.')" /&gt;
+</pre></td></tr>
+</table>
+<p>You can use <b>onerror</b> with many HTML tags to display appropriate messages in case of errors.</p>
+<br />
+<a href="../javascript/javascript_html_dom.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../javascript/javascript_form_validations.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=javascript&file=javascript_error_handling.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:55 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

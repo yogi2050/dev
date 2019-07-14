@@ -1,0 +1,2004 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/ip.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:48 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>ip - Unix, Linux Command</title>
+<meta name="Description" Content="ip - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>ip - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+ip - show / manipulate routing, devices, policy routing and tunnels
+<h1 class="manpages">SYNOPSIS</h1>
+<p>
+<!-- ignored unsupported tag .ad -->
+<!-- ignored unsupported tag .in -->
+&nbsp; &nbsp;<b>ip</b> [ <i>OPTIONS</i> ] <i>OBJECT</i> { <i>COMMAND</i> |  <b>help</b> } <p>
+<p>
+&nbsp; &nbsp;<i>OBJECT</i> := {  <b>link</b> | <b>addr</b> | <b>addrlabel</b> | <b>route</b> | <b>rule</b> | <b>neigh</b> |  <br />
+ tunnel " | " maddr " | "  mroute " | " monitor " }"
+<p>
+<p>
+&nbsp; &nbsp;<i><a href=#2>OPTIONS</a></i> := {  <b>-V</b>[<i>ersion</i>] |
+<b>-s</b>[<i>tatistics</i>] |
+<b>-r</b>[<i>esolve</i>] |
+<b>-f</b>[<i>amily</i>] {
+<b>inet</b> | <b>inet6</b> | <b>ipx</b> | <b>dnet</b> | <b>link</b> } |  <b>-o</b>[<i>neline</i>] }
+<p>
+&nbsp; &nbsp;<b>ip link set </b><i>DEVICE</i> { <b>up</b> | <b>down</b> | <b>arp</b> { <b>on</b> | <b>off</b> } | <!-- Need break --><br />
+<b>promisc</b> { <b>on</b> | <b>off</b> } | <!-- Need break --><br />
+<b>allmulti</b> { <b>on</b> | <b>off</b> } | <!-- Need break --><br />
+<b>dynamic</b> { <b>on</b> | <b>off</b> } | <!-- Need break --><br />
+<b>multicast</b> { <b>on</b> | <b>off</b> } | <!-- Need break --><br />
+<b>txqueuelen</b> <i>PACKETS</i> | <!-- Need break --><br />
+<b>name</b> <i>NEWNAME</i> | <!-- Need break --><br />
+<b>address</b> <i>LLADDR</i> | <b>broadcast</b> <i>LLADDR</i> | <!-- Need break --><br />
+<b>mtu</b> <i>MTU</i> } <p>
+&nbsp; &nbsp;<b>ip link show</b> [ <i>DEVICE</i> ] <p>
+&nbsp; &nbsp;<b>ip addr</b> { <b>add</b> | <b>del</b> }  <i>IFADDR</i><b> dev </b><i>STRING</i> <p>
+&nbsp; &nbsp;<b>ip addr</b> { <b>show</b> | <b>flush</b> } [ <b>dev</b> <i>STRING</i> ] [  <b>scope</b> <i>SCOPE-ID</i> ] [  <b>to</b> <i>PREFIX</i> ] [ <i>FLAG-LIST</i> ] [  <b>label</b> <i>PATTERN</i> ] <p>
+&nbsp; &nbsp;<i>IFADDR</i> := <i>PREFIX</i> | <i>ADDR</i> <b>peer</b> <i>PREFIX</i> [  <b>broadcast</b> <i>ADDR</i> ] [  <b>anycast</b> <i>ADDR</i> ] [  <b>label</b> <i>STRING</i> ] [  <b>scope</b> <i>SCOPE-ID</i> ] <p>
+&nbsp; &nbsp;<i>SCOPE-ID</i> :=  [ <b>host</b> | <b>link</b> | <b>global</b> |  <i>NUMBER</i> ] <p>
+&nbsp; &nbsp;<i>FLAG-LIST</i> := [ <i>FLAG-LIST</i> ] <i>FLAG</i> <p>
+&nbsp; &nbsp;<i>FLAG</i> :=  [ <b>permanent</b> | <b>dynamic</b> | <b>secondary</b> | <b>primary</b> |  tentative " | " deprecated " ]"
+<p>
+&nbsp; &nbsp;<b>ip addrlabel</b> { <b>add</b> | <b>del</b> } <b>prefix</b> <b>PREFIX</b> [  <b>dev</b> <i>DEV</i> ] [  <b>label</b> <i>NUMBER</i> ] <p>
+&nbsp; &nbsp;<b>ip addrlabel</b> { <b>list</b> | <b>flush</b> } <p>
+&nbsp; &nbsp;<b>ip route</b> {  <b>list</b> | <b>flush</b> }  <i>SELECTOR</i> <p>
+&nbsp; &nbsp;<b>ip route get</b> <i>ADDRESS</i> [  <b>from</b><i> ADDRESS </i><b>iif</b><i> STRING</i>  ] [ <b>oif</b> <i>STRING</i> ] [  <b>tos</b> <i>TOS</i> ] <p>
+&nbsp; &nbsp;<b>ip route</b> { <b>add</b> | <b>del</b> | <b>change</b> | <b>append</b> |  replace " | " monitor " } "
+<i>ROUTE</i> <p>
+&nbsp; &nbsp;<i>SELECTOR</i> :=  [ <b>root</b> <i>PREFIX</i> ] [  <b>match</b> <i>PREFIX</i> ] [  <b>exact</b> <i>PREFIX</i> ] [  <b>table</b> <i>TABLE_ID</i> ] [  <b>proto</b> <i>RTPROTO</i> ] [  <b>type</b> <i>TYPE</i> ] [  <b>scope</b> <i>SCOPE</i> ] <p>
+&nbsp; &nbsp;<i>ROUTE</i> := <i>NODE_SPEC</i> [ <i>INFO_SPEC</i> ] <p>
+&nbsp; &nbsp;<i>NODE_SPEC</i> := [ <i>TYPE</i> ] <i>PREFIX</i> [ <b>tos</b> <i>TOS</i> ] [  <b>table</b> <i>TABLE_ID</i> ] [  <b>proto</b> <i>RTPROTO</i> ] [  <b>scope</b> <i>SCOPE</i> ] [  <b>metric</b> <i>METRIC</i> ] <p>
+&nbsp; &nbsp;<i>INFO_SPEC</i> := <i>NH OPTIONS FLAGS</i> [ <b>nexthop</b> <i>NH</i> ] ... <p>
+&nbsp; &nbsp;<i>NH</i> := [  <b>via</b> <i>ADDRESS</i> ] [  <b>dev</b> <i>STRING</i> ] [  <b>weight</b> <i>NUMBER</i> ] <i>NHFLAGS</i> <p>
+&nbsp; &nbsp;<i><a href=#2>OPTIONS</a></i> := <i>FLAGS</i> [  <b>mtu</b> <i>NUMBER</i> ] [  <b>advmss</b> <i>NUMBER</i> ] [  <b>rtt</b> <i>TIME</i> ] [  <b>rttvar</b> <i>TIME</i> ] [  <b>window</b> <i>NUMBER</i> ] [  <b>cwnd</b> <i>NUMBER</i> ] [  <b>initcwnd</b> <i>NUMBER</i> ] [  <b>ssthresh</b> <i>REALM</i> ] [  <b>realms</b> <i>REALM</i> ] [  <b>rto_min</b> <i>TIME</i> ] <p>
+&nbsp; &nbsp;<i>TYPE</i> := [  <b>unicast</b> | <b>local</b> | <b>broadcast</b> | <b>multicast</b> |  throw " | " unreachable " | " prohibit " | " blackhole " | " nat " ]"
+<p>
+&nbsp; &nbsp;<i>TABLE_ID</i> := [  <b>local</b>| <b>main</b> | <b>default</b> | <b>all</b> | <i>NUMBER</i> ] <p>
+&nbsp; &nbsp;<i>SCOPE</i> := [  <b>host</b> | <b>link</b> | <b>global</b> | <i>NUMBER</i> ] <p>
+&nbsp; &nbsp;<i>FLAGS</i> := [  <b>equalize</b> ] <p>
+&nbsp; &nbsp;<i>NHFLAGS</i> := [  <b>onlink</b> | <b>pervasive</b> ] <p>
+&nbsp; &nbsp;<i>RTPROTO</i> := [  <b>kernel</b> | <b>boot</b> | <b>static</b> | <i>NUMBER</i> ] <p>
+&nbsp; &nbsp;<b>ip rule</b>  [ <b>list</b> | <b>add</b> | <b>del</b> | <b>flush</b> ] <i>SELECTOR ACTION</i> <p>
+&nbsp; &nbsp;<i>SELECTOR</i> := [  <b>from</b> <i>PREFIX</i> ] [  <b>to</b> <i>PREFIX</i> ] [  <b>tos</b> <i>TOS</i> ] [  <b>fwmark</b> <i>FWMARK</i> ] [  <b>dev</b> <i>STRING</i> ] [  <b>pref</b> <i>NUMBER</i> ] <p>
+&nbsp; &nbsp;<i>ACTION</i> := [  <b>table</b> <i>TABLE_ID</i> ] [  <b>nat</b> <i>ADDRESS</i> ] [  <b>prohibit</b> | <b>reject</b> | <b>unreachable</b> ] [ <b>realms</b> [<i>SRCREALM</i>/]<i>DSTREALM</i> ] <p>
+&nbsp; &nbsp;<i>TABLE_ID</i> := [  <b>local</b> | <b>main</b> | <b>default</b> | <i>NUMBER</i> ] <p>
+&nbsp; &nbsp;<b>ip neigh</b> { <b>add</b> | <b>del</b> | <b>change</b> | <b>replace</b> } {  <i>ADDR</i> [  <b>lladdr</b> <i>LLADDR</i> ] [  <b>nud</b> { <b>permanent</b> | <b>noarp</b> | <b>stale</b> | <b>reachable</b> } ] | <b>proxy</b> <i>ADDR</i> } [  <b>dev</b> <i>DEV</i> ] <p>
+&nbsp; &nbsp;<b>ip neigh</b> { <b>show</b> | <b>flush</b> } [ <b>to</b> <i>PREFIX</i> ] [  <b>dev</b> <i>DEV</i> ] [  <b>nud</b> <i>STATE</i> ] <p>
+&nbsp; &nbsp;<b>ip tunnel</b> { <b>add</b> | <b>change</b> | <b>del</b> | <b>show</b> } [ <i>NAME</i> ] <!-- Need break --><br />
+[ <b>mode</b> { <b>ipip</b> | <b>gre</b> | <b>sit</b> } ] <!-- Need break --><br />
+[ <b>remote</b> <i>ADDR</i> ] [  <b>local</b> <i>ADDR</i> ] <!-- Need break --><br />
+[ [<b>i</b>|<b>o</b>]<b>seq</b> ] [ [<b>i</b>|<b>o</b>]<b>key</b> <i>KEY</i> ] [  [<b>i</b>|<b>o</b>]<b>csum</b> ] ] <!-- Need break --><br />
+[ <b>ttl</b> <i>TTL</i> ] [  <b>tos</b> <i>TOS</i> ] [  [<b>no</b>]<b>pmtudisc</b> ] <!-- Need break --><br />
+[ <b>dev</b> <i>PHYS_DEV</i> ] <p>
+&nbsp; &nbsp;<i>ADDR</i> := { <i>IP_ADDRESS</i> | <b>any</b> } <p>
+&nbsp; &nbsp;<i>TOS</i> := { <i>NUMBER</i> | <b>inherit</b> } <p>
+&nbsp; &nbsp;<i>TTL</i> := { <i>1</i>..<i>255</i> |  <b>inherit</b> } <p>
+&nbsp; &nbsp;<i>KEY</i> := { <i>DOTTED_QUAD</i> | <i>NUMBER</i> } <p>
+&nbsp; &nbsp;<i>TIME</i> := <i>NUMBER</i>[s|ms|us|ns|j] <p>
+&nbsp; &nbsp;<b>ip maddr</b> [ <b>add</b> | <b>del</b> ] <i>MULTIADDR</i><b> dev </b><i>STRING</i> <p>
+&nbsp; &nbsp;<b>ip maddr show</b> [ <b>dev</b> <i>STRING</i> ] <p>
+&nbsp; &nbsp;<b>ip mroute show</b> [ <i>PREFIX</i> ] [  <b>from</b> <i>PREFIX</i> ] [  <b>iif</b> <i>DEVICE</i> ] <p>
+&nbsp; &nbsp;<b>ip monitor</b> [ <b>all</b> | <i>LISTofOBJECTS</i> ] &nbsp; &nbsp;<b>ip xfrm</b> <i>XFRM_OBJECT</i> { <i>COMMAND</i> } <p>
+&nbsp; &nbsp;<i>XFRM_OBJECT</i> := { <i>state</i> | <i>policy</i> | <i>monitor</i> }  <p>
+&nbsp; &nbsp;<b>ip xfrm state </b>{<b> add </b>|<b> update </b>}<b></b> <i>ID</i> [  <i>XFRM_OPT</i> ]   [ <b>mode</b> <i>MODE</i> ]  <!-- Need break --><br />
+ [ <b>reqid</b> <i>REQID</i> ]   [ <b>seq</b> <i>SEQ</i> ]   [ <b>replay-window</b> <i>SIZE</i> ]  <!-- Need break --><br />
+ [ <b>flag</b> <i>FLAG-LIST</i> ]   [ <b>encap</b> <i>ENCAP</i> ]   [ <b>sel</b> <i>SELECTOR</i> ]  <!-- Need break --><br />
+ [  <i>LIMIT-LIST</i> ]  &nbsp; &nbsp;<b>ip xfrm state allocspi </b> <i>ID</i>  [ <b>mode</b> <i>MODE</i> ]   [ <b>reqid</b> <i>REQID</i> ]   [ <b>seq</b> <i>SEQ</i> ]   [ <b>min</b> <i>SPI</i> <b>max</b> <i>SPI</i> ]  <p>
+&nbsp; &nbsp;<b>ip xfrm state</b> { <b>delete</b> | <b>get</b> }  <i>ID</i> <p>
+&nbsp; &nbsp;<b>ip xfrm state</b> { <b>deleteall</b> | <b>list</b> } [  <i>ID</i> ]   [ <b>mode</b> <i>MODE</i> ]  <!-- Need break --><br />
+ [ <b>reqid</b> <i>REQID</i> ]   [ <b>flag</b> <i>FLAG_LIST</i> ]  <p>
+&nbsp; &nbsp;<b>ip xfrm state flush</b> [ <b>proto</b> <i>XFRM_PROTO</i> ]  <p>
+&nbsp; &nbsp;<b>ip xfrm state count</b> &nbsp; &nbsp;<i>ID</i> :=   [ <b>src</b> <i>ADDR</i> ]   [ <b>dst</b> <i>ADDR</i> ]   [ <b>proto</b> <i>XFRM_PROTO</i> ]   [ <b>spi</b> <i>SPI</i> ]  <p>
+&nbsp; &nbsp;<i>XFRM_PROTO</i> :=   [ <b>esp</b> | <b>ah</b> | <b>comp</b> | <b>route2</b> | <b>hao</b> ]  <p>
+&nbsp; &nbsp;<i>MODE</i> :=   [ <b>transport</b> | <b>tunnel</b> | <b>ro</b> | <b>beet</b> ]  <!-- ignored unsupported tag .b -->
+<p>
+&nbsp; &nbsp;<i>FLAG-LIST</i> :=   [ <i>FLAG-LIST</i> ] <i>FLAG</i> <p>
+&nbsp; &nbsp;<i>FLAG</i> :=   [ <b>noecn</b> | <b>decap-dscp</b> | <b>wildrecv</b> ]  <p>
+&nbsp; &nbsp;<i>ENCAP</i> := <i>ENCAP-TYPE</i> <i>SPORT</i> <i>DPORT</i> <i>OADDR</i> <p>
+&nbsp; &nbsp;<i>ENCAP-TYPE</i> :=  <b>espinudp</b>  |  <b>espinudp-nonike</b> <p>
+&nbsp; &nbsp;<i>ALGO-LIST</i> := [  <i>ALGO-LIST</i> ] | [  <i>ALGO</i> ]  <p>
+&nbsp; &nbsp;<i>ALGO</i> :=  <i>ALGO_TYPE</i> <i>ALGO_NAME</i> <i>ALGO_KEY</i> <p>
+&nbsp; &nbsp;<i>ALGO_TYPE</i> :=   [ <b>enc</b> | <b>auth</b> | <b>comp</b> ]  <p>
+&nbsp; &nbsp;<i>SELECTOR</i> :=  <b>src</b> <i>ADDR</i>[/<i>PLEN</i>] <b>dst</b> <i>ADDR</i>[/<i>PLEN</i>]  [ <i>UPSPEC</i> ]   [ <b>dev</b> <i>DEV</i> ]  <p>
+&nbsp; &nbsp;<i>UPSPEC</i> :=  <b>proto</b> <i>PROTO</i> [[  <b>sport</b> <i>PORT</i> ]   [ <b>dport</b> <i>PORT</i> ] |  <!-- Need break --><br />
+ [ <b>type</b> <i>NUMBER</i> ]   [ <b>code</b> <i>NUMBER</i> ]]  <p>
+&nbsp; &nbsp;<i>LIMIT-LIST</i> := [ <i>LIMIT-LIST</i> ] |  [ <b>limit</b> <i>LIMIT</i> ]  <p>
+&nbsp; &nbsp;<i>LIMIT</i> :=   [ [<b>time-soft</b>|<b>time-hard</b>|<b>time-use-soft</b>|<b>time-use-hard</b>] <i>SECONDS</i> ] |  [ [<b>byte-soft</b>|<b>byte-hard</b>] <i>SIZE</i> ] |  <!-- Need break --><br />
+ [ [<b>packet-soft</b>|<b>packet-hard</b>] <i>COUNT</i> ]  <p>
+&nbsp; &nbsp;<b>ip xfrm policy</b> { <b>add</b> | <b>update</b> } <b> dir </b> <i>DIR</i> <i>SELECTOR</i> [  <b>index</b> <i>INDEX</i> ]  <!-- Need break --><br />
+ [ <b>ptype</b> <i>PTYPE</i> ]   [ <b>action</b> <i>ACTION</i> ]   [ <b>priority</b> <i>PRIORITY</i> ]  <!-- Need break --><br />
+ [ <i>LIMIT-LIST</i> ] [  <i>TMPL-LIST</i> ]  <p>
+&nbsp; &nbsp;<b>ip xfrm policy</b> { <b>delete</b> | <b>get</b> } <b> dir </b> <i>DIR</i> [ <i>SELECTOR</i> |  <b>index</b> <i>INDEX</i>  ]  <!-- Need break --><br />
+ [ <b>ptype</b> <i>PTYPE</i> ]  <p>
+&nbsp; &nbsp;<b>ip xfrm policy</b> { <b>deleteall</b> | <b>list</b> }   [ <b>dir</b> <i>DIR</i> ] [  <i>SELECTOR</i> ]  <!-- Need break --><br />
+ [ <b>index</b> <i>INDEX</i> ]   [ <b>action</b> <i>ACTION</i> ]   [ <b>priority</b> <i>PRIORITY</i> ]  <p>
+&nbsp; &nbsp;<b>ip xfrm policy flush</b>  [ <b>ptype</b> <i>PTYPE</i> ]  <p>
+&nbsp; &nbsp;<b>ip xfrm count</b> <p>
+&nbsp; &nbsp;<i>PTYPE</i> :=   [ <b>main</b> | <b>sub</b> ]  <!-- ignored unsupported tag .b -->
+<p>
+&nbsp; &nbsp;<i>DIR</i> :=   [ <b>in</b> | <b>out</b> | <b>fwd</b> ]  <p>
+&nbsp; &nbsp;<i>SELECTOR</i> :=  <b>src</b> <i>ADDR</i>[/<i>PLEN</i>] <b>dst</b> <i>ADDR</i>[/<i>PLEN]</i> [ <i>UPSPEC</i>  ] [ <b>dev</b> <i>DEV</i> ]  <p>
+&nbsp; &nbsp;<i>UPSPEC</i> :=  <b>proto</b> <i>PROTO</i> [   [ <b>sport</b> <i>PORT</i> ]   [ <b>dport</b> <i>PORT</i> ] |  <!-- Need break --><br />
+ [ <b>type</b> <i>NUMBER</i> ]   [ <b>code</b> <i>NUMBER</i> ] ]  <p>
+&nbsp; &nbsp;<i>ACTION</i> :=   [ <b>allow</b> | <b>block</b> ] <!-- ignored unsupported tag .b -->
+<p>
+&nbsp; &nbsp;<i>LIMIT-LIST</i> :=   [  <i>LIMIT-LIST</i> ] |   [ <b>limit</b> <i>LIMIT</i> ]  <p>
+&nbsp; &nbsp;<i>LIMIT</i> :=   [ [<b>time-soft</b>|<b>time-hard</b>|<b>time-use-soft</b>|<b>time-use-hard</b>] <i>SECONDS</i> ] |   [ [<b>byte-soft</b>|<b>byte-hard</b>] <i>SIZE</i> ] |  <!-- Need break --><br />
+[<b>packet-soft</b>|<b>packet-hard</b>] <i>NUMBER</i> ]  <p>
+&nbsp; &nbsp;<i>TMPL-LIST</i> :=  <!-- ignored unsupported tag .b -->
+<i>TMPL-LIST</i> ] |   [ <b>tmpl</b> <i>TMPL</i> ]  <p>
+&nbsp; &nbsp;<i>TMPL</i> :=  <i>ID</i> [  <b>mode</b> <i>MODE</i> ]   [ <b>reqid</b> <i>REQID</i> ]   [ <b>level</b> <i>LEVEL</i> ]  <p>
+&nbsp; &nbsp;<i>ID</i> :=   [ <b>src</b> <i>ADDR</i> ]   [ <b>dst</b> <i>ADDR</i> ]   [ <b>proto</b> <i>XFRM_PROTO</i> ]   [ <b>spi</b> <i>SPI</i> ]  <p>
+&nbsp; &nbsp;<i>XFRM_PROTO</i> :=   [ <b>esp</b> | <b>ah</b> | <b>comp</b> | <b>route2</b> | <b>hao</b> ]  <p>
+&nbsp; &nbsp;<i>MODE</i> :=   [ <b>transport</b> | <b>tunnel</b> | <b>beet</b> ]  <!-- ignored unsupported tag .b -->
+<p>
+&nbsp; &nbsp;<i>LEVEL</i> :=   [ <b>required</b> | <b>use</b> ]  <!-- ignored unsupported tag .b -->
+<p>
+&nbsp; &nbsp;<b>ip xfrm monitor</b> [ <b>all</b> |  <i>LISTofOBJECTS</i> ]  <p>
+<!-- ignored unsupported tag .in -->
+<!-- ignored unsupported tag .ad -->
+<p>
+<h1 class="manpages">OPTIONS</h1>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>-V</b>,<b> -Version</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+print the version of the
+<b>ip</b> utility and exit.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-s</b>,<b> -stats</b>,<b> -statistics</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+output more information.  If the option
+appears twice or more, the amount of information increases.
+As a rule, the information is statistics or some time values.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-f</b>,<b> -family</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+followed by protocol family identifier:
+<b>inet</b>,<b> inet6</b> or
+<b>link</b> ,enforce the protocol family to use.  If the option is not present,
+the protocol family is guessed from other arguments.  If the rest
+of the command line does not give enough information to guess the
+family,
+<b>ip</b> falls back to the default one, usually
+<b>inet</b> or
+<b>any</b>. <b>link</b> is a special family identifier meaning that no networking protocol
+is involved.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>-4</b> </td><td valign="bottom">
+shortcut for
+<b>-family inet</b>. <p>
+</td></tr>
+<tr valign="top"><td>
+<b>-6</b> </td><td valign="bottom">
+shortcut for
+<b>-family inet6</b>. <p>
+</td></tr>
+<tr valign="top"><td>
+<b>-0</b> </td><td valign="bottom">
+shortcut for
+<b>-family link</b>. <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-o</b>,<b> -oneline</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+output each record on a single line, replacing line feeds
+with the
+<b>&#146;&#39;</b> character. This is convenient when you want to count records
+with
+<b>wc</b>(1)
+<br />
+ or to
+<b>grep</b>(1)
+the output.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-r</b>,<b> -resolve</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+use the system&#146;s name resolver to print DNS names instead of
+host addresses.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">IP - COMMAND SYNTAX</h1>
+<p>
+<h2><i></i></h2>
+<i>OBJECT</i> <p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>link</b> </td><td valign="bottom">
+- network device.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>address</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+- protocol (IP or IPv6) address on a device.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>addrlabel</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+- label configuration for protocol address selection.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>neighbour</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+- ARP or NDISC cache entry.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>route</b> </td><td valign="bottom">
+- routing table entry.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>rule</b> </td><td valign="bottom">
+- rule in routing policy database.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>maddress</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+- multicast address.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>mroute</b> </td><td valign="bottom">
+- multicast routing cache entry.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>tunnel</b> </td><td valign="bottom">
+- tunnel over IP.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>xfrm</b> </td><td valign="bottom">
+- framework for IPsec protocol.
+<p>
+</td></tr>
+<!-- PP ends table -->
+</table>
+The names of all objects may be written in full or
+abbreviated form, f.e.
+<b>address</b> is abbreviated as
+<b>addr</b> or just
+<b>a.</b> <p>
+<h2><i></i></h2>
+<i>COMMAND</i> <p>
+Specifies the action to perform on the object.
+The set of possible actions depends on the object type.
+As a rule, it is possible to
+<b>add</b>,<b> delete</b> and
+<b>show</b> (or
+<b>list</b> ) objects, but some objects do not allow all of these operations
+or have some additional commands.  The
+<b>help</b> command is available for all objects.  It prints
+out a list of available commands and argument syntax conventions.
+<p>
+If no command is given, some default command is assumed.
+Usually it is
+<b>list</b> or, if the objects of this class cannot be listed,
+<b>help</b>. <p>
+<h1 class="manpages">ip link - network device configuration</h1>
+<p>
+<b>link</b> is a network device and the corresponding commands
+display and change the state of devices.
+<p>
+<h2><i>ip link set - change device attributes</i></h2>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>dev</b><i> NAME </i><b>(default)</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+<i>NAME</i> specifies network device to operate on.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>up</b> and <b>down</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+change the state of the device to
+<b>UP</b> or
+<b>DOWN</b>. <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>arp on </b>or<b> arp off</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+change the
+<b>NOARP</b> flag on the device.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>multicast on </b>or<b> multicast off</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+change the
+<b>MULTICAST</b> flag on the device.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>dynamic on </b>or<b> dynamic off</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+change the
+<b>DYNAMIC</b> flag on the device.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>name</b><i> NAME</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+change the name of the device.  This operation is not
+recommended if the device is running or has some addresses
+already configured.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>txqueuelen</b><i> NUMBER</i> <!-- Consumed .TP  -->
+<br />
+<b>txqlen</b><i> NUMBER</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+change the transmit queue length of the device.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>mtu</b><i> NUMBER</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+change the
+<i>MTU</i> of the device.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>address</b><i> LLADDRESS</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+change the station address of the interface.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>broadcast</b><i> LLADDRESS</i> <!-- Consumed .TP -->
+<br />
+<b>brd</b><i> LLADDRESS</i> <!-- Consumed .TP -->
+<br />
+<b>peer</b><i> LLADDRESS</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+change the link layer broadcast address or the peer address when
+the interface is
+<i>POINTOPOINT</i>. <p>
+</td></tr>
+<!-- PP ends table -->
+</table>
+<b>Warning:</b> If multiple parameter changes are requested,
+<b>ip</b> aborts immediately after any of the changes have failed.
+This is the only case when
+<b>ip</b> can move the system to an unpredictable state.  The solution
+is to avoid changing several parameters with one
+<b>ip link set</b> call.
+<p>
+<h2><i>ip link show - display device attributes</i></h2>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>dev</b><i> NAME </i><b>(default)</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+<i>NAME</i> specifies the network device to show.
+If this argument is omitted all devices are listed.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>up</b> </td><td valign="bottom">
+only display running interfaces.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">ip address - protocol address management.</h1>
+<p>
+The
+<b>address</b> is a protocol (IP or IPv6) address attached
+to a network device.  Each device must have at least one address
+to use the corresponding protocol.  It is possible to have several
+different addresses attached to one device.  These addresses are not
+discriminated, so that the term
+<b>alias</b> is not quite appropriate for them and we do not use it in this document.
+<p>
+The
+<b>ip addr</b> command displays addresses and their properties, adds new addresses
+and deletes old ones.
+<p>
+<h2><i>ip address add - add new protocol address.</i></h2>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>dev</b><i> NAME</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the name of the device to add the address to.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>local</b><i> ADDRESS </i><b>(default)</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the address of the interface. The format of the address depends
+on the protocol. It is a dotted quad for IP and a sequence of
+hexadecimal halfwords separated by colons for IPv6.  The
+<i>ADDRESS</i> may be followed by a slash and a decimal number which encodes
+the network prefix length.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>peer</b><i> ADDRESS</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the address of the remote endpoint for pointopoint interfaces.
+Again, the
+<i>ADDRESS</i> may be followed by a slash and a decimal number, encoding the network
+prefix length.  If a peer address is specified, the local address
+cannot have a prefix length.  The network prefix is associated
+with the peer rather than with the local address.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>broadcast</b><i> ADDRESS</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the broadcast address on the interface.
+<p>
+It is possible to use the special symbols
+<b>&#146;+&#146;</b> and
+<b>&#146;-&#146;</b> instead of the broadcast address.  In this case, the broadcast address
+is derived by setting/resetting the host bits of the interface prefix.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>label</b><i> NAME</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Each address may be tagged with a label string.
+In order to preserve compatibility with Linux-2.0 net aliases,
+this string must coincide with the name of the device or must be prefixed
+with the device name followed by colon.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>scope</b><i> SCOPE_VALUE</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the scope of the area where this address is valid.
+The available scopes are listed in file
+<b>/etc/iproute2/rt_scopes</b>. Predefined scope values are:
+<p>
+<!-- ignored unsupported tag .in -->
+<b>global</b> - the address is globally valid.
+<p>
+<b>site</b> - (IPv6 only) the address is site local, i.e. it is
+valid inside this site.
+<p>
+<b>link</b> - the address is link local, i.e. it is valid only on this device.
+<p>
+<b>host</b> - the address is valid only inside this host.
+<!-- ignored unsupported tag .in -->
+<p>
+</td></tr>
+</table>
+<h2><i>ip address delete - delete protocol address</i></h2>
+<b>Arguments:</b> coincide with the arguments of
+<b>ip addr add.</b> The device name is a required argument.  The rest are optional.
+If no arguments are given, the first address is deleted.
+<p>
+<h2><i>ip address show - look at protocol addresses</i></h2>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>dev</b><i> NAME </i><b>(default)</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+name of device.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>scope</b><i> SCOPE_VAL</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+only list addresses with this scope.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>to</b><i> PREFIX</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+only list addresses matching this prefix.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>label</b><i> PATTERN</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+only list addresses with labels matching the
+<i>PATTERN</i>. <i>PATTERN</i> is a usual shell style pattern.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>dynamic</b> and <b>permanent</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+(IPv6 only) only list addresses installed due to stateless
+address configuration or only list permanent (not dynamic)
+addresses.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>tentative</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+(IPv6 only) only list addresses which did not pass duplicate
+address detection.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>deprecated</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+(IPv6 only) only list deprecated addresses.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>primary</b> and <b>secondary</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+only list primary (or secondary) addresses.
+<p>
+</td></tr>
+</table>
+<h2><i>ip address flush - flush protocol addresses</i></h2>
+This command flushes the protocol addresses selected by some criteria.
+<p>
+<p>
+This command has the same arguments as
+<b>show.</b> The difference is that it does not run when no arguments are given.
+<p>
+<p>
+<b>Warning:</b> This command (and other
+<b>flush</b> commands described below) is pretty dangerous.  If you make a mistake,
+it will not forgive it, but will cruelly purge all the addresses.
+<p>
+<p>
+With the
+<b>-statistics</b> option, the command becomes verbose. It prints out the number of deleted
+addresses and the number of rounds made to flush the address list.  If
+this option is given twice,
+<b>ip addr flush</b> also dumps all the deleted addresses in the format described in the
+previous subsection.
+<p>
+<h1 class="manpages">ip addrlabel - protocol address label management.</h1>
+<p>
+IPv6 address label is used for address selection
+described in RFC 3484.  Precedence is managed by userspace,
+and only label is stored in kernel.
+<p>
+<h2><i>ip addrlabel add - add an address label</i></h2>
+the command adds an address label entry to the kernel.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>prefix</b><i> PREFIX</i> <!-- Consumed .TP -->
+<br />
+<b>dev</b><i> DEV</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the outgoing interface.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>label</b><i> NUMBER</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the label for the prefix.
+0xffffffff is reserved.
+</td></tr>
+</table>
+<h2><i>ip addrlabel del - delete an address label</i></h2>
+the command deletes an address label entry in the kernel.
+<b>Arguments:</b> coincide with the arguments of
+<b>ip addrlabel add</b> but label is not required.
+<h2><i>ip addrlabel list - list address labels</i></h2>
+the command show contents of address labels.
+<h2><i>ip addrlabel flush - flush address labels</i></h2>
+the commoand flushes the contents of address labels and it does not restore default settings.
+<h1 class="manpages">ip neighbour - neighbour/arp tables management.</h1>
+<p>
+<b>neighbour</b> objects establish bindings between protocol addresses and
+link layer addresses for hosts sharing the same link.
+Neighbour entries are organized into tables. The IPv4 neighbour table
+is known by another name - the ARP table.
+<p>
+<p>
+The corresponding commands display neighbour bindings
+and their properties, add new neighbour entries and delete old ones.
+<p>
+<h2><i>ip neighbour add - add a new neighbour entry</i></h2>
+<h2><i>ip neighbour change - change an existing entry</i></h2>
+<h2><i>ip neighbour replace - add a new entry or change an existing one</i></h2>
+<p>
+These commands create new neighbour records or update existing ones.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>to</b><i> ADDRESS </i><b>(default)</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the protocol address of the neighbour. It is either an IPv4 or IPv6 address.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>dev</b><i> NAME</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the interface to which this neighbour is attached.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>lladdr</b><i> LLADDRESS</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the link layer address of the neighbour.
+<i>LLADDRESS</i> can also be
+<b>null</b>. <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>nud</b><i> NUD_STATE</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the state of the neighbour entry.
+<b>nud</b> is an abbreviation for &#146;Neigh bour Unreachability Detection&#146;.
+The state can take one of the following values:
+<p>
+<!-- ignored unsupported tag .in -->
+<b>permanent</b> - the neighbour entry is valid forever and can be only
+be removed administratively.
+<p>
+<p>
+<b>noarp</b> - the neighbour entry is valid. No attempts to validate
+this entry will be made but it can be removed when its lifetime expires.
+<p>
+<p>
+<b>reachable</b> - the neighbour entry is valid until the reachability
+timeout expires.
+<p>
+<p>
+<b>stale</b> - the neighbour entry is valid but suspicious.
+This option to
+<b>ip neigh</b> does not change the neighbour state if it was valid and the address
+is not changed by this command.
+<!-- ignored unsupported tag .in -->
+<p>
+</td></tr>
+</table>
+<h2><i>ip neighbour delete - delete a neighbour entry</i></h2>
+This command invalidates a neighbour entry.
+<p>
+<p>
+The arguments are the same as with
+<b>ip neigh add</b>, except that
+<b>lladdr</b> and
+<b>nud</b> are ignored.
+<p>
+<p>
+<b>Warning:</b> Attempts to delete or manually change a
+<b>noarp</b> entry created by the kernel may result in unpredictable behaviour.
+Particularly, the kernel may try to resolve this address even
+on a
+<b>NOARP</b> interface or if the address is multicast or broadcast.
+<p>
+<h2><i>ip neighbour show - list neighbour entries</i></h2>
+<p>
+This commands displays neighbour tables.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>to</b><i> ADDRESS </i><b>(default)</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the prefix selecting the neighbours to list.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>dev</b><i> NAME</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+only list the neighbours attached to this device.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>unused</b> </td><td valign="bottom">
+only list neighbours which are not currently in use.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>nud</b><i> NUD_STATE</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+only list neighbour entries in this state.
+<i>NUD_STATE</i> takes values listed below or the special value
+<b>all</b> which means all states.  This option may occur more than once.
+If this option is absent,
+<b>ip</b> lists all entries except for
+<b>none</b> and
+<b>noarp</b>. <p>
+</td></tr>
+</table>
+<h2><i>ip neighbour flush - flush neighbour entries</i></h2>
+This command flushes neighbour tables, selecting
+entries to flush by some criteria.
+<p>
+<p>
+This command has the same arguments as
+<b>show.</b> The differences are that it does not run when no arguments are given,
+and that the default neighbour states to be flushed do not include
+<b>permanent</b> and
+<b>noarp</b>. <p>
+<p>
+With the
+<b>-statistics</b> option, the command becomes verbose.  It prints out the number of
+deleted neighbours and the number of rounds made to flush the
+neighbour table.  If the option is given
+twice,
+<b>ip neigh flush</b> also dumps all the deleted neighbours.
+<p>
+<h1 class="manpages">ip route - routing table management</h1>
+Manipulate route entries in the kernel routing tables keep
+information about paths to other networked nodes.
+<p>
+<b>Route types:</b> <p>
+<!-- ignored unsupported tag .in -->
+<b>unicast</b> - the route entry describes real paths to the destinations covered
+by the route prefix.
+<p>
+<p>
+<b>unreachable</b> - these destinations are unreachable.  Packets are discarded and the
+ICMP message
+<i>host unreachable</i> is generated.
+The local senders get an
+<i>EHOSTUNREACH</i> error.
+<p>
+<p>
+<b>blackhole</b> - these destinations are unreachable.  Packets are discarded silently.
+The local senders get an
+<i>EINVAL</i> error.
+<p>
+<p>
+<b>prohibit</b> - these destinations are unreachable.  Packets are discarded and the
+ICMP message
+<i>communication administratively prohibited</i> is generated.  The local senders get an
+<i>EACCES</i> error.
+<p>
+<p>
+<b>local</b> - the destinations are assigned to this host.  The packets are looped
+back and delivered locally.
+<p>
+<p>
+<b>broadcast</b> - the destinations are broadcast addresses.  The packets are sent as
+link broadcasts.
+<p>
+<p>
+<b>throw</b> - a special control route used together with policy rules. If such a
+route is selected, lookup in this table is terminated pretending that
+no route was found.  Without policy routing it is equivalent to the
+absence of the route in the routing table.  The packets are dropped
+and the ICMP message
+<i>net unreachable</i> is generated.  The local senders get an
+<i>ENETUNREACH</i> error.
+<p>
+<p>
+<b>nat</b> - a special NAT route.  Destinations covered by the prefix
+are considered to be dummy (or external) addresses which require translation
+to real (or internal) ones before forwarding.  The addresses to translate to
+are selected with the attribute
+<b>Warning:</b> Route NAT is no longer supported in Linux 2.6.
+<p>
+<p>
+<b>via</b>. <p>
+<b>anycast</b> - <i>not implemented</i> the destinations are
+<i>anycast</i> addresses assigned to this host.  They are mainly equivalent
+to
+<b>local</b> with one difference: such addresses are invalid when used
+as the source address of any packet.
+<p>
+<p>
+<b>multicast</b> - a special type used for multicast routing.  It is not present in
+normal routing tables.
+<!-- ignored unsupported tag .in -->
+<p>
+<p>
+<b>Route tables:</b> Linux-2.x can pack routes into several routing
+tables identified by a number in the range from 1 to 255 or by
+name from the file
+<b>/etc/iproute2/rt_tables</b> <br />.By default all normal routes are inserted into the
+<b>main</b> table (ID 254) and the kernel only uses this table when calculating routes.
+<p>
+<p>
+Actually, one other table always exists, which is invisible but
+even more important.  It is the
+<b>local</b> table (ID 255).  This table
+consists of routes for local and broadcast addresses.  The kernel maintains
+this table automatically and the administrator usually need not modify it
+or even look at it.
+<p>
+The multiple routing tables enter the game when
+<i>policy routing</i> is used.
+<p>
+<h2><i>ip route add - add new route</i></h2>
+<h2><i>ip route change - change route</i></h2>
+<h2><i>ip route replace - change or add new one</i></h2>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>to</b><i> TYPE PREFIX </i><b>(default)</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the destination prefix of the route.  If
+<i>TYPE</i> is omitted,
+<b>ip</b> assumes type
+<b>unicast</b>. Other values of
+<i>TYPE</i> are listed above.
+<i>PREFIX</i> is an IP or IPv6 address optionally followed by a slash and the
+prefix length.  If the length of the prefix is missing,
+<b>ip</b> assumes a full-length host route.  There is also a special
+<i>PREFIX</i> <b>default</b> - which is equivalent to IP
+<b>0/0</b> or to IPv6
+<b>::/0</b>. <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>tos</b><i> TOS</i> <!-- Consumed .TP -->
+<br />
+<b>dsfield</b><i> TOS</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the Type Of Service (TOS) key.  This key has no associated mask and
+the longest match is understood as: First, compare the TOS
+of the route and of the packet.  If they are not equal, then the packet
+may still match a route with a zero TOS.
+<i>TOS</i> is either an 8 bit hexadecimal number or an identifier
+from
+<b>/etc/iproute2/rt_dsfield</b>. <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>metric</b><i> NUMBER</i> <!-- Consumed .TP -->
+<br />
+<b>preference</b><i> NUMBER</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the preference value of the route.
+<i>NUMBER</i> is an arbitrary 32bit number.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>table</b><i> TABLEID</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the table to add this route to.
+<i>TABLEID</i> may be a number or a string from the file
+<b>/etc/iproute2/rt_tables</b>. If this parameter is omitted,
+<b>ip</b> assumes the
+<b>main</b> table, with the exception of
+<b>local</b> , <b>broadcast</b> and <b>nat</b> routes, which are put into the
+<b>local</b> table by default.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>dev</b><i> NAME</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the output device name.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>via</b><i> ADDRESS</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the address of the nexthop router.  Actually, the sense of this field
+depends on the route type.  For normal
+<b>unicast</b> routes it is either the true next hop router or, if it is a direct
+route installed in BSD compatibility mode, it can be a local address
+of the interface.  For NAT routes it is the first address of the block
+of translated IP destinations.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>src</b><i> ADDRESS</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the source address to prefer when sending to the destinations
+covered by the route prefix.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>realm</b><i> REALMID</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the realm to which this route is assigned.
+<i>REALMID</i> may be a number or a string from the file
+<b>/etc/iproute2/rt_realms</b>. <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>mtu</b><i> MTU</i> <!-- Consumed .TP -->
+<br />
+<b>mtu lock</b><i> MTU</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the MTU along the path to the destination.  If the modifier
+<b>lock</b> is not used, the MTU may be updated by the kernel due to
+Path MTU Discovery.  If the modifier
+<b>lock</b> is used, no path MTU discovery will be tried, all packets
+will be sent without the DF bit in IPv4 case or fragmented
+to MTU for IPv6.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>window</b><i> NUMBER</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the maximal window for TCP to advertise to these destinations,
+measured in bytes.  It limits maximal data bursts that our TCP
+peers are allowed to send to us.
+<p>
+<b>rtt</b><i> TIME</i> the initial RTT (&#146;Round Trip Time&#146;) estimate. If no suffix is
+specified the units are raw values passed directly to the
+routing code to maintain compatability with previous releases.
+Otherwise if a suffix of s, sec or secs is used to specify
+seconds; ms, msec or msecs to specify milliseconds; us, usec
+or usecs to specify microseconds; ns, nsec or nsecs to specify
+nanoseconds; j, hz or jiffies to specify jiffies, the value is
+converted to what the routing code expects.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>rttvar</b><i> TIME </i><b>(2.3.15+ only)</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the initial RTT variance estimate. Values are specified as with
+<b>rtt</b> above.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>rto_min</b><i> TIME </i><b>(2.6.23+ only)</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the minimum TCP Retransmission TimeOut to use when communicating with this
+destination.  Values are specified as with
+<b>rtt</b> above.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ssthresh</b><i> NUMBER </i><b>(2.3.15+ only)</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+an estimate for the initial slow start threshold.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>cwnd</b><i> NUMBER </i><b>(2.3.15+ only)</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the clamp for congestion window.  It is ignored if the
+<b>lock</b> flag is not used.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>initcwnd</b><i> NUMBER </i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The maximum initial congestion window (cwnd) size in MSS of a
+TCP connection.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>advmss</b><i> NUMBER </i><b>(2.3.15+ only)</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the MSS (&#146;Maximal Segment Size&#146;) to advertise to these
+destinations when establishing TCP connections.  If it is not given,
+Linux uses a default value calculated from the first hop device MTU.
+(If the path to these destination is asymmetric, this guess may be wrong.)
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>reordering</b><i> NUMBER </i><b>(2.3.15+ only)</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Maximal reordering on the path to this destination.
+If it is not given, Linux uses the value selected with
+<b>sysctl</b> variable
+<b>net/ipv4/tcp_reordering</b>. <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>nexthop</b><i> NEXTHOP</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the nexthop of a multipath route.
+<i>NEXTHOP</i> is a complex value with its own syntax similar to the top level
+argument lists:
+<p>
+<!-- ignored unsupported tag .in -->
+<b>via</b><i> ADDRESS</i> - is the nexthop router.
+<p>
+<p>
+<b>dev</b><i> NAME</i> - is the output device.
+<p>
+<p>
+<b>weight</b><i> NUMBER</i> - is a weight for this element of a multipath
+route reflecting its relative bandwidth or quality.
+<!-- ignored unsupported tag .in -->
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>scope</b><i> SCOPE_VAL</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the scope of the destinations covered by the route prefix.
+<i>SCOPE_VAL</i> may be a number or a string from the file
+<b>/etc/iproute2/rt_scopes</b>. If this parameter is omitted,
+<b>ip</b> assumes scope
+<b>global</b> for all gatewayed
+<b>unicast</b> routes, scope
+<b>link</b> for direct
+<b>unicast</b> and <b>broadcast</b> routes and scope
+<b>host</b> for <b>local</b> routes.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>protocol</b><i> RTPROTO</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the routing protocol identifier of this route.
+<i>RTPROTO</i> may be a number or a string from the file
+<b>/etc/iproute2/rt_protos</b>. If the routing protocol ID is not given,
+<b>ip assumes protocol</b> <b>boot</b> (i.e. it assumes the route was added by someone who doesn&#146;t
+understand what they are doing).  Several protocol values have
+a fixed interpretation.
+Namely:
+<p>
+<!-- ignored unsupported tag .in -->
+<b>redirect</b> - the route was installed due to an ICMP redirect.
+<p>
+<p>
+<b>kernel</b> - the route was installed by the kernel during autoconfiguration.
+<p>
+<p>
+<b>boot</b> - the route was installed during the bootup sequence.
+If a routing daemon starts, it will purge all of them.
+<p>
+<p>
+<b>static</b> - the route was installed by the administrator
+to override dynamic routing. Routing daemon will respect them
+and, probably, even advertise them to its peers.
+<p>
+<p>
+<b>ra</b> - the route was installed by Router Discovery protocol.
+<!-- ignored unsupported tag .in -->
+<p>
+<p>
+The rest of the values are not reserved and the administrator is free
+to assign (or not to assign) protocol tags.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>onlink</b> </td><td valign="bottom">
+pretend that the nexthop is directly attached to this link,
+even if it does not match any interface prefix.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>equalize</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+allow packet by packet randomization on multipath routes.
+Without this modifier, the route will be frozen to one selected
+nexthop, so that load splitting will only occur on per-flow base.
+<b>equalize</b> only works if the kernel is patched.
+<p>
+</td></tr>
+</table>
+<h2><i>ip route delete - delete route</i></h2>
+<p>
+<b>ip route del</b> has the same arguments as
+<b>ip route add</b>, but their semantics are a bit different.
+<p>
+Key values
+(<b>to</b>, <b>tos</b>, <b>preference</b> and <b>table</b>) select the route to delete.  If optional attributes are present,
+<b>ip</b> verifies that they coincide with the attributes of the route to delete.
+If no route with the given key and attributes was found,
+<b>ip route del</b> fails.
+<p>
+<h2><i>ip route show - list routes</i></h2>
+the command displays the contents of the routing tables or the route(s)
+selected by some criteria.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>to</b><i> SELECTOR </i><b>(default)</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+only select routes from the given range of destinations.
+<i>SELECTOR</i> consists of an optional modifier
+(<b>root</b>, <b>match</b> or <b>exact</b>) and a prefix.
+<b>root</b><i> PREFIX</i> selects routes with prefixes not shorter than
+<i>PREFIX</i>. F.e.
+<b>root</b><i> 0/0</i> selects the entire routing table.
+<b>match</b><i> PREFIX</i> selects routes with prefixes not longer than
+<i>PREFIX</i>. F.e.
+<b>match</b><i> 10.0/16</i> selects
+<i>10.0/16</i>, <i>10/8</i> and <i>0/0</i>, but it does not select
+<i>10.1/16</i> and <i>10.0.0/24</i>. And
+<b>exact</b><i> PREFIX</i> (or just
+<i>PREFIX</i>) selects routes with this exact prefix. If neither of these options
+are present,
+<b>ip</b> assumes
+<b>root</b><i> 0/0</i> i.e. it lists the entire table.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>tos</b><i> TOS</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+<b>dsfield</b><i> TOS</i> only select routes with the given TOS.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>table</b><i> TABLEID</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+show the routes from this table(s).  The default setting is to show
+<b>table</b>main<b>.</b> <i>TABLEID</i> may either be the ID of a real table or one of the special values:
+<p>
+<!-- ignored unsupported tag .in -->
+<b>all</b> - list all of the tables.
+<p>
+<b>cache</b> - dump the routing cache.
+<!-- ignored unsupported tag .in -->
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>cloned</b> <!-- Consumed .TP -->
+<br />
+<b>cached</b> </td><td valign="bottom">
+list cloned routes i.e. routes which were dynamically forked from
+other routes because some route attribute (f.e. MTU) was updated.
+Actually, it is equivalent to
+<b>table cache</b>. <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>from</b><i> SELECTOR</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the same syntax as for
+<b>to</b>, but it binds the source address range rather than destinations.
+Note that the
+<b>from</b> option only works with cloned routes.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>protocol</b><i> RTPROTO</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+only list routes of this protocol.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>scope</b><i> SCOPE_VAL</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+only list routes with this scope.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>type</b><i> TYPE</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+only list routes of this type.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>dev</b><i> NAME</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+only list routes going via this device.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>via</b><i> PREFIX</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+only list routes going via the nexthop routers selected by
+<i>PREFIX</i>. <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>src</b><i> PREFIX</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+only list routes with preferred source addresses selected
+by
+<i>PREFIX</i>. <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>realm</b><i> REALMID</i> <!-- Consumed .TP -->
+<br />
+<b>realms</b><i> FROMREALM/TOREALM</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+only list routes with these realms.
+<p>
+</td></tr>
+</table>
+<h2><i>ip route flush - flush routing tables</i></h2>
+this command flushes routes selected by some criteria.
+<p>
+<p>
+The arguments have the same syntax and semantics as the arguments of
+<b>ip route show</b>, but routing tables are not listed but purged.  The only difference is
+the default action:
+<b>show</b> dumps all the IP main routing table but
+<b>flush</b> prints the helper page.
+<p>
+<p>
+With the
+<b>-statistics</b> option, the command becomes verbose. It prints out the number of
+deleted routes and the number of rounds made to flush the routing
+table. If the option is given
+twice,
+<b>ip route flush</b> also dumps all the deleted routes in the format described in the
+previous subsection.
+<p>
+<h2><i>ip route get - get a single route</i></h2>
+this command gets a single route to a destination and prints its
+contents exactly as the kernel sees it.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>to</b><i> ADDRESS </i><b>(default)</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the destination address.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>from</b><i> ADDRESS</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the source address.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>tos</b><i> TOS</i> <!-- Consumed .TP -->
+<br />
+<b>dsfield</b><i> TOS</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the Type Of Service.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>iif</b><i> NAME</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the device from which this packet is expected to arrive.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>oif</b><i> NAME</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+force the output device on which this packet will be routed.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>connected</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if no source address
+(option <b>from</b>) was given, relookup the route with the source set to the preferred
+address received from the first lookup.
+If policy routing is used, it may be a different route.
+<p>
+</td></tr>
+<!-- P ends table -->
+</table>
+Note that this operation is not equivalent to
+<b>ip route show</b>. <b>show</b> shows existing routes.
+<b>get</b> resolves them and creates new clones if necessary.  Essentially,
+<b>get</b> is equivalent to sending a packet along this path.
+If the
+<b>iif</b> argument is not given, the kernel creates a route
+to output packets towards the requested destination.
+This is equivalent to pinging the destination
+with a subsequent
+<b>ip route ls cache</b>, however, no packets are actually sent.  With the
+<b>iif</b> argument, the kernel pretends that a packet arrived from this interface
+and searches for a path to forward the packet.
+<p>
+<h1 class="manpages">ip rule - routing policy database management</h1>
+<p>
+<b>Rule</b>s in the routing policy database control the route selection algorithm.
+<p>
+<p>
+Classic routing algorithms used in the Internet make routing decisions
+based only on the destination address of packets (and in theory,
+but not in practice, on the TOS field).
+<p>
+<p>
+In some circumstances we want to route packets differently depending not only
+on destination addresses, but also on other packet fields: source address,
+IP protocol, transport protocol ports or even packet payload.
+This task is called &#146;policy routing&#146;.
+<p>
+<p>
+To solve this task, the conventional destination based routing table, ordered
+according to the longest match rule, is replaced with a &#146;routing policy
+database&#146; (or RPDB), which selects routes by executing some set of rules.
+<p>
+<p>
+Each policy routing rule consists of a
+<b>selector</b> and an
+<b>action predicate.</b> The RPDB is scanned in the order of increasing priority. The selector
+of each rule is applied to {source address, destination address, incoming
+interface, tos, fwmark} and, if the selector matches the packet,
+the action is performed.  The action predicate may return with success.
+In this case, it will either give a route or failure indication
+and the RPDB lookup is terminated. Otherwise, the RPDB program
+continues on the next rule.
+<p>
+<p>
+Semantically, natural action is to select the nexthop and the output device.
+<p>
+<p>
+At startup time the kernel configures the default RPDB consisting of three
+rules:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+1.
+</td><td valign="bottom">
+Priority: 0, Selector: match anything, Action: lookup routing
+table
+<b>local</b> (ID 255).
+The
+<b>local</b> table is a special routing table containing
+high priority control routes for local and broadcast addresses.
+<p>
+Rule 0 is special. It cannot be deleted or overridden.
+<p>
+</td></tr>
+<tr valign="top"><td>
+2.
+</td><td valign="bottom">
+Priority: 32766, Selector: match anything, Action: lookup routing
+table
+<b>main</b> (ID 254).
+The
+<b>main</b> table is the normal routing table containing all non-policy
+routes. This rule may be deleted and/or overridden with other
+ones by the administrator.
+<p>
+</td></tr>
+<tr valign="top"><td>
+3.
+</td><td valign="bottom">
+Priority: 32767, Selector: match anything, Action: lookup routing
+table
+<b>default</b> (ID 253).
+The
+<b>default</b> table is empty.  It is reserved for some post-processing if no previous
+default rules selected the packet.
+This rule may also be deleted.
+<p>
+</td></tr>
+<!-- P ends table -->
+</table>
+Each RPDB entry has additional
+attributes.  F.e. each rule has a pointer to some routing
+table.  NAT and masquerading rules have an attribute to select new IP
+address to translate/masquerade.  Besides that, rules have some
+optional attributes, which routes have, namely
+<b>realms</b>. These values do not override those contained in the routing tables.  They
+are only used if the route did not select any attributes.
+<p>
+<p>
+The RPDB may contain rules of the following types:
+<p>
+<!-- ignored unsupported tag .in -->
+<b>unicast</b> - the rule prescribes to return the route found
+in the routing table referenced by the rule.
+<p>
+<b>blackhole</b> - the rule prescribes to silently drop the packet.
+<p>
+<b>unreachable</b> - the rule prescribes to generate a &#146;Network is unreachable&#146; error.
+<p>
+<b>prohibit</b> - the rule prescribes to generate &#146;Communication is administratively
+prohibited&#146; error.
+<p>
+<b>nat</b> - the rule prescribes to translate the source address
+of the IP packet into some other value.
+<!-- ignored unsupported tag .in -->
+<p>
+<h2><i>ip rule add - insert a new rule</i></h2>
+<h2><i>ip rule delete - delete a rule</i></h2>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>type</b><i> TYPE </i><b>(default)</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the type of this rule.  The list of valid types was given in the previous
+subsection.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>from</b><i> PREFIX</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+select the source prefix to match.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>to</b><i> PREFIX</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+select the destination prefix to match.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>iif</b><i> NAME</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+select the incoming device to match.  If the interface is loopback,
+the rule only matches packets originating from this host.  This means
+that you may create separate routing tables for forwarded and local
+packets and, hence, completely segregate them.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>tos</b><i> TOS</i> <!-- Consumed .TP -->
+<br />
+<b>dsfield</b><i> TOS</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+select the TOS value to match.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>fwmark</b><i> MARK</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+select the
+<b>fwmark</b> value to match.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>priority</b><i> PREFERENCE</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the priority of this rule.  Each rule should have an explicitly
+set
+<i>unique</i> priority value.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>table</b><i> TABLEID</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the routing table identifier to lookup if the rule selector matches.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>realms</b><i> FROM/TO</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Realms to select if the rule matched and the routing table lookup
+succeeded.  Realm
+<i>TO</i> is only used if the route did not select any realm.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>nat</b><i> ADDRESS</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The base of the IP address block to translate (for source addresses).
+The
+<i>ADDRESS</i> may be either the start of the block of NAT addresses (selected by NAT
+routes) or a local host address (or even zero).
+In the last case the router does not translate the packets, but
+masquerades them to this address.
+<p>
+<b>Warning:</b> Changes to the RPDB made with these commands do not become active
+immediately.  It is assumed that after a script finishes a batch of
+updates, it flushes the routing cache with
+<b>ip route flush cache</b>. <p>
+</td></tr>
+</table>
+<h2><i>ip rule flush - also dumps all the deleted rules.</i></h2>
+This command has no arguments.
+<p>
+<h2><i>ip rule show - list rules</i></h2>
+This command has no arguments.
+<p>
+<h1 class="manpages">ip maddress - multicast addresses management</h1>
+<p>
+<b>maddress</b> objects are multicast addresses.
+<p>
+<h2><i>ip maddress show - list multicast addresses</i></h2>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>dev</b><i> NAME </i><b>(default)</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the device name.
+<p>
+</td></tr>
+</table>
+<h2><i>ip maddress add - add a multicast address</i></h2>
+<h2><i>ip maddress delete - delete a multicast address</i></h2>
+these commands attach/detach a static link layer multicast address
+to listen on the interface.
+Note that it is impossible to join protocol multicast groups
+statically.  This command only manages link layer addresses.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>address</b><i> LLADDRESS </i><b>(default)</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the link layer multicast address.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>dev</b><i> NAME</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the device to join/leave this multicast address.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">ip mroute - multicast routing cache management</h1>
+<b>mroute</b> objects are multicast routing cache entries created by a user level
+mrouting daemon (f.e.
+<b>pimd</b> or
+<b>mrouted</b> ).
+<p>
+Due to the limitations of the current interface to the multicast routing
+engine, it is impossible to change
+<b>mroute</b> objects administratively, so we may only display them.  This limitation
+will be removed in the future.
+<p>
+<h2><i>ip mroute show - list mroute cache entries</i></h2>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>to</b><i> PREFIX </i><b>(default)</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the prefix selecting the destination multicast addresses to list.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>iif</b><i> NAME</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the interface on which multicast packets are received.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>from</b><i> PREFIX</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the prefix selecting the IP source addresses of the multicast route.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">ip tunnel - tunnel configuration</h1>
+<b>tunnel</b> objects are tunnels, encapsulating packets in IPv4 packets and then
+sending them over the IP infrastructure.
+<p>
+<h2><i>ip tunnel add - add a new tunnel</i></h2>
+<h2><i>ip tunnel change - change an existing tunnel</i></h2>
+<h2><i>ip tunnel delete - destroy a tunnel</i></h2>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>name</b><i> NAME </i><b>(default)</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+select the tunnel device name.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>mode</b><i> MODE</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+set the tunnel mode.  Three modes are currently available:
+<b>ipip</b>, <b>sit</b> and <b>gre</b>. <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>remote</b><i> ADDRESS</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+set the remote endpoint of the tunnel.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>local</b><i> ADDRESS</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+set the fixed local address for tunneled packets.
+It must be an address on another interface of this host.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>ttl</b><i> N</i> </td><td valign="bottom">
+set a fixed TTL
+<i>N</i> on tunneled packets.
+<i>N</i> is a number in the range 1--255. 0 is a special value
+meaning that packets inherit the TTL value.
+The default value is:
+<b>inherit</b>. <p>
+</td></tr>
+<tr valign="top"><td>
+<b>tos</b><i> T</i> <!-- Consumed .TP -->
+<br />
+<b>dsfield</b><i> T</i> </td><td valign="bottom">
+set a fixed TOS
+<i>T</i> on tunneled packets.
+The default value is:
+<b>inherit</b>. <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>dev</b><i> NAME</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+bind the tunnel to the device
+<i>NAME</i> so that tunneled packets will only be routed via this device and will
+not be able to escape to another device when the route to endpoint
+changes.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>nopmtudisc</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+disable Path MTU Discovery on this tunnel.
+It is enabled by default.  Note that a fixed ttl is incompatible
+with this option: tunnelling with a fixed ttl always makes pmtu
+discovery.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>key</b><i> K</i> <!-- Consumed .TP -->
+<br />
+<b>ikey</b><i> K</i> <!-- Consumed .TP -->
+<br />
+<b>okey</b><i> K</i> </td><td valign="bottom">
+(<b> only GRE tunnels </b>) use keyed GRE with key
+<i>K</i>. <i>K</i> is either a number or an IP address-like dotted quad.
+The
+<b>key</b> parameter sets the key to use in both directions.
+The
+<b>ikey</b> and <b>okey</b> parameters set different keys for input and output.
+<br />
+  
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>csum</b>, <b>icsum</b>, <b>ocsum</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+(<b> only GRE tunnels </b>) generate/require checksums for tunneled packets.
+The
+<b>ocsum</b> flag calculates checksums for outgoing packets.
+The
+<b>icsum</b> flag requires that all input packets have the correct
+checksum.  The
+<b>csum</b> flag is equivalent to the combination
+<b>icsum ocsum</b>. <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>seq</b>, <b>iseq</b>, <b>oseq</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+(<b> only GRE tunnels </b>) serialize packets.
+The
+<b>oseq</b> flag enables sequencing of outgoing packets.
+The
+<b>iseq</b> flag requires that all input packets are serialized.
+The
+<b>seq</b> flag is equivalent to the combination
+<b>iseq oseq</b>. <b>It isn&#146;t work. Don&#146;t use it.</b> <p>
+</td></tr>
+</table>
+<h2><i>ip tunnel show - list tunnels</i></h2>
+This command has no arguments.
+<p>
+<h1 class="manpages">ip monitor and rtmon - state monitoring</h1>
+<p>
+The
+<b>ip</b> utility can monitor the state of devices, addresses
+and routes continuously.  This option has a slightly different format.
+Namely, the
+<b>monitor</b> command is the first in the command line and then the object list follows:
+<p>
+<b>ip monitor</b> [ <b>all</b> | <i>LISTofOBJECTS</i> ] <p>
+<i>OBJECT-LIST</i> is the list of object types that we want to monitor.
+It may contain
+<b>link</b>, <b>address</b> and <b>route</b>. If no
+<b>file</b> argument is given,
+<b>ip</b> opens RTNETLINK, listens on it and dumps state changes in the format
+described in previous sections.
+<p>
+<p>
+If a file name is given, it does not listen on RTNETLINK,
+but opens the file containing RTNETLINK messages saved in binary format
+and dumps them.  Such a history file can be generated with the
+<b>rtmon</b> utility.  This utility has a command line syntax similar to
+<b>ip monitor</b>. Ideally,
+<b>rtmon</b> should be started before the first network configuration command
+is issued. F.e. if you insert:
+<p>
+<!-- ignored unsupported tag .in -->
+rtmon file /var/log/rtmon.log
+<!-- ignored unsupported tag .in -->
+<p>
+in a startup script, you will be able to view the full history
+later.
+<p>
+<p>
+Certainly, it is possible to start
+<b>rtmon</b> at any time.
+It prepends the history with the state snapshot dumped at the moment
+of starting.
+<p>
+<h1 class="manpages">ip xfrm - setting xfrm</h1>
+xfrm is an IP framework, which can transform format of the datagrams,
+<!-- Need break --><br />
+i.e. encrypt the packets with some algorithm. xfrm policy and xfrm state
+are associated through templates
+<i>TMPL_LIST</i>. This framework is used as a part of IPsec protocol.
+<p>
+<h2><i>ip xfrm state add - add new state into xfrm</i></h2>
+<p>
+<h2><i>ip xfrm state update - update existing xfrm state</i></h2>
+<p>
+<h2><i>ip xfrm state allocspi - allocate SPI value</i></h2>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<i>MODE</i> </td><td valign="bottom">
+is set as default to
+<b>transport</b>, but it could be set to
+<b>tunnel</b>,<b>ro</b> or <b>beet</b>. <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>FLAG-LIST</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+contains one or more flags.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<i>FLAG</i> </td><td valign="bottom">
+could be set to
+<b>noecn</b>, <b>decap-dscp</b> or <b>wildrecv</b>. <p>
+</td></tr>
+<tr valign="top"><td>
+<i>ENCAP</i> </td><td valign="bottom">
+encapsulation is set to encapsulation type
+<i>ENCAP-TYPE</i>, source port <i>SPORT</i>, destination port <i>DPORT</i> and <i>OADDR</i>. <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>ENCAP-TYPE</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+could be set to
+<b>espinudp</b> or <b>espinudp-nonike</b>. </td></tr>
+<tr valign="top"><td colspan="2">
+<i>ALGO-LIST</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+contains one or more algorithms
+<i>ALGO</i> which depend on the type of algorithm set by
+<i>ALGO_TYPE</i>. It can be used these algoritms
+<b>enc</b>, <b>auth</b> or <b>comp</b>. <p>
+</td></tr>
+</table>
+<h2><i>ip xfrm policy add - add a new policy</i></h2>
+<p>
+<h2><i>ip xfrm policy update - update an existing policy</i></h2>
+<p>
+<h2><i>ip xfrm policy delete - delete existing policy</i></h2>
+<p>
+<h2><i>ip xfrm policy get - get existing policy</i></h2>
+<p>
+<h2><i>ip xfrm policy deleteall - delete all existing xfrm policy</i></h2>
+<p>
+<h2><i>ip xfrm policy list - print out the list of xfrm policy</i></h2>
+<p>
+<h2><i>ip xfrm policy flush - flush policies</i></h2>
+It can be flush
+<b>all</b> policies or only those specified with
+<b>ptype</b>. <p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>dir</b><i> DIR </i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+directory could be one of these:
+<b>inp</b>,<b> out </b>or<b> fwd</b>. <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>SELECTOR</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+selects for which addresses will be set up the policy. The selector
+is defined by source and destination address.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<i>UPSPEC</i> </td><td valign="bottom">
+is defined by source port
+<b>sport</b>,  destination port
+<b>dport</b>, <b>type</b> as number and
+<b>code</b> also number.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>dev</b><i> DEV </i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+specify network device.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>index</b><i> INDEX </i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the number of indexed policy.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ptype</b><i> PTYPE </i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+type is set as default on
+<b>main</b>, could be switch on
+<b>sub</b>. <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>action</b><i> ACTION </i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+is set as default on
+<b>allow</b>. It could be switch on
+<b>block</b>. <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>priority</b><i> PRIORITY </i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+priority is a number. Default priority is set on zero.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>LIMIT-LIST</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+limits are set in seconds, bytes or numbers of packets.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>TMPL-LIST</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+template list is based on
+<i>ID</i>, <b>mode</b>, <b>reqid</b> and <b>level</b>.  <p>
+</td></tr>
+<tr valign="top"><td>
+<i>ID</i> </td><td valign="bottom">
+is specified by source address, destination address,
+<i>proto</i> and value of
+<i>spi</i>. <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>XFRM_PROTO</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+values:
+<b>esp</b>, <b>ah</b>, <b>comp</b>, <b>route2</b> or <b>hao</b>. <p>
+</td></tr>
+<tr valign="top"><td>
+<i>MODE</i> </td><td valign="bottom">
+is set as default on
+<b>transport</b>, but it could be set on
+<b>tunnel</b> or <b>beet</b>. <p>
+</td></tr>
+<tr valign="top"><td>
+<i>LEVEL</i> </td><td valign="bottom">
+is set as default on
+<b>required</b> and the other choice is
+<b>use</b>. <p>
+</td></tr>
+<tr valign="top"><td>
+<i>UPSPEC</i> </td><td valign="bottom">
+is specified by
+<b>sport</b>,  <b>dport</b>, <b>type</b> and
+<b>code</b> (NUMBER).
+<p>
+</td></tr>
+</table>
+<h2><i>ip xfrm monitor - is used for listing all objects or defined group of them.</i></h2>
+The
+<b>xfrm monitor</b> can monitor the policies for all objects or defined group of them.
+<p>
+<h1 class="manpages">HISTORY</h1>
+<b>ip</b> was written by Alexey N. Kuznetsov and added in Linux 2.2.
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="tc.html">tc (8)</a></p></li>
+</ul>
+IP Command reference <b>ip-cref.ps</b> <!-- Need break --><br />
+IP tunnels <b>ip-cref.ps</b> <p>
+<h1 class="manpages">AUTHOR</h1>
+Original Manpage  by Michail Litvak &lt;<a href="mailto:mci@owl.openwall.com">mci@owl.openwall.com</a>&gt;
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversiond3be.html?tutorial=unix_commands&amp;file=ip.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/ip.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:48 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,483 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/fuser.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>fuser - Unix, Linux Command</title>
+<meta name="Description" Content="fuser - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>fuser - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+fuser - identify processes using files or sockets
+<h1 class="manpages">SYNOPSIS</h1>
+<!-- ignored unsupported tag .ad -->
+<b>fuser</b> [<b>-a</b>|<b>-s</b>|<b>-c</b>] [<b>-4</b>|<b>-6</b>] [<b>-n</b> <i>space </i>] [<b>-k</b> [<b>-i</b>] [<b>-</b><i>signal</i> ] ]
+[<b>-muvf</b>] <i>name</i> <!-- ignored unsupported tag ... -->
+<!-- Need break --><br />
+<b>fuser</b> -l <!-- Need break --><br />
+<b>fuser</b> -V <!-- ignored unsupported tag .ad -->
+<h1 class="manpages">DESCRIPTION</h1>
+<b>fuser</b> displays the PIDs of processes using the specified files or file systems.
+In the default display mode, each file name is followed by a letter denoting
+the type of access:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>c</b>
+</td><td>
+current directory.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>e</b>
+</td><td>
+executable being run.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>f</b>
+</td><td>
+open file. <b>f</b> is omitted in default display mode.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>F</b>
+</td><td>
+open file for writing. <b>F</b> is omitted in default display mode.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>r</b>
+</td><td>
+root directory.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>m</b>
+</td><td>
+mmap&#146;ed file or shared library.
+</td></tr>
+</table>
+<p>
+<b>fuser</b> returns a non-zero return code if none of the specified files
+is accessed or in case of a fatal error. If at least one access has been
+found, <b>fuser</b> returns zero.
+<p>
+In order to look up processes using TCP and UDP sockets, the corresponding
+name space has to be selected with the <b>-n</b> option. By default
+<b>fuser</b> will look in both IPv6 and IPv4 sockets. To change the default,
+behavior, use the <b>-4</b> and <b>-6</b> options. The socket(s) can
+be specified by the local and remote port, and the remote address. All fields
+are optional, but commas in front of missing fields must be present:
+<p>
+<b>[</b><i>lcl_port</i><b>][</b>,<b>[</b><i>rmt_host</i><b>][</b>,<b>[</b><i>rmt_port</i><b>]]]</b> <p>
+Either symbolic or numeric values can be used for IP addresses and port
+numbers.
+<p>
+<b>fuser</b> outputs only the PIDs to stdout, everything else is sent to stderr.
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>-a</b>
+</td><td>
+Show all files specified on the command line. By default, only files that are
+accessed by at least one process are shown.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-c</b>
+</td><td>
+Same as -m option, used for POSIX compatibility.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-f</b>
+</td><td>
+Silently ignored, used for POSIX compatibility.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-k</b>
+</td><td>
+Kill processes accessing the file. Unless changed with <b>-</b><i>signal</i>,
+SIGKILL is sent. An <b>fuser</b> process never kills itself, but may kill
+other <b>fuser</b> processes. The effective user ID of the process executing
+<b>fuser</b> is set to its real user ID before attempting to kill.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-i</b>
+</td><td>
+Ask the user for confirmation before killing a process. This option is
+silently ignored if <b>-k</b> is not present too.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-l</b>
+</td><td>
+List all known signal names.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-m</b>
+</td><td>
+<i>name</i> specifies a file on a mounted file system or a block device that
+is mounted. All processes accessing files on that file system are listed.
+If a directory file is specified, it is automatically changed to
+<i>name</i>/. to use any file system that might be mounted on that
+directory.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-n </b><i>space</i>
+</td><td>
+Select a different name space. The name spaces <b>file</b> (file names, the
+default), <b>udp</b> (local UDP ports), and <b>tcp</b> (local TCP ports) are
+supported. For ports, either the port number or the symbolic name can be
+specified. If there is no ambiguity, the shortcut notation
+<i>name</i><b>/</b>Ispace (e.g. <i>80</i><b>/</b>tcp ) can be used.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-s</b>
+</td><td>
+Silent operation. <b>-u</b> and <b>-v</b> are ignored in this mode.
+<b>-a</b> must not be used with <b>-s</b>.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-</b><i>signal</i>
+</td><td>
+Use the specified signal instead of SIGKILL when killing processes. Signals
+can be specified either by name (e.g. <b>-HUP</b>) or by number
+(e.g. <b>-1</b>). This option is silently ignored if the <b>-k</b> option
+is not used.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-u</b>
+</td><td>
+Append the user name of the process owner to each PID.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-v</b>
+</td><td>
+Verbose mode. Processes are shown in a <b>ps</b>-like style. The fields PID,
+USER and COMMAND are similar to <b>ps</b>. ACCESS shows how the process
+accesses the file. If the access is by the kernel (e.g. in the case of a
+mount point, a swap file, etc.), <b>kernel</b> is shown instead of the PID.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-V</b>
+</td><td>
+Display version information.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-4</b>
+</td><td>
+Search only for IPv4 sockets. This option must not be used with the
+<b>-6</b> option and only has an effect with the tcp and udp namespaces.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-6</b>
+</td><td>
+Search only for IPv6 sockets. This option must not be used with the <b>-4</b>
+option and only has an effect with the tcp and udp namespaces.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-</b>
+</td><td>
+Reset all options and set the signal back to SIGKILL.
+</td></tr>
+</table>
+<h1 class="manpages">FILES</h1>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+/proc&nbsp;&nbsp;&nbsp;location of the proc file system
+</pre></td></tr>
+</table>
+<h1 class="manpages">EXAMPLES</h1>
+<b>fuser -km /home</b> kills all processes accessing the file system /home
+in any way.
+<p>
+<b>if fuser -s /dev/ttyS1; then :; else </b><i>something</i>; fi invokes
+<i>something</i> if no other process is using /dev/ttyS1.
+<p>
+<b>fuser telnet/tcp</b> shows all processes at the (local) TELNET port.
+<h1 class="manpages">RESTRICTIONS</h1>
+Processes accessing the same file or file system several times in the same way
+are only shown once.
+<p>
+If the same object is specified several times on the command line, some of
+those entries may be ignored.
+<p>
+<b>fuser</b> may only be able to gather partial information unless run with
+privileges. As a consequence, files opened by processes belonging to other
+users may not be listed and executables may be classified as mapped only.
+<p>
+Installing <b>fuser</b> SUID root will avoid problems associated with
+partial information, but may be undesirable for security and privacy
+reasons.
+<p>
+<b>udp</b> and <b>tcp</b> name spaces, and UNIX domain sockets can&#146;t be
+searched with kernels older than 1.3.78.
+<p>
+<b>udp</b> and <b>tcp</b> currently  work with IPv6 and IPv4, but the
+address fields can only be IPv4 addresses.
+<p>
+Accesses by the kernel are only shown with the <b>-v</b> option.
+<p>
+The <b>-k</b> option only works on processes. If the user is the kernel,
+<b>fuser</b> will print an advice, but take no action beyond that.
+<h1 class="manpages">BUGS</h1>
+<p>
+fuser -m /dev/sgX will show (or kill with the -k flag) all processes, even
+if you don&#146;t have that device configured. There may be other devices it
+does this for too.
+<p>
+<b>fuser</b> cannot report on any processes that it doesn&#146;t have permission to look at
+the file descriptor table for.  The most common time this problem occurs
+is when looking for TCP or UDP sockets when running
+<b>fuser</b> as a non-root user. In this case
+<b>fuser</b> will report no access
+<h1 class="manpages">AUTHORS</h1>
+<p>
+Werner Almesberger &lt;<a href="mailto:werner@almesberger.net">werner@almesberger.net</a>&gt;
+<p>
+Craig Small &lt;<a href="mailto:csmall@small.dropbear.id.au">csmall@small.dropbear.id.au</a>&gt;
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="../unix_system_calls/kill.htm">kill (2)</a></p></li>
+</ul>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionab3c.html?tutorial=unix_commands&amp;file=fuser.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/fuser.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

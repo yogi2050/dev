@@ -1,0 +1,642 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/dmsetup.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>dmsetup - Unix, Linux Command</title>
+<meta name="Description" Content="dmsetup - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>dmsetup - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+dmsetup - low level logical volume management
+<h1 class="manpages">SYNOPSIS</h1>
+<!-- ignored unsupported tag .ad -->
+<b>dmsetup help</b> <i>[-c|-C|--columns]</i> <!-- Need break --><br />
+<b>dmsetup create</b> <i>device_name [-u uuid] [--notable | --table &lt;table&gt; | table_file]</i> <!-- Need break --><br />
+<b>dmsetup remove</b> <i>[-f|--force] device_name</i> <!-- Need break --><br />
+<b>dmsetup remove_all</b> <i>[-f|--force]</i> <!-- Need break --><br />
+<b>dmsetup suspend</b> <i>[--nolockfs] [--noflush] device_name</i> <!-- Need break --><br />
+<b>dmsetup resume</b> <i>device_name</i> <!-- Need break --><br />
+<b>dmsetup load</b> <i>device_name [--table &lt;table&gt; | table_file]</i> <!-- Need break --><br />
+<b>dmsetup clear</b> <i>device_name</i> <!-- Need break --><br />
+<b>dmsetup reload</b> <i>device_name [--table &lt;table&gt; | table_file]</i> <!-- Need break --><br />
+<b>dmsetup rename</b> <i>device_name new_name</i> <!-- Need break --><br />
+<b>dmsetup message</b> <i>device_name sector message</i> <!-- Need break --><br />
+<b>dmsetup ls</b> <i>[--target target_type] [--exec command] [--tree [-o options]]</i> <!-- Need break --><br />
+<b>dmsetup info</b> <i>[device_name]</i> <!-- Need break --><br />
+<b>dmsetup info -c|-C|--columns</b> <i>[--noheadings] [--separator separator] [-o fields] [-O|--sort sort_fields]</i> <i>[device_name]</i> <!-- Need break --><br />
+<b>dmsetup deps</b> <i>[device_name]</i> <!-- Need break --><br />
+<b>dmsetup status</b> <i>[--target target_type]</i> <i>[device_name]</i> <!-- Need break --><br />
+<b>dmsetup table</b> <i>[--target target_type]</i> <i>[device_name]</i> <!-- Need break --><br />
+<b>dmsetup wait</b> <i>device_name</i> <i>[event_nr]</i> <!-- Need break --><br />
+<b>dmsetup mknodes</b> <i>[device_name]</i> <!-- Need break --><br />
+<b>dmsetup targets</b> <!-- Need break --><br />
+<b>dmsetup version</b> <!-- Need break --><br />
+<b>dmsetup setgeometry</b> <i>device_name cyl head sect start</i> <p>
+<b>devmap_name</b> <i>major minor</i> <!-- Need break --><br />
+<b>devmap_name</b> <i>major:minor</i> <!-- ignored unsupported tag .ad -->
+<h1 class="manpages">DESCRIPTION</h1>
+dmsetup manages logical devices that use the device-mapper driver. 
+Devices are created by loading a table that specifies a target for
+each sector (512 bytes) in the logical device.
+<p>
+The first argument to dmsetup is a command.
+The second argument is the logical device name or uuid.
+<p>
+Invoking the command as <b>devmap_name</b> is equivalent to
+<!-- Need break --><br />
+<b>dmsetup info -c --noheadings -j </b><i>major</i><b> -m </b><i>minor</i>.
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>-c|-C|--columns
+</td><td>
+Display output in columns rather than as Field: Value lines.
+</td></tr>
+<tr valign="top"><td width=6%>
+</b><b>-j|--major </b><i>major
+</td><td>
+Specify the major number.
+</td></tr>
+<tr valign="top"><td width=6%>
+</i><b>-m|--minor </b><i>minor
+</td><td>
+Specify the minor number.
+</td></tr>
+<tr valign="top"><td width=6%>
+</i><b>-n|--noheadings
+</td><td>
+Suppress the headings line when using columnar output.
+</td></tr>
+<tr valign="top"><td width=6%>
+</b><b>--noopencount
+</td><td>
+Tell the kernel not to supply the open reference count for the device.
+</td></tr>
+<tr valign="top"><td width=6%>
+</b><b>--notable
+</td><td>
+When creating a device, don&#146;t load any table.
+</td></tr>
+<tr valign="top"><td width=6%>
+</b><b>-o|--options
+</td><td>
+Specify which fields to display.
+</td></tr>
+<tr valign="top"><td width=6%>
+</b><b>-r|--readonly
+</td><td>
+Set the table being loaded read-only.
+</td></tr>
+<tr valign="top"><td width=6%>
+</b><b>--readahead [+]&lt;sectors&gt;|auto|none
+</td><td>
+Specify read ahead size in units of sectors.
+The default value is "auto" which allows the kernel to choose
+a suitable value automatically.  The + prefix lets you
+specify a minimum value which will not be used if it is
+smaller than the value chosen by the kernel.
+"None" is equivalent to specifying zero.
+</td></tr>
+<tr valign="top"><td width=6%>
+</b><b>--table &lt;table&gt;
+</td><td>
+Specify a one-line table directly on the command line.
+</td></tr>
+<tr valign="top"><td width=6%>
+</b><b>-u|--uuid
+</td><td>
+Specify the uuid.
+</td></tr>
+<tr valign="top"><td width=6%>
+</b><b>-v|--verbose [-v|--verbose]
+</td><td>
+Produce additional output.
+</td></tr>
+<tr valign="top"><td width=6%>
+</b><b>--version
+</td><td>
+Display the library and kernel driver version.
+</td></tr>
+</table>
+<h1 class="manpages">COMMANDS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+</b><b>create
+</td><td>
+</b><i>device_name [-u uuid] [--notable | --table &lt;table&gt; | table_file]</i> <!-- Need break --><br />
+Creates a device with the given name.
+If table_file or &lt;table&gt; is supplied, the table is loaded and made live.
+Otherwise a table is read from standard input unless --notable is used.
+The optional uuid can be used in place of
+device_name in subsequent dmsetup commands. 
+If successful a device will appear as
+/dev/device-mapper/&lt;device-name&gt;. 
+See below for information on the table format.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>deps
+</td><td>
+</b><i>[device_name]</i> <!-- Need break --><br />
+Outputs a list of (major, minor) pairs for devices referenced by the
+live table for the specified device.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>help
+</td><td>
+</b><i>[-c|-C|--columns]</i> <!-- Need break --><br />
+Outputs a summary of the commands available, optionally including
+the list of report fields.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>info
+</td><td>
+</b><i>[device_name]</i> <!-- Need break --><br />
+Outputs some brief information about the device in the form:
+<!-- Need break --><br />
+    State: SUSPENDED|ACTIVE, READ-ONLY
+<!-- Need break --><br />
+    Tables present: LIVE and/or INACTIVE
+<!-- Need break --><br />
+    Open reference count
+<!-- Need break --><br />
+    Last event sequence number (used by <b>wait</b>)
+<!-- Need break --><br />
+    Major and minor device number
+<!-- Need break --><br />
+    Number of targets in the live table
+<!-- Need break --><br />
+    UUID
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>info
+</td><td>
+</b><i>[--noheadings] [--separator separator] [-o fields] [-O|--sort sort_fields]</i> <i>[device_name]</i> <!-- Need break --><br />
+Output you can customise.
+Fields are comma-separated and chosen from the following list:
+name, major, minor, attr, open, segments, events, uuid.
+Attributes are: (L)ive, (I)nactive, (s)uspended, (r)ead-only, read-(w)rite.
+Precede the list with &#146;+&#146; to append
+to the default selection of columns instead of replacing it.
+Precede any sort_field with - for a reverse sort on that column.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>ls
+</td><td>
+</b><i>[--target target_type]</i> <i>[--exec command]</i> <i>[--tree [-o options]]</i> <!-- Need break --><br />
+List device names.  Optionally only list devices that have at least
+one target of the specified type.  Optionally execute a command for
+each device.  The device name is appended to the supplied command.
+--tree displays dependencies between devices as a tree.
+It accepts a comma-separate list of options.
+Some specify the information displayed against each node:
+device/nodevice; active, open, rw, uuid.
+Others specify how the tree is displayed:
+ascii, utf, vt100; compact, inverted, notrunc.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>load|reload
+</td><td>
+</b><i>device_name [--table &lt;table&gt; | table_file]</i> <!-- Need break --><br />
+Loads &lt;table&gt; or table_file into the inactive table slot for device_name.
+If neither is supplied, reads a table from standard input.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>message
+</td><td>
+</b><i>device_name sector message</i> <!-- Need break --><br />
+Send message to target. If sector not needed use 0.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>mknodes
+</td><td>
+</b><i>[device_name]</i> <!-- Need break --><br />
+Ensure that the node in /dev/mapper for device_name is correct.
+If no device_name is supplied, ensure that all nodes in /dev/mapper
+correspond to mapped devices currently loaded by the device-mapper kernel
+driver, adding, changing or removing nodes as necessary.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>remove
+</td><td>
+</b><i>[-f|--force] device_name</i> <!-- Need break --><br />
+Removes a device.  It will no longer be visible to dmsetup.
+Open devices cannot be removed except with older kernels
+that contain a version of device-mapper prior to 4.8.0.
+In this case the device will be deleted when its open_count
+drops to zero.  From version 4.8.0 onwards, if a device can&#146;t
+be removed because an uninterruptible process is waiting for
+I/O to return from it, adding --force will replace the table
+with one that fails all I/O, which might allow the
+process to be killed.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>remove_all
+</td><td>
+</b><i>[-f|--force]</i> <!-- Need break --><br />
+Attempts to remove all device definitions i.e. reset the driver.
+Use with care!  From version 4.8.0 onwards, if devices can&#146;t
+be removed because uninterruptible processes are waiting for
+I/O to return from them, adding --force will replace the table
+with one that fails all I/O, which might allow the
+process to be killed.  This also runs <b>mknodes</b> afterwards.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>rename
+</td><td>
+</b><i>device_name new_name</i> <!-- Need break --><br />
+Renames a device.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>resume
+</td><td>
+</b><i>device_name</i> <!-- Need break --><br />
+Un-suspends a device. 
+If an inactive table has been loaded, it becomes live.
+Postponed I/O then gets re-queued for processing.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>setgeometry
+</td><td>
+</b><i>device_name cyl head sect start</i> <!-- Need break --><br />
+Sets the device geometry to C/H/S.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>status
+</td><td>
+</b><i>[--target target_type]</i> <i>[device_name]</i> <!-- Need break --><br />
+Outputs status information for each of the device&#146;s targets.
+With --target, only information relating to the specified target type
+is displayed.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>suspend
+</td><td>
+</b><i>[--nolockfs] [--noflush]</i> <i>device_name</i> <!-- Need break --><br />
+Suspends a device.  Any I/O that has already been mapped by the device
+but has not yet completed will be flushed.  Any further I/O to that
+device will be postponed for as long as the device is suspended.
+If there&#146;s a filesystem on the device which supports the operation,
+an attempt will be made to sync it first unless --nolockfs is specified.
+Some targets such as recent (October 2006) versions of multipath may support
+the --noflush option.  This lets outstanding I/O that has not yet reached the
+device to remain unflushed.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>table
+</td><td>
+</b><i>[--target target_type]</i> <i>[device_name]</i> <!-- Need break --><br />
+Outputs the current table for the device in a format that can be fed
+back in using the create or load commands.
+With --target, only information relating to the specified target type
+is displayed.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>targets
+</td><td>
+Displays the names and versions of the currently-loaded targets.
+</td></tr>
+<tr valign="top"><td width=6%>
+</b><b>version
+</td><td>
+Outputs version information.
+</td></tr>
+<tr valign="top"><td width=6%>
+</b><b>wait
+</td><td>
+</b><i>device_name</i> <i>[event_nr]</i> <!-- Need break --><br />
+Sleeps until the event counter for device_name exceeds event_nr.
+Use -v to see the event number returned.
+To wait until the next event is triggered, use <b>info</b> to find
+the last event number. 
+</td></tr>
+</table>
+<h1 class="manpages">TABLE FORMAT</h1>
+Each line of the table specifies a single target and is of the form:
+<!-- Need break --><br />
+    logical_start_sector num_sectors target_type target_args
+<p>
+There are currently three simple target types available together
+with more complex optional ones that implement snapshots and mirrors.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>linear
+</td><td>
+</b><i>destination_device start_sector</i> <!-- Need break --><br />
+The traditional linear mapping.
+<p>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>striped
+</td><td>
+</b><i>num_stripes chunk_size [destination start_sector]+</i> <!-- Need break --><br />
+Creates a striped area.
+<!-- Need break --><br />
+e.g. striped 2 32 /dev/hda1 0 /dev/hdb1 0
+will map the first chunk (16k) as follows:
+<!-- Need break --><br />
+    LV chunk 1 -&gt; hda1, chunk 1
+<!-- Need break --><br />
+    LV chunk 2 -&gt; hdb1, chunk 1
+<!-- Need break --><br />
+    LV chunk 3 -&gt; hda1, chunk 2
+<!-- Need break --><br />
+    LV chunk 4 -&gt; hdb1, chunk 2
+<!-- Need break --><br />
+    etc.
+<p>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>error
+</td><td>
+Errors any I/O that goes to this area.  Useful for testing or
+for creating devices with holes in them.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">EXAMPLES</h1>
+<p>
+# A table to join two disks together
+<!-- Need break --><br />
+0 1028160 linear /dev/hda 0
+<!-- Need break --><br />
+1028160 3903762 linear /dev/hdb 0
+<p>
+<p>
+# A table to stripe across the two disks,
+<!-- Need break --><br />
+# and add the spare space from
+<!-- Need break --><br />
+# hdb to the back of the volume
+<p>
+0 2056320 striped 2 32 /dev/hda 0 /dev/hdb 0
+<!-- Need break --><br />
+2056320 2875602 linear /dev/hdb 1028160
+<p>
+<h1 class="manpages">ENVIRONMENT VARIABLES</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+</b><b>DM_DEV_DIR</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The device directory name.
+Defaults to "/dev" and must be an absolute path.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">AUTHORS</h1>
+Original version: Joe Thornber (<a href="mailto:thornber@sistina.com">thornber@sistina.com</a>)
+<p>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion79b2.html?tutorial=unix_commands&amp;file=dmsetup.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/dmsetup.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,422 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/ruby-on-rails-2.1/rails-send-emails.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:01:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>Send Email using Rails 2.1</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="Keywords" content="Learning, Ruby, rails, strengths, framework, installation, examples, RubyGems, resources, Guide, actionpack, actionview, basics, directory, structure, advance, activerecord, libraries, Model, View, Controller, Embeded Ruby, Erb, Rolling, Metaprogramming,Built-in, testing, David, Black, Hansson, Heinemeier, RAA, Scaffolding" />
+<meta name="Description" content="Send Email using Rails 2.1 -  Learn Ruby on Rails in simple and easy steps using this Guide/Book/Reference Manual. You will learn its installation, framework, strengths with examples and you will learn about active resources, actionpack, actionview, activerecord, Heinemeier, Scaffolding, Controller, Heinemeier, Hansson etc." />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Learning Ruby on Rails 2.1</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="index.html">Rails 2.1 Home</a></li>
+<li><a class="left" target="_top" href="rails-preliminary.html">Rails 2.1 Preliminary</a></li>
+<li><a class="left" target="_top" href="rails-introduction.html">Rails 2.1 Introduction</a></li>
+<li><a class="left" target="_top" href="rails-installation.html">Rails 2.1 Installation</a></li>
+<li><a class="left" target="_top" href="rails-framework.html">Rails 2.1 Framework</a></li>
+<li><a class="left" target="_top" href="rails-directory-structure.html">Rails 2.1 Dir Structure</a></li>
+<li><a class="left" target="_top" href="rails-examples.html">Rails 2.1 Examples</a></li>
+<li><a class="left" target="_top" href="rails-database-setup.html">Rails 2.1 Database Setup</a></li>
+<li><a class="left" target="_top" href="rails-active-records.html">Rails 2.1 Active Records</a></li>
+<li><a class="left" target="_top" href="rails-migrations.html">Rails 2.1 Migrations</a></li>
+<li><a class="left" target="_top" href="rails-controllers.html">Rails 2.1 Controllers</a></li>
+<li><a class="left" target="_top" href="rails-views.html">Rails 2.1 Views</a></li>
+<li><a class="left" target="_top" href="rails-layouts.html">Rails 2.1 Layouts</a></li>
+<li><a class="left" target="_top" href="rails-scaffolding.html">Rails 2.1 Scaffolding</a></li>
+<li><a class="left" target="_top" href="rails-and-ajax.html">Rails 2.1 and AJAX</a></li>
+<li><a class="left" target="_top" href="rails-file-uploading.html">Rails 2.1 Uploads Files</a></li>
+<li><a class="left" target="_top" href="rails-send-emails.html"><b>Rails 2.1 Sends Emails</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Ruby on Rails 2.1</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="rails-and-rmagick.html">Rails 2.1 RMagick Guide</a></li>
+<li><a class="left" target="_top" href="rails-http-basic-authentication.html">Rails 2.1 Basic HTTP Auth</a></li>
+<li><a class="left" target="_top" href="rails-exception-handling.html">Rails 2.1 Error Handling</a></li>
+<li><a class="left" target="_top" href="rails-routes.html">Rails 2.1 Routes System</a></li>
+<li><a class="left" target="_top" href="rails-unit-testing.html">Rails 2.1 Unit Testing</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Ruby on Rails Quick Guide</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="rails-quick-guide.html" >Ruby on Rails Quick Guide</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Ruby Tutorial</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../ruby/index-2.html" >Ruby Tutorial</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Ruby on Rails Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="rails-resources.html" >Ruby on Rails Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top" align="left" width="100%">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:10px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle"  cellpadding="5" cellspacing="0">
+<tr>
+<td align="left">
+<!-- PRINTING STARTS HERE -->
+<h1>Send Email using Rails 2.1</h1>
+<hr />
+<a href="rails-file-uploading.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="rails-tips-tricks.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<!-- AddThis Bookmark Button END -->
+<hr />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<p><b>Action Mailer</b> is the Rails component that enables applications to send and receive e-mail. In this chapter we will see how to send an email using Rails.</p>
+<p>So lets start with creating an <b>emails</b> project using following command.</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+C:\ruby&gt; rails -d mysql emails
+</pre></td></tr></table>
+<p>Here we are using <b>-d mysql</b> option to specify our interest to use MySQL database. We can specify any other database name like <i>oracle</i> or <i>postgress</i> using <b>-d</b> option. By default Rails uses <b>SQLite</b> database.</p>
+<h1>Setting up the Database:</h1>
+<p>Even though we are not using a database in our application but Rails needs it to proceed. So let's perform these additional steps.</p>
+<p>Here is the way to create database:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+mysql&gt; create database emails;
+Query OK, 1 row affected (0.01 sec)
+
+mysql&gt; grant all privileges on emails.*
+ to '<b>root</b>'@'localhost' identified by '<b>password</b>';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.00 sec)
+</pre></td></tr></table>
+<p>To tell Rails how to find the database, edit the configuration file ~\upload\config\database.yml and change the database name to cookbook. When you finish, it should look something like:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+development:
+  adapter: mysql
+  encoding: utf8
+  database: emails
+  username: <b>root</b>
+  password: <b>password</b>
+  host: localhost
+test:
+  adapter: mysql
+  encoding: utf8
+  database: emails
+  username: <b>root</b>
+  password: <b>password</b>
+  host: localhost
+production:
+  adapter: mysql
+  encoding: utf8
+  database: emails
+  username: <b>root</b>
+  password: <b>password</b>
+  host: localhost
+</pre></td></tr></table>
+<h1>Action Mailer - Configuration:</h1>
+<p>Following are the steps you have to follow to complete your configuration before proceeding with actual work:</p>
+<p>Go into config folder of your emails project and open <b>environment.rb</b> file and add the following line at the bottom of this file.</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+ActionMailer::Base.delivery_method = :smtp
+</pre></td></tr></table>
+<p>This tells ActionMailer that you want to user SMTP server. You can also set it to be :sendmail if you are using a Unix-based operating system such as Mac OS X or Linux.</p>
+<p>Add the following lines of code to the bottom of your environment.rb as well.</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+ActionMailer::Base.smtp_settings = {
+   :address =&gt; "smtp.tutorialspoint.com",
+   :port =&gt; 25,
+   :domain =&gt; "tutorialspoint.com",
+   :authentication =&gt; :login,
+   :user_name =&gt; "username",
+   :password =&gt; "password",
+}
+</pre></td></tr></table>
+<p>Replace each hash value with proper settings for your Simple Mail Transfer Protocol (SMTP) server. You can take this information from your Internet Service Provider if you already don't know. You don't need to change port number 25 and authentication type if you are using standard SMTP server.</p>
+<p>You may also change the default email message format. If you prefer to send email in HTML instead of plain text format, add the following line to config/environment.rb as well:</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+ActionMailer::Base.default_content_type = "text/html"
+</pre></td></tr></table>
+<p>ActionMailer::Base.default_content_type could be set to  "text/plain", "text/html", and "text/enriched". The default value is "text/plain".</p>
+<p>Next step will be to create a mailer</p>
+<h1>Generate a Mailer:</h1>
+<p>Use the following command to generate a mailer as follows:</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+C:\ruby\&gt; cd emails
+C:\ruby\emails&gt; ruby script/generate mailer Emailer
+</pre></td></tr></table>
+<p>This will create a file emailer.rb in app/models directory. Check the content of this file is as follows:</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+class Emailer &lt; ActionMailer::Base
+end
+</pre></td></tr></table>
+<p>Now let's create one method inside ActionMailer::Base class as follows.</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+class Emailer &lt; ActionMailer::Base
+   def contact(recipient, subject, message, sent_at = Time.now)
+      @subject = subject
+      @recipients = recipient
+      @from = 'no-reply@yourdomain.com'
+      @sent_on = sent_at
+	  @body["title"] = 'This is title'
+  	  @body["email"] = 'sender@yourdomain.com'
+   	  @body["message"] = message
+      @headers = {}
+   end
+end
+</pre></td></tr></table>
+<p>The contact method has four  parameters a recipient, subject, message and a sent_at, which defines when the e-mail is sent. The method also defines six standard parameters that are a part of every ActionMailer method:</p>
+<ul>
+<li><p>@subject defines the e-mail subject.</p></li>
+<li><p>@body is a Ruby hash that contains values with which you can populate the mail template. You created
+three key-value pairs: title, email, and message</p></li>
+<li><p>@recipients is a list of the people to whom the message is being sent.</p></li>
+<li><p>@from defines who the e-mail is from.</p></li>
+<li><p>@sent_on takes the sent_at parameter and sets the timestamp of the e-mail.</p></li>
+<li><p>@headers is another hash that enables you to modify the e-mail headers. For example, you can set the MIME type of the e-mail if you want to send either plain text or HTML e-mail.</p></li>
+</ul>
+<h1>Creating Controller:</h1>
+<p>Now we will create a controller for this application as follows:</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+C:\ruby\emails&gt; ruby script/generate controller Emailer
+</pre></td></tr></table>
+<p>Now lets define a controller method <b>sendmail</b> in app/controllers/emailer_controller.rb which will call Model method to send actual email as follows:</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+class EmailerController &lt; ApplicationController
+   def sendmail
+      recipient = params[:email]
+      subject = params[:subject]
+      message = params[:message]
+      Emailer.deliver_contact(recipient, subject, message)
+      return if request.xhr?
+      render :text => 'Message sent successfully'
+   end
+end
+</pre></td></tr></table>
+<p>To deliver e-mail using the mailer's contact method, you have to add <b>deliver_</b> to the beginning of the method name. You add a return if request.xhr? so that you can escape to Rails Java Script (RJS) if the browser does not support JavaScript and then tell the method to render a text message.</p>
+<p>You are almost done except to prepare a screen from where you will get user information to send email. So let's define one screen method index in controller and then in next section we will define all the required views:</p>
+<p>Add following code in emailer_controller.rb file</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+   def index
+      render :file =&gt; 'app\views\emailer\index.html.erb'
+   end
+</pre></td></tr></table>
+<h1>Defining Views:</h1>
+<p>Define a view in app\views\emails\index.html.erb. This will be called as the default page for the application and will allow user to enter message and send required email:</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+&lt;h1&gt;Send Email&lt;/h1&gt;
+&lt;% form_tag :action =&gt; 'sendmail' do %&gt;
+&lt;p&gt;&lt;label for="email_subject"&gt;Subject&lt;/label&gt;:
+&lt;%= text_field 'email', 'subject' %&gt;&lt;/p&gt;
+&lt;p&gt;&lt;label for="email_recipient"&gt;Recipient&lt;/label&gt;:
+&lt;%= text_field 'email', 'recipient' %&gt;&lt;/p&gt;
+&lt;p&gt;&lt;label for="email_message"&gt;Message&lt;/label&gt;&lt;br/&gt;
+&lt;%= text_area 'email', 'message' %&gt;&lt;/p&gt;
+&lt;%= submit_tag "Send" %&gt;
+&lt;% end %&gt;
+</pre></td></tr></table>
+<p>Apart from the above view, we need one more template which will be used by the Emailer's contact method while sending message. This is just text with standard Rails &lt;%= %&gt; placeholders scattered throughout.</p>
+<p>So just put the following code in <b>app/views/contact.html.erb</b> file</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+Hi!
+
+You are having one email message from &lt;%= @email %&gt; with a title 
+
+&lt;%= @title %&gt;
+and following is the message:
+&lt;%= @message %&gt;
+
+Thanks
+</pre></td></tr></table>
+<h1>Rest for Testing:</h1>
+<p>Before starting your testing make sure your machine is connected to internet and your Email Server is up and running, Also your Webserver should be up and running well.</p>
+<p>Now test your application by using http://127.0.0.1:3000/Emailer/index. This displays following screen and by using this screen now you will be able to send your message to anybody.</p>
+<center>
+<p><img src="../images/send-email.html" alt="Send Email" style="border:1px dotted #aaa;" /></p>
+</center>
+<p>This will send your message and will display text message that "Message sent successfully"</p>
+<h1>Sending HTML Emails using Rails:</h1>
+<p>To send mail as HTML, make sure your view (the .erb file) generates HTML and set the content type to html in your <b>emails/app/models/emailer.rb</b> file as follows:</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+class Emailer &lt; ActionMailer::Base
+   def contact(recipient, subject, message, sent_at = Time.now)
+      @subject = subject
+      @recipients = recipient
+      @from = 'no-reply@yourdomain.com'
+      @sent_on = sent_at
+	  @body["title"] = 'This is title'
+  	  @body["email"] = 'sender@yourdomain.com'
+   	  @body["message"] = message
+      @headers = {content_type => 'text/html'}
+   end
+end
+</pre></td></tr></table>
+<p>For a complete detail on <b>ActionMailer</b>, please look into the standard Ruby documentation <a href="http://api.rubyonrails.org/" target="_blank">here</a>.</p>
+<br />
+<hr />
+<a href="rails-file-uploading.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="rails-tips-tricks.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion3e33.html?tutorial=ruby-on-rails-2.1&amp;file=rails-send-emails.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/ruby-on-rails-2.1/rails-send-emails.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:01:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

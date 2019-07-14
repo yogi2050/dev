@@ -1,0 +1,985 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/net.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:05 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>net - Unix, Linux Command</title>
+<meta name="Description" Content="net - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>net - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- ignored unsupported tag .nh -->
+<!-- ignored unsupported tag .ad -->
+<h1 class="manpages">NAME</h1>
+net - Tool for administration of Samba and remote CIFS servers.
+<h1 class="manpages">SYNOPSIS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+net {&lt;ads|rap|rpc&gt;} [-h] [-w workgroup] [-W myworkgroup] [-U user] [-I ip-address] [-p port] [-n myname] [-s conffile] [-S server] [-l] [-P] [-d debuglevel] [-V]
+</td></tr>
+</table>
+<h1 class="manpages">DESCRIPTION</h1>
+<p>
+This tool is part of the
+<b>samba</b>(7)
+suite&#46;
+<p>
+The Samba net utility is meant to work just like the net utility available for windows and DOS&#46; The first argument should be used to specify the protocol to use when executing a certain command&#46; ADS is used for ActiveDirectory, RAP is using for old (Win9x/NT3) clients and RPC can be used for NT4 and Windows 2000&#46; If this argument is omitted, net will try to determine it automatically&#46; Not all commands are available on all protocols&#46;
+<h1 class="manpages">OPTIONS</h1>
+<p>
+-h|--help
+Print a summary of command line options&#46;
+<p>
+-w target-workgroup
+Sets target workgroup or domain&#46; You have to specify either this option or the IP address or the name of a server&#46;
+<p>
+-W workgroup
+Sets client workgroup or domain
+<p>
+-U user
+User name to use
+<p>
+-I ip-address
+IP address of target server to use&#46; You have to specify either this option or a target workgroup or a target server&#46;
+<p>
+-p port
+Port on the target server to connect to (usually 139 or 445)&#46; Defaults to trying 445 first, then 139&#46;
+<p>
+-n &lt;primary NetBIOS name&gt;
+This option allows you to override the NetBIOS name that Samba uses for itself&#46; This is identical to setting the
+<i>netbios name</i>
+parameter in the
+<i>smb&#46;conf</i>
+file&#46; However, a command line setting will take precedence over settings in
+<i>smb&#46;conf</i>&#46;
+<p>
+-s &lt;configuration file&gt;
+The file specified contains the configuration details required by the server&#46; The information in this file includes server-specific information such as what printcap file to use, as well as descriptions of all the services that the server is to provide&#46; See
+<i>smb&#46;conf</i>
+for more information&#46; The default configuration file name is determined at compile time&#46;
+<p>
+-S server
+Name of target server&#46; You should specify either this option or a target workgroup or a target IP address&#46;
+<p>
+-l
+When listing data, give more information on each item&#46;
+<p>
+-P
+Make queries to the external server using the machine account of the local server&#46;
+<p>
+-d|--debuglevel=level
+<i>level</i>
+is an integer from 0 to 10&#46; The default value if this parameter is not specified is 0&#46;
+<p>
+The higher this value, the more detail will be logged to the log files about the activities of the server&#46; At level 0, only critical errors and serious warnings will be logged&#46; Level 1 is a reasonable level for day-to-day running - it generates a small amount of information about operations carried out&#46;
+<p>
+Levels above 1 will generate considerable amounts of log data, and should only be used when investigating a problem&#46; Levels above 3 are designed for use only by developers and generate HUGE amounts of log data, most of which is extremely cryptic&#46;
+<p>
+Note that specifying this parameter here will override the
+<i>log level</i>
+parameter in the
+<i>smb&#46;conf</i>
+file&#46;
+<h1 class="manpages">COMMANDS</h1>
+<h2><i>CHANGESECRETPW</i></h2>
+<p>
+This command allows the Samba machine account password to be set from an external application to a machine account password that has already been stored in Active Directory&#46; DO NOT USE this command unless you know exactly what you are doing&#46; The use of this command requires that the force flag (-f) be used also&#46; There will be NO command prompt&#46; Whatever information is piped into stdin, either by typing at the command line or otherwise, will be stored as the literal machine password&#46; Do NOT use this without care and attention as it will overwrite a legitimate machine password without warning&#46; YOU HAVE BEEN WARNED&#46;
+<h2><i>TIME</i></h2>
+<p>
+The
+NET TIME
+command allows you to view the time on a remote server or synchronise the time on the local server with the time on the remote server&#46;
+<h2><i>TIME</i></h2>
+<p>
+Without any options, the
+NET TIME
+command displays the time on the remote server&#46;
+<h2><i>TIME SYSTEM</i></h2>
+<p>
+Displays the time on the remote server in a format ready for
+/bin/date&#46;
+<h2><i>TIME SET</i></h2>
+<p>
+Tries to set the date and time of the local server to that on the remote server using
+/bin/date&#46;
+<h2><i>TIME ZONE</i></h2>
+<p>
+Displays the timezone in hours from GMT on the remote computer&#46;
+<h2><i>[RPC|ADS] JOIN [TYPE] [-U username[%password]] [createupn=UPN] [createcomputer=OU] [options]</i></h2>
+<p>
+Join a domain&#46; If the account already exists on the server, and [TYPE] is MEMBER, the machine will attempt to join automatically&#46; (Assuming that the machine has been created in server manager) Otherwise, a password will be prompted for, and a new account may be created&#46;
+<p>
+[TYPE] may be PDC, BDC or MEMBER to specify the type of server joining the domain&#46;
+<p>
+[UPN] (ADS only) set the principalname attribute during the join&#46; The default format is host/netbiosname@REALM&#46;
+<p>
+[OU] (ADS only) Precreate the computer account in a specific OU&#46; The OU string reads from top to bottom without RDNs, and is delimited by a &#39;/&#39;&#46; Please note that &#39;&#92;&#39; is used for escape by both the shell and ldap, so it may need to be doubled or quadrupled to pass through, and it is not used as a delimiter&#46;
+<h2><i>[RPC] OLDJOIN [options]</i></h2>
+<p>
+Join a domain&#46; Use the OLDJOIN option to join the domain using the old style of domain joining - you need to create a trust account in server manager first&#46;
+<h2><i>[RPC|ADS] USER</i></h2>
+<h2><i>[RPC|ADS] USER</i></h2>
+<p>
+List all users
+<h2><i>[RPC|ADS] USER DELETE target</i></h2>
+<p>
+Delete specified user
+<h2><i>[RPC|ADS] USER INFO target</i></h2>
+<p>
+List the domain groups of the specified user&#46;
+<h2><i>[RPC|ADS] USER RENAME oldname newname</i></h2>
+<p>
+Rename specified user&#46;
+<h2><i>[RPC|ADS] USER ADD name [password] [-F user flags] [-C comment]</i></h2>
+<p>
+Add specified user&#46;
+<h2><i>[RPC|ADS] GROUP</i></h2>
+<h2><i>[RPC|ADS] GROUP [misc options] [targets]</i></h2>
+<p>
+List user groups&#46;
+<h2><i>[RPC|ADS] GROUP DELETE name [misc. options]</i></h2>
+<p>
+Delete specified group&#46;
+<h2><i>[RPC|ADS] GROUP ADD name [-C comment]</i></h2>
+<p>
+Create specified group&#46;
+<h2><i>[RAP|RPC] SHARE</i></h2>
+<h2><i>[RAP|RPC] SHARE [misc. options] [targets]</i></h2>
+<p>
+Enumerates all exported resources (network shares) on target server&#46;
+<h2><i>[RAP|RPC] SHARE ADD name=serverpath [-C comment] [-M maxusers] [targets]</i></h2>
+<p>
+Adds a share from a server (makes the export active)&#46; Maxusers specifies the number of users that can be connected to the share simultaneously&#46;
+<h2><i>SHARE DELETE sharename</i></h2>
+<p>
+Delete specified share&#46;
+<h2><i>[RPC|RAP] FILE</i></h2>
+<h2><i>[RPC|RAP] FILE</i></h2>
+<p>
+List all open files on remote server&#46;
+<h2><i>[RPC|RAP] FILE CLOSE fileid</i></h2>
+<p>
+Close file with specified
+<i>fileid</i>
+on remote server&#46;
+<h2><i>[RPC|RAP] FILE INFO fileid</i></h2>
+<p>
+Print information on specified
+<i>fileid</i>&#46; Currently listed are: file-id, username, locks, path, permissions&#46;
+<h2><i>[RAP|RPC] FILE USER user</i></h2>
+<p>
+List files opened by specified
+<i>user</i>&#46; Please note that
+net rap file user
+does not work against Samba servers&#46;
+<h2><i>SESSION</i></h2>
+<h2><i>RAP SESSION</i></h2>
+<p>
+Without any other options, SESSION enumerates all active SMB/CIFS sessions on the target server&#46;
+<h2><i>RAP SESSION DELETE|CLOSE CLIENT_NAME</i></h2>
+<p>
+Close the specified sessions&#46;
+<h2><i>RAP SESSION INFO CLIENT_NAME</i></h2>
+<p>
+Give a list with all the open files in specified session&#46;
+<h2><i>RAP SERVER DOMAIN</i></h2>
+<p>
+List all servers in specified domain or workgroup&#46; Defaults to local domain&#46;
+<h2><i>RAP DOMAIN</i></h2>
+<p>
+Lists all domains and workgroups visible on the current network&#46;
+<h2><i>RAP PRINTQ</i></h2>
+<h2><i>RAP PRINTQ LIST QUEUE_NAME</i></h2>
+<p>
+Lists the specified print queue and print jobs on the server&#46; If the
+<i>QUEUE_NAME</i>
+is omitted, all queues are listed&#46;
+<h2><i>RAP PRINTQ DELETE JOBID</i></h2>
+<p>
+Delete job with specified id&#46;
+<h2><i>RAP VALIDATE user [password]</i></h2>
+<p>
+Validate whether the specified user can log in to the remote server&#46; If the password is not specified on the commandline, it will be prompted&#46;
+<p>
+<!-- ignored unsupported tag .it -->
+Note
+<p>
+Currently NOT implemented&#46;
+<h2><i>RAP GROUPMEMBER</i></h2>
+<h2><i>RAP GROUPMEMBER LIST GROUP</i></h2>
+<p>
+List all members of the specified group&#46;
+<h2><i>RAP GROUPMEMBER DELETE GROUP USER</i></h2>
+<p>
+Delete member from group&#46;
+<h2><i>RAP GROUPMEMBER ADD GROUP USER</i></h2>
+<p>
+Add member to group&#46;
+<h2><i>RAP ADMIN command</i></h2>
+<p>
+Execute the specified
+<i>command</i>
+on the remote server&#46; Only works with OS/2 servers&#46;
+<p>
+<!-- ignored unsupported tag .it -->
+Note
+<p>
+Currently NOT implemented&#46;
+<h2><i>RAP SERVICE</i></h2>
+<h2><i>RAP SERVICE START NAME [arguments...]</i></h2>
+<p>
+Start the specified service on the remote server&#46; Not implemented yet&#46;
+<p>
+<!-- ignored unsupported tag .it -->
+Note
+<p>
+Currently NOT implemented&#46;
+<p>
+<h2><i>RAP SERVICE STOP</i></h2>
+<p>
+Stop the specified service on the remote server&#46;
+<p>
+<!-- ignored unsupported tag .it -->
+Note
+<p>
+Currently NOT implemented&#46;
+<h2><i>RAP PASSWORD USER OLDPASS NEWPASS</i></h2>
+<p>
+Change password of
+<i>USER</i>
+from
+<i>OLDPASS</i>
+to
+<i>NEWPASS</i>&#46;
+<h2><i>LOOKUP</i></h2>
+<h2><i>LOOKUP HOST HOSTNAME [TYPE]</i></h2>
+<p>
+Lookup the IP address of the given host with the specified type (netbios suffix)&#46; The type defaults to 0x20 (workstation)&#46;
+<h2><i>LOOKUP LDAP [DOMAIN]</i></h2>
+<p>
+Give IP address of LDAP server of specified
+<i>DOMAIN</i>&#46; Defaults to local domain&#46;
+<h2><i>LOOKUP KDC [REALM]</i></h2>
+<p>
+Give IP address of KDC for the specified
+<i>REALM</i>&#46; Defaults to local realm&#46;
+<h2><i>LOOKUP DC [DOMAIN]</i></h2>
+<p>
+Give IP&#39;s of Domain Controllers for specified
+<i> DOMAIN</i>&#46; Defaults to local domain&#46;
+<h2><i>LOOKUP MASTER DOMAIN</i></h2>
+<p>
+Give IP of master browser for specified
+<i>DOMAIN</i>
+or workgroup&#46; Defaults to local domain&#46;
+<h2><i>CACHE</i></h2>
+<p>
+Samba uses a general caching interface called &#39;gencache&#39;&#46; It can be controlled using &#39;NET CACHE&#39;&#46;
+<p>
+All the timeout parameters support the suffixes:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+
+</td><td>
+s - Seconds
+</td></tr>
+<tr valign="top"><td width=4%>
+
+</td><td>
+m - Minutes
+</td></tr>
+<tr valign="top"><td width=4%>
+
+</td><td>
+h - Hours
+</td></tr>
+<tr valign="top"><td width=4%>
+
+</td><td>
+d - Days
+</td></tr>
+<tr valign="top"><td width=4%>
+
+</td><td>
+w - Weeks
+<p>
+</td></tr>
+</table>
+<h2><i>CACHE ADD key data time-out</i></h2>
+<p>
+Add specified key+data to the cache with the given timeout&#46;
+<h2><i>CACHE DEL key</i></h2>
+<p>
+Delete key from the cache&#46;
+<h2><i>CACHE SET key data time-out</i></h2>
+<p>
+Update data of existing cache entry&#46;
+<h2><i>CACHE SEARCH PATTERN</i></h2>
+<p>
+Search for the specified pattern in the cache data&#46;
+<h2><i>CACHE LIST</i></h2>
+<p>
+List all current items in the cache&#46;
+<h2><i>CACHE FLUSH</i></h2>
+<p>
+Remove all the current items from the cache&#46;
+<h2><i>GETLOCALSID [DOMAIN]</i></h2>
+<p>
+Prints the SID of the specified domain, or if the parameter is omitted, the SID of the local server&#46;
+<h2><i>SETLOCALSID S-1-5-21-x-y-z</i></h2>
+<p>
+Sets SID for the local server to the specified SID&#46;
+<h2><i>GETDOMAINSID</i></h2>
+<p>
+Prints the local machine SID and the SID of the current domain&#46;
+<h2><i>SETDOMAINSID</i></h2>
+<p>
+Sets the SID of the current domain&#46;
+<h2><i>GROUPMAP</i></h2>
+<p>
+Manage the mappings between Windows group SIDs and UNIX groups&#46; Common options include:
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+unixgroup - Name of the UNIX group
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+ntgroup - Name of the Windows NT group (must be resolvable to a SID
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+rid - Unsigned 32-bit integer
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+sid - Full SID in the form of "S-1-&#46;&#46;&#46;"
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+type - Type of the group; either &#39;domain&#39;, &#39;local&#39;, or &#39;builtin&#39;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+comment - Freeform text description of the group
+<p>
+</td></tr>
+</table>
+<h2><i>GROUPMAP ADD</i></h2>
+<p>
+Add a new group mapping entry:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+net groupmap add {rid=int|sid=string} unixgroup=string &#92;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[type={domain|local}] [ntgroup=string] [comment=string]
+</pre></td></tr>
+</table>
+<p>
+<p>
+<h2><i>GROUPMAP DELETE</i></h2>
+<p>
+Delete a group mapping entry&#46; If more than one group name matches, the first entry found is deleted&#46;
+<p>
+net groupmap delete {ntgroup=string|sid=SID}
+<h2><i>GROUPMAP MODIFY</i></h2>
+<p>
+Update en existing group entry&#46;
+<p>
+<p>
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+net groupmap modify {ntgroup=string|sid=SID} [unixgroup=string] &#92;
+       [comment=string] [type={domain|local}]
+</pre></td></tr>
+</table>
+<p>
+<p>
+<h2><i>GROUPMAP LIST</i></h2>
+<p>
+List existing group mapping entries&#46;
+<p>
+net groupmap list [verbose] [ntgroup=string] [sid=SID]
+<h2><i>MAXRID</i></h2>
+<p>
+Prints out the highest RID currently in use on the local server (by the active &#39;passdb backend&#39;)&#46;
+<h2><i>RPC INFO</i></h2>
+<p>
+Print information about the domain of the remote server, such as domain name, domain sid and number of users and groups&#46;
+<h2><i>[RPC|ADS] TESTJOIN</i></h2>
+<p>
+Check whether participation in a domain is still valid&#46;
+<h2><i>[RPC|ADS] CHANGETRUSTPW</i></h2>
+<p>
+Force change of domain trust password&#46;
+<h2><i>RPC TRUSTDOM</i></h2>
+<h2><i>RPC TRUSTDOM ADD DOMAIN</i></h2>
+<p>
+Add a interdomain trust account for
+<i>DOMAIN</i>&#46; This is in fact a Samba account named
+<i>DOMAIN$</i>
+with the account flag
+<b>&#39;I&#39;</b>
+(interdomain trust account)&#46; If the command is used against localhost it has the same effect as
+smbpasswd -a -i DOMAIN&#46; Please note that both commands expect a appropriate UNIX account&#46;
+<h2><i>RPC TRUSTDOM DEL DOMAIN</i></h2>
+<p>
+Remove interdomain trust account for
+<i>DOMAIN</i>&#46; If it is used against localhost it has the same effect as
+smbpasswd -x DOMAIN$&#46;
+<h2><i>RPC TRUSTDOM ESTABLISH DOMAIN</i></h2>
+<p>
+Establish a trust relationship to a trusting domain&#46; Interdomain account must already be created on the remote PDC&#46;
+<h2><i>RPC TRUSTDOM REVOKE DOMAIN</i></h2>
+<p>
+Abandon relationship to trusted domain
+<h2><i>RPC TRUSTDOM LIST</i></h2>
+<p>
+List all current interdomain trust relationships&#46;
+<h2><i>RPC RIGHTS</i></h2>
+<p>
+This subcommand is used to view and manage Samba&#39;s rights assignments (also referred to as privileges)&#46; There are three options currently available:
+<i>list</i>,
+<i>grant</i>, and
+<i>revoke</i>&#46; More details on Samba&#39;s privilege model and its use can be found in the Samba-HOWTO-Collection&#46;
+<h2><i>RPC ABORTSHUTDOWN</i></h2>
+<p>
+Abort the shutdown of a remote server&#46;
+<h2><i>RPC SHUTDOWN [-t timeout] [-r] [-f] [-C message]</i></h2>
+<p>
+Shut down the remote server&#46;
+<p>
+-r
+Reboot after shutdown&#46;
+<p>
+-f
+Force shutting down all applications&#46;
+<p>
+-t timeout
+Timeout before system will be shut down&#46; An interactive user of the system can use this time to cancel the shutdown&#46;
+&#39;&gt;
+<p>
+-C message
+Display the specified message on the screen to announce the shutdown&#46;
+<h2><i>RPC SAMDUMP</i></h2>
+<p>
+Print out sam database of remote server&#46; You need to run this against the PDC, from a Samba machine joined as a BDC&#46;
+<h2><i>RPC VAMPIRE</i></h2>
+<p>
+Export users, aliases and groups from remote server to local server&#46; You need to run this against the PDC, from a Samba machine joined as a BDC&#46;
+<h2><i>RPC GETSID</i></h2>
+<p>
+Fetch domain SID and store it in the local
+<i>secrets&#46;tdb</i>&#46;
+<h2><i>ADS LEAVE</i></h2>
+<p>
+Make the remote host leave the domain it is part of&#46;
+<h2><i>ADS STATUS</i></h2>
+<p>
+Print out status of machine account of the local machine in ADS&#46; Prints out quite some debug info&#46; Aimed at developers, regular users should use
+NET ADS TESTJOIN&#46;
+<h2><i>ADS PRINTER</i></h2>
+<h2><i>ADS PRINTER INFO [PRINTER] [SERVER]</i></h2>
+<p>
+Lookup info for
+<i>PRINTER</i>
+on
+<i>SERVER</i>&#46; The printer name defaults to "*", the server name defaults to the local host&#46;
+<h2><i>ADS PRINTER PUBLISH PRINTER</i></h2>
+<p>
+Publish specified printer using ADS&#46;
+<h2><i>ADS PRINTER REMOVE PRINTER</i></h2>
+<p>
+Remove specified printer from ADS directory&#46;
+<h2><i>ADS SEARCH EXPRESSION ATTRIBUTES&#46;&#46;&#46;</i></h2>
+<p>
+Perform a raw LDAP search on a ADS server and dump the results&#46; The expression is a standard LDAP search expression, and the attributes are a list of LDAP fields to show in the results&#46;
+<p>
+Example:
+<b>net ads search &#39;(objectCategory=group)&#39; sAMAccountName</b>
+<h2><i>ADS DN DN (attributes)</i></h2>
+<p>
+Perform a raw LDAP search on a ADS server and dump the results&#46; The DN standard LDAP DN, and the attributes are a list of LDAP fields to show in the result&#46;
+<p>
+Example:
+<b>net ads dn &#39;CN=administrator,CN=Users,DC=my,DC=domain&#39; SAMAccountName</b>
+<h2><i>ADS WORKGROUP</i></h2>
+<p>
+Print out workgroup name for specified kerberos realm&#46;
+<h2><i>SAM CREATEBUILTINGROUP &lt;NAME&gt;</i></h2>
+<p>
+(Re)Create a BUILTIN group&#46; Only a wellknown set of BUILTIN groups can be created with this command&#46; This is the list of currently recognized group names: Administrators, Users, Guests, Power Users, Account Operators, Server Operators, Print Operators, Backup Operators, Replicator, RAS Servers, Pre-Windows 2000 compatible Access&#46; This command requires a running Winbindd with idmap allocation properly configured&#46; The group gid will be allocated out of the winbindd range&#46;
+<h2><i>SAM CREATELOCALGROUP &lt;NAME&gt;</i></h2>
+<p>
+Create a LOCAL group (also known as Alias)&#46; This command requires a running Winbindd with idmap allocation properly configured&#46; The group gid will be allocated out of the winbindd range&#46;
+<h2><i>SAM DELETELOCALGROUP &lt;NAME&gt;</i></h2>
+<p>
+Delete an existing LOCAL group (also known as Alias)&#46;
+<h2><i>SAM MAPUNIXGROUP &lt;NAME&gt;</i></h2>
+<p>
+Map an existing Unix group and make it a Domain Group, the domain group will have the same name&#46;
+<h2><i>SAM UNMAPUNIXGROUP &lt;NAME&gt;</i></h2>
+<p>
+Remove an existing group mapping entry&#46;
+<h2><i>SAM ADDMEM &lt;GROUP&gt; &lt;MEMBER&gt;</i></h2>
+<p>
+Add a member to a Local group&#46; The group can be specified only by name, the member can be specified by name or SID&#46;
+<h2><i>SAM DELMEM &lt;GROUP&gt; &lt;MEMBER&gt;</i></h2>
+<p>
+Remove a member from a Local group&#46; The group and the member must be specified by name&#46;
+<h2><i>SAM LISTMEM &lt;GROUP&gt;</i></h2>
+<p>
+List Local group members&#46; The group must be specified by name&#46;
+<h2><i>SAM LIST &lt;users|groups|localgroups|builtin|workstations&gt; [verbose]</i></h2>
+<p>
+List the specified set of accounts by name&#46; If verbose is specified, the rid and description is also provided for each account&#46;
+<h2><i>SAM SHOW &lt;NAME&gt;</i></h2>
+<p>
+Show the full DOMAIN&#92;&#92;NAME the SID and the type for the corresponding account&#46;
+<h2><i>SAM SET HOMEDIR &lt;NAME&gt; &lt;DIRECTORY&gt;</i></h2>
+<p>
+Set the home directory for a user account&#46;
+<h2><i>SAM SET PROFILEPATH &lt;NAME&gt; &lt;PATH&gt;</i></h2>
+<p>
+Set the profile path for a user account&#46;
+<h2><i>SAM SET COMMENT &lt;NAME&gt; &lt;COMMENT&gt;</i></h2>
+<p>
+Set the comment for a user or group account&#46;
+<h2><i>SAM SET FULLNAME &lt;NAME&gt; &lt;FULL NAME&gt;</i></h2>
+<p>
+Set the full name for a user account&#46;
+<h2><i>SAM SET LOGONSCRIPT &lt;NAME&gt; &lt;SCRIPT&gt;</i></h2>
+<p>
+Set the logon script for a user account&#46;
+<h2><i>SAM SET HOMEDRIVE &lt;NAME&gt; &lt;DRIVE&gt;</i></h2>
+<p>
+Set the home drive for a user account&#46;
+<h2><i>SAM SET WORKSTATIONS &lt;NAME&gt; &lt;WORKSTATIONS&gt;</i></h2>
+<p>
+Set the workstations a user account is allowed to log in from&#46;
+<h2><i>SAM SET DISABLE &lt;NAME&gt;</i></h2>
+<p>
+Set the "disabled" flag for a user account&#46;
+<h2><i>SAM SET PWNOTREQ &lt;NAME&gt;</i></h2>
+<p>
+Set the "password not required" flag for a user account&#46;
+<h2><i>SAM SET AUTOLOCK &lt;NAME&gt;</i></h2>
+<p>
+Set the "autolock" flag for a user account&#46;
+<h2><i>SAM SET PWNOEXP &lt;NAME&gt;</i></h2>
+<p>
+Set the "password do not expire" flag for a user account&#46;
+<h2><i>SAM SET PWDMUSTCHANGENOW &lt;NAME&gt; [yes|no]</i></h2>
+<p>
+Set or unset the "password must change" flag for a user account&#46;
+<h2><i>SAM POLICY LIST</i></h2>
+<p>
+List the available account policies&#46;
+<h2><i>SAM POLICY SHOW &lt;account policy&gt;</i></h2>
+<p>
+Show the account policy value&#46;
+<h2><i>SAM POLICY SET &lt;account policy&gt; &lt;value&gt;</i></h2>
+<p>
+Set a value for the account policy&#46; Valid values can be: "forever", "never", "off", or a number&#46;
+<h2><i>SAM PROVISION</i></h2>
+<p>
+Only available if ldapsam:editposix is set and winbindd is running&#46; Properly populates the ldap tree with the basic accounts (Administrator) and groups (Domain Users, Domain Admins, Domain Guests) on the ldap tree&#46;
+<h2><i>IDMAP DUMP &lt;local tdb file name&gt;</i></h2>
+<p>
+Dumps the mappings contained in the local tdb file specified&#46; This command is useful to dump only the mappings produced by the idmap_tdb backend&#46;
+<h2><i>IDMAP RESTORE [input file]</i></h2>
+<p>
+Restore the mappings from the specified file or stdin&#46;
+<h2><i>IDMAP SECRET &lt;DOMAIN&gt;|ALLOC &lt;secret&gt;</i></h2>
+<p>
+Store a secret for the specified domain, used primarily for domains that use idmap_ldap as a backend&#46; In this case the secret is used as the password for the user DN used to bind to the ldap server&#46;
+<h2><i>USERSHARE</i></h2>
+<p>
+Starting with version 3&#46;0&#46;23, a Samba server now supports the ability for non-root users to add user defined shares to be exported using the "net usershare" commands&#46;
+<p>
+To set this up, first set up your smb&#46;conf by adding to the [global] section: usershare path = /usr/local/samba/lib/usershares Next create the directory /usr/local/samba/lib/usershares, change the owner to root and set the group owner to the UNIX group who should have the ability to create usershares, for example a group called "serverops"&#46; Set the permissions on /usr/local/samba/lib/usershares to 01770&#46; (Owner and group all access, no access for others, plus the sticky bit, which means that a file in that directory can be renamed or deleted only by the owner of the file)&#46; Finally, tell smbd how many usershares you will allow by adding to the [global] section of smb&#46;conf a line such as : usershare max shares = 100&#46; To allow 100 usershare definitions&#46; Now, members of the UNIX group "serverops" can create user defined shares on demand using the commands below&#46;
+<p>
+The usershare commands are:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+
+</td><td>
+net usershare add sharename path [comment] [acl] [guest_ok=[y|n]] - to add or change a user defined share&#46;
+</td></tr>
+<tr valign="top"><td width=4%>
+
+</td><td>
+net usershare delete sharename - to delete a user defined share&#46;
+</td></tr>
+<tr valign="top"><td width=4%>
+
+</td><td>
+net usershare info [-l|--long] [wildcard sharename] - to print info about a user defined share&#46;
+</td></tr>
+<tr valign="top"><td width=4%>
+
+</td><td>
+net usershare list [-l|--long] [wildcard sharename] - to list user defined shares&#46;
+<p>
+</td></tr>
+</table>
+<h2><i>USERSHARE ADD sharename path [comment] [acl] [guest_ok=[y|n]]</i></h2>
+<p>
+Add or replace a new user defined share, with name "sharename"&#46;
+<p>
+"path" specifies the absolute pathname on the system to be exported&#46; Restrictions may be put on this, see the global smb&#46;conf parameters: "usershare owner only", "usershare prefix allow list", and "usershare prefix deny list"&#46;
+<p>
+The optional "comment" parameter is the comment that will appear on the share when browsed to by a client&#46;
+<p>
+The optional "acl" field specifies which users have read and write access to the entire share&#46; Note that guest connections are not allowed unless the smb&#46;conf parameter "usershare allow guests" has been set&#46; The definition of a user defined share acl is: "user:permission", where user is a valid username on the system and permission can be "F", "R", or "D"&#46; "F" stands for "full permissions", ie&#46; read and write permissions&#46; "D" stands for "deny" for a user, ie&#46; prevent this user from accessing this share&#46; "R" stands for "read only", ie&#46; only allow read access to this share (no creation of new files or directories or writing to files)&#46;
+<p>
+The default if no "acl" is given is "Everyone:R", which means any authenticated user has read-only access&#46;
+<p>
+The optional "guest_ok" has the same effect as the parameter of the same name in smb&#46;conf, in that it allows guest access to this user defined share&#46; This parameter is only allowed if the global parameter "usershare allow guests" has been set to true in the smb&#46;conf&#46;
+<p>
+<p>
+There is no separate command to modify an existing user defined share,
+just use the "net usershare add [sharename]" command using the same
+sharename as the one you wish to modify and specify the new options
+you wish&#46; The Samba smbd daemon notices user defined share modifications
+at connect time so will see the change immediately, there is no need
+to restart smbd on adding, deleting or changing a user defined share&#46;
+<h2><i>USERSHARE DELETE sharename</i></h2>
+<p>
+Deletes the user defined share by name&#46; The Samba smbd daemon immediately notices this change, although it will not disconnect any users currently connected to the deleted share&#46;
+<h2><i>USERSHARE INFO [-l|--long] [wildcard sharename]</i></h2>
+<p>
+Get info on user defined shares owned by the current user matching the given pattern, or all users&#46;
+<p>
+net usershare info on its own dumps out info on the user defined shares that were created by the current user, or restricts them to share names that match the given wildcard pattern (&#39;*&#39; matches one or more characters, &#39;?&#39; matches only one character)&#46; If the &#39;-l&#39; or &#39;--long&#39; option is also given, it prints out info on user defined shares created by other users&#46;
+<p>
+The information given about a share looks like: [foobar] path=/home/jeremy comment=testme usershare_acl=Everyone:F guest_ok=n And is a list of the current settings of the user defined share that can be modified by the "net usershare add" command&#46;
+<h2><i>USERSHARE LIST [-l|--long] wildcard sharename</i></h2>
+<p>
+List all the user defined shares owned by the current user matching the given pattern, or all users&#46;
+<p>
+net usershare list on its own list out the names of the user defined shares that were created by the current user, or restricts the list to share names that match the given wildcard pattern (&#39;*&#39; matches one or more characters, &#39;?&#39; matches only one character)&#46; If the &#39;-l&#39; or &#39;--long&#39; option is also given, it includes the names of user defined shares created by other users&#46;
+<h2><i>HELP [COMMAND]</i></h2>
+<p>
+Gives usage information for the specified command&#46;
+<h1 class="manpages">VERSION</h1>
+<p>
+This man page is complete for version 3&#46;0 of the Samba suite&#46;
+<h1 class="manpages">AUTHOR</h1>
+<p>
+The original Samba software and related utilities were created by Andrew Tridgell&#46; Samba is now developed by the Samba Team as an Open Source project similar to the way the Linux kernel is developed&#46;
+<p>
+The net manpage was written by Jelmer Vernooij&#46;
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion7fc7.html?tutorial=unix_commands&amp;file=net.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/net.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:05 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

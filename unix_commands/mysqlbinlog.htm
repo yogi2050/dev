@@ -1,0 +1,2554 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/mysqlbinlog.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:03 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>mysqlbinlog - Unix, Linux Command</title>
+<meta name="Description" Content="mysqlbinlog - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>mysqlbinlog - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- ignored unsupported tag .nh -->
+<!-- ignored unsupported tag .ad -->
+<h1 class="manpages">NAME</h1>
+mysqlbinlog - utility for processing binary log files
+<h1 class="manpages">SYNOPSIS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>mysqlbinlog [</b><b>options</b><b>] </b><b></b><i>log_file</i><b> &#46;&#46;&#46;</b>
+</td></tr>
+</table>
+<h1 class="manpages">DESCRIPTION</h1>
+<p>
+The server&#39;s binary log consists of files containing
+<blink><blink>\(</blink>lq</blink>events<blink><blink>\(</blink>rq</blink>
+that describe modifications to database contents&#46; The server writes these files in binary format&#46; To display their contents in text format, use the
+<b>mysqlbinlog</b>
+utility&#46; You can also use
+<b>mysqlbinlog</b>
+to display the contents of relay log files written by a slave server in a replication setup because relay logs have the same format as binary logs&#46; The binary log and relay log are discussed further in
+Section 5.2.4, <blink><blink>\(</blink>lq</blink>The Binary Log<blink><blink>\(</blink>rq</blink>, and
+Section 16.2.2, <blink><blink>\(</blink>lq</blink>Replication Relay and Status Files<blink><blink>\(</blink>rq</blink>&#46;
+<p>
+Invoke
+<b>mysqlbinlog</b>
+like this:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqlbinlog [</b><b></b><i>options</i><b>] </b><b></b><i>log_file</i><b> &#46;&#46;&#46;</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+For example, to display the contents of the binary log file named
+binlog&#46;000003, use this command:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqlbinlog binlog&#46;0000003</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+The output includes events contained in
+binlog&#46;000003&#46; For statement-based logging, event information includes the SQL statement, the ID of the server on which it was executed, the timestamp when the statement was executed, how much time it took, and so forth&#46; For row-based logging, the event indicates a row change rather than an SQL statement&#46; See
+Section 16.1.2, <blink><blink>\(</blink>lq</blink>Replication Formats<blink><blink>\(</blink>rq</blink>, for information about logging modes&#46;
+<p>
+Events are preceded by header comments that provide additional information&#46; For example:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+# at 141
+#100309  9:28:36 server id 123  end_log_pos 245
+  Query thread_id=3350  exec_time=11  error_code=0
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+In the first line, the number following
+at
+indicates the starting position of the event in the binary log file&#46;
+<p>
+The second line starts with a date and time indicating when the statement started on the server where the event originated&#46; For replication, this timestamp is propagated to slave servers&#46;
+server id
+is the
+server_id
+value of the server where the event originated&#46;
+end_log_pos
+indicates where the next event starts (that is, it is the end position of the current event + 1)&#46;
+thread_id
+indicates which thread executed the event&#46;
+exec_time
+is the time spent executing the event, on a master server&#46; On a slave, it is the difference of the end execution time on the slave minus the beginning execution time on the master&#46; The difference serves as an indicator of how much replication lags behind the master&#46;
+error_code
+indicates the result from executing the event&#46; Zero means that no error occurred&#46;
+<p>
+The output from
+<b>mysqlbinlog</b>
+can be re-executed (for example, by using it as input to
+<b>mysql</b>) to redo the statements in the log&#46; This is useful for recovery operations after a server crash&#46; For other usage examples, see the discussion later in this section and in
+Section 6.5, <blink><blink>\(</blink>lq</blink>Point-in-Time (Incremental) Recovery Using the Binary Log<blink><blink>\(</blink>rq</blink>&#46;
+<p>
+Normally, you use
+<b>mysqlbinlog</b>
+to read binary log files directly and apply them to the local MySQL server&#46; It is also possible to read binary logs from a remote server by using the
+<b>--read-from-remote-server</b>
+option&#46; To read remote binary logs, the connection parameter options can be given to indicate how to connect to the server&#46; These options are
+<b>--host</b>,
+<b>--password</b>,
+<b>--port</b>,
+<b>--protocol</b>,
+<b>--socket</b>, and
+<b>--user</b>; they are ignored except when you also use the
+<b>--read-from-remote-server</b>
+option&#46;
+<p>
+<b>mysqlbinlog</b>
+supports the following options, which can be specified on the command line or in the
+[mysqlbinlog]
+and
+[client]
+option file groups&#46;
+<b>mysqlbinlog</b>
+also supports the options for processing option files described at
+Section 4.2.3.3.1, <blink><blink>\(</blink>lq</blink>Command-Line Options that Affect Option-File Handling<blink><blink>\(</blink>rq</blink>&#46;
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--help</b>,
+<b>-?</b>
+<p>
+Display a help message and exit&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--base64-output[=</b><b></b><i>value</i><b>]</b>
+<p>
+This option determines when events should be displayed encoded as base-64 strings using
+BINLOG
+statements&#46; The option has these permissible values (not case sensitive):
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+AUTO
+("automatic") or
+UNSPEC
+("unspecified") displays
+BINLOG
+statements automatically when necessary (that is, for format description events and row events)&#46; If no
+<b>--base64-output</b>
+option is given, the effect is the same as
+<b>--base64-output=AUTO</b>&#46;
+<!-- ignored unsupported tag .if -->
+<p>
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .it -->
+<font size="1"><b>Note</b>
+</font><!-- Need break --><br />
+Automatic
+BINLOG
+display is the only safe behavior if you intend to use the output of
+<b>mysqlbinlog</b>
+to re-execute binary log file contents&#46; The other option values are intended only for debugging or testing purposes because they may produce output that does not include all events in executable form&#46;
+<p>
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+ALWAYS
+displays
+BINLOG
+statements whenever possible&#46; If the
+<b>--base64-output</b>
+option is given without a value, the effect is the same as
+<b>--base64-output=ALWAYS</b>&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+NEVER
+causes
+BINLOG
+statements not to be displayed&#46;
+<b>mysqlbinlog</b>
+exits with an error if a row event is found that must be displayed using
+BINLOG&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+DECODE-ROWS
+specifies to
+<b>mysqlbinlog</b>
+that you intend for row events to be decoded and displayed as commented SQL statements by also specifying the
+<b>--verbose</b>
+option&#46; Like
+NEVER,
+DECODE-ROWS
+suppresses display of
+BINLOG
+statements, but unlike
+NEVER, it does not exit with an error if a row event is found&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+The
+<b>--base64-output</b>
+option was introduced in MySQL 5&#46;1&#46;5, to be given as
+<b>--base64-output</b>
+or
+<b>--skip-base64-output</b>
+(with the sense of
+AUTO
+or
+NEVER)&#46; The option values described in the preceding list may be used as of MySQL 5&#46;1&#46;24, with the exception of
+UNSPEC
+and
+DECODE-ROWS, which are available as of MySQL 5&#46;1&#46;28&#46;
+<p>
+For examples that show the effect of
+<b>--base64-output</b>
+and
+<b>--verbose</b>
+on row event output, see
+the section called <blink><blink>\(</blink>lq</blink>MYSQLBINLOG ROW EVENT DISPLAY<blink><blink>\(</blink>rq</blink>&#46;
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--bind-address=</b><b></b><i>ip_address</i>
+<p>
+On a computer having multiple network interfaces, this option can be used to select which interface is employed when connecting to the MySQL server&#46;
+<p>
+This option is supported only in the version of
+<b>mysqlbinlog</b>
+that is supplied with MySQL Cluster, beginning with MySQL Cluster NDB 6&#46;3&#46;4&#46; It is not available in standard MySQL 5&#46;1 releases&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--character-sets-dir=</b><b></b><i>path</i>
+<p>
+The directory where character sets are installed&#46; See
+Section 9.5, <blink><blink>\(</blink>lq</blink>Character Set Configuration<blink><blink>\(</blink>rq</blink>&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--database=</b><b></b><i>db_name</i>,
+<b>-d </b><b></b><i>db_name</i>
+<p>
+This option causes
+<b>mysqlbinlog</b>
+to output entries from the binary log (local log only) that occur while
+<i>db_name</i>
+is been selected as the default database by
+USE&#46;
+<p>
+The
+<b>--database</b>
+option for
+<b>mysqlbinlog</b>
+is similar to the
+<b>--binlog-do-db</b>
+option for
+<b>mysqld</b>, but can be used to specify only one database&#46; If
+<b>--database</b>
+is given multiple times, only the last instance is used&#46;
+<p>
+The effects of this option depend on whether the statement-based or row-based logging format is in use, in the same way that the effects of
+<b>--binlog-do-db</b>
+depend on whether statement-based or row-based logging is in use&#46;
+</td></tr>
+<!-- PP ends table -->
+</table>
+<b>Statement-based logging</b>. The
+<b>--database</b>
+option works as follows:
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+While
+<i>db_name</i>
+is the default database, statements are output whether they modify tables in
+<i>db_name</i>
+or a different database&#46;
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+Unless
+<i>db_name</i>
+is selected as the default database, statements are not output, even if they modify tables in
+<i>db_name</i>&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+There is an exception for
+CREATE DATABASE,
+ALTER DATABASE, and
+DROP DATABASE&#46; The database being
+<i>created, altered, or dropped</i>
+is considered to be the default database when determining whether to output the statement&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+Suppose that the binary log was created by executing these statements using statement-based-logging:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+INSERT INTO test&#46;t1 (i) VALUES(100);
+INSERT INTO db2&#46;t2 (j)  VALUES(200);
+USE test;
+INSERT INTO test&#46;t1 (i) VALUES(101);
+INSERT INTO t1 (i)      VALUES(102);
+INSERT INTO db2&#46;t2 (j)  VALUES(201);
+USE db2;
+INSERT INTO test&#46;t1 (i) VALUES(103);
+INSERT INTO db2&#46;t2 (j)  VALUES(202);
+INSERT INTO t2 (j)      VALUES(203);
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+<b>mysqlbinlog --database=test</b>
+does not output the first two
+INSERT
+statements because there is no default database&#46; It outputs the three
+INSERT
+statements following
+USE test, but not the three
+INSERT
+statements following
+USE db2&#46;
+<p>
+<b>mysqlbinlog --database=db2</b>
+does not output the first two
+INSERT
+statements because there is no default database&#46; It does not output the three
+INSERT
+statements following
+USE test, but does output the three
+INSERT
+statements following
+USE db2&#46;
+</td></tr>
+<!-- PP ends table -->
+</table>
+<b>Row-based logging</b>.
+<b>mysqlbinlog</b>
+outputs only entries that change tables belonging to
+<i>db_name</i>&#46; The default database has no effect on this&#46; Suppose that the binary log just described was created using row-based logging rather than statement-based logging&#46;
+<b>mysqlbinlog --database=test</b>
+outputs only those entries that modify
+t1
+in the test database, regardless of whether
+USE
+was issued or what the default database is&#46;
+If a server is running with
+binlog_format
+set to
+MIXED
+and you want it to be possible to use
+<b>mysqlbinlog</b>
+with the
+<b>--database</b>
+option, you must ensure that tables that are modified are in the database selected by
+USE&#46; (In particular, no cross-database updates should be used&#46;)
+<!-- ignored unsupported tag .if -->
+<p>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=4%>&nbsp;</td><td>
+<!-- ignored unsupported tag .it -->
+<font size="1"><b>Note</b>
+</font><!-- Need break --><br />
+This option did not work correctly for
+<b>mysqlbinlog</b>
+with row-based logging prior to MySQL 5&#46;1&#46;37&#46; (<blink>\m</blink>[blue]<b>Bug#42941</b><blink>\m</blink>[]<font size="-2"><sup>[1]</sup></font>)
+<p>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--debug[=</b><b></b><i>debug_options</i><b>]</b>,
+<b>-# [</b><b></b><i>debug_options</i><b>]</b>
+<p>
+Write a debugging log&#46; A typical
+<i>debug_options</i>
+string is
+&#39;d:t:o,<i>file_name</i>&#39;&#46; The default is
+&#39;d:t:o,/tmp/mysqlbinlog&#46;trace&#39;&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--debug-check</b>
+<p>
+Print some debugging information when the program exits&#46; This option was added in MySQL 5&#46;1&#46;21&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--debug-info</b>
+<p>
+Print debugging information and memory and CPU usage statistics when the program exits&#46; This option was added in MySQL 5&#46;1&#46;21&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--disable-log-bin</b>,
+<b>-D</b>
+<p>
+Disable binary logging&#46; This is useful for avoiding an endless loop if you use the
+<b>--to-last-log</b>
+option and are sending the output to the same MySQL server&#46; This option also is useful when restoring after a crash to avoid duplication of the statements you have logged&#46;
+<p>
+This option requires that you have the
+SUPER
+privilege&#46; It causes
+<b>mysqlbinlog</b>
+to include a
+SET sql_log_bin = 0
+statement in its output to disable binary logging of the remaining output&#46; The
+SET
+statement is ineffective unless you have the
+SUPER
+privilege&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--force-read</b>,
+<b>-f</b>
+<p>
+With this option, if
+<b>mysqlbinlog</b>
+reads a binary log event that it does not recognize, it prints a warning, ignores the event, and continues&#46; Without this option,
+<b>mysqlbinlog</b>
+stops if it reads such an event&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--hexdump</b>,
+<b>-H</b>
+<p>
+Display a hex dump of the log in comments, as described in
+the section called <blink><blink>\(</blink>lq</blink>MYSQLBINLOG HEX DUMP FORMAT<blink><blink>\(</blink>rq</blink>&#46; The hex output can be helpful for replication debugging&#46; This option was added in MySQL 5&#46;1&#46;2&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--host=</b><b></b><i>host_name</i>,
+<b>-h </b><b></b><i>host_name</i>
+<p>
+Get the binary log from the MySQL server on the given host&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--local-load=</b><b></b><i>path</i>,
+<b>-l </b><b></b><i>path</i>
+<p>
+Prepare local temporary files for
+LOAD DATA INFILE
+in the specified directory&#46;
+<!-- ignored unsupported tag .if -->
+<p>
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .it -->
+<font size="1"><b>Important</b>
+</font><!-- Need break --><br />
+These temporary files are not automatically removed by
+<b>mysqlbinlog</b>
+or any other MySQL program&#46;
+<p>
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--offset=</b><b></b><i>N</i>,
+<b>-o </b><b></b><i>N</i>
+<p>
+Skip the first
+<i>N</i>
+entries in the log&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--password[=</b><b></b><i>password</i><b>]</b>,
+<b>-p[</b><b></b><i>password</i><b>]</b>
+<p>
+The password to use when connecting to the server&#46; If you use the short option form (<b>-p</b>), you
+<i>cannot</i>
+have a space between the option and the password&#46; If you omit the
+<i>password</i>
+value following the
+<b>--password</b>
+or
+<b>-p</b>
+option on the command line,
+<b>mysqlbinlog</b>
+prompts for one&#46;
+<p>
+Specifying a password on the command line should be considered insecure&#46; See
+Section 5.3.2.2, <blink><blink>\(</blink>lq</blink>End-User Guidelines for Password Security<blink><blink>\(</blink>rq</blink>&#46; You can use an option file to avoid giving the password on the command line&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--port=</b><b></b><i>port_num</i>,
+<b>-P </b><b></b><i>port_num</i>
+<p>
+The TCP/IP port number to use for connecting to a remote server&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--position=</b><b></b><i>N</i>
+<p>
+Deprecated&#46; Use
+<b>--start-position</b>
+instead&#46;
+<b>--position</b>
+is removed in MySQL 5&#46;5&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--protocol={TCP|SOCKET|PIPE|MEMORY}</b>
+<p>
+The connection protocol to use for connecting to the server&#46; It is useful when the other connection parameters normally would cause a protocol to be used other than the one you want&#46; For details on the permissible values, see
+Section 4.2.2, <blink><blink>\(</blink>lq</blink>Connecting to the MySQL Server<blink><blink>\(</blink>rq</blink>&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--read-from-remote-server</b>,
+<b>-R</b>
+<p>
+Read the binary log from a MySQL server rather than reading a local log file&#46; Any connection parameter options are ignored unless this option is given as well&#46; These options are
+<b>--host</b>,
+<b>--password</b>,
+<b>--port</b>,
+<b>--protocol</b>,
+<b>--socket</b>, and
+<b>--user</b>&#46;
+<p>
+This option requires that the remote server be running&#46; It works only for binary log files on the remote server, not relay log files&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--result-file=</b><b></b><i>name</i>,
+<b>-r </b><b></b><i>name</i>
+<p>
+Direct output to the given file&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--server-id=</b><b></b><i>id</i>
+<p>
+Display only those events created by the server having the given server ID&#46; This option is available as of MySQL 5&#46;1&#46;4&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--server-id-bits=</b><b></b><i>N</i>
+<p>
+Use only the first
+<i>N</i>
+bits of the
+server_id
+to identify the server&#46; If the binary log was written by a
+<b>mysqld</b>
+with server-id-bits set to less than 32 and user data stored in the most significant bit, running
+<b>mysqlbinlog</b>
+with
+<b>--server-id-bits</b>
+set to 32 enables this data to be seen&#46;
+<p>
+This option was added in MySQL Cluster NDB 7&#46;0&#46;17 and MySQL Cluster NDB 7&#46;1&#46;6, and is supported only by the versions of
+<b>mysqlbinlog</b>
+supplied with these and later releases of MySQL Cluster&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--set-charset=</b><b></b><i>charset_name</i>
+<p>
+Add a
+SET NAMES <i>charset_name</i>
+statement to the output to specify the character set to be used for processing log files&#46; This option was added in MySQL 5&#46;1&#46;12&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--short-form</b>,
+<b>-s</b>
+<p>
+Display only the statements contained in the log, without any extra information or row-based events&#46; This is for testing only, and should not be used in production systems&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--socket=</b><b></b><i>path</i>,
+<b>-S </b><b></b><i>path</i>
+<p>
+For connections to
+localhost, the Unix socket file to use, or, on Windows, the name of the named pipe to use&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--start-datetime=</b><b></b><i>datetime</i>
+<p>
+Start reading the binary log at the first event having a timestamp equal to or later than the
+<i>datetime</i>
+argument&#46; The
+<i>datetime</i>
+value is relative to the local time zone on the machine where you run
+<b>mysqlbinlog</b>&#46; The value should be in a format accepted for the
+DATETIME
+or
+TIMESTAMP
+data types&#46; For example:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqlbinlog --start-datetime="2005-12-25 11:25:56" binlog&#46;000003</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+<p>
+This option is useful for point-in-time recovery&#46; See
+Section 6.3, <blink><blink>\(</blink>lq</blink>Example Backup and Recovery Strategy<blink><blink>\(</blink>rq</blink>&#46;
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--start-position=</b><b></b><i>N</i>,
+<b>-j </b><b></b><i>N</i>
+<p>
+Start reading the binary log at the first event having a position equal to or greater than
+<i>N</i>&#46; This option applies to the first log file named on the command line&#46;
+<p>
+This option is useful for point-in-time recovery&#46; See
+Section 6.3, <blink><blink>\(</blink>lq</blink>Example Backup and Recovery Strategy<blink><blink>\(</blink>rq</blink>&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--stop-datetime=</b><b></b><i>datetime</i>
+<p>
+Stop reading the binary log at the first event having a timestamp equal to or later than the
+<i>datetime</i>
+argument&#46; This option is useful for point-in-time recovery&#46; See the description of the
+<b>--start-datetime</b>
+option for information about the
+<i>datetime</i>
+value&#46;
+<p>
+This option is useful for point-in-time recovery&#46; See
+Section 6.3, <blink><blink>\(</blink>lq</blink>Example Backup and Recovery Strategy<blink><blink>\(</blink>rq</blink>&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--stop-position=</b><b></b><i>N</i>
+<p>
+Stop reading the binary log at the first event having a position equal to or greater than
+<i>N</i>&#46; This option applies to the last log file named on the command line&#46;
+<p>
+This option is useful for point-in-time recovery&#46; See
+Section 6.3, <blink><blink>\(</blink>lq</blink>Example Backup and Recovery Strategy<blink><blink>\(</blink>rq</blink>&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--to-last-log</b>,
+<b>-t</b>
+<p>
+Do not stop at the end of the requested binary log from a MySQL server, but rather continue printing until the end of the last binary log&#46; If you send the output to the same MySQL server, this may lead to an endless loop&#46; This option requires
+<b>--read-from-remote-server</b>&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--user=</b><b></b><i>user_name</i>,
+<b>-u </b><b></b><i>user_name</i>
+<p>
+The MySQL user name to use when connecting to a remote server&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--verbose</b>,
+<b>-v</b>
+<p>
+Reconstruct row events and display them as commented SQL statements&#46; If this option is given twice, the output includes comments to indicate column data types and some metadata&#46; This option was added in MySQL 5&#46;1&#46;28&#46;
+<p>
+For examples that show the effect of
+<b>--base64-output</b>
+and
+<b>--verbose</b>
+on row event output, see
+the section called <blink><blink>\(</blink>lq</blink>MYSQLBINLOG ROW EVENT DISPLAY<blink><blink>\(</blink>rq</blink>&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=2.3%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--version</b>,
+<b>-V</b>
+<p>
+Display version information and exit&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+</td></tr>
+<!-- PP ends table -->
+</table>
+You can also set the following variable by using
+<b>--</b><b></b><i>var_name</i><b>=</b><b></b><i>value</i>
+syntax:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=4%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+open_files_limit
+<p>
+Specify the number of open file descriptors to reserve&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+You can pipe the output of
+<b>mysqlbinlog</b>
+into the
+<b>mysql</b>
+client to execute the events contained in the binary log&#46; This technique is used to recover from a crash when you have an old backup (see
+Section 6.5, <blink><blink>\(</blink>lq</blink>Point-in-Time (Incremental) Recovery Using the Binary Log<blink><blink>\(</blink>rq</blink>)&#46; For example:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=4%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqlbinlog binlog&#46;000001 | mysql -u root -p</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+<p>
+Or:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=4%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqlbinlog binlog&#46;[0-9]* | mysql -u root -p</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+<p>
+You can also redirect the output of
+<b>mysqlbinlog</b>
+to a text file instead, if you need to modify the statement log first (for example, to remove statements that you do not want to execute for some reason)&#46; After editing the file, execute the statements that it contains by using it as input to the
+<b>mysql</b>
+program:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=4%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqlbinlog binlog&#46;000001 &gt; tmpfile</b>
+shell&gt; &#46;&#46;&#46; <i>edit tmpfile</i> &#46;&#46;&#46;
+shell&gt; <b>mysql -u root -p &lt; tmpfile</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+<p>
+When
+<b>mysqlbinlog</b>
+is invoked with the
+<b>--start-position</b>
+option, it displays only those events with an offset in the binary log greater than or equal to a given position (the given position must match the start of one event)&#46; It also has options to stop and start when it sees an event with a given date and time&#46; This enables you to perform point-in-time recovery using the
+<b>--stop-datetime</b>
+option (to be able to say, for example,
+<blink><blink>\(</blink>lq</blink>roll forward my databases to how they were today at 10:30 a&#46;m&#46;<blink><blink>\(</blink>rq</blink>)&#46;
+<p>
+If you have more than one binary log to execute on the MySQL server, the safe method is to process them all using a single connection to the server&#46; Here is an example that demonstrates what may be
+<i>unsafe</i>:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=4%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqlbinlog binlog&#46;000001 | mysql -u root -p # DANGER!!</b>
+shell&gt; <b>mysqlbinlog binlog&#46;000002 | mysql -u root -p # DANGER!!</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+<p>
+Processing binary logs this way using multiple connections to the server causes problems if the first log file contains a
+CREATE TEMPORARY TABLE
+statement and the second log contains a statement that uses the temporary table&#46; When the first
+<b>mysql</b>
+process terminates, the server drops the temporary table&#46; When the second
+<b>mysql</b>
+process attempts to use the table, the server reports
+<blink><blink>\(</blink>lq</blink>unknown table&#46;<blink><blink>\(</blink>rq</blink>
+<p>
+To avoid problems like this, use a
+<i>single</i>
+<b>mysql</b>
+process to execute the contents of all binary logs that you want to process&#46; Here is one way to do so:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=4%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqlbinlog binlog&#46;000001 binlog&#46;000002 | mysql -u root -p</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+<p>
+Another approach is to write all the logs to a single file and then process the file:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=4%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqlbinlog binlog&#46;000001 &gt;  /tmp/statements&#46;sql</b>
+shell&gt; <b>mysqlbinlog binlog&#46;000002 &gt;&gt; /tmp/statements&#46;sql</b>
+shell&gt; <b>mysql -u root -p -e "source /tmp/statements&#46;sql"</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+<p>
+<b>mysqlbinlog</b>
+can produce output that reproduces a
+LOAD DATA INFILE
+operation without the original data file&#46;
+<b>mysqlbinlog</b>
+copies the data to a temporary file and writes a
+LOAD DATA LOCAL INFILE
+statement that refers to the file&#46; The default location of the directory where these files are written is system-specific&#46; To specify a directory explicitly, use the
+<b>--local-load</b>
+option&#46;
+<p>
+Because
+<b>mysqlbinlog</b>
+converts
+LOAD DATA INFILE
+statements to
+LOAD DATA LOCAL INFILE
+statements (that is, it adds
+LOCAL), both the client and the server that you use to process the statements must be configured with the
+LOCAL
+capability enabled&#46; See
+Section 5.3.5, <blink><blink>\(</blink>lq</blink>Security Issues with LOAD DATA LOCAL<blink><blink>\(</blink>rq</blink>&#46;
+<!-- ignored unsupported tag .if -->
+<p>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=4%>&nbsp;</td><td>
+<!-- ignored unsupported tag .it -->
+<font size="1"><b>Warning</b>
+</font><p>
+The temporary files created for
+LOAD DATA LOCAL
+statements are
+<i>not</i>
+automatically deleted because they are needed until you actually execute those statements&#46; You should delete the temporary files yourself after you no longer need the statement log&#46; The files can be found in the temporary file directory and have names like
+<i>original_file_name-#-#</i>&#46;
+<p>
+</td></tr>
+</table>
+</td></tr>
+</table>
+<h1 class="manpages">MYSQLBINLOG HEX DUMP FORMAT</h1>
+<p>
+The
+<b>--hexdump</b>
+option causes
+<b>mysqlbinlog</b>
+to produce a hex dump of the binary log contents:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqlbinlog --hexdump master-bin&#46;000001</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+The hex output consists of comment lines beginning with
+#, so the output might look like this for the preceding command:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+/*!40019 SET @@session&#46;max_insert_delayed_threads=0*/;
+/*!50003 SET @OLD_COMPLETION_TYPE=@@COMPLETION_TYPE,COMPLETION_TYPE=0*/;
+# at 4
+#051024 17:24:13 server id 1  end_log_pos 98
+# Position  Timestamp   Type   Master ID        Size      Master Pos    Flags
+# 00000004 9d fc 5c 43   0f   01 00 00 00   5e 00 00 00   62 00 00 00   00 00
+# 00000017 04 00 35 2e 30 2e 31 35  2d 64 65 62 75 67 2d 6c |&#46;&#46;5&#46;0&#46;15&#46;debug&#46;l|
+# 00000027 6f 67 00 00 00 00 00 00  00 00 00 00 00 00 00 00 |og&#46;&#46;&#46;&#46;&#46;&#46;&#46;&#46;&#46;&#46;&#46;&#46;&#46;&#46;|
+# 00000037 00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00 |&#46;&#46;&#46;&#46;&#46;&#46;&#46;&#46;&#46;&#46;&#46;&#46;&#46;&#46;&#46;&#46;|
+# 00000047 00 00 00 00 9d fc 5c 43  13 38 0d 00 08 00 12 00 |&#46;&#46;&#46;&#46;&#46;&#46;&#46;C&#46;8&#46;&#46;&#46;&#46;&#46;&#46;|
+# 00000057 04 04 04 04 12 00 00 4b  00 04 1a                |&#46;&#46;&#46;&#46;&#46;&#46;&#46;K&#46;&#46;&#46;|
+#       Start: binlog v 4, server v 5&#46;0&#46;15-debug-log created 051024 17:24:13
+#       at startup
+ROLLBACK;
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+Hex dump output currently contains the elements in the following list&#46; This format is subject to change&#46; (For more information about binary log format, see
+<blink>\m</blink>[blue]<b>&nbsp;<a href="http://forge.mysql.com/wiki/MySQL_Internals_Binary_Log">http://forge.mysql.com/wiki/MySQL_Internals_Binary_Log</a></b><blink>\m</blink>[]&#46;)
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+Position: The byte position within the log file&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+Timestamp: The event timestamp&#46; In the example shown,
+&#39;9d fc 5c 43&#39;
+is the representation of
+&#39;051024 17:24:13&#39;
+in hexadecimal&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+Type: The event type code&#46; In the example shown,
+&#39;0f&#39;
+indicates a
+FORMAT_DESCRIPTION_EVENT&#46; The following table lists the possible type codes&#46;
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td><b>Type
+</b></td><td><b>Name
+</b></td><td><b>Meaning
+</b></td></tr>
+<tr valign="top">
+<td>00
+</td><td>UNKNOWN_EVENT
+</td><td>This event should never be present in the log&#46;
+</td></tr>
+<tr valign="top">
+<td>01
+</td><td>START_EVENT_V3
+</td><td>This indicates the start of a log file written by MySQL 4 or earlier&#46;
+</td></tr>
+<tr valign="top">
+<td>02
+</td><td>QUERY_EVENT
+</td><td>The most common type of events&#46; These contain statements executed on the
+                    master&#46;
+</td></tr>
+<tr valign="top">
+<td>03
+</td><td>STOP_EVENT
+</td><td>Indicates that master has stopped&#46;
+</td></tr>
+<tr valign="top">
+<td>04
+</td><td>ROTATE_EVENT
+</td><td>Written when the master switches to a new log file&#46;
+</td></tr>
+<tr valign="top">
+<td>05
+</td><td>INTVAR_EVENT
+</td><td>Used for AUTO_INCREMENT values or when the
+                    LAST_INSERT_ID()
+                    function is used in the statement&#46;
+</td></tr>
+<tr valign="top">
+<td>06
+</td><td>LOAD_EVENT
+</td><td>Used for LOAD DATA
+                    INFILE in MySQL 3&#46;23&#46;
+</td></tr>
+<tr valign="top">
+<td>07
+</td><td>SLAVE_EVENT
+</td><td>Reserved for future use&#46;
+</td></tr>
+<tr valign="top">
+<td>08
+</td><td>CREATE_FILE_EVENT
+</td><td>Used for LOAD DATA
+                    INFILE statements&#46; This indicates the
+                    start of execution of such a statement&#46; A temporary
+                    file is created on the slave&#46; Used in MySQL 4 only&#46;
+</td></tr>
+<tr valign="top">
+<td>09
+</td><td>APPEND_BLOCK_EVENT
+</td><td>Contains data for use in a
+                    LOAD DATA
+                    INFILE statement&#46; The data is stored in
+                    the temporary file on the slave&#46;
+</td></tr>
+<tr valign="top">
+<td>0a
+</td><td>EXEC_LOAD_EVENT
+</td><td>Used for LOAD DATA
+                    INFILE statements&#46; The contents of the
+                    temporary file is stored in the table on the slave&#46;
+                    Used in MySQL 4 only&#46;
+</td></tr>
+<tr valign="top">
+<td>0b
+</td><td>DELETE_FILE_EVENT
+</td><td>Rollback of a LOAD DATA
+                    INFILE statement&#46; The temporary file
+                    should be deleted on the slave&#46;
+</td></tr>
+<tr valign="top">
+<td>0c
+</td><td>NEW_LOAD_EVENT
+</td><td>Used for LOAD DATA
+                    INFILE in MySQL 4 and earlier&#46;
+</td></tr>
+<tr valign="top">
+<td>0d
+</td><td>RAND_EVENT
+</td><td>Used to send information about random values if the
+                    RAND() function is
+                    used in the statement&#46;
+</td></tr>
+<tr valign="top">
+<td>0e
+</td><td>USER_VAR_EVENT
+</td><td>Used to replicate user variables&#46;
+</td></tr>
+<tr valign="top">
+<td>0f
+</td><td>FORMAT_DESCRIPTION_EVENT
+</td><td>This indicates the start of a log file written by MySQL 5 or later&#46;
+</td></tr>
+<tr valign="top">
+<td>10
+</td><td>XID_EVENT
+</td><td>Event indicating commit of an XA transaction&#46;
+</td></tr>
+<tr valign="top">
+<td>11
+</td><td>BEGIN_LOAD_QUERY_EVENT
+</td><td>Used for LOAD DATA
+                    INFILE statements in MySQL 5 and later&#46;
+</td></tr>
+<tr valign="top">
+<td>12
+</td><td>EXECUTE_LOAD_QUERY_EVENT
+</td><td>Used for LOAD DATA
+                    INFILE statements in MySQL 5 and later&#46;
+</td></tr>
+<tr valign="top">
+<td>13
+</td><td>TABLE_MAP_EVENT
+</td><td>Information about a table definition&#46; Used in MySQL 5&#46;1&#46;5 and later&#46;
+</td></tr>
+<tr valign="top">
+<td>14
+</td><td>PRE_GA_WRITE_ROWS_EVENT
+</td><td>Row data for a single table that should be created&#46; Used in MySQL 5&#46;1&#46;5
+                    to 5&#46;1&#46;17&#46;
+</td></tr>
+<tr valign="top">
+<td>15
+</td><td>PRE_GA_UPDATE_ROWS_EVENT
+</td><td>Row data for a single table that needs to be updated&#46; Used in MySQL
+                    5&#46;1&#46;5 to 5&#46;1&#46;17&#46;
+</td></tr>
+<tr valign="top">
+<td>16
+</td><td>PRE_GA_DELETE_ROWS_EVENT
+</td><td>Row data for a single table that should be deleted&#46; Used in MySQL 5&#46;1&#46;5
+                    to 5&#46;1&#46;17&#46;
+</td></tr>
+<tr valign="top">
+<td>17
+</td><td>WRITE_ROWS_EVENT
+</td><td>Row data for a single table that should be created&#46; Used in MySQL 5&#46;1&#46;18
+                    and later&#46;
+</td></tr>
+<tr valign="top">
+<td>18
+</td><td>UPDATE_ROWS_EVENT
+</td><td>Row data for a single table that needs to be updated&#46; Used in MySQL
+                    5&#46;1&#46;18 and later&#46;
+</td></tr>
+<tr valign="top">
+<td>19
+</td><td>DELETE_ROWS_EVENT
+</td><td>Row data for a single table that should be deleted&#46; Used in MySQL 5&#46;1&#46;18
+                    and later&#46;
+</td></tr>
+<tr valign="top">
+<td>1a
+</td><td>INCIDENT_EVENT
+</td><td>Something out of the ordinary happened&#46; Added in MySQL 5&#46;1&#46;18&#46;
+</td></tr>
+</table>
+<p>
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+Master ID: The server ID of the master that created the event&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+Size: The size in bytes of the event&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+Master Pos: The position of the next event in the original master log file&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+Flags: 16 flags&#46; Currently, the following flags are used&#46; The others are reserved for future use&#46;
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td><b>Flag
+</b></td><td><b>Name
+</b></td><td><b>Meaning
+</b></td></tr>
+<tr valign="top">
+<td>01
+</td><td>LOG_EVENT_BINLOG_IN_USE_F
+</td><td>Log file correctly closed&#46; (Used only in
+                    FORMAT_DESCRIPTION_EVENT&#46;) If
+                    this flag is set (if the flags are, for example,
+                    &#39;01 00&#39;) in a
+                    FORMAT_DESCRIPTION_EVENT, the log
+                    file has not been properly closed&#46; Most probably
+                    this is because of a master crash (for example, due
+                    to power failure)&#46;
+</td></tr>
+<tr valign="top">
+<td>02
+</td><td> 
+</td><td>Reserved for future use&#46;
+</td></tr>
+<tr valign="top">
+<td>04
+</td><td>LOG_EVENT_THREAD_SPECIFIC_F
+</td><td>Set if the event is dependent on the connection it was executed in (for
+                    example, &#39;04 00&#39;), for example,
+                    if the event uses temporary tables&#46;
+</td></tr>
+<tr valign="top">
+<td>08
+</td><td>LOG_EVENT_SUPPRESS_USE_F
+</td><td>Set in some circumstances when the event is not dependent on the default
+                    database&#46;
+</td></tr>
+</table>
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">MYSQLBINLOG ROW EVENT DISPLAY</h1>
+<p>
+The following examples illustrate how
+<b>mysqlbinlog</b>
+displays row events that specify data modifications&#46; These correspond to events with the
+WRITE_ROWS_EVENT,
+UPDATE_ROWS_EVENT, and
+DELETE_ROWS_EVENT
+type codes&#46; The
+<b>--base64-output=DECODE-ROWS</b>
+and
+<b>--verbose</b>
+options may be used to affect row event output&#46; These options are available as of MySQL 5&#46;1&#46;28&#46;
+<p>
+Suppose that the server is using row-based binary logging and that you execute the following sequence of statements:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+CREATE TABLE t
+(
+  id   INT NOT NULL,
+  name VARCHAR(20) NOT NULL,
+  date DATE NULL
+) ENGINE = InnoDB;
+START TRANSACTION;
+INSERT INTO t VALUES(1, &#39;apple&#39;, NULL);
+UPDATE t SET name = &#39;pear&#39;, date = &#39;2009-01-01&#39; WHERE id = 1;
+DELETE FROM t WHERE id = 1;
+COMMIT;
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+By default,
+<b>mysqlbinlog</b>
+displays row events encoded as base-64 strings using
+BINLOG
+statements&#46; Omitting extraneous lines, the output for the row events produced by the preceding statement sequence looks like this:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqlbinlog </b><b></b><i>log_file</i>
+&#46;&#46;&#46;
+# at 218
+#080828 15:03:08 server id 1  end_log_pos 258 &nbsp;&nbsp;Write_rows: table id 17 flags: STMT_END_F
+BINLOG &#39;
+fAS3SBMBAAAALAAAANoAAAAAABEAAAAAAAAABHRlc3QAAXQAAwMPCgIUAAQ=
+fAS3SBcBAAAAKAAAAAIBAAAQABEAAAAAAAEAA//8AQAAAAVhcHBsZQ==
+&#39;/*!*/;
+&#46;&#46;&#46;
+# at 302
+#080828 15:03:08 server id 1  end_log_pos 356 &nbsp;&nbsp;Update_rows: table id 17 flags: STMT_END_F
+BINLOG &#39;
+fAS3SBMBAAAALAAAAC4BAAAAABEAAAAAAAAABHRlc3QAAXQAAwMPCgIUAAQ=
+fAS3SBgBAAAANgAAAGQBAAAQABEAAAAAAAEAA////AEAAAAFYXBwbGX4AQAAAARwZWFyIbIP
+&#39;/*!*/;
+&#46;&#46;&#46;
+# at 400
+#080828 15:03:08 server id 1  end_log_pos 442 &nbsp;&nbsp;Delete_rows: table id 17 flags: STMT_END_F
+BINLOG &#39;
+fAS3SBMBAAAALAAAAJABAAAAABEAAAAAAAAABHRlc3QAAXQAAwMPCgIUAAQ=
+fAS3SBkBAAAAKgAAALoBAAAQABEAAAAAAAEAA//4AQAAAARwZWFyIbIP
+&#39;/*!*/;
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+To see the row events as comments in the form of
+<blink><blink>\(</blink>lq</blink>pseudo-SQL<blink><blink>\(</blink>rq</blink>
+statements, run
+<b>mysqlbinlog</b>
+with the
+<b>--verbose</b>
+or
+<b>-v</b>
+option&#46; The output will contain lines beginning with
+###:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqlbinlog -v </b><b></b><i>log_file</i>
+&#46;&#46;&#46;
+# at 218
+#080828 15:03:08 server id 1  end_log_pos 258 &nbsp;&nbsp;Write_rows: table id 17 flags: STMT_END_F
+BINLOG &#39;
+fAS3SBMBAAAALAAAANoAAAAAABEAAAAAAAAABHRlc3QAAXQAAwMPCgIUAAQ=
+fAS3SBcBAAAAKAAAAAIBAAAQABEAAAAAAAEAA//8AQAAAAVhcHBsZQ==
+&#39;/*!*/;
+### INSERT INTO test&#46;t
+### SET
+###   @1=1
+###   @2=&#39;apple&#39;
+###   @3=NULL
+&#46;&#46;&#46;
+# at 302
+#080828 15:03:08 server id 1  end_log_pos 356 &nbsp;&nbsp;Update_rows: table id 17 flags: STMT_END_F
+BINLOG &#39;
+fAS3SBMBAAAALAAAAC4BAAAAABEAAAAAAAAABHRlc3QAAXQAAwMPCgIUAAQ=
+fAS3SBgBAAAANgAAAGQBAAAQABEAAAAAAAEAA////AEAAAAFYXBwbGX4AQAAAARwZWFyIbIP
+&#39;/*!*/;
+### UPDATE test&#46;t
+### WHERE
+###   @1=1
+###   @2=&#39;apple&#39;
+###   @3=NULL
+### SET
+###   @1=1
+###   @2=&#39;pear&#39;
+###   @3=&#39;2009:01:01&#39;
+&#46;&#46;&#46;
+# at 400
+#080828 15:03:08 server id 1  end_log_pos 442 &nbsp;&nbsp;Delete_rows: table id 17 flags: STMT_END_F
+BINLOG &#39;
+fAS3SBMBAAAALAAAAJABAAAAABEAAAAAAAAABHRlc3QAAXQAAwMPCgIUAAQ=
+fAS3SBkBAAAAKgAAALoBAAAQABEAAAAAAAEAA//4AQAAAARwZWFyIbIP
+&#39;/*!*/;
+### DELETE FROM test&#46;t
+### WHERE
+###   @1=1
+###   @2=&#39;pear&#39;
+###   @3=&#39;2009:01:01&#39;
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+Specify
+<b>--verbose</b>
+or
+<b>-v</b>
+twice to also display data types and some metadata for each column&#46; The output will contain an additional comment following each column change:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqlbinlog -vv </b><b></b><i>log_file</i>
+&#46;&#46;&#46;
+# at 218
+#080828 15:03:08 server id 1  end_log_pos 258 &nbsp;&nbsp;Write_rows: table id 17 flags: STMT_END_F
+BINLOG &#39;
+fAS3SBMBAAAALAAAANoAAAAAABEAAAAAAAAABHRlc3QAAXQAAwMPCgIUAAQ=
+fAS3SBcBAAAAKAAAAAIBAAAQABEAAAAAAAEAA//8AQAAAAVhcHBsZQ==
+&#39;/*!*/;
+### INSERT INTO test&#46;t
+### SET
+###   @1=1 /* INT meta=0 nullable=0 is_null=0 */
+###   @2=&#39;apple&#39; /* VARSTRING(20) meta=20 nullable=0 is_null=0 */
+###   @3=NULL /* VARSTRING(20) meta=0 nullable=1 is_null=1 */
+&#46;&#46;&#46;
+# at 302
+#080828 15:03:08 server id 1  end_log_pos 356 &nbsp;&nbsp;Update_rows: table id 17 flags: STMT_END_F
+BINLOG &#39;
+fAS3SBMBAAAALAAAAC4BAAAAABEAAAAAAAAABHRlc3QAAXQAAwMPCgIUAAQ=
+fAS3SBgBAAAANgAAAGQBAAAQABEAAAAAAAEAA////AEAAAAFYXBwbGX4AQAAAARwZWFyIbIP
+&#39;/*!*/;
+### UPDATE test&#46;t
+### WHERE
+###   @1=1 /* INT meta=0 nullable=0 is_null=0 */
+###   @2=&#39;apple&#39; /* VARSTRING(20) meta=20 nullable=0 is_null=0 */
+###   @3=NULL /* VARSTRING(20) meta=0 nullable=1 is_null=1 */
+### SET
+###   @1=1 /* INT meta=0 nullable=0 is_null=0 */
+###   @2=&#39;pear&#39; /* VARSTRING(20) meta=20 nullable=0 is_null=0 */
+###   @3=&#39;2009:01:01&#39; /* DATE meta=0 nullable=1 is_null=0 */
+&#46;&#46;&#46;
+# at 400
+#080828 15:03:08 server id 1  end_log_pos 442 &nbsp;&nbsp;Delete_rows: table id 17 flags: STMT_END_F
+BINLOG &#39;
+fAS3SBMBAAAALAAAAJABAAAAABEAAAAAAAAABHRlc3QAAXQAAwMPCgIUAAQ=
+fAS3SBkBAAAAKgAAALoBAAAQABEAAAAAAAEAA//4AQAAAARwZWFyIbIP
+&#39;/*!*/;
+### DELETE FROM test&#46;t
+### WHERE
+###   @1=1 /* INT meta=0 nullable=0 is_null=0 */
+###   @2=&#39;pear&#39; /* VARSTRING(20) meta=20 nullable=0 is_null=0 */
+###   @3=&#39;2009:01:01&#39; /* DATE meta=0 nullable=1 is_null=0 */
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+You can tell
+<b>mysqlbinlog</b>
+to suppress the
+BINLOG
+statements for row events by using the
+<b>--base64-output=DECODE-ROWS</b>
+option&#46; This is similar to
+<b>--base64-output=NEVER</b>
+but does not exit with an error if a row event is found&#46; The combination of
+<b>--base64-output=DECODE-ROWS</b>
+and
+<b>--verbose</b>
+provides a convenient way to see row events only as SQL statements:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqlbinlog -v --base64-output=DECODE-ROWS </b><b></b><i>log_file</i>
+&#46;&#46;&#46;
+# at 218
+#080828 15:03:08 server id 1  end_log_pos 258 &nbsp;&nbsp;Write_rows: table id 17 flags: STMT_END_F
+### INSERT INTO test&#46;t
+### SET
+###   @1=1
+###   @2=&#39;apple&#39;
+###   @3=NULL
+&#46;&#46;&#46;
+# at 302
+#080828 15:03:08 server id 1  end_log_pos 356 &nbsp;&nbsp;Update_rows: table id 17 flags: STMT_END_F
+### UPDATE test&#46;t
+### WHERE
+###   @1=1
+###   @2=&#39;apple&#39;
+###   @3=NULL
+### SET
+###   @1=1
+###   @2=&#39;pear&#39;
+###   @3=&#39;2009:01:01&#39;
+&#46;&#46;&#46;
+# at 400
+#080828 15:03:08 server id 1  end_log_pos 442 &nbsp;&nbsp;Delete_rows: table id 17 flags: STMT_END_F
+### DELETE FROM test&#46;t
+### WHERE
+###   @1=1
+###   @2=&#39;pear&#39;
+###   @3=&#39;2009:01:01&#39;
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+<!-- ignored unsupported tag .if -->
+<p>
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .it -->
+<font size="1"><b>Note</b>
+</font><p>
+You should not suppress
+BINLOG
+statements if you intend to re-execute
+<b>mysqlbinlog</b>
+output&#46;
+<p>
+<p>
+The SQL statements produced by
+<b>--verbose</b>
+for row events are much more readable than the corresponding
+BINLOG
+statements&#46; However, they do not correspond exactly to the original SQL statements that generated the events&#46; The following limitations apply:
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+The original column names are lost and replaced by
+@<i>N</i>, where
+<i>N</i>
+is a column number&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+Character set information is not available in the binary log, which affects string column display:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+There is no distinction made between corresponding binary and nonbinary string types (BINARY
+and
+CHAR,
+VARBINARY
+and
+VARCHAR,
+BLOB
+and
+TEXT)&#46; The output uses a data type of
+STRING
+for fixed-length strings and
+VARSTRING
+for variable-length strings&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+For multi-byte character sets, the maximum number of bytes per character is not present in the binary log, so the length for string types is displayed in bytes rather than in characters&#46; For example,
+STRING(4)
+will be used as the data type for values from either of these column types:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+CHAR(4) CHARACTER SET latin1
+CHAR(2) CHARACTER SET ucs2
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+Due to the storage format for events of type
+UPDATE_ROWS_EVENT,
+UPDATE
+statements are displayed with the
+WHERE
+clause preceding the
+SET
+clause&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+Proper interpretation of row events requires the information from the format description event at the beginning of the binary log&#46; Because
+<b>mysqlbinlog</b>
+does not know in advance whether the rest of the log contains row events, by default it displays the format description event using a
+BINLOG
+statement in the initial part of the output&#46;
+<p>
+If the binary log is known not to contain any events requiring a
+BINLOG
+statement (that is, no row events), the
+<b>--base64-output=NEVER</b>
+option can be used to prevent this header from being written&#46;
+<h1 class="manpages">COPYRIGHT</h1>
+<p>
+Copyright &#169; 1997, 2011, Oracle and/or its affiliates. All rights reserved.
+<p>
+This documentation is free software; you can redistribute it and/or modify it only under the terms of the GNU General Public License as published by the Free Software Foundation; version 2 of the License.
+<p>
+This documentation is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+<p>
+You should have received a copy of the GNU General Public License along with the program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA or see <a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a>/.
+<p>
+<h1 class="manpages">NOTES</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+ 1.
+</td><td>
+Bug#42941
+&nbsp;<a href="http://bugs.mysql.com/bug.php">http://bugs.mysql.com/bug.php</a>?id=42941
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+which may already be installed locally and which is also available
+online at <a href="http://dev.mysql.com/doc">http://dev.mysql.com/doc</a>/.
+<h1 class="manpages">AUTHOR</h1>
+Oracle Corporation (<a href="http://dev.mysql.com/">http://dev.mysql.com</a>/).
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionc3d2.html?tutorial=unix_commands&amp;file=mysqlbinlog.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/mysqlbinlog.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:03 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

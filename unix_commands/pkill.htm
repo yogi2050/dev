@@ -1,0 +1,458 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/pkill.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>pgrep - Unix, Linux Command</title>
+<meta name="Description" Content="pgrep - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>pgrep - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+pgrep, pkill - look up or signal processes based on name and other attributes
+<p>
+<h1 class="manpages">SYNOPSIS</h1>
+pgrep [-flvx] [-d <i>delimiter</i>] [-n|-o] [-P <i>ppid</i>,...] [-g <i>pgrp</i>,...]
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-s <i>sid</i>,...] [-u <i>euid</i>,...] [-U <i>uid</i>,...] [-G <i>gid</i>,...]
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-t <i>term</i>,...] [<i>pattern</i>]
+<p>
+pkill [-<i>signal</i>] [-fvx] [-n|-o] [-P <i>ppid</i>,...] [-g <i>pgrp</i>,...]
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-s <i>sid</i>,...] [-u <i>euid</i>,...] [-U <i>uid</i>,...] [-G <i>gid</i>,...]
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-t <i>term</i>,...] [<i>pattern</i>]
+<p>
+<h1 class="manpages">DESCRIPTION</h1>
+<b>pgrep</b> looks through the currently running processes and lists the
+process IDs which matches the selection criteria to stdout.  All
+the criteria have to match.  For example,
+<p>
+pgrep -u root sshd
+<p>
+will only list the processes called <b>sshd</b> AND owned by <b>root</b>.
+On the other hand,
+<p>
+pgrep -u root,daemon
+<p>
+will list the processes owned by <b>root</b> OR <b>daemon</b>.
+<p>
+<b>pkill</b> will send the specified signal (by default <b>SIGTERM</b>)
+to each process instead of listing them on stdout.
+<p>
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+-d <i>delimiter</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Sets the string used to delimit each process ID in the output (by
+default a newline).  (<b>pgrep</b> only.)
+</td></tr>
+<tr valign="top"><td>
+-f
+</td><td valign="bottom">
+The <i>pattern</i> is normally only matched against the process name.
+When -f is set, the full command line is used.
+</td></tr>
+<tr valign="top"><td colspan="2">
+-g <i>pgrp</i>,...
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Only match processes in the process group IDs listed.  Process group 0
+is translated into <b>pgrep</b>&#146;s or <b>pkill</b>&#146;s own process group.
+</td></tr>
+<tr valign="top"><td>
+-G <i>gid</i>,...
+</td><td valign="bottom">
+Only match processes whose real group ID is listed.  Either the
+numerical or symbolical value may be used.
+</td></tr>
+<tr valign="top"><td>
+-l
+</td><td valign="bottom">
+List the process name as well as the process ID. (<b>pgrep</b> only.)
+</td></tr>
+<tr valign="top"><td>
+-n
+</td><td valign="bottom">
+Select only the newest (most recently started) of the matching
+processes.
+</td></tr>
+<tr valign="top"><td>
+-o
+</td><td valign="bottom">
+Select only the oldest (least recently started) of the matching
+processes.
+</td></tr>
+<tr valign="top"><td colspan="2">
+-P <i>ppid</i>,...
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Only match processes whose parent process ID is listed.
+</td></tr>
+<tr valign="top"><td>
+-s <i>sid</i>,...
+</td><td valign="bottom">
+Only match processes whose process session ID is listed.  Session ID 0
+is translated into <b>pgrep</b>&#146;s or <b>pkill</b>&#146;s own session ID.
+</td></tr>
+<tr valign="top"><td colspan="2">
+-t <i>term</i>,...
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Only match processes whose controlling terminal is listed.  The
+terminal name should be specified without the "/dev/" prefix.
+</td></tr>
+<tr valign="top"><td colspan="2">
+-u <i>euid</i>,...
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Only match processes whose effective user ID is listed.  Either the
+numerical or symbolical value may be used.
+</td></tr>
+<tr valign="top"><td>
+-U <i>uid</i>,...
+</td><td valign="bottom">
+Only match processes whose real user ID is listed.  Either the
+numerical or symbolical value may be used.
+</td></tr>
+<tr valign="top"><td>
+-v
+</td><td valign="bottom">
+Negates the matching.
+</td></tr>
+<tr valign="top"><td>
+-x
+</td><td valign="bottom">
+Only match processes whose name (or command line if -f is specified)
+<b>exactly</b> match the <i>pattern</i>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+-<i>signal</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Defines the signal to send to each matched process.  Either the
+numeric or the symbolic signal name can be used.  (<b>pkill</b> only.)
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">OPERANDS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<i>pattern</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies an Extended Regular Expression for matching against the
+process names or command lines.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">EXAMPLES</h1>
+Example 1: Find the process ID of the <b>named</b> daemon:
+<p>
+unix$ pgrep -u root named
+<p>
+Example 2: Make <b>syslog</b> reread its configuration file:
+<p>
+unix$ pkill -HUP syslogd
+<p>
+Example 3: Give detailed information on all <b>xterm</b> processes:
+<p>
+unix$ ps -fp $(pgrep -d, -x xterm)
+<p>
+Example 4: Make all <b>netscape</b> processes run nicer:
+<p>
+unix$ renice +4 &#145;pgrep netscape&#145;
+<p>
+<h1 class="manpages">EXIT STATUS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<i>0</i> </td><td valign="bottom">
+One or more processes matched the criteria.
+</td></tr>
+<tr valign="top"><td>
+<i>1</i> </td><td valign="bottom">
+No processes matched.
+</td></tr>
+<tr valign="top"><td>
+<i>2</i> </td><td valign="bottom">
+Syntax error in the command line.
+</td></tr>
+<tr valign="top"><td>
+<i>3</i> </td><td valign="bottom">
+Fatal error: out of memory etc.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">NOTES</h1>
+The process name used for matching is limited to the 15 characters
+present in the output of /proc/<i>pid</i>/stat.  Use the -f option to
+match against the complete command line, /proc/<i>pid</i>/cmdline.
+<p>
+The running <b>pgrep</b> or <b>pkill</b> process will never report
+itself as a match.
+<p>
+<h1 class="manpages">BUGS</h1>
+The options -n and -o and -v can not be combined.  Let me know if
+you need to do this.
+<p>
+Defunct processes are reported.
+<p>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<p>
+<h1 class="manpages">STANDARDS</h1>
+<b>pkill</b> and <b>pgrep</b> were introduced in Sun&#146;s Solaris 7.  This
+implementation is fully compatible.
+<p>
+<h1 class="manpages">AUTHOR</h1>
+Kjetil Torgrim Homme &lt;<a href="mailto:kjetilho@ifi.uio.no">kjetilho@ifi.uio.no</a>&gt;
+<p>
+Albert Cahalan &lt;<a href="mailto:albert@users.sf.net">albert@users.sf.net</a>&gt; is the current maintainer of
+the procps package.
+<p>
+Please send bug reports to &lt;<a href="mailto:procps-feedback@lists.sf.net">procps-feedback@lists.sf.net</a>&gt;
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionca01.html?tutorial=unix_commands&amp;file=pgrep.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/pkill.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

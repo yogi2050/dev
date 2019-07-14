@@ -1,0 +1,1550 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/pax.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>pax - Unix, Linux Command</title>
+<meta name="Description" Content="pax - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>pax - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+<b> pax</b>
+- read and write file archives and copy directory hierarchies
+<h1 class="manpages">SYNOPSIS</h1>
+<b> pax</b>
+[-<b>0cdOnvz</b>]
+<br />.Bk -words
+[-<b>f</b><i> archive</i>]
+<br />.Ek 
+<br />.Bk -words
+[-<b>s</b><i> replstr</i>]
+<i> ...</i>
+<br />.Ek 
+<br />.Bk -words
+[-<b>U</b><i> user</i>]
+<i> ...</i>
+<br />.Ek 
+<br />.Bk -words
+[-<b>G</b><i> group</i>]
+<i> ...</i>
+<br />.Ek 
+<br />.Bk -words
+[
+-<b>T</b> 
+[<i>from_date</i>]
+[<i>,to_date</i>]
+]
+<i> ...</i>
+<br />.Ek 
+[<i>pattern ...</i>]
+<b> pax</b>
+-<b>r</b> 
+[-<b>cdiknuvzDOYZ</b>]
+<br />.Bk -words
+[-<b>f</b><i> archive</i>]
+<br />.Ek 
+<br />.Bk -words
+[-<b>o</b><i> options</i>]
+<i> ...</i>
+<br />.Ek 
+<br />.Bk -words
+[-<b>p</b><i> string</i>]
+<i> ...</i>
+<br />.Ek 
+<br />.Bk -words
+[-<b>s</b><i> replstr</i>]
+<i> ...</i>
+<br />.Ek 
+[-<b>E</b><i> limit</i>]
+<br />.Bk -words
+[-<b>U</b><i> user</i>]
+<i> ...</i>
+<br />.Ek 
+<br />.Bk -words
+[-<b>G</b><i> group</i>]
+<i> ...</i>
+<br />.Ek 
+<br />.Bk -words
+[
+-<b>T</b> 
+[<i>from_date</i>]
+[<i>,to_date</i>]
+]
+<i> ...</i>
+<br />.Ek 
+[<i>pattern ...</i>]
+<b> pax</b>
+-<b>w</b> 
+[-<b>0dituvzHLOPX</b>]
+<br />.Bk -words
+[-<b>b</b><i> blocksize</i>]
+<br />.Ek 
+[
+[-<b>a</b>]
+[-<b>f</b><i> archive</i>]
+]
+<br />.Bk -words
+[-<b>x</b><i> format</i>]
+<br />.Ek 
+<br />.Bk -words
+[-<b>s</b><i> replstr</i>]
+<i> ...</i>
+<br />.Ek 
+<br />.Bk -words
+[-<b>o</b><i> options</i>]
+<i> ...</i>
+<br />.Ek 
+<br />.Bk -words
+[-<b>U</b><i> user</i>]
+<i> ...</i>
+<br />.Ek 
+<br />.Bk -words
+[-<b>G</b><i> group</i>]
+<i> ...</i>
+<br />.Ek 
+<br />.Bk -words
+[-<b>B</b><i> bytes</i>]
+<br />.Ek 
+<br />.Bk -words
+[
+-<b>T</b> 
+[<i>from_date</i>]
+[<i>,to_date</i>]
+[<i>/[c][m]</i>]
+]
+<i> ...</i>
+<br />.Ek 
+[<i>file ...</i>]
+<b> pax</b>
+-<b>r</b> 
+-<b>w</b> 
+[-<b>0diklntuvDHLOPXYZ</b>]
+<br />.Bk -words
+[-<b>p</b><i> string</i>]
+<i> ...</i>
+<br />.Ek 
+<br />.Bk -words
+[-<b>s</b><i> replstr</i>]
+<i> ...</i>
+<br />.Ek 
+<br />.Bk -words
+[-<b>U</b><i> user</i>]
+<i> ...</i>
+<br />.Ek 
+<br />.Bk -words
+[-<b>G</b><i> group</i>]
+<i> ...</i>
+<br />.Ek 
+<br />.Bk -words
+[
+-<b>T</b> 
+[<i>from_date</i>]
+[<i>,to_date</i>]
+[<i>/[c][m]</i>]
+]
+<i> ...</i>
+<br />.Ek 
+[<i>file ...</i>]
+<i> directory</i>
+<h1 class="manpages">DESCRIPTION</h1>
+<b>pax</b>
+will read, write, and list the members of an archive file,
+and will copy directory hierarchies.
+<b>pax</b>
+operation is independent of the specific archive format,
+and supports a wide variety of different archive formats.
+A list of supported archive formats can be found under the description of the
+-<b>x</b> 
+option.
+<p>
+The presence of the
+-<b>r</b> 
+and the
+-<b>w</b> 
+options specifies which of the following functional modes
+<b>pax</b>
+will operate under:
+<i> list, read, write</i>,
+and
+<i> copy</i>.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2"> &lt;none&gt;
+</td></tr><tr><td>&nbsp;</td><td>
+<i> List</i>.
+<b>pax</b>
+will write to standard output
+a table of contents of the members of the archive file read from
+standard input, whose pathnames match the specified
+<i> patterns</i>.
+The table of contents contains one filename per line
+and is written using single line buffering.
+</td></tr>
+<tr valign="top"><td>-<b>r</b> 
+</td><td>
+<i> Read</i>.
+<b>pax</b>
+extracts the members of the archive file read from the standard input,
+with pathnames matching the specified
+<i> patterns</i>.
+The archive format and blocking is automatically determined on input.
+When an extracted file is a directory, the entire file hierarchy
+rooted at that directory is extracted.
+All extracted files are created relative to the current file hierarchy.
+The setting of ownership, access and modification times, and file mode of
+the extracted files are discussed in more detail under the
+-<b>p</b> 
+option.
+</td></tr>
+<tr valign="top"><td>-<b>w</b> 
+</td><td>
+<i> Write</i>.
+<b>pax</b>
+writes an archive containing the
+<i> file</i>
+operands to standard output
+using the specified archive format.
+When no
+<i> file</i>
+operands are specified, a list of files to copy with one per line is read from
+standard input.
+When a
+<i> file</i>
+operand is also a directory, the entire file hierarchy rooted
+at that directory will be included.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>r</b> -<b>w</b> 
+</td></tr><tr><td>&nbsp;</td><td>
+<i> Copy</i>.
+<b>pax</b>
+copies the
+<i> file</i>
+operands to the destination
+<i> directory</i>.
+When no
+<i> file</i>
+operands are specified, a list of files to copy with one per line is read from
+the standard input.
+When a
+<i> file</i>
+operand is also a directory the entire file
+hierarchy rooted at that directory will be included.
+The effect of the
+<i> copy</i>
+is as if the copied files were written to an archive file and then
+subsequently extracted, except that there may be hard links between
+the original and the copied files (see the
+-<b>l</b> 
+option below).
+<p>
+<i> Warning</i>:
+The destination
+<i> directory</i>
+must not be one of the
+<i> file</i>
+operands or a member of a file hierarchy rooted at one of the
+<i> file</i>
+operands.
+The result of a
+<i> copy</i>
+under these conditions is unpredictable.
+</td></tr>
+</table>
+<p>
+While processing a damaged archive during a
+<i> read</i>
+or
+<i> list</i>
+operation,
+<b>pax</b>
+will attempt to recover from media defects and will search through the archive
+to locate and process the largest number of archive members possible (see the
+-<b>E</b> 
+option for more details on error handling).
+<p>
+The
+<i> directory</i>
+operand specifies a destination directory pathname.
+If the
+<i> directory</i>
+operand does not exist, or it is not writable by the user,
+or it is not of type directory,
+<b>pax</b>
+will exit with a non-zero exit status.
+<p>
+The
+<i> pattern</i>
+operand is used to select one or more pathnames of archive members.
+Archive members are selected using the pattern matching notation described
+by
+<b>fnmatch</b>(3).
+When the
+<i> pattern</i>
+operand is not supplied, all members of the archive will be selected.
+When a
+<i> pattern</i>
+matches a directory, the entire file hierarchy rooted at that directory will
+be selected.
+When a
+<i> pattern</i>
+operand does not select at least one archive member,
+<b>pax</b>
+will write these
+<i> pattern</i>
+operands in a diagnostic message to standard error
+and then exit with a non-zero exit status.
+<p>
+The
+<i> file</i>
+operand specifies the pathname of a file to be copied or archived.
+When a
+<i> file</i>
+operand does not select at least one archive member,
+<b>pax</b>
+will write these
+<i> file</i>
+operand pathnames in a diagnostic message to standard error
+and then exit with a non-zero exit status.
+<p>
+The options are as follows:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>-<b>r</b> 
+</td><td>
+Read an archive file from standard input
+and extract the specified
+<i> files</i>.
+If any intermediate directories are needed in order to extract an archive
+member, these directories will be created as if
+<b>mkdir</b>(2)
+was called with the bitwise inclusive
+<i> OR</i>
+of
+<tt> S_IRWXU, S_IRWXG</tt>,
+and
+<tt> S_IRWXO</tt>
+as the mode argument.
+When the selected archive format supports the specification of linked
+files and these files cannot be linked while the archive is being extracted,
+<b>pax</b>
+will write a diagnostic message to standard error
+and exit with a non-zero exit status at the completion of operation.
+</td></tr>
+<tr valign="top"><td>-<b>w</b> 
+</td><td>
+Write files to the standard output
+in the specified archive format.
+When no
+<i> file</i>
+operands are specified, standard input
+is read for a list of pathnames with one per line without any leading or
+trailing
+&lt;blanks&gt;.
+</td></tr>
+<tr valign="top"><td>-<b>a</b> 
+</td><td>
+Append
+<i> files</i>
+to the end of an archive that was previously written.
+If an archive format is not specified with a
+-<b>x</b> 
+option, the format currently being used in the archive will be selected.
+Any attempt to append to an archive in a format different from the
+format already used in the archive will cause
+<b>pax</b>
+to exit immediately
+with a non-zero exit status.
+The blocking size used in the archive volume where writing starts
+will continue to be used for the remainder of that archive volume.
+<p>
+<i> Warning</i>:
+Many storage devices are not able to support the operations necessary
+to perform an append operation.
+Any attempt to append to an archive stored on such a device may damage the
+archive or have other unpredictable results.
+Tape drives in particular are more likely to not support an append operation.
+An archive stored in a regular file system file or on a disk device will
+usually support an append operation.
+</td></tr>
+<tr valign="top"><td>-<b>0</b> 
+</td><td>
+Use the NUL
+(&#145;<tt>&#92;0</tt>&#146;)
+character as a pathname terminator, instead of newline
+(&#145;<tt>&#92;n</tt>&#146;).
+This applies only to the pathnames read from standard input in
+the write and copy modes,
+and to the pathnames written to standard output in list mode.
+This option is expected to be used in concert with the
+-<b>print0</b> 
+function in
+<b>find</b>(1)
+or the
+-<b>0</b> 
+flag in
+<b>xargs</b>(1).
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>b</b> <i> blocksize</i>
+</td></tr><tr><td>&nbsp;</td><td>
+When
+<i> writing</i>
+an archive,
+block the output at a positive decimal integer number of
+bytes per write to the archive file.
+The
+<i> blocksize</i>
+must be a multiple of 512 bytes with a maximum of 64512 bytes.
+Archives larger than 32256 bytes violate the
+<i> POSIX</i>
+standard and will not be portable to all systems.
+A
+<i> blocksize</i>
+can end with
+&#39;k&#39;
+or
+&#39;b&#39;
+to specify multiplication by 1024 (1K) or 512, respectively.
+A pair of
+<i> blocksizes</i>
+can be separated by
+&#39;x&#39;
+to indicate a product.
+A specific archive device may impose additional restrictions on the size
+of blocking it will support.
+When blocking is not specified, the default
+<i> blocksize</i>
+is dependent on the specific archive format being used (see the
+-<b>x</b> 
+option).
+</td></tr>
+<tr valign="top"><td>-<b>c</b> 
+</td><td>
+Match all file or archive members
+<i> except</i>
+those specified by the
+<i> pattern</i>
+and
+<i> file</i>
+operands.
+</td></tr>
+<tr valign="top"><td>-<b>d</b> 
+</td><td>
+Cause files of type directory being copied or archived, or archive members of
+type directory being extracted, to match only the directory file or archive
+member and not the file hierarchy rooted at the directory.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>f</b> <i> archive</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specify
+<i> archive</i>
+as the pathname of the input or output archive, overriding the default
+standard input (for
+<i> list</i>
+and
+<i> read</i>)
+or standard output
+(for
+<i> write</i>).
+A single archive may span multiple files and different archive devices.
+When required,
+<b>pax</b>
+will prompt for the pathname of the file or device of the next volume in the
+archive.
+</td></tr>
+<tr valign="top"><td>-<b>i</b> 
+</td><td>
+Interactively rename files or archive members.
+For each archive member matching a
+<i> pattern</i>
+operand or each file matching a
+<i> file</i>
+operand,
+<b>pax</b>
+will prompt to
+<tt> /dev/tty</tt>
+giving the name of the file, its file mode, and its modification time.
+<b>pax</b>
+will then read a line from
+<tt> /dev/tty</tt>.
+If this line is blank, the file or archive member is skipped.
+If this line consists of a single period, the
+file or archive member is processed with no modification to its name.
+Otherwise, its name is replaced with the contents of the line.
+<b>pax</b>
+will immediately exit with a non-zero exit status if
+<tt> EOF</tt>
+is encountered when reading a response or if
+<tt> /dev/tty</tt>
+cannot be opened for reading and writing.
+</td></tr>
+<tr valign="top"><td>-<b>k</b> 
+</td><td>
+Do not overwrite existing files.
+</td></tr>
+<tr valign="top"><td>-<b>l</b> 
+</td><td>
+(The lowercase letter
+"ell.")
+Link files.
+In the
+<i> copy</i>
+mode
+(-<b>r</b>-<b>w</b> ),
+hard links are made between the source and destination file hierarchies
+whenever possible.
+</td></tr>
+<tr valign="top"><td>-<b>n</b> 
+</td><td>
+Select the first archive member that matches each
+<i> pattern</i>
+operand.
+No more than one archive member is matched for each
+<i> pattern</i>.
+When members of type directory are matched, the file hierarchy rooted at that
+directory is also matched (unless
+-<b>d</b> 
+is also specified).
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>o</b> <i> options</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Information to modify the algorithm for extracting or writing archive files
+which is specific to the archive format specified by
+-<b>x</b> .
+In general,
+<i> options</i>
+take the form:
+<i> name =</i><i> value</i>.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>p</b> <i> string</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specify one or more file characteristic options (privileges).
+The
+<i> string</i>
+option-argument is a string specifying file characteristics to be retained or
+discarded on extraction.
+The string consists of the specification characters
+<b> a, e, m, o</b>,
+and
+<b> p</b>.
+Multiple characteristics can be concatenated within the same string
+and multiple
+-<b>p</b> 
+options can be specified.
+The meaning of the specification characters are as follows:
+</td></tr>
+<tr valign="top"><td><b> a</b>
+</td><td>
+Do not preserve file access times.
+By default, file access times are preserved whenever possible.
+</td></tr>
+<tr valign="top"><td><b> e</b>
+</td><td>
+&#39;Preserve everything&#39;,
+the user ID, group ID, file mode bits,
+file access time, and file modification time.
+This is intended to be used by
+<i> root</i>,
+someone with all the appropriate privileges, in order to preserve all
+aspects of the files as they are recorded in the archive.
+The
+<b> e</b>
+flag is the sum of the
+<b> o</b>
+and
+<b> p</b>
+flags.
+</td></tr>
+<tr valign="top"><td><b> m</b>
+</td><td>
+Do not preserve file modification times.
+By default, file modification times are preserved whenever possible.
+</td></tr>
+<tr valign="top"><td><b> o</b>
+</td><td>
+Preserve the user ID and group ID.
+</td></tr>
+<tr valign="top"><td><b> p</b>
+</td><td>
+&#39;Preserve&#39;
+the file mode bits.
+This is intended to be used by a
+<i> user</i>
+with regular privileges who wants to preserve all aspects of the file other
+than the ownership.
+The file times are preserved by default, but two other flags are offered to
+disable this and use the time of extraction instead.
+</td></tr>
+</table>
+<p>
+In the preceding list,
+&#39;preserve&#39;
+indicates that an attribute stored in the archive is given to the
+extracted file, subject to the permissions of the invoking
+process.
+Otherwise the attribute of the extracted file is determined as
+part of the normal file creation action.
+If neither the
+<b> e</b>
+nor the
+<b> o</b>
+specification character is specified, or the user ID and group ID are not
+preserved for any reason,
+<b>pax</b>
+will not set the
+<tt> S_ISUID</tt>
+<i>( setuid</i>)
+and
+<tt> S_ISGID</tt>
+<i>( setgid</i>)
+bits of the file mode.
+If the preservation of any of these items fails for any reason,
+<b>pax</b>
+will write a diagnostic message to standard error.
+Failure to preserve these items will affect the final exit status,
+but will not cause the extracted file to be deleted.
+If the file characteristic letters in any of the string option-arguments are
+duplicated or conflict with each other, the one(s) given last will take
+precedence.
+For example, if
+<p>&nbsp; &nbsp; <tt>-<b>p</b> <i> eme</i></tt><p>
+
+is specified, file modification times are still preserved.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">-<b>s</b> <i> replstr</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Modify the file or archive member names specified by the
+<i> pattern</i>
+or
+<i> file</i>
+operands according to the substitution expression
+<i> replstr</i>,
+using the syntax of the
+<b>ed</b>(1)
+utility regular expressions.
+The format of these regular expressions are:
+<p>&nbsp; &nbsp; <tt> /old/new/[gp]</tt><p>
+
+As in
+<b>ed</b>(1),
+<b> old</b>
+is a basic regular expression and
+<b> new</b>
+can contain an ampersand
+(&#145;<tt>&</tt>&#146;),
+&#145;<tt>&#92;n</tt>&#146;
+(where
+<i> n</i>
+is a digit) back-references,
+or subexpression matching.
+The
+<b> old</b>
+string may also contain newline characters.
+Any non-null character can be used as a delimiter
+(
+&#145;<tt>/</tt>&#146;
+is shown here
+).
+Multiple
+-<b>s</b> 
+expressions can be specified.
+The expressions are applied in the order they are specified on the
+command line, terminating with the first successful substitution.
+The optional trailing
+<b> g</b>
+continues to apply the substitution expression to the pathname substring
+which starts with the first character following the end of the last successful
+substitution.
+The first unsuccessful substitution stops the operation of the
+<b> g</b>
+option.
+The optional trailing
+<b> p</b>
+will cause the final result of a successful substitution to be written to
+standard error in the following format:
+<p>&nbsp; &nbsp; <tt> &lt;original pathname&gt; &gt;&gt; &lt;new pathname&gt;</tt><p>
+
+File or archive member names that substitute to the empty string
+are not selected and will be skipped.
+</td></tr>
+<tr valign="top"><td>-<b>t</b> 
+</td><td>
+Reset the access times of any file or directory read or accessed by
+<b>pax</b>
+to be the same as they were before being read or accessed by
+<b> pax</b>.
+</td></tr>
+<tr valign="top"><td>-<b>u</b> 
+</td><td>
+Ignore files that are older (having a less recent file modification time)
+than a pre-existing file or archive member with the same name.
+During
+<i> read</i>,
+an archive member with the same name as a file in the file system will be
+extracted if the archive member is newer than the file.
+During
+<i> write</i>,
+a file system member with the same name as an archive member will be
+written to the archive if it is newer than the archive member.
+During
+<i> copy</i>,
+the file in the destination hierarchy is replaced by the file in the source
+hierarchy or by a link to the file in the source hierarchy if the file in
+the source hierarchy is newer.
+</td></tr>
+<tr valign="top"><td>-<b>v</b> 
+</td><td>
+During a
+<i> list</i>
+operation, produce a verbose table of contents using the format of the
+<b>ls</b>(1)
+utility with the
+-<b>l</b> 
+option.
+For pathnames representing a hard link to a previous member of the archive,
+the output has the format:
+<p>&nbsp; &nbsp; <tt> &lt;ls -l listing&gt; == &lt;link name&gt;</tt><p>
+
+For pathnames representing a symbolic link, the output has the format:
+<p>&nbsp; &nbsp; <tt> &lt;ls -l listing&gt; =&gt; &lt;link name&gt;</tt><p>
+
+Where &lt;ls -l listing&gt; is the output format specified by the
+<b>ls</b>(1)
+utility when used with the
+-<b>l</b> 
+option.
+Otherwise for all the other operational modes
+(<i>read, write, and</i><i> copy</i>
+),
+pathnames are written and flushed to standard error
+without a trailing newline
+as soon as processing begins on that file or
+archive member.
+The trailing newline
+is not buffered and is written only after the file has been read or written.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>x</b> <i> format</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specify the output archive format, with the default format being
+<i> ustar</i>.
+<b>pax</b>
+currently supports the following formats:
+</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td><i> cpio</i>
+</td><td>
+The extended cpio interchange format specified in the
+<i> -p1003.2</i>
+standard.
+The default blocksize for this format is 5120 bytes.
+Inode and device information about a file (used for detecting file hard links
+by this format) which may be truncated by this format is detected by
+<b>pax</b>
+and is repaired.
+</td></tr>
+<tr valign="top"><td><i> bcpio</i>
+</td><td>
+The old binary cpio format.
+The default blocksize for this format is 5120 bytes.
+This format is not very portable and should not be used when other formats
+are available.
+Inode and device information about a file (used for detecting file hard links
+by this format) which may be truncated by this format is detected by
+<b>pax</b>
+and is repaired.
+</td></tr>
+<tr valign="top"><td colspan="2"><i> sv4cpio</i>
+</td></tr><tr><td>&nbsp;</td><td>
+The System V release 4 cpio.
+The default blocksize for this format is 5120 bytes.
+Inode and device information about a file (used for detecting file hard links
+by this format) which may be truncated by this format is detected by
+<b>pax</b>
+and is repaired.
+</td></tr>
+<tr valign="top"><td><i> sv4crc</i>
+</td><td>
+The System V release 4 cpio with file crc checksums.
+The default blocksize for this format is 5120 bytes.
+Inode and device information about a file (used for detecting file hard links
+by this format) which may be truncated by this format is detected by
+<b>pax</b>
+and is repaired.
+</td></tr>
+<tr valign="top"><td><i> tar</i>
+</td><td>
+The old BSD tar format as found in BSD4.3.
+The default blocksize for this format is 10240 bytes.
+Pathnames stored by this format must be 100 characters or less in length
+(including the trailing &nbsp; character, which means that filenames can have
+a maximum length of 99 characters).
+Only
+<i> regular</i>
+files,
+<i> hard links, soft links</i>,
+and
+<i> directories</i>
+will be archived (other file system types are not supported).
+For backwards compatibility with even older tar formats, a
+-<b>o</b> 
+option can be used when writing an archive to omit the storage of directories.
+This option takes the form:
+<p>&nbsp; &nbsp; <tt>-<b>o</b> <b> write_opt=nodir</b></tt><p>
+
+</td></tr>
+<tr valign="top"><td><i> ustar</i>
+</td><td>
+The extended tar interchange format specified in the
+<i> -p1003.2</i>
+standard.
+The default blocksize for this format is 10240 bytes.
+Filenames stored by this format must be 100 characters or less in length
+(including the trailing &nbsp; character, which means that filenames can have
+a maximum length of 99 characters).
+Pathnames (directorynames + filenames) stored by this format must be
+250 characters or less in length.
+</td></tr>
+</table>
+<p>
+<b>pax</b>
+will detect and report any file that it is unable to store or extract
+as the result of any specific archive format restrictions.
+The individual archive formats may impose additional restrictions on use.
+Typical archive format restrictions include (but are not limited to):
+file pathname length, file size, link pathname length, and the type of the
+file.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>-<b>z</b> 
+</td><td>
+Use
+<b>gzip</b>(1)
+to compress (decompress) the archive while writing (reading).
+Incompatible with
+-<b>a</b> .
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>B</b> <i> bytes</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Limit the number of bytes written to a single archive volume to
+<i> bytes</i>.
+The
+<i> bytes</i>
+limit can end with
+&#39;m&#39;,
+&#39;k&#39;,
+or
+&#39;b&#39;
+to specify multiplication by 1048576 (1M), 1024 (1K) or 512, respectively.
+A pair of
+<i> bytes</i>
+limits can be separated by
+&#39;x&#39;
+to indicate a product.
+<p>
+<i> Warning</i>:
+Only use this option when writing an archive to a device which supports
+an end of file read condition based on last (or largest) write offset
+(such as a regular file or a tape drive).
+The use of this option with a floppy or hard disk is not recommended.
+</td></tr>
+<tr valign="top"><td>-<b>D</b> 
+</td><td>
+This option is the same as the
+-<b>u</b> 
+option, except that the file inode change time is checked instead of the
+file modification time.
+The file inode change time can be used to select files whose inode information
+(e.g., UID, GID, etc.) is newer than a copy of the file in the destination
+<i> directory</i>.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>E</b> <i> limit</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Limit the number of consecutive read faults while trying to read a flawed
+archive to
+<i> limit</i>.
+With a positive
+<i> limit</i>,
+<b>pax</b>
+will attempt to recover from an archive read error and will
+continue processing starting with the next file stored in the archive.
+A
+<i> limit</i>
+of 0 will cause
+<b>pax</b>
+to stop operation after the first read error is detected on an archive volume.
+A
+<i> limit</i>
+of
+NONE
+will cause
+<b>pax</b>
+to attempt to recover from read errors forever.
+The default
+<i> limit</i>
+is a small positive number of retries.
+<p>
+<i> Warning</i>:
+Using this option with
+NONE
+should be used with extreme caution as
+<b>pax</b>
+may get stuck in an infinite loop on a very badly flawed archive.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>G</b> <i> group</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Select a file based on its
+<i> group</i>
+name, or when starting with a
+<b> #</b>,
+a numeric gid.
+A
+&#145;<tt>&#92;</tt>&#146;
+can be used to escape the
+<b> #</b>.
+Multiple
+-<b>G</b> 
+options may be supplied and checking stops with the first match.
+</td></tr>
+<tr valign="top"><td>-<b>H</b> 
+</td><td>
+Follow only command-line symbolic links while performing a physical file
+system traversal.
+</td></tr>
+<tr valign="top"><td>-<b>L</b> 
+</td><td>
+Follow all symbolic links to perform a logical file system traversal.
+</td></tr>
+<tr valign="top"><td>-<b>O</b> 
+</td><td>
+Force the archive to be one volume.
+If a volume ends prematurely,
+<b>pax</b>
+will not prompt for a new volume.
+This option can be useful for
+automated tasks where error recovery cannot be performed by a human.
+</td></tr>
+<tr valign="top"><td>-<b>P</b> 
+</td><td>
+Do not follow symbolic links, perform a physical file system traversal.
+This is the default mode.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>T</b> <i> [from_date][,to_date][/[c][m]]</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Allow files to be selected based on a file modification or inode change
+time falling within a specified time range of
+<i> from_date</i>
+to
+<i> to_date</i>
+(the dates are inclusive).
+If only a
+<i> from_date</i>
+is supplied, all files with a modification or inode change time
+equal to or younger are selected.
+If only a
+<i> to_date</i>
+is supplied, all files with a modification or inode change time
+equal to or older will be selected.
+When the
+<i> from_date</i>
+is equal to the
+<i> to_date</i>,
+only files with a modification or inode change time of exactly that
+time will be selected.
+<p>
+When
+<b>pax</b>
+is in the
+<i> write</i>
+or
+<i> copy</i>
+mode, the optional trailing field
+<i> [c][m]</i>
+can be used to determine which file time (inode change, file modification or
+both) are used in the comparison.
+If neither is specified, the default is to use file modification time only.
+The
+<i> m</i>
+specifies the comparison of file modification time (the time when
+the file was last written).
+The
+<i> c</i>
+specifies the comparison of inode change time (the time when the file
+inode was last changed; e.g., a change of owner, group, mode, etc).
+When
+<i> c</i>
+and
+<i> m</i>
+are both specified, then the modification and inode change times are
+both compared.
+The inode change time comparison is useful in selecting files whose
+attributes were recently changed or selecting files which were recently
+created and had their modification time reset to an older time (as what
+happens when a file is extracted from an archive and the modification time
+is preserved).
+Time comparisons using both file times is useful when
+<b>pax</b>
+is used to create a time based incremental archive (only files that were
+changed during a specified time range will be archived).
+<p>
+A time range is made up of six different fields and each field must contain two
+digits.
+The format is:
+<p>&nbsp; &nbsp; <tt> [[[[[cc]yy]mm]dd]HH]MM[.SS]</tt><p>
+
+Where
+<b> cc</b>
+is the first two digits of the year (the century),
+<b> yy</b>
+is the last two digits of the year,
+the first
+<b> mm</b>
+is the month (from 01 to 12),
+<b> dd</b>
+is the day of the month (from 01 to 31),
+<b> HH</b>
+is the hour of the day (from 00 to 23),
+<b> MM</b>
+is the minute (from 00 to 59),
+and
+<b> SS</b>
+is the seconds (from 00 to 59).
+The minute field
+<b> MM</b>
+is required, while the other fields are optional and must be added in the
+following order:
+<!-- Need break --><br />
+<b>  HH, dd, mm</b>,
+<b> yy, cc</b>.
+<!-- Need break --><br />
+The
+<b> SS</b>
+field may be added independently of the other fields.
+Time ranges are relative to the current time, so
+<p>&nbsp; &nbsp; <tt>-<b>T</b> <i> 1234/cm</i></tt><p>
+
+would select all files with a modification or inode change time
+of 12:34 PM today or later.
+Multiple
+-<b>T</b> 
+time range can be supplied and checking stops with the first match.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>U</b> <i> user</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Select a file based on its
+<i> user</i>
+name, or when starting with a
+<b> #</b>,
+a numeric UID.
+A
+&#145;<tt>&#92;</tt>&#146;
+can be used to escape the
+<b> #</b>.
+Multiple
+-<b>U</b> 
+options may be supplied and checking stops with the first match.
+</td></tr>
+<tr valign="top"><td>-<b>X</b> 
+</td><td>
+When traversing the file hierarchy specified by a pathname,
+do not descend into directories that have a different device ID.
+See the
+st_dev
+field as described in
+<b>stat</b>(2)
+for more information about device IDs.
+</td></tr>
+<tr valign="top"><td>-<b>Y</b> 
+</td><td>
+This option is the same as the
+-<b>D</b> 
+option, except that the inode change time is checked using the
+pathname created after all the file name modifications have completed.
+</td></tr>
+<tr valign="top"><td>-<b>Z</b> 
+</td><td>
+This option is the same as the
+-<b>u</b> 
+option, except that the modification time is checked using the
+pathname created after all the file name modifications have completed.
+</td></tr>
+</table>
+<p>
+The options that operate on the names of files or archive members
+(-<b>c</b>,
+-<b>i</b> ,
+-<b>n</b> ,
+-<b>s</b> ,
+-<b>u</b> ,
+-<b>v</b> ,
+-<b>D</b> ,
+-<b>G</b> ,
+-<b>T</b> ,
+-<b>U</b> ,
+-<b>Y</b> ,
+and
+-<b>Z</b> 
+)
+interact as follows.
+<p>
+When extracting files during a
+<i> read</i>
+operation, archive members are
+&#39;selected&#39;,
+based only on the user specified pattern operands as modified by the
+-<b>c</b> ,
+-<b>n</b> ,
+-<b>u</b> ,
+-<b>D</b> ,
+-<b>G</b> ,
+-<b>T</b> ,
+-<b>U</b> 
+options.
+Then any
+-<b>s</b> 
+and
+-<b>i</b> 
+options will modify in that order, the names of these selected files.
+Then the
+-<b>Y</b> 
+and
+-<b>Z</b> 
+options will be applied based on the final pathname.
+Finally, the
+-<b>v</b> 
+option will write the names resulting from these modifications.
+<p>
+When archiving files during a
+<i> write</i>
+operation, or copying files during a
+<i> copy</i>
+operation, archive members are
+&#39;selected&#39;,
+based only on the user specified pathnames as modified by the
+-<b>n</b> ,
+-<b>u</b> ,
+-<b>D</b> ,
+-<b>G</b> ,
+-<b>T</b> ,
+and
+-<b>U</b> 
+options (the
+-<b>D</b> 
+option only applies during a copy operation).
+Then any
+-<b>s</b> 
+and
+-<b>i</b> 
+options will modify in that order, the names of these selected files.
+Then during a
+<i> copy</i>
+operation the
+-<b>Y</b> 
+and the
+-<b>Z</b> 
+options will be applied based on the final pathname.
+Finally, the
+-<b>v</b> 
+option will write the names resulting from these modifications.
+<p>
+When one or both of the
+-<b>u</b> 
+or
+-<b>D</b> 
+options are specified along with the
+-<b>n</b> 
+option, a file is not considered selected unless it is newer
+than the file to which it is compared.
+<h1 class="manpages">ENVIRONMENT</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2"><i> TMPDIR</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Path in which to store temporary files.
+</td></tr>
+</table>
+<h1 class="manpages">EXAMPLES</h1>
+$ pax -w -f /dev/rst0 &#46;
+<p>
+Copies the contents of the current directory to the device
+<tt> /dev/rst0</tt>.
+<p>
+$ pax -v -f filename
+<p>
+Gives the verbose table of contents for an archive stored in
+<tt> filename</tt>.
+<p>
+$ mkdir newdir;
+cd olddir;
+pax -rw &#46; newdir
+<p>
+This sequence of commands will copy the entire
+<tt> olddir</tt>
+directory hierarchy to
+<tt> newdir</tt>.
+<p>
+$ pax -r -s &#146;,^//*usr//*,,&#146; -f a.pax
+<p>
+Reads the archive
+<tt> a.pax</tt>,
+with all files rooted in
+<tt> /usr</tt>
+into the archive extracted relative to the current directory.
+<p>
+$ pax -rw -i &#46; dest_dir
+<p>
+Can be used to interactively select the files to copy from the current
+directory to
+<tt> dest_dir</tt>.
+<p>
+$ pax -r -pe -U root -G bin -f a.pax
+<p>
+Extract all files from the archive
+<tt> a.pax</tt>
+which are owned by
+<i> root</i>
+with group
+<i> bin</i>
+and preserve all file permissions.
+<p>
+$ pax -r -w -v -Y -Z home /backup
+<p>
+Update (and list) only those files in the destination directory
+<tt> /backup</tt>
+which are older (less recent inode change or file modification times) than
+files with the same name found in the source file tree
+<tt> home</tt>.
+<h1 class="manpages">DIAGNOSTICS</h1>
+<b>pax</b>
+will exit with one of the following values:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td> 0
+</td><td>
+All files were processed successfully.
+</td></tr>
+<tr valign="top"><td> 1
+</td><td>
+An error occurred.
+</td></tr>
+</table>
+<p>
+Whenever
+<b>pax</b>
+cannot create a file or a link when reading an archive or cannot
+find a file when writing an archive, or cannot preserve the user ID,
+group ID, or file mode when the
+-<b>p</b> 
+option is specified, a diagnostic message is written to standard error
+and a non-zero exit status will be returned, but processing will continue.
+In the case where
+<b>pax</b>
+cannot create a link to a file,
+<b>pax</b>
+will not create a second copy of the file.
+<p>
+If the extraction of a file from an archive is prematurely terminated by
+a signal or error,
+<b>pax</b>
+may have only partially extracted a file the user wanted.
+Additionally, the file modes of extracted files and directories
+may have incorrect file bits, and the modification and access times may be
+wrong.
+<p>
+If the creation of an archive is prematurely terminated by a signal or error,
+<b>pax</b>
+may have only partially created the archive which may violate the specific
+archive format specification.
+<p>
+If while doing a
+<i> copy</i>,
+<b>pax</b>
+detects a file is about to overwrite itself, the file is not copied,
+a diagnostic message is written to standard error
+and when
+<b>pax</b>
+completes it will exit with a non-zero exit status.
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<b>tar</b>(1)
+<h1 class="manpages">STANDARDS</h1>
+The
+<b>pax</b>
+utility is a superset of the
+<i> -p1003.2</i>
+standard.
+The options
+-<b>B</b> ,
+-<b>D</b> ,
+-<b>E</b> ,
+-<b>G</b> ,
+-<b>H</b> ,
+-<b>L</b> ,
+-<b>O</b> ,
+-<b>P</b> ,
+-<b>T</b> ,
+-<b>U</b> ,
+-<b>Y</b> ,
+-<b>Z</b> ,
+the archive formats
+<i> bcpio</i>,
+<i> sv4cpio</i>,
+<i> sv4crc</i>,
+<i> tar</i>,
+and the flawed archive handling during
+<i> list</i>
+and
+<i> read</i>
+operations are extensions to the
+<i> POSIX</i>
+standard.
+<h1 class="manpages">AUTHORS</h1>
+Keith Muller at the University of California, San Diego.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionaf4a.html?tutorial=unix_commands&amp;file=pax.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/pax.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

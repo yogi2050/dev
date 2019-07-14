@@ -1,0 +1,689 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_system_calls/waitid.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:22 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>waitid() - Unix, Linux System Call</title>
+<meta name="Description" Content="waitid() - Unix, Linux System Calls Manual Pages (Manpages) ,  Learning fundamentals of UNIX in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - System Calls</b></a></li>
+<li><a class="left" target="_top" href="../unix_commands/index.html">Unix - Commands List</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>waitid() - Unix, Linux System Call</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+<p>wait, waitpid - wait for process to change state</p>
+<h1 class="manpages">SYNOPSIS</h1>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<b>#include &lt;sys/types.h&gt;</b> 
+<b>#include &lt;sys/wait.h&gt;</b> 
+<p>
+<b>pid_t wait(int *</b><i>status</i><b>);</b> 
+<b>pid_t waitpid(pid_t </b><i>pid</i><b>, int *</b><i>status</i><b>, int </b><i>options</i><b>);</b> 
+<b>int waitid(idtype_t </b><i>idtype</i><b>, id_t </b><i>id</i>, <b>siginfo_t *</b> infop , <b>int</b> options );
+</pre></td></tr>
+</table>
+<h1 class="manpages">DESCRIPTION</h1>
+<p>All of these system calls are used to wait for state changes
+in a child of the calling process, and obtain information
+about the child whose state has changed.
+A state change is considered to be: the child terminated;
+the child was stopped by a signal; or the child was resumed by a signal.
+In the case of a terminated child, performing a wait allows
+the system to release the resources associated with the child;
+if a wait is not performed, then terminated the child remains in
+a "zombie" state (see NOTES below).</p>
+<p>If a child has already changed state, then these calls return immediately.
+Otherwise they block until either a child changes state or
+a signal handler interrupts the call (assuming that system calls
+are not automatically restarted using the <b>SA_RESTART</b> flag of
+<b>sigaction</b>(2)). In the remainder of this page, a child whose state has changed
+and which has not yet been waited upon by one of these system
+calls is termed
+<i>waitable</i>.</p>
+<h2><i>wait() and waitpid()</i></h2>
+<p>The <b>wait</b>() system call suspends execution of the current process until one of its children terminates.
+The call <i>wait(&status)</i> is equivalent to:</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+    waitpid(-1, &status, 0);
+</pre></td></tr>
+</table>
+<p>The <b>waitpid</b>() system call suspends execution of the current process until a
+child specified by <i>pid</i> argument has changed state.
+By default,
+<b>waitpid</b>() waits only for terminated children, but this behaviour is modifiable
+via the
+<i>options</i> argument, as described below.</p>
+<p>The value of  <i>pid</i> can be:</p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td>&lt; -1 </td><td>meaning wait for any child process whose process group ID is
+equal to the absolute value of <i>pid</i>. </td></tr>
+<tr><td>-1 </td><td> meaning wait for any child process. </td></tr>
+<tr><td>0 </td><td> meaning wait for any child process whose process group ID is equal to that of the calling process. </td></tr>
+<tr><td>&gt; 0 </td><td> meaning wait for the child whose process ID is equal to the value of <i>pid</i>. </td></tr>
+</table>
+<p>The value of <i>options</i> is an OR of zero or more of the following constants:</p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td>
+<b>WNOHANG</b></td><td>return immediately if no child has exited.</td></tr>
+<tr><td><b>WUNTRACED</b> </td><td>also return if a child has stopped(but not traced via <b>ptrace</b>(2)). Status for
+<i>traced</i> children which have stopped is provided even if this option is not specified.
+</td></tr>
+<tr><td><b>WCONTINUED</b> </td><td> (Since Linux 2.6.10) also return if a stopped child has been resumed by delivery of
+<b>SIGCONT</b>. </td></tr>
+<tr><td">
+</table>
+<p>(For Linux-only options, see below.) The
+<b>WUNTRACED</b> and <b>WCONTINUED</b> options are only effective if the
+<b>SA_NOCLDSTOP</b> flag has not been set for the
+<b>SIGCHLD</b> signal (see <b>sigaction</b>(2)).</p>
+<p>If <i>status</i> is not NULL, <b>wait</b>() and <b>waitpid</b>() store status information in the <i>int</i> to which it points.
+This integer can be inspected with the following macros (which
+take the integer itself as an argument, not a pointer to it, as is done in <b>wait</b>() and <b>waitpid</b>()!): </p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td><b>WIFEXITED(</b><i>status</i><b>)</b> </td><td> returns true if the child terminated normally, that is, by calling <b>exit</b>(3)
+or <b>_exit</b>(2), or by returning from main().</td></tr>
+<tr><td><b>WEXITSTATUS(</b><i>status</i><b>)</b> </td><td>
+returns the exit status of the child.
+This consists of the least significant 16-8 bits of the
+<i>status</i> argument that the child specified in a call to
+<b>exit</b>() or
+<b>_exit</b>() or as the argument for a return statement in main().
+This macro should only be employed if
+<b>WIFEXITED</b> returned true.
+</td></tr>
+<tr><td>
+<b>WIFSIGNALED(</b><i>status</i><b>)</b> </td><td>
+returns true if the child process was terminated by a signal.
+</td></tr>
+<tr><td>
+<b>WTERMSIG(</b><i>status</i><b>)</b> </td><td>
+returns the number of the signal that caused the child process to
+terminate. This macro should only be employed if
+<b>WIFSIGNALED</b> returned true.
+</td></tr>
+<tr><td>
+<b>WCOREDUMP(</b><i>status</i><b>)</b> </td><td>
+returns true if the child produced a core dump.
+This macro should only be employed if
+<b>WIFSIGNALED</b> returned true.
+This macro is not specified in POSIX.1-2001 and is not available on
+some Unix implementations (e.g., AIX, SunOS).
+Only use this enclosed in #ifdef WCOREDUMP ... #endif.
+</td></tr>
+<tr><td>
+<b>WIFSTOPPED(</b><i>status</i><b>)</b> </td><td>
+returns true if the child process was stopped by delivery of a signal;
+this is only possible if the call was done using
+<b>WUNTRACED</b> or when the child is being traced (see
+<b>ptrace</b>(2)).
+</td></tr>
+<tr><td>
+<b>WSTOPSIG(</b><i>status</i><b>)</b> </td><td>
+returns the number of the signal which caused the child to stop.  This
+macro should only be employed if
+<b>WIFSTOPPED</b> returned true.
+</td></tr>
+<tr><td>
+<b>WIFCONTINUED(</b><i>status</i><b>)</b> </td><td>
+(Since Linux 2.6.10)
+returns true if the child process was resumed by delivery of
+<b>SIGCONT</b>. </td></tr>
+</table>
+<h2><i>waitid()</i></h2>
+<p>The <b>waitid</b>() system call (available since Linux 2.6.9) provides more precise
+control over which child state changes to wait for.</p>
+<p>The
+<i>idtype</i> and
+<i>id</i> arguments select the child(ren) to wait for, as follows:</p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td>
+<i>idtype</i> == <b>P_PID</b>
+</td><td>
+Wait for the child whose process ID matches
+<i>id</i>. </td></tr>
+<tr><td>
+<i>idtype</i> == <b>P_PGID</b>
+</td><td>
+Wait for any child whose process group ID matches
+<i>id</i>. </td></tr>
+<tr><td>
+<i>idtype</i> == <b>P_ALL</b>
+</td><td>
+Wait for any child;
+<i>id</i> is ignored.
+</td></tr>
+<tr><td colspan="2">
+The child state changes to wait for are specified by ORing
+one or more of the following flags in
+<i>options</i>: </td></tr>
+<tr><td>
+<b>WEXITED</b> </td><td>
+Wait for children that have terminated.
+</td></tr>
+<tr><td>
+<b>WSTOPPED</b> </td><td>
+Wait for children that have been stopped by delivery of a signal.
+</td></tr>
+<tr><td>
+<b>WCONTINUED</b> </td><td>
+Wait for (previously stopped) children that have been
+resumed by delivery of
+<b>SIGCONT</b>. </td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+The following flags may additionally be ORed in
+<i>options</i>: </td></tr>
+<tr><td>
+<b>WNOHANG</b> </td><td>
+As for
+<b>waitpid</b>(). </td></tr>
+<tr><td>
+<b>WNOWAIT</b> </td><td>
+Leave the child in a waitable state; a later wait call
+can be used to again retrieve the child status information.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Upon successful return,
+<b>waitid</b>() fills in the following fields of the
+<i>siginfo_t</i> structure pointed to by
+<i>infop</i>: </td></tr>
+<tr><td>
+<i>si_pid</i>
+</td><td>
+The process ID of the child.
+</td></tr>
+<tr><td>
+<i>si_uid</i>
+</td><td>
+The real user ID of the child.
+(This field is not set on most other implementations.)
+</td></tr>
+<tr><td>
+<i>si_signo</i>
+</td><td>
+Always set to
+<b>SIGCHLD</b>. </td></tr>
+<tr><td>
+<i>si_status</i>
+</td><td>
+Either the exit status of the child, as given to
+<b>_exit</b>(2)
+(or
+<b>exit</b>(3)),
+or the signal that caused the child to terminate, stop, or continue.
+The
+<i>si_code</i> field can be used to determine how to interpret this field.
+</td></tr>
+<tr><td>
+<i>si_code</i>
+</td><td>
+Set to one of:
+<b>CLD_EXITED</b> (child called
+<b>_exit</b>(2));
+<b>CLD_KILLED</b> (child killed by signal);
+<b>CLD_STOPPED</b> (child stopped by signal); or
+<b>CLD_CONTINUED</b> (child continued by
+<b>SIGCONT</b>). </td></tr>
+<!-- PP ends table -->
+</table>
+<p>If <b>WNOHANG</b> was specified in
+<i>options</i> and there were no children in a waitable state, then
+<b>waitid</b>() returns 0 immediately and
+the state of the
+<i>siginfo_t</i> structure pointed to by
+<i>infop</i> is unspecified.
+To distinguish this case from that where a child was in a
+waitable state, zero out the
+<i>si_pid</i> field before the call and check for a non-zero value in this field
+after the call returns.</p>
+<h1 class="manpages">RETURN VALUE</h1>
+<p><b>wait</b>(): on success, returns the process ID of the terminated child;
+on error, -1 is returned.</p>
+<p><b>waitpid</b>(): on success, returns the process ID of the child whose state has changed;
+on error, -1 is returned; if <b>WNOHANG</b> was specified and no child(ren) specified by <i>pid</i> has yet changed state, then 0 is returned.</p>
+<p><b>waitid</b>(): returns 0 on success or
+if
+<b>WNOHANG</b> was specified and no child(ren) specified by
+<i>id</i> has yet changed state;
+on error, -1 is returned.</p>
+<p>Each of these calls sets
+<i>errno</i> to an appropriate value in the case of an error.</p>
+<h1 class="manpages">ERRORS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td>
+<b>ECHILD</b> </td><td>
+(for
+<b>wait</b>()) The calling process does not have any unwaited-for children.
+</td></tr>
+<tr><td>
+<b>ECHILD</b> </td><td>
+(for
+<b>waitpid</b>() or
+<b>waitid</b>()) The process specified by
+<i>pid</i> (<b>waitpid</b>()) or
+<i>idtype</i> and
+<i>id</i> (<b>waitid</b>()) does not exist or is not a child of the calling process.
+(This can happen for one&#146;s own child if the action for SIGCHLD
+is set to SIG_IGN. See also the LINUX NOTES section about threads.)
+</td></tr>
+<tr valign="top"><td>
+<b>EINTR</b> </td><td valign="bottom">
+<b>WNOHANG</b> was not set and an unblocked signal or a
+<b>SIGCHLD</b> was caught.
+</td></tr>
+<tr valign="top"><td>
+<b>EINVAL</b> </td><td valign="bottom">
+The
+<i>options</i> argument was invalid.
+</td></tr>
+</table>
+<h1 class="manpages">NOTES</h1>
+<p>A child that terminates, but has not been waited for becomes a "zombie".
+The kernel maintains a minimal set of information about the zombie
+process (PID, termination status, resource usage information)
+in order to allow the parent to later perform a wait to obtain
+information about the child.</p>
+<p>As long as a zombie is not removed from the system via a wait,
+it will consume a slot in the kernel process table, and if
+this table fills, it will not be possible to create further processes.
+If a parent process terminates, then its "zombie" children (if any)
+are adopted by <b>init</b>(8),
+which automatically performs a wait to remove the zombies.</p>
+<p>POSIX.1-2001 specifies that if the disposition of
+<b>SIGCHLD</b> is set to
+<b>SIG_IGN</b> or the
+<b>SA_NOCLDWAIT</b> flag is set for
+<b>SIGCHLD</b> (see
+<b>sigaction</b>(2)),
+then children that terminate do not become zombies and a call to
+<b>wait</b>() or
+<b>waitpid</b>() will block until all children have terminated, and then fail with
+<i>errno</i> set to
+<b>ECHILD</b>. (The original POSIX standard left the behaviour of setting
+<b>SIGCHLD</b> to
+<b>SIG_IGN</b> unspecified.)
+Linux 2.6 conforms to this specification.
+However, Linux 2.4 (and earlier) does not: if a
+<b>wait</b>() or
+<b>waitpid</b>() call is made while
+<b>SIGCHLD</b> is being ignored, the call behaves just as though
+<b>SIGCHLD</b> were not being ignored, that is, the call blocks until the next child
+terminates and then returns the process ID and status of that child.</p>
+<h1 class="manpages">LINUX NOTES</h1>
+<p>In the Linux kernel, a kernel-scheduled thread is not a distinct
+construct from a process. Instead, a thread is simply a process
+that is created using the Linux-unique
+<b>clone</b>(2)
+system call; other routines such as the portable
+<b>pthread_create</b>(3)
+call are implemented using
+<b>clone</b>(2).</p><p>
+Before Linux 2.4, a thread was just a special case of a process,
+and as a consequence one thread could not wait on the children
+of another thread, even when the latter belongs to the same thread group.
+However, POSIX prescribes such functionality, and since Linux 2.4
+a thread can, and by default will, wait on children of other threads
+in the same thread group.</p>
+<p>The following Linux-specific
+<i>options</i> are for use with children created using
+<b>clone</b>(2);
+they cannot be used with
+<b>waitid</b>():</p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td>
+<b>__WCLONE</b> </td><td>
+Wait for "clone" children only.  If omitted then wait
+for "non-clone" children only.  (A "clone" child is one
+which delivers no signal, or a signal other than
+<b>SIGCHLD</b> to its parent upon termination.)
+This option is ignored if
+<b>__WALL</b> is also specified.
+</td></tr>
+<tr valign="top"><td>
+<b>__WALL</b> </td><td valign="bottom">
+(Since Linux 2.4) Wait for all children, regardless of
+type ("clone" or "non-clone").
+</td></tr>
+<tr><td>
+<b>__WNOTHREAD</b> </td><td>
+(Since Linux 2.4) Do not wait for children of other threads in
+the same thread group. This was the default before Linux 2.4.
+</td></tr>
+</table>
+<h1 class="manpages">EXAMPLE</h1>
+<p>The following program demonstrates the use of <b>fork</b>(2) 
+and
+<b>waitpid</b>(2).
+The program creates a child process.
+If no command-line argument is supplied to the program,
+then the child suspends its execution using
+<b>pause</b>(2),
+to allow the user to send signals to the child.
+Otherwise, if a command-line argument is supplied,
+then the child exits immediately,
+using the integer supplied on the command line as the exit status.
+The parent process executes a loop that monitors the child using
+<b>waitpid</b>(2),
+and uses the W*() macros described above to analyse the wait status value.</p>
+<p>The following shell session demonstrates the use of the program:</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<p>
+$ ./a.out &
+Child PID is 32360
+[1] 32359
+$ kill -STOP 32360
+stopped by signal 19
+$ kill -CONT 32360
+continued
+$ kill -TERM 32360
+killed by signal 15
+[1]+  Done                    ./a.out
+$
+<p>
+<p>
+#include &lt;sys/wait.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;stdio.h&gt;
+<p>
+int
+main(int argc, char *argv[])
+{
+    pid_t cpid, w;
+    int status;
+<p>
+    cpid = fork();
+    if (cpid == -1) { perror("fork"); exit(EXIT_FAILURE); }
+<p>
+    if (cpid == 0) {            /* Code executed by child */
+        printf("Child PID is %ld\n", (long) getpid());
+        if (argc == 1)
+            pause();                    /* Wait for signals */
+        _exit(atoi(argv[1]));
+<p>
+    } else {                    /* Code executed by parent */
+        do {
+            w = waitpid(cpid, &status, WUNTRACED | WCONTINUED);
+            if (w == -1) { perror("waitpid"); exit(EXIT_FAILURE); }
+<p>
+            if (WIFEXITED(status)) {
+                printf("exited, status=%d\n", WEXITSTATUS(status));
+            } else if (WIFSIGNALED(status)) {
+                printf("killed by signal %d\n", WTERMSIG(status));
+            } else if (WIFSTOPPED(status)) {
+                printf("stopped by signal %d\n", WSTOPSIG(status));
+            } else if (WIFCONTINUED(status)) {
+                printf("continued\n");
+            }
+        } while (!WIFEXITED(status) && !WIFSIGNALED(status));
+        exit(EXIT_SUCCESS);
+    }
+}
+</pre></td></tr>
+</table>
+<h1 class="manpages">CONFORMING TO</h1>
+<p>SVr4, 4.3BSD, POSIX.1-2001.</p>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="_exit.htm">_exit (2)</a></p></li>
+<li><p><a href="clone.htm">clone (2)</a></p></li>
+<li><p><a href="fork.htm">fork (2)</a></p></li>
+<li><p><a href="kill.htm">kill (2)</a></p></li>
+<li><p><a href="ptrace.htm">ptrace (2)</a></p></li>
+<li><p><a href="sigaction.htm">sigaction (2)</a></p></li>
+<li><p><a href="signal.htm">signal (2)</a></p></li>
+<li><p><a href="wait4.htm">wait4 (2)</a></p></li>
+</ul>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionb43b.html?tutorial=unix_system_calls&amp;file=waitid.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_system_calls/waitid.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:22 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

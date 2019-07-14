@@ -1,0 +1,813 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/logrotate.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:54 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>logrotate - Unix, Linux Command</title>
+<meta name="Description" Content="logrotate - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>logrotate - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+logrotate - rotates, compresses, and mails system logs
+<h1 class="manpages">SYNOPSIS</h1>
+<b>logrotate</b> [-dv] [-f|--force] [-s|--state <i>file</i>] <i>config_file</i>+
+<h1 class="manpages">DESCRIPTION</h1>
+<b>logrotate</b> is designed to ease administration of systems that generate
+large numbers of log files.  It allows automatic rotation, compression,
+removal, and mailing of log files.  Each log file may be handled daily,
+weekly, monthly, or when it grows too large.
+<p>
+Normally, <b>logrotate</b> is run as a daily cron job.  It will not modify
+a log multiple times in one day unless the criterium for that log is
+based on the log&#146;s size and <b>logrotate</b> is being run multiple times
+each day, or unless the <b>-f</b> or <b>-force</b> option is used.
+<p>
+Any number of config files may be given on the command line. Later config
+files may override the options given in earlier files, so the order
+in which the <b>logrotate</b> config files are listed in is important.
+Normally, a single config file which includes any other config files
+which are needed should be used.  See below for more information on how
+to use the <i>include</i> directive to accomplish this.  If a directory
+is given on the command line, every file in that directory is used as
+a config file.
+<p>
+If no command line arguments are given, <b>logrotate</b> will print
+version and copyright information, along with a short usage summary.  If
+any errors occur while rotating logs, <b>logrotate</b> will exit with
+non-zero status.
+<p>
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-v</b>
+</td><td valign="bottom">
+Turn on verbose mode.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>-d</b>
+</td><td valign="bottom">
+Turns on debug mode and implies <b>-v</b>.  In debug mode, no changes will
+be made to the logs or to the <b>logrotate</b> state file.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-f, --force</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Tells <b>logrotate</b> to force the rotation, even if it doesn&#146;t think
+this is necessary.  Sometimes this is useful after adding new entries to
+<b>logrotate</b>, or if old log files have been removed by hand, as the
+new files will be created, and logging will continue correctly.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-m, --mail &lt;command&gt;</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Tells <b>logrotate</b> which command to use when mailing logs. This
+command should accept two arguments: 1) the subject of the message, and
+2) the recipient. The command must then read a message on standard input
+and mail it to the recipient. The default mail command is <b>/bin/mail
+-s</b>.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-s, --state &lt;statefile&gt;</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Tells <b>logrotate</b> to use an alternate state file.  This is useful
+if logrotate is being run as a different user for various sets of
+log files.  The default state file is <i>/var/lib/logrotate.status</i>.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>--usage</b>
+</td><td valign="bottom">
+Prints a short usage message.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">CONFIGURATION FILE</h1>
+<p>
+<b>logrotate</b> reads everything about the log files it should be handling
+from the series of configuration files specified on the command line.  Each
+configuration file can set global options (local definitions override
+global ones, and later definitions override earlier ones) and specify
+logfiles to rotate. A simple configuration file looks like this:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+# sample logrotate configuration file
+compress
+<p>
+/var/log/messages {
+    rotate 5
+    weekly
+    postrotate
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/sbin/killall -HUP syslogd
+    endscript
+}
+<p>
+"/var/log/httpd/access.log" /var/log/httpd/error.log {
+    rotate 5
+    mail <a href="mailto:www@my.org">www@my.org</a>
+    size 100k
+    sharedscripts
+    postrotate
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/sbin/killall -HUP httpd
+    endscript
+}
+<p>
+/var/log/news/* {
+    monthly
+    rotate 2
+    olddir /var/log/news/old
+    missingok
+    postrotate
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kill -HUP &#145;cat /var/run/inn.pid&#145;
+    endscript
+    nocompress
+}
+</pre></td></tr>
+</table>
+<p>
+<p>
+The first few lines set global options; in the example, logs are
+compressed after they are rotated.  Note that comments may appear
+anywhere in the config file as long as the first non-whitespace
+character on the line is a #.
+<p>
+The next section of the config files defined how to handle the log file
+<i>/var/log/messages</i>. The log will go through five weekly rotations before
+being removed. After the log file has been rotated (but before the old
+version of the log has been compressed), the command
+<i>/sbin/killall -HUP syslogd</i> will be executed.
+<p>
+The next section defines the parameters for both
+<i>/var/log/httpd/access.log</i> and <i>/var/log/httpd/error.log</i>.
+They are rotated whenever it grows over 100k in size, and the old logs
+files are mailed (uncompressed) to <a href="mailto:www@my.org">www@my.org</a> after going through 5
+rotations, rather then being removed. The <b>sharedscripts</b> means that
+the <b>postrotate</b> script will only be run once, not once for each
+log which is rotated. Note that the double quotes around the first filename
+at the beginning of this section allows logrotate to rotate logs with
+spaces in the name. Normal shell quoting rules apply, with &#146;, ", and \
+characters supported.
+<p>
+The last section defines the parameters for all of the files in
+<i>/var/log/news</i>. Each file is rotated on a monthly basis.  This is
+considered a single rotation directive and if errors occur for more then
+one file, the log files are not compressed.
+<p>
+Please use wildcards with caution.  If you specify *, <b>logrotate</b> will
+rotate all files, including previously rotated ones.  A way around this
+is to use the <b>olddir</b> directive or a more exact wildcard (such as *.log).
+<p>
+Here is more information on the directives which may be included in
+a <b>logrotate</b> configuration file:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>compress</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Old versions of log files are compressed with <b>gzip</b> by default. See also
+<b>nocompress</b>.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>compresscmd</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies which command to use to compress log files.  The default is
+<b>gzip</b>.  See also <b>compress</b>.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>uncompresscmd</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies which command to use to uncompress log files.  The default is
+<b>gunzip</b>.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>compressext</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies which extension to use on compressed logfiles, if compression
+is enabled.  The default follows that of the configured compression
+command.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>compressoptions</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Command line options may be passed to the compression program, if one is
+in use.  The default, for <b>gzip</b>, is "-9" (maximum compression).
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>copy</b>
+</td><td valign="bottom">
+Make a copy of the log file, but don&#146;t change the original at all.
+This option can be used, for instance, to make a snapshot of the current
+log file, or when some other utility needs to truncate or pare the file.
+When this option is used, the <b>create</b> option will have no effect,
+as the old log file stays in place.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>copytruncate</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Truncate the original log file in place after creating a copy,
+instead of moving the old log file and optionally creating a new one,
+It can be used when some program can not be told to close its logfile
+and thus might continue writing (appending) to the previous log file forever.
+Note that there is a very small time slice between copying the file and
+truncating it, so some logging data might be lost.
+When this option is used, the <b>create</b> option will have no effect,
+as the old log file stays in place.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>create </b><i>mode</i> <i>owner</i> <i>group</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Immediately after rotation (before the <b>postrotate</b> script is run)
+the log file is created (with the same name as the log file just rotated).
+<i>mode</i> specifies the mode for the log file in octal (the same
+as <b>chmod(2)</b>), <i>owner</i> specifies the user name who will own the
+log file, and <i>group</i> specifies the group the log file will belong
+to. Any of the log file attributes may be omitted, in which case those
+attributes for the new file will use the same values as the original log
+file for the omitted attributes. This option can be disabled using the
+<b>nocreate</b> option.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>daily</b>
+</td><td valign="bottom">
+Log files are rotated every day.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>dateext</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Archive old versions of log files adding a daily extension like YYYYMMDD
+instead of simply adding a number.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>delaycompress</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Postpone compression of the previous log file to the next rotation cycle.
+This has only effect when used in combination with <b>compress</b>.
+It can be used when some program can not be told to close its logfile
+and thus might continue writing to the previous log file for some time.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>extension </b><i>ext</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Log files with <i>ext</i> extension can keep it after the rotation.
+If compression  is  used,  the compression extension (normally <b>.gz</b>)
+appears after <i>ext</i>. For example you have a logfile named mylog.foo
+and want to rotate it to mylog.1.foo.gz instead of mylog.foo.1.gz.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ifempty</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Rotate the log file even if it is empty, overiding the <b>notifempty</b>
+option (ifempty is the default).
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>include </b><i>file_or_directory</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Reads the file given as an argument as if it was included inline
+where the <b>include</b> directive appears. If a directory is given,
+most of the files in that directory are read in alphabetic order
+before processing of the including file continues. The only files
+which are ignored are files which are not regular files (such as
+directories and named pipes) and files whose names end with one of
+the taboo extensions, as specified by the <b>tabooext</b> directive.
+The <b>include</b> directive may not appear inside of a log file
+definition.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>mail </b><i>address</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+When a log is rotated out-of-existence, it is mailed to <i>address</i>. If
+no mail should be generated by a particular log, the <b>nomail</b> directive
+may be used.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>mailfirst</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+When using the <b>mail</b> command, mail the just-rotated file,
+instead of the about-to-expire file.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>maillast</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+When using the <b>mail</b> command, mail the about-to-expire file,
+instead of the just-rotated file (this is the default).
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>maxage</b> <i>count</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Remove rotated logs older than &lt;count&gt; days. The age is only checked
+if the logfile is to be rotated. The files are mailed to the
+configured address if <b>maillast</b> and <b>mail</b> are configured.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>minsize</b> <i>size</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Log files are rotated when they grow bigger then <i>size</i> bytes, but not
+before the additionally specified time interval (<b>daily</b>, <b>weekly</b>,
+<b>monthly</b>, or <b>yearly</b>).  The related <b>size</b> option is similar
+except that it is mutually exclusive with the time interval options, and it
+causes log files to be rotated without regard for the last rotation time.
+When <b>minsize</b> is used, both the size and timestamp of a log file are
+considered.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>missingok</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+If the log file is missing, go on to the next one without issuing an error
+message. See also <b>nomissingok</b>.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>monthly</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Log files are rotated the first time <b>logrotate</b> is run in a month
+(this is normally on the first day of the month).
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>nocompress</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Old versions of log files are not compressed with <b>gzip</b>. See also
+<b>compress</b>.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>nocopy</b>
+</td><td valign="bottom">
+Do not copy the original log file and leave it in place.
+(this overrides the <b>copy</b> option).
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>nocopytruncate</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Do not truncate the original log file in place after creating a copy
+(this overrides the <b>copytruncate</b> option).
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>nocreate</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+New log files are not created (this overrides the <b>create</b> option).
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>nodelaycompress</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Do not postpone compression of the previous log file to the next rotation cycle
+(this overrides the <b>delaycompress</b> option).
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>nodateext</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Do not archive  old versions of log files with date extension
+(this overrides the <b>dateext</b> option).
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>nomail</b>
+</td><td valign="bottom">
+Don&#146;t mail old log files to any address.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>nomissingok</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+If a log file does not exist, issue an error. This is the default.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>noolddir</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Logs are rotated in the same directory the log normally resides in (this
+overrides the <b>olddir</b> option).
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>nosharedscripts</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Run <b>prerotate</b> and <b>postrotate</b> scripts for every log file which
+is rotated (this is the default, and overrides the <b>sharedscripts</b>
+option).
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>notifempty</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Do not rotate the log if it is empty (this overrides the <b>ifempty</b> option).
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>olddir </b><i>directory</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Logs are moved into <i>directory</i> for rotation. The <i>directory</i>
+must be on the same physical device as the log file being rotated,
+and is assumed to be relative to the directory holding the log file
+unless an absolute path name is specified. When this option is used all
+old versions of the log end up in <i>directory</i>.  This option may be
+overriden by the <b>noolddir</b> option.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>postrotate</b>/<b>endscript</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The lines between <b>postrotate</b> and <b>endscript</b> (both of which
+must appear on lines by themselves) are executed after the log file is
+rotated. These directives may only appear inside of a log file definition.
+See <b>prerotate</b> as well.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>prerotate</b>/<b>endscript</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The lines between <b>prerotate</b> and <b>endscript</b> (both of which
+must appear on lines by themselves) are executed before the log file is
+rotated and only if the log will actually be rotated. These directives
+may only appear inside of a log file definition.  See <b>postrotate</b>
+as well.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>firstaction</b>/<b>endscript</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The lines between <b>firstaction</b> and <b>endscript</b> (both of which
+must appear on lines by themselves) are executed once before all log
+files that match the wildcarded pattern are rotated, before prerotate script
+is run and only if at least one log will actually be rotated. These directives
+may only appear inside of a log file definition. See <b>lastaction</b> as well.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>lastaction</b>/<b>endscript</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The lines between <b>lastaction</b> and <b>endscript</b> (both of which
+must appear on lines by themselves) are executed once after all log
+files that match the wildcarded pattern are rotated, after postrotate script
+is run and only if at least one log is rotated. These directives may only
+appear inside of a log file definition. See <b>firstaction</b> as well.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>rotate </b><i>count</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Log files are rotated &lt;count&gt; times before being removed or mailed to the
+address specified in a <b>mail</b> directive. If <i>count</i> is 0, old versions
+are removed rather then rotated.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>size </b><i>size</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Log files are rotated when they grow bigger then <i>size</i> bytes. If
+<i>size</i> is followed by <i>M</i>, the size if assumed to be in megabytes.
+If the <i>k</i> is used, the size is in kilobytes. So <b>size 100</b>,
+<i>size 100k</i>, and <i>size 100M</i> are all valid.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>sharedscripts</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Normally, <b>prescript</b> and <b>postscript</b> scripts are run for each
+log which is rotated, meaning that a single script may be run multiple
+times for log file entries which match multiple files (such as the
+/var/log/news/* example). If <b>sharedscript</b> is specified, the scripts
+are only run once, no matter how many logs match the wildcarded pattern.
+However, if none of the logs in the pattern require rotating, the scripts
+will not be run at all. This option overrides the <b>nosharedscripts</b>
+option and implies <b>create</b> option.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>start </b><i>count</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This is the number to use as the base for rotation. For example, if
+you specify 0, the logs will be created with a .0 extension as they are
+rotated from the original log files.  If you specify 9, log files will
+be created with a .9, skipping 0-8.  Files will still be rotated the
+number of times specified with the <b>count</b> directive.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>tabooext</b> [+] <i>list</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The current taboo extension list is changed (see the <b>include</b> directive
+for information on the taboo extensions). If a + precedes the list of
+extensions, the current taboo extension list is augmented, otherwise it
+is replaced. At startup, the taboo extension list
+contains .rpmorig, .rpmsave, ,v, .swp, .rpmnew, and ~.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>weekly</b>
+</td><td valign="bottom">
+Log files are rotated if the current weekday is less then the weekday
+of the last rotation or if more then a week has passed since the last
+rotation. This is normally the same as rotating logs on the first day
+of the week, but it works better if <i>logrotate</i> is not run every
+night.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>yearly</b>
+</td><td valign="bottom">
+Log files are rotated if the current year is not the same as the last rotation.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">FILES</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<i>/var/lib/logrotate.status</i>
+</td><td valign="bottom">
+Default state file.
+</td></tr>
+<tr valign="top"><td>
+<i>/etc/logrotate.conf</i>
+</td><td valign="bottom">
+Configuration options.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<p>
+<h1 class="manpages">AUTHORS</h1>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+Erik Troan &lt;<a href="mailto:ewt@redhat.com">ewt@redhat.com</a>&gt;
+Preston Brown &lt;<a href="mailto:pbrown@redhat.com">pbrown@redhat.com</a>&gt;
+</pre></td></tr>
+</table>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversiona3e5-2.html?tutorial=unix_commands&amp;file=logrotate.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/logrotate.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:54 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

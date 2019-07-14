@@ -1,0 +1,659 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/ping.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>ping - Unix, Linux Command</title>
+<meta name="Description" Content="ping - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>ping - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+ping, ping6 - send ICMP ECHO_REQUEST to network hosts
+<h1 class="manpages">SYNOPSIS</h1>
+<p>
+<b>ping</b> [ <b>-LRUbdfnqrvVaAB</b>]  [ <b>-c </b><i>count</i><b></b>]  [ <b>-i </b><i>interval</i><b></b>]  [ <b>-l </b><i>preload</i><b></b>]  [ <b>-p </b><i>pattern</i><b></b>]  [ <b>-s </b><i>packetsize</i><b></b>]  [ <b>-t </b><i>ttl</i><b></b>]  [ <b>-w </b><i>deadline</i><b></b>]  [ <b>-F </b><i>flowlabel</i><b></b>]  [ <b>-I </b><i>interface</i><b></b>]  [ <b>-M </b><i>hint</i><b></b>]  [ <b>-Q </b><i>tos</i><b></b>]  [ <b>-S </b><i>sndbuf</i><b></b>]  [ <b>-T </b><i>timestamp option</i><b></b>]  [ <b>-W </b><i>timeout</i><b></b>]  [ <b></b><i>hop</i><b></b><i> ...</i>]  <b></b><i>destination</i><b></b>
+<p>
+<h1 class="manpages">DESCRIPTION</h1>
+<p>
+<b>ping</b> uses the ICMP protocol&#146;s mandatory ECHO_REQUEST
+datagram to elicit an ICMP ECHO_RESPONSE from a host or gateway.
+ECHO_REQUEST datagrams (&#145;&#145;pings&#146;&#146;) have an IP and ICMP
+header, followed by a struct timeval and then an arbitrary
+number of &#145;&#145;pad&#146;&#146; bytes used to fill out the packet.
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-a</b>
+</td><td valign="bottom">
+Audible ping.
+</td></tr>
+<tr valign="top"><td>
+<b>-A</b>
+</td><td valign="bottom">
+Adaptive ping. Interpacket interval adapts to round-trip time, so that
+effectively not more than one (or more, if preload is set) unanswered probes
+present in the network. Minimal interval is 200msec for not super-user.
+On networks with low rtt this mode is essentially equivalent to flood mode. 
+</td></tr>
+<tr valign="top"><td>
+<b>-b</b>
+</td><td valign="bottom">
+Allow pinging a broadcast address.
+</td></tr>
+<tr valign="top"><td>
+<b>-B</b>
+</td><td valign="bottom">
+Do not allow <b>ping</b> to change source address of probes.
+The address is bound to one selected when <b>ping</b> starts.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-c </b><i>count</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Stop after sending <i>count</i> ECHO_REQUEST
+packets. With
+<i>deadline</i>
+option, <b>ping</b> waits for
+<i>count</i> ECHO_REPLY packets, until the timeout expires.
+</td></tr>
+<tr valign="top"><td>
+<b>-d</b>
+</td><td valign="bottom">
+Set the SO_DEBUG option on the socket being used.
+Essentially, this socket option is not used by Linux kernel.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-F </b><i>flow label</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Allocate and set 20 bit flow label on echo request packets.
+(Only <b>ping6</b>). If value is zero, kernel allocates random flow label.
+</td></tr>
+<tr valign="top"><td>
+<b>-f</b>
+</td><td valign="bottom">
+Flood ping. For every ECHO_REQUEST sent a period &#145;&#145;.&#146;&#146; is printed,
+while for ever ECHO_REPLY received a backspace is printed.
+This provides a rapid display of how many packets are being dropped.
+If interval is not given, it sets interval to zero and
+outputs packets as fast as they come back or one hundred times per second,
+whichever is more.
+Only the super-user may use this option with zero interval.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-i </b><i>interval</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Wait <i>interval</i> seconds between sending each packet.
+The default is to wait for one second between each packet normally,
+or not to wait in flood mode. Only super-user may set interval
+to values less 0.2 seconds.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-I </b><i>interface address</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set source address to specified interface address. Argument
+may be numeric IP address or name of device. When pinging IPv6
+link-local address this option is required.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-l </b><i>preload</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+If <i>preload</i> is specified,
+<b>ping</b> sends that many packets not waiting for reply.
+Only the super-user may select preload more than 3.
+</td></tr>
+<tr valign="top"><td>
+<b>-L</b>
+</td><td valign="bottom">
+Suppress loopback of multicast packets.  This flag only applies if the ping
+destination is a multicast address.
+</td></tr>
+<tr valign="top"><td>
+<b>-n</b>
+</td><td valign="bottom">
+Numeric output only.
+No attempt will be made to lookup symbolic names for host addresses.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-p </b><i>pattern</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+You may specify up to 16 &#145;&#145;pad&#146;&#146; bytes to fill out the packet you send.
+This is useful for diagnosing data-dependent problems in a network.
+For example, <b>-p ff</b> will cause the sent packet
+to be filled with all ones.
+</td></tr>
+<tr valign="top"><td>
+<b>-Q </b><i>tos</i><b></b>
+</td><td valign="bottom">
+Set Quality of Service -related bits in ICMP datagrams. 
+<i>tos</i> can be either decimal or hex number.
+Traditionally (RFC1349), these have been interpreted as: 0 for reserved
+(currently being redefined as congestion control), 1-4 for Type of Service
+and 5-7 for Precedence.
+Possible settings for Type of Service are: minimal cost: 0x02,
+reliability: 0x04, throughput: 0x08, low delay: 0x10.  Multiple TOS bits
+should not be set simultaneously.  Possible settings for
+special Precedence range from priority (0x20) to net control (0xe0).  You
+must be root (CAP_NET_ADMIN capability) to use Critical or
+higher precedence value.  You cannot set
+bit 0x01 (reserved) unless ECN has been enabled in the kernel.
+In RFC2474, these fields has been redefined as 8-bit Differentiated
+Services (DS), consisting of: bits 0-1 of separate data (ECN will be used,
+here), and bits 2-7 of Differentiated Services Codepoint (DSCP).
+</td></tr>
+<tr valign="top"><td>
+<b>-q</b>
+</td><td valign="bottom">
+Quiet output.
+Nothing is displayed except the summary lines at startup time and
+when finished.
+</td></tr>
+<tr valign="top"><td>
+<b>-R</b>
+</td><td valign="bottom">
+Record route. (IPv4 only)
+Includes the RECORD_ROUTE option in the ECHO_REQUEST
+packet and displays the route buffer on returned packets.
+Note that the IP header is only large enough for nine such routes.
+Many hosts ignore or discard this option.
+</td></tr>
+<tr valign="top"><td>
+<b>-r</b>
+</td><td valign="bottom">
+Bypass the normal routing tables and send directly to a host on an attached
+interface.
+If the host is not on a directly-attached network, an error is returned.
+This option can be used to ping a local host through an interface
+that has no route through it provided the option <b>-I</b> is also
+used.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-s </b><i>packetsize</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies the number of data bytes to be sent. 
+The default is 56, which translates into 64 ICMP
+data bytes when combined with the 8 bytes of ICMP header data.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-S </b><i>sndbuf</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set socket sndbuf. If not specified, it is selected to buffer
+not more than one packet.
+</td></tr>
+<tr valign="top"><td>
+<b>-t </b><i>ttl</i><b></b>
+</td><td valign="bottom">
+Set the IP Time to Live.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-T </b><i>timestamp option</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set special IP timestamp options.
+<i>timestamp option</i> may be either
+<i>tsonly</i> (only timestamps),
+<i>tsandaddr</i> (timestamps and addresses) or
+<i>tsprespec host1 [host2 [host3 [host4]]]</i>
+(timestamp prespecified hops).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-M </b><i>hint</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Select Path MTU Discovery strategy.
+<i>hint</i> may be either <i>do</i>
+(prohibit fragmentation, even local one),
+<i>want</i> (do PMTU discovery, fragment locally when packet size
+is large), or <i>dont</i> (do not set DF flag).
+</td></tr>
+<tr valign="top"><td>
+<b>-U</b>
+</td><td valign="bottom">
+Print full user-to-user latency (the old behaviour). Normally
+<b>ping</b>
+prints network round trip time, which can be different
+f.e. due to DNS failures.
+</td></tr>
+<tr valign="top"><td>
+<b>-v</b>
+</td><td valign="bottom">
+Verbose output.
+</td></tr>
+<tr valign="top"><td>
+<b>-V</b>
+</td><td valign="bottom">
+Show version and exit.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-w </b><i>deadline</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specify a timeout, in seconds, before
+<b>ping</b>
+exits regardless of how many
+packets have been sent or received. In this case
+<b>ping</b>
+does not stop after
+<i>count</i>
+packet are sent, it waits either for
+<i>deadline</i>
+expire or until
+<i>count</i>
+probes are answered or for some error notification from network.  
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-W </b><i>timeout</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Time to wait for a response, in seconds. The option affects only timeout
+in absense of any responses, otherwise <b>ping</b> waits for two RTTs.
+</td></tr>
+<!-- PP ends table -->
+</table>
+When using <b>ping</b> for fault isolation, it should first be run
+on the local host, to verify that the local network interface is up
+and running. Then, hosts and gateways further and further away should be
+&#145;&#145;pinged&#146;&#146;. Round-trip times and packet loss statistics are computed.
+If duplicate packets are received, they are not included in the packet
+loss calculation, although the round trip time of these packets is used
+in calculating the minimum/average/maximum round-trip time numbers.
+When the specified number of packets have been sent (and received) or
+if the program is terminated with a
+SIGINT, a brief summary is displayed. Shorter current statistics
+can be obtained without termination of process with signal
+SIGQUIT.
+<p>
+If <b>ping</b> does not receive any reply packets at all it will
+exit with code 1. If a packet
+<i>count</i>
+and
+<i>deadline</i>
+are both specified, and fewer than
+<i>count</i>
+packets are received by the time the
+<i>deadline</i>
+has arrived, it will also exit with code 1.
+On other error it exits with code 2. Otherwise it exits with code 0. This
+makes it possible to use the exit code to see if a host is alive or
+not.
+<p>
+This program is intended for use in network testing, measurement and
+management.
+Because of the load it can impose on the network, it is unwise to use
+<b>ping</b> during normal operations or from automated scripts.
+<h1 class="manpages">ICMP PACKET DETAILS</h1>
+<p>
+An IP header without options is 20 bytes.
+An ICMP ECHO_REQUEST packet contains an additional 8 bytes worth
+of ICMP header followed by an arbitrary amount of data.
+When a <i>packetsize</i> is given, this indicated the size of this
+extra piece of data (the default is 56). Thus the amount of data received
+inside of an IP packet of type ICMP ECHO_REPLY will always be 8 bytes
+more than the requested data space (the ICMP header).
+<p>
+If the data space is at least of size of struct timeval
+<b>ping</b> uses the beginning bytes of this space to include
+a timestamp which it uses in the computation of round trip times.
+If the data space is shorter, no round trip times are given.
+<h1 class="manpages">DUPLICATE AND DAMAGED PACKETS</h1>
+<p>
+<b>ping</b> will report duplicate and damaged packets.
+Duplicate packets should never occur, and seem to be caused by
+inappropriate link-level retransmissions.
+Duplicates may occur in many situations and are rarely (if ever) a
+good sign, although the presence of low levels of duplicates may not
+always be cause for alarm.
+<p>
+Damaged packets are obviously serious cause for alarm and often
+indicate broken hardware somewhere in the
+<b>ping</b> packet&#146;s path (in the network or in the hosts).
+<h1 class="manpages">TRYING DIFFERENT DATA PATTERNS</h1>
+<p>
+The (inter)network layer should never treat packets differently depending
+on the data contained in the data portion.
+Unfortunately, data-dependent problems have been known to sneak into
+networks and remain undetected for long periods of time.
+In many cases the particular pattern that will have problems is something
+that doesn&#146;t have sufficient &#145;&#145;transitions&#146;&#146;, such as all ones or all
+zeros, or a pattern right at the edge, such as almost all zeros.
+It isn&#146;t necessarily enough to specify a data pattern of all zeros (for
+example) on the command line because the pattern that is of interest is
+at the data link level, and the relationship between what you type and
+what the controllers transmit can be complicated.
+<p>
+This means that if you have a data-dependent problem you will probably
+have to do a lot of testing to find it.
+If you are lucky, you may manage to find a file that either can&#146;t be sent
+across your network or that takes much longer to transfer than other
+similar length files.
+You can then examine this file for repeated patterns that you can test
+using the <b>-p</b> option of <b>ping</b>.
+<h1 class="manpages">TTL DETAILS</h1>
+<p>
+The TTL value of an IP packet represents the maximum number of IP routers
+that the packet can go through before being thrown away.
+In current practice you can expect each router in the Internet to decrement
+the TTL field by exactly one.
+<p>
+The TCP/IP specification states that the TTL field for TCP
+packets should be set to 60, but many systems use smaller values
+(4.3 BSD uses 30, 4.2 used 15).
+<p>
+The maximum possible value of this field is 255, and most Unix systems set
+the TTL field of ICMP ECHO_REQUEST packets to 255.
+This is why you will find you can &#145;&#145;ping&#146;&#146; some hosts, but not reach them
+with
+<b>telnet</b>(1)
+or
+<b>ftp</b>(1).
+<p>
+In normal operation ping prints the ttl value from the packet it receives.
+When a remote system receives a ping packet, it can do one of three things
+with the TTL field in its response:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+Not change it; this is what Berkeley Unix systems did before the
+4.3BSD Tahoe release. In this case the TTL value in the received packet
+will be 255 minus the number of routers in the round-trip path.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+Set it to 255; this is what current Berkeley Unix systems do.
+In this case the TTL value in the received packet will be 255 minus the
+number of routers in the path <b>from</b>
+the remote system <b>to</b> the <b>ping</b>ing host.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+Set it to some other value. Some machines use the same value for
+ICMP packets that they use for TCP packets, for example either 30 or 60.
+Others may use completely wild values.
+</td></tr>
+</table>
+<h1 class="manpages">BUGS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+Many Hosts and Gateways ignore the RECORD_ROUTE option.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+The maximum IP header length is too small for options like
+RECORD_ROUTE to be completely useful.
+There&#146;s not much that that can be done about this, however.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+Flood pinging is not recommended in general, and flood pinging the
+broadcast address should only be done under very controlled conditions.
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<b>netstat</b>(1),
+<b>ifconfig</b>(8).
+<h1 class="manpages">HISTORY</h1>
+<p>
+The <b>ping</b> command appeared in 4.3BSD.
+<p>
+The version described here is its descendant specific to Linux.
+<h1 class="manpages">SECURITY</h1>
+<p>
+<b>ping</b> requires CAP_NET_RAWIO capability
+to be executed. It may be used as set-uid root.
+<h1 class="manpages">AVAILABILITY</h1>
+<p>
+<b>ping</b> is part of <i>iputils</i> package
+and the latest versions are  available in source form for anonymous ftp
+<a href="ftp://ftp.inr.ac.ru/ip-routing/iputils-current.tar.gz.">ftp://ftp.inr.ac.ru/ip-routing/iputils-current.tar.gz.</a>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionda90.html?tutorial=unix_commands&amp;file=ping.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/ping.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

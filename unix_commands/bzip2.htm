@@ -1,0 +1,674 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/bzip2.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:27 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>bzip2 - Unix, Linux Command</title>
+<meta name="Description" Content="bzip2 - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>bzip2 - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- ignored unsupported tag .PU -->
+<h1 class="manpages">NAME</h1>
+bzip2, bunzip2 - a block-sorting file compressor, v1.0.3
+<!-- Need break --><br />
+bzcat - decompresses files to stdout
+<!-- Need break --><br />
+bzip2recover - recovers data from damaged bzip2 files
+<p>
+<h1 class="manpages">SYNOPSIS</h1>
+<!-- ignored unsupported tag .ll -->
+<b>bzip2</b> [<b> -cdfkqstvzVL123456789 </b>] [
+<i>filenames &#46;..</i> ]
+<!-- ignored unsupported tag .ll -->
+<!-- Need break --><br />
+<b>bunzip2</b> [<b> -fkvsVL </b>] [
+<i>filenames &#46;..</i> ]
+<!-- Need break --><br />
+<b>bzcat</b> [<b> -s </b>] [
+<i>filenames &#46;..</i> ]
+<!-- Need break --><br />
+<b>bzip2recover</b> <i>filename</i> <p>
+<h1 class="manpages">DESCRIPTION</h1>
+<i>bzip2</i> compresses files using the Burrows-Wheeler block sorting
+text compression algorithm, and Huffman coding.  Compression is
+generally considerably better than that achieved by more conventional
+LZ77/LZ78-based compressors, and approaches the performance of the PPM
+family of statistical compressors.
+<p>
+The command-line options are deliberately very similar to
+those of
+<i>GNU gzip,</i> but they are not identical.
+<p>
+<i>bzip2</i> expects a list of file names to accompany the
+command-line flags.  Each file is replaced by a compressed version of
+itself, with the name "original_name.bz2". 
+Each compressed file
+has the same modification date, permissions, and, when possible,
+ownership as the corresponding original, so that these properties can
+be correctly restored at decompression time.  File name handling is
+naive in the sense that there is no mechanism for preserving original
+file names, permissions, ownerships or dates in filesystems which lack
+these concepts, or have serious file name length restrictions, such as
+MS-DOS.
+<p>
+<i>bzip2</i> and
+<i>bunzip2</i> will by default not overwrite existing
+files.  If you want this to happen, specify the -f flag.
+<p>
+If no file names are specified,
+<i>bzip2</i> compresses from standard
+input to standard output.  In this case,
+<i>bzip2</i> will decline to
+write compressed output to a terminal, as this would be entirely
+incomprehensible and therefore pointless.
+<p>
+<i>bunzip2</i> (or
+<i>bzip2 -d)</i> decompresses all
+specified files.  Files which were not created by
+<i>bzip2</i> will be detected and ignored, and a warning issued. 
+<i>bzip2</i> attempts to guess the filename for the decompressed file
+from that of the compressed file as follows:
+<p>
+       filename.bz2    becomes   filename
+<br />
+       filename.bz     becomes   filename
+<br />
+       filename.tbz2   becomes   filename.tar
+<br />
+       filename.tbz    becomes   filename.tar
+<br />
+       anyothername    becomes   anyothername.out
+<p>
+If the file does not end in one of the recognised endings,
+<i>.bz2,</i> <i>.bz,</i> <i>.tbz2</i> or
+<i>.tbz,</i> <i>bzip2</i> complains that it cannot
+guess the name of the original file, and uses the original name
+with
+<i>.out</i> appended.
+<p>
+As with compression, supplying no
+filenames causes decompression from
+standard input to standard output.
+<p>
+<i>bunzip2</i> will correctly decompress a file which is the
+concatenation of two or more compressed files.  The result is the
+concatenation of the corresponding uncompressed files.  Integrity
+testing (-t)
+of concatenated
+compressed files is also supported.
+<p>
+You can also compress or decompress files to the standard output by
+giving the -c flag.  Multiple files may be compressed and
+decompressed like this.  The resulting outputs are fed sequentially to
+stdout.  Compression of multiple files
+in this manner generates a stream
+containing multiple compressed file representations.  Such a stream
+can be decompressed correctly only by
+<i>bzip2</i> version 0.9.0 or
+later.  Earlier versions of
+<i>bzip2</i> will stop after decompressing
+the first file in the stream.
+<p>
+<i>bzcat</i> (or
+<i>bzip2 -dc)</i> decompresses all specified files to
+the standard output.
+<p>
+<i>bzip2</i> will read arguments from the environment variables
+<i>BZIP2</i> and
+<i>BZIP,</i> in that order, and will process them
+before any arguments read from the command line.  This gives a
+convenient way to supply default arguments.
+<p>
+Compression is always performed, even if the compressed
+file is slightly
+larger than the original.  Files of less than about one hundred bytes
+tend to get larger, since the compression mechanism has a constant
+overhead in the region of 50 bytes.  Random data (including the output
+of most file compressors) is coded at about 8.05 bits per byte, giving
+an expansion of around 0.5%.
+<p>
+As a self-check for your protection,
+<i></i> bzip2
+uses 32-bit CRCs to
+make sure that the decompressed version of a file is identical to the
+original.  This guards against corruption of the compressed data, and
+against undetected bugs in
+<i>bzip2</i> (hopefully very unlikely).  The
+chances of data corruption going undetected is microscopic, about one
+chance in four billion for each file processed.  Be aware, though, that
+the check occurs upon decompression, so it can only tell you that
+something is wrong.  It can&#146;t help you
+recover the original uncompressed
+data.  You can use
+<i>bzip2recover</i> to try to recover data from
+damaged files.
+<p>
+Return values: 0 for a normal exit, 1 for environmental problems (file
+not found, invalid flags, I/O errors, &c), 2 to indicate a corrupt
+compressed file, 3 for an internal consistency error (eg, bug) which
+caused
+<i>bzip2</i> to panic.
+<p>
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>-c --stdout</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Compress or decompress to standard output.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-d --decompress</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Force decompression. 
+<i>bzip2,</i> <i>bunzip2</i> and
+<i>bzcat</i> are
+really the same program, and the decision about what actions to take is
+done on the basis of which name is used.  This flag overrides that
+mechanism, and forces
+<i>bzip2</i> to decompress.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-z --compress</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The complement to -d: forces compression, regardless of the
+invocation name.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-t --test</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Check integrity of the specified file(s), but don&#146;t decompress them.
+This really performs a trial decompression and throws away the result.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-f --force</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Force overwrite of output files.  Normally,
+<i>bzip2</i> will not overwrite
+existing output files.  Also forces
+<i>bzip2</i> to break hard links
+to files, which it otherwise wouldn&#146;t do.
+<p>
+bzip2 normally declines to decompress files which don&#146;t have the
+correct magic header bytes.  If forced (-f), however, it will pass
+such files through unmodified.  This is how GNU gzip behaves.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-k --keep</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Keep (don&#146;t delete) input files during compression
+or decompression.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-s --small</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Reduce memory usage, for compression, decompression and testing.  Files
+are decompressed and tested using a modified algorithm which only
+requires 2.5 bytes per block byte.  This means any file can be
+decompressed in 2300k of memory, albeit at about half the normal speed.
+<p>
+During compression, -s selects a block size of 200k, which limits
+memory use to around the same figure, at the expense of your compression
+ratio.  In short, if your machine is low on memory (8 megabytes or
+less), use -s for everything.  See MEMORY MANAGEMENT below.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-q --quiet</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Suppress non-essential warning messages.  Messages pertaining to
+I/O errors and other critical events will not be suppressed.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-v --verbose</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Verbose mode -- show the compression ratio for each file processed.
+Further -v&#146;s increase the verbosity level, spewing out lots of
+information which is primarily of interest for diagnostic purposes.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-L --license -V --version</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Display the software version, license terms and conditions.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-1 (or --fast) to -9 (or --best)</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set the block size to 100 k, 200 k ..  900 k when compressing.  Has no
+effect when decompressing.  See MEMORY MANAGEMENT below.
+The --fast and --best aliases are primarily for GNU gzip
+compatibility.  In particular, --fast doesn&#146;t make things
+significantly faster. 
+And --best merely selects the default behaviour.
+</td></tr>
+<tr valign="top"><td>
+<b>--</b> </td><td valign="bottom">
+Treats all subsequent arguments as file names, even if they start
+with a dash.  This is so you can handle files with names beginning
+with a dash, for example: bzip2 -- -myfilename.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--repetitive-fast --repetitive-best</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+These flags are redundant in versions 0.9.5 and above.  They provided
+some coarse control over the behaviour of the sorting algorithm in
+earlier versions, which was sometimes useful.  0.9.5 and above have an
+improved algorithm which renders these flags irrelevant.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">MEMORY MANAGEMENT</h1>
+<i>bzip2</i> compresses large files in blocks.  The block size affects
+both the compression ratio achieved, and the amount of memory needed for
+compression and decompression.  The flags -1 through -9
+specify the block size to be 100,000 bytes through 900,000 bytes (the
+default) respectively.  At decompression time, the block size used for
+compression is read from the header of the compressed file, and
+<i>bunzip2</i> then allocates itself just enough memory to decompress
+the file.  Since block sizes are stored in compressed files, it follows
+that the flags -1 to -9 are irrelevant to and so ignored
+during decompression.
+<p>
+Compression and decompression requirements,
+in bytes, can be estimated as:
+<p>
+       Compression:   400k + ( 8 x block size )
+<p>
+       Decompression: 100k + ( 4 x block size ), or
+<br />
+                      100k + ( 2.5 x block size )
+<p>
+Larger block sizes give rapidly diminishing marginal returns.  Most of
+the compression comes from the first two or three hundred k of block
+size, a fact worth bearing in mind when using
+<i>bzip2</i> on small machines.
+It is also important to appreciate that the decompression memory
+requirement is set at compression time by the choice of block size.
+<p>
+For files compressed with the default 900k block size,
+<i>bunzip2</i> will require about 3700 kbytes to decompress.  To support decompression
+of any file on a 4 megabyte machine,
+<i>bunzip2</i> has an option to
+decompress using approximately half this amount of memory, about 2300
+kbytes.  Decompression speed is also halved, so you should use this
+option only where necessary.  The relevant flag is -s.
+<p>
+In general, try and use the largest block size memory constraints allow,
+since that maximises the compression achieved.  Compression and
+decompression speed are virtually unaffected by block size.
+<p>
+Another significant point applies to files which fit in a single block
+-- that means most files you&#146;d encounter using a large block size.  The
+amount of real memory touched is proportional to the size of the file,
+since the file is smaller than a block.  For example, compressing a file
+20,000 bytes long with the flag -9 will cause the compressor to
+allocate around 7600k of memory, but only touch 400k + 20000 * 8 = 560
+kbytes of it.  Similarly, the decompressor will allocate 3700k but only
+touch 100k + 20000 * 4 = 180 kbytes.
+<p>
+Here is a table which summarises the maximum memory usage for different
+block sizes.  Also recorded is the total compressed size for 14 files of
+the Calgary Text Compression Corpus totalling 3,141,622 bytes.  This
+column gives some feel for how compression varies with block size.
+These figures tend to understate the advantage of larger block sizes for
+larger files, since the Corpus is dominated by smaller files.
+<p>
+           Compress   Decompress   Decompress   Corpus
+<br />
+    Flag     usage      usage       -s usage     Size
+<p>
+     -1      1200k       500k         350k      914704
+<br />
+     -2      2000k       900k         600k      877703
+<br />
+     -3      2800k      1300k         850k      860338
+<br />
+     -4      3600k      1700k        1100k      846899
+<br />
+     -5      4400k      2100k        1350k      845160
+<br />
+     -6      5200k      2500k        1600k      838626
+<br />
+     -7      6100k      2900k        1850k      834096
+<br />
+     -8      6800k      3300k        2100k      828642
+<br />
+     -9      7600k      3700k        2350k      828642
+<p>
+<h1 class="manpages">RECOVERING DATA FROM DAMAGED FILES</h1>
+<i>bzip2</i> compresses files in blocks, usually 900kbytes long.  Each
+block is handled independently.  If a media or transmission error causes
+a multi-block .bz2
+file to become damaged, it may be possible to
+recover data from the undamaged blocks in the file.
+<p>
+The compressed representation of each block is delimited by a 48-bit
+pattern, which makes it possible to find the block boundaries with
+reasonable certainty.  Each block also carries its own 32-bit CRC, so
+damaged blocks can be distinguished from undamaged ones.
+<p>
+<i>bzip2recover</i> is a simple program whose purpose is to search for
+blocks in .bz2 files, and write each block out into its own .bz2
+file.  You can then use
+<i>bzip2</i> -t
+to test the
+integrity of the resulting files, and decompress those which are
+undamaged.
+<p>
+<i>bzip2recover</i> takes a single argument, the name of the damaged file,
+and writes a number of files "rec00001file.bz2",
+"rec00002file.bz2", etc, containing the  extracted  blocks.
+The  output  filenames  are  designed  so  that the use of
+wildcards in subsequent processing -- for example, 
+"bzip2 -dc  rec*file.bz2 &gt; recovered_data" -- processes the files in
+the correct order.
+<p>
+<i>bzip2recover</i> should be of most use dealing with large .bz2
+files,  as  these will contain many blocks.  It is clearly
+futile to use it on damaged single-block  files,  since  a
+damaged  block  cannot  be recovered.  If you wish to minimise
+any potential data loss through media  or  transmission errors,
+you might consider compressing with a smaller
+block size.
+<p>
+<h1 class="manpages">PERFORMANCE NOTES</h1>
+The sorting phase of compression gathers together similar strings in the
+file.  Because of this, files containing very long runs of repeated
+symbols, like "aabaabaabaab ..."  (repeated several hundred times) may
+compress more slowly than normal.  Versions 0.9.5 and above fare much
+better than previous versions in this respect.  The ratio between
+worst-case and average-case compression time is in the region of 10:1.
+For previous versions, this figure was more like 100:1.  You can use the
+-vvvv option to monitor progress in great detail, if you want.
+<p>
+Decompression speed is unaffected by these phenomena.
+<p>
+<i>bzip2</i> usually allocates several megabytes of memory to operate
+in, and then charges all over it in a fairly random fashion.  This means
+that performance, both for compressing and decompressing, is largely
+determined by the speed at which your machine can service cache misses.
+Because of this, small changes to the code to reduce the miss rate have
+been observed to give disproportionately large performance improvements.
+I imagine
+<i>bzip2</i> will perform best on machines with very large caches.
+<p>
+<h1 class="manpages">CAVEATS</h1>
+I/O error messages are not as helpful as they could be.
+<i>bzip2</i> tries hard to detect I/O errors and exit cleanly, but the details of
+what the problem is sometimes seem rather misleading.
+<p>
+This manual page pertains to version 1.0.3 of
+<i>bzip2.</i> Compressed data created by this version is entirely forwards and
+backwards compatible with the previous public releases, versions
+0.1pl2, 0.9.0, 0.9.5, 1.0.0, 1.0.1 and 1.0.2, but with the following
+exception: 0.9.0 and above can correctly decompress multiple
+concatenated compressed files.  0.1pl2 cannot do this; it will stop
+after decompressing just the first file in the stream.
+<p>
+<i>bzip2recover</i> versions prior to 1.0.2 used 32-bit integers to represent
+bit positions in compressed files, so they could not handle compressed
+files more than 512 megabytes long.  Versions 1.0.2 and above use
+64-bit ints on some platforms which support them (GNU supported
+targets, and Windows).  To establish whether or not bzip2recover was
+built with such a limitation, run it without arguments.  In any event
+you can build yourself an unlimited version if you can recompile it
+with MaybeUInt64 set to be an unsigned 64-bit integer.
+<p>
+<p>
+<p>
+<h1 class="manpages">AUTHOR</h1>
+Julian Seward, jsewardbzip.org.
+<p>
+<a href="http://www.bzip.org/">http://www.bzip.org</a>
+<p>
+The ideas embodied in
+<i>bzip2</i> are due to (at least) the following
+people: Michael Burrows and David Wheeler (for the block sorting
+transformation), David Wheeler (again, for the Huffman coder), Peter
+Fenwick (for the structured coding model in the original
+<i>bzip,</i> and many refinements), and Alistair Moffat, Radford Neal and Ian Witten
+(for the arithmetic coder in the original
+<i>bzip).</i> I am much
+indebted for their help, support and advice.  See the manual in the
+source distribution for pointers to sources of documentation.  Christian
+von Roques encouraged me to look for faster sorting algorithms, so as to
+speed up compression.  Bela Lubkin encouraged me to improve the
+worst-case compression performance. 
+Donna Robinson XMLised the documentation.
+The bz* scripts are derived from those of GNU gzip.
+Many people sent patches, helped
+with portability problems, lent machines, gave advice and were generally
+helpful.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion15db.html?tutorial=unix_commands&amp;file=bzip2.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/bzip2.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:27 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

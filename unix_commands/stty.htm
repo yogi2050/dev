@@ -1,0 +1,915 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/stty.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:28 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>stty - Unix, Linux Command</title>
+<meta name="Description" Content="stty - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>stty - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+stty - change and print terminal line settings
+<h1 class="manpages">SYNOPSIS</h1>
+<b>stty</b> [<i>-F DEVICE</i>] [<i>--file=DEVICE</i>] [<i>SETTING</i>]...
+<!-- Need break --><br />
+<b>stty</b> [<i>-F DEVICE</i>] [<i>--file=DEVICE</i>] [<i>-a|--all</i>]
+<!-- Need break --><br />
+<b>stty</b> [<i>-F DEVICE</i>] [<i>--file=DEVICE</i>] [<i>-g|--save</i>]
+<h1 class="manpages">DESCRIPTION</h1>
+<p>
+Print or change terminal characteristics.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-a</b>, <b>--all</b>
+</td><td valign="bottom">
+print all current settings in human-readable form
+</td></tr>
+<tr valign="top"><td>
+<b>-g</b>, <b>--save</b>
+</td><td valign="bottom">
+print all current settings in a stty-readable form
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-F</b>, <b>--file</b>=<i>DEVICE</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+open and use the specified DEVICE instead of stdin
+</td></tr>
+<tr valign="top"><td>
+<b>--help</b>
+</td><td valign="bottom">
+display this help and exit
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--version</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+output version information and exit
+</td></tr>
+<!-- PP ends table -->
+</table>
+Optional - before SETTING indicates negation.  An * marks non-POSIX
+settings.  The underlying system defines which settings are available.
+<h2><i>Special characters:</i></h2>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+* dsusp CHAR
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+CHAR will send a terminal stop signal once input flushed
+</td></tr>
+<tr valign="top"><td colspan="2">
+eof CHAR
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+CHAR will send an end of file (terminate the input)
+</td></tr>
+<tr valign="top"><td colspan="2">
+eol CHAR
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+CHAR will end the line
+</td></tr>
+<tr valign="top"><td colspan="2">
+* eol2 CHAR
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+alternate CHAR for ending the line
+</td></tr>
+<tr valign="top"><td colspan="2">
+erase CHAR
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+CHAR will erase the last character typed
+</td></tr>
+<tr valign="top"><td colspan="2">
+intr CHAR
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+CHAR will send an interrupt signal
+</td></tr>
+<tr valign="top"><td colspan="2">
+kill CHAR
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+CHAR will erase the current line
+</td></tr>
+<tr valign="top"><td colspan="2">
+* lnext CHAR
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+CHAR will enter the next character quoted
+</td></tr>
+<tr valign="top"><td colspan="2">
+quit CHAR
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+CHAR will send a quit signal
+</td></tr>
+<tr valign="top"><td colspan="2">
+* rprnt CHAR
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+CHAR will redraw the current line
+</td></tr>
+<tr valign="top"><td colspan="2">
+start CHAR
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+CHAR will restart the output after stopping it
+</td></tr>
+<tr valign="top"><td colspan="2">
+stop CHAR
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+CHAR will stop the output
+</td></tr>
+<tr valign="top"><td colspan="2">
+susp CHAR
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+CHAR will send a terminal stop signal
+</td></tr>
+<tr valign="top"><td colspan="2">
+* swtch CHAR
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+CHAR will switch to a different shell layer
+</td></tr>
+<tr valign="top"><td colspan="2">
+* werase CHAR
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+CHAR will erase the last word typed
+</td></tr>
+</table>
+<h2><i>Special settings:</i></h2>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+N
+</td><td valign="bottom">
+set the input and output speeds to N bauds
+</td></tr>
+<tr valign="top"><td colspan="2">
+* cols N
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+tell the kernel that the terminal has N columns
+</td></tr>
+<tr valign="top"><td colspan="2">
+* columns N
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+same as cols N
+</td></tr>
+<tr valign="top"><td colspan="2">
+ispeed N
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+set the input speed to N
+</td></tr>
+<tr valign="top"><td colspan="2">
+* line N
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+use line discipline N
+</td></tr>
+<tr valign="top"><td>
+min N
+</td><td valign="bottom">
+with <b>-icanon</b>, set N characters minimum for a completed read
+</td></tr>
+<tr valign="top"><td colspan="2">
+ospeed N
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+set the output speed to N
+</td></tr>
+<tr valign="top"><td colspan="2">
+* rows N
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+tell the kernel that the terminal has N rows
+</td></tr>
+<tr valign="top"><td>
+* size
+</td><td valign="bottom">
+print the number of rows and columns according to the kernel
+</td></tr>
+<tr valign="top"><td>
+speed
+</td><td valign="bottom">
+print the terminal speed
+</td></tr>
+<tr valign="top"><td>
+time N
+</td><td valign="bottom">
+with <b>-icanon</b>, set read timeout of N tenths of a second
+</td></tr>
+</table>
+<h2><i>Control settings:</i></h2>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+[-]clocal
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+disable modem control signals
+</td></tr>
+<tr valign="top"><td>
+[-]cread
+</td><td valign="bottom">
+allow input to be received
+</td></tr>
+<tr valign="top"><td colspan="2">
+* [-]crtscts
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+enable RTS/CTS handshaking (disables DTR/DSR)
+</td></tr>
+<tr valign="top"><td colspan="2">
+* [-]cdtrdsr
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+enable DTR/DSR handshaking (disables RTS/CTS), no stty
+readable form available, has to be supported by device
+</td></tr>
+<tr valign="top"><td>
+csN
+</td><td valign="bottom">
+set character size to N bits, N in [5..8]
+</td></tr>
+<tr valign="top"><td colspan="2">
+[-]cstopb
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+use two stop bits per character (one with &#145;-&#146;)
+</td></tr>
+<tr valign="top"><td>
+[-]hup
+</td><td valign="bottom">
+send a hangup signal when the last process closes the tty
+</td></tr>
+<tr valign="top"><td>
+[-]hupcl
+</td><td valign="bottom">
+same as [-]hup
+</td></tr>
+<tr valign="top"><td colspan="2">
+[-]parenb
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+generate parity bit in output and expect parity bit in input
+</td></tr>
+<tr valign="top"><td colspan="2">
+[-]parodd
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+set odd parity (even with &#145;-&#146;)
+</td></tr>
+</table>
+<h2><i>Input settings:</i></h2>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+[-]brkint
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+breaks cause an interrupt signal
+</td></tr>
+<tr valign="top"><td>
+[-]icrnl
+</td><td valign="bottom">
+translate carriage return to newline
+</td></tr>
+<tr valign="top"><td colspan="2">
+[-]ignbrk
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+ignore break characters
+</td></tr>
+<tr valign="top"><td>
+[-]igncr
+</td><td valign="bottom">
+ignore carriage return
+</td></tr>
+<tr valign="top"><td colspan="2">
+[-]ignpar
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+ignore characters with parity errors
+</td></tr>
+<tr valign="top"><td colspan="2">
+* [-]imaxbel
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+beep and do not flush a full input buffer on a character
+</td></tr>
+<tr valign="top"><td>
+[-]inlcr
+</td><td valign="bottom">
+translate newline to carriage return
+</td></tr>
+<tr valign="top"><td>
+[-]inpck
+</td><td valign="bottom">
+enable input parity checking
+</td></tr>
+<tr valign="top"><td colspan="2">
+[-]istrip
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+clear high (8th) bit of input characters
+</td></tr>
+<tr valign="top"><td colspan="2">
+* [-]iutf8
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+assume input characters are UTF-8 encoded
+</td></tr>
+<tr valign="top"><td colspan="2">
+* [-]iuclc
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+translate uppercase characters to lowercase
+</td></tr>
+<tr valign="top"><td colspan="2">
+* [-]ixany
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+let any character restart output, not only start character
+</td></tr>
+<tr valign="top"><td>
+[-]ixoff
+</td><td valign="bottom">
+enable sending of start/stop characters
+</td></tr>
+<tr valign="top"><td>
+[-]ixon
+</td><td valign="bottom">
+enable XON/XOFF flow control
+</td></tr>
+<tr valign="top"><td colspan="2">
+[-]parmrk
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+mark parity errors (with a 255-0-character sequence)
+</td></tr>
+<tr valign="top"><td colspan="2">
+[-]tandem
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+same as [-]ixoff
+</td></tr>
+</table>
+<h2><i>Output settings:</i></h2>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+* bsN
+</td><td valign="bottom">
+backspace delay style, N in [0..1]
+</td></tr>
+<tr valign="top"><td>
+* crN
+</td><td valign="bottom">
+carriage return delay style, N in [0..3]
+</td></tr>
+<tr valign="top"><td>
+* ffN
+</td><td valign="bottom">
+form feed delay style, N in [0..1]
+</td></tr>
+<tr valign="top"><td>
+* nlN
+</td><td valign="bottom">
+newline delay style, N in [0..1]
+</td></tr>
+<tr valign="top"><td colspan="2">
+* [-]ocrnl
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+translate carriage return to newline
+</td></tr>
+<tr valign="top"><td colspan="2">
+* [-]ofdel
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+use delete characters for fill instead of null characters
+</td></tr>
+<tr valign="top"><td colspan="2">
+* [-]ofill
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+use fill (padding) characters instead of timing for delays
+</td></tr>
+<tr valign="top"><td colspan="2">
+* [-]olcuc
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+translate lowercase characters to uppercase
+</td></tr>
+<tr valign="top"><td colspan="2">
+* [-]onlcr
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+translate newline to carriage return-newline
+</td></tr>
+<tr valign="top"><td colspan="2">
+* [-]onlret
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+newline performs a carriage return
+</td></tr>
+<tr valign="top"><td colspan="2">
+* [-]onocr
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+do not print carriage returns in the first column
+</td></tr>
+<tr valign="top"><td>
+[-]opost
+</td><td valign="bottom">
+postprocess output
+</td></tr>
+<tr valign="top"><td>
+* tabN
+</td><td valign="bottom">
+horizontal tab delay style, N in [0..3]
+</td></tr>
+<tr valign="top"><td>
+* tabs
+</td><td valign="bottom">
+same as tab0
+</td></tr>
+<tr valign="top"><td>
+* <b>-tabs</b>
+</td><td valign="bottom">
+same as tab3
+</td></tr>
+<tr valign="top"><td>
+* vtN
+</td><td valign="bottom">
+vertical tab delay style, N in [0..1]
+</td></tr>
+</table>
+<h2><i>Local settings:</i></h2>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+[-]crterase
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+echo erase characters as backspace-space-backspace
+</td></tr>
+<tr valign="top"><td colspan="2">
+* crtkill
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+kill all line by obeying the echoprt and echoe settings
+</td></tr>
+<tr valign="top"><td colspan="2">
+* <b>-crtkill</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+kill all line by obeying the echoctl and echok settings
+</td></tr>
+<tr valign="top"><td colspan="2">
+* [-]ctlecho
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+echo control characters in hat notation (&#145;^c&#146;)
+</td></tr>
+<tr valign="top"><td>
+[-]echo
+</td><td valign="bottom">
+echo input characters
+</td></tr>
+<tr valign="top"><td colspan="2">
+* [-]echoctl
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+same as [-]ctlecho
+</td></tr>
+<tr valign="top"><td>
+[-]echoe
+</td><td valign="bottom">
+same as [-]crterase
+</td></tr>
+<tr valign="top"><td>
+[-]echok
+</td><td valign="bottom">
+echo a newline after a kill character
+</td></tr>
+<tr valign="top"><td colspan="2">
+* [-]echoke
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+same as [-]crtkill
+</td></tr>
+<tr valign="top"><td colspan="2">
+[-]echonl
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+echo newline even if not echoing other characters
+</td></tr>
+<tr valign="top"><td colspan="2">
+* [-]echoprt
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+echo erased characters backward, between &#145;&#92;&#146; and &#146;/&#146;
+</td></tr>
+<tr valign="top"><td colspan="2">
+[-]icanon
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+enable erase, kill, werase, and rprnt special characters
+</td></tr>
+<tr valign="top"><td colspan="2">
+[-]iexten
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+enable non-POSIX special characters
+</td></tr>
+<tr valign="top"><td>
+[-]isig
+</td><td valign="bottom">
+enable interrupt, quit, and suspend special characters
+</td></tr>
+<tr valign="top"><td colspan="2">
+[-]noflsh
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+disable flushing after interrupt and quit special characters
+</td></tr>
+<tr valign="top"><td colspan="2">
+* [-]prterase
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+same as [-]echoprt
+</td></tr>
+<tr valign="top"><td colspan="2">
+* [-]tostop
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+stop background jobs that try to write to the terminal
+</td></tr>
+<tr valign="top"><td colspan="2">
+* [-]xcase
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+with icanon, escape with &#145;&#92;&#146; for uppercase characters
+</td></tr>
+</table>
+<h2><i>Combination settings:</i></h2>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+* [-]LCASE
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+same as [-]lcase
+</td></tr>
+<tr valign="top"><td>
+cbreak
+</td><td valign="bottom">
+same as <b>-icanon</b>
+</td></tr>
+<tr valign="top"><td>
+<b>-cbreak</b>
+</td><td valign="bottom">
+same as icanon
+</td></tr>
+<tr valign="top"><td>
+cooked
+</td><td valign="bottom">
+same as brkint ignpar istrip icrnl ixon opost isig
+icanon, eof and eol characters to their default values
+</td></tr>
+<tr valign="top"><td>
+<b>-cooked</b>
+</td><td valign="bottom">
+same as raw
+</td></tr>
+<tr valign="top"><td>
+crt
+</td><td valign="bottom">
+same as echoe echoctl echoke
+</td></tr>
+<tr valign="top"><td>
+dec
+</td><td valign="bottom">
+same as echoe echoctl echoke <b>-ixany</b> intr ^c erase 0177
+kill ^u
+</td></tr>
+<tr valign="top"><td colspan="2">
+* [-]decctlq
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+same as [-]ixany
+</td></tr>
+<tr valign="top"><td>
+ek
+</td><td valign="bottom">
+erase and kill characters to their default values
+</td></tr>
+<tr valign="top"><td>
+evenp
+</td><td valign="bottom">
+same as parenb <b>-parodd</b> cs7
+</td></tr>
+<tr valign="top"><td>
+<b>-evenp</b>
+</td><td valign="bottom">
+same as <b>-parenb</b> cs8
+</td></tr>
+<tr valign="top"><td colspan="2">
+* [-]lcase
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+same as xcase iuclc olcuc
+</td></tr>
+<tr valign="top"><td>
+litout
+</td><td valign="bottom">
+same as <b>-parenb</b> <b>-istrip</b> <b>-opost</b> cs8
+</td></tr>
+<tr valign="top"><td>
+<b>-litout</b>
+</td><td valign="bottom">
+same as parenb istrip opost cs7
+</td></tr>
+<tr valign="top"><td>
+nl
+</td><td valign="bottom">
+same as <b>-icrnl</b> <b>-onlcr</b>
+</td></tr>
+<tr valign="top"><td>
+<b>-nl</b>
+</td><td valign="bottom">
+same as icrnl <b>-inlcr</b> <b>-igncr</b> onlcr <b>-ocrnl</b> <b>-onlret</b>
+</td></tr>
+<tr valign="top"><td>
+oddp
+</td><td valign="bottom">
+same as parenb parodd cs7
+</td></tr>
+<tr valign="top"><td>
+<b>-oddp</b>
+</td><td valign="bottom">
+same as <b>-parenb</b> cs8
+</td></tr>
+<tr valign="top"><td colspan="2">
+[-]parity
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+same as [-]evenp
+</td></tr>
+<tr valign="top"><td>
+pass8
+</td><td valign="bottom">
+same as <b>-parenb</b> <b>-istrip</b> cs8
+</td></tr>
+<tr valign="top"><td>
+<b>-pass8</b>
+</td><td valign="bottom">
+same as parenb istrip cs7
+</td></tr>
+<tr valign="top"><td>
+raw
+</td><td valign="bottom">
+same as <b>-ignbrk</b> <b>-brkint</b> <b>-ignpar</b> <b>-parmrk</b> <b>-inpck</b> <b>-istrip</b>
+<b>-inlcr</b> <b>-igncr</b> <b>-icrnl</b>  <b>-ixon</b>  <b>-ixoff</b>  <b>-iuclc</b>  <b>-ixany</b>
+<b>-imaxbel</b> <b>-opost</b> <b>-isig</b> <b>-icanon</b> <b>-xcase</b> min 1 time 0
+</td></tr>
+<tr valign="top"><td>
+<b>-raw</b>
+</td><td valign="bottom">
+same as cooked
+</td></tr>
+<tr valign="top"><td>
+sane
+</td><td valign="bottom">
+same as cread <b>-ignbrk</b> brkint <b>-inlcr</b> <b>-igncr</b> icrnl <b>-iutf8</b>
+<b>-ixoff</b> <b>-iuclc</b> <b>-ixany</b> imaxbel opost <b>-olcuc</b> <b>-ocrnl</b> onlcr
+<b>-onocr</b> <b>-onlret</b> <b>-ofill</b> <b>-ofdel</b> nl0 cr0 tab0 bs0 vt0 ff0
+isig icanon iexten echo echoe echok <b>-echonl</b> <b>-noflsh</b>
+<b>-xcase</b> <b>-tostop</b> <b>-echoprt</b> echoctl echoke, all special
+characters to their default values.
+</td></tr>
+<!-- PP ends table -->
+</table>
+Handle the tty line connected to standard input.  Without arguments,
+prints baud rate, line discipline, and deviations from stty sane.  In
+settings, CHAR is taken literally, or coded as in ^c, 0x37, 0177 or
+127; special values ^- or undef used to disable special characters.
+<h1 class="manpages">AUTHOR</h1>
+Written by David MacKenzie.
+<h1 class="manpages">REPORTING BUGS</h1>
+Report bugs to &lt;<a href="mailto:bug-coreutils@gnu.org">bug-coreutils@gnu.org</a>&gt;.
+<h1 class="manpages">COPYRIGHT</h1>
+Copyright &#169; 2006 Free Software Foundation, Inc.
+<!-- Need break --><br />
+This is free software.  You may redistribute copies of it under the terms of
+the GNU General Public License &lt;<a href="http://www.gnu.org/licenses/gpl.html">http://www.gnu.org/licenses/gpl.html</a>&gt;.
+There is NO WARRANTY, to the extent permitted by law.
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<b>stty</b> is maintained as a Texinfo manual.  If the
+<b>info</b> and
+<b>stty</b> programs are properly installed at your site, the command
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<b>info stty</b> </td></tr>
+<!-- PP ends table -->
+</table>
+should give you access to the complete manual.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion9e53.html?tutorial=unix_commands&amp;file=stty.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/stty.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:29 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

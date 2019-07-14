@@ -1,0 +1,617 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_system_calls/semop.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>semop() - Unix, Linux System Call</title>
+<meta name="Description" Content="semop() - Unix, Linux System Calls Manual Pages (Manpages) ,  Learning fundamentals of UNIX in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - System Calls</b></a></li>
+<li><a class="left" target="_top" href="../unix_commands/index.html">Unix - Commands List</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>semop() - Unix, Linux System Call</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+semop, semtimedop - semaphore operations
+<h1 class="manpages">SYNOPSIS</h1>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<b></b> 
+#include &lt;sys/types.h&gt;
+<b></b> 
+#include &lt;sys/ipc.h&gt;
+<b></b> 
+#include &lt;sys/sem.h&gt;
+</pre></td></tr>
+</table>
+<p>
+<b>int semop(int </b><i>semid</i><b>,</b> <b>struct sembuf *</b><i>sops</i><b>,</b> <b>unsigned </b><i>nsops</i><b>);</b> <p>
+<b>int semtimedop(int </b><i>semid</i><b>,</b> <b>struct sembuf *</b><i>sops</i><b>,</b> <b>unsigned </b><i>nsops</i><b>,</b> <b>struct timespec *</b><i>timeout</i><b>);</b> <h1 class="manpages">DESCRIPTION</h1>
+Each semaphore in a semaphore set has the following associated values:
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+unsigned short  semval;   /* semaphore value */
+unsigned short  semzcnt;  /* # waiting for zero */
+unsigned short  semncnt;  /* # waiting for increase */
+pid_t           sempid;   /* process that did last op */
+<p>
+<!-- ignored unsupported tag .in -->
+</pre></td></tr>
+</table>
+<b>semop</b>() performs operations on selected semaphores in the set indicated by
+<i>semid</i>. Each of the
+<i>nsops</i> elements in the array pointed to by
+<i>sops</i> specifies an operation to be performed on a single semaphore.
+The elements of this structure are of type
+<i>struct sembuf</i>, containing the following members:
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+unsigned short sem_num;  /* semaphore number */
+short          sem_op;   /* semaphore operation */
+short          sem_flg;  /* operation flags */
+<p>
+<!-- ignored unsupported tag .in -->
+</pre></td></tr>
+</table>
+Flags recognized in
+<i>sem_flg</i> are
+<b>IPC_NOWAIT</b> and
+<b>SEM_UNDO</b>. If an operation specifies
+<b>SEM_UNDO</b>, it will be automatically undone when the process terminates.
+<p>
+The set of operations contained in
+<i>sops</i> is performed
+<i>atomically</i>, that is, the operations are performed at the same time, and only
+if they can all be simultaneously performed.
+The behaviour of the system call if not all operations can be
+performed immediately depends on the presence of the
+<b>IPC_NOWAIT</b> flag in the individual
+<i>sem_flg</i> fields, as noted below.
+<p>
+Each operation is performed on the
+<i>sem_num</i>-th semaphore of the semaphore set, where the first semaphore of the set
+is numbered 0.
+There are three types of operation, distinguished by the value of
+<i>sem_op</i>. <p>
+If
+<i>sem_op</i> is a positive integer, the operation adds this value to
+the semaphore value
+(<i>semval</i>). Furthermore, if
+<b>SEM_UNDO</b> is specified for this operation, the system updates the process undo count
+(<i>semadj</i>) for this semaphore.
+This operation can always proceed &#151; it never forces a process to wait.
+The calling process must have alter permission on the semaphore set.
+<p>
+If
+<i>sem_op</i> is zero, the process must have read permission on the semaphore
+set.
+This is a "wait-for-zero" operation: if
+<i>semval</i> is zero, the operation can immediately proceed.
+Otherwise, if
+<b>IPC_NOWAIT</b> is specified in
+<i>sem_flg</i>, <b>semop</b>() fails with
+<i>errno</i> set to
+<b>EAGAIN</b> (and none of the operations in
+<i>sops</i> is performed).
+Otherwise
+<i>semzcnt</i> (the count of processes waiting until this semaphore&#146;s value becomes zero)
+is incremented by one and the process sleeps until
+one of the following occurs:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+<i>semval</i> becomes 0, at which time the value of
+<i>semzcnt</i> is decremented.
+</td></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+The semaphore set
+is removed:
+<b>semop</b>() fails, with
+<i>errno</i> set to
+<b>EIDRM</b>. </td></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+The calling process catches a signal:
+the value of
+<i>semzcnt</i> is decremented and
+<b>semop</b>() fails, with
+<i>errno</i> set to
+<b>EINTR</b>. </td></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+The time limit specified by
+<i>timeout</i> in a
+<b>semtimedop</b>() call expires:
+<b>semop</b>() fails, with
+<i>errno</i> set to
+<b>EAGAIN</b>. </td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+If
+<i>sem_op</i> is less than zero, the process must have alter permission on the
+semaphore set.
+If
+<i>semval</i> is greater than or equal to the absolute value of
+<i>sem_op</i>, the operation can proceed immediately:
+the absolute value of
+<i>sem_op</i> is subtracted from
+<i>semval</i>, and, if
+<b>SEM_UNDO</b> is specified for this operation, the system updates the process undo count
+(<i>semadj</i>) for this semaphore.
+If the absolute value of
+<i>sem_op</i> is greater than
+<i>semval</i>, and
+<b>IPC_NOWAIT</b> is specified in
+<i>sem_flg</i>, <b>semop</b>() fails, with
+<i>errno</i> set to
+<b>EAGAIN</b> (and none of the operations in
+<i>sops</i> is performed).
+Otherwise
+<i>semncnt</i> (the counter of processes waiting for this semaphore&#146;s value to increase)
+is incremented by one and the process sleeps until
+one of the following occurs:
+</td></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+<i>semval</i> becomes greater than or equal to the absolute value of
+<i>sem_op</i>, at which time the value of
+<i>semncnt</i> is decremented, the absolute value of
+<i>sem_op</i> is subtracted from
+<i>semval</i> and, if
+<b>SEM_UNDO</b> is specified for this operation, the system updates the process undo count
+(<i>semadj</i>) for this semaphore.
+</td></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+The semaphore set is removed from the system:
+<b>semop</b>() fails, with
+<i>errno</i> set to
+<b>EIDRM</b>. </td></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+The calling process catches a signal:
+the value of
+<i>semncnt</i> is decremented and
+<b>semop</b>() fails, with
+<i>errno</i> set to
+<b>EINTR</b>. </td></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+The time limit specified by
+<i>timeout</i> in a
+<b>semtimedop</b>() call expires: the system call fails, with
+<i>errno</i> set to
+<b>EAGAIN</b>. </td></tr>
+<!-- PP ends table -->
+</table>
+On successful completion, the
+<i>sempid</i> value for each semaphore specified in the array pointed to by
+<i>sops</i> is set to the process ID of the calling process.
+In addition, the
+<i>sem_otime</i> is set to the current time.
+<p>
+<b>semtimedop</b>() behaves identically to
+<b>semop</b>() except that in those cases were the calling process would sleep,
+the duration of that sleep is limited by the amount of elapsed
+time specified by the
+<b>timespec</b> structure whose address is passed in the
+<i>timeout</i> parameter.  If the specified time limit has been reached,
+<b>semtimedop</b>() fails with
+<i>errno</i> set to
+<b>EAGAIN</b> (and none of the operations in
+<i>sops</i> is performed).
+If the
+<i>timeout</i> parameter is NULL,
+then
+<b>semtimedop</b>() behaves exactly like
+<b>semop</b>(). <h1 class="manpages">RETURN VALUE</h1>
+If successful
+<b>semop</b>() and
+<b>semtimedop</b>() return 0;
+otherwise they return -1
+with
+<i>errno</i> indicating the error.
+<h1 class="manpages">ERRORS</h1>
+On failure,
+<i>errno</i> is set to one of the following:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>E2BIG</b> </td><td valign="bottom">
+The argument
+<i>nsops</i> is greater than
+<b>SEMOPM</b>, the maximum number of operations allowed per system
+call.
+</td></tr>
+<tr valign="top"><td>
+<b>EACCES</b> </td><td valign="bottom">
+The calling process does not have the permissions required
+to perform the specified semaphore operations,
+and does not have the
+<b>CAP_IPC_OWNER</b> capability.
+</td></tr>
+<tr valign="top"><td>
+<b>EAGAIN</b> </td><td valign="bottom">
+An operation could not proceed immediately and either
+<b>IPC_NOWAIT</b> was specified in
+<i>sem_flg</i> or the time limit specified in
+<i>timeout</i> expired.
+</td></tr>
+<tr valign="top"><td>
+<b>EFAULT</b> </td><td valign="bottom">
+An address specified in either the
+<i>sops</i> or
+<i>timeout</i> parameters isn&#146;t accessible.
+</td></tr>
+<tr valign="top"><td>
+<b>EFBIG</b> </td><td valign="bottom">
+For some operation the value of
+<i>sem_num</i> is less than 0 or greater than or equal to the number
+of semaphores in the set.
+</td></tr>
+<tr valign="top"><td>
+<b>EIDRM</b> </td><td valign="bottom">
+The semaphore set was removed.
+</td></tr>
+<tr valign="top"><td>
+<b>EINTR</b> </td><td valign="bottom">
+While blocked in this system call, the process caught a signal.
+</td></tr>
+<tr valign="top"><td>
+<b>EINVAL</b> </td><td valign="bottom">
+The semaphore set doesn&#146;t exist, or
+<i>semid</i> is less than zero, or
+<i>nsops</i> has a non-positive value.
+</td></tr>
+<tr valign="top"><td>
+<b>ENOMEM</b> </td><td valign="bottom">
+The
+<i>sem_flg</i> of some operation specified
+<b>SEM_UNDO</b> and the system does not have enough memory to allocate the undo
+structure.
+</td></tr>
+<tr valign="top"><td>
+<b>ERANGE</b> </td><td valign="bottom">
+For some operation
+<i>sem_op+semval</i> is greater than
+<b>SEMVMX</b>, the implementation dependent maximum value for
+<i>semval</i>. </td></tr>
+</table>
+<h1 class="manpages">NOTES</h1>
+The
+<i>sem_undo</i> structures of a process aren&#146;t inherited across a
+<b>fork</b>(2)
+system call, but they are inherited across an
+<b>execve</b>(2)
+system call.
+<p>
+<b>semop</b>() is never automatically restarted after being interrupted by a signal handler,
+regardless of the setting of the
+<b>SA_RESTART</b> flag when establishing a signal handler.
+<p>
+<i>semadj</i> is a per-process integer which is simply the (negative) count
+of all semaphore operations performed specifying the
+<b>SEM_UNDO</b> flag.
+When a semaphore&#146;s value is directly set using the
+<b>SETVAL</b> or
+<b>SETALL</b> request to
+<b>semctl</b>(2),
+the corresponding
+<i>semadj</i> values in all processes are cleared.
+<p>
+The <i>semval</i>, <i>sempid</i>, <i>semzcnt</i>, and <i>semnct</i> values
+for a semaphore can all be retrieved using appropriate
+<b>semctl</b>(2)
+calls.
+<p>
+The following limits on semaphore set resources affect the
+<b>semop</b>() call:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>SEMOPM</b> </td><td valign="bottom">
+Maximum number of operations allowed for one
+<b>semop</b>() call (32)
+(on Linux, this limit can be read and modified via the third field of
+<i>/proc/sys/kernel/sem</i>). </td></tr>
+<tr valign="top"><td>
+<b>SEMVMX</b> </td><td valign="bottom">
+Maximum allowable value for
+<i>semval</i>: implementation dependent (32767).
+</td></tr>
+<!-- PP ends table -->
+</table>
+The implementation has no intrinsic limits for
+the adjust on exit maximum value
+(<b>SEMAEM</b>), the system wide maximum number of undo structures
+(<b>SEMMNU</b>) and the per-process maximum number of undo entries system parameters.
+<p>
+<b>semtimedop</b>() first appeared in Linux 2.5.52,
+and was subsequently backported into kernel 2.4.22.
+<h1 class="manpages">BUGS</h1>
+When a process terminates, its set of associated
+<i>semadj</i> structures is used to undo the effect of all of the
+semaphore operations it performed with the
+<b>SEM_UNDO</b> flag.
+This raises a difficulty: if one (or more) of these semaphore adjustments
+would result in an attempt to decrease a semaphore&#146;s value below zero,
+what should an implementation do?
+One possible approach would be to block until all the semaphore
+adjustments could be performed.
+This is however undesirable since it could force process termination to
+block for arbitrarily long periods.
+Another possibility is that such semaphore adjustments could be ignored
+altogether (somewhat analogously to failing when
+<b>IPC_NOWAIT</b> is specified for a semaphore operation).
+Linux adopts a third approach: decreasing the semaphore value
+as far as possible (i.e., to zero) and allowing process
+termination to proceed immediately.
+<p>
+In kernels 2.6.x, x &lt;= 10, there is a bug that in some circumstances
+prevents a process that is waiting for a semaphore value to become
+zero from being woken up when the value does actually become zero.
+This bug is fixed in kernel 2.6.11.
+<h1 class="manpages">CONFORMING TO</h1>
+SVr4, POSIX.1-2001.
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="semctl.htm">semctl (2)</a></p></li>
+<li><p><a href="semget.htm">semget (2)</a></p></li>
+<li><p><a href="sigaction.htm">sigaction (2)</a></p></li>
+</ul>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion9b80.html?tutorial=unix_system_calls&amp;file=semop.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_system_calls/semop.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

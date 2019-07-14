@@ -1,0 +1,597 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/ntpdc.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>ntpdc - Unix, Linux Command</title>
+<meta name="Description" Content="ntpdc - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>ntpdc - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+ntpdc - special NTP query program
+<h1 class="manpages"></h1>
+<p>
+<h1 class="manpages">SYNOPSIS</h1>
+<b>ntpdc [ -46dilnps ] [ -c </b><i>command</i><b> ] [ </b><i>host</i><b> ] [ ... ]</b>
+<p>
+<h1 class="manpages">DESCRIPTION</h1>
+<p>
+<b>ntpdc</b> is used to query the <b>ntpd</b> daemon about its current state and to request changes in that state. The program may be run either in interactive mode or controlled using command line arguments. Extensive state and statistics information is available through the <b>ntpdc</b> interface. In addition, nearly all the configuration options which can be specified at startup using ntpd&#146;s configuration file may also be specified at run time using <b>ntpdc</b>[char46]
+<p>
+If one or more request options are included on the command line when <b>ntpdc</b> is executed, each of the requests will be sent to the NTP servers running on each of the hosts given as command line arguments, or on localhost by default. If no request options are given, <b>ntpdc</b> will attempt to read commands from the standard input and execute these on the NTP server running on the first host given on the command line, again defaulting to localhost when no other host is specified. <b>ntpdc</b> will prompt for commands if the standard input is a terminal device.
+<p>
+<b>ntpdc</b> uses NTP mode 7 packets to communicate with the NTP server, and hence can be used to query any compatible server on the network which permits it. Note that since NTP is a UDP protocol this communication will be somewhat unreliable, especially over large distances in terms of network topology. <b>ntpdc</b> makes no attempt to retransmit requests, and will time requests out if the remote host is not heard from within a suitable timeout time.
+<p>
+The operation of <b>ntpdc</b> are specific to the particular implementation of the <b>ntpd</b> daemon and can be expected to work only with this and maybe some previous versions of the daemon. Requests from a remote <b>ntpdc</b> program which affect the state of the local server must be authenticated, which requires both the remote program and local server share a common key and key identifier.
+<p>
+Note that in contexts where a host name is expected, a <b>-4</b> qualifier preceding the host name forces DNS resolution to the IPv4 namespace, while a <b>-6</b> qualifier forces DNS resolution to the IPv6 namespace.
+<p>
+<h1 class="manpages">COMMAND LINE OPTIONS</h1>
+<p>
+Specifying a command line option other than <b>-i</b> or <b>-n</b> will cause the specified query (queries) to be sent to the indicated host(s) immediately. Otherwise, <b>ntpdc</b> will attempt to read interactive format commands from the standard input.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-4</b>
+</td><td valign="bottom">
+Force DNS resolution of following host names on the command line to the IPv4 namespace.
+</td></tr>
+<tr valign="top"><td>
+<b>-6</b>
+</td><td valign="bottom">
+Force DNS resolution of following host names on the command line to the IPv6 namespace.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-c </b><i>command</i><b></b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+The following argument is interpreted as an interactive format command and is added to the list of commands to be executed on the specified host(s). Multiple -c options may be given.
+</td></tr>
+<tr valign="top"><td>
+<b>-d</b>
+</td><td valign="bottom">
+Turn on debugging mode. This option may occur more than once.
+</td></tr>
+<tr valign="top"><td>
+<b>-i</b>
+</td><td valign="bottom">
+Force <b>ntpdc</b> to operate in interactive mode. Prompts will be written to the standard output and commands read from the standard input.
+</td></tr>
+<tr valign="top"><td>
+<b>-l</b>
+</td><td valign="bottom">
+Obtain a list of peers which are known to the server(s). This switch is equivalent to <b>-c listpeers</b>[char46]
+</td></tr>
+<tr valign="top"><td>
+<b>-n</b>
+</td><td valign="bottom">
+Output all host addresses in dotted-quad numeric format rather than converting to the canonical host names.
+</td></tr>
+<tr valign="top"><td>
+<b>-p</b>
+</td><td valign="bottom">
+Print a list of the peers known to the server as well as a summary of their state. This is equivalent to <b>-c peers</b>[char46]
+</td></tr>
+<tr valign="top"><td>
+<b>-s</b>
+</td><td valign="bottom">
+Print a list of the peers known to the server as well as a summary of their state, but in a slightly different format than the -p switch. This is equivalent to <b>-c dmpeers</b>[char46]
+</td></tr>
+</table>
+<p>
+<h1 class="manpages">INTERACTIVE COMMANDS</h1>
+<p>
+Interactive format commands consist of a keyword followed by zero to four arguments. Only enough characters of the full keyword to uniquely identify the command need be typed. The output of a command is normally sent to the standard output, but optionally the output of individual commands may be sent to a file by appending a <b>&lt;</b>, followed by a file name, to the command line.
+<p>
+A number of interactive format commands are executed entirely within the <b>ntpdc</b> program itself and do not result in NTP mode 7 requests being sent to a server. These are described following.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>? [ </b><i>command_keyword</i><b> ]</b>
+<!-- Consumed .TP 8 -->
+<br />
+<b>help [ </b><i>command_keyword</i><b> ]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+A <b>?</b> by itself will print a list of all the command keywords known to this incarnation of <b>ntpq</b>[char46] A <b>?</b> followed by a command keyword will print function and usage information about the command. This command is probably a better source of information about <b>ntpq</b> than this manual page.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>delay </b><i>milliseconds</i><b></b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Specify a time interval to be added to timestamps included in requests which require authentication. This is used to enable (unreliable) server reconfiguration over long delay network paths or between machines whose clocks are unsynchronized. Actually the server does not now require timestamps in authenticated requests, so this command may be obsolete.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>host </b><i>hostname</i><b></b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Set the host to which future queries will be sent. Hostname may be either a host name or a numeric address.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>hostnames [ yes | no ]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+If <b>yes</b> is specified, host names are printed in information displays. If <b>no</b> is specified, numeric addresses are printed instead. The default is <b>yes</b>, unless modified using the command line <b>-n</b> switch.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>keyid </b><i>keyid</i><b></b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+This command allows the specification of a key number to be used to authenticate configuration requests from ntpdc to the host(s). This must correspond to a key number which the host/server has been configured to use for this purpose (server options: <b>trustedkey</b>, and <b>requestkey</b>). If authentication is not enabled on the host(s) for ntpdc commands, the command <b>"keyid 0"</b> should be given; otherwise the <i>keyid</i> of the next subsequent <b>addpeer/addserver/broadcast </b> command will be used.
+</td></tr>
+<tr valign="top"><td>
+<b>quit</b>
+</td><td valign="bottom">
+Exit <b>ntpdc</b>[char46]
+</td></tr>
+<tr valign="top"><td>
+<b>passwd</b>
+</td><td valign="bottom">
+This command prompts you to type in a password (which will not be echoed) which will be used to authenticate configuration requests. The password must correspond to the key configured for use by the NTP server for this purpose if such requests are to be successful.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>timeout </b><i>milliseconds</i><b></b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Specify a timeout period for responses to server queries. The default is about 8000 milliseconds. Note that since <b>ntpdc</b> retries each query once after a timeout, the total waiting time for a timeout will be twice the timeout value set.
+</td></tr>
+</table>
+<p>
+<h1 class="manpages">CONTROL MESSAGE COMMANDS</h1>
+<p>
+Query commands result in NTP mode 7 packets containing requests for information being sent to the server. These are read-only commands in that they make no modification of the server configuration state.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>listpeers</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Obtains and prints a brief list of the peers for which the server is maintaining state. These should include all configured peer associations as well as those peers whose stratum is such that they are considered by the server to be possible future synchronization candidates.
+</td></tr>
+<tr valign="top"><td>
+<b>peers</b>
+</td><td valign="bottom">
+Obtains a list of peers for which the server is maintaining state, along with a summary of that state. Summary information includes the address of the remote peer, the local interface address (0.0.0.0 if a local address has yet to be determined), the stratum of the remote peer (a stratum of 16 indicates the remote peer is unsynchronized), the polling interval, in seconds, the reachability register, in octal, and the current estimated delay, offset and dispersion of the peer, all in seconds.
+The character in the left margin indicates the mode this peer entry is operating in. A <b>+</b> denotes symmetric active, a <b>-</b> indicates symmetric passive, a <b>=</b> means the remote server is being polled in client mode, a <b>^</b> indicates that the server is broadcasting to this address, a <b>~</b> denotes that the remote peer is sending broadcasts and a <b>*</b> marks the peer the server is currently synchronizing to.
+<p>
+The contents of the host field may be one of four forms. It may be a host name, an IP address, a reference clock implementation name with its parameter or <b>REFCLK(</b><i>implementation number</i><b>, </b><i>parameter</i><b>)</b>[char46] On <b>hostnames no</b> only IP-addresses will be displayed.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>dmpeers</b>
+</td><td valign="bottom">
+A slightly different peer summary list. Identical to the output of the <b>peers</b> command, except for the character in the leftmost column. Characters only appear beside peers which were included in the final stage of the clock selection algorithm. A <b>[char46]</b> indicates that this peer was cast off in the falseticker detection, while a <b>+</b> indicates that the peer made it through. A <b>*</b> denotes the peer the server is currently synchronizing with.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>showpeer </b><i>peer_address</i><b> [...]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Shows a detailed display of the current peer variables for one or more peers. Most of these values are described in the NTP Version 2 specification.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>pstats </b><i>peer_address</i><b> [...]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Show per-peer statistic counters associated with the specified peer(s).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>clockinfo </b><i>clock_peer_address</i><b> [...]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Obtain and print information concerning a peer clock. The values obtained provide information on the setting of fudge factors and other clock performance information.
+</td></tr>
+<tr valign="top"><td>
+<b>kerninfo</b>
+</td><td valign="bottom">
+Obtain and print kernel phase-lock loop operating parameters. This information is available only if the kernel has been specially modified for a precision timekeeping function.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>loopinfo [ oneline | multiline ]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Print the values of selected loop filter variables. The loop filter is the part of NTP which deals with adjusting the local system clock. The <b>offset</b> is the last offset given to the loop filter by the packet processing code. The <b>frequency</b> is the frequency error of the local clock in parts-per-million (ppm). The <b>time_const</b> controls the stiffness of the phase-lock loop and thus the speed at which it can adapt to oscillator drift. The <b>watchdog timer</b> value is the number of seconds which have elapsed since the last sample offset was given to the loop filter. The <b>oneline</b> and <b>multiline</b> options specify the format in which this information is to be printed, with <b>multiline</b> as the default.
+</td></tr>
+<tr valign="top"><td>
+<b>sysinfo</b>
+</td><td valign="bottom">
+Print a variety of system state variables, i.e., state related to the local server. All except the last four lines are described in the NTP Version 3 specification, RFC-1305.
+The <b>system flags</b> show various system flags, some of which can be set and cleared by the <b>enable</b> and <b>disable</b> configuration commands, respectively. These are the <b>auth</b>, <b>bclient</b>, <b>monitor</b>, <b>pll</b>, <b>pps</b> and <b>stats</b> flags. See the <b>ntpd</b> documentation for the meaning of these flags. There are two additional flags which are read only, the <b>kernel_pll</b> and <b>kernel_pps</b>[char46] These flags indicate the synchronization status when the precision time kernel modifications are in use. The <b>kernel_pll</b> indicates that the local clock is being disciplined by the kernel, while the kernel_pps indicates the kernel discipline is provided by the PPS signal.
+<p>
+The <b>stability</b> is the residual frequency error remaining after the system frequency correction is applied and is intended for maintenance and debugging. In most architectures, this value will initially decrease from as high as 500 ppm to a nominal value in the range .01 to 0.1 ppm. If it remains high for some time after starting the daemon, something may be wrong with the local clock, or the value of the kernel variable <b>tick</b> may be incorrect.
+<p>
+The <b>broadcastdelay</b> shows the default broadcast delay, as set by the <b>broadcastdelay</b> configuration command.
+<p>
+The <b>authdelay</b> shows the default authentication delay, as set by the <b>authdelay</b> configuration command.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>sysstats</b>
+</td><td valign="bottom">
+Print statistics counters maintained in the protocol module.
+</td></tr>
+<tr valign="top"><td>
+<b>memstats</b>
+</td><td valign="bottom">
+Print statistics counters related to memory allocation code.
+</td></tr>
+<tr valign="top"><td>
+<b>iostats</b>
+</td><td valign="bottom">
+Print statistics counters maintained in the input-output module.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>timerstats</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Print statistics counters maintained in the timer/event queue support code.
+</td></tr>
+<tr valign="top"><td>
+<b>reslist</b>
+</td><td valign="bottom">
+Obtain and print the server&#146;s restriction list. This list is (usually) printed in sorted order and may help to understand how the restrictions are applied.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>monlist [ </b><i>version</i><b> ]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Obtain and print traffic counts collected and maintained by the monitor facility. The version number should not normally need to be specified.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>clkbug </b><i>clock_peer_address</i><b> [...]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Obtain debugging information for a reference clock driver. This information is provided only by some clock drivers and is mostly undecodable without a copy of the driver source in hand.
+</td></tr>
+</table>
+<p>
+<h1 class="manpages">RUNTIME CONFIGURATION REQUESTS</h1>
+<p>
+All requests which cause state changes in the server are authenticated by the server using a configured NTP key (the facility can also be disabled by the server by not configuring a key). The key number and the corresponding key must also be made known to <b>ntpdc</b>[char46] This can be done using the keyid and passwd commands, the latter of which will prompt at the terminal for a password to use as the encryption key. You will also be prompted automatically for both the key number and password the first time a command which would result in an authenticated request to the server is given. Authentication not only provides verification that the requester has permission to make such changes, but also gives an extra degree of protection again transmission errors.
+<p>
+Authenticated requests always include a timestamp in the packet data, which is included in the computation of the authentication code. This timestamp is compared by the server to its receive time stamp. If they differ by more than a small amount the request is rejected. This is done for two reasons. First, it makes simple replay attacks on the server, by someone who might be able to overhear traffic on your LAN, much more difficult. Second, it makes it more difficult to request configuration changes to your server from topologically remote hosts. While the reconfiguration facility will work well with a server on the local host, and may work adequately between time-synchronized hosts on the same LAN, it will work very poorly for more distant hosts. As such, if reasonable passwords are chosen, care is taken in the distribution and protection of keys and appropriate source address restrictions are applied, the run time reconfiguration facility should provide an adequate level of security.
+<p>
+The following commands all make authenticated requests.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>addpeer </b><i>peer_address</i><b> [ </b><i>keyid</i><b> ] [ </b><i>version</i><b> ] [ </b><b>minpoll# | prefer | iburst | burst | minpoll </b><i>N</i><b> | </b><b>maxpoll</b><b> </b><i>N</i><b> [...]</b><b> ]</b>
+<!-- Consumed .TP 8 -->
+<br />
+<b>addpeer </b><i>peer_address</i><b> [ </b><b>prefer | iburst | burst | minpoll </b><i>N</i><b> | </b><b>maxpoll</b><b> </b><i>N</i><b> | </b><b>keyid</b><b></b><i>N</i><b> | </b><b>version</b><b> </b><i>N</i><b> [...] </b><b> ]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Add a configured peer association at the given address and operating in symmetric active mode. Note that an existing association with the same peer may be deleted when this command is executed, or may simply be converted to conform to the new configuration, as appropriate. If the <b>keyid</b> is nonzero, all outgoing packets to the remote server will have an authentication field attached encrypted with this key. If the value is 0 (or not given) no authentication will be done. If ntpdc&#146;s key number has not yet been set (e.g., by the keyid command), it will be set to this value. The <b>version#</b> can be 1 through 4 and defaults to 3. The remaining options are either a numeric value for <b>minpoll</b> or literals <b>prefer</b>, <b>iburst</b>, <b>burst</b>, <b>minpoll </b><i>N</i>, <b>keyid </b><i>N</i>, <b>version </b> <i>N</i>, or <b>maxpoll </b><i>N</i> (where <i>N</i> is a numeric value), and have the action as specified in the <b>peer</b> configuration file command of ntpd. See the Server Options page for further information. Each flag (or its absence) replaces the previous setting. The <b>prefer</b> keyword indicates a preferred peer (and thus will be used primarily for clock synchronization if possible). The preferred peer also determines the validity of the PPS signal - if the preferred peer is suitable for synchronization so is the PPS signal.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>addserver </b><i>peer_address</i><b> [ </b><i>keyid</i><b> ] [ </b><i>version</i><b> ] [ </b><b>minpoll# | prefer | iburst | burst | minpoll </b><i>N</i><b> | </b><b>maxpoll</b><b> </b><i>N</i><b> [...] </b><b>]</b>
+<!-- Consumed .TP 8 -->
+<br />
+<b>addserver </b><i>peer_address</i><b> [ </b><b>prefer | iburst | burst | minpoll </b><i>N</i><b> | </b><b>maxpoll</b><b> </b><i>N</i><b> | </b><b>keyid</b><b></b><i>N</i><b> | </b><b>version</b><b> </b><i>N</i><b> [...]</b><b> ]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Identical to the addpeer command, except that the operating mode is client.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>broadcast </b><i>peer_address</i><b> [ </b><i>keyid</i><b> ] [ </b><i>version</i><b> ] [ </b><i>prefer</i><b> ]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Identical to the addpeer command, except that the operating mode is broadcast. In this case a valid non-zero key identifier and key are required. The <b>peer_address</b> parameter can be the broadcast address of the local network or a multicast group address assigned to NTP. If a multicast address, a multicast-capable kernel is required.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>unconfig </b><i>peer_address</i><b> [...]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+This command causes the configured bit to be removed from the specified peer(s). In many cases this will cause the peer association to be deleted. When appropriate, however, the association may persist in an unconfigured mode if the remote peer is willing to continue on in this fashion.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>fudge </b><i>peer_address</i><b> [ </b><i>time1</i><b> ] [ </b><i>time2</i><b> ] [ </b><i>stratum</i><b> ] [ </b><i>refid</i><b> ]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+This command provides a way to set certain data for a reference clock. See the source listing for further information.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>enable [ auth | bclient | calibrate | kernel | monitor | ntp | pps | stats]</b>
+<!-- Consumed .TP 8 -->
+<br />
+<b>disable [ auth | bclient | calibrate | kernel | monitor | ntp | pps | stats]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+These commands operate in the same way as the <b>enable</b> and <b>disable</b> configuration file commands of <b>ntpd</b>[char46] See the Miscellaneous Options page for further information.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>restrict </b><i>address mask flag</i><b> [ </b><i>flag</i><b> ]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+This command operates in the same way as the <b>restrict</b> configuration file commands of <b>ntpd</b>[char46]
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>unrestrict </b><i>address mask flag</i><b> [ </b><i>flag</i><b> ]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Unrestrict the matching entry from the restrict list.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>delrestrict </b><i>address mask</i><b> [ </b><i>ntpport</i><b> ]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Delete the matching entry from the restrict list.
+</td></tr>
+<tr valign="top"><td>
+<b>readkeys</b>
+</td><td valign="bottom">
+Causes the current set of authentication keys to be purged and a new set to be obtained by rereading the keys file (which must have been specified in the <b>ntpd</b> configuration file). This allows encryption keys to be changed without restarting the server.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>trustedkey </b><i>keyid</i><b> [...]</b>
+<!-- Consumed .TP 8 -->
+<br />
+<b>untrustedkey </b><i>keyid</i><b> [...]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+These commands operate in the same way as the <b>trustedkey</b> and <b>untrustedkey</b> configuration file commands of <b>ntpd</b>[char46]
+</td></tr>
+<tr valign="top"><td>
+<b>authinfo</b>
+</td><td valign="bottom">
+Returns information concerning the authentication module, including known keys and counts of encryptions and decryptions which have been done.
+</td></tr>
+<tr valign="top"><td>
+<b>traps</b>
+</td><td valign="bottom">
+Display the traps set in the server. See the source listing for further information.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>addtrap [ </b><i>address</i><b> ] [ </b><i>port</i><b> ] [ </b><i>interface</i><b> ]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Set a trap for asynchronous messages. See the source listing for further information.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>clrtrap [ </b><i>address</i><b> ] [ </b><i>port</i><b> ] [ </b><i>interface</i><b>]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Clear a trap for asynchronous messages. See the source listing for further information.
+</td></tr>
+<tr valign="top"><td>
+<b>reset</b>
+</td><td valign="bottom">
+Clear the statistics counters in various modules of the server. See the source listing for further information.
+</td></tr>
+</table>
+<p>
+<h1 class="manpages">BUGS</h1>
+<p>
+<b>ntpdc</b> is a crude hack. Much of the information it shows is deadly boring and could only be loved by its implementer. The program was designed so that new (and temporary) features were easy to hack in, at great expense to the program&#146;s ease of use. Despite this, the program is occasionally useful.
+<p>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<a href="../ntpd.html">ntpd(8)</a>
+<p>
+Primary source of documentation: /usr/share/doc/ntp-*
+<p>
+This file was automatically generated from HTML source.
+<p>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionf91d.html?tutorial=unix_commands&amp;file=ntpdc.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/ntpdc.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

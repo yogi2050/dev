@@ -1,0 +1,336 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/jsp/jsp_implicit_objects.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Apr 2013 20:59:53 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>JSP - Implicit Objects</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="description" content="JSP, Tutorials, Learning, Beginners, Basics, Environment, Life Cycle, Examples, Client Request, Server Response, Http Codes, Writing Filters, Exceptions, Cookies, Sessions, Database Access, File Uploading, File Uploading, Internationalization." />
+<meta name="keywords" content="JSP Implicit Objects - Learning JSP (Java Server Pages) in simple and easy steps using this beginner's tutorial containing basic to advanced knowledge of Java JSP Technology including Form Data, HTTP Request Header, Response Header, Status Codes, Cookies Handling and Session Tracking." />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+#topmenu a:hover {text-decoration:none;color:#00afe4 !important;background-color:transparent;font-weight:bold;}
+#header{ 
+background:#00afe4  !important;
+}
+#topmenu
+{
+background-color:#113e78 !important;
+}
+#leftcol ul.menu li.heading 
+{
+background:#00afe4 !important;
+border:1px solid #113e78  !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1275px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index.htm">Tutorials Point - Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index.htm" target="_top">HOME </a>
+<a href="../java/index.htm" target="_top">JAVA </a>
+<a href="../php/index.htm" target="_top">PHP </a>
+<a href="../python/index.htm" target="_top">Python </a>
+<a href="../ruby/index.htm" target="_top">Ruby </a>
+<a href="../perl/index.htm" target="_top">Perl </a>
+<a href="../html/index.htm" target="_top">HTML </a>
+<a href="../css/index.htm" target="_top">CSS </a>
+<a href="../javascript/index.htm" target="_top">Javascript </a>
+<a href="../mysql/index.htm" target="_top">MySQL </a>
+<a href="../cplusplus/index.htm" target="_top">C++ </a>
+<a href="../unix/index.htm" target="_top">UNIX </a>
+<a href="../more.htm" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.htm" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.htm" target="_top">ABOUT</a> |
+<a href="../about/contact_us.htm" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/jsp-mini-logo.png" alt="JSP Tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">Basic JSP Tutorial</li>
+<li><a target="_top" href="index.htm">JSP - Home</a></li>
+<li><a target="_top" href="jsp_overview.htm">JSP - Overview</a></li>
+<li><a target="_top" href="jsp_environment_setup.htm">JSP - Environment</a></li>
+<li><a target="_top" href="jsp_architecture.htm">JSP - Architecture</a></li>
+<li><a target="_top" href="jsp_life_cycle.htm">JSP - Life Cycle</a></li>
+<li><a target="_top" href="jsp_syntax.htm">JSP - Syntax</a></li>
+<li><a target="_top" href="jsp_directives.htm">JSP - Directives</a></li>
+<li><a target="_top" href="jsp_actions.htm">JSP - Actions</a></li>
+<li><a target="_top" href="jsp_implicit_objects.htm"><b>JSP - Implicit Objects</b></a></li>
+<li><a target="_top" href="jsp_client_request.htm">JSP - Client Request</a></li>
+<li><a target="_top" href="jsp_server_response.htm">JSP - Server Response</a></li>
+<li><a target="_top" href="jsp_http_status_codes.htm">JSP - Http Codes</a></li>
+<li><a target="_top" href="jsp_form_processing.htm">JSP - Form Processing</a></li>
+<li><a target="_top" href="jsp_writing_filters.htm">JSP - Writing Filters</a></li>
+<li><a target="_top" href="jsp_cookies_handling.htm">JSP - Cookies Handling</a></li>
+<li><a target="_top" href="jsp_session_tracking.htm">JSP - Session Tracking</a></li>
+<li><a target="_top" href="jsp_file_uploading.htm">JSP - File Uploading</a></li>
+<li><a target="_top" href="jsp_handling_date.htm">JSP - Handling Date</a></li>
+<li><a target="_top" href="jsp_page_redirect.htm">JSP - Page Redirect</a></li>
+<li><a target="_top" href="jsp_hits_counter.htm">JSP - Hits Counter</a></li>
+<li><a target="_top" href="jsp_auto_refresh.htm">JSP - Auto Refresh</a></li>
+<li><a target="_top" href="jsp_sending_email.htm">JSP - Sending Email</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Advanced JSP Tutorials</li>
+<li><a target="_top" href="jsp_standard_tag_library.htm">JSP - Standard Tag Library</a></li>
+<li><a target="_top" href="jsp_database_access.htm">JSP - Database Access</a></li>
+<li><a target="_top" href="jsp_xml_data.htm">JSP - XML Data</a></li>
+<li><a target="_top" href="jsp_java_beans.htm">JSP - Java Beans</a></li>
+<li><a target="_top" href="jsp_custom_tags.htm">JSP - Custom Tags</a></li>
+<li><a target="_top" href="jsp_expression_language.htm">JSP - Expression Language</a></li>
+<li><a target="_top" href="jsp_exception_handling.htm">JSP - Exception Handling</a></li>
+<li><a target="_top" href="jsp_debugging.htm">JSP - Debugging</a></li>
+<li><a target="_top" href="jsp_security.htm">JSP - Security</a></li>
+<li><a target="_top" href="jsp_internationalization.htm">JSP - Internationalization</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">JSP Useful Resources</li>
+<li><a target="_top" href="jsp_quick_guide.htm">JSP - Quick Guide</a></li>
+<li><a target="_top" href="jsp_useful_resources.htm">JSP Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>JSP - Implicit Objects</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="jsp_actions.htm">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="jsp_client_request.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>JSP Implicit Objects are the Java objects that the JSP Container makes available to developers in each page and developer can call them directly without being explicitly declared. JSP Implicit Objects are also called pre-defined variables.</p>
+<p>JSP supports nine Implicit Objects which are listed below:</p>
+<table class="src">
+<tr><th style="width:30%">Object </th><th>Description </th></tr>
+<tr><td>request</td><td>This is the <b>HttpServletRequest</b> object associated with the request.</td></tr>
+<tr><td>response</td><td>This is the <b>HttpServletResponse</b> object associated with the response to the client.</td></tr>
+<tr><td>out</td><td>This is the <b>PrintWriter</b> object used to send output to the client.</td></tr>
+<tr><td>session</td><td>This is the <b>HttpSession</b> object associated with the request.</td></tr>
+<tr><td>application</td><td>This is the <b>ServletContext</b> object associated with application context.</td></tr>
+<tr><td>config</td><td>This is the <b>ServletConfig</b> object associated with the page.</td></tr>
+<tr><td>pageContext</td><td>This encapsulates use of server-specific features like higher performance <b>JspWriters</b>.</td></tr>
+<tr><td>page</td><td>This is simply a synonym for <b>this</b>, and is used to call the methods defined by the translated servlet class.</td></tr>
+<tr><td>Exception</td><td>The <b>Exception</b> object allows the exception data to be accessed by designated JSP.</td></tr>
+</table>
+<h2>The request Object:</h2>
+<p>The request object is an instance of a javax.servlet.http.HttpServletRequest object. Each time a client requests a page the JSP engine creates a new object to represent that request.</p>
+<p>The request object provides methods to get HTTP header information including form data, cookies, HTTP methods etc.</p>
+<p>We would  see complete set of methods associated with request object in coming chapter: <a href="jsp_client_request.htm">JSP - Client Request</a>.</p>
+<h2>The response Object:</h2>
+<p>The response object is an instance of a javax.servlet.http.HttpServletResponse object. Just as the server creates the request object, it also creates an object to represent the response to the client.</p>
+<p>The response object also defines the interfaces that deal with creating new HTTP headers. Through this object the JSP programmer can add new cookies or date stamps, HTTP status codes etc.</p>
+<p>We would  see complete set of methods associated with response object in coming chapter: <a href="jsp_server_response.htm">JSP - Server Response</a>.</p>
+<h2>The out Object:</h2>
+<p>The out implicit object is an instance of a javax.servlet.jsp.JspWriter object and is used to send content in a response.</p>
+<p>The initial JspWriter object is instantiated differently depending on whether the page is buffered or not. Buffering can be easily turned off by using the buffered='false' attribute of the page directive.</p>
+<p>The JspWriter object contains most of the same methods as the java.io.PrintWriter class. However, JspWriter has some additional methods designed to deal with buffering. Unlike the PrintWriter object, JspWriter throws IOExceptions.</p>
+<p>Following are the important methods which we would use to write boolean char, int, double, object, String etc.</p>
+<table class="src">
+<tr><th style="width:40%">Method </th><th> Description </th></tr>
+<tr><td><b>out.print(dataType dt)</b></td><td>Print a data type value</td></tr>
+<tr><td><b>out.println(dataType dt)</b></td><td>Print a data type value then terminate the line with new line character.</td></tr>
+<tr><td><b>out.flush()</b></td><td> Flush the stream.</td></tr>
+</table>
+<h2>The session Object:</h2>
+<p>The session object is an instance of javax.servlet.http.HttpSession and behaves exactly the same way that session objects behave under Java Servlets.</p>
+<p>The session object is used to track client session between client requests. We would  see complete usage of session object in coming chapter: <a href="jsp_session_tracking.htm">JSP - Session Tracking</a>.</p>
+<h2>The application Object:</h2>
+<p>The application object is direct wrapper around the ServletContext object for the generated Servlet and in reality an instance of a javax.servlet.ServletContext object.</p>
+<p>This object is a representation of the JSP page through its entire lifecycle. This object is created when the JSP page is initialized and will be removed when the JSP page is removed by the jspDestroy() method.</p>
+<p>By adding an attribute to application, you can ensure that all JSP files that make up your web application have access to it.</p>
+<p>You can check a simple use of Application Object in chapter: <a href="jsp_hits_counter.htm">JSP - Hits Counter</a></p>
+<h2>The config Object:</h2>
+<p>The config object is an instantiation of javax.servlet.ServletConfig and is a direct wrapper around the ServletConfig object for the generated servlet.</p>
+<p>This object allows the JSP programmer access to the Servlet or JSP engine initialization parameters such as the paths or file locations etc.</p>
+<p>The following config method is the only one you might ever use, and its usage is trivial:</p>
+<pre class="prettyprint"> 
+config.getServletName();
+</pre>
+<p>This returns the servlet name, which is the string contained in the &lt;servlet-name&gt; element defined in the WEB-INF\web.xml file</p>
+<h2>The pageContext Object:</h2>
+<p>The pageContext object is an instance of a javax.servlet.jsp.PageContext object. The pageContext object is used to represent the entire JSP page.</p>
+<p>This object is intended as a means to access information about the page while avoiding most of the implementation details.</p>
+<p>This object stores references to the request and response objects for each request. The application, config, session, and out objects are derived by accessing attributes of this object.</p>
+<p>The pageContext object also contains information about the directives issued to the JSP page, including the buffering information, the errorPageURL, and page scope.</p>
+<p>The PageContext class defines several fields, including PAGE_SCOPE, REQUEST_SCOPE, SESSION_SCOPE, and APPLICATION_SCOPE, which identify the four scopes. It also supports more than 40 methods, about half of which are inherited from the javax.servlet.jsp.
+JspContext class.</p>
+<p>One of the important methods is <b>removeAttribute</b>, which accepts either one or two arguments. For example, pageContext.removeAttribute ("attrName") removes the attribute from all scopes, while the following code only removes it from the page scope:</p>
+<pre class="prettyprint"> 
+pageContext.removeAttribute("attrName", PAGE_SCOPE);
+</pre>
+<p>You can check a very good usage of pageContext in coming chapter: <a href="jsp_file_uploading.htm">JSP - File Uploading</a>.</p>
+<h2>The page Object:</h2>
+<p>This object is an actual reference to the instance of the page. It can be thought of as an object that represents the entire JSP page.</p>
+<p>The page object is really a direct synonym for the <b>this</b> object.</p>
+<h2>The exception Object:</h2>
+<p>The exception object is a wrapper containing the exception thrown from the previous page. It is typically used to generate an appropriate response to the error condition.</p>
+<p>We would  see complete usage of this object in coming chapter: <a href="jsp_exception_handling.htm">JSP - Exception Handling</a>.</p>
+<hr />
+<div class="pre-btn">
+<a href="jsp_actions.htm">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/jsp_implicit_objects.pdf" alt="JSP - Implicit Objects" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="jsp_client_request.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.htm" target="_top">ASP.NET </a> |
+<a href="../jquery/index.htm" target="_top">jQuery </a> |
+<a href="../ajax/index.htm" target="_top">AJAX </a> |
+<a href="../ant/index.htm" target="_top">ANT</a> |
+<a href="index.htm" target="_top">JSP </a> |
+<a href="../servlets/index.htm" target="_top">Servlets </a> |
+<a href="../log4j/index.htm" target="_top">log4j </a> |
+<a href="../ibatis/index.htm" target="_top">iBATIS </a> |
+<a href="../hibernate/index.htm" target="_top">Hibernate </a> |
+<a href="../jdbc/index.htm" target="_top">JDBC </a> |
+<a href="../struts_2/index.htm" target="_top">Struts </a> |
+<a href="../html5/index.htm" target="_top">HTML5 </a> |
+<a href="../sql/index.htm" target="_top">SQL </a> |
+<a href="../mysql/index.htm" target="_top">MySQL </a> |
+<a href="../cplusplus/index.htm" target="_top">C++ </a> |
+<a href="../unix/index.htm" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2012 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/jsp/jsp_implicit_objects.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Apr 2013 21:00:00 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

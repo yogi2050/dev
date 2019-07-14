@@ -1,0 +1,431 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/asp.net/asp.net_multi_threading.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:01:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>ASP.NET - Multi Threading</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="Keywords" content="Multi Threading, Free, ASP.NET, Tutorial, Reference, Manual, Guide, Beginners,Event Handling, Life Cycle, ADO.NET, AJAX control,Web Services,Add Rotator, Panel, control, LINQ, Database Access, Security, Debugging, Error, Handling, Configuration, Deployment." />
+<meta name="description" content="ASP.NET Multi Threading -  Free ASP.NET Tutorials, Reference Manual, and Quick Guide for Beginners. Learn ASP.NET starting from Environment Setup, Basic Controls, Directives, Event Handling, Life Cycle, ADO.NET, AJAX control,Web Services,Add Rotator, Panel control, LINQ, Database Access, Security, Debugging, Error Handling, Configuration and Deployment." />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript"> 
+</script>
+<script type="text/javascript"> 
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>ASP.NET Tutorial</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="index.html">ASP.NET -  Home</a></li>
+<li><a class="left" target="_top" href="asp.net_introduction.html">ASP.NET -  Introduction</a></li>
+<li><a class="left" target="_top" href="asp.net_environment_setup.html">ASP.NET -  Environment</a></li>
+<li><a class="left" target="_top" href="asp.net_life_cycle.html">ASP.NET -  Life Cycle</a></li>
+<li><a class="left" target="_top" href="asp.net_first_example.html">ASP.NET -  First Example</a></li>
+<li><a class="left" target="_top" href="asp.net_event_handling.html">ASP.NET -  Event Handling</a></li>
+<li><a class="left" target="_top" href="asp.net_server_side.html">ASP.NET -  Server Side</a></li>
+<li><a class="left" target="_top" href="asp.net_server_controls.html">ASP.NET -  Server Controls</a></li>
+<li><a class="left" target="_top" href="asp.net_html_server.html">ASP.NET -  HTML Server</a></li>
+<li><a class="left" target="_top" href="asp.net_client_side.html">ASP.NET -  Client Side</a></li>
+<li><a class="left" target="_top" href="asp.net_basic_controls.html">ASP.NET -  Basic Controls</a></li>
+<li><a class="left" target="_top" href="asp.net_directives.html">ASP.NET -  Directives</a></li>
+<li><a class="left" target="_top" href="asp.net_managing_state.html">ASP.NET -  Managing State</a></li>
+<li><a class="left" target="_top" href="asp.net_validators.html">ASP.NET -  Validators</a></li>
+<li><a class="left" target="_top" href="asp.net_database_access.html">ASP.NET -  Database Access</a></li>
+<li><a class="left" target="_top" href="asp.net_ado_net.html">ASP.NET -  ADO.net</a></li>
+<li><a class="left" target="_top" href="asp.net_file_uploading.html">ASP.NET -  File Uploading</a></li>
+<li><a class="left" target="_top" href="asp.net_ad_rotator.html">ASP.NET -  Ad Rotator</a></li>
+<li><a class="left" target="_top" href="asp.net_calenders.html">ASP.NET -  Calendars</a></li>
+<li><a class="left" target="_top" href="asp.net_multi_views.html">ASP.NET -  Multi Views</a></li>
+<li><a class="left" target="_top" href="asp.net_panel_controls.html">ASP.NET -  Panel Controls</a></li>
+<li><a class="left" target="_top" href="asp.net_ajax_control.html">ASP.NET -  AJAX Control</a></li>
+<li><a class="left" target="_top" href="asp.net_data_sources.html">ASP.NET -  Data Sources</a></li>
+<li><a class="left" target="_top" href="asp.net_data_binding.html">ASP.NET -  Data Binding</a></li>
+<li><a class="left" target="_top" href="asp.net_custom_controls.html">ASP.NET -  Custom Controls</a></li>
+<li><a class="left" target="_top" href="asp.net_personalization.html">ASP.NET -  Personalization</a></li>
+<li><a class="left" target="_top" href="asp.net_error_handling.html">ASP.NET -  Error Handling</a></li>
+<li><a class="left" target="_top" href="asp.net_debugging.html">ASP.NET -  Debugging</a></li>
+<li><a class="left" target="_top" href="asp.net_linq.html">ASP.NET -  LINQ</a></li>
+<li><a class="left" target="_top" href="asp.net_security.html">ASP.NET -  Security</a></li>
+<li><a class="left" target="_top" href="asp.net_data_caching.html">ASP.NET -  Data Caching</a></li>
+<li><a class="left" target="_top" href="asp.net_web_services.html">ASP.NET -  Web Services</a></li>
+<li><a class="left" target="_top" href="asp.net_multi_threading.html"><b><small>ASP.NET -  Multi Threading</small></b></a></li>
+<li><a class="left" target="_top" href="asp.net_configuration.html">ASP.NET -  Configuration</a></li>
+<li><a class="left" target="_top" href="asp.net_deployment.html">ASP.NET -  Deployment</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>ASP.NET Quick Guide</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="asp.net_quick_guide.html">ASP.NET - Quick Guide</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>ASP.NET Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="asp.net_useful_resources.html">ASP.NET - Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>ASP.NET -  Multi Threading</h1>
+<hr />
+<a href="asp.net_web_services.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="asp.net_configuration.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<p>A thread is defined as the execution path of a program. Each thread defines a unique flow of control. If your application involves complicated and time consuming operations like database access or some intense I/O operations, then it is often helpful to set different execution paths or threads, with each thread performing a particular job.</p>
+<p>Threads are lightweight processes. One common example of use of thread is implementation of concurrent programming by modern operating systems. Use of threads saves wastage of CPU cycle and increase efficiency of an application.</p>
+<p>So far we have written programs where a single thread runs as a single process which is the running instance of the application. However, this way the application can perform one job at a time. To make it execute more than one task at a time, it could be divided into smaller threads.</p>
+<p>In .NET, the threading is handled through the System.Threading namespace. Creating a variable of the <i>System.Threading.Thread</i>  type allows you to create a new thread to start working with. It allows you to create and access individual threads in a program.</p>
+<h1>Creating Thread:</h1>
+<p>A thread is created by creating a Thread object, giving its constructor a ThreadStart reference.</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+ThreadStart childthreat = new ThreadStart(childthreadcall);
+</pre></td></tr>
+</table>
+<h1>The Thread Life Cycle:</h1>
+<p>The life cycle of a thread starts when an object of the System.Threading.Thread class is created and ends when the thread is terminated or completes execution. </p>
+<p>Following are the various states in the life cycle of a thread :</p>
+<ul>
+<li><p><b>The Unstarted State:</b>  it is the situation when the instance of the thread is created but the Start method has not been called. </p></li>
+<li><p><b>The Ready State:</b>  it is the situation when the thread is ready to run and waiting CPU cycle.</p></li>
+<li><p><b>The Not Runnable State:</b>  a thread is not runnable, when:</p>
+<ul>
+<li><p>Sleep method has been called</p></li>
+<li><p>Wait  method has been called</p></li>
+<li><p>Blocked by I/O operations</p></li>
+</ul>
+</li>
+<li><p><b>The Dead State:</b> it is the situation when the thread has completed execution or has been aborted.</p></li>
+</ul>
+<h1>The Thread Priority:</h1>
+<p>The Priority property of the Thread class specifies the priority of one thread with respect to other. The .Net runtime selects the ready thread with the highest priority.</p>
+<p>The priorities could be categorised as:</p>
+<ul>
+<li><p>Above normal</p></li>
+<li><p>Below normal</p></li>
+<li><p>Highest</p></li>
+<li><p>Lowest</p></li>
+<li><p>Normal</p></li>
+</ul>
+<p>Once a thread is created its priority is set using the Priority property of the thread class.</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+NewThread.Priority = ThreadPriority.Highest;
+</pre></td></tr>
+</table>
+<h1>Thread Properties &amp; Methods:</h1>
+<p>The Thread class has the following important properties:</p>
+<table class="src" border="1" cellpadding="5" cellspacing="0" width="100%">
+<tr><th width="30%">Property</th><th>Description</th></tr>
+<tr><td>CurrentContext</td><td>Gets the current context in which the thread is executing.</td></tr>
+<tr><td>CurrentCulture</td><td>Gets or sets the culture for the current thread.</td></tr>
+<tr><td>CurrentPrinciple</td><td>Gets or sets the thread's current principal (for role-based security).</td></tr>
+<tr><td>CurrentThread</td><td>Gets the currently running thread.</td></tr>
+<tr><td>CurrentUICulture</td><td>Gets or sets the current culture used by the Resource Manager to look up culture-specific resources at run time.</td></tr>
+<tr><td>ExecutionContext</td><td>Gets an ExecutionContext object that contains information about the various contexts of the current thread.</td></tr>
+<tr><td>IsAlive</td><td>Gets a value indicating the execution status of the current thread.</td></tr>
+<tr><td>IsBackground</td><td>Gets or sets a value indicating whether or not a thread is a background thread.</td></tr>
+<tr><td>IsThreadPoolThread</td><td>Gets a value indicating whether or not a thread belongs to the managed thread pool.</td></tr>
+<tr><td>ManagedThreadId</td><td>Gets a unique identifier for the current managed thread.</td></tr>
+<tr><td>Name</td><td>Gets or sets the name of the thread.</td></tr>
+<tr><td>Priority</td><td>Gets or sets a value indicating the scheduling priority of a thread.</td></tr>
+<tr><td>ThreadState</td><td>Gets a value containing the states of the current thread.</td></tr>
+</table>
+<p>The Thread class has the following important methods:</p>
+<table class="src" border="1" cellpadding="5" cellspacing="0" width="100%">
+<tr><th width="30%">Methods</th><th>Description</th></tr>
+<tr><td>Abort</td><td>Raises a ThreadAbortException in the thread on which it is invoked, to begin the process of terminating the thread. Calling this method usually terminates the thread.</td></tr>
+<tr><td>AllocateDataSlot</td><td>Allocates an unnamed data slot on all the threads. For better performance, use fields that are marked with the ThreadStaticAttribute attribute instead.</td></tr>
+<tr><td>AllocateNamedDataSlot</td><td>Allocates a named data slot on all threads. For better performance, use fields that are marked with the ThreadStaticAttribute attribute instead.</td></tr>
+<tr><td>BeginCriticalRegion</td><td>Notifies a host that execution is about to enter a region of code in which the effects of a thread abort or unhandled exception might jeopardize other tasks in the application domain.</td></tr>
+<tr><td>BeginThreadAffinity</td><td>Notifies a host that managed code is about to execute instructions that depend on the identity of the current physical operating system thread.</td></tr>
+<tr><td>EndCriticalRegion</td><td>Notifies a host that execution is about to enter a region of code in which the effects of a thread abort or unhandled exception are limited to the current task.</td></tr>
+<tr><td>EndThreadAffinity</td><td>Notifies a host that managed code has finished executing instructions that depend on the identity of the current physical operating system thread.</td></tr>
+<tr><td>FreeNamedDataSlot</td><td>Eliminates the association between a name and a slot, for all threads in the process. For better performance, use fields that are marked with the ThreadStaticAttribute attribute instead.</td></tr>
+<tr><td>GetData</td><td>Retrieves the value from the specified slot on the current thread, within the current thread's current domain. For better performance, use fields that are marked with the ThreadStaticAttribute attribute instead.</td></tr>
+<tr><td>GetDomain</td><td>Returns the current domain in which the current thread is running.</td></tr>
+<tr><td>GetDomainID</td><td>Returns a unique application domain identifier.</td></tr>
+<tr><td>GetNamedDataSlot</td><td>Looks up a named data slot. For better performance, use fields that are marked with the ThreadStaticAttribute attribute instead.</td></tr>
+<tr><td>Interrupt </td><td>Interrupts a thread that is in the WaitSleepJoin thread state.</td></tr>
+<tr><td>Join </td><td>Blocks the calling thread until a thread terminates, while continuing to perform standard COM and SendMessage pumping. This method has different overloaded forms.</td></tr>
+<tr><td>MemoryBarrier</td><td>Synchronizes memory access as follows: The processor executing the current thread cannot reorder instructions in such a way that memory accesses prior to the call to MemoryBarrier execute after memory accesses that follow the call to MemoryBarrier.</td></tr>
+<tr><td>ResetAbort</td><td>Cancels an Abort requested for the current thread.</td></tr>
+<tr><td>SetData</td><td>Sets the data in the specified slot on the currently running thread, for that thread's current domain. For better performance, use fields marked with the ThreadStaticAttribute attribute instead.</td></tr>
+<tr><td>Start</td><td>Starts a thread.</td></tr>
+<tr><td>Sleep</td><td>Makes the thread pause for a period of time.</td></tr>
+<tr><td>SpinWait</td><td>Causes a thread to wait the number of times defined by the iterations parameter</td></tr>
+<tr><td>VolatileRead()</td><td>Reads the value of a field. The value is the latest written by any processor in a computer, regardless of the number of processors or the state of processor cache. This method has different overloaded forms. </td></tr>
+<tr><td>VolatileWrite()</td><td>Writes a value to a field immediately, so that the value is visible to all processors in the computer. This method has different overloaded forms.</td></tr>
+<tr><td>Yield </td><td>Causes the calling thread to yield execution to another thread that is ready to run on the current processor. The operating system selects the thread to yield to.</td></tr>
+</table>
+<h1>Example:</h1>
+<p>The following example illustrates the uses of the Thread class. The page has a label control for displaying messages from the child thread. The messages from the main program is directly displayed using the Response.Write() method. So it appears on the top of the page.</p>
+<p>The source file is as follows:</p> 
+<table class="src" cellpadding="5">
+<tr><td><pre>
+&lt;%@ Page Language="C#" 
+         AutoEventWireup="true" 
+         CodeBehind="Default.aspx.cs" 
+         Inherits="threaddemo._Default" %&gt;
+
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+
+&lt;html xmlns="http://www.w3.org/1999/xhtml" &gt;
+&lt;head runat="server"&gt;
+    &lt;title&gt;Untitled Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;form id="form1" runat="server"&gt;
+    &lt;div&gt;
+    &lt;h3&gt;Thread Example&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;asp:Label ID="lblmessage" runat="server" Text="Label"&gt;
+    &lt;/asp:Label&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr>
+</table>
+<p>The code behind file is as follows:</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+using System;
+using System.Collections;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+using System.Threading;
+
+namespace threaddemo
+{
+   public partial class _Default : System.Web.UI.Page
+   {
+      protected void Page_Load(object sender, EventArgs e)
+      {
+         ThreadStart childthreat = 
+                          new ThreadStart(childthreadcall);
+         Response.Write("Child Thread Started &lt;br/&gt;");
+         Thread child = new Thread(childthreat);
+         child.Start();
+         Response.Write(
+            "Main sleeping  for 2 seconds.......&lt;br/&gt;");
+         Thread.Sleep(2000);
+         Response.Write(
+            "&lt;br/&gt;Main aborting child thread&lt;br/&gt;");
+         child.Abort();
+      }
+      public void childthreadcall()
+      {
+      try{
+         lblmessage.Text = "&lt;br /&gt;Child thread started &lt;br/&gt;";
+         lblmessage.Text += "Child Thread: Coiunting to 10";
+         for( int i =0; i&lt;10; i++)
+         {
+            Thread.Sleep(500);
+            lblmessage.Text += "&lt;br/&gt; in Child thread &lt;/br&gt;";
+         }
+         lblmessage.Text += "&lt;br/&gt; child thread finished";
+      }
+      catch(ThreadAbortException e)
+      {
+         lblmessage.Text += "&lt;br /&gt; child thread - exception";
+      }
+      finally{
+         lblmessage.Text += "&lt;br /&gt; child thread 
+                           - unable to catch the exception";
+      }
+      }
+   }
+}
+</pre></td></tr>
+</table>
+<p><b>Observe the following:</b></p>
+<ul>
+<li><p>When the page is loaded, a new thread is started with the reference of the method childthreadcall(). The main thread activities are displayed directly on the web page.</p></li>
+<li><p>The second thread runs and sends messages to the label control. </p></li>
+<li><p>The main thread sleeps for 2000 ms, during which the child thread runs.</p></li>
+<li><p>The child thread runs till it is aborted by the main thread. It raises the ThreadAbortException and is terminated.</p></li>
+<li><p>Control returns to the main thread.</p></li>
+</ul>
+<p>When executed the program sends the following messages:</p>
+<center>
+<img src="../images/asp.net_thread.html" alt="ASP.NET Thread" />
+</center>
+<br />
+<hr />
+<a href="asp.net_web_services.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="asp.net_configuration.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion14b3.html?tutorial=asp.net&amp;file=asp.net_multi_threading.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/asp.net/asp.net_multi_threading.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:01:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

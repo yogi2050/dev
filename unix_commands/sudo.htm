@@ -1,0 +1,911 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/sudo.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:29 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>sudo - Unix, Linux Command</title>
+<meta name="Description" Content="sudo - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>sudo - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- Not defining reserved macro 'Sh' ! -->
+<!-- ignored unsupported tag .tr -->
+<!-- ignored unsupported tag .ie -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .el\{ -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .rr -->
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .hy -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .tm -->
+<h1 class="manpages">NAME</h1>
+sudo, sudoedit - execute a command as another user
+<h1 class="manpages">SYNOPSIS</h1>
+<!-- ignored unsupported tag .tm -->
+<b>sudo</b> <b>-h</b> | <b>-K</b> | <b>-k</b> | <b>-L</b> | <b>-l</b> | <b>-V</b> | <b>-v</b>
+<p>
+<b>sudo</b> [<b>-bEHPS</b>]
+[<b>-p</b> <i>prompt</i>]
+[<b>-u</b> <i>username</i>|<i>#uid</i>]
+[<b><font size="-1">VAR</font></b>=<i>value</i>] {<b>-i</b> | <b>-s</b> | <i>command</i>}
+<p>
+<b>sudoedit</b> [<b>-S</b>]
+[<b>-p</b> <i>prompt</i>] [<b>-u</b> <i>username</i>|<i>#uid</i>]
+file ...
+<h1 class="manpages">DESCRIPTION</h1>
+<!-- ignored unsupported tag .tm -->
+<b>sudo</b> allows a permitted user to execute a <i>command</i> as the
+superuser or another user, as specified in the <i>sudoers</i> file.
+The real and effective uid and gid are set to match those of the
+target user as specified in the passwd file and the group vector
+is initialized based on the group file (unless the <b>-P</b> option was
+specified).  If the invoking user is root or if the target user is
+the same as the invoking user, no password is required.  Otherwise,
+<b>sudo</b> requires that users authenticate themselves with a password
+by default (<font size="-1">NOTE:</font> in the default configuration this is the user&#146;s
+password, not the root password).  Once a user has been authenticated,
+a timestamp is updated and the user may then use sudo without a
+password for a short period of time (<tt>5</tt> minutes unless
+overridden in <i>sudoers</i>).
+<p>
+When invoked as <b>sudoedit</b>, the <b>-e</b> option (described below),
+is implied.
+<p>
+<b>sudo</b> determines who is an authorized user by consulting the file
+<i>/etc/sudoers</i>.  By giving <b>sudo</b> the <b>-v</b> flag, a user
+can update the time stamp without running a <i>command</i>. The password
+prompt itself will also time out if the user&#146;s password is not
+entered within <tt>5</tt> minutes (unless overridden via
+<i>sudoers</i>).
+<p>
+If a user who is not listed in the <i>sudoers</i> file tries to run a
+command via <b>sudo</b>, mail is sent to the proper authorities, as
+defined at configure time or in the <i>sudoers</i> file (defaults to
+<tt>root</tt>).  Note that the mail will not be sent if an unauthorized
+user tries to run sudo with the <b>-l</b> or <b>-v</b> flags.  This allows
+users to determine for themselves whether or not they are allowed
+to use <b>sudo</b>.
+<p>
+If <b>sudo</b> is run by root and the <tt>SUDO_USER</tt> environment variable
+is set, <b>sudo</b> will use this value to determine who the actual
+user is.  This can be used by a user to log commands through sudo
+even when a root shell has been invoked.  It also allows the <b>-e</b>
+flag to remain useful even when being run via a sudo-run script or
+program.  Note however, that the sudoers lookup is still done for
+root, not the user specified by <tt>SUDO_USER</tt>.
+<p>
+<b>sudo</b> can log both successful and unsuccessful attempts (as well
+as errors) to <i>syslog</i>(3), a log file, or both.  By default <b>sudo</b>
+will log via <i>syslog</i>(3) but this is changeable at configure time
+or via the <i>sudoers</i> file.
+<h1 class="manpages">OPTIONS</h1>
+<!-- ignored unsupported tag .tm -->
+<b>sudo</b> accepts the following command line options:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+-b
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-b</b> (<i>background</i>) option tells <b>sudo</b> to run the given
+command in the background.  Note that if you use the <b>-b</b>
+option you cannot use shell job control to manipulate the process.
+</td></tr>
+<tr valign="top"><td width=4%>
+-E
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-E</b> (<i>preserve</i> <i>environment</i>) option will override the
+<i>env_reset</i> option in <i>sudoers</i>(5)).  It is only
+available when either the matching command has the <tt>SETENV</tt> tag
+or the <i>setenv</i> option is set in <i>sudoers</i>(5).
+</td></tr>
+<tr valign="top"><td width=4%>
+-e
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-e</b> (<i>edit</i>) option indicates that, instead of running
+a command, the user wishes to edit one or more files.  In lieu
+of a command, the string sudoedit is used when consulting
+the <i>sudoers</i> file.  If the user is authorized by <i>sudoers</i>
+the following steps are taken:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+1.
+</td><td>
+Temporary copies are made of the files to be edited with the owner
+set to the invoking user.
+</td></tr>
+<tr valign="top"><td width=4%>
+2.
+</td><td>
+The editor specified by the <tt>VISUAL</tt> or <tt>EDITOR</tt> environment
+variables is run to edit the temporary files.  If neither <tt>VISUAL</tt>
+nor <tt>EDITOR</tt> are set, the program listed in the <i>editor</i> <i>sudoers</i>
+variable is used.
+</td></tr>
+<tr valign="top"><td width=4%>
+3.
+</td><td>
+If they have been modified, the temporary files are copied back to
+their original location and the temporary versions are removed.
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .if -->
+If the specified file does not exist, it will be created.  Note
+that unlike most commands run by <b>sudo</b>, the editor is run with
+the invoking user&#146;s environment unmodified.  If, for some reason,
+<b>sudo</b> is unable to update a file with its edited version, the
+user will receive a warning and the edited copy will remain in a
+temporary file.
+</td></tr>
+<tr valign="top"><td width=4%>
+-H
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-H</b> (<i><font size="-1">HOME</font></i>) option sets the <tt>HOME</tt> environment variable
+to the homedir of the target user (root by default) as specified
+in <i>passwd</i>(5).  By default, <b>sudo</b> does not modify <tt>HOME</tt>
+(see <i>set_home</i> and <i>always_set_home</i> in <i>sudoers</i>(5)).
+</td></tr>
+<tr valign="top"><td width=4%>
+-h
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-h</b> (<i>help</i>) option causes <b>sudo</b> to print a usage message and exit.
+</td></tr>
+<tr valign="top"><td width=4%>
+-i
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-i</b> (<i>simulate initial login</i>) option runs the shell specified
+in the <i>passwd</i>(5) entry of the user that the command is
+being run as.  The command name argument given to the shell begins
+with a &#145;<tt>-</tt>&#146; to tell the shell to run as a login shell.  <b>sudo</b>
+attempts to change to that user&#146;s home directory before running the
+shell.  It also initializes the environment, leaving <i><font size="-1">TERM</font></i>
+unchanged, setting <i><font size="-1">HOME</font></i>, <i><font size="-1">SHELL</font></i>, <i><font size="-1">USER</font></i>, <i><font size="-1">LOGNAME</font></i>, and
+<i><font size="-1">PATH</font></i>, and unsetting all other environment variables.  Note that
+because the shell to use is determined before the <i>sudoers</i> file
+is parsed, a <i>runas_default</i> setting in <i>sudoers</i> will specify
+the user to run the shell as but will not affect which shell is
+actually run.
+</td></tr>
+<tr valign="top"><td width=4%>
+-K
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-K</b> (sure <i>kill</i>) option is like <b>-k</b> except that it removes
+the user&#146;s timestamp entirely.  Like <b>-k</b>, this option does not
+require a password.
+</td></tr>
+<tr valign="top"><td width=4%>
+-k
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-k</b> (<i>kill</i>) option to <b>sudo</b> invalidates the user&#146;s timestamp
+by setting the time on it to the Epoch.  The next time <b>sudo</b> is
+run a password will be required.  This option does not require a password
+and was added to allow a user to revoke <b>sudo</b> permissions from a .logout
+file.
+</td></tr>
+<tr valign="top"><td width=4%>
+-L
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-L</b> (<i>list</i> defaults) option will list out the parameters
+that may be set in a <i>Defaults</i> line along with a short description
+for each.  This option is useful in conjunction with <i>grep</i>(1).
+</td></tr>
+<tr valign="top"><td width=4%>
+-l
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-l</b> (<i>list</i>) option will list out the allowed (and
+forbidden) commands for the invoking user on the current host.
+</td></tr>
+<tr valign="top"><td width=4%>
+-P
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-P</b> (<i>preserve</i> <i>group vector</i>) option causes <b>sudo</b> to
+preserve the invoking user&#146;s group vector unaltered.  By default,
+<b>sudo</b> will initialize the group vector to the list of groups the
+target user is in.  The real and effective group IDs, however, are
+still set to match the target user.
+</td></tr>
+<tr valign="top"><td width=4%>
+-p
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-p</b> (<i>prompt</i>) option allows you to override the default
+password prompt and use a custom one.  The following percent (&#145;<tt>%</tt>&#146;)
+escapes are supported:
+<!-- ignored unsupported tag .ie -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+<tt>%H</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+expanded to the local hostname including the domain name
+(on if the machine&#146;s hostname is fully qualified or the <i>fqdn</i>
+<i>sudoers</i> option is set)
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>%h</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+expanded to the local hostname without the domain name
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>%p</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+expanded to the user whose password is being asked for (respects the
+<i>rootpw</i>, <i>targetpw</i> and <i>runaspw</i> flags in <i>sudoers</i>)
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>%U</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+expanded to the login name of the user the command will
+be run as (defaults to root)
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>%u</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+expanded to the invoking user&#146;s login name
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>%%</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+two consecutive <tt>%</tt> characters are collapsed into a single <tt>%</tt> character
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=4%>
+-S
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-S</b> (<i>stdin</i>) option causes <b>sudo</b> to read the password from
+the standard input instead of the terminal device.
+</td></tr>
+<tr valign="top"><td width=4%>
+-s
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-s</b> (<i>shell</i>) option runs the shell specified by the <i><font size="-1">SHELL</font></i>
+environment variable if it is set or the shell as specified
+in <i>passwd</i>(5).
+</td></tr>
+<tr valign="top"><td width=4%>
+-u
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-u</b> (<i>user</i>) option causes <b>sudo</b> to run the specified
+command as a user other than <i>root</i>.  To specify a <i>uid</i> instead
+of a <i>username</i>, use <i>#uid</i>.  When running commands as a <i>uid</i>,
+many shells require that the &#146;#&#146; be escaped with a backslash (&#146;&#92;&#146;).
+Note that if the <i>targetpw</i> Defaults option is set (see <i>sudoers</i>(5))
+it is not possible to run commands with a uid not listed in the
+password database.
+</td></tr>
+<tr valign="top"><td width=4%>
+-V
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-V</b> (<i>version</i>) option causes <b>sudo</b> to print the version
+number and exit.  If the invoking user is already root the <b>-V</b>
+option will print out a list of the defaults <b>sudo</b> was compiled
+with as well as the machine&#146;s local network addresses.
+</td></tr>
+<tr valign="top"><td width=4%>
+-v
+</td><td>
+<!-- ignored unsupported tag .tm -->
+If given the <b>-v</b> (<i>validate</i>) option, <b>sudo</b> will update the
+user&#146;s timestamp, prompting for the user&#146;s password if necessary.
+This extends the <b>sudo</b> timeout for another <tt>5</tt> minutes
+(or whatever the timeout is set to in <i>sudoers</i>) but does not run
+a command.
+</td></tr>
+<tr valign="top"><td width=4%>
+--
+</td><td>
+The <b>--</b> flag indicates that <b>sudo</b> should stop processing command
+line arguments.  It is most useful in conjunction with the <b>-s</b> flag.
+</td></tr>
+<!-- PP ends table -->
+</table>
+Environment variables to be set for the command may also be passed
+on the command line in the form of <b><font size="-1">VAR</font></b>=<i>value</i>, e.g.
+<b><font size="-1">LD_LIBRARY_PATH</font></b>=<i>/usr/local/pkg/lib</i>.  Variables passed on the
+command line are subject to the same restrictions as normal environment
+variables with one important exception.  If the <i>setenv</i> option
+is set in <i>sudoers</i>, the command to be run has the <tt>SETENV</tt> tag
+set or the command matched is <tt>ALL</tt>, the user may set variables
+that would overwise be forbidden.  See <i>sudoers</i>(5) for more information.
+<h1 class="manpages">RETURN VALUES</h1>
+<!-- ignored unsupported tag .tm -->
+Upon successful execution of a program, the return value from <b>sudo</b>
+will simply be the return value of the program that was executed.
+<p>
+Otherwise, <b>sudo</b> quits with an exit value of 1 if there is a
+configuration/permission problem or if <b>sudo</b> cannot execute the
+given command.  In the latter case the error string is printed to
+stderr.  If <b>sudo</b> cannot <i>stat</i>(2) one or more entries in the user&#146;s
+<tt>PATH</tt> an error is printed on stderr.  (If the directory does not
+exist or if it is not really a directory, the entry is ignored and
+no error is printed.)  This should not happen under normal
+circumstances.  The most common reason for <i>stat</i>(2) to return
+permission denied is if you are running an automounter and one
+of the directories in your <tt>PATH</tt> is on a machine that is currently
+unreachable.
+<h1 class="manpages">SECURITY NOTES</h1>
+<!-- ignored unsupported tag .tm -->
+<b>sudo</b> tries to be safe when executing external commands.
+<p>
+There are two distinct ways to deal with environment variables.
+By default, the <i>env_reset</i> <i>sudoers</i> option is enabled.
+This causes commands to be executed with a minimal environment
+containing <tt>TERM</tt>, <tt>PATH</tt>, <tt>HOME</tt>, <tt>SHELL</tt>, <tt>LOGNAME</tt>, <tt>USER</tt>
+and <tt>USERNAME</tt> in addition to variables from the invoking process
+permitted by the <i>env_check</i> and <i>env_keep</i> <i>sudoers</i> options.
+There is effectively a whitelist for environment variables.
+<p>
+If, however, the <i>env_reset</i> option is disabled in <i>sudoers</i>, any
+variables not explicitly denied by the <i>env_check</i> and <i>env_delete</i>
+options are inherited from the invoking process.  In this case,
+<i>env_check</i> and <i>env_delete</i> behave like a blacklist.  Since it
+is not possible to blacklist all potentially dangerous environment
+variables, use of the default <i>env_reset</i> behavior is encouraged.
+<p>
+In all cases, environment variables with a value beginning with
+<tt>()</tt> are removed as they could be interpreted as <b>bash</b> functions.
+The list of environment variables that <b>sudo</b> allows or denies is
+contained in the output of <tt>sudo -V</tt> when run as root.
+<p>
+Note that the dynamic linker on most operating systems will remove
+variables that can control dynamic linking from the environment of
+setuid executables, including <b>sudo</b>.  Depending on the operating
+system this may include <tt>_RLD*</tt>, <tt>DYLD_*</tt>, <tt>LD_*</tt>, <tt>LDR_*</tt>,
+<tt>LIBPATH</tt>, <tt>SHLIB_PATH</tt>, and others.  These type of variables are
+removed from the environment before <b>sudo</b> even begins execution
+and, as such, it is not possible for <b>sudo</b> to preserve them.
+<p>
+To prevent command spoofing, <b>sudo</b> checks . and "" (both denoting
+current directory) last when searching for a command in the user&#146;s
+<font size="-1">PATH</font> (if one or both are in the <font size="-1">PATH</font>).  Note, however, that the
+actual <tt>PATH</tt> environment variable is <i>not</i> modified and is passed
+unchanged to the program that <b>sudo</b> executes.
+<p>
+<b>sudo</b> will check the ownership of its timestamp directory
+(<i>/var/run/sudo</i> by default) and ignore the directory&#146;s contents if
+it is not owned by root or if it is writable by a user other than
+root.  On systems that allow non-root users to give away files via
+<i>chown</i>(2), if the timestamp directory is located in a directory
+writable by anyone (e.g., <i>/tmp</i>), it is possible for a user to
+create the timestamp directory before <b>sudo</b> is run.  However,
+because <b>sudo</b> checks the ownership and mode of the directory and
+its contents, the only damage that can be done is to hide files
+by putting them in the timestamp dir.  This is unlikely to happen
+since once the timestamp dir is owned by root and inaccessible by
+any other user, the user placing files there would be unable to get
+them back out.  To get around this issue you can use a directory
+that is not world-writable for the timestamps (<i>/var/adm/sudo</i> for
+instance) or create <i>/var/run/sudo</i> with the appropriate owner (root)
+and permissions (0700) in the system startup files.
+<p>
+<b>sudo</b> will not honor timestamps set far in the future.
+Timestamps with a date greater than current_time + 2 * <tt>TIMEOUT</tt>
+will be ignored and sudo will log and complain.  This is done to
+keep a user from creating his/her own timestamp with a bogus
+date on systems that allow users to give away files.
+<p>
+Please note that <b>sudo</b> will normally only log the command it
+explicitly runs.  If a user runs a command such as <tt>sudo su</tt> or
+<tt>sudo sh</tt>, subsequent commands run from that shell will <i>not</i> be
+logged, nor will <b>sudo</b>&#146;s access control affect them.  The same
+is true for commands that offer shell escapes (including most
+editors).  Because of this, care must be taken when giving users
+access to commands via <b>sudo</b> to verify that the command does not
+inadvertently give the user an effective root shell.  For more
+information, please see the <tt>PREVENTING SHELL ESCAPES</tt> section in
+<i>sudoers</i>(5).
+<h1 class="manpages">ENVIRONMENT</h1>
+<!-- ignored unsupported tag .tm -->
+<b>sudo</b> utilizes the following environment variables:
+<!-- ignored unsupported tag .ie -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=16%>
+<tt>EDITOR</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Default editor to use in <b>-e</b> (sudoedit) mode if <tt>VISUAL</tt> is not set
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=16%>
+<tt>HOME</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+In <b>-s</b> or <b>-H</b> mode (or if sudo was configured with the
+--enable-shell-sets-home option), set to homedir of the target user
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=16%>
+<tt>PATH</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set to a sane value if the <i>secure_path</i> sudoers option is set.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=16%>
+<tt>SHELL</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Used to determine shell to run with <tt>-s</tt> option
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=16%>
+<tt>SUDO_PROMPT</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Used as the default password prompt
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=16%>
+<tt>SUDO_COMMAND</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set to the command run by sudo
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=16%>
+<tt>SUDO_USER</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set to the login of the user who invoked sudo
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=16%>
+<tt>SUDO_UID</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set to the uid of the user who invoked sudo
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=16%>
+<tt>SUDO_GID</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set to the gid of the user who invoked sudo
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=16%>
+<tt>SUDO_PS1</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+If set, <tt>PS1</tt> will be set to its value
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=16%>
+<tt>USER</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set to the target user (root unless the <b>-u</b> option is specified)
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=16%>
+<tt>VISUAL</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Default editor to use in <b>-e</b> (sudoedit) mode
+</td></tr>
+</table>
+<h1 class="manpages">FILES</h1>
+<!-- ignored unsupported tag .tm -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=24%>
+<i>/etc/sudoers</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+List of who can run what
+</td></tr>
+<tr valign="top"><td width=24%>
+<i>/var/run/sudo</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Directory containing timestamps
+</td></tr>
+</table>
+<h1 class="manpages">EXAMPLES</h1>
+<!-- ignored unsupported tag .tm -->
+Note: the following examples assume suitable <i>sudoers</i>(5) entries.
+<p>
+To get a file listing of an unreadable directory:
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+ $ sudo ls /usr/local/protected
+</tt></pre></td></tr>
+</table>
+<p>
+To list the home directory of user yazza on a machine where the
+file system holding ~yazza is not exported as root:
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+ $ sudo -u yazza ls ~yazza
+</tt></pre></td></tr>
+</table>
+<p>
+To edit the <i>index.html</i> file as user www:
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+ $ sudo -u www vi ~www/htdocs/index.html
+</tt></pre></td></tr>
+</table>
+<p>
+To shutdown a machine:
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+ $ sudo shutdown -r +15 "quick reboot"
+</tt></pre></td></tr>
+</table>
+<p>
+To make a usage listing of the directories in the /home
+partition.  Note that this runs the commands in a sub-shell
+to make the <tt>cd</tt> and file redirection work.
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+ $ sudo sh -c "cd /home ; du -s * | sort -rn &gt; USAGE"
+</tt></pre></td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<i>grep</i>(1), <i>su</i>(1), <i>stat</i>(2),
+<i>passwd</i>(5), <i>sudoers</i>(5), <i>visudo</i>(8)
+<h1 class="manpages">AUTHORS</h1>
+<!-- ignored unsupported tag .tm -->
+Many people have worked on <b>sudo</b> over the years; this
+version consists of code written primarily by:
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+        Todd C. Miller
+        Chris Jepeway
+</tt></pre></td></tr>
+</table>
+<p>
+See the <font size="-1">HISTORY</font> file in the <b>sudo</b> distribution or visit
+<a href="http://www.sudo.ws/sudo/history.html">http://www.sudo.ws/sudo/history.html</a> for a short history
+of <b>sudo</b>.
+<h1 class="manpages">CAVEATS</h1>
+<!-- ignored unsupported tag .tm -->
+There is no easy way to prevent a user from gaining a root shell
+if that user is allowed to run arbitrary commands via <b>sudo</b>.
+Also, many programs (such as editors) allow the user to run commands
+via shell escapes, thus avoiding <b>sudo</b>&#146;s checks.  However, on
+most systems it is possible to prevent shell escapes with <b>sudo</b>&#146;s
+<i>noexec</i> functionality.  See the <i>sudoers</i>(5) manual
+for details.
+<p>
+It is not meaningful to run the <tt>cd</tt> command directly via sudo, e.g.,
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+ $ sudo cd /usr/local/protected
+</tt></pre></td></tr>
+</table>
+<p>
+since when the command exits the parent process (your shell) will
+still be the same.  Please see the <font size="-1">EXAMPLES</font> section for more information.
+<p>
+If users have sudo <tt>ALL</tt> there is nothing to prevent them from
+creating their own program that gives them a root shell regardless
+of any &#146;!&#146; elements in the user specification.
+<p>
+Running shell scripts via <b>sudo</b> can expose the same kernel bugs that
+make setuid shell scripts unsafe on some operating systems (if your <font size="-1">OS</font>
+has a /dev/fd/ directory, setuid shell scripts are generally safe).
+<h1 class="manpages">BUGS</h1>
+<!-- ignored unsupported tag .tm -->
+If you feel you have found a bug in <b>sudo</b>, please submit a bug report
+at <a href="http://www.sudo.ws/sudo/bugs">http://www.sudo.ws/sudo/bugs</a>/
+<h1 class="manpages">SUPPORT</h1>
+<!-- ignored unsupported tag .tm -->
+Limited free support is available via the sudo-users mailing list,
+see <a href="http://www.sudo.ws/mailman/listinfo/sudo-users">http://www.sudo.ws/mailman/listinfo/sudo-users</a> to subscribe or
+search the archives.
+<h1 class="manpages">DISCLAIMER</h1>
+<!-- ignored unsupported tag .tm -->
+<b>sudo</b> is provided &#145;&#145;<font size="-1">AS</font> <font size="-1">IS</font>&#146;&#146; and any express or implied warranties,
+including, but not limited to, the implied warranties of merchantability
+and fitness for a particular purpose are disclaimed.  See the <font size="-1">LICENSE</font>
+file distributed with <b>sudo</b> or <a href="http://www.sudo.ws/sudo/license.html">http://www.sudo.ws/sudo/license.html</a>
+for complete details.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion285b.html?tutorial=unix_commands&amp;file=sudo.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/sudo.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:29 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

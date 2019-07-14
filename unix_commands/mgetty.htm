@@ -1,0 +1,458 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/mgetty.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:59 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>mgetty - Unix, Linux Command</title>
+<meta name="Description" Content="mgetty - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>mgetty - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- ignored unsupported tag .IX -->
+<h1 class="manpages">NAME</h1>
+mgetty - smart modem getty
+<h1 class="manpages">SYNOPSIS</h1>
+<b>mgetty</b> [<b>options</b>] ttydevice [<i>gettydefs</i>] <h1 class="manpages">DESCRIPTION</h1>
+Mgetty is a &#145;&#145;smart&#146;&#146; getty replacement, designed to be used with hayes
+compatible data and data/fax modems.
+Mgetty knows about modem initialization, manual modem answering (so your
+modem doesn&#146;t answer if the machine isn&#146;t ready), UUCP locking (so you can
+use the same device for dial-in and dial-out).
+Mgetty provides very extensive logging facilities.
+<p>
+This manpage doesn&#146;t try to detail mgetty setup in detail, it just lists
+the most important options. For detailed instructions, see the info file
+mgetty.info (mgetty.texi).
+<p>
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>-k &lt;space&gt;</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Tells
+<i>mgetty</i> to leave &lt;space&gt; kbytes free on disk when receiving a fax.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-x &lt;debug level&gt;</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Use the given level of verbosity for logging - 0 means no logging, 9 is
+really noisy. The log file is usually /tmp/log_mg.&lt;device&gt;
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-s &lt;speed&gt;</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set the port speed to use, e.g. "-s 19200".
+</td></tr>
+<tr valign="top"><td>
+<b>-r</b> </td><td valign="bottom">
+Tells
+<i>mgetty</i> that it is running on a direct line. UUCP locking is done, but no modem
+initialization whatsoever.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-p &lt;login prompt&gt;</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Use the given string to prompt users for their login names. Various
+tokens are allowed in this string. These tokens are: @ for the system
+name, \n, \g, \f, for newline, bell,
+and form feed, respectively.
+\v and \r will expand to the OS version and release.
+\P, \l and \L will expand to the tty name ("ttyS0").
+\Y will give the Caller
+ID, \I the "CONNECT foobar" string returned
+by the modem, and \S or \b will output the port speed.
+\N and \U give the number of users currently logged in.
+\C will be changed into the result of ctime(), and \D or \d and \t or \T
+will output the date and time, respectively. Finally, lt;digit&gt; will use digit
+as octal/decimal/hexadecimal representation of the character to follow.
+<p>
+The default prompt is specified at compile time.
+</td></tr>
+<tr valign="top"><td>
+<b>-n #</b> </td><td valign="bottom">
+Tells
+<i>mgetty</i> to pick up the phone after the #th RING. Default is 1.
+</td></tr>
+<tr valign="top"><td>
+<b>-R &lt;t&gt;</b> </td><td valign="bottom">
+Tells
+<i>mgetty</i> to go into "ringback" (aka "ring-twice") mode. That means: the first call
+is never answered, instead the caller has to hang up after the phone
+RINGs, wait 30 seconds, and then call again in the next &lt;t&gt; seconds for
+mgetty to pick up. If no call comes, mgetty will exit.
+<p>
+I do not really recommend using this, better get a second phone line for
+the modem.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-i &lt;issue file&gt;</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Output &lt;issue file&gt; instead of /etc/issue before prompting for the user
+name. The same token substitutions as for the the login prompt are done
+in this file.
+</td></tr>
+<tr valign="top"><td>
+<b>-D</b> </td><td valign="bottom">
+Tells
+<i>mgetty</i> that the modem is to be treated as a DATA modem, no fax initalization is
+attempted.
+</td></tr>
+<tr valign="top"><td>
+<b>-F</b> </td><td valign="bottom">
+Tells
+<i>mgetty</i> that DATA calls are not allowed and the modem should be set to Fax-Only.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-C &lt;class&gt;</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Tells
+<i>mgetty</i> how to treat the modem. Possible values for &lt;class&gt; are "auto" (default,
+try to find out whether the modem supports fax), "cls2" (use the class 2
+fax command set, even if the modem supports class 2.0), "c2.0" (use the
+class 2.0 fax command set), "data" (data only, exactly as the -D switch).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-S &lt;g3 file&gt;</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+If a call comes in and requests fax polling,
+<i>mgetty</i> will send the named file. Note: not all fax modems support poll
+sending.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-I &lt;fax id&gt;</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Use the given fax station ID for fax identification. Not used for data
+modems.
+</td></tr>
+<tr valign="top"><td>
+<b>-b</b> </td><td valign="bottom">
+Open the port in blocking mode. Best used in combination with "-r". This
+is the default if
+<i>mgetty</i> is called as
+<i>getty.</i> You may want to use this if you want to make use of the two-device /
+kernel-locking scheme of the Linux and SunOS operating systems
+(/dev/ttyS.. and /dev/cua..). I do not recommend it, it&#146;s just include for
+completeness, and to be able to use mgetty as a full-featured getty
+replacement.
+</td></tr>
+<tr valign="top"><td>
+<b>-a</b> </td><td valign="bottom">
+Use autobauding. That is, after a connection is made,
+<i>mgetty</i> parses the "CONNECT foo" response code of the modem and sets the port
+speed to the first integer found after the "CONNECT" string, "foo" in this
+example. You need this if your modem insist on changing its DTE speed to
+match the line speed. I recommend against using it, better leave the port
+speed locked at a fixed value. The feature is included because there
+exist old modems that cannot use a fixed (locked) port speed.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-m &#146;expect send ...&#146;</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set the "chat sequence" that is used to initialize the modem. For an empty
+expect part, use empty double quotes (""). Since the sequence contains
+spaces, you have to enclose all of it in single quotes(&#146;&#146;). Example:
+<p>
+mgetty -m &#146;"" ATH0 OK&#146;
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">FILES</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>/etc/mgetty+sendfax/mgetty.config</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Main configuration file.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>/etc/mgetty+sendfax/login.config</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+controls whether (and when)
+<i>mgetty</i> should call some other program for user login instead of /bin/login. How this
+is done is explained in this file.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>/etc/mgetty+sendfax/dialin.config</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+controls acceptance/denial of incoming calls based on the caller&#146;s number.
+Available only if you have "caller ID" and your modem supports it.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>/etc/nologin.ttyxx</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+controls whether mgetty should pick up the phone upon incoming calls. If
+the file exists, calls are completely ignored. You can use this, for
+example, to stop mgetty during day time, and let it pick up at night only,
+by creating and removing /etc/nologin.ttyxx via the
+<i>cron</i> program at the appropriate time.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>/etc/issue</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+will be printed after a connection is established, and before the
+<!-- ignored unsupported tag .login:' -->
+with the &#146;-i&#146; option.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>/var/log/mgetty.log.ttyxx</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Debug log file, see below.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">DIAGNOSTICS</h1>
+If
+<i>mgetty</i> doesn&#146;t work the way it should, the main source of diagnostic data is the
+<i>log file.</i> It can be found in "/var/log/mgetty.log.ttyxx" (for the mgetty process handling
+"ttyxx").  If it doesn&#146;t contain enough details, enhance the log level with
+the &#146;-x&#146; option to mgetty, e.g. "-x 5".
+<p>
+Many of the common problems and solutions are discussed in the mgetty
+manual and the FAQ.  Please see the WWW page at
+<a href="http://alpha.greenie.net/mgetty">http://alpha.greenie.net/mgetty</a>/ for both.
+<p>
+<p>
+<h1 class="manpages">BUGS</h1>
+Not all of
+<i>mgetty</i> configuration can be done at run-time yet. Things like flow control and
+file paths (log file / lock file) have to be configured by changing the
+source and recompiling.
+<p>
+Users never read manuals...
+<p>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<h1 class="manpages">AUTHOR</h1>
+<i>mgetty</i> is Copyright (C) 1993 by Gert Doering, &lt;<a href="mailto:gert@greenie.muc.de">gert@greenie.muc.de</a>&gt;.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion1522.html?tutorial=unix_commands&amp;file=mgetty.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/mgetty.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:59 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

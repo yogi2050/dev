@@ -1,0 +1,386 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/ruby/ruby_socket_programming.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Apr 2013 19:46:10 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>Ruby Socket Programming</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="Keywords" content="Ruby, Tutorials, Learning, Beginners, Basics, Scripting Language, Syntax, Classes, , Variables, Comments, Loops, File, I/O, Functions, Objects, TK, Ranges, iterators, arrays, strings, methods, blocks, Exception, Multi-Threading, Hashes, Modules, LDAP, Web Services, Web Programming." />
+<meta name="description" content="Ruby Socket Programming - Learning Ruby in simple and easy steps - A beginner's tutorial containing complete knowledge of Ruby Syntax Syntax, Classes, , Variables, Comments, Loops, File, I/O, Functions, Objects, TK, Ranges, iterators, arrays, strings, methods, blocks, Exception, Multi-Threading, Hashes, Modules, LDAP, Web Services, Web Programming." />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+/* Ruby Scheme */
+#topmenu a:link {text-decoration:none;color:#fff !important;background-color:transparent;font-weight:bold;}
+#topmenu a:visited {text-decoration:none;color:#fff !important;background-color:transparent;font-weight:bold;}
+#topmenu a:hover {text-decoration:none;color:#C83932 !important;background-color:transparent;font-weight:bold;}
+#header{ 
+background:#C83932 !important;
+}
+#topmenu
+{
+background-color:#5E0500 !important;
+}
+#leftcol ul.menu li.heading 
+{
+background:#C83932 !important;
+border:1px solid #964800 !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1500px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index.htm">Tutorials Point - Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index.htm" target="_top">HOME </a>
+<a href="../java/index.htm" target="_top">JAVA </a>
+<a href="../php/index.htm" target="_top">PHP </a>
+<a href="../python/index.htm" target="_top">Python </a>
+<a href="index.htm" target="_top">Ruby </a>
+<a href="../perl/index.htm" target="_top">Perl </a>
+<a href="../html/index.htm" target="_top">HTML </a>
+<a href="../css/index.htm" target="_top">CSS </a>
+<a href="../javascript/index.htm" target="_top">Javascript </a>
+<a href="../mysql/index.htm" target="_top">MySQL </a>
+<a href="../cplusplus/index.htm" target="_top">C++ </a>
+<a href="../unix/index.htm" target="_top">UNIX </a>
+<a href="../more.htm" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.htm" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.htm" target="_top">ABOUT</a> |
+<a href="../about/contact_us.htm" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/ruby-mini-logo.png" alt="Ruby Tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">Ruby Basics</li>
+<li><a class="left" target="_top" href="index.htm">Ruby Home</a></li>
+<li><a class="left" target="_top" href="ruby_overview.htm">Ruby Overview</a></li>
+<li><a class="left" target="_top" href="ruby_environment.htm">Ruby Environment</a></li>
+<li><a class="left" target="_top" href="ruby_syntax.htm">Ruby Syntax</a></li>
+<li><a class="left" target="_top" href="ruby_classes.htm">Ruby Classes</a></li>
+<li><a class="left" target="_top" href="ruby_variables.htm">Ruby Variables</a></li>
+<li><a class="left" target="_top" href="ruby_operators.htm">Ruby Operators</a></li>
+<li><a class="left" target="_top" href="ruby_comments.htm">Ruby Comments</a></li>
+<li><a class="left" target="_top" href="ruby_if_else.htm">Ruby IF...ELSE</a></li>
+<li><a class="left" target="_top" href="ruby_loops.htm">Ruby Loops</a></li>
+<li><a class="left" target="_top" href="ruby_methods.htm">Ruby Methods</a></li>
+<li><a class="left" target="_top" href="ruby_blocks.htm">Ruby Blocks</a></li>
+<li><a class="left" target="_top" href="ruby_modules.htm">Ruby Modules</a></li>
+<li><a class="left" target="_top" href="ruby_strings.htm">Ruby Strings</a></li>
+<li><a class="left" target="_top" href="ruby_arrays.htm">Ruby Arrays</a></li>
+<li><a class="left" target="_top" href="ruby_hashes.htm">Ruby Hashes</a></li>
+<li><a class="left" target="_top" href="ruby_date_time.htm">Ruby Date &amp; Time</a></li>
+<li><a class="left" target="_top" href="ruby_ranges.htm">Ruby Ranges</a></li>
+<li><a class="left" target="_top" href="ruby_iterators.htm">Ruby Iterators</a></li>
+<li><a class="left" target="_top" href="ruby_input_output.htm">Ruby File I/O</a></li>
+<li><a class="left" target="_top" href="ruby_exceptions.htm">Ruby Exceptions</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Ruby Advanced</li>
+<li><a class="left" target="_top" href="ruby_object_oriented.htm">Ruby Object Oriented</a></li>
+<li><a class="left" target="_top" href="ruby_regular_expressions.htm">Ruby Regular Expressions</a></li>
+<li><a class="left" target="_top" href="ruby_database_access.htm">Ruby Database Access</a></li>
+<li><a class="left" target="_top" href="ruby_web_applications.htm">Ruby Web Applications</a></li>
+<li><a class="left" target="_top" href="ruby_sending_email.htm">Ruby Sending Email</a></li>
+<li><a class="left" target="_top" href="ruby_socket_programming.htm"><b>Ruby Socket Programming</b></a></li>
+<li><a class="left" target="_top" href="ruby_xml_xslt.htm">Ruby/XML, XSLT</a></li>
+<li><a class="left" target="_top" href="ruby_web_services.htm">Ruby Web Services</a></li>
+<li><a class="left" target="_top" href="ruby_tk_guide.htm">Ruby/Tk Guide</a></li>
+<li><a class="left" target="_top" href="ruby_ldap.htm">Ruby/LDAP Tutorial</a></li>
+<li><a class="left" target="_top" href="ruby_multithreading.htm">Ruby Multithreading</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Ruby Useful Resources</li>
+<li><a class="left" target="_top" href="ruby_quick_guide.htm">Ruby Quick Guide</a></li>
+<li><a class="left" target="_top" href="ruby_builtin_functions.htm">Ruby Built-in Functions</a></li>
+<li><a class="left" target="_top" href="ruby_predefined_variables.htm">Ruby Predefined Variables</a></li>
+<li><a class="left" target="_top" href="ruby_predefined_constants.htm">Ruby Predefined Constants</a></li>
+<li><a class="left" target="_top" href="ruby_associated_tools.htm">Ruby Associated Tools</a></li>
+<li><a class="left" target="_top" href="ruby_resources.htm">Ruby Useful Resources</a></li>
+<li><a class="left" target="_top" href="../ruby-on-rails/index.htm">Ruby on Rails Tutorial</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>Ruby Socket Programming</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="ruby_sending_email.htm">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="ruby_xml_xslt.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>Ruby provides two levels of access to network services. At a low level, you can access the basic socket support in the underlying operating system, which allows you to implement clients and servers for both connection-oriented and connectionless protocols.</p>
+<p>Ruby also has libraries that provide higher-level access to specific application-level network protocols, such as FTP, HTTP, and so on.</p>
+<p>This tutorial gives you understanding on most famous concept in Networking - Socket Programming</p>
+<h2>What is Sockets?</h2>
+<p>Sockets are the endpoints of a bidirectional communications channel. Sockets may communicate within a process, between processes on the same machine, or between processes on different continents.</p>
+<p>Sockets may be implemented over a number of different channel types: Unix domain sockets, TCP, UDP, and so on. The <i>socket</i>
+library provides specific classes for handling the common transports as well as a generic interface for handling the rest.</p>
+<p>Sockets have their own vocabulary:</p>
+<table class="src">
+<tr><th>Term</th><th>Description</th></tr>
+<tr><td>domain</td><td>The family of protocols that will be used as the transport mechanism. These values are constants such as PF_INET, PF_UNIX, PF_X25, and so on.</td></tr>
+<tr><td>type</td><td>The type of communications between the two endpoints, typically SOCK_STREAM for connection-oriented protocols and SOCK_DGRAM for connectionless protocols.</td></tr>
+<tr><td>protocol</td><td>Typically zero, this may be used to identify a variant of a protocol within a domain and type.</td></tr>
+<tr><td>hostname</td><td>The identifier of a network interface:
+<ul class="list">
+<li><p>A string, which can be a host name, a dotted-quad address, or an IPV6 address in colon (and possibly dot) notation</p></li>
+<li><p>A string "&lt;broadcast&gt;", which specifies an INADDR_BROADCAST address.</p></li>
+<li><p>A zero-length string, which specifies INADDR_ANY, or</p></li>
+<li><p>An Integer, interpreted as a binary address in host byte order.</p></li>
+</ul></td></tr>
+<tr><td>port</td><td>Each server listens for clients calling on one or more ports. A port may be a Fixnum port number, a string containing a port number, or the name of a service.</td></tr>
+</table>
+<h2>A Simple Client:</h2>
+<p>Here we will write a very simple client program which will open a connection to a given port and given host. Ruby class <b>TCPSocket</b> provides <i>open</i> function to open such a socket.</p> 
+<p>The <b>TCPSocket.open(hosname, port )</b> opens a TCP connection to <i>hostname</i> on the <i>port</i>.</p>
+<p>Once you have a socket open, you can read from it like any IO object. When done, remember to close it, as you would close a file.</p>
+<p>The following code is a very simple client that connects to a given host and port, reads any available data from the socket, and then exits:</p>
+<pre class="prettyprint">
+require 'socket'      # Sockets are in standard library
+
+hostname = 'localhost'
+port = 2000
+
+s = TCPSocket.open(host, port)
+
+while line = s.gets   # Read lines from the socket
+  puts line.chop      # And print with platform line terminator
+end
+s.close               # Close the socket when done
+</pre>
+<h2>A Simple Server:</h2>
+<p>To write Internet servers, we use the <b>TCPServer</b> class. A TCPServer object is a factory for TCPSocket objects.</p>
+<p>Now call <b>TCPServer.open(hostname, port</b> function to specify a <i>port</i> for your service and create a <b>TCPServer</b> object.</p>
+<p>Next, call the <i>accept</i> method of the returned TCPServer object. This method waits until a client connects to the port you specified, and then returns a <i>TCPSocket</i> object that represents the connection to that client.</p>
+<pre class="prettyprint">
+require 'socket'               # Get sockets from stdlib
+
+server = TCPServer.open(2000)  # Socket to listen on port 2000
+loop {                         # Servers run forever
+  client = server.accept       # Wait for a client to connect
+  client.puts(Time.now.ctime)  # Send the time to the client
+  client.puts "Closing the connection. Bye!"
+  client.close                 # Disconnect from the client
+}
+</pre>
+<p>Now run this server in background and then run above client to see the result.</p>
+<h2>Multi-Client TCP Servers:</h2>
+<p>Most servers on the Internet are designed to deal with large numbers of clients at any one time.</p>
+<p>Ruby's <i>Thread</i> class makes it easy to create a multithreaded server.one that accepts requests and immediately creates a new thread of execution to process the connection while allowing the main program to await more connections:</p>
+<pre class="prettyprint">
+require 'socket'                # Get sockets from stdlib
+
+server = TCPServer.open(2000)   # Socket to listen on port 2000
+loop {                          # Servers run forever
+  Thread.start(server.accept) do |client|
+    client.puts(Time.now.ctime) # Send the time to the client
+	client.puts "Closing the connection. Bye!"
+    client.close                # Disconnect from the client
+  end
+}
+</pre>
+<p>In this example you have a permanent loop, and when server.accept responds, a new thread is created and started immediately to handle the connection that has just been accepted, using the connection object passed into the thread. However, the main program immediately loops back and awaits new connections.</p>
+<p>Using Ruby threads in this way means the code is portable and will run in the same way on Linux, OS X, and Windows.</p>
+<h2>A Tiny Web Browser:</h2>
+<p>We can use the socket library to implement any Internet protocol. Here, for example, is code to fetch the content of a web page:</p>
+<pre class="prettyprint">
+require 'socket'
+ 
+host = 'www.tutorialspoint.com'     # The web server
+port = 80                           # Default HTTP port
+path = "/index.htm"                 # The file we want 
+
+# This is the HTTP request we send to fetch a file
+request = "GET #{path} HTTP/1.0\r\n\r\n"
+
+socket = TCPSocket.open(host,port)  # Connect to server
+socket.print(request)               # Send request
+response = socket.read              # Read complete response
+# Split response at first blank line into headers and body
+headers,body = response.split("\r\n\r\n", 2) 
+print body                          # And display it
+</pre>
+<p>To implement the similar web client you can use a prebuilt library like <b>Net::HTTP</b> for working with HTTP. Here is code that does the equivalent of the previous code:</p>
+<pre class="prettyprint">
+require 'net/http'                  # The library we need
+host = 'www.tutorialspoint.com'     # The web server
+path = '/index.htm'                 # The file we want 
+
+http = Net::HTTP.new(host)          # Create a connection
+headers, body = http.get(path)      # Request the file
+if headers.code == "200"            # Check the status code   
+  print body                        
+else                                
+  puts "#{headers.code} #{headers.message}" 
+end
+</pre>
+<p>Please check similar libraries  to work with FTP, SMTP, POP, and IMAP protocols.</p>
+<h2>Further Readings:</h2>
+<p>I have given you a quick start with Socket Programming. It's a big subject so its recommended to go through the following link to find more detail on <a href="http://www.ruby-doc.org/stdlib/libdoc/socket/rdoc/index.html" title="Ruby Socket Library" target="_blank">Ruby Socket Library and Class Methods</a>.</p>
+<hr />
+<div class="pre-btn">
+<a href="ruby_sending_email.htm">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/ruby_socket_programming.pdf" alt="Ruby Socket Programming" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="ruby_xml_xslt.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.htm" target="_top">ASP.NET </a> |
+<a href="../jquery/index.htm" target="_top">jQuery </a> |
+<a href="../ajax/index.htm" target="_top">AJAX </a> |
+<a href="../ant/index.htm" target="_top">ANT</a> |
+<a href="../jsp/index.htm" target="_top">JSP </a> |
+<a href="../servlets/index.htm" target="_top">Servlets </a> |
+<a href="../log4j/index.htm" target="_top">log4j </a> |
+<a href="../ibatis/index.htm" target="_top">iBATIS </a> |
+<a href="../hibernate/index.htm" target="_top">Hibernate </a> |
+<a href="../jdbc/index.htm" target="_top">JDBC </a> |
+<a href="../struts_2/index.htm" target="_top">Struts </a> |
+<a href="../html5/index.htm" target="_top">HTML5 </a> |
+<a href="../sql/index.htm" target="_top">SQL </a> |
+<a href="../mysql/index.htm" target="_top">MySQL </a> |
+<a href="../cplusplus/index.htm" target="_top">C++ </a> |
+<a href="../unix/index.htm" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/ruby/ruby_socket_programming.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Apr 2013 19:46:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,569 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/login.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:54 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>login - Unix, Linux Command</title>
+<meta name="Description" Content="login - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>login - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+login - sign on
+<h1 class="manpages">SYNOPSIS</h1>
+<b>login [ </b>name<b> ]</b> <!-- Need break --><br />
+<b>login -p</b> <!-- Need break --><br />
+<b>login -h </b>hostname <!-- Need break --><br />
+<b>login -f </b>name <h1 class="manpages">DESCRIPTION</h1>
+<b>login</b> is used when signing onto a system.  It can also be used to switch from one
+user to another at any time (most modern shells have support for this
+feature built into them, however).
+<p>
+If an argument is not given,
+<b>login</b> prompts for the username.
+<p>
+If the user is
+<i>not</i> root, and if
+<i>/etc/nologin</i> exists, the contents of this file are printed to the screen, and the
+login is terminated.  This is typically used to prevent logins when the
+system is being taken down.
+<p>
+If special access restrictions are specified for the user in
+<i>/etc/usertty</i>, these must be met, or the log in attempt will be denied and a
+<b>syslog</b> message will be generated. See the section on "Special Access Restrictions".
+<p>
+If the user is root, then the login must be occurring on a tty listed in
+<i>/etc/securetty</i>. Failures will be logged with the
+<b>syslog</b> facility.
+<p>
+After these conditions have been checked, the password will be requested and
+checked (if a password is required for this username).  Ten attempts
+are allowed before
+<b>login</b> dies, but after the first three, the response starts to get very slow.
+Login failures are reported via the
+<b>syslog</b> facility.  This facility is also used to report any successful root logins.
+<p>
+If the file
+<i>.hushlogin</i> exists, then a "quiet" login is performed (this disables the checking
+of mail and the printing of the last login time and message of the day).
+Otherwise, if
+<i>/var/log/lastlog</i> exists, the last login time is printed (and the current login is
+recorded).
+<p>
+Random administrative things, such as setting the UID and GID of the
+tty are performed.  The TERM environment variable is preserved, if it
+exists (other environment variables are preserved if the
+<b>-p</b> option is used).  Then the HOME, PATH, SHELL, TERM, MAIL, and LOGNAME
+environment variables are set.  PATH defaults to
+<i>/usr/local/bin:/bin:/usr/bin</i> for normal users, and to
+<i>/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin</i> for root.  Last, if this is not a "quiet" login, the message of the
+day is printed and the file with the user&#146;s name in
+<i>/var/spool/mail</i> will be checked, and a message printed if it has non-zero length.
+<p>
+The user&#146;s shell is then started.  If no shell is specified for the
+user in
+<b>/etc/passwd</b>, then
+<b>/bin/sh</b> is used.  If there is no directory specified in
+<i>/etc/passwd</i>, then
+<i>/</i> is used (the home directory is checked for the
+<i>.hushlogin</i> file described above).
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-p</b> </td><td valign="bottom">
+Used by
+<b>getty</b>(8)
+to tell
+<b>login</b> not to destroy the environment
+</td></tr>
+<tr valign="top"><td>
+<b>-f</b> </td><td valign="bottom">
+Used to skip a second login authentication.  This specifically does
+<b>not</b> work for root, and does not appear to work well under Linux.
+</td></tr>
+<tr valign="top"><td>
+<b>-h</b> </td><td valign="bottom">
+Used by other servers (i.e.,
+<b>telnetd</b>(8))
+to pass the name of the remote host to
+<b>login</b> so that it may be placed in utmp and wtmp.  Only the superuser may use
+this option.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">SPECIAL ACCESS RESTRICTIONS</h1>
+The file
+<i>/etc/securetty</i> lists the names of the ttys where root is allowed to log in. One name
+of a tty device without the /dev/ prefix must be specified on each
+line.  If the file does not exist, root is allowed to log in on any
+tty.
+<p>
+On most modern Linux systems PAM (Pluggable Authentication Modules)
+is used. On systems that do not use PAM, the file
+<i>/etc/usertty</i> specifies additional access restrictions for specific users.
+If this file does not exist, no additional access restrictions are
+imposed. The file consists of a sequence of sections. There are three
+possible section types: CLASSES, GROUPS and USERS. A CLASSES section
+defines classes of ttys and hostname patterns, A GROUPS section
+defines allowed ttys and hosts on a per group basis, and a USERS
+section defines allowed ttys and hosts on a per user basis.
+<p>
+Each line in this file in may be no longer than 255
+characters. Comments start with # character and extend to the end of
+the line.
+<p>
+<h2><i>The CLASSES Section</i></h2>
+A CLASSES section begins with the word CLASSES at the start of a line
+in all upper case. Each following line until the start of a new
+section or the end of the file consists of a sequence of words
+separated by tabs or spaces. Each line defines a class of ttys and
+host patterns.
+<p>
+The word at the beginning of a line becomes defined as a collective
+name for the ttys and host patterns specified at the rest of the
+line. This collective name can be used in any subsequent GROUPS or
+USERS section. No such class name must occur as part of the definition
+of a class in order to avoid problems with recursive classes.
+<p>
+An example CLASSES section:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .in -->
+CLASSES
+myclass1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tty1 tty2
+myclass2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tty3 @.foo.com
+<!-- ignored unsupported tag .in -->
+</pre></td></tr>
+</table>
+<p>
+This defines the classes
+<i>myclass1</i> and
+<i>myclass2</i> as the corresponding right hand sides.
+<p>
+<p>
+<h2><i>The GROUPS Section</i></h2>
+A GROUPS section defines allowed ttys and hosts on a per Unix group basis. If
+a user is a member of a Unix group according to
+<i>/etc/passwd</i> and
+<i>/etc/group</i> and such a group is mentioned in a GROUPS section in
+<i>/etc/usertty</i> then the user is granted access if the group is.
+<p>
+A GROUPS section starts with the word GROUPS in all upper case at the start of
+a line, and each following line is a sequence of words separated by spaces
+or tabs. The first word on a line is the name of the group and the rest
+of the words on the line specifies the ttys and hosts where members of that
+group are allowed access. These specifications may involve the use of
+classes defined in previous CLASSES sections.
+<p>
+An example GROUPS section.
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .in -->
+GROUPS
+sys&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tty1 @.bar.edu
+stud&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myclass1 tty4
+<!-- ignored unsupported tag .in -->
+</pre></td></tr>
+</table>
+<p>
+This example specifies that members of group
+<i>sys</i> may log in on tty1 and from hosts in the bar.edu domain. Users in
+group
+<i>stud</i> may log in from hosts/ttys specified in the class myclass1 or from
+tty4.
+<p>
+<p>
+<h2><i>The USERS Section</i></h2>
+A USERS section starts with the word USERS in all upper case at the
+start of a line, and each following line is a sequence of words
+separated by spaces or tabs. The first word on a line is a username
+and that user is allowed to log in on the ttys and from the hosts
+mentioned on the rest of the line. These specifications may involve
+classes defined in previous CLASSES sections.  If no section header is
+specified at the top of the file, the first section defaults to be a
+USERS section.
+<p>
+An example USERS section:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .in -->
+USERS
+zacho&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tty1 @130.225.16.0/255.255.255.0
+blue&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tty3 myclass2
+<!-- ignored unsupported tag .in -->
+</pre></td></tr>
+</table>
+<p>
+This lets the user zacho login only on tty1 and from hosts with IP
+addreses in the range 130.225.16.0 - 130.225.16.255, and user blue is
+allowed to log in from tty3 and whatever is specified in the class
+myclass2.
+<p>
+There may be a line in a USERS section starting with a username of
+*. This is a default rule and it will be applied to any user not
+matching any other line.
+<p>
+If both a USERS line and GROUPS line match a user then the user is
+allowed access from the union of all the ttys/hosts mentioned in these
+specifications.
+<p>
+<h2><i>Origins</i></h2>
+The tty and host pattern specifications used in the specification of
+classes, group and user access are called origins. An origin string
+may have one of these formats:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+The name of a tty device without the /dev/ prefix, for example tty1 or
+ttyS0.
+<!-- suppressed PP before IP -->
+</td></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+The string @localhost, meaning that the user is allowed to
+telnet/rlogin from the local host to the same host. This also allows
+the user to for example run the command: xterm -e /bin/login.
+<!-- suppressed PP before IP -->
+</td></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+A domain name suffix such as @.some.dom, meaning that the user may
+rlogin/telnet from any host whose domain name has the suffix
+&#46;some.dom.
+<!-- suppressed PP before IP -->
+</td></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+A range of IPv4 addresses, written @x.x.x.x/y.y.y.y where x.x.x.x is
+the IP address in the usual dotted quad decimal notation, and y.y.y.y
+is a bitmask in the same notation specifying which bits in the address
+to compare with the IP address of the remote host. For example
+@130.225.16.0/255.255.254.0 means that the user may rlogin/telnet from
+any host whose IP address is in the range 130.225.16.0 -
+130.225.17.255.
+</td></tr>
+<!-- PP ends table -->
+</table>
+Any of the above origins may be prefixed by a time specification
+according to the syntax:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+timespec    ::= &#146;[&#146; &lt;day-or-hour&gt; [&#146;:&#146; &lt;day-or-hour&gt;]* &#146;]&#146;
+day         ::= &#146;mon&#146; | &#146;tue&#146; | &#146;wed&#146; | &#146;thu&#146; | &#146;fri&#146; | &#146;sat&#146; | &#146;sun&#146;
+hour        ::= &#146;0&#146; | &#146;1&#146; | ... | &#146;23&#146;
+hourspec    ::= &lt;hour&gt; | &lt;hour&gt; &#146;-&#146; &lt;hour&gt;
+day-or-hour ::= &lt;day&gt; | &lt;hourspec&gt;
+</pre></td></tr>
+</table>
+<p>
+For example, the origin [mon:tue:wed:thu:fri:8-17]tty3 means that log
+in is allowed on mondays through fridays between 8:00 and 17:59 (5:59
+pm) on tty3.  This also shows that an hour range a-b includes all
+moments between a:00 and b:59. A single hour specification (such as
+10) means the time span between 10:00 and 10:59.
+<p>
+Not specifying any time prefix for a tty or host means log in from
+that origin is allowed any time. If you give a time prefix be sure to
+specify both a set of days and one or more hours or hour ranges. A
+time specification may not include any white space.
+<p>
+If no default rule is given then users not matching any line
+<i>/etc/usertty</i> are allowed to log in from anywhere as is standard behavior.
+<p>
+<h1 class="manpages">FILES</h1>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<i>/var/run/utmp</i> 
+<i>/var/log/wtmp</i> 
+<i>/var/log/lastlog</i> 
+<i>/var/spool/mail/*</i> 
+<i>/etc/motd</i> 
+<i>/etc/passwd</i> 
+<i>/etc/nologin</i> 
+<i>/etc/usertty</i> 
+<i>.hushlogin</i> 
+</pre></td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="init.htm">init (8)</a></p></li>
+<li><p><a href="getty.html">getty (8)</a></p></li>
+<li><p><a href="mail.htm">mail (1)</a></p></li>
+<li><p><a href="passwd.htm">passwd (1)</a></p></li>
+<li><p><a href="shutdown.htm">shutdown (8)</a></p></li>
+</ul>
+<p>
+The undocumented BSD
+<b>-r</b> option is not supported.  This may be required by some
+<b>rlogind</b>(8)
+programs.
+<p>
+A recursive login, as used to be possible in the good old days,
+no longer works; for most purposes
+<b>su</b>(1)
+is a satisfactory substitute. Indeed, for security reasons,
+login does a vhangup() system call to remove any possible
+listening processes on the tty. This is to avoid password
+sniffing. If one uses the command "login", then the surrounding shell
+gets killed by vhangup() because it&#146;s no longer the true owner of the tty.
+This can be avoided by using "exec login" in a top-level shell or xterm.
+<h1 class="manpages">AUTHOR</h1>
+Derived from BSD login 5.40 (5/9/89) by Michael Glad (<a href="mailto:glad@daimi.dk">glad@daimi.dk</a>)
+for HP-UX
+<!-- Need break --><br />
+Ported to Linux 0.12: Peter Orbaek (<a href="mailto:poe@daimi.aau.dk">poe@daimi.aau.dk</a>)
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversione282.html?tutorial=unix_commands&amp;file=login.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/login.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:54 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

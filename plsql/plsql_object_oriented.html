@@ -1,0 +1,568 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/plsql/plsql_object_oriented.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:01:31 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>PL/SQL Object Oriented</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="description" content="PL/SQL Object Oriented - Learn PL/SQL programming in simple and easy steps starting with PL/SQL syntax, data types, variables, constants, records, conditional statements, iterative statements, cursors, precedures, functions, exception handling, triggers, packages, collections, external procedures, arrays, strings, dbms output, object oriented." />
+<meta name="keywords" content="PL/SQL, syntax, data types, variables, constants, records, conditional statements, decision making, iterative statements, loops, cursors, precedures, functions, exception handling, triggers, packages, collections, external procedures, object oriented" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<script type="text/javascript" src="../scripts/lang-sql.html"></script>
+<style media="screen" type="text/css">
+/* Pascal Scheme */
+#header{ 
+   background:#dd1f20 !important;
+}
+#topmenu
+{
+   background-color:#454545 !important;
+}
+#leftcol ul.menu li.heading 
+{
+   background:#dd1f20 !important;
+   border:1px solid #454545 !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1250px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+   _uacct = "UA-232293-6";
+   urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index-2.html">Tutorials Point Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index-2.html" target="_top">HOME </a>
+<a href="../java/index.html" target="_top">JAVA </a>
+<a href="../php/index.html" target="_top">PHP </a>
+<a href="../python/index.html" target="_top">Python </a>
+<a href="../ruby/index.html" target="_top">Ruby </a>
+<a href="../perl/index.html" target="_top">Perl </a>
+<a href="../html/index.html" target="_top">HTML </a>
+<a href="../css/index.html" target="_top">CSS </a>
+<a href="../javascript/index.html" target="_top">Javascript </a>
+<a href="../mysql/index.html" target="_top">MySQL </a>
+<a href="../cplusplus/index.html" target="_top">C++ </a>
+<a href="../unix/index.html" target="_top">UNIX </a>
+<a href="../more.html" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.html" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.html" target="_top">ABOUT</a> |
+<a href="../about/contact_us.html" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/plsql-mini.png" alt="PL/SQL tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">PL/SQL Tutorial</li>
+<li><a target="_top" href="index.html">PL/SQL - Home</a></li>
+<li><a target="_top" href="plsql_overview.html">PL/SQL - Overview</a></li>
+<li><a target="_top" href="plsql_environment_setup.html">PL/SQL - Environment</a></li>
+<li><a target="_top" href="plsql_basic_syntax.html">PL/SQL - Basic Syntax</a></li>
+<li><a target="_top" href="plsql_data_types.html">PL/SQL - Data Types</a></li>
+<li><a target="_top" href="plsql_variable_types.html">PL/SQL - Variables</a></li>
+<li><a target="_top" href="plsql_constants.html">PL/SQL - Constants</a></li>
+<li><a target="_top" href="plsql_operators.html">PL/SQL - Operators</a></li>
+<li><a target="_top" href="plsql_conditional_control.html">PL/SQL - Conditions</a></li>
+<li><a target="_top" href="plsql_loops.html">PL/SQL - Loops </a></li>
+<li><a target="_top" href="plsql_strings.html">PL/SQL - Strings</a></li>
+<li><a target="_top" href="plsql_arrays.html">PL/SQL - Arrays</a></li>
+<li><a target="_top" href="plsql_procedures.html">PL/SQL - Procedures</a></li>
+<li><a target="_top" href="plsql_functions.html">PL/SQL - Functions</a></li>
+<li><a target="_top" href="plsql_cursors.html">PL/SQL - Cursors</a></li>
+<li><a target="_top" href="plsql_records.html">PL/SQL - Records</a></li>
+<li><a target="_top" href="plsql_exceptions.html">PL/SQL - Exceptions</a></li>
+<li><a target="_top" href="plsql_triggers.html">PL/SQL - Triggers</a></li>
+<li><a target="_top" href="plsql_packages.html">PL/SQL - Packages</a></li>
+<li><a target="_top" href="plsql_collections.html">PL/SQL - Collections</a></li>
+<li><a target="_top" href="plsql_transactions.html">PL/SQL - Transactions</a></li>
+<li><a target="_top" href="plsql_date_time.html">PL/SQL - Date &amp; Time</a></li>
+<li><a target="_top" href="plsql_dbms_output.html">PL/SQL - DBMS Output</a></li>
+<li><a target="_top" href="plsql_object_oriented.html"><b>PL/SQL - Object Oriented</b></a></li>
+</ul>
+<ul class="menu">
+<li class="heading">PL/SQL  Useful Resources</li>
+<li><a target="_top" href="plsql_quick_guide.html">PL/SQL - Quick Guide</a></li>
+<li><a target="_top" href="plsql_useful_resources.html">PL/SQL - Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.html">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>PL/SQL - Object Oriented</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="plsql_dbms_output.html">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="plsql_quick_guide.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>PL/SQL allows defining an object type, which helps in designing object-oriented database in Oracle. An object type allows you to crate composite types. Using objects allow you implementing real world objects with specific structure of data and methods for operating it. Objects have attributes and methods. Attributes are properties of an object and are used for storing an object's state; and methods are used for modeling its behaviors.</p>
+<p>Objects are created using the CREATE [OR REPLACE] TYPE statement. Below is an example to create a simple <b>address</b> object consisting of few attributes:</p>
+<pre class="prettyprint lang-sql">
+CREATE OR REPLACE TYPE address AS OBJECT
+(house_no varchar2(10),
+ street varchar2(30),
+ city varchar2(20),
+ state varchar2(10),
+ pincode varchar2(10)
+);
+/
+</pre>
+<p>When the above code is executed at SQL prompt, it produces following result:</p>
+<pre class="result">
+Type created.
+</pre>
+<p>Let's create one more object <b>customer</b> where we will wrap <b>attributes</b> and <b>methods</b> together to have object oriented feeling:</p>
+<pre class="prettyprint lang-sql">
+CREATE OR REPLACE TYPE customer AS OBJECT
+(code number(5),
+ name varchar2(30),
+ contact_no varchar2(12),
+ addr address,
+ member procedure display
+);
+/
+</pre>
+<p>When the above code is executed at SQL prompt, it produces following result:</p>
+<pre class="result">
+Type created.
+</pre>
+<h2>Instantiating an Object </h2>
+<p>Defining an object type provides a blueprint for the object. To use this object, you need to create instances of this object. You can access the attributes and methods of the object using the instance name and <b>the access operator (.)</b> as follows: </p>
+<pre class="prettyprint lang-sql">
+DECLARE
+   residence address;
+BEGIN
+   residence := address('103A', 'M.G.Road', 'Jaipur', 'Rajasthan','201301');
+   dbms_output.put_line('House No: '|| residence.house_no);
+   dbms_output.put_line('Street: '|| residence.street);
+   dbms_output.put_line('City: '|| residence.city);
+   dbms_output.put_line('State: '|| residence.state);
+   dbms_output.put_line('Pincode: '|| residence.pincode);
+END;
+/
+</pre>
+<p>When the above code is executed at SQL prompt, it produces following result:</p>
+<pre class="result">
+House No: 103A
+Street: M.G.Road
+City: Jaipur
+State: Rajasthan
+Pincode: 201301
+
+PL/SQL procedure successfully completed.
+</pre>
+
+<h2>Member Methods</h2>
+<p>Member <b>methods</b> are used for manipulating the <b>attributes</b> of the object. You provide the declaration of a member method while declaring the object type. The object body defines the code for the member methods. The object body is created using the CREATE TYPE BODY statement.</p>
+<p><b>Constructors</b> are functions that return a new object as its value. Every object has a system defined constructor method. The name of the constructor is same as the object type. For example:</p>
+<pre class="prettyprint lang-sql">
+residence := address('103A', 'M.G.Road', 'Jaipur', 'Rajasthan','201301');
+</pre>
+<p>The <b>comparison methods</b> are used for comparing objects. There are two ways to compare objects:</p>
+<ul class="list">
+<li><p><b>Map method</b>: The <b>Map method</b> is a function implemented in such a way that its value depends upon the value of the attributes. For example, for a customer object, if the customer code is same for two customers, both customers could be the same and one. So the relationship between these two objects would depend upon the value of code.</p></li>
+<li><p><b>Order method</b>: The <b>Order methods</b> implement some internal logic for comparing two objects. For example, for a rectangle object, a rectangle is bigger than another rectangle if both its sides are bigger.</p></li>
+</ul>
+<h2>Using Map method</h2>
+<p>Let us try to understand above concepts using the folloiwing rectangle object:</p>
+<pre class="prettyprint lang-sql">
+CREATE OR REPLACE TYPE rectangle AS OBJECT
+(length number,
+ width number,
+ member function enlarge( inc number) return rectangle,
+ member procedure display,
+ map member function measure return number
+);
+/
+</pre>
+<p>When the above code is executed at SQL prompt, it produces following result:</p>
+<pre class="result">
+Type created.
+</pre>
+<p>Creating the type body:</p>
+<pre class="prettyprint lang-sql">
+CREATE OR REPLACE TYPE BODY rectangle AS
+   MEMBER FUNCTION enlarge(inc number) return rectangle IS
+   BEGIN
+      return rectangle(self.length + inc, self.width + inc);
+   END enlarge;
+
+   MEMBER PROCEDURE display IS
+   BEGIN
+      dbms_output.put_line('Length: '|| length);
+      dbms_output.put_line('Width: '|| width);
+   END display;
+
+   MAP MEMBER FUNCTION measure return number IS
+   BEGIN
+      return (sqrt(length*length + width*width));
+   END measure;
+END;
+/
+</pre>
+<p>When the above code is executed at SQL prompt, it produces following result:</p>
+<pre class="result">
+Type body created.
+</pre>
+<p>Now using the rectangle object and its member functions:</p>
+<pre class="prettyprint lang-sql">
+DECLARE
+   r1 rectangle;
+   r2 rectangle;
+   r3 rectangle;
+   inc_factor number := 5;
+BEGIN
+   r1 := rectangle(3, 4);
+   r2 := rectangle(5, 7);
+   r3 := r1.enlarge(inc_factor);
+   r3.display;
+
+   IF (r1 > r2) THEN -- calling measure function
+      r1.display;
+   ELSE
+      r2.display;
+   END IF;
+END;
+/
+</pre>
+<p>When the above code is executed at SQL prompt, it produces following result:</p>
+<pre class="result">
+Length: 8
+Width: 9
+Length: 5
+Width: 7
+
+PL/SQL procedure successfully completed.
+</pre>
+<h2>Using Order method</h2>
+<p>Now, the <b>same effect could be achieved using an <b>order</b> method</b>. Let us recreate the rectangle object using an order method:</p>
+<pre class="prettyprint lang-sql">
+CREATE OR REPLACE TYPE rectangle AS OBJECT
+(length number,
+ width number,
+ member procedure display,
+ order member function measure(r rectangle) return number
+);
+/
+</pre>
+<p>When the above code is executed at SQL prompt, it produces following result:</p>
+<pre class="result">
+Type created.
+</pre>
+<p>Creating the type body:</p>
+<pre class="prettyprint lang-sql">
+CREATE OR REPLACE TYPE BODY rectangle AS
+   MEMBER PROCEDURE display IS
+   BEGIN
+      dbms_output.put_line('Length: '|| length);
+      dbms_output.put_line('Width: '|| width);
+   END display;
+
+   ORDER MEMBER FUNCTION measure(r rectangle) return number IS
+   BEGIN
+      IF(sqrt(self.length*self.length + self.width*self.width)&gt; sqrt(r.length*r.length + r.width*r.width)) then
+         return(1);
+      ELSE
+         return(-1);
+      END IF;
+   END measure;
+END;
+/
+</pre>
+<p>When the above code is executed at SQL prompt, it produces following result:</p>
+<pre class="result">
+Type body created.
+</pre>
+<p>Using the rectangle object and its member functions:</p>
+<pre class="prettyprint lang-sql">
+DECLARE
+   r1 rectangle;
+   r2 rectangle;
+BEGIN
+   r1 := rectangle(23, 44);
+   r2 := rectangle(15, 17);
+   r1.display;
+   r2.display;
+   IF (r1 > r2) THEN -- calling measure function
+      r1.display;
+   ELSE
+      r2.display;
+   END IF;
+END;
+/
+</pre>
+<p>When the above code is executed at SQL prompt, it produces following result:</p>
+<pre class="result">
+Length: 23
+Width: 44
+Length: 15
+Width: 17
+Length: 23
+Width: 44
+
+PL/SQL procedure successfully completed.
+</pre>
+<h2>Inheritance for PL/SQL Objects:</h2>
+<p>PL/SQL allows creating object from existing base objects. To implement inheritance, the base objects should be declared as NOT FINAL. The default is FINAL.</p>
+<p>The following programs illustrates inheritance in PL/SQL Objects. Let us create another object named TableTop which is inheriting from the Rectangle object. Creating the base <i>rectangle</i> object:</p>
+<pre class="prettyprint lang-sql">
+CREATE OR REPLACE TYPE rectangle AS OBJECT
+(length number,
+ width number,
+ member function enlarge( inc number) return rectangle,
+ NOT FINAL member procedure display) NOT FINAL
+/
+</pre>
+<p>When the above code is executed at SQL prompt, it produces following result:</p>
+<pre class="result">
+Type created.
+</pre>
+<p>Creating the base type body:</p>
+<pre class="prettyprint lang-sql">
+CREATE OR REPLACE TYPE BODY rectangle AS
+   MEMBER FUNCTION enlarge(inc number) return rectangle IS
+   BEGIN
+      return rectangle(self.length + inc, self.width + inc);
+   END enlarge;
+
+   MEMBER PROCEDURE display IS
+   BEGIN
+      dbms_output.put_line('Length: '|| length);
+      dbms_output.put_line('Width: '|| width);
+   END display;
+END;
+/
+</pre>
+<p>When the above code is executed at SQL prompt, it produces following result:</p>
+<pre class="result">
+Type body created.
+</pre>
+<p>Creating the child object <i>tabletop</i>:</p>
+<pre class="prettyprint lang-sql">
+CREATE OR REPLACE TYPE tabletop UNDER rectangle
+(  
+   material varchar2(20);
+   OVERRIDING member procedure display
+)
+/
+</pre>
+<p>When the above code is executed at SQL prompt, it produces following result:</p>
+<pre class="result">
+Type created.
+</pre>
+<p>Creating the type body for the child object <i>tabletop</i>:</p>
+<pre class="prettyprint lang-sql">
+CREATE OR REPLACE TYPE BODY tabletop AS
+OVERRIDING MEMBER PROCEDURE display IS
+BEGIN
+   dbms_output.put_line('Length: '|| length);
+   dbms_output.put_line('Width: '|| width);
+   dbms_output.put_line('Material: '|| material);
+END display;
+/
+</pre>
+<p>When the above code is executed at SQL prompt, it produces following result:</p>
+<pre class="result">
+Type body created.
+</pre>
+<p>Using the <i>tabletop</i> object and its member functions:</p>
+<pre class="prettyprint lang-sql">
+DECLARE
+   t1 tabletop;
+   t2 tabletop;
+BEGIN
+   t1:= tabletop(20, 10, 'Wood');
+   t2 := tabletop(50, 30, 'Steel');
+   t1.display;
+   t2.display;
+END;
+/
+</pre>
+<p>When the above code is executed at SQL prompt, it produces following result:</p>
+<pre class="result">
+Length: 20
+Width: 10
+Material: Wood
+Length: 50
+Width: 30
+Material: Steel
+
+PL/SQL procedure successfully completed.
+</pre>
+<h2>Abstract Objects in PL/SQL</h2>
+<p>The NOT INSTANTIABLE clause allows you to declare an abstract object. You cannot use an abstract object as it is; you will have to create a subtype or child type of such objects to use its functionalities. </p>
+<p>For example,</p>
+<pre class="prettyprint lang-sql">
+CREATE OR REPLACE TYPE rectangle AS OBJECT
+(length number,
+ width number,
+ NOT INSTANTIABLE NOT FINAL MEMBER PROCEDURE display) 
+ NOT INSTANTIABLE NOT FINAL
+/
+</pre>
+<p>When the above code is executed at SQL prompt, it produces following result:</p>
+<pre class="result">
+Type created.
+</pre>
+<hr />
+<div class="pre-btn">
+<a href="plsql_dbms_output.html">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/plsql_object_oriented.html" alt="PL/SQL Object Oriented" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="plsql_quick_guide.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.html" target="_top">ASP.NET </a> |
+<a href="../jquery/index.html" target="_top">jQuery </a> |
+<a href="../ajax/index.html" target="_top">AJAX </a> |
+<a href="../ant/index.html" target="_top">ANT</a> |
+<a href="../jsp/index.html" target="_top">JSP </a> |
+<a href="../servlets/index.html" target="_top">Servlets </a> |
+<a href="../log4j/index.html" target="_top">log4j </a> |
+<a href="../ibatis/index.html" target="_top">iBATIS </a> |
+<a href="../hibernate/index.html" target="_top">Hibernate </a> |
+<a href="../jdbc/index.html" target="_top">JDBC </a> |
+<a href="../struts_2/index.html" target="_top">Struts </a> |
+<a href="../html5/index.html" target="_top">HTML5 </a> |
+<a href="../sql/index.html" target="_top">SQL </a> |
+<a href="../mysql/index.html" target="_top">MySQL </a> |
+<a href="../cplusplus/index.html" target="_top">C++ </a> |
+<a href="../unix/index.html" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/plsql/plsql_object_oriented.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:01:31 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

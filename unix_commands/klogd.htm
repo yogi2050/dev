@@ -1,0 +1,687 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/klogd.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:51 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>klogd - Unix, Linux Command</title>
+<meta name="Description" Content="klogd - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>klogd - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+klogd - Kernel Log Daemon
+<p>
+<h1 class="manpages">SYNOPSIS</h1>
+<b>klogd</b> [<b> -c </b> <i>n</i> ]
+[<b> -d </b>] [<b> -f </b> <i>fname</i> ]
+[<b> -iI </b>] [<b> -n </b>] [<b> -o </b>] [<b> -p </b>] [<b> -s </b>] [<b> -k </b> <i>fname</i> ]
+[<b> -v </b>] [<b> -x </b>] [<b> -2 </b>] <p>
+<h1 class="manpages">DESCRIPTION</h1>
+<b>klogd</b> is a system daemon which intercepts and logs Linux kernel
+messages.
+<p>
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-c </b><i>n</i> </td><td valign="bottom">
+Sets the default log level of console messages to <i>n</i>.
+</td></tr>
+<tr valign="top"><td>
+<b>-d</b> </td><td valign="bottom">
+Enable debugging mode.  This will generate <b>LOTS</b> of output to
+stderr.
+</td></tr>
+<tr valign="top"><td>
+<b>-f </b><i>file</i> </td><td valign="bottom">
+Log messages to the specified filename rather than to the syslog facility.
+</td></tr>
+<tr valign="top"><td>
+<b>-i -I</b> </td><td valign="bottom">
+Signal the currently executing klogd daemon.  Both of these switches control
+the loading/reloading of symbol information.  The -i switch signals the
+daemon to reload the kernel module symbols.  The -I switch signals for a
+reload of both the static kernel symbols and the kernel module symbols.
+</td></tr>
+<tr valign="top"><td>
+<b>-n</b> </td><td valign="bottom">
+Avoid auto-backgrounding.  This is needed especially if the
+<b>klogd</b> is started and controlled by
+<b>init</b>(8).
+</td></tr>
+<tr valign="top"><td>
+<b>-o</b> </td><td valign="bottom">
+Execute in &#146;one-shot&#146; mode.  This causes <b>klogd</b> to read and log
+all the messages that are found in the kernel message buffers.  After
+a single read and log cycle the daemon exits.
+</td></tr>
+<tr valign="top"><td>
+<b>-p</b> </td><td valign="bottom">
+Enable paranoia.  This option controls when klogd loads kernel module symbol
+information.  Setting this switch causes klogd to load the kernel module
+symbol information whenever an Oops string is detected in the kernel message
+stream.
+</td></tr>
+<tr valign="top"><td>
+<b>-s</b> </td><td valign="bottom">
+Force <b>klogd</b> to use the system call interface to the kernel message
+buffers.
+</td></tr>
+<tr valign="top"><td>
+<b>-k </b><i>file</i> </td><td valign="bottom">
+Use the specified file as the source of kernel symbol information.
+</td></tr>
+<tr valign="top"><td>
+<b>-v</b> </td><td valign="bottom">
+Print version and exit.
+</td></tr>
+<tr valign="top"><td>
+<b>-x</b> </td><td valign="bottom">
+Omits EIP translation and therefore doesn&#146;t read the System.map file.
+</td></tr>
+<tr valign="top"><td>
+<b>-2</b> </td><td valign="bottom">
+When symbols are expanded, print the line twice.  Once with addresses
+converted to symbols, once with the raw text.  This allows external
+programs such as ksymoops do their own processing on the original
+data.
+</td></tr>
+<!-- LP ends table -->
+</table>
+<h1 class="manpages">OVERVIEW</h1>
+The functionality of klogd has been typically incorporated into other
+versions of syslogd but this seems to be a poor place for it.  In the
+modern Linux kernel a number of kernel messaging issues such as
+sourcing, prioritization and resolution of kernel addresses must be
+addressed.  Incorporating kernel logging into a separate process
+offers a cleaner separation of services.
+<p>
+In Linux there are two potential sources of kernel log information: the
+<i>/proc</i> file system and the syscall (sys_syslog) interface, although
+ultimately they are one and the same.  Klogd is designed to choose
+whichever source of information is the most appropriate.  It does this
+by first checking for the presence of a mounted
+<i>/proc</i> file system.  If this is found the
+<i>/proc/kmsg</i> file is used as the source of kernel log
+information.  If the proc file system is not mounted
+<b>klogd</b> uses a
+system call to obtain kernel messages.  The command line switch
+(<b>-s</b>) can be used to force klogd to use the system call interface as its
+messaging source.
+<p>
+If kernel messages are directed through the
+<b>syslogd</b> daemon the <b>klogd</b> daemon, as of version 1.1, has the ability to properly prioritize
+kernel messages.  Prioritization of the kernel messages was added to it
+at approximately version 0.99pl13 of the kernel.  The raw kernel messages
+are of the form:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+lt;[0-7]gt;Something said by the kernel.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+The priority of the kernel message is encoded as a single numeric
+digit enclosed inside the &lt;&gt; pair.  The definitions of these values is
+given in the kernel include file kernel.h.  When a message is received
+from the kernel the klogd daemon reads this priority level and assigns
+the appropriate priority level to the syslog message.  If file output
+(<b>-f</b>) is used the prioritization sequence is left pre-pended to the
+kernel message.
+<p>
+The
+<b>klogd</b> daemon also allows the ability to alter the presentation of
+kernel messages to the system console.  Consequent with the
+prioritization of kernel messages was the inclusion of default
+messaging levels for the kernel.  In a stock kernel the the default
+console log level is set to 7.  Any messages with a priority level
+numerically lower than 7 (higher priority) appear on the console.
+<p>
+Messages of priority level 7 are considered to be &#146;debug&#146; messages and
+will thus not appear on the console.  Many administrators,
+particularly in a multi-user environment, prefer that all kernel
+messages be handled by klogd and either directed to a file or to
+the syslogd daemon.  This prevents &#146;nuisance&#146; messages such as line
+printer out of paper or disk change detected from cluttering the
+console.
+<p>
+When
+<b>-c</b> is given on the commandline the
+<b>klogd</b> daemon will execute a system call to inhibit all kernel messages from
+being displayed on the console.  Former versions always issued this
+system call and defaulted to all kernel messages except for panics.
+This is handled differently nowardays so
+<b>klogd</b> doesn&#146;t need to set this value anymore.  The
+argument given to the <b>-c</b> switch specifies the priority level of
+messages which will be directed to the console.  Note that messages of
+a priority value LOWER than the indicated number will be directed to
+the console.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+For example, to have the kernel display all messages with a
+priority level of 3
+<b></b>(<b>KERN_ERR</b>) or more severe the following
+command would be executed:
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;klogd -c 4
+</pre></td></tr>
+</table>
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+The definitions of the numeric values for kernel messages are given in
+the file
+<i>kernel.h</i> which can be found in the <i>/usr/include/linux</i> directory if the kernel sources are installed.  These values parallel
+the syslog priority values which are defined in the file
+<i>syslog.h</i> found in the <i>/usr/include/sys</i> sub-directory. <p>
+The klogd daemon can also be used in a &#146;one-shot&#146; mode for reading the
+kernel message buffers.  One shot mode is selected by specifying the
+<b>-o</b> switch on the command line.  Output will be directed to either the
+syslogd daemon or to an alternate file specified by the <b>-f</b> switch.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+For example, to read all the kernel messages after a system
+boot and record them in a file called krnl.msg the following
+command would be given.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;klogd -o -f ./krnl.msg
+</pre></td></tr>
+</table>
+</td></tr>
+<!-- PP ends table -->
+</table>
+<h1 class="manpages">KERNEL ADDRESS RESOLUTION</h1>
+If the kernel detects an internal error condition a general protection
+fault will be triggered.  As part of the GPF handling procedure the
+kernel prints out a status report indicating the state of the
+processor at the time of the fault.  Included in this display are the
+contents of the microprocessor&#146;s registers, the contents of the kernel
+stack and a tracing of what functions were being executed at the time
+of the fault.
+<p>
+This information is
+<b>EXTREMELY IMPORTANT</b> in determining what caused the internal error condition.  The
+difficulty comes when a kernel developer attempts to analyze this
+information.  The raw numeric information present in the protection
+fault printout is of very little use to the developers.  This is due
+to the fact that kernels are not identical and the addresses of
+variable locations or functions will not be the same in all kernels.
+In order to correctly diagnose the cause of failure a kernel developer
+needs to know what specific kernel functions or variable locations
+were involved in the error.
+<p>
+As part of the kernel compilation process a listing is created which
+specified the address locations of important variables and function in
+the kernel being compiled.  This listing is saved in a file called
+System.map in the top of the kernel directory source tree.  Using this
+listing a kernel developer can determine exactly what the kernel was
+doing when the error condition occurred.
+<p>
+The process of resolving the numeric addresses from the protection
+fault printout can be done manually or by using the
+<b>ksymoops</b> program which is included in the kernel sources.
+<p>
+As a convenience
+<b>klogd</b> will attempt to resolve kernel numeric addresses to their symbolic
+forms if a kernel symbol table is available at execution time.  If you
+require the original address of the symbol, use the
+<b>-2</b> switch to preserve the numeric address.  A
+symbol table may be specified by using the <b>-k</b> switch on the
+command line.  If a symbol file is not explicitly specified the
+following filenames will be tried:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<i>/boot/System.map</i> 
+<i>/System.map</i> 
+<i>/usr/src/linux/System.map</i> 
+</pre></td></tr>
+</table>
+<p>
+Version information is supplied in the system maps as of kernel
+1.3.43.  This version information is used to direct an intelligent
+search of the list of symbol tables.  This feature is useful since it
+provides support for both production and experimental kernels.
+<p>
+For example a production kernel may have its map file stored in
+/boot/System.map.  If an experimental or test kernel is compiled with
+the sources in the &#146;standard&#146; location of /usr/src/linux the system
+map will be found in /usr/src/linux/System.map.  When klogd starts
+under the experimental kernel the map in /boot/System.map will be
+bypassed in favor of the map in /usr/src/linux/System.map.
+<p>
+Modern kernels as of 1.3.43 properly format important kernel addresses
+so that they will be recognized and translated by klogd.  Earlier
+kernels require a source code patch be applied to the kernel sources.
+This patch is supplied with the sysklogd sources.
+<p>
+The process of analyzing kernel protections faults works very well
+with a static kernel.  Additional difficulties are encountered when
+attempting to diagnose errors which occur in loadable kernel modules.
+Loadable kernel modules are used to implement kernel functionality in
+a form which can be loaded or unloaded at will.  The use of loadable
+modules is useful from a debugging standpoint and can also be useful
+in decreasing the amount of memory required by a kernel.
+<p>
+The difficulty with diagnosing errors in loadable modules is due to
+the dynamic nature of the kernel modules.  When a module is loaded the
+kernel will allocate memory to hold the module, when the module is
+unloaded this memory will be returned back to the kernel.  This
+dynamic memory allocation makes it impossible to produce a map file
+which details the addresses of the variable and functions in a kernel
+loadable module.  Without this location map it is not possible for a
+kernel developer to determine what went wrong if a protection fault
+involves a kernel module.
+<p>
+<b>klogd</b> has support for dealing with the problem of diagnosing protection
+faults in kernel loadable modules.  At program start time or in
+response to a signal the daemon will interrogate the kernel for a
+listing of all modules loaded and the addresses in memory they are
+loaded at.  Individual modules can also register the locations of
+important functions when the module is loaded.  The addresses of these
+exported symbols are also determined during this interrogation
+process.
+<p>
+When a protection fault occurs an attempt will be made to resolve
+kernel addresses from the static symbol table.  If this fails the
+symbols from the currently loaded modules are examined in an attempt
+to resolve the addresses.  At the very minimum this allows klogd to
+indicate which loadable module was responsible for generating the
+protection fault.  Additional information may be available if the
+module developer chose to export symbol information from the module.
+<p>
+Proper and accurate resolution of addresses in kernel modules requires
+that
+<b>klogd</b> be informed whenever the kernel module status changes.  The
+<b>-i</b> and
+<b>-I</b> switches can be used to signal the currently executing daemon that
+symbol information be reloaded.  Of most importance to proper
+resolution of module symbols is the
+<b>-i</b> switch.  Each time a kernel module is loaded or removed from the
+kernel the following command should be executed:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<i>klogd -i</i> 
+</pre></td></tr>
+</table>
+<p>
+The
+<b>-p</b> switch can also be used to insure that module symbol information is up
+to date.  This switch instructs
+<b>klogd</b> to reload the module symbol information whenever a protection fault
+is detected.  Caution should be used before invoking the program in
+&#39;paranoid&#39; mode.  The stability of the kernel and the operating
+environment is always under question when a protection fault occurs.
+Since the klogd daemon must execute system calls in order to read the
+module symbol information there is the possibility that the system may
+be too unstable to capture useful information.  A much better policy
+is to insure that klogd is updated whenever a module is loaded or
+unloaded.  Having uptodate symbol information loaded increases the
+probability of properly resolving a protection fault if it should occur.
+<p>
+Included in the sysklogd source distribution is a patch to the
+modules-2.0.0 package which allows the
+<b>insmod,</b> <b>rmmod</b> and
+<b>modprobe</b> utilities to automatically signal
+<b>klogd</b> whenever a module is inserted or removed from the kernel.  Using this
+patch will insure that the symbol information maintained in klogd is
+always consistent with the current kernel state.
+<p>
+<h1 class="manpages">SIGNAL HANDLING</h1>
+The
+<b>klogd</b> will respond to eight signals:
+<b>SIGHUP</b>, <b>SIGINT</b>, <b>SIGKILL</b>, <b>SIGTERM</b>, <b>SIGTSTP</b>,  <b>SIGUSR1</b>, <b>SIGUSR2</b> and <b>SIGCONT</b>.  The <b>SIGINT</b>, <b>SIGKILL</b>, <b>SIGTERM</b> and <b>SIGHUP</b> signals will cause the daemon to close its kernel log sources and
+terminate gracefully.
+<p>
+The
+<b>SIGTSTP</b> and <b>SIGCONT</b> signals are used to start and stop kernel logging.  Upon receipt of a
+<b>SIGTSTP</b> signal the daemon will close its
+log sources and spin in an idle loop.  Subsequent receipt of a
+<b>SIGCONT</b> signal will cause the daemon to go through its initialization sequence
+and re-choose an input source.  Using
+<b>SIGSTOP</b> and <b>SIGCONT</b> in combination the kernel log input can be re-chosen without stopping and
+restarting the daemon.  For example if the <i>/proc</i> file system is to be
+un-mounted the following command sequence should be used:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# kill -TSTP pid
+<!-- Consumed .TP -->
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# umount /proc
+<!-- Consumed .TP -->
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# kill -CONT pid
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+</td></tr>
+<!-- PP ends table -->
+</table>
+Notations will be made in the system logs with
+<b>LOG_INFO</b> priority
+documenting the start/stop of logging.
+<p>
+The
+<b>SIGUSR1</b> and <b>SIGUSR2</b> signals are used to initiate loading/reloading of kernel symbol information.
+Receipt of the
+<b>SIGUSR1</b> signal will cause the kernel module symbols to be reloaded.  Signaling the
+daemon with
+<b>SIGUSR2</b> will cause both the static kernel symbols and the kernel module symbols to
+be reloaded.
+<p>
+Provided that the System.map file is placed in an appropriate location the
+signal of generally greatest usefulness is the
+<b>SIGUSR1</b> signal.  This signal is designed to be used to signal the daemon when kernel
+modules are loaded/unloaded.  Sending this signal to the daemon after a
+kernel module state change will insure that proper resolution of symbols will
+occur if a protection fault occurs in the address space occupied by a kernel
+module.
+<p>
+<h1 class="manpages">FILES</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<i>/proc/kmsg</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+One Source for kernel messages
+<b>klogd</b> </td></tr>
+<tr valign="top"><td colspan="2">
+<i>/var/run/klogd.pid</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The file containing the process id of
+<b>klogd</b> </td></tr>
+<tr valign="top"><td colspan="2">
+<i>/boot/System.map, /System.map, /usr/src/linux/System.map</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Default locations for kernel system maps.
+</td></tr>
+</table>
+<h1 class="manpages">BUGS</h1>
+Probably numerous.  Well formed context diffs appreciated.
+<p>
+<h1 class="manpages">AUTHOR</h1>
+The
+<b>klogd</b> was originally written by Steve Lord (<a href="mailto:lord@cray.com">lord@cray.com</a>), Greg Wettstein
+made major improvements.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+Dr. Greg Wettstein (<a href="mailto:greg@wind.enjellic.com">greg@wind.enjellic.com</a>)
+<!-- Consumed .TP -->
+<br />
+Enjellic Systems Development
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+Oncology Research Divsion Computing Facility
+<!-- Consumed .TP -->
+<br />
+Roger Maris Cancer Center
+<!-- Consumed .TP -->
+<br />
+Fargo, ND 58122
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+<!-- ignored unsupported tag .zZ -->
+</td></tr>
+</table>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion63ed.html?tutorial=unix_commands&amp;file=klogd.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/klogd.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:51 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

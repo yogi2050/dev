@@ -1,0 +1,424 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/unix/unix-file-system.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 17:33:45 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>Unix - File System Basics</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="description" content="Unix File System Basics - Learning fundamentals of UNIX in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+#topmenu a:hover {text-decoration:none;color:#00afe4  !important;background-color:transparent;font-weight:bold;}
+#header{ 
+background:#00afe4  !important;
+}
+#topmenu
+{
+background-color:#113e78 !important;
+}
+#leftcol ul.menu li.heading 
+{
+background:#00afe4 !important;
+border:1px solid #113e78  !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1400px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index-2.html">Tutorials Point - Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index-2.html" target="_top">HOME </a>
+<a href="../java/index.html" target="_top">JAVA </a>
+<a href="../php/index.html" target="_top">PHP </a>
+<a href="../python/index.html" target="_top">Python </a>
+<a href="../ruby/index.html" target="_top">Ruby </a>
+<a href="../perl/index.html" target="_top">Perl </a>
+<a href="../html/index.html" target="_top">HTML </a>
+<a href="../css/index.html" target="_top">CSS </a>
+<a href="../javascript/index.html" target="_top">Javascript </a>
+<a href="../mysql/index.html" target="_top">MySQL </a>
+<a href="../cplusplus/index.html" target="_top">C++ </a>
+<a href="index.html" target="_top">UNIX </a>
+<a href="../more.html" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.html" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.html" target="_top">ABOUT</a> |
+<a href="../about/contact_us.html" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/unix-mini-logo.png" alt="Unix Tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">Unix for Beginners</li>
+<li><a target="_top" href="index.html">Unix - Home</a></li>
+<li><a target="_top" href="unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a target="_top" href="unix-file-management.html">Unix - File Management</a></li>
+<li><a target="_top" href="unix-directories.html">Unix - Directories</a></li>
+<li><a target="_top" href="unix-file-permission.html">Unix - File Permission</a></li>
+<li><a target="_top" href="unix-environment.html">Unix - Environment</a></li>
+<li><a target="_top" href="unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a target="_top" href="unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a target="_top" href="unix-processes.html">Unix - Processes</a></li>
+<li><a target="_top" href="unix-communication.html">Unix - Communication</a></li>
+<li><a target="_top" href="unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Unix Shell Programming</li>
+<li><a target="_top" href="unix-shell.html">Unix - What is Shell?</a></li>
+<li><a target="_top" href="unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a target="_top" href="unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a target="_top" href="unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a target="_top" href="unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a target="_top" href="unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a target="_top" href="unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a target="_top" href="unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a target="_top" href="unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a target="_top" href="unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a target="_top" href="unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a target="_top" href="unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a target="_top" href="unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Advanced Unix</li>
+<li><a target="_top" href="unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a target="_top" href="unix-file-system.html"><b>Unix - File System Basics</b></a></li>
+<li><a target="_top" href="unix-user-administration.html">Unix - User Administration</a></li>
+<li><a target="_top" href="unix-system-performance.html">Unix - System Performance</a></li>
+<li><a target="_top" href="unix-system-logging.html">Unix - System Logging</a></li>
+<li><a target="_top" href="unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Unix Useful Resources</li>
+<li><a target="_top" href="unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a target="_top" href="unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a target="_top" href="unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a target="_top" href="../unix_commands/index.html">Unix - Commands List</a></li>
+<li><a target="_top" href="unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.html">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+ <div class="content">
+<h1>Unix - File System Basics</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="unix-regular-expressions.html">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="unix-user-administration.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>A file system is a logical collection of files on a partition or disk. A partition is a container for information and can span an entire hard drive if desired.</p>
+<p>Your hard drive can have various partitions which usually contains only one file system, such as one file system housing the / file system or another containing the /home file system.</p>
+<p>One file system per partition allows for the logical maintenance and management of differing file systems.</p>
+<p>Everything in Unix is considered to be a file, including physical devices such as DVD-ROMs, USB devices, floppy drives, and so forth.</p>
+<h2>Directory Structure:</h2>
+<p>Unix uses a hierarchical file system structure, much like an upside-down tree, with root (/) at the base of the file system and all other directories spreading from there.</p>
+<p>A UNIX filesystem is a collection of files and directories that has the following properties:</p>
+<ul class="list">
+<li><p>It has a root directory (/) that contains other files and directories.</p></li>
+<li><p>Each file or directory is uniquely identified by its name, the directory in which it resides, and a unique identifier, typically called an inode.</p></li>
+<li><p>By convention, the root directory has an inode number of 2 and the lost+found directory has an inode number of 3. Inode numbers 0 and 1 are not used. File inode numbers can be seen by specifying the -i option to ls command.</p></li>
+<li><p>It is self contained. There are no dependencies between one filesystem and any other.</p></li>
+</ul>
+<p>The directories have specific purposes and generally hold the same types of information for easily locating files. Following are the directories that exist on the major versions of Unix:</p>
+<table class="src">
+<tr>
+<th style="width:15%">Directory</th><th style="width:85%">Description</th>
+</tr>
+<tr><td>/</td><td>This is the root directory which should contain only the directories needed at the top level of the file structure.</td></tr>
+<tr><td>/bin</td><td>This is where the executable files are located. They are available to all user.</td></tr>
+<tr><td>/dev</td><td>These are device drivers.</td></tr>
+<tr><td>/etc</td><td>Supervisor directory commands, configuration files, disk configuration files, valid user lists, groups, ethernet, hosts, where
+to send critical messages.</td></tr>
+<tr><td>/lib</td><td>Contains shared library files and sometimes other kernel-related files.</td></tr>
+<tr><td>/boot</td><td>Contains files for booting the system.</td></tr>
+<tr><td>/home</td><td>Contains the home directory for users and other accounts.</td></tr>
+<tr><td>/mnt</td><td>Used to mount other temporary file systems, such as cdrom and floppy for the CD-ROM drive and floppy diskette drive, respectively</td></tr>
+<tr><td>/proc</td><td>Contains all processes marked as a file by process number or other information that is dynamic to the system.</td></tr>
+<tr><td>/tmp</td><td>Holds temporary files used between system boots</td></tr>
+<tr><td>/usr</td><td>Used for miscellaneous purposes, or can be used by many users. Includes administrative commands, shared files, library files, and others</td></tr>
+<tr><td>/var</td><td>Typically contains variable-length files such as log and print files and any other type of file that may contain a variable amount of data</td></tr>
+<tr><td>/sbin</td><td>Contains binary (executable) files, usually for system administration. For example <i>fdisk</i> and <i>ifconfig</i> utlities.</td></tr>
+<tr><td>/kernel</td><td>Contains kernel files</td></tr>
+</table>
+<h2>Navigating the File System:</h2>
+<p>Now that you understand the basics of the file system, you can begin navigating to the files you need. The following are commands you'll use to navigate the system:</p>
+<table class="src">
+<tr>
+<th style="width:25%">Command</th><th style="width:75%">Description</th>
+</tr>
+<tr><td>cat filename</td><td>Displays a filename.</td></tr>
+<tr><td>cd dirname</td><td>Moves you to the directory identified.</td></tr>
+<tr><td>cp file1 file2</td><td>Copies one file/directory to specified location.</td></tr>
+<tr><td>file filename</td><td>Identifies the file type (binary, text, etc).</td></tr>
+<tr><td>find filename dir</td><td>Finds a file/directory.</td></tr>
+<tr><td>head filename</td><td>Shows the beginning of a file.</td></tr>
+<tr><td>less filename</td><td>Browses through a file from end or beginning.</td></tr>
+<tr><td>ls dirname</td><td>Shows the contents of the directory specified.</td></tr>
+<tr><td>mkdir dirname</td><td>Creates the specified directory.</td></tr>
+<tr><td>more filename</td><td>Browses through a file from beginning to end.</td></tr>
+<tr><td>mv file1 file2</td><td>Moves the location of or renames a file/directory.</td></tr>
+<tr><td>pwd</td><td>Shows the current directory the user is in.</td></tr>
+<tr><td>rm filename</td><td>Removes a file.</td></tr>
+<tr><td>rmdir dirname</td><td>Removes a directory.</td></tr>
+<tr><td>tail filename</td><td>Shows the end of a file.</td></tr>
+<tr><td>touch filename</td><td>Creates a blank file or modifies an existing file.s attributes.</td></tr>
+<tr><td>whereis filename</td><td>Shows the location of a file.</td></tr>
+<tr><td>which filename</td><td>Shows the location of a file if it is in your PATH.</td></tr>
+</table>
+<p>You can use <a href="unix-manpage-help.html">Manpage Help</a> to check complete syntax for each command mentioned here.</p>
+<h2>The df Command:</h2>
+<p>The first way to manage your partition space is with the df (disk free) command. The command df -k (disk free) displays the disk space usage in kilobytes, as shown below:</p>
+<pre class="prettyprint">
+$df -k
+Filesystem      1K-blocks      Used   Available Use% Mounted on
+/dev/vzfs        10485760   7836644     2649116  75% /
+/devices                0         0           0   0% /devices
+$
+</pre>
+<p>Some of the directories, such as /devices, shows 0 in the kbytes, used, and avail columns as well as 0% for capacity. These are special (or virtual) file systems, and although they reside on the disk under /, by themselves they do not take up disk space.</p>
+<p>The df -k output is generally the same on all Unix systems. Here's what it usually includes:</p>
+<table class="src">
+<tr>
+<th style="width:25%">Column</th><th style="width:75%">Description</th>
+</tr>
+<tr><td>Filesystem</td><td>The physical file system name.</td></tr>
+<tr><td>kbytes</td><td>Total kilobytes of space available on the storage medium.</td></tr>
+<tr><td>used</td><td>Total kilobytes of space used (by files).</td></tr>
+<tr><td>avail</td><td>Total kilobytes available for use.</td></tr>
+<tr><td>capacity</td><td>Percentage of total space used by files.</td></tr>
+<tr><td>Mounted on</td><td>What the file system is mounted on.</td></tr>
+</table>
+<p>You can use the -h (human readable) option to display the output in a format that shows the size in easier-to-understand notation.</p>
+<h2>The du Command:</h2>
+<p>The du (disk usage) command enables you to specify directories to show disk space usage on a particular directory.</p>
+<p>This command is helpful if you want to determine how much space a particular directory is taking. Following command would display number of blocks consumed by  each directory. A single block may take either 512 Bytes or 1 Kilo Byte depending on your system.</p>
+<pre class="prettyprint">
+$du /etc
+10     /etc/cron.d
+126    /etc/default
+6      /etc/dfs
+...
+$
+</pre>
+<p>The -h option makes the output easier to comprehend:</p>
+<pre class="prettyprint">
+$du -h /etc
+5k    /etc/cron.d
+63k   /etc/default
+3k    /etc/dfs
+...
+$
+</pre>
+<h2>Mounting the File System:</h2>
+<p>A file system must be mounted in order to be usable by the system. To see what is currently mounted (available for use) on your system, use this command:</p>
+<pre class="prettyprint">
+$ mount
+/dev/vzfs on / type reiserfs (rw,usrquota,grpquota)
+proc on /proc type proc (rw,nodiratime)
+devpts on /dev/pts type devpts (rw)
+$
+</pre>
+<p>The /mnt directory, by Unix convention, is where temporary mounts (such as CD-ROM drives, remote network drives, and floppy drives) are located. If you need to mount a file system, you can use the mount command with the following syntax:</p>
+<pre class="prettyprint">
+mount -t file_system_type device_to_mount directory_to_mount_to
+</pre>
+<p>For example, if you want to mount a CD-ROM to the directory /mnt/cdrom, for example, you can type:</p>
+<pre class="prettyprint">
+$ mount -t iso9660 /dev/cdrom /mnt/cdrom
+</pre>
+<p>This assumes that your CD-ROM device is called /dev/cdrom and that you want to mount it to /mnt/cdrom. Refer to the mount man page for more specific information or type mount -h at the command line for help information.</p>
+<p>After mounting, you can use the cd command to navigate the newly available file system through the mountpoint you just made.</p>
+<h2>Unmounting the File System:</h2>
+<p>To unmount (remove) the file system from your system, use the <b>umount</b> command by identifying the mountpoint or device</p>
+<p>For example, to unmount cdrom, use the following command:</p>
+<pre class="prettyprint">
+$ umount /dev/cdrom
+</pre>
+<p>The mount command enables you to access your file systems, but on most modern Unix systems, the automount function makes this process invisible to the user and requires no intervention.</p>
+<h2>User and Group Quotas:</h2>
+<p>User and group quotas provide the mechanisms by which the amount of space used by a single user or all users within a specific group can be limited to a value defined by the administrator.</p>
+<p>Quotas operate around two limits that allow the user to take some action if the amount of space or number of disk blocks start to exceed the administrator defined limits:</p>
+<ul class="list">
+<li><p><b>Soft Limit:</b> If the user exceeds the limit defined, there is a grace period that allows the user to free up some space.</p></li>
+<li><p><b>Hard Limit:</b> When the hard limit is reached, regardless of the grace period, no further files or blocks can be allocated.</p></li>
+</ul>
+<p>There are a number of commands to administer quotas:</p>
+<table class="src">
+<tr>
+<th style="width:25%">Command</th><th style="width:75%">Description</th>
+</tr>
+<tr><td>quota</td><td>Displays disk usage and limits for a user of group.</td></tr>
+<tr><td>edquota</td><td>This is  a  quota  editor. Users or Groups quota can be edited using this command.</td></tr>
+<tr><td>quotacheck</td><td>Scan a filesystem for disk usage, create, check and repair quota files</td></tr>
+<tr><td>setquota</td><td>This is also a command line quota editor.</td></tr>
+<tr><td>quotaon</td><td>This announces  to  the  system  that disk quotas should be enabled on one or more filesystems.</td></tr>
+<tr><td>quotaoff</td><td>This announces  to  the  system  that disk quotas should be disabled off one or more filesystems.</td></tr>
+<tr><td>repquota</td><td>This prints a summary of the disc usage and quotas for the specified file systems</td></tr>
+</table>
+<p>You can use <a href="unix-manpage-help.html">Manpage Help</a> to check complete syntax for each command mentioned here.</p>
+<hr />
+<div class="pre-btn">
+<a href="unix-regular-expressions.html">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/unix-file-system.pdf" alt="Unix - File System Basics" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="unix-user-administration.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.html" target="_top">ASP.NET </a> |
+<a href="../jquery/index.html" target="_top">jQuery </a> |
+<a href="../ajax/index.html" target="_top">AJAX </a> |
+<a href="../ant/index.html" target="_top">ANT</a> |
+<a href="../jsp/index.html" target="_top">JSP </a> |
+<a href="../servlets/index.html" target="_top">Servlets </a> |
+<a href="../log4j/index.html" target="_top">log4j </a> |
+<a href="../ibatis/index.html" target="_top">iBATIS </a> |
+<a href="../hibernate/index.html" target="_top">Hibernate </a> |
+<a href="../jdbc/index.html" target="_top">JDBC </a> |
+<a href="../struts_2/index.html" target="_top">Struts </a> |
+<a href="../html5/index.html" target="_top">HTML5 </a> |
+<a href="../sql/index.html" target="_top">SQL </a> |
+<a href="../mysql/index.html" target="_top">MySQL </a> |
+<a href="../cplusplus/index.html" target="_top">C++ </a> |
+<a href="index.html" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix/unix-file-system.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 17:33:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

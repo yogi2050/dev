@@ -1,0 +1,869 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/chat.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:28 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>chat - Unix, Linux Command</title>
+<meta name="Description" Content="chat - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>chat - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+chat - Automated conversational script with a modem
+<h1 class="manpages">SYNOPSIS</h1>
+<b>chat</b> [
+<i>options</i> ]
+<i>script</i> <h1 class="manpages">DESCRIPTION</h1>
+<p>
+The <i>chat</i> program defines a conversational exchange between the
+computer and the modem. Its primary purpose is to establish the
+connection between the Point-to-Point Protocol Daemon (<i>pppd</i>) and
+the remote&#146;s <i>pppd</i> process.
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>-f </b><i>&lt;chat file&gt;</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Read the chat script from the chat <i>file</i>. The use of this option
+is mutually exclusive with the chat script parameters. The user must
+have read access to the file. Multiple lines are permitted in the
+file. Space or horizontal tab characters should be used to separate
+the strings.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-t </b><i>&lt;timeout&gt;</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set the timeout for the expected string to be received. If the string
+is not received within the time limit then the reply string is not
+sent. An alternate reply may be sent or the script will fail if there
+is no alternate reply string. A failed script will cause the
+<i>chat</i> program to terminate with a non-zero error code.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-r </b><i>&lt;report file&gt;</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set the file for output of the report strings. If you use the keyword
+<i>REPORT</i>, the resulting strings are written to this file. If this
+option is not used and you still use <i>REPORT</i> keywords, the
+<i>stderr</i> file is used for the report strings.
+</td></tr>
+<tr valign="top"><td>
+<b>-e</b> </td><td valign="bottom">
+Start with the echo option turned on. Echoing may also be turned on
+or off at specific points in the chat script by using the <i><a href=#12>ECHO</a></i>
+keyword. When echoing is enabled, all output from the modem is echoed
+to <i>stderr</i>.
+</td></tr>
+<tr valign="top"><td>
+<b>-E</b> </td><td valign="bottom">
+Enables environment variable substituion within chat scripts using the
+standard <i>$xxx</i> syntax.
+</td></tr>
+<tr valign="top"><td>
+<b>-v</b> </td><td valign="bottom">
+Request that the <i>chat</i> script be executed in a verbose mode. The
+<i>chat</i> program will then log the execution state of the chat
+script as well as all text received from the modem and the output
+strings sent to the modem.  The default is to log through the SYSLOG;
+the logging method may be altered with the -S and -s flags.
+</td></tr>
+<tr valign="top"><td>
+<b>-V</b> </td><td valign="bottom">
+Request that the <i>chat</i> script be executed in a stderr verbose
+mode. The <i>chat</i> program will then log all text received from the
+modem and the output strings sent to the modem to the stderr device. This
+device is usually the local console at the station running the chat or
+pppd program.
+</td></tr>
+<tr valign="top"><td>
+<b>-s</b> </td><td valign="bottom">
+Use stderr.  All log messages from &#146;-v&#146; and all error messages will be
+sent to stderr.
+</td></tr>
+<tr valign="top"><td>
+<b>-S</b> </td><td valign="bottom">
+Do not use the SYSLOG.  By default, error messages are sent to the
+SYSLOG.  The use of -S will prevent both log messages from &#146;-v&#146; and
+error messages from being sent to the SYSLOG.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-T </b><i>&lt;phone number&gt;</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Pass in an arbitary string, usually a phone number, that will be
+substituted for the \T substitution metacharacter in a send string.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-U </b><i>&lt;phone number 2&gt;</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Pass in a second string, usually a phone number, that will be
+substituted for the \U substitution metacharacter in a send string.
+This is useful when dialing an ISDN terminal adapter that requires two
+numbers.
+</td></tr>
+<tr valign="top"><td>
+<b>script</b> </td><td valign="bottom">
+If the script is not specified in a file with the <i>-f</i> option then
+the script is included as parameters to the <i>chat</i> program.
+</td></tr>
+</table>
+<h1 class="manpages">CHAT SCRIPT</h1>
+<p>
+The <i>chat</i> script defines the communications.
+<p>
+A script consists of one or more "expect-send" pairs of strings,
+separated by spaces, with an optional "subexpect-subsend" string pair,
+separated by a dash as in the following example:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+ogin:-BREAK-ogin: ppp ssword: hello2u2
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+This line indicates that the <i>chat</i> program should expect the string
+"ogin:". If it fails to receive a login prompt within the time interval
+allotted, it is to send a break sequence to the remote and then expect the
+string "ogin:". If the first "ogin:" is received then the break sequence is
+not generated.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Once it received the login prompt the <i>chat</i> program will send the
+string ppp and then expect the prompt "ssword:". When it receives the
+prompt for the password, it will send the password hello2u2.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+A carriage return is normally sent following the reply string. It is not
+expected in the "expect" string unless it is specifically requested by using
+the \r character sequence.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+The expect sequence should contain only what is needed to identify the
+string. Since it is normally stored on a disk file, it should not contain
+variable information. It is generally not acceptable to look for time
+strings, network identification strings, or other variable pieces of data as
+an expect string.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+To help correct for characters which may be corrupted during the initial
+sequence, look for the string "ogin:" rather than "login:". It is possible
+that the leading "l" character may be received in error and you may never
+find the string even though it was sent by the system. For this reason,
+scripts look for "ogin:" rather than "login:" and "ssword:" rather than
+"password:".
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+A very simple script might look like this:
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+ogin: ppp ssword: hello2u2
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+In other words, expect ....ogin:, send ppp, expect ...ssword:, send hello2u2.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+In actual practice, simple scripts are rare. At the vary least, you
+should include sub-expect sequences should the original string not be
+received. For example, consider the following script:
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+ogin:--ogin: ppp ssword: hello2u2
+</td></tr>
+<!-- LP ends table -->
+</table>
+This would be a better script than the simple one used earlier. This would look
+for the same login: prompt, however, if one was not received, a single
+return sequence is sent and then it will look for login: again. Should line
+noise obscure the first login prompt then sending the empty line will
+usually generate a login prompt again.
+<h1 class="manpages">COMMENTS</h1>
+Comments can be embedded in the chat script. A comment is a line which
+starts with the <b>#</b> (hash) character in column 1. Such comment
+lines are just ignored by the chat program. If a &#146;#&#146; character is to
+be expected as the first character of the expect sequence, you should
+quote the expect string.
+If you want to wait for a prompt that starts with a # (hash)
+character, you would have to write something like this:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+# Now wait for the prompt and send logout string
+<!-- Need break --><br />
+&#146;# &#146; logout
+</td></tr>
+<!-- LP ends table -->
+</table>
+<p>
+<h1 class="manpages">SENDING DATA FROM A FILE</h1>
+If the string to send starts with an at sign (@), the rest of the
+string is taken to be the name of a file to read to get the string to
+send.  If the last character of the data read is a newline, it is
+removed.  The file can be a named pipe (or fifo) instead of a regular
+file.  This provides a way for <b>chat</b> to communicate with another
+program, for example, a program to prompt the user and receive a
+password typed in.
+<p>
+<p>
+<h1 class="manpages">ABORT STRINGS</h1>
+Many modems will report the status of the call as a string. These
+strings may be <b>CONNECTED</b> or <b>NO CARRIER</b> or <b>BUSY</b>. It
+is often desirable to terminate the script should the modem fail to
+connect to the remote. The difficulty is that a script would not know
+exactly which modem string it may receive. On one attempt, it may
+receive <b>BUSY</b> while the next time it may receive <b>NO CARRIER</b>.
+<p>
+These "abort" strings may be specified in the script using the <i>ABORT</i>
+sequence. It is written in the script as in the following example:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+ABORT BUSY ABORT &#146;NO CARRIER&#146; &#146;&#146; ATZ OK ATDT5551212 CONNECT
+</td></tr>
+<!-- LP ends table -->
+</table>
+This sequence will expect nothing; and then send the string ATZ. The
+expected response to this is the string <i>OK</i>. When it receives <i>OK</i>,
+the string ATDT5551212 to dial the telephone. The expected string is
+<i>CONNECT</i>. If the string <i>CONNECT</i> is received the remainder of the
+script is executed. However, should the modem find a busy telephone, it will
+send the string <i>BUSY</i>. This will cause the string to match the abort
+character sequence. The script will then fail because it found a match to
+the abort string. If it received the string <i>NO CARRIER</i>, it will abort
+for the same reason. Either string may be received. Either string will
+terminate the <i>chat</i> script.
+<h1 class="manpages">CLR_ABORT STRINGS</h1>
+This sequence allows for clearing previously set <b>ABORT</b> strings.
+<b>ABORT</b> strings are kept in an array of a pre-determined size (at
+compilation time); <b>CLR_ABORT</b> will reclaim the space for cleared
+entries so that new strings can use that space.
+<h1 class="manpages">SAY STRINGS</h1>
+The <b>SAY</b> directive allows the script to send strings to the user
+at the terminal via standard error.  If <b>chat</b> is being run by
+pppd, and pppd is running as a daemon (detached from its controlling
+terminal), standard error will normally be redirected to the file
+/etc/ppp/connect-errors.
+<p>
+<b>SAY</b> strings must be enclosed in single or double quotes. If
+carriage return and line feed are needed in the string to be output,
+you must explicitely add them to your string.
+<p>
+The SAY strings could be used to give progress messages in sections of
+the script where you want to have &#146;ECHO OFF&#146; but still let the user
+know what is happening.  An example is:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+ABORT BUSY
+<!-- Need break --><br />
+ECHO OFF
+<!-- Need break --><br />
+SAY "Dialling your ISP...\n"
+<!-- Need break --><br />
+&#146;&#146; ATDT5551212
+<!-- Need break --><br />
+TIMEOUT 120
+<!-- Need break --><br />
+SAY "Waiting up to 2 minutes for connection ... "
+<!-- Need break --><br />
+CONNECT &#146;&#146;
+<!-- Need break --><br />
+SAY "Connected, now logging in ...0
+<!-- Need break --><br />
+ogin: account
+<!-- Need break --><br />
+ssword: pass
+<!-- Need break --><br />
+$ 
+SAY "Logged in OK ...0
+<i>etc ...</i>
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+This sequence will only present the SAY strings to the user and all
+the details of the script will remain hidden. For example, if the
+above script works, the user will see:
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+Dialling your ISP...
+<!-- Need break --><br />
+Waiting up to 2 minutes for connection ... Connected, now logging in ...
+<!-- Need break --><br />
+Logged in OK ...
+</td></tr>
+<!-- LP ends table -->
+</table>
+<p>
+<h1 class="manpages">REPORT STRINGS</h1>
+A <b>report</b> string is similar to the ABORT string. The difference
+is that the strings, and all characters to the next control character
+such as a carriage return, are written to the report file.
+<p>
+The report strings may be used to isolate the transmission rate of the
+modem&#146;s connect string and return the value to the chat user. The
+analysis of the report string logic occurs in conjunction with the
+other string processing such as looking for the expect string. The use
+of the same string for a report and abort sequence is probably not
+very useful, however, it is possible.
+<p>
+The report strings to no change the completion code of the program.
+<p>
+These "report" strings may be specified in the script using the <i>REPORT</i>
+sequence. It is written in the script as in the following example:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+REPORT CONNECT ABORT BUSY &#146;&#146; ATDT5551212 CONNECT &#146;&#146; ogin: account
+</td></tr>
+<!-- LP ends table -->
+</table>
+This sequence will expect nothing; and then send the string
+ATDT5551212 to dial the telephone. The expected string is
+<i>CONNECT</i>. If the string <i>CONNECT</i> is received the remainder
+of the script is executed. In addition the program will write to the
+expect-file the string "CONNECT" plus any characters which follow it
+such as the connection rate.
+<h1 class="manpages">CLR_REPORT STRINGS</h1>
+This sequence allows for clearing previously set <b>REPORT</b> strings.
+<b>REPORT</b> strings are kept in an array of a pre-determined size (at
+compilation time); <b>CLR_REPORT</b> will reclaim the space for cleared
+entries so that new strings can use that space.
+<h1 class="manpages">ECHO</h1>
+The echo options controls whether the output from the modem is echoed
+to <i>stderr</i>. This option may be set with the <i>-e</i> option, but
+it can also be controlled by the <i><a href=#12>ECHO</a></i> keyword. The "expect-send"
+pair <i><a href=#12>ECHO</a></i> <i>ON</i> enables echoing, and <i><a href=#12>ECHO</a></i> <i>OFF</i>
+disables it. With this keyword you can select which parts of the
+conversation should be visible. For instance, with the following
+script:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+ABORT   &#146;BUSY&#146;
+<!-- Need break --><br />
+ABORT   &#146;NO CARRIER&#146;
+<!-- ignored unsupported tag .' -->
+<!-- Need break --><br />
+OK\r\n  ATD1234567
+<!-- Need break --><br />
+\r\n    \c
+<!-- Need break --><br />
+ECHO    ON
+<!-- Need break --><br />
+CONNECT \c
+<!-- Need break --><br />
+ogin:   account
+</td></tr>
+<!-- LP ends table -->
+</table>
+all output resulting from modem configuration and dialing is not visible,
+but starting with the <i>CONNECT</i> (or <i>BUSY</i>) message, everything
+will be echoed.
+<h1 class="manpages">HANGUP</h1>
+The HANGUP options control whether a modem hangup should be considered
+as an error or not.  This option is useful in scripts for dialling
+systems which will hang up and call your system back.  The HANGUP
+options can be <b>ON</b> or <b>OFF</b>.
+<!-- Need break --><br />
+When HANGUP is set OFF and the modem hangs up (e.g., after the first
+stage of logging in to a callback system), <b>chat</b> will continue
+running the script (e.g., waiting for the incoming call and second
+stage login prompt). As soon as the incoming call is connected, you
+should use the <b>HANGUP ON</b> directive to reinstall normal hang up
+signal behavior.  Here is an (simple) example script:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+ABORT   &#146;BUSY&#146;
+<!-- ignored unsupported tag .' -->
+<!-- Need break --><br />
+OK\r\n  ATD1234567
+<!-- Need break --><br />
+\r\n    \c
+<!-- Need break --><br />
+CONNECT \c
+<!-- Need break --><br />
+&#146;Callback login:&#146; call_back_ID
+<!-- Need break --><br />
+HANGUP OFF
+<!-- Need break --><br />
+ABORT "Bad Login"
+<!-- Need break --><br />
+&#146;Callback Password:&#146; Call_back_password
+<!-- Need break --><br />
+TIMEOUT 120
+<!-- Need break --><br />
+CONNECT \c
+<!-- Need break --><br />
+HANGUP ON
+<!-- Need break --><br />
+ABORT "NO CARRIER"
+<!-- Need break --><br />
+ogin:--BREAK--ogin: real_account
+<!-- Need break --><br />
+<i>etc ...</i>
+</td></tr>
+<!-- LP ends table -->
+</table>
+<h1 class="manpages">TIMEOUT</h1>
+The initial timeout value is 45 seconds. This may be changed using the <b>-t</b>
+parameter.
+<p>
+To change the timeout value for the next expect string, the following
+example may be used:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+ATZ OK ATDT5551212 CONNECT TIMEOUT 10 ogin:--ogin: TIMEOUT 5 assword: hello2u2
+</td></tr>
+<!-- LP ends table -->
+</table>
+This will change the timeout to 10 seconds when it expects the login:
+prompt. The timeout is then changed to 5 seconds when it looks for the
+password prompt.
+<p>
+The timeout, once changed, remains in effect until it is changed again.
+<h1 class="manpages">SENDING EOT</h1>
+The special reply string of <i>EOT</i> indicates that the chat program
+should send an EOT character to the remote. This is normally the
+End-of-file character sequence. A return character is not sent
+following the EOT.
+<!-- ignored unsupported tag .PR -->
+The EOT sequence may be embedded into the send string using the
+sequence <i>^D</i>.
+<h1 class="manpages">GENERATING BREAK</h1>
+The special reply string of <i>BREAK</i> will cause a break condition
+to be sent. The break is a special signal on the transmitter. The
+normal processing on the receiver is to change the transmission rate.
+It may be used to cycle through the available transmission rates on
+the remote until you are able to receive a valid login prompt.
+<!-- ignored unsupported tag .PR -->
+The break sequence may be embedded into the send string using the
+<i>\K</i> sequence.
+<h1 class="manpages">ESCAPE SEQUENCES</h1>
+The expect and reply strings may contain escape sequences. All of the
+sequences are legal in the reply string. Many are legal in the expect.
+Those which are not valid in the expect sequence are so indicated.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>&#146;&#146;</b> </td><td valign="bottom">
+Expects or sends a null string. If you send a null string then it will still
+send the return character. This sequence may either be a pair of apostrophe
+or quote characters.
+</td></tr>
+<tr valign="top"><td>
+<b>\\b</b> </td><td valign="bottom">
+represents a backspace character.
+</td></tr>
+<tr valign="top"><td>
+<b>\\c</b> </td><td valign="bottom">
+Suppresses the newline at the end of the reply string. This is the only
+method to send a string without a trailing return character. It must
+be at the end of the send string. For example,
+the sequence hello\c will simply send the characters h, e, l, l, o.
+<i>(not valid in expect.)</i> </td></tr>
+<tr valign="top"><td>
+<b>\\d</b> </td><td valign="bottom">
+Delay for one second. The program uses sleep(1) which will delay to a
+maximum of one second.
+<i>(not valid in expect.)</i> </td></tr>
+<tr valign="top"><td>
+<b>\\K</b> </td><td valign="bottom">
+Insert a BREAK
+<i>(not valid in expect.)</i> </td></tr>
+<tr valign="top"><td>
+<b>\\n</b> </td><td valign="bottom">
+Send a newline or linefeed character.
+</td></tr>
+<tr valign="top"><td>
+<b>\\N</b> </td><td valign="bottom">
+Send a null character. The same sequence may be represented by \0.
+<i>(not valid in expect.)</i> </td></tr>
+<tr valign="top"><td>
+<b>\\p</b> </td><td valign="bottom">
+Pause for a fraction of a second. The delay is 1/10th of a second.
+<i>(not valid in expect.)</i> </td></tr>
+<tr valign="top"><td>
+<b>\\q</b> </td><td valign="bottom">
+Suppress writing the string to the SYSLOG file. The string ?????? is
+written to the log in its place.
+<i>(not valid in expect.)</i> </td></tr>
+<tr valign="top"><td>
+<b>\\r</b> </td><td valign="bottom">
+Send or expect a carriage return.
+</td></tr>
+<tr valign="top"><td>
+<b>\\s</b> </td><td valign="bottom">
+Represents a space character in the string. This may be used when it
+is not desirable to quote the strings which contains spaces. The
+sequence &#146;HI TIM&#146; and HI\sTIM are the same.
+</td></tr>
+<tr valign="top"><td>
+<b>\\t</b> </td><td valign="bottom">
+Send or expect a tab character.
+</td></tr>
+<tr valign="top"><td>
+<b>\\T</b> </td><td valign="bottom">
+Send the phone number string as specified with the <i>-T</i> option
+<i>(not valid in expect.)</i> </td></tr>
+<tr valign="top"><td>
+<b>\\U</b> </td><td valign="bottom">
+Send the phone number 2 string as specified with the <i>-U</i> option
+<i>(not valid in expect.)</i> </td></tr>
+<tr valign="top"><td>
+<b>\\\\</b> </td><td valign="bottom">
+Send or expect a backslash character.
+</td></tr>
+<tr valign="top"><td>
+<b>\\ddd</b> </td><td valign="bottom">
+Collapse the octal digits (ddd) into a single ASCII character and send that
+character.
+<i>(some characters are not valid in expect.)</i> </td></tr>
+<tr valign="top"><td>
+<b>^C</b> </td><td valign="bottom">
+Substitute the sequence with the control character represented by C.
+For example, the character DC1 (17) is shown as ^Q.
+<i>(some characters are not valid in expect.)</i> </td></tr>
+</table>
+<h1 class="manpages">ENVIRONMENT VARIABLES</h1>
+Environment variables are available within chat scripts, if  the <i>-E</i>
+option was specified in the command line. The metacharacter <i>$</i> is used
+to introduce the name of the environment variable to substitute. If the
+substition fails, because the requested environment variable is not set,
+<i>nothing</i> is replaced for the variable.
+<h1 class="manpages">TERMINATION CODES</h1>
+The <i>chat</i> program will terminate with the following completion
+codes.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>0</b> </td><td valign="bottom">
+The normal termination of the program. This indicates that the script
+was executed without error to the normal conclusion.
+</td></tr>
+<tr valign="top"><td>
+<b>1</b> </td><td valign="bottom">
+One or more of the parameters are invalid or an expect string was too
+large for the internal buffers. This indicates that the program as not
+properly executed.
+</td></tr>
+<tr valign="top"><td>
+<b>2</b> </td><td valign="bottom">
+An error occurred during the execution of the program. This may be due
+to a read or write operation failing for some reason or chat receiving
+a signal such as SIGINT.
+</td></tr>
+<tr valign="top"><td>
+<b>3</b> </td><td valign="bottom">
+A timeout event occurred when there was an <i>expect</i> string without
+having a "-subsend" string. This may mean that you did not program the
+script correctly for the condition or that some unexpected event has
+occurred and the expected string could not be found.
+</td></tr>
+<tr valign="top"><td>
+<b>4</b> </td><td valign="bottom">
+The first string marked as an <i>ABORT</i> condition occurred.
+</td></tr>
+<tr valign="top"><td>
+<b>5</b> </td><td valign="bottom">
+The second string marked as an <i>ABORT</i> condition occurred.
+</td></tr>
+<tr valign="top"><td>
+<b>6</b> </td><td valign="bottom">
+The third string marked as an <i>ABORT</i> condition occurred.
+</td></tr>
+<tr valign="top"><td>
+<b>7</b> </td><td valign="bottom">
+The fourth string marked as an <i>ABORT</i> condition occurred.
+</td></tr>
+<tr valign="top"><td>
+<b>...</b> </td><td valign="bottom">
+The other termination codes are also strings marked as an <i>ABORT</i>
+condition.
+</td></tr>
+<!-- LP ends table -->
+</table>
+Using the termination code, it is possible to determine which event
+terminated the script. It is possible to decide if the string "BUSY"
+was received from the modem as opposed to "NO DIAL TONE". While the
+first event may be retried, the second will probably have little
+chance of succeeding during a retry.
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+documentation. The <i>chat</i> script was taken from the ideas proposed
+by the scripts used by the <i>uucico</i> program.
+<p>
+<a href="../uucico.html">uucico(1)</a>, <a href="../uucp.html">uucp(1)</a>
+<h1 class="manpages">COPYRIGHT</h1>
+The <i>chat</i> program is in public domain. This is not the GNU public
+license. If it breaks then you get to keep both pieces.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion2a45.html?tutorial=unix_commands&amp;file=chat.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/chat.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:28 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,1145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/smbclient.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>smbclient - Unix, Linux Command</title>
+<meta name="Description" Content="smbclient - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>smbclient - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- ignored unsupported tag .nh -->
+<!-- ignored unsupported tag .ad -->
+<h1 class="manpages">NAME</h1>
+smbclient - ftp-like client to access SMB/CIFS resources on servers
+<h1 class="manpages">SYNOPSIS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+smbclient [-b &lt;buffer size&gt;] [-d debuglevel] [-e] [-L &lt;netbios name&gt;] [-U username] [-I destinationIP] [-M &lt;netbios name&gt;] [-m maxprotocol] [-A authfile] [-N] [-g] [-i scope] [-O &lt;socket options&gt;] [-p port] [-R &lt;name resolve order&gt;] [-s &lt;smb config file&gt;] [-k] [-P] [-c &lt;command&gt;]
+<br />
+smbclient {servicename} [password] [-b &lt;buffer size&gt;] [-d debuglevel] [-e] [-D Directory] [-U username] [-W workgroup] [-M &lt;netbios name&gt;] [-m maxprotocol] [-A authfile] [-N] [-g] [-l log-basename] [-I destinationIP] [-E] [-c &lt;command string&gt;] [-i scope] [-O &lt;socket options&gt;] [-p port] [-R &lt;name resolve order&gt;] [-s &lt;smb config file&gt;] [-T&lt;c|x&gt;IXFqgbNan] [-k]
+</td></tr>
+</table>
+<h1 class="manpages">DESCRIPTION</h1>
+<p>
+This tool is part of the
+<b>samba</b>(7)
+suite&#46;
+<p>
+smbclient
+is a client that can &#39;talk&#39; to an SMB/CIFS server&#46; It offers an interface similar to that of the ftp program (see
+<b>ftp</b>(1))&#46; Operations include things like getting files from the server to the local machine, putting files from the local machine to the server, retrieving directory information from the server and so on&#46;
+<h1 class="manpages">OPTIONS</h1>
+<p>
+servicename
+servicename is the name of the service you want to use on the server&#46; A service name takes the form
+//server/service
+where
+<i>server </i>
+is the NetBIOS name of the SMB/CIFS server offering the desired service and
+<i>service</i>
+is the name of the service offered&#46; Thus to connect to the service "printer" on the SMB/CIFS server "smbserver", you would use the servicename
+//smbserver/printer
+<p>
+Note that the server name required is NOT necessarily the IP (DNS) host name of the server ! The name required is a NetBIOS server name, which may or may not be the same as the IP hostname of the machine running the server&#46;
+<p>
+The server name is looked up according to either the
+<i>-R</i>
+parameter to
+smbclient
+or using the name resolve order parameter in the
+<b>smb.conf</b>(5)
+file, allowing an administrator to change the order and methods by which server names are looked up&#46;
+<p>
+password
+The password required to access the specified service on the specified server&#46; If this parameter is supplied, the
+<i>-N</i>
+option (suppress password prompt) is assumed&#46;
+<p>
+There is no default password&#46; If no password is supplied on the command line (either by using this parameter or adding a password to the
+<i>-U</i>
+option (see below)) and the
+<i>-N</i>
+option is not specified, the client will prompt for a password, even if the desired service does not require one&#46; (If no password is required, simply press ENTER to provide a null password&#46;)
+<p>
+Note: Some servers (including OS/2 and Windows for Workgroups) insist on an uppercase password&#46; Lowercase or mixed case passwords may be rejected by these servers&#46;
+<p>
+Be cautious about including passwords in scripts&#46;
+<p>
+-R|--name-resolve &lt;name resolve order&gt;
+This option is used by the programs in the Samba suite to determine what naming services and in what order to resolve host names to IP addresses&#46; The option takes a space-separated string of different name resolution options&#46;
+<p>
+The options are :"lmhosts", "host", "wins" and "bcast"&#46; They cause names to be resolved as follows:
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>lmhosts</b>: Lookup an IP address in the Samba lmhosts file&#46; If the line in lmhosts has no name type attached to the NetBIOS name (see the
+<b>lmhosts</b>(5)
+for details) then any name type matches for lookup&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>host</b>: Do a standard host name to IP address resolution, using the system
+/etc/hosts, NIS, or DNS lookups&#46; This method of name resolution is operating system dependent, for instance on IRIX or Solaris this may be controlled by the
+/etc/nsswitch&#46;conf
+file)&#46; Note that this method is only used if the NetBIOS name type being queried is the 0x20 (server) name type, otherwise it is ignored&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>wins</b>: Query a name with the IP address listed in the
+<i>wins server</i>
+parameter&#46; If no WINS server has been specified this method will be ignored&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>bcast</b>: Do a broadcast on each of the known local interfaces listed in the
+<i>interfaces</i>
+parameter&#46; This is the least reliable of the name resolution methods as it depends on the target host being on a locally connected subnet&#46;
+<p>
+</td></tr>
+</table>
+If this parameter is not set then the name resolve order defined in the
+<b>smb.conf</b>(5)
+file parameter (name resolve order) will be used&#46;
+<p>
+The default order is lmhosts, host, wins, bcast and without this parameter or any entry in the
+<i>name resolve order </i>
+parameter of the
+<b>smb.conf</b>(5)
+file the name resolution methods will be attempted in this order&#46;
+<p>
+-M|--message NetBIOS name
+This options allows you to send messages, using the "WinPopup" protocol, to another computer&#46; Once a connection is established you then type your message, pressing ^D (control-D) to end&#46;
+<p>
+If the receiving computer is running WinPopup the user will receive the message and probably a beep&#46; If they are not running WinPopup the message will be lost, and no error message will occur&#46;
+<p>
+The message is also automatically truncated if the message is over 1600 bytes, as this is the limit of the protocol&#46;
+<p>
+One useful trick is to pipe the message through
+smbclient&#46; For example: smbclient -M FRED &lt; mymessage&#46;txt will send the message in the file
+mymessage&#46;txt
+to the machine FRED&#46;
+<p>
+You may also find the
+<i>-U</i>
+and
+<i>-I</i>
+options useful, as they allow you to control the FROM and TO parts of the message&#46;
+<p>
+See the
+<i>message command</i>
+parameter in the
+<b>smb.conf</b>(5)
+for a description of how to handle incoming WinPopup messages in Samba&#46;
+<p>
+<i>Note</i>: Copy WinPopup into the startup group on your WfWg PCs if you want them to always be able to receive messages&#46;
+<p>
+-p|--port port
+This number is the TCP port number that will be used when making connections to the server&#46; The standard (well-known) TCP port number for an SMB/CIFS server is 139, which is the default&#46;
+<p>
+-g|--grepable
+This parameter provides combined with
+<i>-L</i>
+easy parseable output that allows processing with utilities such as grep and cut&#46;
+<p>
+-m|--max-protocol protocol
+This parameter sets the maximum protocol version announced by the client&#46;
+<p>
+-P
+Make queries to the external server using the machine account of the local server&#46;
+<p>
+-h|--help
+Print a summary of command line options&#46;
+<p>
+-I|--ip-address IP-address
+<i>IP address</i>
+is the address of the server to connect to&#46; It should be specified in standard "a&#46;b&#46;c&#46;d" notation&#46;
+<p>
+Normally the client would attempt to locate a named SMB/CIFS server by looking it up via the NetBIOS name resolution mechanism described above in the
+<i>name resolve order</i>
+parameter above&#46; Using this parameter will force the client to assume that the server is on the machine with the specified IP address and the NetBIOS name component of the resource being connected to will be ignored&#46;
+<p>
+There is no default for this parameter&#46; If not supplied, it will be determined automatically by the client as described above&#46;
+<p>
+-E|--stderr
+This parameter causes the client to write messages to the standard error stream (stderr) rather than to the standard output stream&#46;
+<p>
+By default, the client writes messages to standard output - typically the user&#39;s tty&#46;
+<p>
+-L|--list
+This option allows you to look at what services are available on a server&#46; You use it as
+smbclient -L host
+and a list should appear&#46; The
+<i>-I </i>
+option may be useful if your NetBIOS names don&#39;t match your TCP/IP DNS host names or if you are trying to reach a host on another network&#46;
+<p>
+-t terminal code
+This option tells
+smbclient
+how to interpret filenames coming from the remote server&#46; Usually Asian language multibyte UNIX implementations use different character sets than SMB/CIFS servers (<i>EUC</i>
+instead of
+<i> SJIS</i>
+for example)&#46; Setting this parameter will let
+smbclient
+convert between the UNIX filenames and the SMB filenames correctly&#46; This option has not been seriously tested and may have some problems&#46;
+<p>
+The terminal codes include CWsjis, CWeuc, CWjis7, CWjis8, CWjunet, CWhex, CWcap&#46; This is not a complete list, check the Samba source code for the complete list&#46;
+<p>
+-b|--send-buffer buffersize
+This option changes the transmit/send buffer size when getting or putting a file from/to the server&#46; The default is 65520 bytes&#46; Setting this value smaller (to 1200 bytes) has been observed to speed up file transfers to and from a Win9x server&#46;
+<p>
+-e
+This command line parameter requires the remote server support the UNIX extensions&#46; Request that the connection be encrypted&#46; This is new for Samba 3&#46;2 and will only work with Samba 3&#46;2 or above servers&#46; Negotiates SMB encryption using GSSAPI&#46; Uses the given credentials for the encryption negotiaion (either kerberos or NTLMv1/v2 if given domain/username/password triple&#46; Fails the connection if encryption cannot be negotiated&#46;
+<p>
+-d|--debuglevel=level
+<i>level</i>
+is an integer from 0 to 10&#46; The default value if this parameter is not specified is 1&#46;
+<p>
+The higher this value, the more detail will be logged to the log files about the activities of the server&#46; At level 0, only critical errors and serious warnings will be logged&#46; Level 1 is a reasonable level for day-to-day running - it generates a small amount of information about operations carried out&#46;
+<p>
+Levels above 1 will generate considerable amounts of log data, and should only be used when investigating a problem&#46; Levels above 3 are designed for use only by developers and generate HUGE amounts of log data, most of which is extremely cryptic&#46;
+<p>
+Note that specifying this parameter here will override the
+<blink>\m</blink>[blue]<b>log level</b><blink>\m</blink>[]
+parameter in the
+smb&#46;conf
+file&#46;
+<p>
+-V|--version
+Prints the program version number&#46;
+<p>
+-s|--configfile &lt;configuration file&gt;
+The file specified contains the configuration details required by the server&#46; The information in this file includes server-specific information such as what printcap file to use, as well as descriptions of all the services that the server is to provide&#46; See
+smb&#46;conf
+for more information&#46; The default configuration file name is determined at compile time&#46;
+<p>
+-l|--log-basename=logdirectory
+Base directory name for log/debug files&#46; The extension
+<b>"&#46;progname"</b>
+will be appended (e&#46;g&#46; log&#46;smbclient, log&#46;smbd, etc&#46;&#46;&#46;)&#46; The log file is never removed by the client&#46;
+<p>
+-N|--no-pass
+If specified, this parameter suppresses the normal password prompt from the client to the user&#46; This is useful when accessing a service that does not require a password&#46;
+<p>
+Unless a password is specified on the command line or this parameter is specified, the client will request a password&#46;
+<p>
+If a password is specified on the command line and this option is also defined the password on the command line will be silently ingnored and no password will be used&#46;
+<p>
+-k|--kerberos
+Try to authenticate with kerberos&#46; Only useful in an Active Directory environment&#46;
+<p>
+-A|--authentication-file=filename
+This option allows you to specify a file from which to read the username and password used in the connection&#46; The format of the file is
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+username = &lt;value&gt;
+password = &lt;value&gt;
+domain   = &lt;value&gt;
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+Make certain that the permissions on the file restrict access from unwanted users&#46;
+<p>
+-U|--user=username[%password]
+Sets the SMB username or username and password&#46;
+<p>
+If %password is not specified, the user will be prompted&#46; The client will first check the
+<b>USER</b>
+environment variable, then the
+<b>LOGNAME</b>
+variable and if either exists, the string is uppercased&#46; If these environmental variables are not found, the username
+<b>GUEST</b>
+is used&#46;
+<p>
+A third option is to use a credentials file which contains the plaintext of the username and password&#46; This option is mainly provided for scripts where the admin does not wish to pass the credentials on the command line or via environment variables&#46; If this method is used, make certain that the permissions on the file restrict access from unwanted users&#46; See the
+<i>-A</i>
+for more details&#46;
+<p>
+Be cautious about including passwords in scripts&#46; Also, on many systems the command line of a running process may be seen via the
+ps
+command&#46; To be safe always allow
+rpcclient
+to prompt for a password and type it in directly&#46;
+<p>
+-n|--netbiosname &lt;primary NetBIOS name&gt;
+This option allows you to override the NetBIOS name that Samba uses for itself&#46; This is identical to setting the
+<blink>\m</blink>[blue]<b>netbios name</b><blink>\m</blink>[]
+parameter in the
+smb&#46;conf
+file&#46; However, a command line setting will take precedence over settings in
+smb&#46;conf&#46;
+<p>
+-i|--scope &lt;scope&gt;
+This specifies a NetBIOS scope that
+nmblookup
+will use to communicate with when generating NetBIOS names&#46; For details on the use of NetBIOS scopes, see rfc1001&#46;txt and rfc1002&#46;txt&#46; NetBIOS scopes are
+<i>very</i>
+rarely used, only set this parameter if you are the system administrator in charge of all the NetBIOS systems you communicate with&#46;
+<p>
+-W|--workgroup=domain
+Set the SMB domain of the username&#46; This overrides the default domain which is the domain defined in smb&#46;conf&#46; If the domain specified is the same as the servers NetBIOS name, it causes the client to log on using the servers local SAM (as opposed to the Domain SAM)&#46;
+<p>
+-O|--socket-options socket options
+TCP socket options to set on the client socket&#46; See the socket options parameter in the
+smb&#46;conf
+manual page for the list of valid options&#46;
+<p>
+-T|--tar tar options
+smbclient may be used to create
+tar(1)
+compatible backups of all the files on an SMB/CIFS share&#46; The secondary tar flags that can be given to this option are :
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<i>c</i>
+- Create a tar file on UNIX&#46; Must be followed by the name of a tar file, tape device or "-" for standard output&#46; If using standard output you must turn the log level to its lowest value -d0 to avoid corrupting your tar file&#46; This flag is mutually exclusive with the
+<i>x</i>
+flag&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<i>x</i>
+- Extract (restore) a local tar file back to a share&#46; Unless the -D option is given, the tar files will be restored from the top level of the share&#46; Must be followed by the name of the tar file, device or "-" for standard input&#46; Mutually exclusive with the
+<i>c</i>
+flag&#46; Restored files have their creation times (mtime) set to the date saved in the tar file&#46; Directories currently do not get their creation dates restored properly&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<i>I</i>
+- Include files and directories&#46; Is the default behavior when filenames are specified above&#46; Causes files to be included in an extract or create (and therefore everything else to be excluded)&#46; See example below&#46; Filename globbing works in one of two ways&#46; See
+<i>r</i>
+below&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<i>X</i>
+- Exclude files and directories&#46; Causes files to be excluded from an extract or create&#46; See example below&#46; Filename globbing works in one of two ways now&#46; See
+<i>r</i>
+below&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<i>F</i>
+- File containing a list of files and directories&#46; The
+<i>F</i>
+causes the name following the tarfile to create to be read as a filename that contains a list of files and directories to be included in an extract or create (and therefore everything else to be excluded)&#46; See example below&#46; Filename globbing works in one of two ways&#46; See
+<i>r</i>
+below&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<i>b</i>
+- Blocksize&#46; Must be followed by a valid (greater than zero) blocksize&#46; Causes tar file to be written out in blocksize*TBLOCK (usually 512 byte) blocks&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<i>g</i>
+- Incremental&#46; Only back up files that have the archive bit set&#46; Useful only with the
+<i>c</i>
+flag&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<i>q</i>
+- Quiet&#46; Keeps tar from printing diagnostics as it works&#46; This is the same as tarmode quiet&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<i>r</i>
+- Regular expression include or exclude&#46; Uses regular expression matching for excluding or excluding files if compiled with HAVE_REGEX_H&#46; However this mode can be very slow&#46; If not compiled with HAVE_REGEX_H, does a limited wildcard match on &#39;*&#39; and &#39;?&#39;&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<i>N</i>
+- Newer than&#46; Must be followed by the name of a file whose date is compared against files found on the share during a create&#46; Only files newer than the file specified are backed up to the tar file&#46; Useful only with the
+<i>c</i>
+flag&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<i>a</i>
+- Set archive bit&#46; Causes the archive bit to be reset when a file is backed up&#46; Useful with the
+<i>g</i>
+and
+<i>c</i>
+flags&#46;
+<p>
+</td></tr>
+</table>
+<i>Tar Long File Names</i>
+<p>
+smbclient&#39;s tar option now supports long file names both on backup and restore&#46; However, the full path name of the file must be less than 1024 bytes&#46; Also, when a tar archive is created,
+smbclient&#39;s tar option places all files in the archive with relative names, not absolute names&#46;
+<p>
+<i>Tar Filenames</i>
+<p>
+All file names can be given as DOS path names (with &#39;&#92;&#92;&#39; as the component separator) or as UNIX path names (with &#39;/&#39; as the component separator)&#46;
+<p>
+<i>Examples</i>
+<p>
+Restore from tar file
+backup&#46;tar
+into myshare on mypc (no password on share)&#46;
+<p>
+smbclient //mypc/yshare "" -N -Tx backup&#46;tar
+<p>
+Restore everything except
+users/docs
+<p>
+smbclient //mypc/myshare "" -N -TXx backup&#46;tar users/docs
+<p>
+Create a tar file of the files beneath
+users/docs&#46;
+<p>
+smbclient //mypc/myshare "" -N -Tc backup&#46;tar users/docs
+<p>
+Create the same tar file as above, but now use a DOS path name&#46;
+<p>
+smbclient //mypc/myshare "" -N -tc backup&#46;tar users&#92;edocs
+<p>
+Create a tar file of the files listed in the file
+tarlist&#46;
+<p>
+smbclient //mypc/myshare "" -N -TcF backup&#46;tar tarlist
+<p>
+Create a tar file of all the files and directories in the share&#46;
+<p>
+smbclient //mypc/myshare "" -N -Tc backup&#46;tar *
+<p>
+-D|--directory initial directory
+Change to initial directory before starting&#46; Probably only of any use with the tar -T option&#46;
+<p>
+-c|--comand command string
+command string is a semicolon-separated list of commands to be executed instead of prompting from stdin&#46;
+<i> -N</i>
+is implied by
+<i>-c</i>&#46;
+<p>
+This is particularly useful in scripts and for printing stdin to the server, e&#46;g&#46;
+-c &#39;print -&#39;&#46;
+<h1 class="manpages">OPERATIONS</h1>
+<p>
+Once the client is running, the user is presented with a prompt :
+<p>
+smb:&#92;&gt;
+<p>
+The backslash ("&#92;&#92;") indicates the current working directory on the server, and will change if the current working directory is changed&#46;
+<p>
+The prompt indicates that the client is ready and waiting to carry out a user command&#46; Each command is a single word, optionally followed by parameters specific to that command&#46; Command and parameters are space-delimited unless these notes specifically state otherwise&#46; All commands are case-insensitive&#46; Parameters to commands may or may not be case sensitive, depending on the command&#46;
+<p>
+You can specify file names which have spaces in them by quoting the name with double quotes, for example "a long file name"&#46;
+<p>
+Parameters shown in square brackets (e&#46;g&#46;, "[parameter]") are optional&#46; If not given, the command will use suitable defaults&#46; Parameters shown in angle brackets (e&#46;g&#46;, "&lt;parameter&gt;") are required&#46;
+<p>
+Note that all commands operating on the server are actually performed by issuing a request to the server&#46; Thus the behavior may vary from server to server, depending on how the server was implemented&#46;
+<p>
+The commands available are given here in alphabetical order&#46;
+<p>
+? [command]
+If
+<i>command</i>
+is specified, the ? command will display a brief informative message about the specified command&#46; If no command is specified, a list of available commands will be displayed&#46;
+<p>
+! [shell command]
+If
+<i>shell command</i>
+is specified, the ! command will execute a shell locally and run the specified shell command&#46; If no command is specified, a local shell will be run&#46;
+<p>
+allinfo file
+The client will request that the server return all known information about a file or directory (including streams)&#46;
+<p>
+altname file
+The client will request that the server return the "alternate" name (the 8&#46;3 name) for a file or directory&#46;
+<p>
+archive &lt;number&gt;
+Sets the archive level when operating on files&#46; 0 means ignore the archive bit, 1 means only operate on files with this bit set, 2 means only operate on files with this bit set and reset it after operation, 3 means operate on all files and reset it after operation&#46; The default is 0&#46;
+<p>
+blocksize &lt;number&gt;
+Sets the blocksize parameter for a tar operation&#46; The default is 20&#46; Causes tar file to be written out in blocksize*TBLOCK (normally 512 byte) units&#46;
+<p>
+cancel jobid0 [jobid1] &#46;&#46;&#46; [jobidN]
+The client will request that the server cancel the printjobs identified by the given numeric print job ids&#46;
+<p>
+case_sensitive
+Toggles the setting of the flag in SMB packets that tells the server to treat filenames as case sensitive&#46; Set to OFF by default (tells file server to treat filenames as case insensitive)&#46; Only currently affects Samba 3&#46;0&#46;5 and above file servers with the case sensitive parameter set to auto in the smb&#46;conf&#46;
+<p>
+cd &lt;directory name&gt;
+If "directory name" is specified, the current working directory on the server will be changed to the directory specified&#46; This operation will fail if for any reason the specified directory is inaccessible&#46;
+<p>
+If no directory name is specified, the current working directory on the server will be reported&#46;
+<p>
+chmod file mode in octal
+This command depends on the server supporting the CIFS UNIX extensions and will fail if the server does not&#46; The client requests that the server change the UNIX permissions to the given octal mode, in standard UNIX format&#46;
+<p>
+chown file uid gid
+This command depends on the server supporting the CIFS UNIX extensions and will fail if the server does not&#46; The client requests that the server change the UNIX user and group ownership to the given decimal values&#46; Note there is currently no way to remotely look up the UNIX uid and gid values for a given name&#46; This may be addressed in future versions of the CIFS UNIX extensions&#46;
+<p>
+close &lt;fileid&gt;
+Closes a file explicitly opened by the open command&#46; Used for internal Samba testing purposes&#46;
+<p>
+del &lt;mask&gt;
+The client will request that the server attempt to delete all files matching
+<i>mask</i>
+from the current working directory on the server&#46;
+<p>
+dir &lt;mask&gt;
+A list of the files matching
+<i>mask</i>
+in the current working directory on the server will be retrieved from the server and displayed&#46;
+<p>
+du &lt;filename&gt;
+Does a directory listing and then prints out the current disk useage and free space on a share&#46;
+<p>
+echo &lt;number&gt; &lt;data&gt;
+Does an SMBecho request to ping the server&#46; Used for internal Samba testing purposes&#46;
+<p>
+exit
+Terminate the connection with the server and exit from the program&#46;
+<p>
+get &lt;remote file name&gt; [local file name]
+Copy the file called
+remote file name
+from the server to the machine running the client&#46; If specified, name the local copy
+local file name&#46; Note that all transfers in
+smbclient
+are binary&#46; See also the lowercase command&#46;
+<p>
+getfacl &lt;filename&gt;
+Requires the server support the UNIX extensions&#46; Requests and prints the POSIX ACL on a file&#46;
+<p>
+hardlink &lt;src&gt; &lt;dest&gt;
+Creates a hardlink on the server using Windows CIFS semantics&#46;
+<p>
+help [command]
+See the ? command above&#46;
+<p>
+history
+Displays the command history&#46;
+<p>
+iosize &lt;bytes&gt;
+When sending or receiving files, smbclient uses an internal memory buffer by default of size 64512 bytes&#46; This command allows this size to be set to any range between 16384 (0x4000) bytes and 16776960 (0xFFFF00) bytes&#46; Larger sizes may mean more efficient data transfer as smbclient will try and use the most efficient read and write calls for the connected server&#46;
+<p>
+lcd [directory name]
+If
+<i>directory name</i>
+is specified, the current working directory on the local machine will be changed to the directory specified&#46; This operation will fail if for any reason the specified directory is inaccessible&#46;
+<p>
+If no directory name is specified, the name of the current working directory on the local machine will be reported&#46;
+<p>
+link target linkname
+This command depends on the server supporting the CIFS UNIX extensions and will fail if the server does not&#46; The client requests that the server create a hard link between the linkname and target files&#46; The linkname file must not exist&#46;
+<p>
+listconnect
+Show the current connections held for DFS purposes&#46;
+<p>
+lock &lt;filenum&gt; &lt;r|w&gt; &lt;hex-start&gt; &lt;hex-len&gt;
+This command depends on the server supporting the CIFS UNIX extensions and will fail if the server does not&#46; Tries to set a POSIX fcntl lock of the given type on the given range&#46; Used for internal Samba testing purposes&#46;
+<p>
+logon &lt;username&gt; &lt;password&gt;
+Establishes a new vuid for this session by logging on again&#46; Replaces the current vuid&#46; Prints out the new vuid&#46; Used for internal Samba testing purposes&#46;
+<p>
+lowercase
+Toggle lowercasing of filenames for the get and mget commands&#46;
+<p>
+When lowercasing is toggled ON, local filenames are converted to lowercase when using the get and mget commands&#46; This is often useful when copying (say) MSDOS files from a server, because lowercase filenames are the norm on UNIX systems&#46;
+<p>
+ls &lt;mask&gt;
+See the dir command above&#46;
+<p>
+mask &lt;mask&gt;
+This command allows the user to set up a mask which will be used during recursive operation of the mget and mput commands&#46;
+<p>
+The masks specified to the mget and mput commands act as filters for directories rather than files when recursion is toggled ON&#46;
+<p>
+The mask specified with the mask command is necessary to filter files within those directories&#46; For example, if the mask specified in an mget command is "source*" and the mask specified with the mask command is "*&#46;c" and recursion is toggled ON, the mget command will retrieve all files matching "*&#46;c" in all directories below and including all directories matching "source*" in the current working directory&#46;
+<p>
+Note that the value for mask defaults to blank (equivalent to "*") and remains so until the mask command is used to change it&#46; It retains the most recently specified value indefinitely&#46; To avoid unexpected results it would be wise to change the value of mask back to "*" after using the mget or mput commands&#46;
+<p>
+md &lt;directory name&gt;
+See the mkdir command&#46;
+<p>
+mget &lt;mask&gt;
+Copy all files matching
+<i>mask</i>
+from the server to the machine running the client&#46;
+<p>
+Note that
+<i>mask</i>
+is interpreted differently during recursive operation and non-recursive operation - refer to the recurse and mask commands for more information&#46; Note that all transfers in
+smbclient
+are binary&#46; See also the lowercase command&#46;
+<p>
+mkdir &lt;directory name&gt;
+Create a new directory on the server (user access privileges permitting) with the specified name&#46;
+<p>
+more &lt;file name&gt;
+Fetch a remote file and view it with the contents of your PAGER environment variable&#46;
+<p>
+mput &lt;mask&gt;
+Copy all files matching
+<i>mask</i>
+in the current working directory on the local machine to the current working directory on the server&#46;
+<p>
+Note that
+<i>mask</i>
+is interpreted differently during recursive operation and non-recursive operation - refer to the recurse and mask commands for more information&#46; Note that all transfers in
+smbclient
+are binary&#46;
+<p>
+posix
+Query the remote server to see if it supports the CIFS UNIX extensions and prints out the list of capabilities supported&#46; If so, turn on POSIX pathname processing and large file read/writes (if available),&#46;
+<p>
+posix_encrypt &lt;domain&gt; &lt;username&gt; &lt;password&gt;
+This command depends on the server supporting the CIFS UNIX extensions and will fail if the server does not&#46; Attempt to negotiate SMB encryption on this connection&#46; If smbclient connected with kerberos credentials (-k) the arguments to this command are ignored and the kerberos credentials are used to negotiate GSSAPI signing and sealing instead&#46; See also the -e option to smbclient to force encryption on initial connection&#46; This command is new with Samba 3&#46;2&#46;
+<p>
+posix_open &lt;filename&gt; &lt;octal mode&gt;
+This command depends on the server supporting the CIFS UNIX extensions and will fail if the server does not&#46; Opens a remote file using the CIFS UNIX extensions and prints a fileid&#46; Used for internal Samba testing purposes&#46;
+<p>
+posix_mkdir &lt;directoryname&gt; &lt;octal mode&gt;
+This command depends on the server supporting the CIFS UNIX extensions and will fail if the server does not&#46; Creates a remote directory using the CIFS UNIX extensions with the given mode&#46;
+<p>
+posix_rmdir &lt;directoryname&gt;
+This command depends on the server supporting the CIFS UNIX extensions and will fail if the server does not&#46; Deletes a remote directory using the CIFS UNIX extensions&#46;
+<p>
+posix_unlink &lt;filename&gt;
+This command depends on the server supporting the CIFS UNIX extensions and will fail if the server does not&#46; Deletes a remote file using the CIFS UNIX extensions&#46;
+<p>
+print &lt;file name&gt;
+Print the specified file from the local machine through a printable service on the server&#46;
+<p>
+prompt
+Toggle prompting for filenames during operation of the mget and mput commands&#46;
+<p>
+When toggled ON, the user will be prompted to confirm the transfer of each file during these commands&#46; When toggled OFF, all specified files will be transferred without prompting&#46;
+<p>
+put &lt;local file name&gt; [remote file name]
+Copy the file called
+local file name
+from the machine running the client to the server&#46; If specified, name the remote copy
+remote file name&#46; Note that all transfers in
+smbclient
+are binary&#46; See also the lowercase command&#46;
+<p>
+queue
+Displays the print queue, showing the job id, name, size and current status&#46;
+<p>
+quit
+See the exit command&#46;
+<p>
+rd &lt;directory name&gt;
+See the rmdir command&#46;
+<p>
+recurse
+Toggle directory recursion for the commands mget and mput&#46;
+<p>
+When toggled ON, these commands will process all directories in the source directory (i&#46;e&#46;, the directory they are copying from ) and will recurse into any that match the mask specified to the command&#46; Only files that match the mask specified using the mask command will be retrieved&#46; See also the mask command&#46;
+<p>
+When recursion is toggled OFF, only files from the current working directory on the source machine that match the mask specified to the mget or mput commands will be copied, and any mask specified using the mask command will be ignored&#46;
+<p>
+rm &lt;mask&gt;
+Remove all files matching
+<i>mask</i>
+from the current working directory on the server&#46;
+<p>
+rmdir &lt;directory name&gt;
+Remove the specified directory (user access privileges permitting) from the server&#46;
+<p>
+setmode &lt;filename&gt; &lt;perm=[+|&#92;-]rsha&gt;
+A version of the DOS attrib command to set file permissions&#46; For example:
+<p>
+setmode myfile +r
+<p>
+would make myfile read only&#46;
+<p>
+showconnect
+Show the currently active connection held for DFS purposes&#46;
+<p>
+stat file
+This command depends on the server supporting the CIFS UNIX extensions and will fail if the server does not&#46; The client requests the UNIX basic info level and prints out the same info that the Linux stat command would about the file&#46; This includes the size, blocks used on disk, file type, permissions, inode number, number of links and finally the three timestamps (access, modify and change)&#46; If the file is a special file (symlink, character or block device, fifo or socket) then extra information may also be printed&#46;
+<p>
+symlink target linkname
+This command depends on the server supporting the CIFS UNIX extensions and will fail if the server does not&#46; The client requests that the server create a symbolic hard link between the target and linkname files&#46; The linkname file must not exist&#46; Note that the server will not create a link to any path that lies outside the currently connected share&#46; This is enforced by the Samba server&#46;
+<p>
+tar &lt;c|x&gt;[IXbgNa]
+Performs a tar operation - see the
+<i>-T </i>
+command line option above&#46; Behavior may be affected by the tarmode command (see below)&#46; Using g (incremental) and N (newer) will affect tarmode settings&#46; Note that using the "-" option with tar x may not work - use the command line option instead&#46;
+<p>
+blocksize &lt;blocksize&gt;
+Blocksize&#46; Must be followed by a valid (greater than zero) blocksize&#46; Causes tar file to be written out in
+<i>blocksize</i>*TBLOCK (usually 512 byte) blocks&#46;
+<p>
+tarmode &lt;full|inc|reset|noreset&gt;
+Changes tar&#39;s behavior with regard to archive bits&#46; In full mode, tar will back up everything regardless of the archive bit setting (this is the default mode)&#46; In incremental mode, tar will only back up files with the archive bit set&#46; In reset mode, tar will reset the archive bit on all files it backs up (implies read/write share)&#46;
+<p>
+unlock &lt;filenum&gt; &lt;hex-start&gt; &lt;hex-len&gt;
+This command depends on the server supporting the CIFS UNIX extensions and will fail if the server does not&#46; Tries to unlock a POSIX fcntl lock on the given range&#46; Used for internal Samba testing purposes&#46;
+<p>
+volume
+Prints the current volume name of the share&#46;
+<p>
+vuid &lt;number&gt;
+Changes the currently used vuid in the protocol to the given arbitrary number&#46; Without an argument prints out the current vuid being used&#46; Used for internal Samba testing purposes&#46;
+<h1 class="manpages">NOTES</h1>
+<p>
+Some servers are fussy about the case of supplied usernames, passwords, share names (AKA service names) and machine names&#46; If you fail to connect try giving all parameters in uppercase&#46;
+<p>
+It is often necessary to use the -n option when connecting to some types of servers&#46; For example OS/2 LanManager insists on a valid NetBIOS name being used, so you need to supply a valid name that would be known to the server&#46;
+<p>
+smbclient supports long file names where the server supports the LANMAN2 protocol or above&#46;
+<h1 class="manpages">ENVIRONMENT VARIABLES</h1>
+<p>
+The variable
+<b>USER</b>
+may contain the username of the person using the client&#46; This information is used only if the protocol level is high enough to support session-level passwords&#46;
+<p>
+The variable
+<b>PASSWD</b>
+may contain the password of the person using the client&#46; This information is used only if the protocol level is high enough to support session-level passwords&#46;
+<p>
+The variable
+<b>LIBSMB_PROG</b>
+may contain the path, executed with system(), which the client should connect to instead of connecting to a server&#46; This functionality is primarily intended as a development aid, and works best when using a LMHOSTS file
+<h1 class="manpages">INSTALLATION</h1>
+<p>
+The location of the client program is a matter for individual system administrators&#46; The following are thus suggestions only&#46;
+<p>
+It is recommended that the smbclient software be installed in the
+/usr/local/samba/bin/
+or
+/usr/samba/bin/
+directory, this directory readable by all, writeable only by root&#46; The client program itself should be executable by all&#46; The client should
+<i>NOT</i>
+be setuid or setgid!
+<p>
+The client log files should be put in a directory readable and writeable only by the user&#46;
+<p>
+To test the client, you will need to know the name of a running SMB/CIFS server&#46; It is possible to run
+<b>smbd</b>(8)
+as an ordinary user - running that server as a daemon on a user-accessible port (typically any port number over 1024) would provide a suitable test server&#46;
+<h1 class="manpages">DIAGNOSTICS</h1>
+<p>
+Most diagnostics issued by the client are logged in a specified log file&#46; The log file name is specified at compile time, but may be overridden on the command line&#46;
+<p>
+The number and nature of diagnostics available depends on the debug level used by the client&#46; If you have problems, set the debug level to 3 and peruse the log files&#46;
+<h1 class="manpages">VERSION</h1>
+<p>
+This man page is correct for version 3&#46;2 of the Samba suite&#46;
+<h1 class="manpages">AUTHOR</h1>
+<p>
+The original Samba software and related utilities were created by Andrew Tridgell&#46; Samba is now developed by the Samba Team as an Open Source project similar to the way the Linux kernel is developed&#46;
+<p>
+The original Samba man pages were written by Karl Auer&#46; The man page sources were converted to YODL format (another excellent piece of Open Source software, available at
+<a href="ftp://ftp/">ftp://ftp</a>&#46;icce&#46;rug&#46;nl/pub/unix/) and updated for the Samba 2&#46;0 release by Jeremy Allison&#46; The conversion to DocBook for Samba 2&#46;2 was done by Gerald Carter&#46; The conversion to DocBook XML 4&#46;2 for Samba 3&#46;0 was done by Alexander Bokovoy&#46;
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion8c45.html?tutorial=unix_commands&amp;file=smbclient.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/smbclient.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

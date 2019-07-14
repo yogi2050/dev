@@ -1,0 +1,626 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/zic.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:41 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>zic - Unix, Linux Command</title>
+<meta name="Description" Content="zic - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>zic - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+zic - time zone compiler
+<h1 class="manpages">SYNOPSIS</h1>
+<b>zic</b> [
+<b>-v</b> ] [
+<b>-d</b> <i>directory</i> ] [
+<b>-l</b> <i>localtime</i> ] [
+<b>-p</b> <i>posixrules</i> ] [
+<b>-L</b> <i>leapsecondfilename</i> ] [
+<b>-s</b> ] [
+<b>-y</b> <i>command</i> ] [
+<i>filename</i> &#46;.. ]
+<h1 class="manpages">DESCRIPTION</h1>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<i>Zic</i> reads text from the file(s) named on the command line
+and creates the time conversion information files specified in this input.
+If a
+<i>filename</i> is
+<b>-</b>, the standard input is read.
+<p>
+These options are available:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>-d </b><i>directory</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Create time conversion information files in the named directory rather than
+in the standard directory named below.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-l </b><i>timezone</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Use the given time zone as local time.
+<i>Zic</i> will act as if the input contained a link line of the form
+<p>
+&nbsp; &nbsp;Link&nbsp;&nbsp;&nbsp;&nbsp;<i>timezone</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;localtime
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-p </b><i>timezone</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Use the given time zone&#146;s rules when handling POSIX-format
+time zone environment variables.
+<i>Zic</i> will act as if the input contained a link line of the form
+<p>
+&nbsp; &nbsp;Link&nbsp;&nbsp;&nbsp;&nbsp;<i>timezone</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;posixrules
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-L </b><i>leapsecondfilename</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Read leap second information from the file with the given name.
+If this option is not used,
+no leap second information appears in output files.
+</td></tr>
+<tr valign="top"><td>
+<b>-v</b> </td><td valign="bottom">
+Complain if a year that appears in a data file is outside the range
+of years representable by
+<b>time</b>(2)
+values.
+</td></tr>
+<tr valign="top"><td>
+<b>-s</b> </td><td valign="bottom">
+Limit time values stored in output files to values that are the same
+whether they&#146;re taken to be signed or unsigned.
+You can use this option to generate SVVS-compatible files.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-y </b><i>command</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Use the given
+<i>command</i> rather than
+<b>yearistype</b> when checking year types (see below).
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+Input lines are made up of fields.
+Fields are separated from one another by any number of white space characters.
+Leading and trailing white space on input lines is ignored.
+An unquoted sharp character (#) in the input introduces a comment which extends
+to the end of the line the sharp character appears on.
+White space characters and sharp characters may be enclosed in double quotes
+(") if they&#146;re to be used as part of a field.
+Any line that is blank (after comment stripping) is ignored.
+Non-blank lines are expected to be of one of three types:
+rule lines, zone lines, and link lines.
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+A rule line has the form
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&nbsp; &nbsp;<p>
+Rule&nbsp;NAME&nbsp;FROM&nbsp;TO&nbsp;&nbsp;&nbsp;TYPE&nbsp;IN&nbsp;&nbsp;ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AT&nbsp;&nbsp;SAVE&nbsp;LETTER/S
+<p>
+For example:
+&nbsp; &nbsp;<p>
+Rule&nbsp;US&nbsp;&nbsp;&nbsp;1967&nbsp;1973&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;Apr&nbsp;lastSun&nbsp;2:001:00&nbsp;D
+<p>
+</pre></td></tr>
+</table>
+The fields that make up a rule line are:
+</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>NAME</b> </td><td valign="bottom">
+Gives the (arbitrary) name of the set of rules this rule is part of.
+</td></tr>
+<tr valign="top"><td>
+<b>FROM</b> </td><td valign="bottom">
+Gives the first year in which the rule applies.
+Any integer year can be supplied; the Gregorian calendar is assumed.
+The word
+<b>minimum</b> (or an abbreviation) means the minimum year representable as an integer.
+The word
+<b>maximum</b> (or an abbreviation) means the maximum year representable as an integer.
+Rules can describe times that are not representable as time values,
+with the unrepresentable times ignored; this allows rules to be portable
+among hosts with differing time value types.
+</td></tr>
+<tr valign="top"><td>
+<b>TO</b> </td><td valign="bottom">
+Gives the final year in which the rule applies.
+In addition to
+<b>minimum</b> and
+<b>maximum</b> (as above),
+the word
+<b>only</b> (or an abbreviation)
+may be used to repeat the value of the
+<b>FROM</b> field.
+</td></tr>
+<tr valign="top"><td>
+<b>TYPE</b> </td><td valign="bottom">
+Gives the type of year in which the rule applies.
+If
+<b>TYPE</b> is
+<b>-</b> then the rule applies in all years between
+<b>FROM</b> and
+<b>TO</b> inclusive.
+If
+<b>TYPE</b> is something else, then
+<i>zic</i> executes the command
+&nbsp; &nbsp;<b>yearistype</b> <i>year</i> <i>type</i>
+<!-- Need break --><br />
+to check the type of a year:
+an exit status of zero is taken to mean that the year is of the given type;
+an exit status of one is taken to mean that the year is not of the given type.
+</td></tr>
+<tr valign="top"><td>
+<b>IN</b> </td><td valign="bottom">
+Names the month in which the rule takes effect.
+Month names may be abbreviated.
+</td></tr>
+<tr valign="top"><td>
+<b>ON</b> </td><td valign="bottom">
+Gives the day on which the rule takes effect.
+Recognized forms include:
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .in -->
+<p>
+5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the fifth of the month
+lastSun&nbsp;&nbsp;&nbsp;the last Sunday in the month
+lastMon&nbsp;&nbsp;&nbsp;the last Monday in the month
+Sun&gt;=8&nbsp;&nbsp;&nbsp;&nbsp;first Sunday on or after the eighth
+Sun&lt;=25&nbsp;&nbsp;&nbsp;last Sunday on or before the 25th
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+Names of days of the week may be abbreviated or spelled out in full.
+Note that there must be no spaces within the
+<b>ON</b> field.
+</td></tr>
+<tr valign="top"><td>
+<b>AT</b> </td><td valign="bottom">
+Gives the time of day at which the rule takes effect.
+Recognized forms include:
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .in -->
+<p>
+2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;time in hours
+2:00&nbsp;&nbsp;&nbsp;time in hours and minutes
+15:00&nbsp;&nbsp;24-hour format time (for times after noon)
+1:28:14time in hours, minutes, and seconds
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;equivalent to 0
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+where hour 0 is midnight at the start of the day,
+and hour 24 is midnight at the end of the day.
+Any of these forms may be followed by the letter
+<b>w</b> if the given time is local
+&#145;&#145;wall clock&#146;&#146;
+time,
+<b>s</b> if the given time is local
+&#145;&#145;standard&#146;&#146;
+time, or
+<b>u</b> (or
+<b>g</b> or
+<b>z</b>) if the given time is universal time;
+in the absence of an indicator,
+wall clock time is assumed.
+</td></tr>
+<tr valign="top"><td>
+<b>SAVE</b> </td><td valign="bottom">
+Gives the amount of time to be added to local standard time when the rule is in
+effect.
+This field has the same format as the
+<b>AT</b> field
+(although, of course, the
+<b>w</b> and
+<b>s</b> suffixes are not used).
+</td></tr>
+<tr valign="top"><td>
+<b>LETTER/S</b> </td><td valign="bottom">
+Gives the
+&#145;&#145;variable part&#146;&#146;
+(for example, the
+&#145;&#145;S&#146;&#146;
+or
+&#145;&#145;D&#146;&#146;
+in
+&#145;&#145;EST&#146;&#146;
+or
+&#145;&#145;EDT&#146;&#146;)
+of time zone abbreviations to be used when this rule is in effect.
+If this field is
+<b>-</b>, the variable part is null.
+</td></tr>
+<!-- PP ends table -->
+</table>
+A zone line has the form
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&nbsp; &nbsp;Zone&nbsp;NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GMTOFF&nbsp;RULES/SAVE&nbsp;FORMAT&nbsp;[UNTIL]
+<p>
+For example:
+<p>
+&nbsp; &nbsp;Zone&nbsp;Australia/Adelaide&nbsp;9:30&nbsp;&nbsp;&nbsp;Aus&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CST&nbsp;&nbsp;&nbsp;&nbsp;1971 Oct 31 2:00
+<p>
+</pre></td></tr>
+</table>
+The fields that make up a zone line are:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>NAME</b> </td><td valign="bottom">
+The name of the time zone.
+This is the name used in creating the time conversion information file for the
+zone.
+</td></tr>
+<tr valign="top"><td>
+<b>GMTOFF</b> </td><td valign="bottom">
+The amount of time to add to UTC to get standard time in this zone.
+This field has the same format as the
+<b>AT</b> and
+<b>SAVE</b> fields of rule lines;
+begin the field with a minus sign if time must be subtracted from UTC.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>RULES/SAVE</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The name of the rule(s) that apply in the time zone or,
+alternately, an amount of time to add to local standard time.
+If this field is
+<b>-</b> then standard time always applies in the time zone.
+</td></tr>
+<tr valign="top"><td>
+<b>FORMAT</b> </td><td valign="bottom">
+The format for time zone abbreviations in this time zone.
+The pair of characters
+<b>%s</b> is used to show where the
+&#145;&#145;variable part&#146;&#146;
+of the time zone abbreviation goes.
+Alternately,
+a slash (/)
+separates standard and daylight abbreviations.
+</td></tr>
+<tr valign="top"><td>
+<b>UNTIL</b> </td><td valign="bottom">
+The time at which the UTC offset or the rule(s) change for a location.
+It is specified as a year, a month, a day, and a time of day.
+If this is specified,
+the time zone information is generated from the given UTC offset
+and rule change until the time specified.
+The month, day, and time of day have the same format as the IN, ON, and AT
+columns of a rule; trailing columns can be omitted, and default to the
+earliest possible value for the missing columns.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+The next line must be a
+&#145;&#145;continuation&#146;&#146;
+line; this has the same form as a zone line except that the
+string
+&#145;&#145;Zone&#146;&#146;
+and the name are omitted, as the continuation line will
+place information starting at the time specified as the
+<b>UNTIL</b> field in the previous line in the file used by the previous line.
+Continuation lines may contain an
+<b>UNTIL</b> field, just as zone lines do, indicating that the next line is a further
+continuation.
+</td></tr>
+<!-- PP ends table -->
+</table>
+A link line has the form
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&nbsp; &nbsp;Link&nbsp;LINK-FROM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LINK-TO
+<p>
+For example:
+<p>
+&nbsp; &nbsp;Link&nbsp;Europe/Istanbul&nbsp;Asia/Istanbul
+<p>
+</pre></td></tr>
+</table>
+The
+<b>LINK-FROM</b> field should appear as the
+<b>NAME</b> field in some zone line;
+the
+<b>LINK-TO</b> field is used as an alternate name for that zone.
+<p>
+Except for continuation lines,
+lines may appear in any order in the input.
+<p>
+Lines in the file that describes leap seconds have the following form:
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&nbsp; &nbsp;<p>
+Leap&nbsp;YEAR&nbsp;MONTH&nbsp;DAY&nbsp;HH:MM:SS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CORRR/S
+<p>
+For example:
+&nbsp; &nbsp;<p>
+Leap&nbsp;1974&nbsp;Dec&nbsp;&nbsp;&nbsp;31&nbsp;&nbsp;23:59:60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+S
+<p>
+</pre></td></tr>
+</table>
+The
+<b>YEAR</b>, <b>MONTH</b>, <b>DAY</b>, and
+<b>HH:MM:SS</b> fields tell when the leap second happened.
+The
+<b>CORR</b> field
+should be
+&#145;&#145;+&#146;&#146;
+if a second was added
+or
+&#145;&#145;-&#146;&#146;
+if a second was skipped.
+The
+<b>R/S</b> field
+should be (an abbreviation of)
+&#145;&#145;Stationary&#146;&#146;
+if the leap second time given by the other fields should be interpreted as UTC
+or
+(an abbreviation of)
+&#145;&#145;Rolling&#146;&#146;
+if the leap second time given by the other fields should be interpreted as
+local wall clock time.
+<h1 class="manpages">NOTE</h1>
+For areas with more than two types of local time,
+you may need to use local standard time in the
+<b>AT</b> field of the earliest transition time&#146;s rule to ensure that
+the earliest transition time recorded in the compiled file is correct.
+<h1 class="manpages">FILE</h1>
+/usr/local/etc/zoneinfo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;standard directory used for created files
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="zdump.htm">zdump (8)</a></p></li>
+</ul>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion6fba.html?tutorial=unix_commands&amp;file=zic.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/zic.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:41 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

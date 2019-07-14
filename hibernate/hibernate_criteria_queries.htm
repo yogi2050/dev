@@ -1,0 +1,607 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/hibernate/hibernate_criteria_queries.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Apr 2013 21:08:24 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>Hibernate Criteria Queries</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="description" content="Hibernate, Tutorials, Learning, Beginners, Basics, Environment, Object Relational Mapping (ORM), Query Language, Native SQL, Caching, Interceptors, Persistent Classes, Persistent Objects, Collections, Associations and components, and Hibernate tools." />
+<meta name="keywords" content="Hibernate Criteria Queries - Learn Hibernate 3.x starting from environment setup, Object Relational Mapping (ORM), Query Language, Native SQL, Caching, Interceptors, Persistent Classes, Persistent Objects, Collections, Associations and components, and Hibernate tools." />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+#topmenu a:hover {text-decoration:none;color:#bcae79  !important;background-color:transparent;font-weight:bold;}
+#header{ 
+background:#bcae79  !important;
+}
+#topmenu
+{
+background-color:#59666c !important;
+}
+#leftcol ul.menu li.heading 
+{
+background:#bcae79 !important;
+border:1px solid #59666c  !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1200px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index.htm">Tutorials Point - Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index.htm" target="_top">HOME </a>
+<a href="../java/index.htm" target="_top">JAVA </a>
+<a href="../php/index.htm" target="_top">PHP </a>
+<a href="../python/index.htm" target="_top">Python </a>
+<a href="../ruby/index.htm" target="_top">Ruby </a>
+<a href="../perl/index.htm" target="_top">Perl </a>
+<a href="../html/index.htm" target="_top">HTML </a>
+<a href="../css/index.htm" target="_top">CSS </a>
+<a href="../javascript/index.htm" target="_top">Javascript </a>
+<a href="../mysql/index.htm" target="_top">MySQL </a>
+<a href="../cplusplus/index.htm" target="_top">C++ </a>
+<a href="../unix/index.htm" target="_top">UNIX </a>
+<a href="../more.htm" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.htm" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.htm" target="_top">ABOUT</a> |
+<a href="../about/contact_us.htm" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/hibernate-mini-logo.png" alt="Hibernate Tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">Hibernate Tutorial</li>
+<li><a target="_top" href="index.htm">Hibernate Home</a></li>
+<li><a target="_top" href="orm_overview.htm">ORM Overview</a></li>
+<li><a target="_top" href="hibernate_overview.htm">Hibernate Overview</a></li>
+<li><a target="_top" href="hibernate_architecture.htm">Hibernate Architecture</a></li>
+<li><a target="_top" href="hibernate_environment.htm">Hibernate Environment</a></li>
+<li><a target="_top" href="hibernate_configuration.htm">Hibernate Configuration</a></li>
+<li><a target="_top" href="hibernate_sessions.htm">Hibernate Sessions</a></li>
+<li><a target="_top" href="hibernate_persistent_classes.htm">Hibernate Persistent Class</a></li>
+<li><a target="_top" href="hibernate_mapping_files.htm">Hibernate Mapping Files</a></li>
+<li><a target="_top" href="hibernate_mapping_types.htm">Hibernate Mapping Types</a></li>
+<li><a target="_top" href="hibernate_examples.htm">Hibernate Examples</a></li>
+<li><a target="_top" href="hibernate_or_mappings.htm">Hibernate O/R Mappings</a></li>
+<li><a target="_top" href="hibernate_annotations.htm">Hibernate Annotations</a></li>
+<li><a target="_top" href="hibernate_query_language.htm">Hibernate Query Language</a></li>
+<li><a target="_top" href="hibernate_criteria_queries.htm"><b>Hibernate Criteria Queries</b></a></li>
+<li><a target="_top" href="hibernate_native_sql.htm">Hibernate Native SQL</a></li>
+<li><a target="_top" href="hibernate_caching.htm">Hibernate Caching</a></li>
+<li><a target="_top" href="hibernate_batch_processing.htm">Hibernate Batch Processing</a></li>
+<li><a target="_top" href="hibernate_interceptors.htm">Hibernate Interceptors</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Hibernate Useful Resources</li>
+<li><a target="_top" href="hibernate_quick_guide.htm">Hibernate Quick Guide</a></li>
+<li><a target="_top" href="hibernate_useful_resources.htm">Hibernate Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>Hibernate Criteria Queries</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="hibernate_query_language.htm">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="hibernate_native_sql.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>Hibernate provides alternate ways of manipulating objects and in turn data available in RDBMS tables. One of the methods is Criteria API which allows you to build up a criteria query object programmatically where you can apply filtration rules and logical conditions.</p>
+<p>The Hibernate <b>Session</b> interface provides <b>createCriteria()</b> method which can be used to create a <b>Criteria</b> object that returns instances of the persistence object's class when your application executes a criteria query.</p>
+<p>Following is the simplest example of a criteria query is one which will simply return every object that corresponds to the Employee class.</p>
+<pre class="prettyprint">
+Criteria cr = session.createCriteria(Employee.class);
+List results = cr.list();
+</pre>
+<h2>Restrictions with Criteria:</h2>
+<p>You can use <b>add()</b> method available for <b>Criteria</b> object to add restriction for a criteria query. Following is the example to add a restriction to return the records with salary is equal to 2000:</p>
+<pre class="prettyprint">
+Criteria cr = session.createCriteria(Employee.class);
+cr.add(Restrictions.eq("salary", 2000));
+List results = cr.list();
+</pre>
+<p>Following are the few more examples covering different scenarios and can be used as per requirement:</p>
+<pre class="prettyprint">
+Criteria cr = session.createCriteria(Employee.class);
+
+// To get records having salary more than 2000
+cr.add(Restrictions.gt("salary", 2000));
+
+// To get records having salary less than 2000
+cr.add(Restrictions.lt("salary", 2000));
+
+// To get records having fistName starting with zara
+cr.add(Restrictions.like("firstName", "zara%"));
+
+// Case sensitive form of the above restriction.
+cr.add(Restrictions.ilike("firstName", "zara%"));
+
+// To get records having salary in between 1000 and 2000
+cr.add(Restrictions.between("salary", 1000, 2000));
+
+// To check if the given property is null
+cr.add(Restrictions.isNull("salary"));
+
+// To check if the given property is not null
+cr.add(Restrictions.isNotNull("salary"));
+
+// To check if the given property is empty
+cr.add(Restrictions.isEmpty("salary"));
+
+// To check if the given property is not empty
+cr.add(Restrictions.isNotEmpty("salary"));
+</pre>
+<p>You can create AND or OR conditions using LogicalExpression restrictions as follows:</p>
+<pre class="prettyprint">
+Criteria cr = session.createCriteria(Employee.class);
+
+Criterion salary = Restrictions.gt("salary", 2000);
+Criterion name = Restrictions.ilike("firstNname","zara%");
+
+// To get records matching with OR condistions
+LogicalExpression orExp = Restrictions.or(salary, name);
+cr.add( orExp );
+
+
+// To get records matching with AND condistions
+LogicalExpression andExp = Restrictions.and(salary, name);
+cr.add( andExp );
+
+List results = cr.list();
+</pre>
+<p>Though all the above conditions can be used directly with HQL as explained in previous tutorial.</p>
+<h2>Pagination using Criteria:</h2>
+<p>There are two methods of the Criteria interface for pagination.</p>
+<table class="src">
+<tr><th style="width:5%">S.N.</th><th>Method &amp; Description</th></tr>
+<tr><td>1</td><td><b>public Criteria setFirstResult(int firstResult)</b><br/>This method takes an integer that represents the first row in your result set, starting with row 0.</td></tr>
+<tr><td>2</td><td><b>public Criteria setMaxResults(int maxResults)</b><br/>This method tells Hibernate to retrieve a fixed number <b>maxResults</b> of objects.</td></tr>
+</table>
+<p>Using above two methods together, we can construct a paging component in our web or Swing application. Following is the example which you can extend to fetch 10 rows at a time:</p>
+<pre class="prettyprint">
+Criteria cr = session.createCriteria(Employee.class);
+cr.setFirstResult(1);
+cr.setMaxResults(10);
+List results = cr.list();
+</pre>
+<h2>Sorting the  Results:</h2>
+<p>The Criteria API provides the <b>org.hibernate.criterion.Order</b> class to sort your result set in either ascending or descending order, according to one of your object's properties. This example demonstrates how you would use the Order class to sort the result set:</p>
+<pre class="prettyprint">
+Criteria cr = session.createCriteria(Employee.class);
+// To get records having salary more than 2000
+cr.add(Restrictions.gt("salary", 2000));
+
+// To sort records in descening order
+crit.addOrder(Order.desc("salary"));
+
+// To sort records in ascending order
+crit.addOrder(Order.asc("salary"));
+
+List results = cr.list();
+</pre>
+<h2>Projections &amp; Aggregations:</h2>
+<p>The Criteria API provides the <b>org.hibernate.criterion.Projections</b> class which can be used to get average, maximum or minimum of the property values.  The Projections class is similar to the Restrictions class in that it provides several static factory methods for obtaining <b>Projection</b> instances.</p>
+<p>Following are the few examples covering different scenarios and can be used as per requirement:</p>
+<pre class="prettyprint">
+Criteria cr = session.createCriteria(Employee.class);
+
+// To get total row count.
+cr.setProjection(Projections.rowCount());
+
+// To get average of a property.
+cr.setProjection(Projections.avg("salary"));
+
+// To get distinct count of a property.
+cr.setProjection(Projections.countDistinct("firstName"));
+
+// To get maximum of a property.
+cr.setProjection(Projections.max("salary"));
+
+// To get minimum of a property.
+cr.setProjection(Projections.min("salary"));
+
+// To get sum of a property.
+cr.setProjection(Projections.sum("salary"));
+</pre>
+<h2>Criteria Queries Example:</h2>
+<p>Consider the following POJO class:</p>
+<pre class="prettyprint">
+public class Employee {
+   private int id;
+   private String firstName; 
+   private String lastName;   
+   private int salary;  
+
+   public Employee() {}
+   public Employee(String fname, String lname, int salary) {
+      this.firstName = fname;
+      this.lastName = lname;
+      this.salary = salary;
+   }
+   public int getId() {
+      return id;
+   }
+   public void setId( int id ) {
+      this.id = id;
+   }
+   public String getFirstName() {
+      return firstName;
+   }
+   public void setFirstName( String first_name ) {
+      this.firstName = first_name;
+   }
+   public String getLastName() {
+      return lastName;
+   }
+   public void setLastName( String last_name ) {
+      this.lastName = last_name;
+   }
+   public int getSalary() {
+      return salary;
+   }
+   public void setSalary( int salary ) {
+      this.salary = salary;
+   }
+}
+</pre>
+<p>Let us create the following EMPLOYEE table to store Employee objects:</p>
+<pre class="prettyprint">
+create table EMPLOYEE (
+   id INT NOT NULL auto_increment,
+   first_name VARCHAR(20) default NULL,
+   last_name  VARCHAR(20) default NULL,
+   salary     INT  default NULL,
+   PRIMARY KEY (id)
+);
+</pre>
+<p>Following will be mapping file.</p>
+<pre class="prettyprint">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"&gt; 
+
+&lt;hibernate-mapping&gt;
+   &lt;class name="Employee" table="EMPLOYEE"&gt;
+      &lt;meta attribute="class-description"&gt;
+         This class contains the employee detail. 
+      &lt;/meta&gt;
+      &lt;id name="id" type="int" column="id"&gt;
+         &lt;generator class="native"/&gt;
+      &lt;/id&gt;
+      &lt;property name="firstName" column="first_name" type="string"/&gt;
+      &lt;property name="lastName" column="last_name" type="string"/&gt;
+      &lt;property name="salary" column="salary" type="int"/&gt;
+   &lt;/class&gt;
+&lt;/hibernate-mapping&gt;
+</pre>
+<p>Finally, we will create our application class with the main() method to run the application where we will use <b>Criteria</b> queries:</p>
+<pre class="prettyprint">
+import java.util.List; 
+import java.util.Date;
+import java.util.Iterator; 
+ 
+import org.hibernate.HibernateException; 
+import org.hibernate.Session; 
+import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.Projections;
+import org.hibernate.cfg.Configuration;
+
+public class ManageEmployee {
+   private static SessionFactory factory; 
+   public static void main(String[] args) {
+      try{
+         factory = new Configuration().configure().buildSessionFactory();
+      }catch (Throwable ex) { 
+         System.err.println("Failed to create sessionFactory object." + ex);
+         throw new ExceptionInInitializerError(ex); 
+      }
+      ManageEmployee ME = new ManageEmployee();
+
+      /* Add few employee records in database */
+      Integer empID1 = ME.addEmployee("Zara", "Ali", 2000);
+      Integer empID2 = ME.addEmployee("Daisy", "Das", 5000);
+      Integer empID3 = ME.addEmployee("John", "Paul", 5000);
+      Integer empID4 = ME.addEmployee("Mohd", "Yasee", 3000);
+
+      /* List down all the employees */
+      ME.listEmployees();
+
+      /* Print Total employee's count */
+      ME.countEmployee();
+
+      /* Print Toatl salary */
+      ME.totalSalary();
+   }
+   /* Method to CREATE an employee in the database */
+   public Integer addEmployee(String fname, String lname, int salary){
+      Session session = factory.openSession();
+      Transaction tx = null;
+      Integer employeeID = null;
+      try{
+         tx = session.beginTransaction();
+         Employee employee = new Employee(fname, lname, salary);
+         employeeID = (Integer) session.save(employee); 
+         tx.commit();
+      }catch (HibernateException e) {
+         if (tx!=null) tx.rollback();
+         e.printStackTrace(); 
+      }finally {
+         session.close(); 
+      }
+      return employeeID;
+   }
+
+   /* Method to  READ all the employees having salary more than 2000 */
+   public void listEmployees( ){
+      Session session = factory.openSession();
+      Transaction tx = null;
+      try{
+         tx = session.beginTransaction();
+         Criteria cr = session.createCriteria(Employee.class);
+         // Add restriction.
+         cr.add(Restrictions.gt("salary", 2000));
+         List employees = cr.list();
+
+         for (Iterator iterator = 
+                           employees.iterator(); iterator.hasNext();){
+            Employee employee = (Employee) iterator.next(); 
+            System.out.print("First Name: " + employee.getFirstName()); 
+            System.out.print("  Last Name: " + employee.getLastName()); 
+            System.out.println("  Salary: " + employee.getSalary()); 
+         }
+         tx.commit();
+      }catch (HibernateException e) {
+         if (tx!=null) tx.rollback();
+         e.printStackTrace(); 
+      }finally {
+         session.close(); 
+      }
+   }
+   /* Method to print total number of records */
+   public void countEmployee(){
+      Session session = factory.openSession();
+      Transaction tx = null;
+      try{
+         tx = session.beginTransaction();
+         Criteria cr = session.createCriteria(Employee.class);
+
+         // To get total row count.
+         cr.setProjection(Projections.rowCount());
+         List rowCount = cr.list();
+
+         System.out.println("Total Coint: " + rowCount.get(0) );
+         tx.commit();
+      }catch (HibernateException e) {
+         if (tx!=null) tx.rollback();
+         e.printStackTrace(); 
+      }finally {
+         session.close(); 
+      }
+   }
+  /* Method to print sum of salaries */
+   public void totalSalary(){
+      Session session = factory.openSession();
+      Transaction tx = null;
+      try{
+         tx = session.beginTransaction();
+         Criteria cr = session.createCriteria(Employee.class);
+
+         // To get total salary.
+         cr.setProjection(Projections.sum("salary"));
+         List totalSalary = cr.list();
+
+         System.out.println("Total Salary: " + totalSalary.get(0) );
+         tx.commit();
+      }catch (HibernateException e) {
+         if (tx!=null) tx.rollback();
+         e.printStackTrace(); 
+      }finally {
+         session.close(); 
+      }
+   }
+}
+</pre>
+<h2>Compilation and Execution:</h2>
+<p>Here are the steps to compile and run the above mentioned application. Make sure you have set PATH and CLASSPATH appropriately before proceeding for the compilation and execution.</p>
+<ul class="list">
+<li><p>Create hibernate.cfg.xml configuration file as explained in configuration chapter.</p></li>
+<li><p>Create Employee.hbm.xml mapping file as shown above.</p></li>
+<li><p>Create Employee.java source file as shown above and compile it.</p></li>
+<li><p>Create ManageEmployee.java source file as shown above and compile it.</p></li>
+<li><p>Execute ManageEmployee binary to run the program.</p></li>
+</ul>
+<p>You would get following result, and records would be created in EMPLOYEE table.</p>
+<pre class="prettyprint">
+$java ManageEmployee
+.......VARIOUS LOG MESSAGES WILL DISPLAY HERE........
+
+First Name: Daisy  Last Name: Das  Salary: 5000
+First Name: John  Last Name: Paul  Salary: 5000
+First Name: Mohd  Last Name: Yasee  Salary: 3000
+Total Coint: 4
+Total Salary: 15000
+</pre>
+<p>If you check your EMPLOYEE table, it should have following records:</p>
+<pre class="prettyprint">
+mysql&gt; select * from EMPLOYEE;
++----+------------+-----------+--------+
+| id | first_name | last_name | salary |
++----+------------+-----------+--------+
+| 14 | Zara       | Ali       |   2000 |
+| 15 | Daisy      | Das       |   5000 |
+| 16 | John       | Paul      |   5000 |
+| 17 | Mohd       | Yasee     |   3000 |
++----+------------+-----------+--------+
+4 rows in set (0.00 sec)
+
+mysql&gt;
+</pre>
+<hr />
+<div class="pre-btn">
+<a href="hibernate_query_language.htm">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/hibernate_criteria_queries.pdf" alt="Hibernate Criteria Queries" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="hibernate_native_sql.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.htm" target="_top">ASP.NET </a> |
+<a href="../jquery/index.htm" target="_top">jQuery </a> |
+<a href="../ajax/index.htm" target="_top">AJAX </a> |
+<a href="../ant/index.htm" target="_top">ANT</a> |
+<a href="../jsp/index.htm" target="_top">JSP </a> |
+<a href="../servlets/index.htm" target="_top">Servlets </a> |
+<a href="../log4j/index.htm" target="_top">log4j </a> |
+<a href="../ibatis/index.htm" target="_top">iBATIS </a> |
+<a href="index.htm" target="_top">Hibernate </a> |
+<a href="../jdbc/index.htm" target="_top">JDBC </a> |
+<a href="../struts_2/index.htm" target="_top">Struts </a> |
+<a href="../html5/index.htm" target="_top">HTML5 </a> |
+<a href="../sql/index.htm" target="_top">SQL </a> |
+<a href="../mysql/index.htm" target="_top">MySQL </a> |
+<a href="../cplusplus/index.htm" target="_top">C++ </a> |
+<a href="../unix/index.htm" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2012 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/hibernate/hibernate_criteria_queries.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Apr 2013 21:08:28 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

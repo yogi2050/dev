@@ -1,0 +1,522 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/ruby/ruby_xml_xslt.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 15:59:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>Ruby/XML, XSLT and XPath Tutorial</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="Keywords" content="Ruby, Tutorials, Learning, Beginners, Basics, Scripting Language, Syntax, Classes, , Variables, Comments, Loops, File, I/O, Functions, Objects, TK, Ranges, iterators, arrays, strings, methods, blocks, Exception, Multi-Threading, Hashes, Modules, LDAP, Web Services, Web Programming." />
+<meta name="description" content="Ruby/XML, XSLT and XPath Tutorial - Learning Ruby in simple and easy steps - A beginner's tutorial containing complete knowledge of Ruby Syntax Syntax, Classes, , Variables, Comments, Loops, File, I/O, Functions, Objects, TK, Ranges, iterators, arrays, strings, methods, blocks, Exception, Multi-Threading, Hashes, Modules, LDAP, Web Services, Web Programming." />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+/* Ruby Scheme */
+#topmenu a:link {text-decoration:none;color:#fff !important;background-color:transparent;font-weight:bold;}
+#topmenu a:visited {text-decoration:none;color:#fff !important;background-color:transparent;font-weight:bold;}
+#topmenu a:hover {text-decoration:none;color:#C83932 !important;background-color:transparent;font-weight:bold;}
+#header{ 
+background:#C83932 !important;
+}
+#topmenu
+{
+background-color:#5E0500 !important;
+}
+#leftcol ul.menu li.heading 
+{
+background:#C83932 !important;
+border:1px solid #964800 !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1500px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index-2.html">Tutorials Point - Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index-2.html" target="_top">HOME </a>
+<a href="../java/index.html" target="_top">JAVA </a>
+<a href="../php/index.html" target="_top">PHP </a>
+<a href="../python/index.html" target="_top">Python </a>
+<a href="index.html" target="_top">Ruby </a>
+<a href="../perl/index.html" target="_top">Perl </a>
+<a href="../html/index.html" target="_top">HTML </a>
+<a href="../css/index.html" target="_top">CSS </a>
+<a href="../javascript/index.html" target="_top">Javascript </a>
+<a href="../mysql/index.html" target="_top">MySQL </a>
+<a href="../cplusplus/index.html" target="_top">C++ </a>
+<a href="../unix/index.html" target="_top">UNIX </a>
+<a href="../more.html" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.html" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.html" target="_top">ABOUT</a> |
+<a href="../about/contact_us.html" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/ruby-mini-logo.png" alt="Ruby Tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">Ruby Basics</li>
+<li><a class="left" target="_top" href="index.html">Ruby Home</a></li>
+<li><a class="left" target="_top" href="ruby_overview.html">Ruby Overview</a></li>
+<li><a class="left" target="_top" href="ruby_environment.html">Ruby Environment</a></li>
+<li><a class="left" target="_top" href="ruby_syntax.html">Ruby Syntax</a></li>
+<li><a class="left" target="_top" href="ruby_classes.html">Ruby Classes</a></li>
+<li><a class="left" target="_top" href="ruby_variables.html">Ruby Variables</a></li>
+<li><a class="left" target="_top" href="ruby_operators.html">Ruby Operators</a></li>
+<li><a class="left" target="_top" href="ruby_comments.html">Ruby Comments</a></li>
+<li><a class="left" target="_top" href="ruby_if_else.html">Ruby IF...ELSE</a></li>
+<li><a class="left" target="_top" href="ruby_loops.html">Ruby Loops</a></li>
+<li><a class="left" target="_top" href="ruby_methods.html">Ruby Methods</a></li>
+<li><a class="left" target="_top" href="ruby_blocks.html">Ruby Blocks</a></li>
+<li><a class="left" target="_top" href="ruby_modules.html">Ruby Modules</a></li>
+<li><a class="left" target="_top" href="ruby_strings.html">Ruby Strings</a></li>
+<li><a class="left" target="_top" href="ruby_arrays.html">Ruby Arrays</a></li>
+<li><a class="left" target="_top" href="ruby_hashes.html">Ruby Hashes</a></li>
+<li><a class="left" target="_top" href="ruby_date_time.html">Ruby Date &amp; Time</a></li>
+<li><a class="left" target="_top" href="ruby_ranges.html">Ruby Ranges</a></li>
+<li><a class="left" target="_top" href="ruby_iterators.html">Ruby Iterators</a></li>
+<li><a class="left" target="_top" href="ruby_input_output.html">Ruby File I/O</a></li>
+<li><a class="left" target="_top" href="ruby_exceptions.html">Ruby Exceptions</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Ruby Advanced</li>
+<li><a class="left" target="_top" href="ruby_object_oriented.html">Ruby Object Oriented</a></li>
+<li><a class="left" target="_top" href="ruby_regular_expressions.html">Ruby Regular Expressions</a></li>
+<li><a class="left" target="_top" href="ruby_database_access.html">Ruby Database Access</a></li>
+<li><a class="left" target="_top" href="ruby_web_applications.html">Ruby Web Applications</a></li>
+<li><a class="left" target="_top" href="ruby_sending_email.html">Ruby Sending Email</a></li>
+<li><a class="left" target="_top" href="ruby_socket_programming.html">Ruby Socket Programming</a></li>
+<li><a class="left" target="_top" href="ruby_xml_xslt.html"><b>Ruby/XML, XSLT</b></a></li>
+<li><a class="left" target="_top" href="ruby_web_services.html">Ruby Web Services</a></li>
+<li><a class="left" target="_top" href="ruby_tk_guide.html">Ruby/Tk Guide</a></li>
+<li><a class="left" target="_top" href="ruby_ldap.html">Ruby/LDAP Tutorial</a></li>
+<li><a class="left" target="_top" href="ruby_multithreading.html">Ruby Multithreading</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Ruby Useful Resources</li>
+<li><a class="left" target="_top" href="ruby_quick_guide.html">Ruby Quick Guide</a></li>
+<li><a class="left" target="_top" href="ruby_builtin_functions.html">Ruby Built-in Functions</a></li>
+<li><a class="left" target="_top" href="ruby_predefined_variables.html">Ruby Predefined Variables</a></li>
+<li><a class="left" target="_top" href="ruby_predefined_constants.html">Ruby Predefined Constants</a></li>
+<li><a class="left" target="_top" href="ruby_associated_tools.html">Ruby Associated Tools</a></li>
+<li><a class="left" target="_top" href="ruby_resources.html">Ruby Useful Resources</a></li>
+<li><a class="left" target="_top" href="../ruby-on-rails/index.html">Ruby on Rails Tutorial</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.html">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>Ruby/XML, XSLT and XPath Tutorial</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="ruby_socket_programming.html">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="ruby_web_services.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<h2>What is XML ?</h2>
+<p>The Extensible Markup Language (XML) is a markup language much like HTML or SGML. This is recommended by the World Wide Web Consortium and available as an open standard.</p>
+<p>XML is a portable, open source language that allows programmers to develop applications that can be read by other applications, regardless of operating system and/or developmental language.</p>
+<p>XML is extremely useful for keeping track of small to medium amounts of data without requiring a SQL-based backbone.</p>
+<h2>XML Parser Architectures and APIs:</h2>
+<p>There are two different flavors available for XML parsers:</p>
+<ul class="list">
+<li><p><b>SAX-like (Stream interfaces) :</b>  Here you register callbacks for events of interest and then let the parser proceed through the document. This is useful when your documents are large or you have memory limitations, it parses the file as it reads it from disk, and the entire file is never stored in memory.</p></li>
+<li><p><b>DOM-like (Object tree interfaces) : </b> This is World Wide Web Consortium recommendation wherein the entire file is read into memory and stored in a hierarchical (tree-based) form to represent all the features of an XML document.</p></li>
+</ul>
+<p>SAX obviously can't process information as fast as DOM can when working with large files. On the other hand, using DOM exclusively can really kill your resources, especially if used on a lot of small files.</p>
+<p>SAX is read-only, while DOM allows changes to the XML file. Since these two different APIs literally complement each other there is no reason why you can't use them both for large projects.</p>
+<h2>Parsing and Creating XML using Ruby:</h2>
+<p>The most common way to manipulate XML is with the REXML library by Sean Russell. Since 2002, REXML has been part of the standard Ruby distribution.</p>
+<p>REXML is a pure-Ruby XML processor conforming to the XML 1.0 standard. It is a <i>nonvalidating</i> processor, passing all of the OASIS nonvalidating conformance tests.</p>
+<p>REXML parser has the following advantages over other available parsers:</p>
+<ul class="list">
+<li><p>It is written 100 percent in Ruby.</p></li>
+<li><p>It can be used for both SAX and DOM parsing.</p></li>
+<li><p>It is lightweight . less than 2000 lines of code.</p></li>
+<li><p>Methods and classes are really easy-to-understand.</p></li>
+<li><p>SAX2-based API and Full XPath support.</p></li>
+<li>Shipped with Ruby installation and no separate installation is required.</li>
+</ul>
+<p>For all our XML code examples, let's use a simple XML file as an input:</p>
+<pre class="prettyprint">
+&lt;collection shelf="New Arrivals"&gt;
+&lt;movie title="Enemy Behind"&gt;
+   &lt;type&gt;War, Thriller&lt;/type&gt;
+   &lt;format&gt;DVD&lt;/format&gt;
+   &lt;year&gt;2003&lt;/year&gt;
+   &lt;rating&gt;PG&lt;/rating&gt;
+   &lt;stars&gt;10&lt;/stars&gt;
+   &lt;description&gt;Talk about a US-Japan war&lt;/description&gt;
+&lt;/movie&gt;
+&lt;movie title="Transformers"&gt;
+   &lt;type&gt;Anime, Science Fiction&lt;/type&gt;
+   &lt;format&gt;DVD&lt;/format&gt;
+   &lt;year&gt;1989&lt;/year&gt;
+   &lt;rating&gt;R&lt;/rating&gt;
+   &lt;stars&gt;8&lt;/stars&gt;
+   &lt;description&gt;A schientific fiction&lt;/description&gt;
+&lt;/movie&gt;
+   &lt;movie title="Trigun"&gt;
+   &lt;type&gt;Anime, Action&lt;/type&gt;
+   &lt;format&gt;DVD&lt;/format&gt;
+   &lt;episodes&gt;4&lt;/episodes&gt;
+   &lt;rating&gt;PG&lt;/rating&gt;
+   &lt;stars&gt;10&lt;/stars&gt;
+   &lt;description&gt;Vash the Stampede!&lt;/description&gt;
+&lt;/movie&gt;
+&lt;movie title="Ishtar"&gt;
+   &lt;type&gt;Comedy&lt;/type&gt;
+   &lt;format&gt;VHS&lt;/format&gt;
+   &lt;rating&gt;PG&lt;/rating&gt;
+   &lt;stars&gt;2&lt;/stars&gt;
+   &lt;description&gt;Viewable boredom&lt;/description&gt;
+&lt;/movie&gt;
+&lt;/collection&gt;
+</pre>
+<h2>DOM-like Parsing:</h2>
+<p>Let's first parse our XML data in <i>tree fashion</i>. We begin by requiring the <b>rexml/document</b> library; often we do an include REXML to import into the top-level namespace for convenience.</p>
+<pre class="prettyprint">
+#!/usr/bin/ruby -w
+
+require 'rexml/document'
+include REXML
+
+xmlfile = File.new("movies.xml")
+xmldoc = Document.new(xmlfile)
+
+# Now get the root element
+root = xmldoc.root
+puts "Root element : " + root.attributes["shelf"]
+
+# This will output all the movie titles.
+xmldoc.elements.each("collection/movie"){ 
+   |e| puts "Movie Title : " + e.attributes["title"] 
+}
+
+# This will output all the movie types.
+xmldoc.elements.each("collection/movie/type") {
+   |e| puts "Movie Type : " + e.text 
+}
+
+# This will output all the movie description.
+xmldoc.elements.each("collection/movie/description") {
+   |e| puts "Movie Description : " + e.text 
+}
+</pre>
+<p>This will produce following result:</p>
+<pre class="prettyprint">
+Root element : New Arrivals
+Movie Title : Enemy Behind
+Movie Title : Transformers
+Movie Title : Trigun
+Movie Title : Ishtar
+Movie Type : War, Thriller
+Movie Type : Anime, Science Fiction
+Movie Type : Anime, Action
+Movie Type : Comedy
+Movie Description : Talk about a US-Japan war
+Movie Description : A schientific fiction
+Movie Description : Vash the Stampede!
+Movie Description : Viewable boredom
+</pre>
+<h2>SAX-like Parsing:</h2>
+<p>To process the same data, <i>movies.xml</i>, file in a <i>stream-oriented</i> way we will define a <i>listener</i> class whose methods will be the target of <i>callbacks</i> from the parser.</p>
+<p><b>NOTE:</b> It is not suggested to use SAX-like parsing for a small file, this is just for a demo example.</p>
+<pre class="prettyprint">
+#!/usr/bin/ruby -w
+
+require 'rexml/document'
+require 'rexml/streamlistener'
+include REXML
+
+
+class MyListener
+  include REXML::StreamListener
+  def tag_start(*args)
+    puts "tag_start: #{args.map {|x| x.inspect}.join(', ')}"
+  end
+
+  def text(data)
+    return if data =~ /^\w*$/     # whitespace only
+    abbrev = data[0..40] + (data.length > 40 ? "..." : "")
+    puts "  text   :   #{abbrev.inspect}"
+  end
+end
+
+list = MyListener.new
+xmlfile = File.new("movies.xml")
+Document.parse_stream(xmlfile, list)
+</pre>
+<p>This will produce following result:</p>
+<pre class="prettyprint">
+tag_start: "collection", {"shelf"=>"New Arrivals"}
+tag_start: "movie", {"title"=>"Enemy Behind"}
+tag_start: "type", {}
+  text   :   "War, Thriller"
+tag_start: "format", {}
+tag_start: "year", {}
+tag_start: "rating", {}
+tag_start: "stars", {}
+tag_start: "description", {}
+  text   :   "Talk about a US-Japan war"
+tag_start: "movie", {"title"=>"Transformers"}
+tag_start: "type", {}
+  text   :   "Anime, Science Fiction"
+tag_start: "format", {}
+tag_start: "year", {}
+tag_start: "rating", {}
+tag_start: "stars", {}
+tag_start: "description", {}
+  text   :   "A schientific fiction"
+tag_start: "movie", {"title"=>"Trigun"}
+tag_start: "type", {}
+  text   :   "Anime, Action"
+tag_start: "format", {}
+tag_start: "episodes", {}
+tag_start: "rating", {}
+tag_start: "stars", {}
+tag_start: "description", {}
+  text   :   "Vash the Stampede!"
+tag_start: "movie", {"title"=>"Ishtar"}
+tag_start: "type", {}
+tag_start: "format", {}
+tag_start: "rating", {}
+tag_start: "stars", {}
+tag_start: "description", {}
+  text   :   "Viewable boredom"
+</pre>
+<h2>XPath and Ruby:</h2>
+<p>An alternative way to view XML is XPath. This is a kind of pseudo-language that describes how to locate specific elements and attributes in an XML document, treating that document as a logical ordered tree.</p>
+<p>REXML has XPath support via the <i>XPath</i> class. It assumes tree-based parsing (document object model) as we have seen above.</p>
+<pre class="prettyprint">
+#!/usr/bin/ruby -w
+
+require 'rexml/document'
+include REXML
+
+xmlfile = File.new("movies.xml")
+xmldoc = Document.new(xmlfile)
+
+# Info for the first movie found
+movie = XPath.first(xmldoc, "//movie")
+p movie
+
+# Print out all the movie types
+XPath.each(xmldoc, "//type") { |e| puts e.text }
+
+# Get an array of all of the movie formats.
+names = XPath.match(xmldoc, "//format").map {|x| x.text }
+p names
+</pre>
+<p>This will produce following result:</p>
+<pre class="prettyprint">
+&lt;movie title='Enemy Behind'&gt; ... &lt;/&gt;
+War, Thriller
+Anime, Science Fiction
+Anime, Action
+Comedy
+["DVD", "DVD", "DVD", "VHS"]
+</pre>
+<h2>XSLT and Ruby:</h2>
+<p>There are two XSLT parsers available that Ruby can use. A brief description of each is given here:</p>
+<h2>Ruby-Sablotron:</h2>
+<p>This parser is written and maintained by Masayoshi Takahashi. This is written primarily for Linux OS and requires the following libraries:</p>
+<ul class="list">
+<li><p>Sablot</p></li>
+<li><p>Iconv</p></li>
+<li><p>Expat</p></li>
+</ul>
+<p>You can find this module at <a href="http://www.rubycolor.org/sablot" title="Ruby Sablotron" target="_blank">Ruby-Sablotron</a>.</p>
+<h2>XSLT4R:</h2>
+<p>XSLT4R is written by Michael Neumann and can be found at the RAA in the Library section under XML. XSLT4R uses a simple commandline
+interface, though it can alternatively be used within a third-party application to transform an XML document.</p>
+<p>XSLT4R needs XMLScan to operate, which is included within the XSLT4R archive and which is also a 100 percent Ruby module. These modules can be installed using standard Ruby installation methon (ie. ruby install.rb.).</p>
+<p>XSLT4R has the following syntax:</p>
+<pre class="prettyprint">
+ruby xslt.rb stylesheet.xsl document.xml [arguments]
+</pre>
+<p>If you want to use XSLT4R from within an application, you can include XSLT and input the parameters you need. Here is the example:</p>
+<pre class="prettyprint">
+require "xslt"
+
+stylesheet = File.readlines("stylesheet.xsl").to_s
+xml_doc = File.readlines("document.xml").to_s
+arguments = { 'image_dir' => '/....' }
+
+sheet = XSLT::Stylesheet.new( stylesheet, arguments )
+
+# output to StdOut
+sheet.apply( xml_doc )
+
+# output to 'str'
+str = ""
+sheet.output = [ str ]
+sheet.apply( xml_doc )
+</pre>
+<h2>Further Reading:</h2>
+<ul class="list">
+<li><p>For a complete detail on REXML Parser please refer to standard documentation for <a  href="http://www.germane-software.com/software/rexml/" title="REXML Parser" target="_blank">REXML Parser Documentation</a>.</p></li>
+<li><p>You can download XSLT4R from <a href="http://raa.ruby-lang.org/project/xslt4r/" title="XSLT4R">RAA Repository</a>.</p></li>
+</ul>
+<hr />
+<div class="pre-btn">
+<a href="ruby_socket_programming.html">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/ruby_xml_xslt.pdf" alt="Ruby/XML, XSLT and XPath Tutorial" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="ruby_web_services.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.html" target="_top">ASP.NET </a> |
+<a href="../jquery/index.html" target="_top">jQuery </a> |
+<a href="../ajax/index.html" target="_top">AJAX </a> |
+<a href="../ant/index.html" target="_top">ANT</a> |
+<a href="../jsp/index.html" target="_top">JSP </a> |
+<a href="../servlets/index.html" target="_top">Servlets </a> |
+<a href="../log4j/index.html" target="_top">log4j </a> |
+<a href="../ibatis/index.html" target="_top">iBATIS </a> |
+<a href="../hibernate/index.html" target="_top">Hibernate </a> |
+<a href="../jdbc/index.html" target="_top">JDBC </a> |
+<a href="../struts_2/index.html" target="_top">Struts </a> |
+<a href="../html5/index.html" target="_top">HTML5 </a> |
+<a href="../sql/index.html" target="_top">SQL </a> |
+<a href="../mysql/index.html" target="_top">MySQL </a> |
+<a href="../cplusplus/index.html" target="_top">C++ </a> |
+<a href="../unix/index.html" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/ruby/ruby_xml_xslt.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 15:59:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

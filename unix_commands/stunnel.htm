@@ -1,0 +1,1142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/stunnel.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:29 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>stunnel - Unix, Linux Command</title>
+<meta name="Description" Content="stunnel - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>stunnel - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- Not defining reserved macro 'Sh' ! -->
+<!-- ignored unsupported tag .tr -->
+<!-- ignored unsupported tag .ie -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .el\{ -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .rr -->
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .hy -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .tm -->
+<h1 class="manpages">NAME</h1>
+stunnel - universal SSL tunnel
+<h1 class="manpages">SYNOPSIS</h1>
+<!-- ignored unsupported tag .tm -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+<b>Unix:</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<b>stunnel</b> [&lt;filename&gt;] | -fd n | -help | -version | -sockets
+</td></tr>
+<tr valign="top"><td width=4%>
+<b><font size="-1">WIN32:</font></b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<b>stunnel</b> [ [-install | -uninstall | -start | -stop]
+<br />
+    [-quiet] [&lt;filename&gt;] ] | -help | -version | -sockets
+</td></tr>
+</table>
+<h1 class="manpages">DESCRIPTION</h1>
+<!-- ignored unsupported tag .tm -->
+The <b>stunnel</b> program is designed to work as <i><font size="-1">SSL</font></i> encryption wrapper
+between remote clients and local (<i>inetd</i>-startable) or remote
+servers. The concept is that having non-SSL aware daemons running on
+your system you can easily set them up to communicate with clients over
+secure <font size="-1">SSL</font> channels.
+<p>
+<b>stunnel</b> can be used to add <font size="-1">SSL</font> functionality to commonly used <i>Inetd</i>
+daemons like <font size="-1">POP-2</font>, <font size="-1">POP-3</font>, and <font size="-1">IMAP</font> servers, to standalone daemons like
+<font size="-1">NNTP</font>, <font size="-1">SMTP</font> and <font size="-1">HTTP</font>, and in tunneling <font size="-1">PPP</font> over network sockets without
+changes to the source code.
+<p>
+This product includes cryptographic software written by
+Eric Young (<a href="mailto:eay@cryptsoft.com">eay@cryptsoft.com</a>)
+<h1 class="manpages">OPTIONS</h1>
+<!-- ignored unsupported tag .tm -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+&lt;<b>filename</b>&gt;
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Use specified configuration file
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-fd n</b> (Unix only)
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Read the config file from specified file descriptor
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-help</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Print <b>stunnel</b> help menu
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-version</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Print <b>stunnel</b> version and compile time defaults
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-sockets</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Print default socket options
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-install</b> (<font size="-1">NT/2000/XP</font> only)
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Install <font size="-1">NT</font> Service
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-uninstall</b> (<font size="-1">NT/2000/XP</font> only)
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Uninstall <font size="-1">NT</font> Service
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-start</b> (<font size="-1">NT/2000/XP</font> only)
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Start <font size="-1">NT</font> Service
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-stop</b> (<font size="-1">NT/2000/XP</font> only)
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Stop <font size="-1">NT</font> Service
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-quiet</b> (<font size="-1">NT/2000/XP</font> only)
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Don&#146;t display a message box when successfully installed or uninstalled <font size="-1">NT</font> service
+</td></tr>
+</table>
+<h1 class="manpages">CONFIGURATION FILE</h1>
+<!-- ignored unsupported tag .tm -->
+Each line of the configuration file can be either:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+o
+</td><td>
+an empty line (ignored)
+</td></tr>
+<tr valign="top"><td width=4%>
+o
+</td><td>
+a comment starting with &#146;;&#146; (ignored)
+</td></tr>
+<tr valign="top"><td width=4%>
+o
+</td><td>
+an &#146;option_name = option_value&#146; pair
+</td></tr>
+<tr valign="top"><td width=4%>
+o
+</td><td>
+&#146;[service_name]&#146; indicating a start of a service definition
+</td></tr>
+</table>
+<h1 class="manpages"><font size="-1">GLOBAL</font> <font size="-1">OPTIONS</font></h1>
+<!-- ignored unsupported tag .tm -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+<b>chroot</b> = directory (Unix only)
+</td><td>
+<!-- ignored unsupported tag .tm -->
+directory to chroot <b>stunnel</b> process
+<p>
+<!-- ignored unsupported tag .if -->
+<b>chroot</b> keeps <b>stunnel</b> in chrooted jail.  <i>CApath</i>, <i>CRLpath</i>, <i>pid</i>
+and <i>exec</i> are located inside the jail and the patches have to be relative
+to the directory specified with <b>chroot</b>.
+<p>
+<!-- ignored unsupported tag .if -->
+To have libwrap (<font size="-1">TCP</font> Wrappers) control effective in a chrooted environment
+you also have to copy its configuration files (/etc/hosts.allow and
+/etc/hosts.deny) there.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>compression</b> = zlib | rle
+</td><td>
+<!-- ignored unsupported tag .tm -->
+select data compression algorithm
+<p>
+<!-- ignored unsupported tag .if -->
+default: no compression
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>debug</b> = [facility.]level
+</td><td>
+<!-- ignored unsupported tag .tm -->
+debugging level
+<p>
+<!-- ignored unsupported tag .if -->
+Level is a one of the syslog level names or numbers
+emerg (0), alert (1), crit (2), err (3), warning (4), notice (5),
+info (6), or debug (7).  All logs for the specified level and
+all levels numerically less than it will be shown.  Use <b>debug = debug</b> or
+<b>debug = 7</b> for greatest debugging output.  The default is notice (5).
+<p>
+<!-- ignored unsupported tag .if -->
+The syslog facility &#146;authpriv&#146; will be used unless a facility name is supplied.
+(Facilities are not supported on Win32.)
+<p>
+<!-- ignored unsupported tag .if -->
+Case is ignored for both facilities and levels.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b><font size="-1">EGD</font></b> = egd path (Unix only)
+</td><td>
+<!-- ignored unsupported tag .tm -->
+path to Entropy Gathering Daemon socket
+<p>
+<!-- ignored unsupported tag .if -->
+Entropy Gathering Daemon socket to use to feed OpenSSL random number
+generator.  (Available only if compiled with OpenSSL 0.9.5a or higher)
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>engine</b> = auto | &lt;engine id&gt;
+</td><td>
+<!-- ignored unsupported tag .tm -->
+select hardware engine
+<p>
+<!-- ignored unsupported tag .if -->
+default: software-only cryptography
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>foreground</b> = yes | no (Unix only)
+</td><td>
+<!-- ignored unsupported tag .tm -->
+foreground mode
+<p>
+<!-- ignored unsupported tag .if -->
+Stay in foreground (don&#146;t fork) and log to stderr
+instead of via syslog (unless <b>output</b> is specified).
+<p>
+<!-- ignored unsupported tag .if -->
+default: background in daemon mode
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>output</b> = file
+</td><td>
+<!-- ignored unsupported tag .tm -->
+append log messages to a file instead of using syslog
+<p>
+<!-- ignored unsupported tag .if -->
+/dev/stdout device can be used to redirect log messages to the standard
+output (for example to log them with daemontools splogger).
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>pid</b> = file (Unix only)
+</td><td>
+<!-- ignored unsupported tag .tm -->
+pid file location
+<p>
+<!-- ignored unsupported tag .if -->
+If the argument is empty, then no pid file will be created.
+<p>
+<!-- ignored unsupported tag .if -->
+<i>pid</i> path is relative to <i>chroot</i> directory if specified.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>RNDbytes</b> = bytes
+</td><td>
+<!-- ignored unsupported tag .tm -->
+bytes to read from random seed files
+<p>
+<!-- ignored unsupported tag .if -->
+Number of bytes of data read from random seed files.  With <font size="-1">SSL</font> versions
+less than 0.9.5a, also determines how many bytes of data are considered
+sufficient to seed the <font size="-1">PRNG</font>.  More recent OpenSSL versions have a builtin
+function to determine when sufficient randomness is available.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>RNDfile</b> = file
+</td><td>
+<!-- ignored unsupported tag .tm -->
+path to file with random seed data
+<p>
+<!-- ignored unsupported tag .if -->
+The <font size="-1">SSL</font> library will use data from this file first to seed the random
+number generator.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>RNDoverwrite</b> = yes | no
+</td><td>
+<!-- ignored unsupported tag .tm -->
+overwrite the random seed files with new random data
+<p>
+<!-- ignored unsupported tag .if -->
+default: yes
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>service</b> = servicename
+</td><td>
+<!-- ignored unsupported tag .tm -->
+use specified string as the service name
+<p>
+<!-- ignored unsupported tag .if -->
+<b>On Unix:</b> <i>inetd</i> mode service name for <font size="-1">TCP</font> Wrapper library.
+<p>
+<!-- ignored unsupported tag .if -->
+<b>On <font size="-1">NT/2000/XP:</font></b> <font size="-1">NT</font> service name in the Control Panel.
+<p>
+<!-- ignored unsupported tag .if -->
+default: stunnel
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>setgid</b> = groupname (Unix only)
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<i>setgid()</i> to groupname in daemon mode and clears all other groups
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>setuid</b> = username (Unix only)
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<i>setuid()</i> to username in daemon mode
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>socket</b> = a|l|r:option=value[:value]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set an option on accept/local/remote socket
+<p>
+<!-- ignored unsupported tag .if -->
+The values for linger option are l_onof:l_linger.
+The values for time are tv_sec:tv_usec.
+<p>
+<!-- ignored unsupported tag .if -->
+Examples:
+<p>
+<!-- ignored unsupported tag .if -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    socket = l:SO_LINGER=1:60
+        set one minute timeout for closing local socket
+    socket = r:TCP_NODELAY=1
+        turn off the Nagle algorithm for remote sockets
+    socket = r:SO_OOBINLINE=1
+        place out-of-band data directly into the
+        receive data stream for remote sockets
+    socket = a:SO_REUSEADDR=0
+        disable address reuse (enabled by default)
+    socket = a:SO_BINDTODEVICE=lo
+        only accept connections on loopback interface
+</tt></pre></td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>taskbar</b> = yes | no (<font size="-1">WIN32</font> only)
+</td><td>
+<!-- ignored unsupported tag .tm -->
+enable the taskbar icon
+<p>
+<!-- ignored unsupported tag .if -->
+default: yes
+</td></tr>
+</table>
+<h1 class="manpages">SERVICE-LEVEL <font size="-1">OPTIONS</font></h1>
+<!-- ignored unsupported tag .tm -->
+Each configuration section begins with service name in square brackets.
+The service name is used for libwrap (<font size="-1">TCP</font> Wrappers) access control and lets
+you distinguish <b>stunnel</b> services in your log files.
+<p>
+Note that if you wish to run <b>stunnel</b> in <i>inetd</i> mode (where it
+is provided a network socket by a server such as <i>inetd</i>, <i>xinetd</i>,
+or <i>tcpserver</i>) then you should read the section entitled <i><font size="-1">INETD</font> <font size="-1">MODE</font></i>
+below.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+<b>accept</b> = [host:]port
+</td><td>
+<!-- ignored unsupported tag .tm -->
+accept connections on specified host:port
+<p>
+<!-- ignored unsupported tag .if -->
+If no host specified, defaults to all <font size="-1">IP</font> addresses for the local host.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>CApath</b> = directory
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Certificate Authority directory
+<p>
+<!-- ignored unsupported tag .if -->
+This is the directory in which <b>stunnel</b> will look for certificates when
+using the <i>verify</i>. Note that the certificates in this directory
+should be named <font size="-1">XXXXXXXX</font>.0 where <font size="-1">XXXXXXXX</font> is the hash value of the cert.
+<p>
+<!-- ignored unsupported tag .if -->
+<i>CApath</i> path is relative to <i>chroot</i> directory if specified.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>CAfile</b> = certfile
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Certificate Authority file
+<p>
+<!-- ignored unsupported tag .if -->
+This file contains multiple <font size="-1">CA</font> certificates, used with the <i>verify</i>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>cert</b> = pemfile
+</td><td>
+<!-- ignored unsupported tag .tm -->
+certificate chain <font size="-1">PEM</font> file name
+<p>
+<!-- ignored unsupported tag .if -->
+A <font size="-1">PEM</font> is always needed in server mode.
+Specifying this flag in client mode will use this certificate chain
+as a client side certificate chain.  Using client side certs is optional.
+The certificates must be in <font size="-1">PEM</font> format and must be sorted starting with the
+certificate to the highest level (root <font size="-1">CA</font>).
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>ciphers</b> = cipherlist
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Select permitted <font size="-1">SSL</font> ciphers
+<p>
+<!-- ignored unsupported tag .if -->
+A colon delimited list of the ciphers to allow in the <font size="-1">SSL</font> connection.
+For example <font size="-1">DES-CBC3-SHA:IDEA-CBC-MD5</font>
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>client</b> = yes | no
+</td><td>
+<!-- ignored unsupported tag .tm -->
+client mode (remote service uses <font size="-1">SSL</font>)
+<p>
+<!-- ignored unsupported tag .if -->
+default: no (server mode)
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>connect</b> = [host:]port
+</td><td>
+<!-- ignored unsupported tag .tm -->
+connect to remote host:port
+<p>
+<!-- ignored unsupported tag .if -->
+If no host specified, defaults to localhost.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>CRLpath</b> = directory
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Certificate Revocation Lists directory
+<p>
+<!-- ignored unsupported tag .if -->
+This is the directory in which <b>stunnel</b> will look for CRLs when
+using the <i>verify</i>. Note that the CRLs in this directory should
+be named <font size="-1">XXXXXXXX</font>.0 where <font size="-1">XXXXXXXX</font> is the hash value of the <font size="-1">CRL</font>.
+<p>
+<!-- ignored unsupported tag .if -->
+<i>CRLpath</i> path is relative to <i>chroot</i> directory if specified.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>CRLfile</b> = certfile
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Certificate Revocation Lists file
+<p>
+<!-- ignored unsupported tag .if -->
+This file contains multiple CRLs, used with the <i>verify</i>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>delay</b> = yes | no
+</td><td>
+<!-- ignored unsupported tag .tm -->
+delay <font size="-1">DNS</font> lookup for &#146;connect&#146; option
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>exec</b> = executable_path (Unix only)
+</td><td>
+<!-- ignored unsupported tag .tm -->
+execute local inetd-type program
+<p>
+<!-- ignored unsupported tag .if -->
+<i>exec</i> path is relative to <i>chroot</i> directory if specified.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>execargs</b> = <tt>$0</tt> <tt>$1</tt> <tt>$2</tt> ... (Unix only)
+</td><td>
+<!-- ignored unsupported tag .tm -->
+arguments for <i>exec</i> including program name ($0)
+<p>
+<!-- ignored unsupported tag .if -->
+Quoting is currently not supported.
+Arguments are separated with arbitrary number of whitespaces.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>ident</b> = username
+</td><td>
+<!-- ignored unsupported tag .tm -->
+use <font size="-1">IDENT</font> (<font size="-1">RFC</font> 1413) username checking
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>key</b> = keyfile
+</td><td>
+<!-- ignored unsupported tag .tm -->
+private key for certificate specified with <i>cert</i> option
+<p>
+<!-- ignored unsupported tag .if -->
+Private key is needed to authenticate certificate owner.
+Since this file should be kept secret it should only be readable
+to its owner.  On Unix systems you can use the following command:
+<p>
+<!-- ignored unsupported tag .if -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    chmod 600 keyfile
+</tt></pre></td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .if -->
+default: value of <i>cert</i> option
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>local</b> = host
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">IP</font> of the outgoing interface is used as source for remote connections.
+Use this option to bind a static local <font size="-1">IP</font> address, instead.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>options</b> = SSL_options
+</td><td>
+<!-- ignored unsupported tag .tm -->
+OpenSSL library options
+<p>
+<!-- ignored unsupported tag .if -->
+The parameter is the OpenSSL option name as described in the
+<i></i><i>SSL_CTX_set_options</i><i>(3ssl)</i> manual, but without <i><font size="-1">SSL_OP_</font></i> prefix.
+Several <i>options</i> can be used to specify multiple options.
+<p>
+<!-- ignored unsupported tag .if -->
+For example for compatibility with erroneous Eudora <font size="-1">SSL</font> implementation
+the following option can be used:
+<p>
+<!-- ignored unsupported tag .if -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    options = DONT_INSERT_EMPTY_FRAGMENTS
+</tt></pre></td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>protocol</b> = proto
+</td><td>
+<!-- ignored unsupported tag .tm -->
+application protocol to negotiate <font size="-1">SSL</font>
+<p>
+<!-- ignored unsupported tag .if -->
+currently supported: cifs, connect, nntp, pop3, smtp
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>protocolCredentials</b> = username:password
+</td><td>
+<!-- ignored unsupported tag .tm -->
+credentials for protocol negotiations
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>protocolHost</b> = host:port
+</td><td>
+<!-- ignored unsupported tag .tm -->
+destination address for protocol negotiations
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>pty</b> = yes | no (Unix only)
+</td><td>
+<!-- ignored unsupported tag .tm -->
+allocate pseudo terminal for &#146;exec&#146; option
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>session</b> = timeout
+</td><td>
+<!-- ignored unsupported tag .tm -->
+session cache timeout
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>TIMEOUTbusy</b> = seconds
+</td><td>
+<!-- ignored unsupported tag .tm -->
+time to wait for expected data
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>TIMEOUTclose</b> = seconds
+</td><td>
+<!-- ignored unsupported tag .tm -->
+time to wait for close_notify (set to 0 for buggy <font size="-1">MSIE</font>)
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>TIMEOUTconnect</b> = seconds
+</td><td>
+<!-- ignored unsupported tag .tm -->
+time to wait to connect a remote host
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>TIMEOUTidle</b> = seconds
+</td><td>
+<!-- ignored unsupported tag .tm -->
+time to keep an idle connection
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>transparent</b> = yes | no (Unix only)
+</td><td>
+<!-- ignored unsupported tag .tm -->
+transparent proxy mode
+<p>
+<!-- ignored unsupported tag .if -->
+Re-write address to appear as if wrapped daemon is connecting
+from the <font size="-1">SSL</font> client machine instead of the machine running <b>stunnel</b>.
+This option is only available in local mode (<i>exec</i> option)
+by LD_PRELOADing env.so shared library or in remote mode (<i>connect</i>
+option) on Linux 2.2 kernel compiled with <i>transparent proxy</i> option
+and then only in server mode. Note that this option will not combine
+with proxy mode (<i>connect</i>) unless the client&#146;s default route to the target
+machine lies through the host running <b>stunnel</b>, which cannot be localhost.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>verify</b> = level
+</td><td>
+<!-- ignored unsupported tag .tm -->
+verify peer certificate
+<p>
+<!-- ignored unsupported tag .if -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    level 1 - verify peer certificate if present
+    level 2 - verify peer certificate
+    level 3 - verify peer with locally installed certificate
+    default - no verify
+</tt></pre></td></tr>
+</table>
+</td></tr>
+</table>
+<h1 class="manpages">RETURN VALUE</h1>
+<!-- ignored unsupported tag .tm -->
+<b>stunnel</b> returns zero on success, non-zero on error.
+<h1 class="manpages">EXAMPLES</h1>
+<!-- ignored unsupported tag .tm -->
+In order to provide <font size="-1">SSL</font> encapsulation to your local <i>imapd</i> service, use
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    [imapd]
+    accept = 993
+    exec = /usr/sbin/imapd
+    execargs = imapd
+</tt></pre></td></tr>
+</table>
+<p>
+If you want to provide tunneling to your <i>pppd</i> daemon on port 2020,
+use something like
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    [vpn]
+    accept = 2020
+    exec = /usr/sbin/pppd
+    execargs = pppd local
+    pty = yes
+</tt></pre></td></tr>
+</table>
+<p>
+If you want to use <b>stunnel</b> in <i>inetd</i> mode to launch your imapd
+process, you&#146;d use this <i>stunnel.conf</i>.
+Note there must be no <i>[service_name]</i> section.
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    exec = /usr/sbin/imapd
+    execargs = imapd
+</tt></pre></td></tr>
+</table>
+<h1 class="manpages">FILES</h1>
+<!-- ignored unsupported tag .tm -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+<i>stunnel.conf</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<b>stunnel</b> configuration file
+</td></tr>
+<tr valign="top"><td width=4%>
+<i>stunnel.pem</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<b>stunnel</b> certificate and private key
+</td></tr>
+</table>
+<h1 class="manpages">BUGS</h1>
+<!-- ignored unsupported tag .tm -->
+Option <i>execargs</i> does not support quoting.
+<h1 class="manpages">RESTRICTIONS</h1>
+<!-- ignored unsupported tag .tm -->
+<b>stunnel</b> cannot be used for the <font size="-1">FTP</font> daemon because of the nature
+of the <font size="-1">FTP</font> protocol which utilizes multiple ports for data transfers.
+There are available <font size="-1">SSL</font> enabled versions of <font size="-1">FTP</font> and telnet daemons, however.
+<h1 class="manpages">NOTES</h1>
+<!-- ignored unsupported tag .tm -->
+<h1 class="manpages"><font size="-1">INETD</font> <font size="-1">MODE</font></h1>
+<!-- ignored unsupported tag .tm -->
+The most common use of <b>stunnel</b> is to listen on a network
+port and establish communication with either a new port
+via the connect option, or a new program via the <i>exec</i> option.
+However there is a special case when you wish to have
+some other program accept incoming connections and
+launch <b>stunnel</b>, for example with <i>inetd</i>, <i>xinetd</i>,
+or <i>tcpserver</i>.
+<p>
+For example, if you have the following line in <i>inetd.conf</i>:
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    imaps stream tcp nowait root /usr/sbin/stunnel stunnel /etc/stunnel/imaps.conf
+</tt></pre></td></tr>
+</table>
+<p>
+In these cases, the <i>inetd</i>-style program is responsible
+for binding a network socket (<i>imaps</i> above) and handing
+it to <b>stunnel</b> when a connection is received.
+Thus you do not want <b>stunnel</b> to have any <i>accept</i> option.
+All the <i>Service Level Options</i> should be placed in the
+global options section, and no <i>[service_name]</i> section
+will be present.  See the <i><font size="-1">EXAMPLES</font></i> section for example
+configurations.
+<h1 class="manpages"><font size="-1">CERTIFICATES</font></h1>
+<!-- ignored unsupported tag .tm -->
+Each <font size="-1">SSL</font> enabled daemon needs to present a valid X.509 certificate
+to the peer. It also needs a private key to decrypt the incoming
+data. The easiest way to obtain a certificate and a key is to
+generate them with the free <i>OpenSSL</i> package. You can find more
+information on certificates generation on pages listed below.
+<p>
+Two things are important when generating certificate-key pairs for
+<b>stunnel</b>. The private key cannot be encrypted, because the server
+has no way to obtain the password from the user. To produce an
+unencrypted key add the <i>-nodes</i> option when running the <b>req</b>
+command from the <i>OpenSSL</i> kit.
+<p>
+The order of contents of the <i>.pem</i> file is also important.
+It should contain the unencrypted private key first, then a signed certificate
+(not certificate request).
+There should be also empty lines after certificate and private key.
+Plaintext certificate information appended on the top of generated certificate
+should be discarded. So the file should look like this:
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    -----BEGIN RSA PRIVATE KEY-----
+    [encoded key]
+    -----END RSA PRIVATE KEY-----
+    [empty line]
+    -----BEGIN CERTIFICATE-----
+    [encoded certificate]
+    -----END CERTIFICATE-----
+    [empty line]
+</tt></pre></td></tr>
+</table>
+<h1 class="manpages"><font size="-1">RANDOMNESS</font></h1>
+<!-- ignored unsupported tag .tm -->
+<b>stunnel</b> needs to seed the <font size="-1">PRNG</font> (pseudo random number generator) in
+order for <font size="-1">SSL</font> to use good randomness.  The following sources are loaded
+in order until sufficient random data has been gathered:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+o
+</td><td>
+The file specified with the <i>RNDfile</i> flag.
+</td></tr>
+<tr valign="top"><td width=4%>
+o
+</td><td>
+The file specified by the <font size="-1">RANDFILE</font> environment variable, if set.
+</td></tr>
+<tr valign="top"><td width=4%>
+o
+</td><td>
+The file .rnd in your home directory, if <font size="-1">RANDFILE</font> not set.
+</td></tr>
+<tr valign="top"><td width=4%>
+o
+</td><td>
+The file specified with &#146;--with-random&#146; at compile time.
+</td></tr>
+<tr valign="top"><td width=4%>
+o
+</td><td>
+The contents of the screen if running on Windows.
+</td></tr>
+<tr valign="top"><td width=4%>
+o
+</td><td>
+The egd socket specified with the <i><font size="-1">EGD</font></i> flag.
+</td></tr>
+<tr valign="top"><td width=4%>
+o
+</td><td>
+The egd socket specified with &#146;--with-egd-sock&#146; at compile time.
+</td></tr>
+<tr valign="top"><td width=4%>
+o
+</td><td>
+The /dev/urandom device.
+</td></tr>
+<!-- PP ends table -->
+</table>
+With recent (&gt;=OpenSSL 0.9.5a) version of <font size="-1">SSL</font> it will stop loading
+random data automatically when sufficient entropy has been gathered.
+With previous versions it will continue to gather from all the above
+sources since no <font size="-1">SSL</font> function exists to tell when enough data is available.
+<p>
+Note that on Windows machines that do not have console user interaction
+(mouse movements, creating windows, etc) the screen contents are not
+variable enough to be sufficient, and you should provide a random file
+for use with the <i>RNDfile</i> flag.
+<p>
+Note that the file specified with the <i>RNDfile</i> flag should contain
+random data &#151; that means it should contain different information
+each time <b>stunnel</b> is run.  This is handled automatically
+unless the <i>RNDoverwrite</i> flag is used.  If you wish to update this file
+manually, the <i>openssl rand</i> command in recent versions of OpenSSL,
+would be useful.
+<p>
+One important note &#151; if /dev/urandom is available, OpenSSL has a habit of
+seeding the <font size="-1">PRNG</font> with it even when checking the random state, so on
+systems with /dev/urandom you&#146;re likely to use it even though it&#146;s listed
+at the very bottom of the list above.  This isn&#146;t <b>stunnel&#146;s</b> behaviour, it&#146;s
+OpenSSLs.
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+<i>tcpd</i>(8)
+</td><td>
+<!-- ignored unsupported tag .tm -->
+access control facility for internet services
+</td></tr>
+<tr valign="top"><td width=4%>
+<i>inetd</i>(8)
+</td><td>
+<!-- ignored unsupported tag .tm -->
+internet &#146;super-server&#146;
+</td></tr>
+<tr valign="top"><td width=4%>
+<i><a href="http://stunnel.mirt.net/">http://stunnel.mirt.net</a>/</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<b>stunnel</b> homepage
+</td></tr>
+<tr valign="top"><td width=4%>
+<i><a href="http://www.stunnel.org/">http://www.stunnel.org</a>/</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<b>stunnel</b> Frequently Asked Questions
+</td></tr>
+<tr valign="top"><td width=4%>
+<i><a href="http://www.openssl.org/">http://www.openssl.org</a>/</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+OpenSSL project website
+</td></tr>
+</table>
+<h1 class="manpages">AUTHOR</h1>
+<!-- ignored unsupported tag .tm -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+Michal Trojnara
+</td><td>
+<!-- ignored unsupported tag .tm -->
+&lt;<i><a href="mailto:Michal.Trojnara@mirt.net">Michal.Trojnara@mirt.net</a></i>&gt;
+</td></tr>
+</table>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion3e49.html?tutorial=unix_commands&amp;file=stunnel.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/stunnel.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:29 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

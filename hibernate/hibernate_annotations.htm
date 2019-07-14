@@ -1,0 +1,522 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/hibernate/hibernate_annotations.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Apr 2013 21:08:21 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>Hibernate Annotations</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="description" content="Hibernate, Tutorials, Learning, Beginners, Basics, Environment, Object Relational Mapping (ORM), Query Language, Native SQL, Caching, Interceptors, Persistent Classes, Persistent Objects, Collections, Associations and components, and Hibernate tools." />
+<meta name="keywords" content="Hibernate Annotations - Learn Hibernate 3.x starting from environment setup, Object Relational Mapping (ORM), Query Language, Native SQL, Caching, Interceptors, Persistent Classes, Persistent Objects, Collections, Associations and components, and Hibernate tools." />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+#topmenu a:hover {text-decoration:none;color:#bcae79  !important;background-color:transparent;font-weight:bold;}
+#header{ 
+background:#bcae79  !important;
+}
+#topmenu
+{
+background-color:#59666c !important;
+}
+#leftcol ul.menu li.heading 
+{
+background:#bcae79 !important;
+border:1px solid #59666c  !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1200px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index.htm">Tutorials Point - Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index.htm" target="_top">HOME </a>
+<a href="../java/index.htm" target="_top">JAVA </a>
+<a href="../php/index.htm" target="_top">PHP </a>
+<a href="../python/index.htm" target="_top">Python </a>
+<a href="../ruby/index.htm" target="_top">Ruby </a>
+<a href="../perl/index.htm" target="_top">Perl </a>
+<a href="../html/index.htm" target="_top">HTML </a>
+<a href="../css/index.htm" target="_top">CSS </a>
+<a href="../javascript/index.htm" target="_top">Javascript </a>
+<a href="../mysql/index.htm" target="_top">MySQL </a>
+<a href="../cplusplus/index.htm" target="_top">C++ </a>
+<a href="../unix/index.htm" target="_top">UNIX </a>
+<a href="../more.htm" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.htm" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.htm" target="_top">ABOUT</a> |
+<a href="../about/contact_us.htm" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/hibernate-mini-logo.png" alt="Hibernate Tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">Hibernate Tutorial</li>
+<li><a target="_top" href="index.htm">Hibernate Home</a></li>
+<li><a target="_top" href="orm_overview.htm">ORM Overview</a></li>
+<li><a target="_top" href="hibernate_overview.htm">Hibernate Overview</a></li>
+<li><a target="_top" href="hibernate_architecture.htm">Hibernate Architecture</a></li>
+<li><a target="_top" href="hibernate_environment.htm">Hibernate Environment</a></li>
+<li><a target="_top" href="hibernate_configuration.htm">Hibernate Configuration</a></li>
+<li><a target="_top" href="hibernate_sessions.htm">Hibernate Sessions</a></li>
+<li><a target="_top" href="hibernate_persistent_classes.htm">Hibernate Persistent Class</a></li>
+<li><a target="_top" href="hibernate_mapping_files.htm">Hibernate Mapping Files</a></li>
+<li><a target="_top" href="hibernate_mapping_types.htm">Hibernate Mapping Types</a></li>
+<li><a target="_top" href="hibernate_examples.htm">Hibernate Examples</a></li>
+<li><a target="_top" href="hibernate_or_mappings.htm">Hibernate O/R Mappings</a></li>
+<li><a target="_top" href="hibernate_annotations.htm"><b>Hibernate Annotations</b></a></li>
+<li><a target="_top" href="hibernate_query_language.htm">Hibernate Query Language</a></li>
+<li><a target="_top" href="hibernate_criteria_queries.htm">Hibernate Criteria Queries</a></li>
+<li><a target="_top" href="hibernate_native_sql.htm">Hibernate Native SQL</a></li>
+<li><a target="_top" href="hibernate_caching.htm">Hibernate Caching</a></li>
+<li><a target="_top" href="hibernate_batch_processing.htm">Hibernate Batch Processing</a></li>
+<li><a target="_top" href="hibernate_interceptors.htm">Hibernate Interceptors</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Hibernate Useful Resources</li>
+<li><a target="_top" href="hibernate_quick_guide.htm">Hibernate Quick Guide</a></li>
+<li><a target="_top" href="hibernate_useful_resources.htm">Hibernate Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>Hibernate Annotations</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="hibernate_or_mappings.htm">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="hibernate_query_language.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>So far you have seen how Hibernate uses XML mapping file for the transformation of data from POJO to database tables and vice versa. Hibernate annotations is the newest way to define mappings without a use of XML file. You can use annotations in addition to or as a replacement of XML mapping metadata.</p>
+<p>Hibernate Annotations is the powerful way to provide the metadata for the Object and Relational Table mapping. All the metadata is clubbed into the POJO java file along with the code this helps the user to understand the table structure and POJO simultaneously during the development.</p>
+<p>If you going to make your application portable to other EJB 3 compliant ORM applications, you must use annotations to represent the mapping information but still if you want greater flexibility  then you should go with XML-based mappings.</p>
+<h2>Environment Setup for Hibernate Annotation</h2>
+<p>First of all you would have to make sure that you are using JDK 5.0 otherwise you need to upgrade your JDK to JDK 5.0 to take advantage of the native support for annotations.</p>
+<p>Second, you will need to install the Hibernate 3.x annotations distribution package, available from the sourceforge: (<a target="_blank" rel="nofollow" href="http://sourceforge.net/projects/hibernate/files/hibernate-annotations/">Download Hibernate Annotation</a>) and copy <b>hibernate-annotations.jar, lib/hibernate-comons-annotations.jar</b> and <b>lib/ejb3-persistence.jar</b> from the Hibernate Annotations distribution to your CLASSPATH</p>
+<h2>Annotated Class Example:</h2>
+<p>As I mentioned above while working with Hibernate Annotation all the metadata is clubbed into the POJO java file along with the code this helps the user to understand the table structure and POJO simultaneously during the development.</p>
+<p>Consider we are going to use following EMPLOYEE table to store our objects:</p>
+<pre class="prettyprint">
+create table EMPLOYEE (
+   id INT NOT NULL auto_increment,
+   first_name VARCHAR(20) default NULL,
+   last_name  VARCHAR(20) default NULL,
+   salary     INT  default NULL,
+   PRIMARY KEY (id)
+);
+</pre>
+<p>Following is the mapping of Employee class with annotations to map objects with the defined EMPLOYEE table:</p>
+<pre class="prettyprint">
+import javax.persistence.*;
+
+@Entity
+@Table(name = "EMPLOYEE")
+public class Employee {
+   @Id @GeneratedValue
+   @Column(name = "id")
+   private int id;
+
+   @Column(name = "first_name")
+   private String firstName;
+
+   @Column(name = "last_name")
+   private String lastName;
+
+   @Column(name = "salary")
+   private int salary;  
+
+   public Employee() {}
+   public int getId() {
+      return id;
+   }
+   public void setId( int id ) {
+      this.id = id;
+   }
+   public String getFirstName() {
+      return firstName;
+   }
+   public void setFirstName( String first_name ) {
+      this.firstName = first_name;
+   }
+   public String getLastName() {
+      return lastName;
+   }
+   public void setLastName( String last_name ) {
+      this.lastName = last_name;
+   }
+   public int getSalary() {
+      return salary;
+   }
+   public void setSalary( int salary ) {
+      this.salary = salary;
+   }
+}
+</pre>
+<p>Hibernate detects that the @Id annotation is on a field and assumes that it should access properties on an object directly through fields at runtime. If you placed the @Id annotation on the getId() method, you would enable access to properties through getter and setter methods by default. Hence, all other annotations are also placed on either fields or getter methods, following the selected strategy. Following section will explain the annotations used in the above class.</p>
+<h2>@Entity Annotation:</h2>
+<p>The EJB 3 standard annotations are contained in the <b>javax.persistence</b> package, so we import this package as the first step. Second we used the <b>@Entity</b> annotation to the Employee class which marks this class as an entity bean, so it must have a no-argument constructor that is visible with at least protected scope.</p>
+<h2>@Table Annotation:</h2>
+<p>The @Table annotation allows you to specify the details of the table that will be used to persist the entity in the database.</p>
+<p>The @Table annotation provides four attributes, allowing you to override the name of the table, its catalogue, and its schema, and enforce unique constraints on columns in the table. For now we are using just table name which is EMPLOYEE.</p>
+<h2>@Id and @GeneratedValue Annotations:</h2>
+<p>Each entity bean will have a primary key, which you annotate on the class with the <b>@Id</b> annotation. The primary key can be a single field or a combination of multiple fields depending on your table structure.</p>
+<p>By default, the @Id annotation will automatically determine the most appropriate primary key generation strategy to be used but you can override this by applying the <b>@GeneratedValue</b> annotation which takes two parameters <b>strategy</b> and <b>generator</b> which I'm not going to discuss here, so let us use only default the default key generation strategy. Letting Hibernate determine which generator type to use makes your code portable between different databases.</p>
+<h2>@Column Annotation:</h2>
+<p>The @Column annotation is used to specify the details of the column to which a field or property will be mapped. You can use column annotation with the following most commonly used attributes:</p>
+<ul class="list">
+<li><p><b>name</b> attribute permits the name of the column to be explicitly specified.</p></li>
+<li><p><b>length</b> attribute permits the size of the column used to map a value particularly for a String value.</p></li>
+<li><p><b>nullable</b> attribute permits the column to be marked NOT NULL when the schema is generated.</p></li>
+<li><p><b>unique</b> attribute permits the column to be marked as containing only unique values.</p></li>
+</ul>
+<h2>Create Application Class:</h2>
+<p>Finally, we will create our application class with the main() method to run the application. We will use this application to save few Employee's records and then we will apply CRUD operations on those records.</p>
+<pre class="prettyprint">
+import java.util.List; 
+import java.util.Date;
+import java.util.Iterator; 
+ 
+import org.hibernate.HibernateException; 
+import org.hibernate.Session; 
+import org.hibernate.Transaction;
+import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class ManageEmployee {
+   private static SessionFactory factory; 
+   public static void main(String[] args) {
+      try{
+         factory = new AnnotationConfiguration().
+                   configure().
+                   //addPackage("com.xyz") //add package if used.
+                   addAnnotatedClass(Employee.class).
+                   buildSessionFactory();
+      }catch (Throwable ex) { 
+         System.err.println("Failed to create sessionFactory object." + ex);
+         throw new ExceptionInInitializerError(ex); 
+      }
+      ManageEmployee ME = new ManageEmployee();
+
+      /* Add few employee records in database */
+      Integer empID1 = ME.addEmployee("Zara", "Ali", 1000);
+      Integer empID2 = ME.addEmployee("Daisy", "Das", 5000);
+      Integer empID3 = ME.addEmployee("John", "Paul", 10000);
+
+      /* List down all the employees */
+      ME.listEmployees();
+
+      /* Update employee's records */
+      ME.updateEmployee(empID1, 5000);
+
+      /* Delete an employee from the database */
+      ME.deleteEmployee(empID2);
+
+      /* List down new list of the employees */
+      ME.listEmployees();
+   }
+   /* Method to CREATE an employee in the database */
+   public Integer addEmployee(String fname, String lname, int salary){
+      Session session = factory.openSession();
+      Transaction tx = null;
+      Integer employeeID = null;
+      try{
+         tx = session.beginTransaction();
+         Employee employee = new Employee();
+         employee.setFirstName(fname);
+         employee.setLastName(lname);
+         employee.setSalary(salary);
+         employeeID = (Integer) session.save(employee); 
+         tx.commit();
+      }catch (HibernateException e) {
+         if (tx!=null) tx.rollback();
+         e.printStackTrace(); 
+      }finally {
+         session.close(); 
+      }
+      return employeeID;
+   }
+   /* Method to  READ all the employees */
+   public void listEmployees( ){
+      Session session = factory.openSession();
+      Transaction tx = null;
+      try{
+         tx = session.beginTransaction();
+         List employees = session.createQuery("FROM Employee").list(); 
+         for (Iterator iterator = 
+                           employees.iterator(); iterator.hasNext();){
+            Employee employee = (Employee) iterator.next(); 
+            System.out.print("First Name: " + employee.getFirstName()); 
+            System.out.print("  Last Name: " + employee.getLastName()); 
+            System.out.println("  Salary: " + employee.getSalary()); 
+         }
+         tx.commit();
+      }catch (HibernateException e) {
+         if (tx!=null) tx.rollback();
+         e.printStackTrace(); 
+      }finally {
+         session.close(); 
+      }
+   }
+   /* Method to UPDATE salary for an employee */
+   public void updateEmployee(Integer EmployeeID, int salary ){
+      Session session = factory.openSession();
+      Transaction tx = null;
+      try{
+         tx = session.beginTransaction();
+         Employee employee = 
+                    (Employee)session.get(Employee.class, EmployeeID); 
+         employee.setSalary( salary );
+		 session.update(employee); 
+         tx.commit();
+      }catch (HibernateException e) {
+         if (tx!=null) tx.rollback();
+         e.printStackTrace(); 
+      }finally {
+         session.close(); 
+      }
+   }
+   /* Method to DELETE an employee from the records */
+   public void deleteEmployee(Integer EmployeeID){
+      Session session = factory.openSession();
+      Transaction tx = null;
+      try{
+         tx = session.beginTransaction();
+         Employee employee = 
+                   (Employee)session.get(Employee.class, EmployeeID); 
+         session.delete(employee); 
+         tx.commit();
+      }catch (HibernateException e) {
+         if (tx!=null) tx.rollback();
+         e.printStackTrace(); 
+      }finally {
+         session.close(); 
+      }
+   }
+}
+</pre>
+<h2>Database Configuration:</h2>
+<p>Now let us create <b>hibernate.cfg.xml</b> configuration file to define database related parameters. This time we are not going <pre class="prettyprint">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;!DOCTYPE hibernate-configuration SYSTEM 
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd"&gt;
+
+&lt;hibernate-configuration&gt;
+   &lt;session-factory&gt;
+   &lt;property name="hibernate.dialect"&gt;
+      org.hibernate.dialect.MySQLDialect
+   &lt;/property&gt;
+   &lt;property name="hibernate.connection.driver_class"&gt;
+      com.mysql.jdbc.Driver
+   &lt;/property&gt;
+
+   &lt;!-- Assume students is the database name --&gt;
+   &lt;property name="hibernate.connection.url"&gt;
+      jdbc:mysql://localhost/test
+   &lt;/property&gt;
+   &lt;property name="hibernate.connection.username"&gt;
+      root
+   &lt;/property&gt;
+   &lt;property name="hibernate.connection.password"&gt;
+      cohondob
+   &lt;/property&gt;
+
+&lt;/session-factory&gt;
+&lt;/hibernate-configuration&gt;
+</pre>
+<h2>Compilation and Execution:</h2>
+<p>Here are the steps to compile and run the above mentioned application. Make sure you have set PATH and CLASSPATH appropriately before proceeding for the compilation and execution.</p>
+<ul class="list">
+<li><p>Delete Employee.hbm.xml mapping file from the path.</p></li>
+<li><p>Create Employee.java source file as shown above and compile it.</p></li>
+<li><p>Create ManageEmployee.java source file as shown above and compile it.</p></li>
+<li><p>Execute ManageEmployee binary to run the program.</p></li>
+</ul>
+<p>You would get following result, and records would be created in EMPLOYEE table.</p>
+<pre class="prettyprint">
+$java ManageEmployee
+.......VARIOUS LOG MESSAGES WILL DISPLAY HERE........
+
+First Name: Zara  Last Name: Ali  Salary: 1000
+First Name: Daisy  Last Name: Das  Salary: 5000
+First Name: John  Last Name: Paul  Salary: 10000
+First Name: Zara  Last Name: Ali  Salary: 5000
+First Name: John  Last Name: Paul  Salary: 10000
+</pre>
+<p>If you check your EMPLOYEE table, it should have following records:</p>
+<pre class="prettyprint">
+mysql&gt; select * from EMPLOYEE;
++----+------------+-----------+--------+
+| id | first_name | last_name | salary |
++----+------------+-----------+--------+
+| 29 | Zara       | Ali       |   5000 |
+| 31 | John       | Paul      |  10000 |
++----+------------+-----------+--------+
+2 rows in set (0.00 sec
+
+mysql&gt;
+</pre>
+<hr />
+<div class="pre-btn">
+<a href="hibernate_or_mappings.htm">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/hibernate_annotations.pdf" alt="Hibernate Annotations" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="hibernate_query_language.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.htm" target="_top">ASP.NET </a> |
+<a href="../jquery/index.htm" target="_top">jQuery </a> |
+<a href="../ajax/index.htm" target="_top">AJAX </a> |
+<a href="../ant/index.htm" target="_top">ANT</a> |
+<a href="../jsp/index.htm" target="_top">JSP </a> |
+<a href="../servlets/index.htm" target="_top">Servlets </a> |
+<a href="../log4j/index.htm" target="_top">log4j </a> |
+<a href="../ibatis/index.htm" target="_top">iBATIS </a> |
+<a href="index.htm" target="_top">Hibernate </a> |
+<a href="../jdbc/index.htm" target="_top">JDBC </a> |
+<a href="../struts_2/index.htm" target="_top">Struts </a> |
+<a href="../html5/index.htm" target="_top">HTML5 </a> |
+<a href="../sql/index.htm" target="_top">SQL </a> |
+<a href="../mysql/index.htm" target="_top">MySQL </a> |
+<a href="../cplusplus/index.htm" target="_top">C++ </a> |
+<a href="../unix/index.htm" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2012 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/hibernate/hibernate_annotations.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Apr 2013 21:08:23 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

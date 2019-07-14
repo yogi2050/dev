@@ -1,0 +1,952 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/jstat.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:51 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>jstat - Unix, Linux Command</title>
+<meta name="Description" Content="jstat - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>jstat - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+jstat - Java Virtual Machine statistics monitoring tool
+<h1 class="manpages">SYNOPSIS</h1>
+<b>jstat</b> <b> [ generalOption | outputOptions vmid [interval[s|ms] [count]] ]</b> <h1 class="manpages">DESCRIPTION</h1>
+The
+<b>jstat</b> tool displays performance statistics for an instrumented
+HotSpot Java virtual machine (JVM). The target JVM is identified by
+its virtual machine identifier, or vmid option described below.
+<p>
+<b>NOTE -</b> This utility is unsupported and may or may not be
+available in future versions of the J2SE SDK.
+It is currently not available on Windows 98 and Windows ME platforms.
+<h2><i>VIRTUAL MACHINE IDENTIFIER</i></h2>
+The syntax of the vmid string largely corresponds to the syntax of a URI:
+<p>
+<b><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+[protocol:][//]lvmid[@hostname][:port][/servername]
+</pre></td></tr>
+</table>
+</b><table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<!-- ignored unsupported tag .if -->
+<b>protocol</b> </td><td valign="bottom">
+The communications protocol. If the protocol is omitted and a hostname is not specified, the default protocol is a platform specific optimized
+local protocol. If the protocol is omitted and a hostname is specified, then the default protocol is rmi.
+</td></tr>
+<tr valign="top"><td>
+<!-- ignored unsupported tag .if -->
+<b>lvmid</b> </td><td valign="bottom">
+The local virtual machine identifier for the target JVM. The lvmid is a platform-specific value that uniquely identifies a JVM on a system. The
+lvmid is the only required component of a virtual machine identifier. The lvmid is typically, but not necessarily, the operating system&#146;s process
+identifier for the target JVM process. You can use the jps command to determine the lvmid. Also, you can determine lvmid on Unix platforms
+with the ps command, and on Windows with the Windows Task Manager.
+</td></tr>
+<tr valign="top"><td>
+<!-- ignored unsupported tag .if -->
+<b>hostname</b> </td><td valign="bottom">
+A hostname or IP address indicating the target host. If hostname is omitted, then the target host is the local host.
+</td></tr>
+<tr valign="top"><td>
+<!-- ignored unsupported tag .if -->
+<b>port</b> </td><td valign="bottom">
+The default port for communicating with the remote server. If the hostname is omitted or the protocol specifies an optimized, local protocol,
+then port is ignored. Otherwise, treatment of the port parameter is implementation specific. For the default rmi protocol, the port indicates the
+port number for the rmiregistry on the remote host. If port is omitted, and protocol indicates rmi, then the default rmiregistry port (1099) is
+used.
+</td></tr>
+<tr valign="top"><td>
+<!-- ignored unsupported tag .if -->
+<b>servername</b> </td><td valign="bottom">
+The treatment of this parameter depends on implementation. For the optimized local protocol, this field is ignored. For the rmi protocol, it
+represents the name of the RMI remote object on the remote host.
+</td></tr>
+</table>
+<h1 class="manpages">PARAMETERS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<!-- ignored unsupported tag .if -->
+<b>generalOption</b> </td><td valign="bottom">
+A single general command-line option (-help, -options, or -version)
+</td></tr>
+<tr valign="top"><td>
+<!-- ignored unsupported tag .if -->
+<b>outputOptions</b> </td><td valign="bottom">
+One or more output options, consisting of a single statOption,
+plus any of the -t, -h, and -J options.
+</td></tr>
+<tr valign="top"><td>
+<!-- ignored unsupported tag .if -->
+<b>vmid</b> </td><td valign="bottom">
+Virtual machine identifier, a string indicating the target Java virtual machine (JVM). The general syntax is
+<p>
+</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=6%>&nbsp;</td><td>
+<b><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+[protocol:][//]lvmid[@hostname[:port]/servername
+</pre></td></tr>
+</table>
+</b></td></tr>
+<!-- LP ends table -->
+</table>
+The syntax of the vmid string largely corresponds to the syntax of a URI. The vmid can vary from a simple integer representing a local JVM to a
+more complex construction specifying a communications protocol, port number, and other implementation-specific values. See Virtual Machine
+Identifier below for details.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<!-- ignored unsupported tag .if -->
+<b>interval[s|ms]</b> </td><td valign="bottom">
+Sampling interval in the specified units, seconds (s) or milliseconds (ms). Default units are milliseconds.  Must be a positive integer.  If specified,
+jstat will produce its output at each interval.
+</td></tr>
+<tr valign="top"><td>
+<!-- ignored unsupported tag .if -->
+<b>count</b> </td><td valign="bottom">
+Number of samples to display. Default value is infinity; that is, jstat displays statistics until the target JVM terminates or the jstat command is
+terminated.  Must be a positive integer.
+</td></tr>
+</table>
+<h1 class="manpages">OPTIONS</h1>
+The
+<b>jstat</b> command supports two types of options, general options and output options.
+General options cause jstat to display simple
+usage and version information. Output options determine the
+content and format of the statistical output.
+<p>
+<b>NOTE-</b> All options, and their functionality are subject to change or removal in future releases.
+<h2><i>GENERAL OPTIONS</i></h2>
+If you specify one of the general options, you cannot specify any other option or parameter.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<!-- ignored unsupported tag .if -->
+<b>-help</b> </td><td valign="bottom">
+Display help message.
+</td></tr>
+<tr valign="top"><td>
+<!-- ignored unsupported tag .if -->
+<b>-version</b> </td><td valign="bottom">
+Display version information.
+</td></tr>
+<tr valign="top"><td>
+<!-- ignored unsupported tag .if -->
+<b>-options</b> </td><td valign="bottom">
+Display list of statistics options. See the Output Options section below.
+</td></tr>
+</table>
+<h2><i>OUTPUT OPTIONS</i></h2>
+If you do not specify a general option, then you can specify output options.
+Output options determine the content and format of jstat&#146;s
+output, and consist of a single statOption, plus any of the other output
+options (-h, -t, and -J).  The statOption must come first.
+<p>
+Output is formatted as a table, with columns are separated by spaces.
+A header row with titles describes the columns.  Use the -h
+option to set the frequency at which the header is displayed. 
+Column header names are generally consistent between the different
+options. In general, if two options provide a column with the same
+name, then the data source for the two columns are the same.
+<p>
+Use the -t option to display a time stamp column, labeled Timestamp
+as the first column of output. The Timestamp column contains the
+elapsed time, in seconds, since startup of the target JVM. The resolution
+of the time stamp is dependent on various factors and is subject
+to variation due to delayed thread scheduling on heavily loaded systems.
+<p>
+Use the interval and count parameters to determine how frequently and how
+many times, respectively, jstat displays its output.
+<p>
+<b>NOTE-</b> You are advised not to write scripts to parse jstat&#146;s output since
+the format may change in future releases. If you choose to write
+scripts that parse jstat output, expect to modify them for future
+releases of this tool.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<!-- ignored unsupported tag .if -->
+<b>-statOption</b> </td><td valign="bottom">
+Determines the statistics information that jstat displays. The following
+table lists the available options.  Use the -options general option to
+display the list of options for a particular platform installation.
+</td></tr>
+<!-- LP ends table -->
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td align="center"><b>Option</b></td><td align="center"><b>Displays...</b></td></tr>
+<tr valign="top">
+<td>class</td><td>Statistics on the behavior of the class loader</td></tr>
+<tr valign="top">
+<td>compiler</td><td>Statistics on the behavior of the HotSpot
+Just-In-Time compiler
+</td></tr>
+<tr valign="top">
+<td>gc</td><td>Statistics on the behavior of the garbage
+collected heap
+</td></tr>
+<tr valign="top">
+<td>gccapacity</td><td>Statistics of the capacities of the
+generations and their corresponding spaces.
+</td></tr>
+<tr valign="top">
+<td>gccause</td><td>Summary of garbage collection statistics (same
+as -gcutil), with the cause of the last and
+current (if applicable) garbage collection events.
+</td></tr>
+<tr valign="top">
+<td>gcnew</td><td>Statistics of the behavior of the new generation.</td></tr>
+<tr valign="top">
+<td>gcnewcapacity</td><td>Statistics of the sizes of the new generations
+and its corresponding spaces.
+</td></tr>
+<tr valign="top">
+<td>gcold</td><td>Statistics of the behavior of the old and
+permanent generations.
+</td></tr>
+<tr valign="top">
+<td>gcoldcapacity</td><td>Statistics of the sizes of the old generation.</td></tr>
+<tr valign="top">
+<td>gcpermcapacity</td><td>Statistics of the sizes of the permanent generation.</td></tr>
+<tr valign="top">
+<td>gcutil</td><td>Summary of garbage collection statistics.</td></tr>
+<tr valign="top">
+<td>printcompilation</td><td>Summary of garbage collection statistics.</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<!-- ignored unsupported tag .if -->
+<b>-h  n</b> </td><td valign="bottom">
+Display a column header every n samples (output rows), where n is a
+positive integer. Default value is 0, which displays the column header
+above the first row of data.
+</td></tr>
+<tr valign="top"><td>
+<!-- ignored unsupported tag .if -->
+<b>-t  n</b> </td><td valign="bottom">
+Display a timestamp column as the first column of output. The timestamp
+is the the time since the start time of the target JVM.
+</td></tr>
+<tr valign="top"><td>
+<!-- ignored unsupported tag .if -->
+-JjavaOption
+</td><td valign="bottom">
+Pass javaOption to the java application launcher. For example, -<blink>\J</blink>-Xms48m
+sets the startup memory to 48 megabytes. For a complete list of
+options, see java(1).
+</td></tr>
+</table>
+<h2><i>STATOPTIONS AND OUTPUT</i></h2>
+The following tables summarize the columns that jstat outputs
+for each statOption.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-class Option</b> </td><td valign="bottom">
+Class Loader Statistics
+</td></tr>
+<!-- LP ends table -->
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td align="center"><b>Column</b></td><td align="center"><b>Description</b></td></tr>
+<tr valign="top">
+<td>Loaded</td><td>Number of classes loaded</td></tr>
+<tr valign="top">
+<td>Bytes</td><td>Number of Kbytes loaded</td></tr>
+<tr valign="top">
+<td>Unloaded</td><td>Number of classes unloaded</td></tr>
+<tr valign="top">
+<td>Bytes</td><td>Number of Kbytes unloaded</td></tr>
+<tr valign="top">
+<td>Time</td><td>Time spent performing class load and unload operations</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>-compiler Option</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+HotSpot Just-In-Time Compiler Statistics
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td align="center"><b>Column</b></td><td align="center"><b>Description</b></td></tr>
+<tr valign="top">
+<td>Compiled</td><td>Humber of compilation tasks performed</td></tr>
+<tr valign="top">
+<td>Failed</td><td>Number of compilation tasks that failed</td></tr>
+<tr valign="top">
+<td>Invalid</td><td>Number of compilation tasks that were invalidated</td></tr>
+<tr valign="top">
+<td>Time</td><td>Time spent performing compilation tasks</td></tr>
+<tr valign="top">
+<td>FailedType</td><td>Compile type of the last failed compilation</td></tr>
+<tr valign="top">
+<td>FailedMethod</td><td>Class name and method for the last failed compilation</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-gc Option</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Garbage-collected heap statistics
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td align="center"><b>Column</b></td><td align="center"><b>Description</b></td></tr>
+<tr valign="top">
+<td>SOC</td><td>Current survivor space 0 capacity (KB).</td></tr>
+<tr valign="top">
+<td>S1C</td><td>Current survivor space 1 capacity (KB).</td></tr>
+<tr valign="top">
+<td>S0U</td><td>Survivor space 0 utilization (KB).</td></tr>
+<tr valign="top">
+<td>S1U</td><td>Survivor space 1 utilization (KB).</td></tr>
+<tr valign="top">
+<td>EC</td><td>Current eden space capacity (KB).</td></tr>
+<tr valign="top">
+<td>EU</td><td>Eden space utilization (KB).</td></tr>
+<tr valign="top">
+<td>OC</td><td>Current old space capacity (KB).</td></tr>
+<tr valign="top">
+<td>OU</td><td>Old space utilization (KB).</td></tr>
+<tr valign="top">
+<td>PC</td><td>Current permanent space capacity (KB).</td></tr>
+<tr valign="top">
+<td>PU</td><td>Permanent space utilization (KB).</td></tr>
+<tr valign="top">
+<td>YGC</td><td>Number of young generation GC Events.</td></tr>
+<tr valign="top">
+<td>YGCT</td><td>Young generation garbage collection time.</td></tr>
+<tr valign="top">
+<td>FGC</td><td>Number of full GC events.</td></tr>
+<tr valign="top">
+<td>FGCT</td><td>Full garbage collection time.</td></tr>
+<tr valign="top">
+<td>GCT</td><td>Total garbage collection time.</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-gccapacity Option</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Memory Pool Generation and Space Capacities
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td align="center"><b>Column</b></td><td align="center"><b>Description</b></td></tr>
+<tr valign="top">
+<td>NGCMN</td><td>Minimum new generation capacity (KB).</td></tr>
+<tr valign="top">
+<td>NGCMX</td><td>Maximum new generation capacity (KB).</td></tr>
+<tr valign="top">
+<td>NGC</td><td>Current new generation capacity (KB).</td></tr>
+<tr valign="top">
+<td>S0C</td><td>Current survivor space 0 capacity (KB).</td></tr>
+<tr valign="top">
+<td>S1C</td><td>Current survivor space 1 capacity (KB).</td></tr>
+<tr valign="top">
+<td>EC</td><td>Current eden space capacity (KB).</td></tr>
+<tr valign="top">
+<td>OGCMN</td><td>Minimum old generation capacity (KB).</td></tr>
+<tr valign="top">
+<td>OGCMX</td><td>Maximum old generation capacity (KB).</td></tr>
+<tr valign="top">
+<td>OGC</td><td>Current old generation capacity (KB).</td></tr>
+<tr valign="top">
+<td>OC</td><td>Current old space capacity (KB).</td></tr>
+<tr valign="top">
+<td>PGCMN</td><td>Minimum permanent generation capacity (KB).</td></tr>
+<tr valign="top">
+<td>PGCMX</td><td>Maximum Permanent generation capacity (KB).</td></tr>
+<tr valign="top">
+<td>PGC</td><td>Current Permanent generation capacity (KB).</td></tr>
+<tr valign="top">
+<td>PC</td><td>Current Permanent space capacity (KB).</td></tr>
+<tr valign="top">
+<td>VGC</td><td>Number of Young generation GC Events.</td></tr>
+<tr valign="top">
+<td>FGC</td><td>Number of Full GC Events.</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-gccause Option</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This option displays the same summary of garbage collection
+statistics as the -gcutil option, but includes the causes
+of the last garbage
+collection event and (if applicable) the current garbage collection
+event. In addition to the columns listed for -gcutil, this option adds
+the following columns:
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td align="center"><b>Column</b></td><td align="center"><b>Description</b></td></tr>
+<tr valign="top">
+<td>LGCC</td><td>Cause of last Garbage Collection.</td></tr>
+<tr valign="top">
+<td>GCC</td><td>Cause of current Garbage Collection.</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-gcnew Option</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+New Generation Statistics
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td align="center"><b>Column</b></td><td align="center"><b>Description</b></td></tr>
+<tr valign="top">
+<td>SOC</td><td>Current survivor space 0 capacity (KB).</td></tr>
+<tr valign="top">
+<td>S1C</td><td>Current survivor space 1 capacity (KB).</td></tr>
+<tr valign="top">
+<td>S0U</td><td>Survivor space 0 utilization (KB).</td></tr>
+<tr valign="top">
+<td>S1U</td><td>Survivor space 1 utilization (KB).</td></tr>
+<tr valign="top">
+<td>TT</td><td>Tenuring threshold.</td></tr>
+<tr valign="top">
+<td>MTT</td><td>Maximum tenuring threshold.</td></tr>
+<tr valign="top">
+<td>DSS</td><td>Desired survivor size (KB).</td></tr>
+<tr valign="top">
+<td>EC</td><td>Current eden space capacity (KB).</td></tr>
+<tr valign="top">
+<td>EU</td><td>Eden space utilization (KB).</td></tr>
+<tr valign="top">
+<td>VGC</td><td>Number of young generation GC events.</td></tr>
+<tr valign="top">
+<td>VGCT</td><td>Young generation garbage collection time.</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-gcnewcapacity Option</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+New Generation Space Size Statistics
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td align="center"><b>Column</b></td><td align="center"><b>Description</b></td></tr>
+<tr valign="top">
+<td>NGCMN</td><td>Minimum new generation capacity (KB).</td></tr>
+<tr valign="top">
+<td>NGCMX</td><td>Maximum new generation capacity (KB).</td></tr>
+<tr valign="top">
+<td>NGC</td><td>Current new generation capacity (KB).</td></tr>
+<tr valign="top">
+<td>S0CMX</td><td>Maximum survivor space 0 capacity (KB).</td></tr>
+<tr valign="top">
+<td>S0C</td><td>Current survivor space 0 capacity (KB).</td></tr>
+<tr valign="top">
+<td>S1CMX</td><td>Maximum survivor space 1 capacity (KB).</td></tr>
+<tr valign="top">
+<td>S1C</td><td>Current survivor space 1 capacity (KB).</td></tr>
+<tr valign="top">
+<td>ECMX</td><td>Maximum eden space capacity (KB).</td></tr>
+<tr valign="top">
+<td>EC</td><td>Current eden space capacity (KB).</td></tr>
+<tr valign="top">
+<td>YGC</td><td>Number of young generation GC events.</td></tr>
+<tr valign="top">
+<td>FGC</td><td>Number of Full GC Events.</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-gcold Option</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Old and Permanent Generation Statistics
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td align="center"><b>Column</b></td><td align="center"><b>Description</b></td></tr>
+<tr valign="top">
+<td>PC</td><td>Current permanent space capacity (KB).</td></tr>
+<tr valign="top">
+<td>PU</td><td>Permanent space utilization (KB).</td></tr>
+<tr valign="top">
+<td>OC</td><td>Current old space capacity (KB).</td></tr>
+<tr valign="top">
+<td>OU</td><td>Old space utilization (KB).</td></tr>
+<tr valign="top">
+<td>YGC</td><td>Number of young generation GC events.</td></tr>
+<tr valign="top">
+<td>FGC</td><td>Number of Full GC events.</td></tr>
+<tr valign="top">
+<td>FGCT</td><td>Full garbage collection time.</td></tr>
+<tr valign="top">
+<td>GCT</td><td>Total garbage collection time.</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-gcoldcapacity Option</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Old Generation Statistics
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td align="center"><b>Column</b></td><td align="center"><b>Description</b></td></tr>
+<tr valign="top">
+<td>OGCMN</td><td>Minimum old generation capacity (KB).</td></tr>
+<tr valign="top">
+<td>OGCMV</td><td>Maximum old generation capacity (KB).</td></tr>
+<tr valign="top">
+<td>OGC</td><td>Current old generation capacity (KB).</td></tr>
+<tr valign="top">
+<td>OC</td><td>Current old space capacity (KB).</td></tr>
+<tr valign="top">
+<td>YGC</td><td>Number of young generation GC events.</td></tr>
+<tr valign="top">
+<td>FGC</td><td>Number of Full GC events.</td></tr>
+<tr valign="top">
+<td>FGCT</td><td>Full garbage collection time.</td></tr>
+<tr valign="top">
+<td>GCT</td><td>Total garbage collection time.</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-gcpermcapacity Option</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Permanent Generation Statistics
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td align="center"><b>Column</b></td><td align="center"><b>Description</b></td></tr>
+<tr valign="top">
+<td>PGCMN</td><td>Minimum permanent generation capacity (KB).</td></tr>
+<tr valign="top">
+<td>PGCMX</td><td>Maximum permanent generation capacity (KB).</td></tr>
+<tr valign="top">
+<td>PGC</td><td>Current permanent generation capacity (KB).</td></tr>
+<tr valign="top">
+<td>PC</td><td>Current permanent space capacity (KB).</td></tr>
+<tr valign="top">
+<td>YGC</td><td>Number of young generation GC events.</td></tr>
+<tr valign="top">
+<td>FGC</td><td>Number of Full GC events.</td></tr>
+<tr valign="top">
+<td>FGCT</td><td>Full garbage collection time.</td></tr>
+<tr valign="top">
+<td>GCT</td><td>Total garbage collection time.</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-gcutil Option</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Summary of Garbage Collection Statistics
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td align="center"><b>Column</b></td><td align="center"><b>Description</b></td></tr>
+<tr valign="top">
+<td>S0</td><td>Survivor space 0 utilization as a percentage
+of the space&#146;s current capacity.
+</td></tr>
+<tr valign="top">
+<td>S1</td><td>Survivor space 1 utilization as a percentage
+of the space&#146;s current capacity.
+</td></tr>
+<tr valign="top">
+<td>E</td><td>Eden space utilization as a percentage
+of the space&#146;s current capacity.
+</td></tr>
+<tr valign="top">
+<td>O</td><td>Old space utilization as a percentage
+of the space&#146;s current capacity.
+</td></tr>
+<tr valign="top">
+<td>P</td><td>Permanent space utilization as a percentage
+of the space&#146;s current capacity.
+</td></tr>
+<tr valign="top">
+<td>YGC</td><td>Number of young generation GC events.</td></tr>
+<tr valign="top">
+<td>YGCT</td><td>Young generation garbage collection time.</td></tr>
+<tr valign="top">
+<td>FGC</td><td>Number of Full GC events.</td></tr>
+<tr valign="top">
+<td>FGCT</td><td>Full garbage collection time.</td></tr>
+<tr valign="top">
+<td>GCT</td><td>Total garbage collection time.</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-printcompilation Option</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+HotSpot Compiler Method Statistics
+</td></tr>
+<!-- LP ends table -->
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td align="center"><b>Column</b></td><td align="center"><b>Description</b></td></tr>
+<tr valign="top">
+<td>Compiled</td><td>Number of compilation tasks performed.</td></tr>
+<tr valign="top">
+<td>Size</td><td>Number of bytes of bytecode for the method.</td></tr>
+<tr valign="top">
+<td>Type</td><td>Compilation type.</td></tr>
+<tr valign="top">
+<td>Method</td><td>Class name and method name identifying the compiled method. Class name uses "/" instead of "." as namespace separator. Method name is the method within the given class. The format for these two fields is consistent with the HotSpot - XX:+PrintComplation option.
+</td></tr>
+</table>
+<p>
+<h1 class="manpages">EXAMPLES</h1>
+This section presents some examples of monitoring a local JVM
+with a lvmid of 21891.
+<h2><i>Using the gcutil option</i></h2>
+This example attaches to lvmid 21891 and takes 7 samples at 250
+millisecond intervals and displays the output as specified by the
+-gcutil option.
+<p>
+<b><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+jstat -gcutil 21891 250 7
+  S0     S1     E      O      P     YGC    YGCT    FGC    FGCT     GCT
+ 12.44   0.00  27.20   9.49  96.70    78    0.176     5    0.495    0.672
+ 12.44   0.00  62.16   9.49  96.70    78    0.176     5    0.495    0.672
+ 12.44   0.00  83.97   9.49  96.70    78    0.176     5    0.495    0.672
+  0.00   7.74   0.00   9.51  96.70    79    0.177     5    0.495    0.673
+  0.00   7.74  23.37   9.51  96.70    79    0.177     5    0.495    0.673
+  0.00   7.74  43.82   9.51  96.70    79    0.177     5    0.495    0.673
+  0.00   7.74  58.11   9.51  96.71    79    0.177     5    0.495    0.673
+</pre></td></tr>
+</table>
+</b><p>
+The output of this example shows that a young generation collection
+occurred between the 3rd and 4th sample. The collection took
+0.001 seconds and promoted objects from the eden space (E) to the
+old space (O), resulting in an increase of old space utilization from
+9.49% to 9.51%. Before the collection, the survivor space was
+12.44% utilized, but after this collection it is only 7.74% utilized.
+<h2><i>Repeating the column header string</i></h2>
+This example attaches to lvmid 21891 and takes samples at 250
+millisecond intervals and displays the output as specified by -gcutil
+option. In addition, it uses the -h3 option to output the column
+header after every 3 lines of data.
+<p>
+<b><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+jstat -gcnew -h3 21891 250
+ S0C    S1C    S0U    S1U   TT MTT  DSS      EC       EU     YGC     YGCT
+  64.0   64.0    0.0   31.7 31  31   32.0    512.0    178.6    249    0.203
+  64.0   64.0    0.0   31.7 31  31   32.0    512.0    355.5    249    0.203
+  64.0   64.0   35.4    0.0  2  31   32.0    512.0     21.9    250    0.204
+ S0C    S1C    S0U    S1U   TT MTT  DSS      EC       EU     YGC     YGCT
+  64.0   64.0   35.4    0.0  2  31   32.0    512.0    245.9    250    0.204
+  64.0   64.0   35.4    0.0  2  31   32.0    512.0    421.1    250    0.204
+  64.0   64.0    0.0   19.0 31  31   32.0    512.0     84.4    251    0.204
+ S0C    S1C    S0U    S1U   TT MTT  DSS      EC       EU     YGC     YGCT
+  64.0   64.0    0.0   19.0 31  31   32.0    512.0    306.7    251    0.204
+</pre></td></tr>
+</table>
+</b><p>
+In addition to showing the repeating header string, this example
+shows that between the 2nd and 3rd samples, a young GC occurred. Its
+duration was 0.001 seconds. The collection found enough live data that
+the survivor space 0 utilization (S0U) would would have
+exceeded the desired survivor Size (DSS). As a result, objects were
+promoted to the old generation (not visible in this output), and the
+tenuring threshold (TT) was lowered from 31 to 2.
+<p>
+Another collection occurs between the 5th and 6th samples. This
+collection found very few survivors and returned the tenuring
+threshold to 31.
+<h2><i>Including a time stamp for each sample</i></h2>
+This example attaches to lvmid 21891 and takes 3 samples at
+250 millisecond intervals. The -t option is used to generate a time stamp
+for each sample in the first column.
+<p>
+<b><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+jstat -gcoldcapacity -t 21891 250 3
+Timestamp  OGCMN    OGCMX    OGC      OC       YGC   FGC   FGCT    GCT
+150.1      1408.0   60544.0  11696.0  11696.0  194   80    2.874   3.799
+150.4      1408.0   60544.0  13820.0  13820.0  194   81    2.938   3.863
+150.7      1408.0   60544.0  13820.0  13820.0  194   81    2.938   3.863
+</pre></td></tr>
+</table>
+</b><h2><i>Monitor instrumentation for a remote JVM</i></h2>
+This example attaches to lvmid 40496 on the system named remote.domain
+using the -gcutil option, with samples taken every second
+indefinitely.
+<p>
+<b><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+jstat -gcutil <a href="mailto:40496@remote.domain">40496@remote.domain</a> 1000
+ ... output omitted
+</pre></td></tr>
+</table>
+</b><p>
+The lvmid is combined with the name of the remote host to construct a vmid
+of <a href="mailto:40496@remote.domain.">40496@remote.domain.</a> This vmid results in the use of
+the rmi protocol to communicate to the default jstatd server on
+the remote host. The jstatd server is located using the rmiregistry on
+remote.domain that is bound to the default rmiregistry port (port 1099).
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="java.htm">java (1)</a></p></li>
+<li><p><a href="jps.htm">jps (1)</a></p></li>
+<li><p><a href="jstatd.htm">jstatd (1)</a></p></li>
+<li><p><a href="rmiregistry.html">rmiregistry (1)</a></p></li>
+</ul>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion8ffb.html?tutorial=unix_commands&amp;file=jstat.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/jstat.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:51 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

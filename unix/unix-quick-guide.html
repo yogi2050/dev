@@ -1,0 +1,676 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/unix/unix-quick-guide.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 17:34:01 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>Unix - Quick Guide</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="description" content="Unix Quick Guide - Learning fundamentals of UNIX in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+#topmenu a:hover {text-decoration:none;color:#00afe4  !important;background-color:transparent;font-weight:bold;}
+#header{ 
+background:#00afe4  !important;
+}
+#topmenu
+{
+background-color:#113e78 !important;
+}
+#leftcol ul.menu li.heading 
+{
+background:#00afe4 !important;
+border:1px solid #113e78  !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1400px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index-2.html">Tutorials Point - Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index-2.html" target="_top">HOME </a>
+<a href="../java/index.html" target="_top">JAVA </a>
+<a href="../php/index.html" target="_top">PHP </a>
+<a href="../python/index.html" target="_top">Python </a>
+<a href="../ruby/index.html" target="_top">Ruby </a>
+<a href="../perl/index.html" target="_top">Perl </a>
+<a href="../html/index.html" target="_top">HTML </a>
+<a href="../css/index.html" target="_top">CSS </a>
+<a href="../javascript/index.html" target="_top">Javascript </a>
+<a href="../mysql/index.html" target="_top">MySQL </a>
+<a href="../cplusplus/index.html" target="_top">C++ </a>
+<a href="index.html" target="_top">UNIX </a>
+<a href="../more.html" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.html" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.html" target="_top">ABOUT</a> |
+<a href="../about/contact_us.html" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/unix-mini-logo.png" alt="Unix Tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">Unix for Beginners</li>
+<li><a target="_top" href="index.html">Unix - Home</a></li>
+<li><a target="_top" href="unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a target="_top" href="unix-file-management.html">Unix - File Management</a></li>
+<li><a target="_top" href="unix-directories.html">Unix - Directories</a></li>
+<li><a target="_top" href="unix-file-permission.html">Unix - File Permission</a></li>
+<li><a target="_top" href="unix-environment.html">Unix - Environment</a></li>
+<li><a target="_top" href="unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a target="_top" href="unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a target="_top" href="unix-processes.html">Unix - Processes</a></li>
+<li><a target="_top" href="unix-communication.html">Unix - Communication</a></li>
+<li><a target="_top" href="unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Unix Shell Programming</li>
+<li><a target="_top" href="unix-shell.html">Unix - What is Shell?</a></li>
+<li><a target="_top" href="unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a target="_top" href="unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a target="_top" href="unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a target="_top" href="unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a target="_top" href="unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a target="_top" href="unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a target="_top" href="unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a target="_top" href="unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a target="_top" href="unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a target="_top" href="unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a target="_top" href="unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a target="_top" href="unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Advanced Unix</li>
+<li><a target="_top" href="unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a target="_top" href="unix-file-system.html">Unix - File System Basics</a></li>
+<li><a target="_top" href="unix-user-administration.html">Unix - User Administration</a></li>
+<li><a target="_top" href="unix-system-performance.html">Unix - System Performance</a></li>
+<li><a target="_top" href="unix-system-logging.html">Unix - System Logging</a></li>
+<li><a target="_top" href="unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Unix Useful Resources</li>
+<li><a target="_top" href="unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a target="_top" href="unix-quick-guide.html"><b>Unix - Quick Guide</b></a></li>
+<li><a target="_top" href="unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a target="_top" href="../unix_commands/index.html">Unix - Commands List</a></li>
+<li><a target="_top" href="unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.html">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+ <div class="content">
+<h1>Unix - Quick Guide</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="unix-useful-commands.html">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="unix-builtin-functions.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<h1>Getting Started:</h1>
+<h2>What is Unix ?</h2>
+<p>The UNIX operating system is a set of programs that act as a link between the computer and the user.</p>
+<ul class="list">
+<li><p>Unix was originally developed in 1969 by a group of AT&amp;T employees at Bell Labs, including Ken Thompson, Dennis Ritchie, Douglas McIlroy, and Joe Ossanna.</p></li>
+<li><p>There are various Unix variants available in the market. Solaris Unix, AIX, HP Unix and BSD are few examples. Linux is also a flavour of Unix which is freely available.</p></li>
+<li><p>Several people can use a UNIX computer at the same time; hence UNIX is called a multiuser system.</p></li>
+<li><p>A user can also run multiple programs at the same time; hence UNIX is called multitasking.</p></li>
+</ul>
+<h2>Login Unix:</h2>
+<p>You can login to the system using <b>login</b> command as follows:</p>
+<pre class="prettyprint">
+login : amrood
+amrood's password:
+Last login: Sun Jun 14 09:32:32 2009 from 62.61.164.73
+$
+</pre>
+<h2>Logging Out:</h2>
+<p>When you finish your session, you need to log out of the system to ensure that nobody else accesses your files while masquerading as you.</p>
+<h2>To log out:</h2>
+<ol class="list">
+<li><p>Just type <b>logout</b> command at command prompt, and the system will clean up everything and break the connection</p></li>
+</ol>
+<h1>File Management:</h1>
+<p>In UNIX there are three basic types of files:</p>
+<ol class="list">
+<li><p><b>Ordinary Files:</b> An ordinary file is a file on the system that contains data, text, or program instructions. In this tutorial, you look at working with ordinary files.</p></li>
+<li><p><b>Directories:</b> Directories store both special and ordinary files. For users familiar with Windows or Mac OS, UNIX directories are equivalent to folders.</p></li>
+<li><p><b>Special Files:</b> Some special files provide access to hardware such as hard drives, CD-ROM drives, modems, and Ethernet adapters. Other special files are similar to aliases or shortcuts and enable you to access a single file using different names.</p></li>
+</ol>
+<h2>Filename Substitution:</h2>
+<table class="src">
+<tr>
+<th style="width:35%">Command</th><th style="width:65%">Description</th>
+</tr>
+<tr><td>ls -[l]</td><td>List Files in Current Directory</td></tr>
+<tr><td>ls -[l]a</td><td>List Hidden Files</td></tr>
+<tr><td>~</td><td>Home Directory</td></tr>
+<tr><td>~user</td><td>Home Directory of Another User</td></tr>
+<tr><td>?</td><td>Wild Card, matches single character</td></tr>
+<tr><td>*</td><td>Wild Card, matches multiple characters</td></tr>
+</table>
+<h2>Filename Manipulation:</h2>
+<table class="src">
+<tr>
+<th style="width:35%">Command</th><th style="width:65%">Description</th>
+</tr>
+<tr><td>cat filename</td><td>Display File Contents</td></tr>
+<tr><td>cp source destination</td><td>Copy source file into destination</td></tr>
+<tr><td>mv oldname newname</td><td>Move (Rename) a oldname to newname.</td></tr>
+<tr><td>rm filename</td><td>Remove (Delete) filename</td></tr>
+<tr><td>chmod nnn filename</td><td>Changing Permissions</td></tr>
+<tr><td>touch filename</td><td>Changing Modification Time</td></tr>
+<tr><td>ln [-s] oldname newname</td><td>Creates softlink on oldname</td></tr>
+<tr><td>ls -F</td><td>Display information about file type.</td></tr>
+</table>
+<h1>Directory Management:</h1>
+<table class="src">
+<tr>
+<th style="width:35%">Command</th><th style="width:65%">Description</th>
+</tr>
+<tr><td>mkdir dirname</td><td>Create a new directory dirname</td></tr>
+<tr><td>rmdir dirname</td><td>Delete an existing directory provided it is empty.</td></tr>
+<tr><td>cd dirname</td><td>Change Directory to dirname</td></tr>
+<tr><td>cd -</td><td>Change to last working directory.</td></tr>
+<tr><td>cd ~</td><td>Change to home directory</td></tr>
+<tr><td>pwd</td><td>Display current working directory.</td></tr>
+</table>
+<h1>Environment Setup:</h1>
+<p>When you type any command on command prompt, the shell has to locate the command before it can be executed. The <b>PATH</b> variable specifies the locations in which the shell should look for commands.</p>
+<h2>PS1 and PS2 Variables:</h2>
+<p>The characters that the shell displays as your command prompt are stored in the variable PS1.</p>
+<p>When you issue a command that is incomplete, the shell will display a secondary prompt and wait for you to complete the command and hit Enter again. The default secondary prompt is &gt; (the greater than sign), but can be changed by re-defining the PS2 shell variable:</p>
+<h2>Escape Characters:</h2>
+<table class="src">
+<tr>
+<th style="width:25%">Escape Sequence</th><th>Description</th>
+</tr>
+<tr><td><b>\t</b></td><td>Current time, expressed as HH:MM:SS.</td></tr>
+<tr><td><b>\d</b></td><td>Current date, expressed as Weekday Month Date</td></tr>
+<tr><td><b>\n</b></td><td>Newline.</td></tr>
+<tr><td><b>\s</b></td><td>Current shell environment.</td></tr>
+<tr><td><b>\W</b></td><td>Working directory.</td></tr>
+<tr><td><b>\w</b></td><td>Full path of the working directory.</td></tr>
+<tr><td><b>\u</b></td><td>Current user.s username.</td></tr>
+<tr><td><b>\h</b></td><td>Hostname of the current machine.</td></tr>
+<tr><td><b>\#</b></td><td>Command number of the current command. Increases with each new command entered.</td></tr>
+<tr><td><b>\$</b></td><td>If the effective UID is 0 (that is, if you are logged in as root), end the prompt with the # character; otherwise, use the $.</td></tr>
+</table>
+<h2>Environment Variables:</h2>
+<p>Following is the partial list of important environment variables. These variables would be set and accessed as mentioned above:</p>
+<table class="src">
+<tr>
+<th style="width:25%">Variable</th><th>Description</th>
+</tr>
+<tr><td><b>DISPLAY </b></td><td>Contains the identifier for the display that X11 programs should use by default.</td></tr>
+<tr><td><b>HOME</b></td><td>Indicates the home directory of the current user: the default argument for the cd built-in command.</td></tr>
+<tr><td><b>IFS</b></td><td>Indicates the Internal Field Separator that is used by the parser for word splitting after expansion.</td></tr>
+<tr><td><b>LANG</b></td><td>LANG expands to the default system locale; LC_ALL can be used to override this. For example, if its value is pt_BR, then the language is set to (Brazilian) Portuguese and the locale to Brazil.</td></tr>
+<tr><td><b>LD_LIBRARY_PATH </b></td><td>On many Unix systems with a dynamic linker, contains a colon-separated list of directories that the dynamic linker should search for shared objects when building a process image after exec, before searching in any other directories.</td></tr>
+<tr><td><b>PATH</b></td><td>Indicates search path for commands. It is a colon-separated list of directories in which the shell looks for commands.</td></tr>
+<tr><td><b>PWD</b></td><td>Indicates the current working directory as set by the cd command.</td></tr>
+<tr><td><b>RANDOM</b></td><td>Generates a random integer between 0 and 32,767 each time it is referenced.</td></tr>
+<tr><td><b>SHLVL</b></td><td>Increments by one each time an instance of bash is started. This variable is useful for determining whether the built-in exit command ends the current session.</td></tr>
+<tr><td><b>TERM </b></td><td>Refers to the display type</td></tr>
+<tr><td><b>TZ </b></td><td>Refers to Time zone. It can take values like GMT, AST, etc.</td></tr>
+<tr><td><b>UID</b></td><td>Expands to the numeric user ID of the current user, initialized at shell startup.</td></tr>
+</table>
+<h1>Filters &amp; Pipes:</h1>
+<table class="src">
+<tr>
+<th style="width:25%">Command</th><th>Description</th>
+</tr>
+<tr><td><b>wc [-l] </b></td><td>Word/Line Count</td></tr>
+<tr><td><b>tail [-n] </b></td><td>Displays last n lines from a file</td></tr>
+<tr><td><b>sort [-n] </b></td><td>Sort lines</td></tr>
+<tr><td><b>pr -t </b></td><td>Multicolumn Output</td></tr>
+<tr><td><b>grep "pattern" filename </b></td><td>Searching for a pattern with grep</td></tr>
+<tr><td><b>pg or more </b></td><td>Paginate a file content display.</td></tr>
+</table>
+<h1>Special Variables</h1>
+<table class="src">
+<tr>
+<th style="width:15%">Variable</th><th style="width:85%">Description</th>
+</tr>
+<tr><td><b>$0</b></td><td>The filename of the current script.</td></tr>
+<tr><td><b>$n</b></td><td>These variables correspond to the arguments with which a script was invoked. Here n is a positive decimal number corresponding to the position of an argument (the first argument is $1, the second argument is $2, and so on).</td></tr>
+<tr><td><b>$#</b></td><td>The number of arguments supplied to a script.</td></tr>
+<tr><td><b>$*</b></td><td>All the arguments are double quoted. If a script receives two arguments, $* is equivalent to $1 $2.</td></tr>
+<tr><td><b>$@</b></td><td>All the arguments are individually double quoted. If a script receives two arguments, $@ is equivalent to $1 $2.</td></tr>
+<tr><td><b>$?</b></td><td>The exit status of the last command executed.</td></tr>
+<tr><td><b>$$</b></td><td>The process number of the current shell. For shell scripts, this is the process ID under which they are executing.</td></tr>
+<tr><td><b>$!</b></td><td>The process number of the last background command.</td></tr>
+</table>
+<h1>Shell Basic Operators</h1>
+<h2>Arithmetic Operators:</h2>
+<p>Assume variable a holds 10 and variable b holds 20 then:</p>
+<table class="src">
+<tr>
+<th style="width:10%">Operator</th><th style="width:50%">Description</th><th>Example</th>
+</tr>
+<tr>
+<td>+</td><td>Addition - Adds values on either side of the operator</td><td> `expr $a + $b` will give 30</td>
+</tr>
+<tr>
+<td>-</td><td>Subtraction - Subtracts right hand operand from left hand operand</td><td> `expr $a - $b` will give -10</td>
+</tr>
+<tr>
+<td>*</td><td>Multiplication - Multiplies values on either side of the operator</td><td>`expr $a * $b` will give 200</td>
+</tr>
+<tr>
+<td>/</td><td>Division - Divides left hand operand by right hand operand</td><td>`expr $b / $a` will give 2</td>
+</tr>
+<tr>
+<td>%</td><td>Modulus - Divides left hand operand by right hand operand and returns remainder</td><td> `expr $b % $a` will give 0</td>
+</tr>
+<tr>
+<td>=</td><td>Assignment - Assign right operand in left operand</td><td> a=$b would assign value of b into a</td>
+</tr>
+<tr>
+<td>==</td><td>Equality - Compares two numbers, if both are same then returns true.</td><td> [ $a == $b ] would return false.</td>
+</tr>
+<tr>
+<td>!=</td><td>Not Equality - Compares two numbers, if both are different then returns true.</td><td> [ $a != $b ] would return true.</td>
+</tr>
+</table>
+<h2>Relational Operators:</h2>
+<p>Assume variable a holds 10 and variable b holds 20 then:</p>
+<table class="src">
+<tr>
+<th style="width:10%">Operator</th><th style ="width:50%">Description</th><th>Example</th>
+</tr>
+<tr>
+<td>-eq</td><td> Checks if the value of two operands are equal or not, if yes then condition becomes true.</td><td> [ $a -eq $b ] is not true. </td>
+</tr>
+<tr>
+<td>-ne</td><td> Checks if the value of two operands are equal or not, if values are not equal then condition becomes true.</td><td>[ $a -ne $b ] is true. </td>
+</tr>
+<tr>
+<td>-gt</td><td> Checks if the value of left  operand is greater than the value of right operand, if yes then condition becomes true.</td><td> [ $a -gt $b ] is not true. </td>
+</tr>
+<tr>
+<td>-lt</td><td> Checks if the value of left  operand is less than the value of right operand, if yes then condition becomes true.</td><td> [ $a -lt $b ] is true. </td>
+</tr>
+<tr>
+<td>-ge</td><td> Checks if the value of left  operand is greater than or equal to the value of right operand, if yes then condition becomes true.</td><td> [ $a -ge $b ] is not true. </td>
+</tr>
+<tr>
+<td>-le</td><td> Checks if the value of left  operand is less than or equal to the value of right operand, if yes then condition becomes true.</td><td> [ $a -le $b ] is true. </td>
+</tr>
+</table>
+<h2>Boolean Operators:</h2>
+<p>Assume variable a holds 10 and variable b holds 20 then:</p>
+<table class="src">
+<tr>
+<th style="width:10%">Operator</th><th style="width:50%">Description</th><th>Example</th>
+</tr>
+<tr>
+<td>!</td><td> This is logical negation. This inverts a true condition into false and vice versa.</td><td> [ ! false  ] is true. </td>
+</tr>
+<tr>
+<td>-o</td><td>This is logical OR. If one of the operands is true then condition would be true.</td><td>[  $a -lt 20  -o $b -gt 100 ] is true. </td>
+</tr>
+<tr>
+<td>-a</td><td>This is logical AND. If both the operands are true then condition would be true otherwise it would be false.</td><td>[  $a -lt 20  -a $b -gt 100 ] is false. </td>
+</tr>
+</table>
+<h2>String Operators:</h2>
+<p>Assume variable a holds "abc" and variable b holds "efg" then:</p>
+<table class="src">
+<tr>
+<th style="width:10%">Operator</th><th style="width:50%">Description</th><th>Example</th>
+</tr>
+<tr>
+<td>=</td><td> Checks if the value of two operands are equal or not, if yes then condition becomes true.</td><td> [ $a = $b ] is not true. </td>
+</tr>
+<tr>
+<td>!=</td><td> Checks if the value of two operands are equal or not, if values are not equal then condition becomes true.</td><td>[ $a != $b ] is true. </td>
+</tr>
+<tr>
+<td>-z</td><td> Checks if the given string operand size is zero. If it is zero length then it returns true.</td><td> [ -z $a ] is not true. </td>
+</tr>
+<tr>
+<td>-n</td><td> Checks if the given string operand size is non-zero. If it is non-zero length then it returns true.</td><td> [ -z $a ] is not false. </td>
+</tr>
+<tr>
+<td>str</td><td> Check if str is not the empty string. If it is empty then it returns false.</td><td> [ $a ] is not false. </td>
+</tr>
+</table>
+<h2>File Test Operators:</h2>
+<p>Assume a variable <b>file</b> holds an existing file name "test" whose size is 100 bytes and has read, write and execute permission on:</p>
+<table class="src">
+<tr>
+<th style="width:10%">Operator</th><th style="width:50%">Description</th><th>Example</th>
+</tr>
+<tr>
+<td>-b file</td><td> Checks if file is a block special file if yes then condition becomes true.</td><td> [ -b $file ] is  false. </td>
+</tr>
+<tr>
+<td>-c file</td><td> Checks if file is a character special file if yes then condition becomes true.</td><td> [ -c $file ] is  false. </td>
+</tr>
+<tr>
+<td>-d file</td><td> Check if file is a directory if yes then condition becomes true.</td><td> [ -d $file ] is not true. </td>
+</tr>
+<tr>
+<td>-f file</td><td> Check if file is an ordinary file as opposed to a directory or special file if yes then condition becomes true.</td><td> [ -f $file ] is  true. </td>
+</tr>
+<tr>
+<td>-g file</td><td> Checks if file has its set group ID (SGID) bit set if yes then condition becomes true.</td><td> [ -g $file ] is  false. </td>
+</tr>
+<tr>
+<td>-k file</td><td> Checks if file has its sticky bit set if yes then condition becomes true.</td><td> [ -k $file ] is  false. </td>
+</tr>
+<tr>
+<td>-p file</td><td> Checks if file is a named pipe if yes then condition becomes true.</td><td> [ -p $file ] is  false. </td>
+</tr>
+<tr>
+<td>-t file</td><td> Checks if file descriptor is open and associated with a terminal if yes then condition becomes true.</td><td> [ -t $file ] is  false. </td>
+</tr>
+<tr>
+<td>-u file</td><td> Checks if file has its set user id (SUID) bit set if yes then condition becomes true.</td><td> [ -u $file ] is  false. </td>
+</tr>
+<tr>
+<td>-r file</td><td> Checks if file is readable if yes then condition becomes true.</td><td> [ -r $file ] is  true. </td>
+</tr>
+<tr>
+<td>-w file</td><td> Check if file is writable if yes then condition becomes true.</td><td> [ -w $file ] is  true. </td>
+</tr>
+<tr>
+<td>-x file</td><td> Check if file is execute  if yes then condition becomes true.</td><td> [ -x $file ] is  true. </td>
+</tr>
+<tr>
+<td>-s file</td><td> Check if file has size greater than 0 if yes then condition becomes true.</td><td> [ -s $file ] is true. </td>
+</tr>
+<tr>
+<td>-e file</td><td> Check if file exists.  Is true even if file is a directory but exists.</td><td> [ -e $file ] is true. </td>
+</tr>
+</table>
+<h1>Shell Decision Making</h1>
+<h2>The if...fi statement:</h2>
+<pre class="prettyprint">
+if [ expression ]
+then
+   Statement(s) to be executed if expression is true
+fi
+</pre>
+<h2>The if...else...fi statement:</h2>
+<pre class="prettyprint">
+if [ expression ]
+then
+   Statement(s) to be executed if expression is true
+else
+   Statement(s) to be executed if expression is not true
+fi
+</pre>
+<h2>The if...elif...fi statement:</h2>
+<pre class="prettyprint">
+if [ expression 1 ]
+then
+   Statement(s) to be executed if expression 1 is true
+elif [ expression 2 ]
+then
+   Statement(s) to be executed if expression 2 is true
+elif [ expression 3 ]
+then
+   Statement(s) to be executed if expression 3 is true
+else
+   Statement(s) to be executed if no expression is true
+fi
+</pre>
+<h2>The case...esac Statement:</h2>
+<pre class="prettyprint">
+case word in
+  pattern1)
+     Statement(s) to be executed if pattern1 matches
+     ;;
+  pattern2)
+     Statement(s) to be executed if pattern2 matches
+     ;;
+  pattern3)
+     Statement(s) to be executed if pattern3 matches
+     ;;
+esac
+</pre>
+<h1>Shell Loop Types:</h1>
+<h2>The while Loop:</h2>
+<pre class="prettyprint">
+while command
+do
+   Statement(s) to be executed if command is true
+done
+</pre>
+<h2>The for Loop:</h2>
+<pre class="prettyprint">
+for var in word1 word2 ... wordN
+do
+   Statement(s) to be executed for every word.
+done
+</pre>
+<h2>The until Loop:</h2>
+<pre class="prettyprint">
+until command
+do
+   Statement(s) to be executed until command is true
+done
+</pre>
+<h2>The select Loop:</h2>
+<pre class="prettyprint">
+select var in word1 word2 ... wordN
+do
+   Statement(s) to be executed for every word.
+done
+</pre>
+<h1>Shell Loop Control:</h1>
+<h2>The break statement:</h2>
+<pre class="prettyprint">
+break [n]
+</pre>
+<h2>The continue statement:</h2>
+<pre class="prettyprint">
+continue [n]
+</pre>
+<h1>Shell Substitutions:</h1>
+<p>The shell performs substitution when it encounters an expression that contains one or more special characters.</p>
+<h2>Command Substitution:</h2>
+<p>The command substitution is performed when a command is given as:</p>
+<pre class="prettyprint">
+`command`
+</pre>
+<h2>Variable Substitution:</h2>
+<p>Here is the following table for all the possible substitutions:</p>
+<table class="src">
+<tr>
+<th style="width:30%">Form</th><th style="width:70%">Description</th>
+</tr>
+<tr><td><b>${var}</b></td><td>Substitue the value of <i>var</i>.</td></tr>
+<tr><td><b>${var:-word}</b></td><td>If <i>var</i> is null or unset, <i>word</i> is substituted for <b>var</b>. The value of <i>var</i> does not change.</td></tr>
+<tr><td><b>${var:=word}</b></td><td>If <i>var</i> is null or unset, <i>var</i> is set to the value of <b>word</b>.</td></tr>
+<tr><td><b>${var:?message}</b></td><td>If <i>var</i> is null or unset, <i>message</i> is printed to standard error. This checks that variables are set correctly.</td></tr>
+<tr><td><b>${var:+word}</b></td><td>If <i>var</i> is set, <i>word</i> is substituted for var. The value of <i>var</i> does not change.</td></tr>
+</table>
+<h1>Redirection Commands:</h1>
+<p>Following is the complete list of commands which you can use for redirection:</p>
+<table class="src">
+<tr>
+<th style="width:25%">Command</th><th style="width:75%">Description</th>
+</tr>
+<tr><td>pgm &gt; file</td><td>Output of pgm is redirected to file</td></tr>
+<tr><td>pgm &lt; file</td><td>Program pgm reads its input from file.</td></tr>
+<tr><td>pgm &gt;&gt; file</td><td>Output of pgm is appended to file.</td></tr>
+<tr><td>n &gt; file</td><td>Output from stream with descriptor n redirected to file.</td></tr>
+<tr><td>n &gt;&gt; file</td><td>Output from stream with descriptor n appended to file.</td></tr>
+<tr><td>n &gt;&amp; m</td><td>Merge output from stream n with stream m.</td></tr>
+<tr><td>n &lt;&amp; m</td><td>Merge input from stream n with stream m.</td></tr>
+<tr><td>&lt;&lt; tag </td><td>Standard input comes from here through next tag at start of line.</td></tr>
+<tr><td>|</td><td>Takes output from one program, or process, and sends it to another.</td></tr>
+</table>
+<h1>Shell Man Pages Help:</h1>
+<p>This quick guide lists commands, including a syntax and brief description. For more detail, use:</p>
+<pre class="prettyprint">
+$man command
+</pre>
+<hr />
+<div class="pre-btn">
+<a href="unix-useful-commands.html">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/unix-quick-guide.pdf" alt="Unix - Quick Guide" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="unix-builtin-functions.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.html" target="_top">ASP.NET </a> |
+<a href="../jquery/index.html" target="_top">jQuery </a> |
+<a href="../ajax/index.html" target="_top">AJAX </a> |
+<a href="../ant/index.html" target="_top">ANT</a> |
+<a href="../jsp/index.html" target="_top">JSP </a> |
+<a href="../servlets/index.html" target="_top">Servlets </a> |
+<a href="../log4j/index.html" target="_top">log4j </a> |
+<a href="../ibatis/index.html" target="_top">iBATIS </a> |
+<a href="../hibernate/index.html" target="_top">Hibernate </a> |
+<a href="../jdbc/index.html" target="_top">JDBC </a> |
+<a href="../struts_2/index.html" target="_top">Struts </a> |
+<a href="../html5/index.html" target="_top">HTML5 </a> |
+<a href="../sql/index.html" target="_top">SQL </a> |
+<a href="../mysql/index.html" target="_top">MySQL </a> |
+<a href="../cplusplus/index.html" target="_top">C++ </a> |
+<a href="index.html" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix/unix-quick-guide.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 17:34:02 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

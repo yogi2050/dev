@@ -1,0 +1,436 @@
+<html>
+
+<!-- Mirrored from www.tutorialspoint.com/perl/perl_gmtime.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:14 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>PERL gmtime Function</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="Keywords" content="Perl, Programming, Language, Object Oriented Perl, Perl Variables, Scalars, Arrays, Hash, File I/O, Looping, Regular Expressions, Subroutines, Coding Standard, Writing Modules, Process Management, Socket, Examples, References, Special Variables, Syntax Overview, Advanced Perl, Tutorial, Tutorials, Operators, Built-in Functions, Quiz">
+<meta name="Description" content="Free tutorials and references for PERL Programming Common Gateway Interface (CGI) Database Interface (DBI) with PERL Object Oriented Perl and Perl Variables Scalars Arrays Hash File I/O Looping Regular Expressions Subroutines Coding Standard Writing Modules Process Management Socket Examples References Special Variables Syntax Overview Advanced Perl Tutorial Perl Operators Built-in Functions and Quiz">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base >
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border=0 class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="18" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br>
+&nbsp;&nbsp;<a target="_top" href="index.html"><b>Perl Home</b></a><br><br>
+&nbsp;&nbsp;<b>PERL Functions</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="perl_abs.htm">abs</a></li>
+<li><a class="left" target="_top" href="perl_accept.htm">accept</a></li>
+<li><a class="left" target="_top" href="perl_alarm.htm">alarm</a></li>
+<li><a class="left" target="_top" href="perl_atan2.htm">atan2</a></li>
+<li><a class="left" target="_top" href="perl_bind.htm">bind</a></li>
+<li><a class="left" target="_top" href="perl_binmode.htm">binmode</a></li>
+<li><a class="left" target="_top" href="perl_bless.htm">bless</a></li>
+<li><a class="left" target="_top" href="perl_caller.htm">caller</a></li>
+<li><a class="left" target="_top" href="perl_chdir.htm">chdir</a></li>
+<li><a class="left" target="_top" href="perl_chmod.htm">chmod</a></li>
+<li><a class="left" target="_top" href="perl_chomp.htm">chomp</a></li>
+<li><a class="left" target="_top" href="perl_chop.htm">chop</a></li>
+<li><a class="left" target="_top" href="perl_chown.htm">chown</a></li>
+<li><a class="left" target="_top" href="perl_chr.htm">chr</a></li>
+<li><a class="left" target="_top" href="perl_chroot.htm">chroot</a></li>
+<li><a class="left" target="_top" href="perl_close.htm">close</a></li>
+<li><a class="left" target="_top" href="perl_closedir.htm">closedir</a></li>
+<li><a class="left" target="_top" href="perl_connect.htm">connect</a></li>
+<li><a class="left" target="_top" href="perl_continue.htm">continue</a></li>
+<li><a class="left" target="_top" href="perl_cos.htm">cos</a></li>
+<li><a class="left" target="_top" href="perl_crypt.htm">crypt</a></li>
+<li><a class="left" target="_top" href="perl_dbmclose.htm">dbmclose</a></li>
+<li><a class="left" target="_top" href="perl_dbmopen.htm">dbmopen</a></li>
+<li><a class="left" target="_top" href="perl_defined.htm">defined</a></li>
+<li><a class="left" target="_top" href="perl_delete.htm">delete</a></li>
+<li><a class="left" target="_top" href="perl_die.htm">die</a></li>
+<li><a class="left" target="_top" href="perl_do.htm">do</a></li>
+<li><a class="left" target="_top" href="perl_dump.htm">dump</a></li>
+<li><a class="left" target="_top" href="perl_each.htm">each</a></li>
+<li><a class="left" target="_top" href="perl_endgrent.htm">endgrent</a></li>
+<li><a class="left" target="_top" href="perl_endhostent.htm">endhostent</a></li>
+<li><a class="left" target="_top" href="perl_endnetent.htm">endnetent</a></li>
+<li><a class="left" target="_top" href="perl_endprotoent.htm">endprotoent</a></li>
+<li><a class="left" target="_top" href="perl_endpwent.htm">endpwent</a></li>
+<li><a class="left" target="_top" href="perl_endservent.htm">endservent</a></li>
+<li><a class="left" target="_top" href="perl_eof.htm">eof</a></li>
+<li><a class="left" target="_top" href="perl_eval.htm">eval</a></li>
+<li><a class="left" target="_top" href="perl_exec.htm">exec</a></li>
+<li><a class="left" target="_top" href="perl_exists.htm">exists</a></li>
+<li><a class="left" target="_top" href="perl_exit.htm">exit</a></li>
+<li><a class="left" target="_top" href="perl_exp.htm">exp</a></li>
+<li><a class="left" target="_top" href="perl_fcntl.htm">fcntl</a></li>
+<li><a class="left" target="_top" href="perl_fileno.htm">fileno</a></li>
+<li><a class="left" target="_top" href="perl_flock.htm">flock</a></li>
+<li><a class="left" target="_top" href="perl_fork.htm">fork</a></li>
+<li><a class="left" target="_top" href="perl_format.html">format</a></li>
+<li><a class="left" target="_top" href="perl_formline.htm">formline</a></li>
+<li><a class="left" target="_top" href="perl_getc.htm">getc</a></li>
+<li><a class="left" target="_top" href="perl_getgrent.htm">getgrent</a></li>
+<li><a class="left" target="_top" href="perl_getgrgid.htm">getgrgid</a></li>
+<li><a class="left" target="_top" href="perl_getgrnam.htm">getgrnam</a></li>
+<li><a class="left" target="_top" href="perl_gethostbyaddr.htm">gethostbyaddr</a></li>
+<li><a class="left" target="_top" href="perl_gethostbyname.htm">gethostbyname</a></li>
+<li><a class="left" target="_top" href="perl_gethostent.htm">gethostent</a></li>
+<li><a class="left" target="_top" href="perl_getlogin.htm">getlogin</a></li>
+<li><a class="left" target="_top" href="perl_getnetbyaddr.htm">getnetbyaddr</a></li>
+<li><a class="left" target="_top" href="perl_getnetbyname.htm">getnetbyname</a></li>
+<li><a class="left" target="_top" href="perl_getnetent.htm">getnetent</a></li>
+<li><a class="left" target="_top" href="perl_getpeername.htm">getpeername</a></li>
+<li><a class="left" target="_top" href="perl_getpgrp.htm">getpgrp</a></li>
+<li><a class="left" target="_top" href="perl_getppid.htm">getppid</a></li>
+<li><a class="left" target="_top" href="perl_getpriority.htm">getpriority</a></li>
+<li><a class="left" target="_top" href="perl_getprotobyname.htm">getprotobyname</a></li>
+<li><a class="left" target="_top" href="perl_getprotobynumber.htm">getprotobynumber</a></li>
+<li><a class="left" target="_top" href="perl_getprotoent.htm">getprotoent</a></li>
+<li><a class="left" target="_top" href="perl_getpwent.htm">getpwent</a></li>
+<li><a class="left" target="_top" href="perl_getpwnam.htm">getpwnam</a></li>
+<li><a class="left" target="_top" href="perl_getpwuid.htm">getpwuid</a></li>
+<li><a class="left" target="_top" href="perl_getservbyname.htm">getservbyname</a></li>
+<li><a class="left" target="_top" href="perl_getservbyport.htm">getservbyport</a></li>
+<li><a class="left" target="_top" href="perl_getservent.htm">getservent</a></li>
+<li><a class="left" target="_top" href="perl_getsockname.htm">getsockname</a></li>
+<li><a class="left" target="_top" href="perl_getsockopt.htm">getsockopt</a></li>
+<li><a class="left" target="_top" href="perl_glob.htm">glob</a></li>
+<li><a class="left" target="_top" href="perl_gmtime.htm"><b>gmtime</b></a></li>
+<li><a class="left" target="_top" href="perl_goto.htm">goto</a></li>
+<li><a class="left" target="_top" href="perl_grep.htm">grep</a></li>
+<li><a class="left" target="_top" href="perl_hex.htm">hex</a></li>
+<li><a class="left" target="_top" href="perl_import.htm">import</a></li>
+<li><a class="left" target="_top" href="perl_index.htm">index</a></li>
+<li><a class="left" target="_top" href="perl_int.htm">int</a></li>
+<li><a class="left" target="_top" href="perl_ioctl.htm">ioctl</a></li>
+<li><a class="left" target="_top" href="perl_join.htm">join</a></li>
+<li><a class="left" target="_top" href="perl_keys.htm">keys</a></li>
+<li><a class="left" target="_top" href="perl_kill.htm">kill</a></li>
+<li><a class="left" target="_top" href="perl_last.htm">last</a></li>
+<li><a class="left" target="_top" href="perl_lc.htm">lc</a></li>
+<li><a class="left" target="_top" href="perl_lcfirst.htm">lcfirst</a></li>
+<li><a class="left" target="_top" href="perl_length.htm">length</a></li>
+<li><a class="left" target="_top" href="perl_link.htm">link</a></li>
+<li><a class="left" target="_top" href="perl_listen.htm">listen</a></li>
+<li><a class="left" target="_top" href="perl_local.htm">local</a></li>
+<li><a class="left" target="_top" href="perl_localtime.htm">localtime</a></li>
+<li><a class="left" target="_top" href="perl_lock.htm">lock</a></li>
+<li><a class="left" target="_top" href="perl_log.htm">log</a></li>
+<li><a class="left" target="_top" href="perl_lstat.htm">lstat</a></li>
+<li><a class="left" target="_top" href="perl_m.htm">m</a></li>
+<li><a class="left" target="_top" href="perl_map.htm">map</a></li>
+<li><a class="left" target="_top" href="perl_mkdir.htm">mkdir</a></li>
+<li><a class="left" target="_top" href="perl_msgctl.htm">msgctl</a></li>
+<li><a class="left" target="_top" href="perl_msgget.htm">msgget</a></li>
+<li><a class="left" target="_top" href="perl_msgrcv.htm">msgrcv</a></li>
+<li><a class="left" target="_top" href="perl_msgsnd.htm">msgsnd</a></li>
+<li><a class="left" target="_top" href="perl_my.htm">my</a></li>
+<li><a class="left" target="_top" href="perl_next.htm">next</a></li>
+<li><a class="left" target="_top" href="perl_no.htm">no</a></li>
+<li><a class="left" target="_top" href="perl_oct.htm">oct</a></li>
+<li><a class="left" target="_top" href="perl_open.htm">open</a></li>
+<li><a class="left" target="_top" href="perl_opendir.htm">opendir</a></li>
+<li><a class="left" target="_top" href="perl_ord.htm">ord</a></li>
+<li><a class="left" target="_top" href="perl_our.htm">our</a></li>
+<li><a class="left" target="_top" href="perl_pack.htm">pack</a></li>
+<li><a class="left" target="_top" href="perl_package.htm">package</a></li>
+<li><a class="left" target="_top" href="perl_pipe.htm">pipe</a></li>
+<li><a class="left" target="_top" href="perl_pop.htm">pop</a></li>
+<li><a class="left" target="_top" href="perl_pos.htm">pos</a></li>
+<li><a class="left" target="_top" href="perl_print.htm">print</a></li>
+<li><a class="left" target="_top" href="perl_printf.htm">printf</a></li>
+<li><a class="left" target="_top" href="perl_prototype.htm">prototype</a></li>
+<li><a class="left" target="_top" href="perl_push.htm">push</a></li>
+<li><a class="left" target="_top" href="perl_q.htm">q</a></li>
+<li><a class="left" target="_top" href="perl_qq.htm">qq</a></li>
+<li><a class="left" target="_top" href="perl_qr.htm">qr</a></li>
+<li><a class="left" target="_top" href="perl_quotemeta.htm">quotemeta</a></li>
+<li><a class="left" target="_top" href="perl_qw.htm">qw</a></li>
+<li><a class="left" target="_top" href="perl_qx.htm">qx</a></li>
+<li><a class="left" target="_top" href="perl_rand.htm">rand</a></li>
+<li><a class="left" target="_top" href="perl_read.htm">read</a></li>
+<li><a class="left" target="_top" href="perl_readdir.htm">readdir</a></li>
+<li><a class="left" target="_top" href="perl_readline.htm">readline</a></li>
+<li><a class="left" target="_top" href="perl_readlink.htm">readlink</a></li>
+<li><a class="left" target="_top" href="perl_readpipe.htm">readpipe</a></li>
+<li><a class="left" target="_top" href="perl_recv.htm">recv</a></li>
+<li><a class="left" target="_top" href="perl_redo.htm">redo</a></li>
+<li><a class="left" target="_top" href="perl_ref.htm">ref</a></li>
+<li><a class="left" target="_top" href="perl_rename.htm">rename</a></li>
+<li><a class="left" target="_top" href="perl_require.htm">require</a></li>
+<li><a class="left" target="_top" href="perl_reset.htm">reset</a></li>
+<li><a class="left" target="_top" href="perl_return.htm">return</a></li>
+<li><a class="left" target="_top" href="perl_reverse.htm">reverse</a></li>
+<li><a class="left" target="_top" href="perl_rewinddir.htm">rewinddir</a></li>
+<li><a class="left" target="_top" href="perl_rindex.htm">rindex</a></li>
+<li><a class="left" target="_top" href="perl_rmdir.htm">rmdir</a></li>
+<li><a class="left" target="_top" href="perl_s.htm">s</a></li>
+<li><a class="left" target="_top" href="perl_scalar.htm">scalar</a></li>
+<li><a class="left" target="_top" href="perl_seek.htm">seek</a></li>
+<li><a class="left" target="_top" href="perl_seekdir.htm">seekdir</a></li>
+<li><a class="left" target="_top" href="perl_select.htm">select</a></li>
+<li><a class="left" target="_top" href="perl_semctl.htm">semctl</a></li>
+<li><a class="left" target="_top" href="perl_semget.htm">semget</a></li>
+<li><a class="left" target="_top" href="perl_semop.htm">semop</a></li>
+<li><a class="left" target="_top" href="perl_send.htm">send</a></li>
+<li><a class="left" target="_top" href="perl_setgrent.htm">setgrent</a></li>
+<li><a class="left" target="_top" href="perl_sethostent.htm">sethostent</a></li>
+<li><a class="left" target="_top" href="perl_setnetent.htm">setnetent</a></li>
+<li><a class="left" target="_top" href="perl_setpgrp.htm">setpgrp</a></li>
+<li><a class="left" target="_top" href="perl_setpriority.htm">setpriority</a></li>
+<li><a class="left" target="_top" href="perl_setprotoent.htm">setprotoent</a></li>
+<li><a class="left" target="_top" href="perl_setpwent.htm">setpwent</a></li>
+<li><a class="left" target="_top" href="perl_setservent.htm">setservent</a></li>
+<li><a class="left" target="_top" href="perl_setsockopt.htm">setsockopt</a></li>
+<li><a class="left" target="_top" href="perl_shift.htm">shift</a></li>
+<li><a class="left" target="_top" href="perl_shmctl.htm">shmctl</a></li>
+<li><a class="left" target="_top" href="perl_shmget.htm">shmget</a></li>
+<li><a class="left" target="_top" href="perl_shmread.htm">shmread</a></li>
+<li><a class="left" target="_top" href="perl_shmwrite.htm">shmwrite</a></li>
+<li><a class="left" target="_top" href="perl_shutdown.htm">shutdown</a></li>
+<li><a class="left" target="_top" href="perl_sin.htm">sin</a></li>
+<li><a class="left" target="_top" href="perl_sleep.htm">sleep</a></li>
+<li><a class="left" target="_top" href="perl_socket.html">socket</a></li>
+<li><a class="left" target="_top" href="perl_socketpair.htm">socketpair</a></li>
+<li><a class="left" target="_top" href="perl_sort.htm">sort</a></li>
+<li><a class="left" target="_top" href="perl_splice.htm">splice</a></li>
+<li><a class="left" target="_top" href="perl_split.htm">split</a></li>
+<li><a class="left" target="_top" href="perl_sprintf.htm">sprintf</a></li>
+<li><a class="left" target="_top" href="perl_sqrt.htm">sqrt</a></li>
+<li><a class="left" target="_top" href="perl_srand.htm">srand</a></li>
+<li><a class="left" target="_top" href="perl_stat.htm">stat</a></li>
+<li><a class="left" target="_top" href="perl_study.htm">study</a></li>
+<li><a class="left" target="_top" href="perl_sub.htm">sub</a></li>
+<li><a class="left" target="_top" href="perl_substr.htm">substr</a></li>
+<li><a class="left" target="_top" href="perl_symlink.htm">symlink</a></li>
+<li><a class="left" target="_top" href="perl_syscall.htm">syscall</a></li>
+<li><a class="left" target="_top" href="perl_sysopen.htm">sysopen</a></li>
+<li><a class="left" target="_top" href="perl_sysread.htm">sysread</a></li>
+<li><a class="left" target="_top" href="perl_sysseek.htm">sysseek</a></li>
+<li><a class="left" target="_top" href="perl_system.htm">system</a></li>
+<li><a class="left" target="_top" href="perl_syswrite.htm">syswrite</a></li>
+<li><a class="left" target="_top" href="perl_tell.htm">tell</a></li>
+<li><a class="left" target="_top" href="perl_telldir.htm">telldir</a></li>
+<li><a class="left" target="_top" href="perl_tie.htm">tie</a></li>
+<li><a class="left" target="_top" href="perl_tied.htm">tied</a></li>
+<li><a class="left" target="_top" href="perl_time.htm">time</a></li>
+<li><a class="left" target="_top" href="perl_times.htm">times</a></li>
+<li><a class="left" target="_top" href="perl_tr.htm">tr</a></li>
+<li><a class="left" target="_top" href="perl_truncate.htm">truncate</a></li>
+<li><a class="left" target="_top" href="perl_uc.htm">uc</a></li>
+<li><a class="left" target="_top" href="perl_ucfirst.htm">ucfirst</a></li>
+<li><a class="left" target="_top" href="perl_umask.htm">umask</a></li>
+<li><a class="left" target="_top" href="perl_undef.htm">undef</a></li>
+<li><a class="left" target="_top" href="perl_unlink.htm">unlink</a></li>
+<li><a class="left" target="_top" href="perl_unpack.htm">unpack</a></li>
+<li><a class="left" target="_top" href="perl_unshift.htm">unshift</a></li>
+<li><a class="left" target="_top" href="perl_untie.htm">untie</a></li>
+<li><a class="left" target="_top" href="perl_use.htm">use</a></li>
+<li><a class="left" target="_top" href="perl_utime.htm">utime</a></li>
+<li><a class="left" target="_top" href="perl_values.htm">values</a></li>
+<li><a class="left" target="_top" href="perl_vec.htm">vec</a></li>
+<li><a class="left" target="_top" href="perl_wait.htm">wait</a></li>
+<li><a class="left" target="_top" href="perl_waitpid.htm">waitpid</a></li>
+<li><a class="left" target="_top" href="perl_wantarray.htm">wantarray</a></li>
+<li><a class="left" target="_top" href="perl_warn.htm">warn</a></li>
+<li><a class="left" target="_top" href="perl_write.htm">write</a></li>
+<li><a class="left" target="_top" href="perl_-X.htm">-X</a></li>
+<li><a class="left" target="_top" href="perl_y.htm">y</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br><br>
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+<td  style="width:10px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/about_advertising.html">Advertising</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle"  cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>PERL gmtime Function</h1>
+<hr />
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="top">
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<hr />
+<h2>Syntax</h2>
+
+<table cellpadding=5 class="src"><tr><td>
+<p>gmtime EXPR
+<p>gmtime
+</td></tr></table>
+<br>
+<h2>Definition and Usage</h2>
+<p>Returns a list of values corresponding to the date and time as specified by EXPR, or
+date and time returned by the time function if EXPR is omitted, localized for the
+standard Greenwich mean time. The values returned are as follows:</p>
+<p>($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = gmtime(time);
+<p>All list elements are numeric, and come straight out of the C `struct tm'. $sec, $min, and $hour are the seconds, minutes, and hours of the specified time. $mday is the day of the month, and $mon is the month itself, in the range 0..11  with 0 indicating January and 11 indicating December. $year is the number of years since 1900. That is, $year is 123  in year 2023. $wday is the day of the week, with 0 indicating Sunday and 3 indicating Wednesday. $yday is the day of the year, in the range 0..364  (or 0..365  in leap years). $isdst is always 0 .</p>
+<h2>Return Value</h2>
+<ul>
+<li><p>In scalar context a string of the form: Thu Sep 21 14:52:52 2000</p>
+<li><p>In list context the individual time component
+values (seconds, minutes, hours, day of
+month, month, year, day of week, day of
+year, daylight savings time).</p>
+</ul>
+<h2>Example</h2>
+<p>Try out following example: </p>
+<table cellpadding="5" class="src">
+<tr>
+<td>
+<pre>
+#!/usr/bin/perl
+
+@weekday = ("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat");
+
+$local_time = gmtime();
+
+print "Local time = $local_time\n";
+($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = gmtime(time);
+$year = $year + 1900;
+print "Formated time = $mday/$mon/$year $hour:$min:$sec $weekday[$wday]\n";
+
+</pre>
+</td>
+</tr>
+</table>
+</td>
+</tr></table>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/perl/perl_gmtime.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:14 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,623 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/tput.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>tput - Unix, Linux Command</title>
+<meta name="Description" Content="tput - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>tput - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+<b>tput</b>, <b>reset</b> - initialize a terminal or query terminfo database
+<h1 class="manpages">SYNOPSIS</h1>
+<b>tput</b> [<b>-T</b><i>type</i>] <i>capname</i> [<i>parms</i> ... ]
+<!-- Need break --><br />
+<b>tput</b> [<b>-T</b><i>type</i>] <b>init</b>
+<!-- Need break --><br />
+<b>tput</b> [<b>-T</b><i>type</i>] <b>reset</b>
+<!-- Need break --><br />
+<b>tput</b> [<b>-T</b><i>type</i>] <b>longname</b>
+<!-- Need break --><br />
+<b>tput -S</b>  <b>&lt;&lt;</b>
+<!-- Need break --><br />
+<b>tput -V</b>
+<h1 class="manpages">DESCRIPTION</h1>
+The <b>tput</b> utility uses the <b>terminfo</b> database to make the
+values of terminal-dependent capabilities and information available to
+the shell (see <b>sh</b>(1)), to initialize or reset the terminal, or
+return the long name of the requested terminal type.
+The result depends upon the capability&#146;s type:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+string
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+<b>tput</b> writes the string to the standard output.
+No trailing newline is supplied.
+</td></tr>
+<tr valign="top"><td colspan="2">
+integer
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+<b>tput</b> writes the decimal value to the standard output,
+with a trailing newline.
+</td></tr>
+<tr valign="top"><td colspan="2">
+boolean
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+<b>tput</b> simply sets the exit code
+(<b>0</b> for TRUE if the terminal has the capability,
+<b>1</b> for FALSE if it does not),
+and writes nothing to the standard output.
+</td></tr>
+</table>
+<p>
+Before using a value returned on the standard output,
+the application should test the exit code
+(e.g., <b>$?</b>, see <b>sh</b>(1)) to be sure it is <b>0</b>.
+(See the <b><a href=#5>EXIT CODES</a></b> and <b><a href=#6>DIAGNOSTICS</a></b> sections.)
+For a complete list of capabilities
+and the <i>capname</i> associated with each, see <b>terminfo</b>(1).
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-T</b><i>type</i>
+</td><td valign="bottom">
+indicates the <i>type</i> of terminal.  Normally this option is
+unnecessary, because the default is taken from the environment
+variable <b>TERM</b>.  If <b>-T</b> is specified, then the shell
+variables <b>LINES</b> and <b>COLUMNS</b> will be ignored,and the
+operating system will not be queried for the actual screen size.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>capname</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+indicates the capability from the <b>terminfo</b> database.  When
+<b>termcap</b> support is compiled in, the <b>termcap</b> name for
+the capability is also accepted.
+</td></tr>
+<tr valign="top"><td>
+<i>parms</i>
+</td><td valign="bottom">
+If the capability is a string that takes parameters, the arguments
+<i>parms</i> will be instantiated into the string.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+Most parameters are numbers.
+Only a few terminfo capabilities require string parameters;
+<b>tput</b> uses a table to decide which to pass as strings.
+Normally <b>tput</b> uses <b>tparm</b> (3X) to perform the substitution.
+If no parameters are given for the capability,
+<b>tput</b> writes the string without performing the substitution.
+</td></tr>
+<tr valign="top"><td>
+<b>-S</b>
+</td><td valign="bottom">
+allows more than one capability per invocation of <b>tput</b>.  The
+capabilities must be passed to <b>tput</b> from the standard input
+instead of from the command line (see example).
+Only one <i>capname</i> is allowed per line.
+The <b>-S</b> option changes the
+meaning of the <b>0</b> and <b>1</b> boolean and string exit codes (see the
+EXIT CODES section).
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+Again, <b>tput</b> uses a table and the presence of parameters in its input
+to decide whether to use <b>tparm</b> (3X),
+and how to interpret the parameters.
+</td></tr>
+<tr valign="top"><td>
+<b>-V</b>
+</td><td valign="bottom">
+reports the version of ncurses which was used in this program, and exits.
+</td></tr>
+<tr valign="top"><td>
+<b>init</b>
+</td><td valign="bottom">
+If the <b>terminfo</b> database is present and an entry for the user&#146;s
+terminal exists (see <b>-T</b><i>type</i>, above), the following will
+occur:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+(1)
+</td><td valign="bottom">
+if present, the terminal&#146;s initialization strings will be
+output as detailed in the <b>terminfo</b>(5) section on
+<i>Tabs and Initialization</i>, </td></tr>
+<tr valign="top"><td>
+(2)
+</td><td valign="bottom">
+any delays (e.g., newline) specified in the entry will
+be set in the tty driver,
+</td></tr>
+<tr valign="top"><td>
+(3)
+</td><td valign="bottom">
+tabs expansion will be turned on or off according to
+the specification in the entry, and
+</td></tr>
+<tr valign="top"><td>
+(4)
+</td><td valign="bottom">
+if tabs are not expanded,
+standard tabs will be set (every 8 spaces).
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+If an entry does not
+contain the information needed for any of the four above activities,
+that activity will silently be skipped.
+</td></tr>
+<tr valign="top"><td>
+<b>reset</b>
+</td><td valign="bottom">
+Instead of putting out initialization strings, the terminal&#146;s
+reset strings will be output if present (<b>rs1</b>, <b>rs2</b>, <b>rs3</b>, <b>rf</b>).
+If the reset strings are not present, but initialization
+strings are, the initialization strings will be output.
+Otherwise, <b>reset</b> acts identically to <b>init</b>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>longname</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+If the <b>terminfo</b> database is present and an entry for the
+user&#146;s terminal exists (see <b>-T</b><i>type</i> above), then the long name
+of the terminal will be put out.  The long name is the last
+name in the first line of the terminal&#146;s description in the
+<b>terminfo</b> database [see <b>term</b>(5)].
+</td></tr>
+<!-- PP ends table -->
+</table>
+If <b>tput</b> is invoked by a link named <b>reset</b>, this has the
+same effect as <b>tput reset</b>.
+See <b>tset</b> for comparison, which has similar behavior.
+<h1 class="manpages">EXAMPLES</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>tput init</b>
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Initialize the terminal according to the type of
+terminal in the environmental variable <b>TERM</b>.  This
+command should be included in everyone&#146;s .profile after
+the environmental variable <b>TERM</b> has been exported, as
+illustrated on the <b>profile</b>(5) manual page.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>tput -T5620 reset</b>
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Reset an AT&T 5620 terminal, overriding the type of
+terminal in the environmental variable <b>TERM</b>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>tput cup 0 0</b>
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Send the sequence to move the cursor to row <b>0</b>, column <b>0</b>
+(the upper left corner of the screen, usually known as the "home"
+cursor position).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>tput clear</b>
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Echo the clear-screen sequence for the current terminal.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>tput cols</b>
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Print the number of columns for the current terminal.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>tput -T450 cols</b>
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Print the number of columns for the 450 terminal.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>bold=&#145;tput smso&#145; offbold=&#145;tput rmso&#145;</b>
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Set the shell variables <b>bold</b>, to begin stand-out mode
+sequence, and <b>offbold</b>, to end standout mode sequence,
+for the current terminal.  This might be followed by a
+prompt: <b>echo "${bold}Please type in your name: ${offbold}\c"</b>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>tput hc</b>
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Set exit code to indicate if the current terminal is a hard copy terminal.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>tput cup 23 4</b>
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Send the sequence to move the cursor to row 23, column 4.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>tput cup</b>
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Send the terminfo string for cursor-movement, with no parameters substituted.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>tput longname</b>
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Print the long name from the <b>terminfo</b> database for the
+type of terminal specified in the environmental
+variable <b>TERM</b>.
+<p>
+<b>tput -S &lt;&lt;!</b>
+<!-- Need break --><br />
+<b>&gt; clear</b>
+<!-- Need break --><br />
+<b>&gt; cup 10 10</b>
+<!-- Need break --><br />
+<b>&gt; bold</b>
+<!-- Need break --><br />
+<b>&gt; !</b>
+</td></tr>
+<tr valign="top"><td>
+
+</td><td valign="bottom">
+This example shows <b>tput</b> processing several capabilities in one invocation.
+It clears the screen,
+moves the cursor to position 10, 10
+and turns on bold (extra bright) mode.
+The list is terminated by an exclamation mark (<b>!</b>) on a line by itself.
+</td></tr>
+</table>
+<h1 class="manpages">FILES</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>/usr/share/terminfo</b>
+</td><td valign="bottom">
+compiled terminal description database
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>/usr/share/tabset/*</b>
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+tab settings for some terminals, in a format
+appropriate to be output to the terminal (escape
+sequences that set margins and tabs); for more
+information, see the "Tabs and Initialization"
+section of <b>terminfo</b>(5)
+</td></tr>
+</table>
+<h1 class="manpages">EXIT CODES</h1>
+If the <b>-S</b> option is used,
+<b>tput</b> checks for errors from each line,
+and if any errors are found, will set the exit code to 4 plus the
+number of lines with errors.
+If no errors are found, the exit code is <b>0</b>.
+No indication of which line failed can be given so
+exit code <b>1</b> will never appear.  Exit codes <b>2</b>, <b>3</b>, and
+<b>4</b> retain their usual interpretation.
+If the <b>-S</b> option is not used,
+the exit code depends on the type of <i>capname</i>:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<i>boolean</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+a value of <b>0</b> is set for TRUE and <b>1</b> for FALSE.
+</td></tr>
+<tr valign="top"><td>
+<i>string</i> </td><td valign="bottom">
+a value of <b>0</b> is set if the
+<i>capname</i> is defined for this terminal <i>type</i> (the value of
+<i>capname</i> is returned on standard output);
+a value of <b>1</b> is set if <i>capname</i>
+is not defined for this terminal <i>type</i>
+(nothing is written to standard output).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>integer</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+a value of <b>0</b> is always set,
+whether or not <i>capname</i> is defined for this terminal <i>type</i>.
+To determine if <i>capname</i> is defined for this terminal <i>type</i>,
+the user must test the value written to standard output.
+A value of <b>-1</b>
+means that <i>capname</i> is not defined for this terminal <i>type</i>.
+</td></tr>
+<tr valign="top"><td>
+<i>other</i> </td><td valign="bottom">
+<b>reset</b> or <b>init</b> may fail to find their respective files.
+In that case, the exit code is set to 4 + <b>errno</b>.
+</td></tr>
+</table>
+<p>
+Any other exit code indicates an error; see the DIAGNOSTICS section.
+<h1 class="manpages">DIAGNOSTICS</h1>
+<b>tput</b> prints the following error messages and sets the corresponding exit
+codes.
+<p>
+<!-- ignored unsupported tag .ne -->
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td>exit code</td><td>error message</td></tr>
+<tr valign="top">
+<td><b>0</b></td><td>(<i>capname</i> is a numeric variable that is not specified in the
+<b>terminfo</b>(1) database for this terminal type, e.g.
+<b>tput -T450 lines</b> and <b>tput -T2621 xmc</b>)
+</td></tr>
+<tr valign="top">
+<td><b>1</b></td><td>no error message is printed, see the <b>EXIT CODES</b> section.</td></tr>
+<tr valign="top">
+<td><b>2</b></td><td>usage error</td></tr>
+<tr valign="top">
+<td><b>3</b></td><td>unknown terminal <i>type</i> or no <b>terminfo</b> database</td></tr>
+<tr valign="top">
+<td><b>4</b></td><td>unknown <b>terminfo</b> capability <i>capname</i></td></tr>
+<tr valign="top">
+<td><b>&gt;4</b></td><td>error occurred in -S</td></tr>
+</table>
+<h1 class="manpages">PORTABILITY</h1>
+<p>
+The <b>longname</b> and <b>-S</b> options, and the parameter-substitution
+features used in the <b>cup</b> example, are not supported in BSD curses or in
+AT&T/USL curses before SVr4.
+<p>
+X/Open documents only the operands for <b>clear</b>, <b>init</b> and <b>reset</b>.
+In this implementation, <b>clear</b> is part of the <i>capname</i> support.
+Other implementations of <b>tput</b> on
+SVr4-based systems such as Solaris, IRIX64 and HPUX
+as well as others such as AIX and Tru64
+provide support for <i>capname</i> operands.
+A few platforms such as FreeBSD and NetBSD recognize termcap names rather
+than terminfo capability names in their respective <b>tput</b> commands.
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<b>stty</b>(1),
+<b>tabs</b>(1),
+<b>terminfo</b>(5).
+<p>
+This describes <b>ncurses</b>
+version 5.5 (patch 20060715).
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion5792.html?tutorial=unix_commands&amp;file=tput.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/tput.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,874 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/qmgr.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>qmgr - Unix, Linux Command</title>
+<meta name="Description" Content="qmgr - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>qmgr - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- ignored unsupported tag .ad -->
+<h1 class="manpages">NAME</h1>
+qmgr
+-
+Postfix queue manager
+<h1 class="manpages">SYNOPSIS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<b>qmgr</b> [generic Postfix daemon options]
+</pre></td></tr>
+</table>
+<h1 class="manpages">DESCRIPTION</h1>
+<!-- ignored unsupported tag .ad -->
+The <b>qmgr</b>(8) daemon awaits the arrival of incoming mail
+and arranges for its delivery via Postfix delivery processes.
+The actual mail routing strategy is delegated to the
+<b>trivial-rewrite</b>(8) daemon.
+This program expects to be run from the <b>master</b>(8) process
+manager.
+<p>
+Mail addressed to the local <b>double-bounce</b> address is
+logged and discarded.  This stops potential loops caused by
+undeliverable bounce notifications.
+<h1 class="manpages">MAIL QUEUES</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+The <b>qmgr</b>(8) daemon maintains the following queues:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>incoming</b>
+</td><td>
+Inbound mail from the network, or mail picked up by the
+local <b>pickup</b>(8) daemon from the <b>maildrop</b> directory.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>active</b>
+</td><td>
+Messages that the queue manager has opened for delivery. Only
+a limited number of messages is allowed to enter the <b>active</b>
+queue (leaky bucket strategy, for a fixed delivery rate).
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>deferred</b>
+</td><td>
+Mail that could not be delivered upon the first attempt. The queue
+manager implements exponential backoff by doubling the time between
+delivery attempts.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>corrupt</b>
+</td><td>
+Unreadable or damaged queue files are moved here for inspection.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>hold</b>
+</td><td>
+Messages that are kept "on hold" are kept here until someone
+sets them free.
+</td></tr>
+</table>
+<h1 class="manpages">DELIVERY STATUS REPORTS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+The <b>qmgr</b>(8) daemon keeps an eye on per-message delivery status
+reports in the following directories. Each status report file has
+the same name as the corresponding message file:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>bounce</b>
+</td><td>
+Per-recipient status information about why mail is bounced.
+These files are maintained by the <b>bounce</b>(8) daemon.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>defer</b>
+</td><td>
+Per-recipient status information about why mail is delayed.
+These files are maintained by the <b>defer</b>(8) daemon.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>trace</b>
+</td><td>
+Per-recipient status information as requested with the
+Postfix "<b>sendmail -v</b>" or "<b>sendmail -bv</b>" command.
+These files are maintained by the <b>trace</b>(8) daemon.
+</td></tr>
+<!-- PP ends table -->
+</table>
+The <b>qmgr</b>(8) daemon is responsible for asking the
+<b>bounce</b>(8), <b>defer</b>(8) or <b>trace</b>(8) daemons to
+send delivery reports.
+<h1 class="manpages">STRATEGIES</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+The queue manager implements a variety of strategies for
+either opening queue files (input) or for message delivery (output).
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>leaky bucket</b>
+</td><td>
+This strategy limits the number of messages in the <b>active</b> queue
+and prevents the queue manager from running out of memory under
+heavy load.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>fairness</b>
+</td><td>
+When the <b>active</b> queue has room, the queue manager takes one
+message from the <b>incoming</b> queue and one from the <b>deferred</b>
+queue. This prevents a large mail backlog from blocking the delivery
+of new mail.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>slow start</b>
+</td><td>
+This strategy eliminates "thundering herd" problems by slowly
+adjusting the number of parallel deliveries to the same destination.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>round
+</td><td>
+The queue manager sorts delivery requests by destination.
+Round-robin selection prevents one destination from dominating
+deliveries to other destinations.
+</td></tr>
+<tr valign="top"><td width=6%>
+</b><b>exponential backoff</b>
+</td><td>
+Mail that cannot be delivered upon the first attempt is deferred.
+The time interval between delivery attempts is doubled after each
+attempt.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>destination status cache</b>
+</td><td>
+The queue manager avoids unnecessary delivery attempts by
+maintaining a short-term, in-memory list of unreachable destinations.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>preemptive message scheduling</b>
+</td><td>
+The queue manager attempts to minimize the average per-recipient delay
+while still preserving the correct per-message delays, using
+a sophisticated preemptive message scheduling.
+</td></tr>
+</table>
+<h1 class="manpages">TRIGGERS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+On an idle system, the queue manager waits for the arrival of
+trigger events, or it waits for a timer to go off. A trigger
+is a one-byte message.
+Depending on the message received, the queue manager performs
+one of the following actions (the message is followed by the
+symbolic constant used internally by the software):
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>D (QMGR_REQ_SCAN_DEFERRED)</b>
+</td><td>
+Start a deferred queue scan.  If a deferred queue scan is already
+in progress, that scan will be restarted as soon as it finishes.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>I (QMGR_REQ_SCAN_INCOMING)</b>
+</td><td>
+Start an incoming queue scan. If an incoming queue scan is already
+in progress, that scan will be restarted as soon as it finishes.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>A (QMGR_REQ_SCAN_ALL)</b>
+</td><td>
+Ignore deferred queue file time stamps. The request affects
+the next deferred queue scan.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>F (QMGR_REQ_FLUSH_DEAD)</b>
+</td><td>
+Purge all information about dead transports and destinations.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>W (TRIGGER_REQ_WAKEUP)</b>
+</td><td>
+Wakeup call, This is used by the master server to instantiate
+servers that should not go away forever. The action is to start
+an incoming queue scan.
+</td></tr>
+<!-- PP ends table -->
+</table>
+The <b>qmgr</b>(8) daemon reads an entire buffer worth of triggers.
+Multiple identical trigger requests are collapsed into one, and
+trigger requests are sorted so that <b>A</b> and <b>F</b> precede
+<b>D</b> and <b>I</b>. Thus, in order to force a deferred queue run,
+one would request <b>A F D</b>; in order to notify the queue manager
+of the arrival of new mail one would request <b>I</b>.
+<h1 class="manpages">STANDARDS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+RFC 3463 (Enhanced status codes)
+RFC 3464 (Delivery status notifications)
+</pre></td></tr>
+</table>
+<h1 class="manpages">SECURITY</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+The <b>qmgr</b>(8) daemon is not security sensitive. It reads
+single-character messages from untrusted local users, and thus may
+be susceptible to denial of service attacks. The <b>qmgr</b>(8) daemon
+does not talk to the outside world, and it can be run at fixed low
+privilege in a chrooted environment.
+<h1 class="manpages">DIAGNOSTICS</h1>
+<!-- ignored unsupported tag .ad -->
+Problems and transactions are logged to the syslog daemon.
+Corrupted message files are saved to the <b>corrupt</b> queue
+for further inspection.
+<p>
+Depending on the setting of the <b>notify_classes</b> parameter,
+the postmaster is notified of bounces and of other trouble.
+<h1 class="manpages">BUGS</h1>
+<!-- ignored unsupported tag .ad -->
+A single queue manager process has to compete for disk access with
+multiple front-end processes such as <b>cleanup</b>(8). A sudden burst of
+inbound mail can negatively impact outbound delivery rates.
+<h1 class="manpages">CONFIGURATION PARAMETERS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+Changes to <b>main.cf</b> are not picked up automatically
+as <b>qmgr</b>(8)
+is a persistent process. Use the "<b>postfix reload</b>" command after
+a configuration change.
+<p>
+The text below provides only a parameter summary. See
+<b>postconf</b>(5) for more details including examples.
+<p>
+In the text below, <i>transport</i> is the first field in a
+<b>master.cf</b> entry.
+<h1 class="manpages">COMPATIBILITY CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>allow_min_user (no)</b>
+</td><td>
+Allow a recipient address to have &#145;-&#146; as the first character.
+</td></tr>
+</table>
+<h1 class="manpages">ACTIVE QUEUE CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>qmgr_clog_warn_time (300s)</b>
+</td><td>
+The minimal delay between warnings that a specific destination is
+clogging up the Postfix active queue.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>qmgr_message_active_limit (20000)</b>
+</td><td>
+The maximal number of messages in the active queue.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>qmgr_message_recipient_limit (20000)</b>
+</td><td>
+The maximal number of recipients held in memory by the Postfix
+queue manager, and the maximal size of the size of the short-term,
+in-memory "dead" destination status cache.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>qmgr_message_recipient_minimum (10)</b>
+</td><td>
+The minimal number of in-memory recipients for any message.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>default_recipient_limit (10000)</b>
+</td><td>
+The default per-transport upper limit on the number of in-memory
+recipients.
+</td></tr>
+<tr valign="top"><td width=6%>
+<i>transport</i><b>_recipient_limit ($default_recipient_limit)</b>
+</td><td>
+Idem, for delivery via the named message <i>transport</i>.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>default_extra_recipient_limit (1000)</b>
+</td><td>
+The default value for the extra per-transport limit imposed on the
+number of in-memory recipients.
+</td></tr>
+<tr valign="top"><td width=6%>
+<i>transport</i><b>_extra_recipient_limit ($default_extra_recipient_limit)</b>
+</td><td>
+Idem, for delivery via the named message <i>transport</i>.
+</td></tr>
+</table>
+<h1 class="manpages">DELIVERY CONCURRENCY CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>initial_destination_concurrency (5)</b>
+</td><td>
+The initial per-destination concurrency level for parallel delivery
+to the same destination.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>default_destination_concurrency_limit (20)</b>
+</td><td>
+The default maximal number of parallel deliveries to the same
+destination.
+</td></tr>
+<tr valign="top"><td width=6%>
+<i>transport</i><b>_destination_concurrency_limit ($default_destination_concurrency_limit)</b>
+</td><td>
+Idem, for delivery via the named message <i>transport</i>.
+</td></tr>
+</table>
+<h1 class="manpages">RECIPIENT SCHEDULING CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>default_destination_recipient_limit (50)</b>
+</td><td>
+The default maximal number of recipients per message delivery.
+</td></tr>
+<tr valign="top"><td width=6%>
+<i>transport</i><b>_destination_recipient_limit ($default_destination_recipient_limit)</b>
+</td><td>
+Idem, for delivery via the named message <i>transport</i>.
+</td></tr>
+</table>
+<h1 class="manpages">MESSAGE SCHEDULING CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>default_delivery_slot_cost (5)</b>
+</td><td>
+How often the Postfix queue manager&#146;s scheduler is allowed to
+preempt delivery of one message with another.
+</td></tr>
+<tr valign="top"><td width=6%>
+<i>transport</i><b>_delivery_slot_cost ($default_delivery_slot_cost)</b>
+</td><td>
+Idem, for delivery via the named message <i>transport</i>.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>default_minimum_delivery_slots (3)</b>
+</td><td>
+How many recipients a message must have in order to invoke the
+Postfix queue manager&#146;s scheduling algorithm at all.
+</td></tr>
+<tr valign="top"><td width=6%>
+<i>transport</i><b>_minimum_delivery_slots ($default_minimum_delivery_slots)</b>
+</td><td>
+Idem, for delivery via the named message <i>transport</i>.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>default_delivery_slot_discount (50)</b>
+</td><td>
+The default value for transport-specific _delivery_slot_discount
+settings.
+</td></tr>
+<tr valign="top"><td width=6%>
+<i>transport</i><b>_delivery_slot_discount ($default_delivery_slot_discount)</b>
+</td><td>
+Idem, for delivery via the named message <i>transport</i>.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>default_delivery_slot_loan (3)</b>
+</td><td>
+The default value for transport-specific _delivery_slot_loan
+settings.
+</td></tr>
+<tr valign="top"><td width=6%>
+<i>transport</i><b>_delivery_slot_loan ($default_delivery_slot_loan)</b>
+</td><td>
+Idem, for delivery via the named message <i>transport</i>.
+</td></tr>
+</table>
+<h1 class="manpages">OTHER RESOURCE AND RATE CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>minimal_backoff_time (1000s)</b>
+</td><td>
+The minimal time between attempts to deliver a deferred message.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>maximal_backoff_time (4000s)</b>
+</td><td>
+The maximal time between attempts to deliver a deferred message.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>maximal_queue_lifetime (5d)</b>
+</td><td>
+The maximal time a message is queued before it is sent back as
+undeliverable.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>queue_run_delay (1000s)</b>
+</td><td>
+The time between deferred queue scans by the queue manager.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>transport_retry_time (60s)</b>
+</td><td>
+The time between attempts by the Postfix queue manager to contact
+a malfunctioning message delivery transport.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Available in Postfix version 2.1 and later:
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>bounce_queue_lifetime (5d)</b>
+</td><td>
+The maximal time a bounce message is queued before it is considered
+undeliverable.
+</td></tr>
+</table>
+<h1 class="manpages">MISCELLANEOUS CONTROLS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>config_directory (see &#146;postconf -d&#146; output)</b>
+</td><td>
+The default location of the Postfix main.cf and master.cf
+configuration files.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>daemon_timeout (18000s)</b>
+</td><td>
+How much time a Postfix daemon process may take to handle a
+request before it is terminated by a built-in watchdog timer.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>defer_transports (empty)</b>
+</td><td>
+The names of message delivery transports that should not deliver mail
+unless someone issues "<b>sendmail -q</b>" or equivalent.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>delay_logging_resolution_limit (2)</b>
+</td><td>
+The maximal number of digits after the decimal point when logging
+sub-second delay values.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>helpful_warnings (yes)</b>
+</td><td>
+Log warnings about problematic configuration settings, and provide
+helpful suggestions.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>ipc_timeout (3600s)</b>
+</td><td>
+The time limit for sending or receiving information over an internal
+communication channel.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>process_id (read-only)</b>
+</td><td>
+The process ID of a Postfix command or daemon process.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>process_name (read-only)</b>
+</td><td>
+The process name of a Postfix command or daemon process.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>queue_directory (see &#146;postconf -d&#146; output)</b>
+</td><td>
+The location of the Postfix top-level queue directory.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>syslog_facility (mail)</b>
+</td><td>
+The syslog facility of Postfix logging.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>syslog_name (postfix)</b>
+</td><td>
+The mail system name that is prepended to the process name in syslog
+records, so that "smtpd" becomes, for example, "postfix/smtpd".
+</td></tr>
+</table>
+<h1 class="manpages">FILES</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+/var/spool/postfix/incoming, incoming queue
+/var/spool/postfix/active, active queue
+/var/spool/postfix/deferred, deferred queue
+/var/spool/postfix/bounce, non-delivery status
+/var/spool/postfix/defer, non-delivery status
+/var/spool/postfix/trace, delivery status
+</pre></td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<a href="../trivial-rewrite.html">trivial-rewrite(8)</a>, address routing
+<a href="../bounce-2.html">bounce(8)</a>, delivery status reports
+<a href="../postconf.html">postconf(5)</a>, configuration parameters
+<a href="../master.html">master(5)</a>, generic daemon options
+<a href="../master-2.html">master(8)</a>, process manager
+<a href="../syslogd.html">syslogd(8)</a>, system logging
+</pre></td></tr>
+</table>
+<h1 class="manpages">README FILES</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+Use "<b>postconf readme_directory</b>" or
+"<b>postconf html_directory</b>" to locate this information.
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+SCHEDULER_README, scheduling algorithm
+QSHAPE_README, Postfix queue analysis
+</pre></td></tr>
+</table>
+<h1 class="manpages">LICENSE</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+The Secure Mailer license must be distributed with this software.
+<h1 class="manpages">AUTHOR(S)</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+Wietse Venema
+IBM T.J. Watson Research
+P.O. Box 704
+Yorktown Heights, NY 10598, USA
+<p>
+Scheduler enhancements:
+Patrik Rak
+Modra 6
+155 00, Prague, Czech Republic
+</pre></td></tr>
+</table>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion4e2a.html?tutorial=unix_commands&amp;file=qmgr.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/qmgr.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

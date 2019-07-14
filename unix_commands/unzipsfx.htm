@@ -1,0 +1,623 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/unzipsfx.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>unzipsfx - Unix, Linux Command</title>
+<meta name="Description" Content="unzipsfx - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>unzipsfx - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+unzipsfx - self-extracting stub for prepending to ZIP archives
+<h1 class="manpages">SYNOPSIS</h1>
+<b>&lt;name of unzipsfx+archive combo&gt;</b> [<b>-cfptuz</b>[<b>ajnoqsCLV$</b>]]
+[<i>file(s)</i> ... [<b>-x</b> <i>xfile(s)</i> ...]]
+<h1 class="manpages">DESCRIPTION</h1>
+<i>unzipsfx</i> is a modified version of <i>unzip</i>(1L) designed to be
+prepended to existing ZIP archives in order to form self-extracting archives.
+Instead of taking its first non-flag argument to be the zipfile(s) to be
+extracted, <i>unzipsfx</i> seeks itself under the name by which it was invoked
+and tests or extracts the contents of the appended archive.  Because the
+executable stub adds bulk to the archive (the whole purpose of which is to
+be as small as possible), a number of the less-vital capabilities in regular
+<i>unzip</i> have been removed.  Among these are the usage (or help) screen,
+the listing and diagnostic functions (<b>-l</b> and <b>-v</b>), the ability
+to decompress older compression formats (the &#145;&#145;reduce,&#146;&#146; &#145;&#145;shrink&#146;&#146; and
+&#145;&#145;implode&#146;&#146; methods).  The ability to extract to a directory other than
+the current one can be selected as a compile-time option, which is now enabled
+by default since UnZipSFX version 5.5.  Similary, decryption is supported as
+a compile-time option but should be avoided unless the attached archive
+contains encrypted files. Starting with release 5.5, another compile-time
+option adds a simple &#145;&#145;run command after extraction&#146;&#146; feature.  This feature
+is currently incompatible with the &#145;&#145;extract to different directory&#146;&#146;
+feature and remains disabled by default.
+<p>
+<b>Note that
+self-extracting archives made with</b> <i>unzipsfx</i> <b>are no more (or less)
+portable across different operating systems than is
+the</b> <i>unzip</i> <b>executable itself.</b>  In general a self-extracting
+archive made on
+a particular Unix system, for example, will only self-extract under the same
+flavor of Unix.  Regular <i>unzip</i> may still be used to extract the
+embedded archive as with any normal zipfile, although it will generate
+a harmless warning about extra bytes at the beginning of the zipfile.
+<i>Despite this</i>, however, the self-extracting archive is technically
+<i>not</i> a valid ZIP archive, and PKUNZIP may be unable to test or extract
+it.  This limitation is due to the simplistic manner in which the archive
+is created; the internal directory structure is not updated to reflect the
+extra bytes prepended to the original zipfile.
+<h1 class="manpages">ARGUMENTS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+[<i>file(s)</i>]
+</td><td>
+An optional list of archive members to be processed.
+Regular expressions (wildcards) similar to those in Unix <i>egrep</i>(1)
+may be used to match multiple members.  These wildcards may contain:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+*
+</td><td>
+matches a sequence of 0 or more characters
+</td></tr>
+<tr valign="top"><td width=6%>
+?
+</td><td>
+matches exactly 1 character
+</td></tr>
+<tr valign="top"><td width=6%>
+[...]
+</td><td>
+matches any single character found inside the brackets; ranges are specified
+by a beginning character, a hyphen, and an ending character.  If an exclamation
+point or a caret (&#145;!&#146; or &#145;^&#146;) follows the left bracket, then the range of
+characters within the brackets is complemented (that is, anything <i>except</i>
+the characters inside the brackets is considered a match).
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+(Be sure to quote any character that might otherwise be interpreted or
+modified by the operating system, particularly under Unix and VMS.)
+</td></tr>
+<tr valign="top"><td width=6%>
+[<b>-x</b> <i>xfile(s)</i>]
+</td><td>
+An optional list of archive members to be excluded from processing.
+Since wildcard characters match directory separators (&#145;/&#146;), this option
+may be used to exclude any files that are in subdirectories.  For
+example, &#145;&#145;<tt>foosfx *.[ch] -x */*</tt>&#146;&#146; would extract all C source files
+in the main directory, but none in any subdirectories.  Without the <b>-x</b>
+option, all C source files in all directories within the zipfile would be
+extracted.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+If <i>unzipsfx</i> is compiled with SFX_EXDIR defined, the following option
+is also enabled:
+</td></tr>
+<tr valign="top"><td width=6%>
+[<b>-d</b> <i>exdir</i>]
+</td><td>
+An optional directory to which to extract files.  By default, all files
+and subdirectories are recreated in the current directory; the <b>-d</b>
+option allows extraction in an arbitrary directory (always assuming one
+has permission to write to the directory).  The option and directory may
+be concatenated without any white space between them, but note that this
+may cause normal shell behavior to be suppressed.  In particular,
+&#145;&#145;<tt>-d ~</tt>&#146;&#146; (tilde) is expanded by Unix C shells into the name
+of the user&#146;s home directory, but &#145;&#145;<tt>-d~</tt>&#146;&#146; is treated as a
+literal subdirectory &#145;&#145;<b>~</b>&#146;&#146; of the current directory.
+</td></tr>
+</table>
+<h1 class="manpages">OPTIONS</h1>
+<i>unzipsfx</i> supports the following <i>unzip</i>(1L) options:  <b>-c</b>
+and <b>-p</b> (extract to standard output/screen), <b>-f</b> and <b>-u</b>
+(freshen and update existing files upon extraction), <b>-t</b> (test
+archive) and <b>-z</b> (print archive comment).  All normal listing options
+(<b>-l</b>, <b>-v</b> and <b>-Z</b>) have been removed, but the testing
+option (<b>-t</b>) may be used as a &#145;&#145;poor man&#146;s&#146;&#146; listing.  Alternatively,
+those creating self-extracting archives may wish to include a short listing
+in the zipfile comment.
+<p>
+See <i>unzip</i>(1L) for a more complete description of these options.
+<h1 class="manpages">MODIFIERS</h1>
+<i>unzipsfx</i> currently supports all <i>unzip</i>(1L) modifiers:  <b>-a</b>
+(convert text files), <b>-n</b> (never overwrite), <b>-o</b> (overwrite
+without prompting), <b>-q</b> (operate quietly), <b>-C</b> (match names
+case-insensitively), <b>-L</b> (convert uppercase-OS names to lowercase),
+<b>-j</b> (junk paths) and <b>-V</b> (retain version numbers); plus the
+following operating-system specific options:  <b>-X</b> (restore VMS
+owner/protection info), <b>-s</b> (convert spaces in filenames to underscores
+[DOS, OS/2, NT]) and <b>-$</b> (restore volume label [DOS, OS/2, NT, Amiga]).
+<p>
+(Support for regular ASCII text-conversion may be removed in future versions,
+since it is simple enough for the archive&#146;s creator to ensure that text
+files have the appropriate format for the local OS.  EBCDIC conversion will
+of course continue to be supported since the zipfile format implies ASCII
+storage of text files.)
+<p>
+See <i>unzip</i>(1L) for a more complete description of these modifiers.
+<h1 class="manpages">ENVIRONMENT OPTIONS</h1>
+<i>unzipsfx</i> uses the same environment variables as <i>unzip</i>(1L) does,
+although this is likely to be an issue only for the person creating and
+testing the self-extracting archive.  See <i>unzip</i>(1L) for details.
+<h1 class="manpages">DECRYPTION</h1>
+Decryption is supported exactly as in <i>unzip</i>(1L); that is, interactively
+with a non-echoing prompt for the password(s).  See <i>unzip</i>(1L) for
+details.  Once again, note that if the archive has no encrypted files there
+is no reason to use a version of <i>unzipsfx</i> with decryption support;
+that only adds to the size of the archive.
+<h1 class="manpages">AUTORUN COMMAND</h1>
+When <i>unzipsfx</i> was compiled with CHEAP_SFX_AUTORUN defined, a simple
+&#145;&#145;command autorun&#146;&#146; feature is supported. You may enter a command into the
+Zip archive comment, using the following format:
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<tt>$AUTORUN$&gt;[command line string]
+</tt></pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+When <i>unzipsfx<blink>\P</blink> recognizes the &#145;&#145;$AUTORUN$&gt;&#146;&#146; token at the beginning
+of the Zip archive comment, the remainder of the first line of the comment
+(until the first newline character) is passed as a shell command to the
+operating system using the C rtl &#145;&#145;system&#146;&#146; function. Before executing
+the command, </i><i>unzipsfx<blink>\P</blink> displays the command on the console and prompts
+the user for confirmation.  When the user has switched off prompting by
+specifying the </i><b>-q</b> option, autorun commands are never executed.
+<p>
+In case the archive comment contains additonal lines of text, the remainder
+of the archive comment following the first line is displayed normally, unless
+quiet operation was requested by supplying a <b>-q</b> option.
+<h1 class="manpages">EXAMPLES</h1>
+To create a self-extracting archive <i>letters</i> from a regular zipfile
+<i>letters.zip</i> and change the new archive&#146;s permissions to be
+world-executable under Unix:
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<tt>cat unzipsfx letters.zip &gt; letters
+chmod 755 letters
+zip -A letters
+</tt></pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+To create the same archive under MS-DOS, OS/2 or NT (note the use of the
+<b>/b</b> [binary] option to the <i>copy</i> command):
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<tt>copy /b unzipsfx.exe+letters.zip letters.exe
+zip -A letters.exe
+</tt></pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+Under VMS:
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<tt>copy unzipsfx.exe,letters.zip letters.exe
+letters == "$currentdisk:[currentdir]letters.exe"
+zip -A letters.exe
+</tt></pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+(The VMS <i>append</i> command may also be used.  The second command installs
+the new program as a &#145;&#145;foreign command&#146;&#146; capable of taking arguments.  The
+third line assumes that Zip is already installed as a foreign command.)
+Under AmigaDOS:
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<tt>MakeSFX letters letters.zip UnZipSFX
+</tt></pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+(MakeSFX is included with the UnZip source distribution and with Amiga
+binary distributions.  &#145;&#145;<tt>zip -A</tt>&#146;&#146; doesn&#146;t work on Amiga self-extracting
+archives.)
+To test (or list) the newly created self-extracting archive:
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<tt>letters -t
+</tt></pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+To test <i>letters</i> quietly, printing only a summary message indicating
+whether the archive is OK or not:
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<tt>letters -tqq
+</tt></pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+To extract the complete contents into the current directory, recreating all
+files and subdirectories as necessary:
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<tt>letters
+</tt></pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+To extract all <tt>*.txt</tt> files (in Unix quote the &#145;*&#146;):
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<tt>letters *.txt
+</tt></pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+To extract everything <i>except</i> the <tt>*.txt</tt> files:
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<tt>letters -x *.txt
+</tt></pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+To extract only the README file to standard output (the screen):
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<tt>letters -c README
+</tt></pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+To print only the zipfile comment:
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<tt>letters -z
+</tt></pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<h1 class="manpages">LIMITATIONS</h1>
+The principle and fundamental limitation of <i>unzipsfx</i> is that it is
+not portable across architectures or operating systems, and therefore
+neither are the resulting archives.  For some architectures there is
+limited portability, however (e.g., between some flavors of Intel-based Unix).
+<p>
+Another problem with the current implementation is that any archive
+with &#145;&#145;junk&#146;&#146; prepended to the beginning technically is no longer a zipfile
+(unless <i>zip</i>(1) is used to adjust the zipfile offsets appropriately,
+as noted above).  <i>unzip</i>(1) takes note of the prepended bytes
+and ignores them since some file-transfer protocols, notably MacBinary, are
+also known to prepend junk.  But PKWARE&#146;s archiver suite may not be able to
+deal with the modified archive unless its offsets have been adjusted.
+<p>
+<i>unzipsfx</i> has no knowledge of the user&#146;s PATH, so in general an archive
+must either be in the current directory when it is invoked, or else a full
+or relative path must be given.  If a user attempts to extract the archive
+from a directory in the PATH other than the current one, <i>unzipsfx</i> will
+print a warning to the effect, &#145;&#145;can&#146;t find myself.&#146;&#146;  This is always true
+under Unix and may be true in some cases under MS-DOS, depending on the
+compiler used (Microsoft C fully qualifies the program name, but other
+compilers may not).  Under OS/2 and NT there are operating-system calls
+available that provide the full path name, so the archive may be invoked
+from anywhere in the user&#146;s path.  The situation is not known for AmigaDOS,
+Atari TOS, MacOS, etc.
+<p>
+As noted above, a number of the normal <i>unzip</i>(1L) functions have
+been removed in order to make <i>unzipsfx</i> smaller:  usage and diagnostic
+info, listing functions and extraction to other directories.  Also, only
+stored and deflated files are supported.  The latter limitation is mainly
+relevant to those who create SFX archives, however.
+<p>
+VMS users must know how to set up self-extracting archives as foreign
+commands in order to use any of <i>unzipsfx</i>&#146;s options.  This is not
+necessary for simple extraction, but the command to do so then becomes,
+e.g., &#145;&#145;<tt>run letters</tt>&#146;&#146; (to continue the examples given above).
+<p>
+<i>unzipsfx</i> on the Amiga requires the use of a special program, MakeSFX,
+in order to create working self-extracting archives; simple concatenation
+does not work.  (For technically oriented users, the attached archive is
+defined as a &#145;&#145;debug hunk.&#146;&#146;)  There may be compatibility problems between
+the ROM levels of older Amigas and newer ones.
+<p>
+All current bugs in <i>unzip</i>(1L) exist in <i>unzipsfx</i> as well.
+<h1 class="manpages">DIAGNOSTICS</h1>
+<i>unzipsfx</i>&#146;s exit status (error level) is identical to that of
+<i>unzip</i>(1L); see the corresponding man page.
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<i>zipgrep</i>(1L), <i>zipinfo</i>(1L), <i>zipnote</i>(1L), <i>zipsplit</i>(1L)
+<h1 class="manpages">URL</h1>
+The Info-ZIP home page is currently at
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<tt></tt><tt><a href="http://www.info-zip.org/pub/infozip">http://www.info-zip.org/pub/infozip</a>/</tt>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+or
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<tt></tt><tt><a href="ftp://ftp.info-zip.org/pub/infozip/">ftp://ftp.info-zip.org/pub/infozip/</a></tt> .
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<h1 class="manpages">AUTHORS</h1>
+Greg Roelofs was responsible for the basic modifications to UnZip necessary
+to create UnZipSFX.  See <i>unzip</i>(1L) for the current list of Zip-Bugs
+authors, or the file CONTRIBS in the UnZip source distribution for the
+full list of Info-ZIP contributors.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionb063.html?tutorial=unix_commands&amp;file=unzipsfx.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/unzipsfx.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

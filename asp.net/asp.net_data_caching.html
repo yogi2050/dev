@@ -1,0 +1,431 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/asp.net/asp.net_data_caching.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:01:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>ASP.NET - Data Caching </title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="Keywords" content="Data Caching , Free, ASP.NET, Tutorial, Reference, Manual, Guide, Beginners,Event Handling, Life Cycle, ADO.NET, AJAX control,Web Services,Add Rotator, Panel, control, LINQ, Database Access, Security, Debugging, Error, Handling, Configuration, Deployment." />
+<meta name="description" content="ASP.NET Data Caching -  Free ASP.NET Tutorials, Reference Manual, and Quick Guide for Beginners. Learn ASP.NET starting from Environment Setup, Basic Controls, Directives, Event Handling, Life Cycle, ADO.NET, AJAX control,Web Services,Add Rotator, Panel control, LINQ, Database Access, Security, Debugging, Error Handling, Configuration and Deployment." />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript"> 
+</script>
+<script type="text/javascript"> 
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>ASP.NET Tutorial</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="index.html">ASP.NET -  Home</a></li>
+<li><a class="left" target="_top" href="asp.net_introduction.html">ASP.NET -  Introduction</a></li>
+<li><a class="left" target="_top" href="asp.net_environment_setup.html">ASP.NET -  Environment</a></li>
+<li><a class="left" target="_top" href="asp.net_life_cycle.html">ASP.NET -  Life Cycle</a></li>
+<li><a class="left" target="_top" href="asp.net_first_example.html">ASP.NET -  First Example</a></li>
+<li><a class="left" target="_top" href="asp.net_event_handling.html">ASP.NET -  Event Handling</a></li>
+<li><a class="left" target="_top" href="asp.net_server_side.html">ASP.NET -  Server Side</a></li>
+<li><a class="left" target="_top" href="asp.net_server_controls.html">ASP.NET -  Server Controls</a></li>
+<li><a class="left" target="_top" href="asp.net_html_server.html">ASP.NET -  HTML Server</a></li>
+<li><a class="left" target="_top" href="asp.net_client_side.html">ASP.NET -  Client Side</a></li>
+<li><a class="left" target="_top" href="asp.net_basic_controls.html">ASP.NET -  Basic Controls</a></li>
+<li><a class="left" target="_top" href="asp.net_directives.html">ASP.NET -  Directives</a></li>
+<li><a class="left" target="_top" href="asp.net_managing_state.html">ASP.NET -  Managing State</a></li>
+<li><a class="left" target="_top" href="asp.net_validators.html">ASP.NET -  Validators</a></li>
+<li><a class="left" target="_top" href="asp.net_database_access.html">ASP.NET -  Database Access</a></li>
+<li><a class="left" target="_top" href="asp.net_ado_net.html">ASP.NET -  ADO.net</a></li>
+<li><a class="left" target="_top" href="asp.net_file_uploading.html">ASP.NET -  File Uploading</a></li>
+<li><a class="left" target="_top" href="asp.net_ad_rotator.html">ASP.NET -  Ad Rotator</a></li>
+<li><a class="left" target="_top" href="asp.net_calenders.html">ASP.NET -  Calendars</a></li>
+<li><a class="left" target="_top" href="asp.net_multi_views.html">ASP.NET -  Multi Views</a></li>
+<li><a class="left" target="_top" href="asp.net_panel_controls.html">ASP.NET -  Panel Controls</a></li>
+<li><a class="left" target="_top" href="asp.net_ajax_control.html">ASP.NET -  AJAX Control</a></li>
+<li><a class="left" target="_top" href="asp.net_data_sources.html">ASP.NET -  Data Sources</a></li>
+<li><a class="left" target="_top" href="asp.net_data_binding.html">ASP.NET -  Data Binding</a></li>
+<li><a class="left" target="_top" href="asp.net_custom_controls.html">ASP.NET -  Custom Controls</a></li>
+<li><a class="left" target="_top" href="asp.net_personalization.html">ASP.NET -  Personalization</a></li>
+<li><a class="left" target="_top" href="asp.net_error_handling.html">ASP.NET -  Error Handling</a></li>
+<li><a class="left" target="_top" href="asp.net_debugging.html">ASP.NET -  Debugging</a></li>
+<li><a class="left" target="_top" href="asp.net_linq.html">ASP.NET -  LINQ</a></li>
+<li><a class="left" target="_top" href="asp.net_security.html">ASP.NET -  Security</a></li>
+<li><a class="left" target="_top" href="asp.net_data_caching.html"><b>ASP.NET -  Data Caching</b></a></li>
+<li><a class="left" target="_top" href="asp.net_web_services.html">ASP.NET -  Web Services</a></li>
+<li><a class="left" target="_top" href="asp.net_multi_threading.html">ASP.NET -  Multi Threading</a></li>
+<li><a class="left" target="_top" href="asp.net_configuration.html">ASP.NET -  Configuration</a></li>
+<li><a class="left" target="_top" href="asp.net_deployment.html">ASP.NET -  Deployment</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>ASP.NET Quick Guide</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="asp.net_quick_guide.html">ASP.NET - Quick Guide</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>ASP.NET Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="asp.net_useful_resources.html">ASP.NET - Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>ASP.NET -   Data Caching</h1>
+<hr />
+<a href="asp.net_security.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="asp.net_web_services.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1>What is Caching?</h1>
+<p>Caching is a technique of storing frequently used data/information in memory, so that, when the same data/information is needed next time, it could be directly retrieved from the memory instead of being generated by the application.</p>
+<p>Caching is extremely important for performance boosting in ASP.Net, as the pages and controls are dynamically generated here. It is especially important for data related transactions, as these are expensive in terms of response time.</p>
+<p>Caching places frequently used data in quickly accessed media like the random access memory of the computer. The ASP.Net runtime includes a key-value map of CLR objects called cache. This lives with the application and is available via the HttpContext and System.Web.UI.Page. </p>
+<p>In some respect, caching is similar to storing the state objects. However, the storing information in state objects is deterministic, i.e., you can count on the data being stored there, and caching of data is nondeterministic.</p>
+<p>The data will not be available if its lifetime expires, or the application releases its memory, or caching does not take place for some reason.</p>
+<p>You can access items in the cache using an indexer and may control the lifetime of objects in the cache and set up links between the cached objects and their physical sources.</p>
+<h1>Caching in ASP.Net:</h1>
+<p>ASP.Net provides the following different types of caching:</p>
+<ul>
+<li><p><b>Output Caching:</b>  Output cache stores a copy of the finally rendered HTML pages or part of pages sent to the client. When the next client requests for this page, instead of regenerating the page, a cached copy of the page is sent, thus saving time.</p></li> 
+<li><p><b>Data Caching:</b> Data caching means caching data from a data source. As long as the cache is not expired, a request for the data will be fulfilled from the cache. When the cache is expired, fresh data is obtained by the data source and the cache is refilled.</p></li> 
+<li><p><b>Object Caching:</b> Object caching is caching the objects on a page, such as data-bound controls. The cached data is stored in server memory.</p></li> 
+<li><p><b>Class Caching:</b> Web pages or web services are compiled into a page class in the assembly, when run for the first time. Then the assembly is cached in the server. Next time when a request is made for the page or service, the cached assembly is referred to. When the source code is changed, the CLR recompiles the assembly.</p></li> 
+<li><p><b>Configuration Caching:</b> Application wide configuration information is stored in a configuration file. Configuration caching stores the configuration information in the server memory.</p></li>
+</ul>
+<p>In this tutorial, we will consider output caching and data caching and object caching. </p>
+<h1>Output Caching:</h1>
+<p>Rendering a page may involve some complex processes like, database access, rendering complex controls etc. Output caching allows bypassing the round trips to server by caching data in memory. Even the whole page could be cached. </p>
+<p>The OutputCache directive is responsible of output caching. It enables output caching and provides certain control over its behaviour.</p>
+<p>Syntax for OutputCache directive:</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+&lt;%@ OutputCache Duration="15" VaryByParam="None" %&gt;
+</pre></td></tr>
+</table>
+<p>Put this directive under the page directive . This tells the environment to cache the page for 15 seconds.  The following  event handler for page load would help in testing that the page was really cached. </p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+protected void Page_Load(object sender, EventArgs e)
+{
+   Thread.Sleep(10000);  
+   Response.Write("This page was generated and cache at:" +
+   DateTime.Now.ToString());
+}
+</pre></td></tr>
+</table>
+<p>The <b>Thread.Sleep()</b> method stops the process thread for the specified time. In this example, the thread is stopped for 10 seconds, so when the page is loaded for first time, it will take 10 seconds.  But next time you refresh the page, it does not take any time, as the page will retrieved from the cache without being loaded.</p>
+<p>The OutputCache directive has the following attributes, which helps in controlling the behaviour of the output cache:</p>
+<table class="src" border="1" cellpadding="5" cellspacing="0" width="100%">
+<tr><th width="30%">Attribute</th><th width="30%">Values</th><th>Description</th></tr>
+<tr><td>DiskCacheable</td><td>true/false</td><td>Specifies that output could be written to a disk based cache.</td></tr>
+<tr><td>NoStore</td><td>true/false</td><td>Specifies that the "no store" cache control header is sent or not.</td></tr>
+<tr><td>CacheProfile</td><td>String name</td><td>Name of a cache profile as to be stored in web.config.</td></tr>
+<tr><td>VaryByParam</td><td>None<br />*<br />Param- name</td><td>Semicolon delimited list of string specifies query string values in a GET request or variable in a POST request.</td></tr>
+<tr><td>VaryByHeader</td><td>*<br />Header names</td><td>Semicolon delimited list of strings specifying headers that might be submitted by a client.</td></tr>
+<tr><td>VaryByCustom</td><td>Browser<br />Custom string</td><td>Tells ASP.Net to vary the output cache by browser name and version or by a custom string.</td></tr>
+<tr><td>Location</td><td>Any<br />Client<br />Downstream<br />Server<br />None</td><td>Any: page may be cached anywhere.<br />
+Client: cached content remains at browser.<br />
+Downstream: cached content stored in downstream and server both.<br />
+Server: cached content saved only on server.<br />
+None: disables caching.</td></tr>
+<tr><td>Duration</td><td>Number</td><td>Number of seconds the page or control is cached.</td></tr>
+</table>
+<p>Let us add a text box and a button to the previous example and add this event handler for the button.</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+protected void btnmagic_Click(object sender, EventArgs e)
+{
+   Response.Write("&lt;br&gt;&lt;br&gt;");
+   Response.Write("&lt;h2&gt; Hello, " + this.txtname.Text + "&lt;/h2&gt;");
+}
+</pre></td></tr>
+</table>
+<p>And change the OutputCache directive :</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+&lt;%@ OutputCache Duration="60" VaryByParam="txtname" %&gt;
+</pre></td></tr>
+</table>
+<p>When the program is executed, ASP.Net caches the page on the basis of the name in the text box.</p>
+<h1>Data Caching:</h1>
+<p>The main aspect of data caching is caching the data source controls. We have already discussed that the data source controls represent data in a data source, like a database or an XML file. These controls derive from the abstract class DataSourceControl and have the following inherited properties for implementing caching:</p>
+<ul>
+<li><p><b>CacheDuration -</b> sets the number of seconds for which the data source will cache data</p></li> 
+<li><p><b>CacheExpirationPolicy -</b> defines the cache behaviour when the data in cache has expired</p></li> 
+<li><p><b>CacheKeyDependency -</b> identifies a key for the controls that auto-expires the content of its cache when removed</p></li> 
+<li><p><b>EnableCaching -</b> specifies whether or not to cache data</p></li> 
+</ul>
+<h2>Example:</h2>
+<p>To demonstrate data caching, create a new website and add a new web form in it. Add to it a SqlDataSource control with the database connection already used in the data access tutorials.</p>
+<p>For this example, add a label to the page, which would show the response time for the page. </p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+&lt;asp:Label ID="lbltime" runat="server"&gt;&lt;/asp:Label&gt;
+</pre></td></tr>
+</table>
+<p>Apart from the label, the content page is same as in the data access tutorial. Add an event handler for the page load event:</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+protected void Page_Load(object sender, EventArgs e)
+{
+   lbltime.Text = String.Format("Page posted at: {0}", 
+                  DateTime.Now.ToLongTimeString());
+}
+</pre></td></tr>
+</table>
+<p>The design page should look like the following:</p>
+<center>
+<img src="../images/data_caching.html" alt="Data Caching" />
+</center>
+<p>When you run the page for the first time, nothing different happens, the label shows that, each time you refresh the page, the page is reloaded and the time shown on the label changes.</p>
+<p>Next, set the EnableCaching attribute of the data source control to be 'true' and set the Cacheduration attribute to '60'. It will implement caching and the cache will expire every 60 seconds.</p>
+<p>Now the timestamp will change with every refresh, but if you change the data in the table within these 60 seconds, it won't show before the cache expires:</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+&lt;asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+ConnectionString="&lt;%$ ConnectionStrings:
+ASPDotNetStepByStepConnectionString %&gt;" 
+ProviderName="&lt;%$ ConnectionStrings:
+ASPDotNetStepByStepConnectionString.ProviderName %&gt;" 
+SelectCommand="SELECT * FROM [DotNetReferences]"
+EnableCaching="true" CacheDuration = "60"&gt;         
+&lt;/asp:SqlDataSource&gt;
+</pre></td></tr>
+</table>
+<h1>Object Caching:</h1>
+<p>Object caching provides more flexibility than other cache techniques. You can use object caching to place any object in the cache. The object can be of any type - a data type, a web control, a class, a DataSet object, etc.  The item is added to the cache simply by assigning a new key name. Like:</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+Cache["key"] = item;
+</pre></td></tr>
+</table>
+<p>ASP.Net also provides the Insert() method for inserting an object to the cache. This method has four overloaded versions. Let us see the various versions first.</p>
+<table class="src" border="1" cellpadding="5" cellspacing="0" width="100%">
+<tr><th width="30%">Overload</th><th>Description</th></tr>
+<tr><td>Cache.Insert((key, value);</td><td>Inserts an item into the cache with the key name and value with default priority and expiration.</td></tr>
+<tr><td>Cache.Insert(key, value, dependencies);</td><td>Inserts an item into the cache with key, value, default priority, expiration and a CacheDependency name that links to other files or items so that when these change the cache item remains no longer valid.</td></tr>
+<tr><td>Cache.Insert(key, value, dependencies, absoluteExpiration, slidingExpiration);</td><td>This indicates an expiration policy along with the above issues. </td></tr>
+<tr><td>Cache.Insert(key, value, dependencies, absoluteExpiration, slidingExpiration, priority, onRemoveCallback);</td><td>This along with the parameters also allows you to set a priority for the cache item and a delegate that, points to a method to be invoked when the item is removed.</td></tr>
+</table>
+<p>Sliding expiration is used to remove an item from the cache when it is not used for the specified time span. The following code snippet stores an item with a sliding expiration of 10 minutes with no dependencies.</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+Cache.Insert("my_item", obj, null, DateTime.MaxValue, 
+                            TimeSpan.FromMinutes(10));
+</pre></td></tr>
+</table>
+<h2>Example:</h2>
+<p>Create a page with just a button and a label. Write the following code in the page load event:</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+protected void Page_Load(object sender, EventArgs e)
+{
+   if (this.IsPostBack)
+   {
+      lblinfo.Text += "Page Posted Back.&lt;br/&gt;";
+   }
+   else
+   {
+      lblinfo.Text += "page Created.&lt;br/&gt;";
+   }
+   if (Cache["testitem"] == null)
+   {
+      lblinfo.Text += "Creating test item.&lt;br/&gt;";
+      DateTime testItem = DateTime.Now;
+      lblinfo.Text += "Storing test item in cache ";
+      lblinfo.Text += "for 30 seconds.&lt;br/&gt;";
+      Cache.Insert("testitem", testItem, null, 
+      DateTime.Now.AddSeconds(30), TimeSpan.Zero);
+   }
+   else
+   {
+      lblinfo.Text += "Retrieving test item.&lt;br/&gt;";
+      DateTime testItem = (DateTime)Cache["testitem"];
+      lblinfo.Text += "Test item is: " + testItem.ToString();
+      lblinfo.Text += "&lt;br/&gt;";
+   }
+   lblinfo.Text += "&lt;br/&gt;";
+}
+</pre></td></tr>
+</table>
+<p>When the page is loaded for the first time it says:</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+Page Created.
+Creating test item.
+Storing test item in cache for 30 seconds.
+</pre></td></tr>
+</table>
+<p>If you click on the button again within 30 seconds, the page is posted back but the label control gets its information from the cache:</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+Page Posted Back.
+Retrieving test item.
+Test item is: 14-07-2010 01:25:04
+</pre></td></tr>
+</table>
+<br />
+<hr />
+<a href="asp.net_security.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="asp.net_web_services.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion4fcd.html?tutorial=asp.net&amp;file=asp.net_data_caching.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/asp.net/asp.net_data_caching.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:01:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

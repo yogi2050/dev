@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=javascript&file=javascript_multimedia.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:55 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>Javascript Multimedia</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="Keywords" content="Javascript, Tutorials, Learning, Beginners, Javascript Basics, Scripting Language, Javascript Tutorials, Functions, Objects, Usage" />
+<meta name="description" content="Javascript Multimedia Plug-ins -  Learning Javascript in simple and easy steps. A beginner's tutorial containing complete knowledge of Javascript Syntax Objects Embedding with  HTML Validations Cookies Regular Expressions Literals Variables Loops Conditions." />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../print.css"/>
+</head>
+<body>
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+<h1>Javascript Multimedia</h1>
+<a href="../javascript/javascript_animation.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../javascript/javascript_debugging.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<br />
+<br />
+<p>The JavaScript <b>navigator</b> object includes a child object called <b>plugins</b>. This object is an array, with one entry for each plug-in installed on the browser. The navigator.plugins object is supported only by Netscape, Firefox and Mozilla only.</p>
+<p>Here is an example to list down all the plug-on installed with your browser:</p>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;List of Plug-Ins&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;table border="1"&gt;
+&lt;tr&gt;
+    &lt;th&gt;Plug-in Name&lt;/th&gt;
+    &lt;th&gt;Filename&lt;/th&gt;
+    &lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;script language="JavaScript" type="text/javascript"&gt;
+for (i=0; i&lt;navigator.plugins.length; i++) {
+   document.write("&lt;tr&gt;&lt;td&gt;");
+   document.write(navigator.plugins[i].name);
+   document.write("&lt;/td&gt;&lt;td&gt;");
+   document.write(navigator.plugins[i].filename);
+   document.write("&lt;/td&gt;&lt;td&gt;");
+   document.write(navigator.plugins[i].description);
+   document.write("&lt;/td&gt;&lt;/tr&gt;");
+}
+&lt;/script&gt;
+&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr>
+</table>
+<p>If you are using Mozilla, Firefox or Netscape then <a target="_blank" href="practice0335.html?file=javascript_47">Try it yourself</a>.</p> 
+<h1>Checking for Plug-Ins:</h1>
+<p>Each plug-in has an entry in the array. Each entry has the following properties:</p>
+<ul>
+<li><p><b>name</b> - is the name of the plug-in.</p></li>
+<li><p><b>filename</b> - is the executable file that was loaded to install the plug-in.</p></li>
+<li><p><b>description</b> - is a description of the plug-in, supplied by the developer.</p></li>
+<li><p><b>mimeTypes</b> - is an array with one entry for each MIME type supported by the plug-in.</p></li>
+</ul>
+<p>You can use these properties in a script to find out about the installed plug-ins, and then using JavaScript you can play appropriate multimedia file as follows:</p>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Using Plug-Ins&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;script language="JavaScript" type="text/javascript"&gt;
+media = navigator.mimeTypes["video/quicktime"];
+if (media){
+  document.write("&lt;embed src='quick.mov' height=100 width=100&gt;");
+}
+else{
+  document.write("&lt;img src='quick.gif' height=100 width=100&gt;");
+}
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr>
+</table>
+<p><b>NOTE:</b> Here we are using HTML &lt;embed&gt; tag to embed a multimedia file.</p>
+<h1>Controlling Multimedia:</h1>
+<p>Let us take one real example which works in almost all the browsers:</p>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Using Embeded Object&lt;/title&gt;
+&lt;script type="text/javascript"&gt;
+&lt;!--
+function play()
+{
+  if (!document.demo.IsPlaying()){
+    document.demo.Play();
+  }
+}
+function stop()
+{
+  if (document.demo.IsPlaying()){
+    document.demo.StopPlay();
+  }
+}
+function rewind()
+{
+  if (document.demo.IsPlaying()){
+    document.demo.StopPlay();
+  }
+  document.demo.Rewind();
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;embed id="demo" name="demo"
+    src="http://www.amrood.com/games/kumite.swf"
+    width="318" height="300" play="false" loop="false"
+    pluginspage="http://www.macromedia.com/go/getflashplayer"
+    swliveconnect="true"&gt;
+&lt;/embed&gt;
+&lt;form name="form" id="form" action="#" method="get"&gt;
+&lt;input type="button" value="Start" onclick="play();" /&gt;
+&lt;input type="button" value="Stop" onclick="stop();" /&gt;
+&lt;input type="button" value="Rewind" onclick="rewind();" /&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr>
+</table>
+<p>If you are using Mozilla, Firefox or Netscape then <a target="_blank" href="practice85ae.html?file=javascript_48">Try it yourself</a>.</p> 
+<br />
+<a href="../javascript/javascript_animation.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../javascript/javascript_debugging.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=javascript&file=javascript_multimedia.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:55 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

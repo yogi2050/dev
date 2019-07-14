@@ -1,0 +1,593 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/fsck.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>fsck - Unix, Linux Command</title>
+<meta name="Description" Content="fsck - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>fsck - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+fsck - check and repair a Linux file system
+<h1 class="manpages">SYNOPSIS</h1>
+<b>fsck</b> [
+<b>-sAVRTNP</b> ]
+[
+<b>-C</b> [
+<i>fd</i> ]
+]
+[
+<b>-t</b> <i>fstype</i> ]
+<i>[filesys ... ]</i> [--] [
+<b>fs-specific-options</b> ]
+<h1 class="manpages">DESCRIPTION</h1>
+<b>fsck</b> is used to check and optionally repair one or more Linux file systems. 
+<i>filesys</i> can be a device name (e.g.
+<i>/dev/hdc1</i>, <i>/dev/sdb2</i>), a mount point (e.g.
+<i>/</i>, <i>/usr</i>, <i>/home</i>), or an ext2 label or UUID specifier (e.g.
+UUID=8868abf6-88c5-4a83-98b8-bfc24057f7bd or LABEL=root). 
+Normally, the
+<b>fsck</b> program will try to handle filesystems on different physical disk drives
+in parallel to reduce the total amount of time needed to check all of the
+filesystems.
+<p>
+If no filesystems are specified on the command line, and the
+<b>-A</b> option is not specified,
+<b>fsck</b> will default to checking filesystems in
+<b>/etc/fstab</b> serially.  This is equivalent to the
+<b>-As</b> options.
+<p>
+The exit code returned by
+<b>fsck</b> is the sum of the following conditions:
+<!-- Need break --><br />
+<blink>\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</blink>0<blink>\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</blink>- No errors
+<!-- Need break --><br />
+<blink>\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</blink>1<blink>\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</blink>- File system errors corrected
+<!-- Need break --><br />
+<blink>\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</blink>2<blink>\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</blink>- System should be rebooted
+<!-- Need break --><br />
+<blink>\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</blink>4<blink>\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</blink>- File system errors left uncorrected
+<!-- Need break --><br />
+<blink>\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</blink>8<blink>\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</blink>- Operational error
+<!-- Need break --><br />
+<blink>\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</blink>16<blink>\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</blink>- Usage or syntax error
+<!-- Need break --><br />
+<blink>\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</blink>32<blink>\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</blink>- Fsck canceled by user request
+<!-- Need break --><br />
+<blink>\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</blink>128<blink>\&nbsp;&nbsp;&nbsp;&nbsp;</blink>- Shared library error
+<!-- Need break --><br />
+The exit code returned when multiple file systems are checked
+is the bit-wise OR of the exit codes for each
+file system that is checked.
+<p>
+In actuality,
+<b>fsck</b> is simply a front-end for the various file system checkers
+(<b>fsck</b>.<i>fstype</i>) available under Linux.  The file
+system-specific checker is searched for in
+<i>/sbin</i> first, then in
+<i>/etc/fs</i> and
+<i>/etc</i>, and finally in the directories listed in the PATH environment
+variable.  Please see the file system-specific checker manual pages for
+further details.
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-s</b> </td><td valign="bottom">
+Serialize
+<b>fsck</b> operations.  This is a good idea if you are checking multiple
+filesystems and the checkers are in an interactive mode.  (Note:
+<b>e2fsck</b>(8)
+runs in an interactive mode by default.  To make
+<b>e2fsck</b>(8)
+run in a non-interactive mode, you must either specify the
+<b>-p</b> or
+<b>-a</b> option, if you wish for errors to be corrected automatically, or the
+<b>-n</b> option if you do not.)
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-t</b><i> fslist</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies the type(s) of file system to be checked.  When the
+<b>-A</b> flag is specified, only filesystems that match
+<i>fslist</i> are checked.  The
+<i>fslist</i> parameter is a comma-separated list of filesystems and options
+specifiers.  All of the filesystems in this comma-separated list may be
+prefixed by a negation operator
+&#146;<b>no</b>&#146; or
+&#146;<b>!</b>&#146;, which requests that only those filesystems not listed in
+<i>fslist</i> will be checked.  If all of the filesystems in
+<i>fslist</i> are not prefixed by a negation operator, then only those filesystems
+listed
+in
+<i>fslist</i> will be checked.
+<p>
+Options specifiers may be included in the comma-separated
+<i>fslist</i>. They must have the format
+<b>opts=</b><i>fs-option</i>. If an options specifier is present, then only filesystems which contain
+<i>fs-option</i> in their mount options field of
+<b>/etc/fstab</b> will be checked.  If the options specifier is prefixed by a negation
+operator, then only
+those filesystems that do not have
+<i>fs-option</i> in their mount options field of
+<b>/etc/fstab</b> will be checked.
+<p>
+For example, if
+<b>opts=ro</b> appears in
+<i>fslist</i>, then only filesystems listed in
+<b>/etc/fstab</b> with the
+<b>ro</b> option will be checked.
+<p>
+For compatibility with Mandrake distributions whose boot scripts
+depend upon an unauthorized UI change to the
+<b>fsck</b> program, if a filesystem type of
+<b>loop</b> is found in
+<i>fslist</i>, it is treated as if
+<b>opts=loop</b> were specified as an argument to the
+<b>-t</b> option.
+<p>
+Normally, the filesystem type is deduced by searching for
+<i>filesys</i> in the
+<i>/etc/fstab</i> file and using the corresponding entry.
+If the type can not be deduced, and there is only a single filesystem
+given as an argument to the
+<b>-t</b> option,
+<b>fsck</b> will use the specified filesystem type.  If this type is not
+available, then the default file system type (currently ext2) is used.
+</td></tr>
+<tr valign="top"><td>
+<b>-A</b> </td><td valign="bottom">
+Walk through the
+<i>/etc/fstab</i> file and try to check all file systems in one run.  This option is
+typically used from the
+<i>/etc/rc</i> system initialization file, instead of multiple commands for checking
+a single file system.
+<p>
+The root filesystem will be checked first unless the
+<b>-P</b> option is specified (see below).  After that,
+filesystems will be checked in the order specified by the
+<i>fs_passno</i> (the sixth) field in the
+<i>/etc/fstab</i> file. 
+Filesystems with a
+<i>fs_passno</i> value of 0 are skipped and are not checked at all.  Filesystems with a
+<i>fs_passno</i> value of greater than zero will be checked in order,
+with filesystems with the lowest
+<i>fs_passno</i> number being checked first.
+If there are multiple filesystems with the same pass number,
+fsck will attempt to check them in parallel, although it will avoid running
+multiple filesystem checks on the same physical disk. 
+<p>
+Hence, a very common configuration in
+<i>/etc/fstab</i> files is to set the root filesystem to have a
+<i>fs_passno</i> value of 1
+and to set all other filesystems to have a
+<i>fs_passno</i> value of 2.  This will allow
+<b>fsck</b> to automatically run filesystem checkers in parallel if it is advantageous
+to do so.  System administrators might choose
+not to use this configuration if they need to avoid multiple filesystem
+checks running in parallel for some reason --- for example, if the
+machine in question is short on memory so that
+excessive paging is a concern.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-C</b> [ <i> fd </i> ] </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Display completion/progress bars for those filesystem checkers (currently
+only for ext2 and ext3) which support them.   Fsck will manage the
+filesystem checkers so that only one of them will display 
+a progress bar at a time.  GUI front-ends may specify a file descriptor
+<i>fd</i>, in which case the progress bar information will be sent to that file descriptor.
+</td></tr>
+<tr valign="top"><td>
+<b>-N</b> </td><td valign="bottom">
+Don&#146;t execute, just show what would be done.
+</td></tr>
+<tr valign="top"><td>
+<b>-P</b> </td><td valign="bottom">
+When the
+<b>-A</b> flag is set, check the root filesystem in parallel with the other filesystems.
+This is not the safest thing in the world to do,
+since if the root filesystem is in doubt things like the
+<b>e2fsck</b>(8)
+executable might be corrupted!  This option is mainly provided
+for those sysadmins who don&#146;t want to repartition the root
+filesystem to be small and compact (which is really the right solution).
+</td></tr>
+<tr valign="top"><td>
+<b>-R</b> </td><td valign="bottom">
+When checking all file systems with the
+<b>-A</b> flag, skip the root file system (in case it&#146;s already mounted read-write).
+</td></tr>
+<tr valign="top"><td>
+<b>-T</b> </td><td valign="bottom">
+Don&#146;t show the title on startup.
+</td></tr>
+<tr valign="top"><td>
+<b>-V</b> </td><td valign="bottom">
+Produce verbose output, including all file system-specific commands
+that are executed.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>fs-specific-options</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Options which are not understood by
+<b>fsck</b> are passed to the filesystem-specific checker.  These arguments
+<b>must</b> not take arguments, as there is no
+way for
+<b>fsck</b> to be able to properly guess which arguments take options and which
+don&#146;t.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+Options and arguments which follow the
+<b>--</b> are treated as file system-specific options to be passed to the
+file system-specific checker.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+Please note that fsck is not
+designed to pass arbitrarily complicated options to filesystem-specific
+checkers.  If you&#146;re doing something complicated, please just
+execute the filesystem-specific checker directly.  If you pass
+<b>fsck</b> some horribly complicated option and arguments, and it doesn&#146;t do
+what you expect,
+<b>don&#146;t bother reporting it as a bug.</b> You&#146;re almost certainly doing something that you shouldn&#146;t be doing
+with
+<b>fsck.</b> </td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+Options to different filesystem-specific fsck&#146;s are not standardized.
+If in doubt, please consult the man pages of the filesystem-specific
+checker.  Although not guaranteed, the following options are supported
+by most file system checkers:
+</td></tr>
+<tr valign="top"><td>
+<b>-a</b> </td><td valign="bottom">
+Automatically repair the file system without any questions (use
+this option with caution).  Note that
+<b>e2fsck</b>(8)
+supports
+<b>-a</b> for backwards compatibility only.  This option is mapped to
+<b>e2fsck</b>&#146;s <b>-p</b> option which is safe to use, unlike the
+<b>-a</b> option that some file system checkers support.
+</td></tr>
+<tr valign="top"><td>
+<b>-n</b> </td><td valign="bottom">
+For some filesystem-specific checkers, the
+<b>-n</b> option will cause the fs-specific fsck to avoid attempting to repair any
+problems, but simply report such problems to stdout.  This is however
+not true for all filesystem-specific checkers.  In particular,
+<b>fsck.reiserfs</b>(8)
+will not report any corruption if given this option.
+<b>fsck.minix</b>(8)
+does not support the
+<b>-n</b> option at all.
+</td></tr>
+<tr valign="top"><td>
+<b>-r</b> </td><td valign="bottom">
+Interactively repair the filesystem (ask for confirmations).  Note: It
+is generally a bad idea to use this option if multiple fsck&#146;s are being
+run in parallel.  Also note that this is
+<b>e2fsck</b>&#146;s default behavior; it supports this option for backwards compatibility
+reasons only.
+</td></tr>
+<tr valign="top"><td>
+<b>-y</b> </td><td valign="bottom">
+For some filesystem-specific checkers, the
+<b>-y</b> option will cause the fs-specific fsck to always attempt to fix any
+detected filesystem corruption automatically.  Sometimes an expert may
+be able to do better driving the fsck manually.  Note that
+<b>not</b> all filesystem-specific checkers implement this option.  In particular
+<b>fsck.minix</b>(8)
+and
+<b>fsck.cramfs</b>(8)
+does not support the
+<b>-y</b> option as of this writing.
+</td></tr>
+</table>
+<h1 class="manpages">AUTHOR</h1>
+Theodore Ts&#146;o (<a href="mailto:tytso@mit.edu">tytso@mit.edu</a>)
+<h1 class="manpages">FILES</h1>
+<i>/etc/fstab</i>. <h1 class="manpages">ENVIRONMENT VARIABLES</h1>
+The
+<b>fsck</b> program&#146;s behavior is affected by the following environment variables:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>FSCK_FORCE_ALL_PARALLEL</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+If this environment variable is set,
+<b>fsck</b> will attempt to run all of the specified filesystems in parallel,
+regardless of whether the filesystems appear to be on the same
+device.  (This is useful for RAID systems or high-end storage systems
+such as those sold by companies such as IBM or EMC.)
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>FSCK_MAX_INST</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This environment variable will limit the maximum number of file system
+checkers that can be running at one time.  This allows configurations
+which have a large number of disks to avoid
+<b>fsck</b> starting too many file system checkers at once, which might overload
+CPU and memory resources available on the system.  If this value is
+zero, then an unlimited number of processes can be spawned.  This is
+currently the default, but future versions of
+<b>fsck</b> may attempt to automatically determine how many file system checks can
+be run based on gathering accounting data from the operating system.
+</td></tr>
+<tr valign="top"><td>
+<b>PATH</b> </td><td valign="bottom">
+The
+<b>PATH</b> environment variable is used to find file system checkers.  A set of
+system directories are searched first:
+<b>/sbin</b>, <b>/sbin/fs.d</b>, <b>/sbin/fs</b>, <b>/etc/fs</b>, and
+<b>/etc</b>. Then the set of directories found in the
+<b>PATH</b> environment are searched.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>FSTAB_FILE</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This environment variable allows the system administrator
+to override the standard location of the
+<b>/etc/fstab</b> file.  It is also useful for developers who are testing
+<b>fsck</b>. </td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="mkfs.htm">mkfs (8)</a></p></li>
+<li><p><a href="fsck.htm">fsck (8)</a></p></li>
+</ul>
+<b>fsck.ext3</b>(8)
+or
+<b>e2fsck</b>(8),
+<b>cramfsck</b>(8),
+<b>fsck.minix</b>(8),
+<b>fsck.msdos</b>(8),
+<b>fsck.jfs</b>(8),
+<b>fsck.nfs</b>(8),
+<b>fsck.vfat</b>(8),
+<b>fsck.xfs</b>(8),
+<b>fsck.xiafs</b>(8),
+<b>reiserfsck</b>(8).
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion2b4a.html?tutorial=unix_commands&amp;file=fsck.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/fsck.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

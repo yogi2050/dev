@@ -1,0 +1,1173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/sshd.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:28 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>sshd - Unix, Linux Command</title>
+<meta name="Description" Content="sshd - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>sshd - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+<b> sshd</b>
+- OpenSSH SSH daemon
+<h1 class="manpages">SYNOPSIS</h1>
+<b> sshd</b>
+<br />.Bk -words
+[-<b>46Ddeiqt</b>]
+[-<b>b</b><i> bits</i>]
+[-<b>f</b><i> config_file</i>]
+[-<b>g</b><i> login_grace_time</i>]
+[-<b>h</b><i> host_key_file</i>]
+[-<b>k</b><i> key_gen_time</i>]
+[-<b>o</b><i> option</i>]
+[-<b>p</b><i> port</i>]
+[-<b>u</b><i> len</i>]
+<br />.Ek 
+<h1 class="manpages">DESCRIPTION</h1>
+<b>sshd</b>
+(OpenSSH Daemon) is the daemon program for
+<b>ssh</b>(1).
+Together these programs replace rlogin and rsh, and
+provide secure encrypted communications between two untrusted hosts
+over an insecure network.
+<p>
+<b>sshd</b>
+listens for connections from clients.
+It is normally started at boot from
+<tt> /etc/rc</tt>.
+It forks a new
+daemon for each incoming connection.
+The forked daemons handle
+key exchange, encryption, authentication, command execution,
+and data exchange.
+<p>
+<b>sshd</b>
+can be configured using command-line options or a configuration file
+(by default
+<b>sshd_config</b>(5));
+command-line options override values specified in the
+configuration file.
+<b>sshd</b>
+rereads its configuration file when it receives a hangup signal,
+<tt> SIGHUP</tt>,
+by executing itself with the name and options it was started with, e.g.,
+<tt> /usr/sbin/sshd</tt>.
+<p>
+The options are as follows:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>-<b>4</b> 
+</td><td>
+Forces
+<b>sshd</b>
+to use IPv4 addresses only.
+</td></tr>
+<tr valign="top"><td>-<b>6</b> 
+</td><td>
+Forces
+<b>sshd</b>
+to use IPv6 addresses only.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>b</b> <i> bits</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specifies the number of bits in the ephemeral protocol version 1
+server key (default 768).
+</td></tr>
+<tr valign="top"><td>-<b>D</b> 
+</td><td>
+When this option is specified,
+<b>sshd</b>
+will not detach and does not become a daemon.
+This allows easy monitoring of
+<b> sshd</b>.
+</td></tr>
+<tr valign="top"><td>-<b>d</b> 
+</td><td>
+Debug mode.
+The server sends verbose debug output to the system
+log, and does not put itself in the background.
+The server also will not fork and will only process one connection.
+This option is only intended for debugging for the server.
+Multiple
+-<b>d</b> 
+options increase the debugging level.
+Maximum is 3.
+</td></tr>
+<tr valign="top"><td>-<b>e</b> 
+</td><td>
+When this option is specified,
+<b>sshd</b>
+will send the output to the standard error instead of the system log.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>f</b> <i> configuration_file</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specifies the name of the configuration file.
+The default is
+<tt> /etc/ssh/sshd_config</tt>.
+<b>sshd</b>
+refuses to start if there is no configuration file.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>g</b> <i> login_grace_time</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Gives the grace time for clients to authenticate themselves (default
+120 seconds).
+If the client fails to authenticate the user within
+this many seconds, the server disconnects and exits.
+A value of zero indicates no limit.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>h</b> <i> host_key_file</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specifies a file from which a host key is read.
+This option must be given if
+<b>sshd</b>
+is not run as root (as the normal
+host key files are normally not readable by anyone but root).
+The default is
+<tt> /etc/ssh/ssh_host_key</tt>
+for protocol version 1, and
+<tt> /etc/ssh/ssh_host_rsa_key</tt>
+and
+<tt> /etc/ssh/ssh_host_dsa_key</tt>
+for protocol version 2.
+It is possible to have multiple host key files for
+the different protocol versions and host key algorithms.
+</td></tr>
+<tr valign="top"><td>-<b>i</b> 
+</td><td>
+Specifies that
+<b>sshd</b>
+is being run from
+<b>inetd</b>(8).
+<b>sshd</b>
+is normally not run
+from inetd because it needs to generate the server key before it can
+respond to the client, and this may take tens of seconds.
+Clients would have to wait too long if the key was regenerated every time.
+However, with small key sizes (e.g., 512) using
+<b>sshd</b>
+from inetd may
+be feasible.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>k</b> <i> key_gen_time</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specifies how often the ephemeral protocol version 1 server key is
+regenerated (default 3600 seconds, or one hour).
+The motivation for regenerating the key fairly
+often is that the key is not stored anywhere, and after about an hour
+it becomes impossible to recover the key for decrypting intercepted
+communications even if the machine is cracked into or physically
+seized.
+A value of zero indicates that the key will never be regenerated.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>o</b> <i> option</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Can be used to give options in the format used in the configuration file.
+This is useful for specifying options for which there is no separate
+command-line flag.
+For full details of the options, and their values, see
+<b>sshd_config</b>(5).
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>p</b> <i> port</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specifies the port on which the server listens for connections
+(default 22).
+Multiple port options are permitted.
+Ports specified in the configuration file with the
+<b> Port</b>
+option are ignored when a command-line port is specified.
+Ports specified using the
+<b> ListenAddress</b>
+option override command-line ports.
+</td></tr>
+<tr valign="top"><td>-<b>q</b> 
+</td><td>
+Quiet mode.
+Nothing is sent to the system log.
+Normally the beginning,
+authentication, and termination of each connection is logged.
+</td></tr>
+<tr valign="top"><td>-<b>t</b> 
+</td><td>
+Test mode.
+Only check the validity of the configuration file and sanity of the keys.
+This is useful for updating
+<b>sshd</b>
+reliably as configuration options may change.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>u</b> <i> len</i>
+</td></tr><tr><td>&nbsp;</td><td>
+This option is used to specify the size of the field
+in the
+utmp
+structure that holds the remote host name.
+If the resolved host name is longer than
+<i> len</i>,
+the dotted decimal value will be used instead.
+This allows hosts with very long host names that
+overflow this field to still be uniquely identified.
+Specifying
+-<b>u0</b> 
+indicates that only dotted decimal addresses
+should be put into the
+<tt> utmp</tt>
+file.
+-<b>u0</b> 
+may also be used to prevent
+<b>sshd</b>
+from making DNS requests unless the authentication
+mechanism or configuration requires it.
+Authentication mechanisms that may require DNS include
+<b> RhostsRSAAuthentication</b>,
+<b> HostbasedAuthentication</b>,
+and using a
+<b> from= pattern-list</b>
+option in a key file.
+Configuration options that require DNS include using a
+USER@HOST pattern in
+<b> AllowUsers</b>
+or
+<b> DenyUsers</b>.
+</td></tr>
+</table>
+<h1 class="manpages">AUTHENTICATION</h1>
+The OpenSSH SSH daemon supports SSH protocols 1 and 2.
+Both protocols are supported by default,
+though this can be changed via the
+<b> Protocol</b>
+option in
+<b>sshd_config</b>(5).
+Protocol 2 supports both RSA and DSA keys;
+protocol 1 only supports RSA keys.
+For both protocols,
+each host has a host-specific key,
+normally 2048 bits,
+used to identify the host.
+<p>
+Forward security for protocol 1 is provided through
+an additional server key,
+normally 768 bits,
+generated when the server starts.
+This key is normally regenerated every hour if it has been used, and
+is never stored on disk.
+Whenever a client connects, the daemon responds with its public
+host and server keys.
+The client compares the
+RSA host key against its own database to verify that it has not changed.
+The client then generates a 256-bit random number.
+It encrypts this
+random number using both the host key and the server key, and sends
+the encrypted number to the server.
+Both sides then use this
+random number as a session key which is used to encrypt all further
+communications in the session.
+The rest of the session is encrypted
+using a conventional cipher, currently Blowfish or 3DES, with 3DES
+being used by default.
+The client selects the encryption algorithm
+to use from those offered by the server.
+<p>
+For protocol 2,
+forward security is provided through a Diffie-Hellman key agreement.
+This key agreement results in a shared session key.
+The rest of the session is encrypted using a symmetric cipher, currently
+128-bit AES, Blowfish, 3DES, CAST128, Arcfour, 192-bit AES, or 256-bit AES.
+The client selects the encryption algorithm
+to use from those offered by the server.
+Additionally, session integrity is provided
+through a cryptographic message authentication code
+(hmac-sha1 or hmac-md5).
+<p>
+Finally, the server and the client enter an authentication dialog.
+The client tries to authenticate itself using
+host-based authentication,
+public key authentication,
+challenge-response authentication,
+or password authentication.
+<p>
+Regardless of the authentication type, the account is checked to
+ensure that it is accessible.  An account is not accessible if it is
+locked, listed in
+<b> DenyUsers</b>
+or its group is listed in
+<b> DenyGroups</b>
+&#46;  The definition of a locked account is system dependant. Some platforms
+have their own account database (eg AIX) and some modify the passwd field (
+&#145;<tt>*LK*</tt>&#146;
+on Solaris and UnixWare,
+&#145;<tt>*</tt>&#146;
+on HP-UX, containing
+&#145;<tt>Nologin</tt>&#146;
+on Tru64,
+a leading
+&#145;<tt>*LOCKED*</tt>&#146;
+on FreeBSD and a leading
+&#145;<tt>!!</tt>&#146;
+on Linux).  If there is a requirement to disable password authentication
+for the account while allowing still public-key, then the passwd field
+should be set to something other than these values (eg
+&#145;<tt>NP</tt>&#146;
+or
+&#145;<tt>*NP*</tt>&#146;
+).
+<p>
+System security is not improved unless
+<b> rshd</b>,
+<b> rlogind</b>,
+and
+<b> rexecd</b>
+are disabled (thus completely disabling
+<b>rlogin</b>
+and
+<b>rsh</b>
+into the machine).
+<h1 class="manpages">COMMAND EXECUTION AND DATA FORWARDING</h1>
+If the client successfully authenticates itself, a dialog for
+preparing the session is entered.
+At this time the client may request
+things like allocating a pseudo-tty, forwarding X11 connections,
+forwarding TCP connections, or forwarding the authentication agent
+connection over the secure channel.
+<p>
+Finally, the client either requests a shell or execution of a command.
+The sides then enter session mode.
+In this mode, either side may send
+data at any time, and such data is forwarded to/from the shell or
+command on the server side, and the user terminal in the client side.
+<p>
+When the user program terminates and all forwarded X11 and other
+connections have been closed, the server sends command exit status to
+the client, and both sides exit.
+<h1 class="manpages">LOGIN PROCESS</h1>
+When a user successfully logs in,
+<b>sshd</b>
+does the following:
+<ol>
+<LI>If the login is on a tty, and no command has been specified,
+prints last login time and
+<tt> /etc/motd</tt>
+(unless prevented in the configuration file or by
+<tt> ~/.hushlogin</tt>;
+see the
+<a href=#10> FILES</a>
+section).
+<LI>If the login is on a tty, records login time.
+<LI>Checks
+<tt> /etc/nologin</tt>;
+if it exists, prints contents and quits
+(unless root).
+<LI>Changes to run with normal user privileges.
+<LI>Sets up basic environment.
+<LI>Reads the file
+<tt> ~/.ssh/environment</tt>,
+if it exists, and users are allowed to change their environment.
+See the
+<b> PermitUserEnvironment</b>
+option in
+<b>sshd_config</b>(5).
+<LI>Changes to user&#146;s home directory.
+<LI>If
+<tt> ~/.ssh/rc</tt>
+exists, runs it; else if
+<tt> /etc/ssh/sshrc</tt>
+exists, runs
+it; otherwise runs xauth.
+The
+"rc"
+files are given the X11
+authentication protocol and cookie in standard input.
+<LI>Runs user&#146;s shell or command.
+</ol>
+<h1 class="manpages">AUTHORIZED_KEYS FILE FORMAT</h1>
+<tt> ~/.ssh/authorized_keys</tt>
+is the default file that lists the public keys that are
+permitted for RSA authentication in protocol version 1
+and for public key authentication (PubkeyAuthentication)
+in protocol version 2.
+<b> AuthorizedKeysFile</b>
+may be used to specify an alternative file.
+<p>
+Each line of the file contains one
+key (empty lines and lines starting with a
+&#145;<tt>#</tt>&#146;
+are ignored as
+comments).
+Each RSA public key consists of the following fields, separated by
+spaces: options, bits, exponent, modulus, comment.
+Each protocol version 2 public key consists of:
+options, keytype, base64 encoded key, comment.
+The options field
+is optional; its presence is determined by whether the line starts
+with a number or not (the options field never starts with a number).
+The bits, exponent, modulus and comment fields give the RSA key for
+protocol version 1; the
+comment field is not used for anything (but may be convenient for the
+user to identify the key).
+For protocol version 2 the keytype is
+"ssh-dss"
+or
+"ssh-rsa".
+<p>
+Note that lines in this file are usually several hundred bytes long
+(because of the size of the public key encoding) up to a limit of
+8 kilobytes, which permits DSA keys up to 8 kilobits and RSA
+keys up to 16 kilobits.
+You don&#146;t want to type them in; instead, copy the
+<tt> identity.pub</tt>,
+<tt> id_dsa.pub</tt>
+or the
+<tt> id_rsa.pub</tt>
+file and edit it.
+<p>
+<b>sshd</b>
+enforces a minimum RSA key modulus size for protocol 1
+and protocol 2 keys of 768 bits.
+<p>
+The options (if present) consist of comma-separated option
+specifications.
+No spaces are permitted, except within double quotes.
+The following option specifications are supported (note
+that option keywords are case-insensitive):
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2"><b> from= pattern-list</b>
+</td></tr><tr><td>&nbsp;</td><td>
+Specifies that in addition to public key authentication, the canonical name
+of the remote host must be present in the comma-separated list of
+patterns
+(&#145;<tt>*</tt>&#146;
+and
+&#145;<tt>?</tt>&#146;
+serve as wildcards).
+The list may also contain
+patterns negated by prefixing them with
+&#145;<tt>!</tt>&#146;;
+if the canonical host name matches a negated pattern, the key is not accepted.
+The purpose
+of this option is to optionally increase security: public key authentication
+by itself does not trust the network or name servers or anything (but
+the key); however, if somebody somehow steals the key, the key
+permits an intruder to log in from anywhere in the world.
+This additional option makes using a stolen key more difficult (name
+servers and/or routers would have to be compromised in addition to
+just the key).
+</td></tr>
+<tr valign="top"><td colspan="2"><b> command= command</b>
+</td></tr><tr><td>&nbsp;</td><td>
+Specifies that the command is executed whenever this key is used for
+authentication.
+The command supplied by the user (if any) is ignored.
+The command is run on a pty if the client requests a pty;
+otherwise it is run without a tty.
+If an 8-bit clean channel is required,
+one must not request a pty or should specify
+<b> no-pty</b>.
+A quote may be included in the command by quoting it with a backslash.
+This option might be useful
+to restrict certain public keys to perform just a specific operation.
+An example might be a key that permits remote backups but nothing else.
+Note that the client may specify TCP and/or X11
+forwarding unless they are explicitly prohibited.
+Note that this option applies to shell, command or subsystem execution.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> environment= NAME=value</b>
+</td></tr><tr><td>&nbsp;</td><td>
+Specifies that the string is to be added to the environment when
+logging in using this key.
+Environment variables set this way
+override other default environment values.
+Multiple options of this type are permitted.
+Environment processing is disabled by default and is
+controlled via the
+<b> PermitUserEnvironment</b>
+option.
+This option is automatically disabled if
+<b> UseLogin</b>
+is enabled.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> no-port-forwarding</b>
+</td></tr><tr><td>&nbsp;</td><td>
+Forbids TCP forwarding when this key is used for authentication.
+Any port forward requests by the client will return an error.
+This might be used, e.g., in connection with the
+<b> command</b>
+option.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> no-X11-forwarding</b>
+</td></tr><tr><td>&nbsp;</td><td>
+Forbids X11 forwarding when this key is used for authentication.
+Any X11 forward requests by the client will return an error.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> no-agent-forwarding</b>
+</td></tr><tr><td>&nbsp;</td><td>
+Forbids authentication agent forwarding when this key is used for
+authentication.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> no-pty</b>
+</td></tr><tr><td>&nbsp;</td><td>
+Prevents tty allocation (a request to allocate a pty will fail).
+</td></tr>
+<tr valign="top"><td colspan="2"><b> permitopen= host:port</b>
+</td></tr><tr><td>&nbsp;</td><td>
+Limit local
+&#145;&#145;ssh -L&#146;&#146;
+port forwarding such that it may only connect to the specified host and
+port.
+IPv6 addresses can be specified with an alternative syntax:
+<i> host /</i><i> port</i>.
+Multiple
+<b> permitopen</b>
+options may be applied separated by commas.
+No pattern matching is performed on the specified hostnames,
+they must be literal domains or addresses.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> tunnel= n</b>
+</td></tr><tr><td>&nbsp;</td><td>
+Force a
+<b>tun</b>(4)
+device on the server.
+Without this option, the next available device will be used if
+the client requests a tunnel.
+</td></tr>
+</table>
+<h2><i>Examples</i></h2>
+1024 33 12121...312314325 <a href="mailto:ylo@foo.bar">ylo@foo.bar</a>
+<p>
+from="*.niksula.hut.fi,!pc.niksula.hut.fi" 1024 35 23...2334 ylo@niksula
+<p>
+command="dump /home",no-pty,no-port-forwarding 1024 33 23...2323 backup.hut.fi
+<p>
+permitopen="10.2.1.55:80",permitopen="10.2.1.56:25" 1024 33 23...2323
+<p>
+tunnel="0",command="sh /etc/netstart tun0" ssh-rsa AAAA...== <a href="mailto:reyk@openbsd.org">reyk@openbsd.org</a>
+<h1 class="manpages">SSH_KNOWN_HOSTS FILE FORMAT</h1>
+The
+<tt> /etc/ssh/ssh_known_hosts</tt>
+and
+<tt> ~/.ssh/known_hosts</tt>
+files contain host public keys for all known hosts.
+The global file should
+be prepared by the administrator (optional), and the per-user file is
+maintained automatically: whenever the user connects from an unknown host
+its key is added to the per-user file.
+<p>
+Each line in these files contains the following fields: hostnames,
+bits, exponent, modulus, comment.
+The fields are separated by spaces.
+<p>
+Hostnames is a comma-separated list of patterns
+(&#145;<tt>*</tt>&#146;
+and
+&#145;<tt>?</tt>&#146;
+act as
+wildcards); each pattern in turn is matched against the canonical host
+name (when authenticating a client) or against the user-supplied
+name (when authenticating a server).
+A pattern may also be preceded by
+&#145;<tt>!</tt>&#146;
+to indicate negation: if the host name matches a negated
+pattern, it is not accepted (by that line) even if it matched another
+pattern on the line.
+<p>
+Alternately, hostnames may be stored in a hashed form which hides host names
+and addresses should the file&#146;s contents be disclosed.
+Hashed hostnames start with a
+&#145;<tt>|</tt>&#146;
+character.
+Only one hashed hostname may appear on a single line and none of the above
+negation or wildcard operators may be applied.
+<p>
+Bits, exponent, and modulus are taken directly from the RSA host key; they
+can be obtained, e.g., from
+<tt> /etc/ssh/ssh_host_key.pub</tt>.
+The optional comment field continues to the end of the line, and is not used.
+<p>
+Lines starting with
+&#145;<tt>#</tt>&#146;
+and empty lines are ignored as comments.
+<p>
+When performing host authentication, authentication is accepted if any
+matching line has the proper key.
+It is thus permissible (but not
+recommended) to have several lines or different host keys for the same
+names.
+This will inevitably happen when short forms of host names
+from different domains are put in the file.
+It is possible
+that the files contain conflicting information; authentication is
+accepted if valid information can be found from either file.
+<p>
+Note that the lines in these files are typically hundreds of characters
+long, and you definitely don&#146;t want to type in the host keys by hand.
+Rather, generate them by a script
+or by taking
+<tt> /etc/ssh/ssh_host_key.pub</tt>
+and adding the host names at the front.
+<h2><i>Examples</i></h2>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+closenet,...,130.233.208.41 1024 37 159...93 closenet.hut.fi
+cvs.openbsd.org,199.185.137.3 ssh-rsa AAAA1234.....=
+</pre></td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+# A hashed hostname
+|1|JfKTdBh7rNbXkVAQCRp4OQoPfmI=|USECr3SWf1JUPsms5AqfD5QfxkM= ssh-rsa
+AAAA1234.....=
+</pre></td></tr>
+</table>
+<h1 class="manpages">FILES</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2"><tt> /etc/ssh/sshd_config</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+Contains configuration data for
+<b> sshd</b>.
+The file format and configuration options are described in
+<b>sshd_config</b>(5).
+</td></tr>
+<tr valign="top"><td colspan="2"><tt> /etc/ssh/ssh_host_key, /etc/ssh/ssh_host_dsa_key, /etc/ssh/ssh_host_rsa_key</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+These three files contain the private parts of the host keys.
+These files should only be owned by root, readable only by root, and not
+accessible to others.
+Note that
+<b>sshd</b>
+does not start if this file is group/world-accessible.
+</td></tr>
+<tr valign="top"><td colspan="2"><tt> /etc/ssh/ssh_host_key.pub, /etc/ssh/ssh_host_dsa_key.pub, /etc/ssh/ssh_host_rsa_key.pub</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+These three files contain the public parts of the host keys.
+These files should be world-readable but writable only by
+root.
+Their contents should match the respective private parts.
+These files are not
+really used for anything; they are provided for the convenience of
+the user so their contents can be copied to known hosts files.
+These files are created using
+<b>ssh-keygen</b>(1).
+</td></tr>
+<tr valign="top"><td colspan="2"><tt> /etc/moduli</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+Contains Diffie-Hellman groups used for the "Diffie-Hellman Group Exchange".
+The file format is described in
+<b>moduli</b>(5).
+</td></tr>
+<tr valign="top"><td colspan="2"><tt> /var/empty/sshd</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+<b>chroot</b>(2)
+directory used by
+<b>sshd</b>
+during privilege separation in the pre-authentication phase.
+The directory should not contain any files and must be owned by root
+and not group or world-writable.
+</td></tr>
+<tr valign="top"><td colspan="2"><tt> /var/run/sshd.pid</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+Contains the process ID of the
+<b>sshd</b>
+listening for connections (if there are several daemons running
+concurrently for different ports, this contains the process ID of the one
+started last).
+The content of this file is not sensitive; it can be world-readable.
+</td></tr>
+<tr valign="top"><td colspan="2"><tt> ~/.ssh/authorized_keys</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+Lists the public keys (RSA or DSA) that can be used to log into the user&#146;s account.
+This file must be readable by root (which may on some machines imply
+it being world-readable if the user&#146;s home directory resides on an NFS
+volume).
+It is recommended that it not be accessible by others.
+The format of this file is described above.
+Users will place the contents of their
+<tt> identity.pub</tt>,
+<tt> id_dsa.pub</tt>
+and/or
+<tt> id_rsa.pub</tt>
+files into this file, as described in
+<b>ssh-keygen</b>(1).
+</td></tr>
+<tr valign="top"><td colspan="2"><tt> /etc/ssh/ssh_known_hosts, ~/.ssh/known_hosts</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+These files are consulted when using rhosts with RSA host
+authentication or protocol version 2 hostbased authentication
+to check the public key of the host.
+The key must be listed in one of these files to be accepted.
+The client uses the same files
+to verify that it is connecting to the correct remote host.
+These files should be writable only by root/the owner.
+<tt> /etc/ssh/ssh_known_hosts</tt>
+should be world-readable, and
+<tt> ~/.ssh/known_hosts</tt>
+can, but need not be, world-readable.
+</td></tr>
+<tr valign="top"><td colspan="2"><tt> /etc/motd</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+See
+<b>motd</b>(5).
+</td></tr>
+<tr valign="top"><td colspan="2"><tt> ~/.hushlogin</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+This file is used to suppress printing the last login time and
+<tt> /etc/motd</tt>,
+if
+<b> PrintLastLog</b>
+and
+<b> PrintMotd</b>,
+respectively,
+are enabled.
+It does not suppress printing of the banner specified by
+<b> Banner</b>.
+</td></tr>
+<tr valign="top"><td colspan="2"><tt> /etc/nologin</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+If this file exists,
+<b>sshd</b>
+refuses to let anyone except root log in.
+The contents of the file
+are displayed to anyone trying to log in, and non-root connections are
+refused.
+The file should be world-readable.
+</td></tr>
+<tr valign="top"><td colspan="2"><tt> /etc/hosts.allow, /etc/hosts.deny</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+Access controls that should be enforced by tcp-wrappers are defined here.
+Further details are described in
+<b>hosts_access</b>(5).
+</td></tr>
+<tr valign="top"><td colspan="2"><tt> ~/.rhosts</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+This file is used during
+<b> RhostsRSAAuthentication</b>
+and
+<b> HostbasedAuthentication</b>
+and contains host-username pairs, separated by a space, one per
+line.
+The given user on the corresponding host is permitted to log in
+without a password.
+The same file is used by rlogind and rshd.
+The file must
+be writable only by the user; it is recommended that it not be
+accessible by others.
+<p>
+It is also possible to use netgroups in the file.
+Either host or user
+name may be of the form +@groupname to specify all hosts or all users
+in the group.
+</td></tr>
+<tr valign="top"><td colspan="2"><tt> ~/.shosts</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+For ssh,
+this file is exactly the same as for
+<tt> .rhosts</tt>.
+However, this file is
+not used by rlogin and rshd, so using this permits access using SSH only.
+</td></tr>
+<tr valign="top"><td colspan="2"><tt> /etc/hosts.equiv</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+This file is used during
+<b> RhostsRSAAuthentication</b>
+and
+<b> HostbasedAuthentication</b>
+authentication.
+In the simplest form, this file contains host names, one per line.
+Users on
+those hosts are permitted to log in without a password, provided they
+have the same user name on both machines.
+The host name may also be
+followed by a user name; such users are permitted to log in as
+<i> any</i>
+user on this machine (except root).
+Additionally, the syntax
+"+@group"
+can be used to specify netgroups.
+Negated entries start with
+&#145;<tt>-</tt>&#146;.
+<p>
+If the client host/user is successfully matched in this file, login is
+automatically permitted provided the client and server user names are the
+same.
+Additionally, successful client host key authentication is required.
+This file must be writable only by root; it is recommended
+that it be world-readable.
+<p>
+<b> Warning: It is almost never a good idea to use user names in</b>
+<tt> hosts.equiv</tt>.
+Beware that it really means that the named user(s) can log in as
+<i> anybody</i>,
+which includes bin, daemon, adm, and other accounts that own critical
+binaries and directories.
+Using a user name practically grants the user root access.
+The only valid use for user names that I can think
+of is in negative entries.
+<p>
+Note that this warning also applies to rsh/rlogin.
+</td></tr>
+<tr valign="top"><td colspan="2"><tt> /etc/ssh/shosts.equiv</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+This is processed exactly as
+<tt> /etc/hosts.equiv</tt>.
+However, this file may be useful in environments that want to run both
+rsh/rlogin and ssh.
+</td></tr>
+<tr valign="top"><td colspan="2"><tt> ~/.ssh/environment</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+This file is read into the environment at login (if it exists).
+It can only contain empty lines, comment lines (that start with
+&#145;<tt>#</tt>&#146;),
+and assignment lines of the form name=value.
+The file should be writable
+only by the user; it need not be readable by anyone else.
+Environment processing is disabled by default and is
+controlled via the
+<b> PermitUserEnvironment</b>
+option.
+</td></tr>
+<tr valign="top"><td colspan="2"><tt> ~/.ssh/rc</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+If this file exists, it is run with
+<tt> /bin/sh</tt>
+after reading the
+environment files but before starting the user&#146;s shell or command.
+It must not produce any output on stdout; stderr must be used
+instead.
+If X11 forwarding is in use, it will receive the "proto cookie" pair in
+its standard input (and
+<i> DISPLAY</i>
+in its environment).
+The script must call
+<b>xauth</b>(1)
+because
+<b>sshd</b>
+will not run xauth automatically to add X11 cookies.
+<p>
+The primary purpose of this file is to run any initialization routines
+which may be needed before the user&#146;s home directory becomes
+accessible; AFS is a particular example of such an environment.
+<p>
+This file will probably contain some initialization code followed by
+something similar to:
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+if read proto cookie && [ -n "$DISPLAY" ]; then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if [ &#145;echo $DISPLAY | cut -c1-10&#145; = &#146;localhost:&#146; ]; then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# X11UseLocalhost=yes
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo add unix:&#145;echo $DISPLAY |
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    cut -c11-&#145; $proto $cookie
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# X11UseLocalhost=no
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo add $DISPLAY $proto $cookie
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi | xauth -q -
+fi
+</pre></td></tr>
+</table>
+<p>
+If this file does not exist,
+<tt> /etc/ssh/sshrc</tt>
+is run, and if that
+does not exist either, xauth is used to add the cookie.
+<p>
+This file should be writable only by the user, and need not be
+readable by anyone else.
+</td></tr>
+<tr valign="top"><td colspan="2"><tt> /etc/ssh/sshrc</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+Like
+<tt> ~/.ssh/rc</tt>.
+This can be used to specify
+machine-specific login-time initializations globally.
+This file should be writable only by root, and should be world-readable.
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<b>sftp</b>(1),
+<b>ssh</b>(1),
+<b>ssh-add</b>(1),
+<b>ssh-agent</b>(1),
+<b>ssh-keygen</b>(1),
+<b>chroot</b>(2),
+<b>hosts_access</b>(5),
+<b>login.conf</b>(5),
+<b>moduli</b>(5),
+<b>sshd_config</b>(5),
+<b>inetd</b>(8),
+<b>sftp-server</b>(8)
+<br />.Rs 
+<!-- ignored unsupported tag .%A -->
+<!-- ignored unsupported tag .%A -->
+<!-- ignored unsupported tag .%A -->
+<!-- ignored unsupported tag .%A -->
+<!-- ignored unsupported tag .%A -->
+<i> SSH Protocol Architecture</i>
+<!-- ignored unsupported tag .%N -->
+<!-- ignored unsupported tag .%D -->
+<!-- ignored unsupported tag .%O -->
+<br />.Re 
+<br />.Rs 
+<!-- ignored unsupported tag .%A -->
+<!-- ignored unsupported tag .%A -->
+<!-- ignored unsupported tag .%A -->
+<i> Diffie-Hellman Group Exchange for the SSH Transport Layer Protocol</i>
+<!-- ignored unsupported tag .%N -->
+<!-- ignored unsupported tag .%D -->
+<!-- ignored unsupported tag .%O -->
+<br />.Re 
+<h1 class="manpages">AUTHORS</h1>
+OpenSSH is a derivative of the original and free
+ssh 1.2.12 release by Tatu Ylonen.
+Aaron Campbell, Bob Beck, Markus Friedl, Niels Provos,
+Theo de Raadt and Dug Song
+removed many bugs, re-added newer features and
+created OpenSSH.
+Markus Friedl contributed the support for SSH
+protocol versions 1.5 and 2.0.
+Niels Provos and Markus Friedl contributed support
+for privilege separation.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion51ad.html?tutorial=unix_commands&amp;file=sshd.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/sshd.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:28 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

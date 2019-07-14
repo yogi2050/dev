@@ -1,0 +1,408 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/jdbc/jdbc-stored-procedure.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 19:47:29 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>JDBC - Stored Procedures</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="description" content="JDBC Stored Procedures - Learning JDBC in simple and easy steps using this beginner's tutorial containing basic to advanced knowledge of JDBC including Drivers, Environment Setup, SQL Statement, Insert, Update, Select, Delete, Group By, Where Clause, Pagination, Result Sets, Database, Exception, Handling etc." />
+<meta name="Keywords" content="Java, JDBC, Tutorials, Learning, Beginners, Basics, Drivers, Environment, Setup, SQL, Statement, Insert, Update, Select, Delete, Group By, Where Clause, Pagination, Result Sets, Database, Exception, Handling" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+#topmenu a:hover {text-decoration:none;color:#DA406A !important;background-color:transparent;font-weight:bold;}
+#header{ 
+background:#DA406A !important;
+}
+#topmenu
+{
+background-color:#760422 !important;
+}
+#leftcol ul.menu li.heading 
+{
+background:#DA406A !important;
+border:1px solid #760422 !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1020px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index-2.html">Tutorials Point - Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index-2.html" target="_top">HOME </a>
+<a href="../java/index.html" target="_top">JAVA </a>
+<a href="../php/index.html" target="_top">PHP </a>
+<a href="../python/index.html" target="_top">Python </a>
+<a href="../ruby/index.html" target="_top">Ruby </a>
+<a href="../perl/index.html" target="_top">Perl </a>
+<a href="../html/index.html" target="_top">HTML </a>
+<a href="../css/index.html" target="_top">CSS </a>
+<a href="../javascript/index.html" target="_top">Javascript </a>
+<a href="../mysql/index.html" target="_top">MySQL </a>
+<a href="../cplusplus/index.html" target="_top">C++ </a>
+<a href="../unix/index.html" target="_top">UNIX </a>
+<a href="../more.html" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.html" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.html" target="_top">ABOUT</a> |
+<a href="../about/contact_us.html" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/jdbc-mini-logo.png" alt="JDBC Tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">JDBC Tutorial</li>
+<li><a target="_top" href="index.html">JDBC - Home</a></li>
+<li><a target="_top" href="jdbc-introduction.html">JDBC - Introduction</a></li>
+<li><a target="_top" href="jdbc-sql-syntax.html">JDBC - SQL Syntax</a></li>
+<li><a target="_top" href="jdbc-environment-setup.html">JDBC - Environment</a></li>
+<li><a target="_top" href="jdbc-sample-code.html">JDBC - Sample Code</a></li>
+<li><a target="_top" href="jdbc-driver-types.html">JDBC - Driver Types</a></li>
+<li><a target="_top" href="jdbc-db-connections.html">JDBC - Connections</a></li>
+<li><a target="_top" href="jdbc-statements.html">JDBC - Statements</a></li>
+<li><a target="_top" href="jdbc-result-sets.html">JDBC - Result Sets</a></li>
+<li><a target="_top" href="jdbc-data-types.html">JDBC - Data Types</a></li>
+<li><a target="_top" href="jdbc-transactions.html">JDBC - Transactions</a></li>
+<li><a target="_top" href="jdbc-exceptions.html">JDBC - Exceptions</a></li>
+<li><a target="_top" href="jdbc-batch-processing.html">JDBC - Batch Processing</a></li>
+<li><a target="_top" href="jdbc-stored-procedure.html"><b>JDBC - Stored Procedure</b></a></li>
+<li><a target="_top" href="jdbc-streaming-data.html">JDBC - Streaming Data</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">JDBC Examples</li>
+<li><a target="_top" href="jdbc-create-database.html">JDBC - Create Database</a></li>
+<li><a target="_top" href="jdbc-select-database.html">JDBC - Select Database</a></li>
+<li><a target="_top" href="jdbc-drop-database.html">JDBC - Drop Database</a></li>
+<li><a target="_top" href="jdbc-create-tables.html">JDBC - Create Tables</a></li>
+<li><a target="_top" href="jdbc-drop-tables.html">JDBC - Drop Tables</a></li>
+<li><a target="_top" href="jdbc-insert-records.html">JDBC - Insert Records</a></li>
+<li><a target="_top" href="jdbc-select-records.html">JDBC - Select Records</a></li>
+<li><a target="_top" href="jdbc-update-records.html">JDBC - Update Records</a></li>
+<li><a target="_top" href="jdbc-delete-records.html">JDBC - Delete Records</a></li>
+<li><a target="_top" href="jdbc-where-clause.html">JDBC - WHERE Clause</a></li>
+<li><a target="_top" href="jdbc-like-clause.html">JDBC - Like Clause</a></li>
+<li><a target="_top" href="jdbc-sorting-data.html">JDBC - Sorting Data</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">JDBC Useful Resources</li>
+<li><a target="_top" href="jdbc-quick-guide.html">JDBC - Quick Guide</a></li>
+<li><a target="_top" href="jdbc-useful-resources.html">JDBC Useful Resources</a></li>
+<li><a target="_top" href="../java/index.html">Useful Java Tutorials</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.html">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>JDBC - Stored Procedures</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="jdbc-batch-processing.html">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="jdbc-streaming-data.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>I have explained how to use <b>Stored Procedures</b> in JDBC while discussing <a href="jdbc-statements.html">JDBC - Statements</a>. This tutorial is similar to that section but it would give you additional information about JDBC SQL escape syntax.</p>
+<p>Just as a Connection object creates the Statement and PreparedStatement objects, it also creates the CallableStatement object which would be used to execute a call to a database stored procedure.</p>
+<h2>Creating CallableStatement Object:</h2>
+<p>Suppose, you need to execute the following Oracle stored procedure:</p>
+<pre class="prettyprint">
+CREATE OR REPLACE PROCEDURE getEmpName 
+   (EMP_ID IN NUMBER, EMP_FIRST OUT VARCHAR) AS
+BEGIN
+   SELECT first INTO EMP_FIRST
+   FROM Employees
+   WHERE ID = EMP_ID;
+END;
+</pre>
+<p><b>NOTE:</b> Above stored procedure has been written for Oracle, but we are working with MySQL database so let us write same stored procedure for MySQL as follows to create it in EMP database:</p>
+<pre class="prettyprint">
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS `EMP`.`getEmpName` $$
+CREATE PROCEDURE `EMP`.`getEmpName` 
+   (IN EMP_ID INT, OUT EMP_FIRST VARCHAR(255))
+BEGIN
+   SELECT first INTO EMP_FIRST
+   FROM Employees
+   WHERE ID = EMP_ID;
+END $$
+
+DELIMITER ;
+</pre>
+<p>Three types of parameters exist: IN, OUT, and INOUT. The PreparedStatement object only uses the IN parameter. The CallableStatement object can use all three.</p>
+<p>Here are the definitions of each:</p>
+<table class="src">
+<tr>
+<th style="width:28%">Parameter</th><th style="width:72%">Description</th>
+</tr>
+<tr><td>IN</td><td>A parameter whose value is unknown when the SQL statement is created. You bind values to IN parameters with the setXXX() methods.</td></tr>
+<tr><td>OUT</td><td>A parameter whose value is supplied by the SQL statement it returns. You retrieve values from theOUT parameters with the getXXX() methods.</td></tr>
+<tr><td>INOUT</td><td>A parameter that provides both input and output values. You bind variables with the setXXX() methods and retrieve values with the getXXX() methods.</td></tr>
+</table>
+<p>The following code snippet shows how to employ the <b>Connection.prepareCall()</b> method to instantiate a <b>CallableStatement</b> object based on the preceding stored procedure:</p>
+<pre class="prettyprint">
+CallableStatement cstmt = null;
+try {
+   String SQL = "{call getEmpName (?, ?)}";
+   cstmt = conn.prepareCall (SQL);
+   . . .
+}
+catch (SQLException e) {
+   . . .
+}
+finally {
+   . . .
+}
+</pre>
+<p>The String variable SQL represents the stored procedure, with parameter placeholders.</p>
+<p>Using CallableStatement objects is much like using PreparedStatement objects. You must bind values to all parameters before executing the statement, or you will receive an SQLException.</p>
+<p>If you have IN parameters, just follow the same rules and techniques that apply to a PreparedStatement object; use the setXXX() method that corresponds to the Java data type you are binding.</p>
+<p>When you use OUT and INOUT parameters you must employ an additional CallableStatement method, registerOutParameter(). The registerOutParameter() method binds the JDBC data type to the data type the stored procedure is expected to return.</p>
+<p>Once you call your stored procedure, you retrieve the value from the OUT parameter with the appropriate getXXX() method. This method casts the retrieved value of SQL type to a Java data type.</p>
+<h2>Closing CallableStatement Obeject:</h2>
+<p>Just as you close other Statement object, for the same reason you should also close the CallableStatement object.</p>
+<p>A simple call to the close() method will do the job. If you close the Connection object first it will close the CallableStatement object as well. However, you should always explicitly close the CallableStatement object to ensure proper cleanup.</p>
+<pre class="prettyprint">
+CallableStatement cstmt = null;
+try {
+   String SQL = "{call getEmpName (?, ?)}";
+   cstmt = conn.prepareCall (SQL);
+   . . .
+}
+catch (SQLException e) {
+   . . .
+}
+finally {
+   cstmt.close();
+}
+</pre>
+<p>For a better understanding, I would suggest to study <a href="callablestatement-object-example.htm">Callable - Example Code</a>.</p>
+<h2>JDBC SQL escape syntax:</h2>
+<p>The escape syntax gives you the flexibility to use database specific features unavailable to you by using standard JDBC methods and properties.</p>
+<p>The general SQL escape syntax format is as follows:</p>
+<pre class="prettyprint">
+{keyword 'parameters'}
+</pre>
+<p>Here are following escape sequences which you would find very useful while doing JDBC programming:</p>
+<h2>d, t, ts Keywords:</h2>
+<p>They help identify date, time, and timestamp literals. As you know, no two DBMSs represent time and date the same way. This escape syntax tells the driver to render the  date or time in the target database's format. For Example:</p>
+<pre class="prettyprint">
+{d 'yyyy-mm-dd'}
+</pre>
+<p>Where yyyy = year, mm = month; dd = date. Using this syntax {d '2009-09-03'} is March 9, 2009.</p>
+<p>Here is a simple example showing how to INSERT date in a table:</p>
+<pre class="prettyprint">
+//Create a Statement object
+stmt = conn.createStatement();
+//Insert data ==&gt; ID, First Name, Last Name, DOB
+String sql="INSERT INTO STUDENTS VALUES" +
+             "(100,'Zara','Ali', {d '2001-12-16'})";
+
+stmt.executeUpdate(sql);
+</pre>
+<p>Similarly, you can use one of the following two syntaxes, either <b>t</b> or <b>ts</b>:</p>
+<pre class="prettyprint">
+{t 'hh:mm:ss'}
+</pre>
+<p>Where hh = hour; mm = minute; ss = second. Using this syntax {t '13:30:29'} is 1:30:29 PM.</p>
+<pre class="prettyprint">
+{ts 'yyyy-mm-dd hh:mm:ss'}
+</pre>
+<p>This is combined syntax of the above two syntax for 'd' and 't' to represent timestamp.</p>
+<h2>escape Keyword:</h2>
+<p>This keyword identifies the escape character used in LIKE clauses. Useful when using the SQL wildcard %, which matches zero or more characters. For example:</p>
+<pre class="prettyprint">
+String sql = "SELECT symbol FROM MathSymbols
+              WHERE symbol LIKE '\%' {escape '\'}";
+stmt.execute(sql);
+</pre>
+<p>If you use the backslash character (\) as the escape character, you also have to use two backslash characters in your Java String literal, because the backslash is also a Java escape character.</p>
+<h2>fn Keyword:</h2>
+<p>This keyword represents scalar functions used in a DBMS. For example, you can use SQL function <i>length</i> to ge the length of a string:</p>
+<pre class="prettyprint">
+{fn length('Hello World')}
+</pre>
+<p>This returns 11, the length of the character string 'Hello World'.</p>
+<h2>call Keyword:</h2>
+<p>This keywork is used to call stored procedures. For example, for a stored procedure requiring an IN parameter, use following syntax:</p>
+<pre class="prettyprint">
+{call my_procedure(?)};
+</pre>
+<p>For a stored procedure requiring an IN parameter and returning an OUT parameter, use following syntax:</p>
+<pre class="prettyprint">
+{? = call my_procedure(?)};
+</pre>
+<h2>oj Keyword:</h2>
+<p>This keyword is used to signify outer joins. The syntax is as follows:</p>
+<pre class="prettyprint">
+{oj outer-join}
+</pre>
+<p>Where outer-join = table {LEFT|RIGHT|FULL} OUTERJOIN {table | outer-join} on search-condition. For example:</p>
+<pre class="prettyprint">
+String sql = "SELECT Employees 
+              FROM {oj ThisTable RIGHT
+              OUTER JOIN ThatTable on id = '100'}";
+stmt.execute(sql);
+</pre>
+<hr />
+<div class="pre-btn">
+<a href="jdbc-batch-processing.html">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/jdbc-stored-procedure.pdf" alt="JDBC - Stored Procedures" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="jdbc-streaming-data.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.html" target="_top">ASP.NET </a> |
+<a href="../jquery/index.html" target="_top">jQuery </a> |
+<a href="../ajax/index.html" target="_top">AJAX </a> |
+<a href="../ant/index.html" target="_top">ANT</a> |
+<a href="../jsp/index.html" target="_top">JSP </a> |
+<a href="../servlets/index.html" target="_top">Servlets </a> |
+<a href="../log4j/index.html" target="_top">log4j </a> |
+<a href="../ibatis/index.html" target="_top">iBATIS </a> |
+<a href="../hibernate/index.html" target="_top">Hibernate </a> |
+<a href="index.html" target="_top">JDBC </a> |
+<a href="../struts_2/index.html" target="_top">Struts </a> |
+<a href="../html5/index.html" target="_top">HTML5 </a> |
+<a href="../sql/index.html" target="_top">SQL </a> |
+<a href="../mysql/index.html" target="_top">MySQL </a> |
+<a href="../cplusplus/index.html" target="_top">C++ </a> |
+<a href="../unix/index.html" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/jdbc/jdbc-stored-procedure.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 19:47:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,815 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/hdparm.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:46 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>hdparm - Unix, Linux Command</title>
+<meta name="Description" Content="hdparm - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>hdparm - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<p>
+<h1 class="manpages">NAME</h1>
+hdparm - get/set hard disk parameters
+<h1 class="manpages">SYNOPSIS</h1>
+<b>hdparm</b> [ flags ] [device] ..
+<h1 class="manpages">DESCRIPTION</h1>
+<b>hdparm</b> provides a command line interface to various hard disk ioctls
+supported by the stock Linux ATA/IDE device driver subsystem.
+Some options may work correctly only with the latest kernels.
+For best results, compile hdparm with the include files from the latest kernel source code.
+<h1 class="manpages">OPTIONS</h1>
+When no flags are given,
+<i>-acdgkmnru</i> is assumed.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<i>-a</i> </td><td valign="bottom">
+Get/set sector count for filesystem read-ahead.  This is used to improve
+performance in sequential reads of large files, by prefetching additional
+blocks in anticipation of them being needed by the running task.
+In the current kernel version (2.0.10) this has a default setting
+of 8 sectors (4KB).  This value seems good for most purposes,
+but in a system where most file accesses are random seeks,
+a smaller setting might provide better performance.
+Also, many IDE drives also have a separate built-in read-ahead function,
+which alleviates the need for a filesystem read-ahead in many situations.
+</td></tr>
+<tr valign="top"><td>
+<i>-A</i> </td><td valign="bottom">
+Disable/enable the IDE drive&#39;s read-lookahead feature (usually ON by default).
+Usage:
+<b>-A0</b> (disable) or
+<b>-A1</b> (enable).
+</td></tr>
+<tr valign="top"><td>
+<i>-b</i> </td><td valign="bottom">
+Get/set bus state.
+</td></tr>
+<tr valign="top"><td>
+<i>-B</i> </td><td valign="bottom">
+Set Advanced Power Management feature, if the drive supports it. A low value
+means aggressive power management and a high value means better performance. A value of 255 will disable apm on the drive.
+</td></tr>
+<tr valign="top"><td>
+<i>-c</i> </td><td valign="bottom">
+Query/enable (E)IDE 32-bit I/O support.  A numeric parameter can be
+used to enable/disable 32-bit I/O support:
+Currently supported values include
+<i>0</i> to disable 32-bit I/O support,
+<i>1</i> to enable 32-bit data transfers, and
+<i>3</i> to enable 32-bit data transfers with a special
+<i>sync</i> sequence required by many chipsets.  The value
+<i>3</i> works with nearly all
+32-bit IDE chipsets, but incurs slightly more overhead.
+Note that "32-bit" refers to data transfers across a PCI or VLB bus to the
+interface card only; all (E)IDE drives still have only a 16-bit connection
+over the ribbon cable from the interface card.
+</td></tr>
+<tr valign="top"><td>
+<i>-C</i> </td><td valign="bottom">
+Check the current IDE power mode status, which will always be one of
+<b>unknown</b> (drive does not support this command),
+<b>active/idle</b> (normal operation),
+<b>standby</b> (low power mode, drive has spun down),
+or
+<b>sleeping</b> (lowest power mode, drive is completely shut down).
+The
+<b>-S, -y, -Y,</b> and
+<b>-Z</b> flags can be used to manipulate the IDE power modes.
+</td></tr>
+<tr valign="top"><td>
+<i>-d</i> </td><td valign="bottom">
+Disable/enable the "using_dma" flag for this drive.  This option now works
+with most combinations of drives and PCI interfaces which support DMA
+and which are known to the kernel IDE driver.
+It is also a good idea to use the appropriate
+<i>-X</i> option in combination with
+<i>-d1</i> to ensure that the drive itself is programmed for the correct DMA mode,
+although most BIOSs should do this for you at boot time.
+Using DMA nearly always gives the best performance,
+with fast I/O throughput and low CPU usage.
+But there are at least a few configurations of chipsets and drives
+for which DMA does not make much of a difference, or may even slow
+things down (on really messed up hardware!).  Your mileage may vary.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>--direct</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Use the kernel O_DIRECT flag when performing a
+<i>-t</i> timing test.  This bypasses the page cache, causing the reads
+to go directly from the drive into hdparm&#146;s buffers, using so-called
+"raw" I/O.  In many cases, this can produce results that appear
+much faster than the usual page cache method, giving a better indication
+of raw device and driver performance.
+</td></tr>
+<tr valign="top"><td>
+<i>-D</i> </td><td valign="bottom">
+Enable/disable the on-drive defect management feature,
+whereby the drive firmware tries to automatically manage
+defective sectors by relocating them to "spare" sectors
+reserved by the factory for such.
+</td></tr>
+<tr valign="top"><td>
+<i>-E</i> </td><td valign="bottom">
+Set cdrom speed.  This is NOT necessary for regular operation,
+as the drive will automatically switch speeds on its own.
+But if you want to play with it, just supply a speed number
+after the option, usually a number like 2 or 4.
+</td></tr>
+<tr valign="top"><td>
+<i>-f</i> </td><td valign="bottom">
+Sync and flush the buffer cache for the device on exit.
+This operation is also performed as part of the
+<i>-t</i> and
+<i>-T</i> timings.
+</td></tr>
+<tr valign="top"><td>
+<i>-g</i> </td><td valign="bottom">
+Display the drive geometry (cylinders, heads, sectors),
+the size (in sectors) of the device,
+and the starting offset (in sectors) of the device from
+the beginning of the drive.
+</td></tr>
+<tr valign="top"><td>
+<i>-h</i> </td><td valign="bottom">
+Display terse usage information (help).
+</td></tr>
+<tr valign="top"><td>
+<i>-i</i> </td><td valign="bottom">
+Display the identification info that was obtained from the drive at
+<i>boot time,</i> if available.
+This is a feature of modern IDE drives,
+and may not be supported by older devices.
+The data returned may or may not be current, depending on activity
+since booting the system.
+However, the current multiple sector mode count is always shown.
+For a more detailed interpretation of the identification info,
+refer to
+<i>AT Attachment Interface for Disk Drives</i> (ANSI ASC X3T9.2 working draft, revision 4a, April 19/93).
+</td></tr>
+<tr valign="top"><td>
+<i>-I</i> </td><td valign="bottom">
+Request identification info directly from the drive,
+which is displayed in a new expanded format with considerably
+more detail than with the older
+<i>-i</i> flag.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>--Istdin</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This is a special "no seatbelts" variation on the
+<b>-I</b> option,
+which accepts a drive identification block as standard input
+instead of using a /dev/hd* parameter.
+The format of this block must be
+<i>exactly</i> the same as that found in the /proc/ide/*/hd*/identify "files",
+or that produced by the
+<b>--Istdout</b> option described below.
+This variation is designed for use with collected "libraries" of drive
+identification information, and can also be used on ATAPI
+drives which may give media errors with the standard mechanism.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>--Istdout</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This option simply dumps the identify data in hex to stdout,
+in a format similar to that from /proc/, and suitable for
+later use with the
+<i>--Istdin</i> option.
+</td></tr>
+<tr valign="top"><td>
+<i>-k</i> </td><td valign="bottom">
+Get/set the keep_settings_over_reset flag for the drive.
+When this flag is set, the driver will preserve the
+<i>-dmu</i> options over a soft reset, (as done during the error recovery sequence).
+This flag defaults to off,
+to prevent drive reset loops which could be caused by combinations of
+<i>-dmu</i> settings.  The
+<i>-k</i> flag should therefore only be set after one has achieved confidence in
+correct system operation with a chosen set of configuration settings.
+In practice, all that is typically necessary to test a configuration
+(prior to using -k) is to verify that the drive can be read/written,
+and that no error logs (kernel messages) are generated in the process
+(look in /var/adm/messages on most systems).
+</td></tr>
+<tr valign="top"><td>
+<i>-K</i> </td><td valign="bottom">
+Set the drive&#39;s keep_features_over_reset flag.  Setting this enables
+the drive to retain the settings for
+<i>-APSWXZ</i> over a soft reset (as done during the error recovery sequence).
+Not all drives support this feature.
+</td></tr>
+<tr valign="top"><td>
+<i>-L</i> </td><td valign="bottom">
+Set the drive&#39;s doorlock flag.  Setting this to
+<b>1</b> will lock the door mechanism of some removable hard drives
+(eg. Syquest, ZIP, Jazz..), and setting it to
+<b>0</b> will unlock the door mechanism.  Normally, Linux
+maintains the door locking mechanism automatically, depending on drive usage
+(locked whenever a filesystem is mounted).  But on system shutdown, this can
+be a nuisance if the root partition is on a removeable disk, since the root
+partition is left mounted (read-only) after shutdown.  So, by using this
+command to unlock the door
+<b>after</b> the root filesystem is remounted read-only, one can then remove the cartridge
+from the drive after shutdown.
+</td></tr>
+<tr valign="top"><td>
+<i>-m</i> </td><td valign="bottom">
+Get/set sector count for multiple sector I/O on the drive.  A setting of
+<b>0</b> disables this feature.  Multiple sector mode (aka IDE Block Mode), is a feature
+of most modern IDE hard drives, permitting the transfer of multiple sectors per
+I/O interrupt, rather than the usual one sector per interrupt.  When this
+feature is enabled, it typically reduces operating system overhead for disk
+I/O by 30-50%.  On many systems, it also provides increased data throughput
+of anywhere from 5% to 50%.  Some drives, however
+(most notably the WD Caviar series),
+seem to run slower with multiple mode enabled.  Your mileage may vary.
+Most drives support the minimum settings of
+2, 4, 8, or 16 (sectors).  Larger settings may also be possible, depending on
+the drive.  A setting of 16 or 32 seems optimal on many systems.
+Western Digital recommends lower settings of 4 to 8 on many of their drives,
+due tiny (32kB) drive buffers and non-optimized buffering algorithms.
+The
+<b>-i</b> flag can be used to find the maximum setting supported by an installed drive
+(look for MaxMultSect in the output).
+Some drives claim to support multiple mode, but lose data at some settings.
+Under rare circumstances, such failures can result in
+<b>massive filesystem corruption.</b> </td></tr>
+<tr valign="top"><td>
+<i>-M</i> </td><td valign="bottom">
+Get/set Automatic Acoustic Management (AAM) setting. Most modern harddisk drives
+have the ability to speed down the head movements to reduce their noise output.
+The possible values are between 0 and 254. 128 is the most quiet (and therefore
+slowest) setting and 254 the fastest (and loudest). Some drives have only two
+levels (quiet / fast), while others may have different levels between 128 and 254.
+At the moment, most drives only support 3 options, off, quiet, and fast.
+These have been assigned the values 0, 128, and 254 at present, respectively,
+but integer space has been incorporated for future expansion, should this change.
+</td></tr>
+<tr valign="top"><td>
+<i>-n</i> </td><td valign="bottom">
+Get or set the "ignore write errors" flag in the driver.
+Do NOT play with this without grokking the driver source code first.
+</td></tr>
+<tr valign="top"><td>
+<i>-p</i> </td><td valign="bottom">
+Attempt to reprogram the IDE interface chipset for the specified PIO mode,
+or attempt to auto-tune for the "best" PIO mode supported by the drive.
+This feature is supported in the kernel for only a few "known" chipsets,
+and even then the support is iffy at best.  Some IDE chipsets are unable
+to alter the PIO mode for a single drive, in which case this flag may cause
+the PIO mode for
+<i>both</i> drives to be set.  Many IDE chipsets support either fewer or more than the
+standard six (0 to 5) PIO modes, so the exact speed setting that is actually
+implemented will vary by chipset/driver sophistication.
+<i>Use with extreme caution!</i> This feature includes zero protection for the unwary,
+and an unsuccessful outcome may result in
+<i>severe filesystem corruption!</i> </td></tr>
+<tr valign="top"><td>
+<i>-P</i> </td><td valign="bottom">
+Set the maximum sector count for the drive&#39;s internal prefetch mechanism.
+Not all drives support this feature.
+</td></tr>
+<tr valign="top"><td>
+<i>-q</i> </td><td valign="bottom">
+Handle the next flag quietly, suppressing normal output.  This is useful
+for reducing screen clutter when running from system startup scripts.
+Not applicable to the
+<i>-i</i> or
+<i>-v</i> or
+<i>-t</i> or
+<i>-T</i> flags.
+</td></tr>
+<tr valign="top"><td>
+<i>-Q</i> </td><td valign="bottom">
+Set tagged queue depth (1 or greater), or turn tagged queuing off (0).
+This only works with the newer 2.5.xx (or later) kernels, and only with
+the few drives that currently support it.
+</td></tr>
+<tr valign="top"><td>
+<i>-r</i> </td><td valign="bottom">
+Get/set read-only flag for the device.  When set, Linux disallows write operations on the device.
+</td></tr>
+<tr valign="top"><td>
+<i>-R</i> </td><td valign="bottom">
+Register an IDE interface.
+<b>Dangerous.</b> See the
+<b>-U</b> option for more information.
+</td></tr>
+<tr valign="top"><td>
+<i>-S</i> </td><td valign="bottom">
+Set the standby (spindown) timeout for the drive.  This value is used
+by the drive to determine how long to wait (with no disk activity)
+before turning off the spindle motor to save power.  Under such
+circumstances, the drive may take as long as 30 seconds to respond to
+a subsequent disk access, though most drives are much quicker.  The
+encoding of the timeout value is somewhat peculiar.  A value of zero
+means "timeouts are disabled": the device will not automatically enter
+standby mode.  Values from 1 to 240 specify multiples of 5 seconds,
+yielding timeouts from 5 seconds to 20 minutes.  Values from 241 to
+251 specify from 1 to 11 units of 30 minutes, yielding timeouts from
+30 minutes to 5.5 hours.  A value of 252 signifies a timeout of 21
+minutes. A value of 253 sets a vendor-defined timeout period between 8
+and 12 hours, and the value 254 is reserved.  255 is interpreted as 21
+minutes plus 15 seconds.  Note that some older drives may have very
+different interpretations of these values.
+</td></tr>
+<tr valign="top"><td>
+<i>-T</i> </td><td valign="bottom">
+Perform timings of cache reads for benchmark and comparison purposes.
+For meaningful results, this operation should be repeated 2-3 times
+on an otherwise inactive system (no other active processes) with at
+least a couple of megabytes of free memory.  This displays the speed
+of reading directly from the Linux buffer cache without disk access.
+This measurement is essentially an indication of the throughput of the
+processor, cache, and memory of the system under test.
+If the
+<i>-t</i> flag is also specified, then a correction factor based on the outcome of
+<i>-T</i> will be incorporated into the result reported for the
+<i>-t</i> operation.
+</td></tr>
+<tr valign="top"><td>
+<i>-t</i> </td><td valign="bottom">
+Perform timings of device reads for benchmark and comparison purposes.
+For meaningful results, this operation should be repeated 2-3 times on
+an otherwise inactive system (no other active processes) with at least a
+couple of megabytes of free memory.  This displays the speed of reading
+through the buffer cache to the disk without any prior caching of data.
+This measurement is an indication of how fast the drive can sustain
+sequential data reads under Linux, without any filesystem overhead.  To
+ensure accurate measurements, the buffer cache is flushed during the
+processing of
+<i>-t</i> using the BLKFLSBUF ioctl.
+If the
+<i>-T</i> flag is also specified, then a correction factor based on the outcome of
+<i>-T</i> will be incorporated into the result reported for the
+<i>-t</i> operation.
+</td></tr>
+<tr valign="top"><td>
+<i>-u</i> </td><td valign="bottom">
+Get/set interrupt-unmask flag for the drive.  A setting of
+<b>1</b> permits the
+driver to unmask other interrupts during processing of a disk interrupt,
+which greatly improves Linux&#39;s responsiveness and eliminates "serial port
+overrun" errors.
+<b>Use this feature with caution:</b> some drive/controller combinations do
+not tolerate the increased I/O latencies possible when this feature is enabled,
+resulting in
+<b>massive filesystem corruption.</b> In particular,
+<b>CMD-640B</b> and
+<b>RZ1000</b> (E)IDE interfaces can be
+<b>unreliable</b> (due to a hardware flaw) when this option is used with kernel versions earlier
+than 2.0.13.  Disabling the
+<b>IDE prefetch</b> feature of these interfaces (usually a BIOS/CMOS setting)
+provides a safe fix for the problem for use with earlier kernels.
+</td></tr>
+<tr valign="top"><td>
+<i>-U</i> </td><td valign="bottom">
+Un-register an IDE interface.
+<b>Dangerous.</b> The companion for the
+<b>-R</b> option.
+Intended for use with hardware made specifically for hot-swapping (very rare!). 
+Use with knowledge and
+<b>extreme caution</b> as this can easily hang or damage your system.
+The hdparm source distribution includes a &#39;contrib&#39; directory with
+some user-donated scripts for hot-swapping on the UltraBay of a ThinkPad 600E.
+Use at your own risk.
+</td></tr>
+<tr valign="top"><td>
+<i>-v</i> </td><td valign="bottom">
+Display all settings, except -i (same as -acdgkmnru for IDE, -gr for SCSI or
+-adgr for XT).  This is also the default behaviour when no flags are specified.
+</td></tr>
+<tr valign="top"><td>
+<i>-w</i> </td><td valign="bottom">
+Perform a device reset (DANGEROUS).  Do NOT use this option.
+It exists for unlikely situations where a reboot might otherwise be
+required to get a confused drive back into a useable state.
+</td></tr>
+<tr valign="top"><td>
+<i>-W</i> </td><td valign="bottom">
+Disable/enable the IDE drive&#39;s write-caching feature
+(default state is undeterminable; manufacturer/model specific).
+</td></tr>
+<tr valign="top"><td>
+<i>-x</i> </td><td valign="bottom">
+Tristate device for hotswap (DANGEROUS).
+</td></tr>
+<tr valign="top"><td>
+<i>-X</i> </td><td valign="bottom">
+Set the IDE transfer mode for newer (E)IDE/ATA drives.
+This is typically used in combination with
+<i>-d1</i> when enabling DMA to/from a drive on a supported interface chipset, where
+<i>-X mdma2</i> is used to select multiword DMA mode2 transfers and
+<i>-X sdma1</i> is used to select simple mode 1 DMA transfers.
+With systems which support UltraDMA burst timings,
+<i>-X udma2</i> is used to select UltraDMA mode2 transfers (you&#39;ll need to prepare
+the chipset for UltraDMA beforehand).
+Apart from that, use of this flag is
+<i>seldom necessary</i> since most/all modern IDE drives default to their fastest PIO transfer mode
+at power-on.  Fiddling with this can be both needless and risky.
+On drives which support alternate transfer modes,
+<i>-X</i> can be used to switch the mode of the drive
+<i>only.</i> Prior to changing the transfer mode, the IDE interface should be jumpered
+or programmed (see
+<i>-p</i> flag)
+for the new mode setting to prevent loss and/or corruption of data.
+<i>Use this with extreme caution!</i> For the PIO (Programmed Input/Output)
+transfer modes used by Linux, this value is simply the desired
+PIO mode number plus 8.
+Thus, a value of 09 sets PIO mode1, 10 enables PIO mode2,
+and 11 selects PIO mode3.
+Setting 00 restores the drive&#39;s "default" PIO mode, and 01 disables IORDY.
+For multiword DMA, the value used is the desired DMA mode number
+plus 32.  for UltraDMA, the value is the desired UltraDMA mode number
+plus 64.
+</td></tr>
+<tr valign="top"><td>
+<i>-y</i> </td><td valign="bottom">
+Force an IDE drive to immediately enter the low power consumption
+<b>standby</b> mode, usually causing it to spin down.
+The current power mode status can be checked using the
+<b>-C</b> flag.
+</td></tr>
+<tr valign="top"><td>
+<i>-Y</i> </td><td valign="bottom">
+Force an IDE drive to immediately enter the lowest power consumption
+<b>sleep</b> mode, causing it to shut down completely.  A hard or soft reset
+is required before the drive can be accessed again
+(the Linux IDE driver will automatically handle issuing a reset if/when needed).
+The current power mode status can be checked using the
+<b>-C</b> flag.
+</td></tr>
+<tr valign="top"><td>
+<i>-z</i> </td><td valign="bottom">
+Force a kernel re-read of the partition table of the specified device(s).
+</td></tr>
+<tr valign="top"><td>
+<i>-Z</i> </td><td valign="bottom">
+Disable the automatic power-saving function of certain Seagate drives
+(ST3xxx models?), to prevent them from idling/spinning-down
+at inconvenient times.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<!-- Suppressing TP body due to .PP -->
+</td></tr>
+</table>
+<h1 class="manpages">ATA Security Feature Set</h1>
+<p>
+These switches are DANGEROUS to experiment with, and might not work with every
+kernel.
+<b>USE AT YOUR OWN RISK.</b> <table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<i>--security-help</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Display terse usage info for all of the --security-* flags.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>--security-freeze</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Freeze the drive&#39;s security settings.
+The drive does not accept any security commands until next power-on reset.
+Use this function in combination with --security-unlock to protect drive
+from any attempt to set a new password. Can be used standalone, too.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>--security-unlock PWD</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Unlock the drive, using password PWD.
+Password is given as an ASCII string and is padded with NULs to reach 32 bytes.
+The applicable drive password is selected with the --user-master switch.
+<b>THIS FEATURE IS EXPERIMENTAL AND NOT WELL TESTED. USE AT YOUR OWN RISK.</b> </td></tr>
+<tr valign="top"><td colspan="2">
+<i>--security-set-pass PWD</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Lock the drive, using password PWD (Set Password) (DANGEROUS).
+Password is given as an ASCII string and is padded with NULs to reach 32 bytes.
+The applicable drive password is selected with the --user-master switch and the
+applicable security mode with the --security-mode switch.
+<b>THIS FEATURE IS EXPERIMENTAL AND NOT WELL TESTED. USE AT YOUR OWN RISK.</b> </td></tr>
+<tr valign="top"><td colspan="2">
+<i>--security-disable PWD</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Disable drive locking, using password PWD.
+Password is given as an ASCII string and is padded with NULs to reach 32 bytes.
+The applicable drive password is selected with the --user-master switch.
+<b>THIS FEATURE IS EXPERIMENTAL AND NOT WELL TESTED. USE AT YOUR OWN RISK.</b> </td></tr>
+<tr valign="top"><td colspan="2">
+<i>--security-erase PWD</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Erase (locked) drive, using password PWD (DANGEROUS).
+Password is given as an ASCII string and is padded with NULs to reach 32 bytes.
+The applicable drive password is selected with the --user-master switch.
+<b>THIS FEATURE IS EXPERIMENTAL AND NOT WELL TESTED. USE AT YOUR OWN RISK.</b> </td></tr>
+<tr valign="top"><td colspan="2">
+<i>--security-erase-enhanced PWD</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Enhanced erase (locked) drive, using password PWD (DANGEROUS).
+Password is given as an ASCII string and is padded with NULs to reach 32 bytes.
+The applicable drive password is selected with the --user-master switch.
+<b>THIS FEATURE IS EXPERIMENTAL AND NOT WELL TESTED. USE AT YOUR OWN RISK.</b> </td></tr>
+<tr valign="top"><td colspan="2">
+<i>--user-master USER</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies which password (user/master) to select.
+<b>Defaults to master.</b> Only useful in combination with --security-unlock, --security-set-pass,
+--security-disable, --security-erase or --security-erase-enhanced.
+<br />
+        u       user password
+<br />
+        m       master password
+<p>
+<b>THIS FEATURE IS EXPERIMENTAL AND NOT WELL TESTED. USE AT YOUR OWN RISK.</b> </td></tr>
+<tr valign="top"><td colspan="2">
+<i>--security-mode MODE</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies which security mode (high/maximum) to set.
+<b>Defaults to high.</b> Only useful in combination with --security-set-pass.
+<br />
+        h       high security
+<br />
+        m       maximum security
+<p>
+<b>THIS FEATURE IS EXPERIMENTAL AND NOT WELL TESTED. USE AT YOUR OWN RISK.</b> </td></tr>
+</table>
+<h1 class="manpages">BUGS</h1>
+As noted above, the
+<b>-m sectcount</b> and
+<b>-u 1</b> options should be used with caution at first, preferably on a
+read-only filesystem.  Most drives work well with these features, but
+a few drive/controller combinations are not 100% compatible.  Filesystem
+corruption may result.  Backup everything before experimenting!
+<p>
+Some options (eg. -r for SCSI) may not work with old kernels as
+necessary ioctl()&#39;s were not supported.
+<p>
+Although this utility is intended primarily for use with (E)IDE hard disk
+devices, several of the options are also valid (and permitted) for use with
+SCSI hard disk devices and MFM/RLL hard disks with XT interfaces.
+<p>
+The Linux kernel up until 2.6.12 (and probably later) doesn&#39;t handle the
+security unlock and disable commands gracefully and will segfault and in some
+cases even panic. The security commands however might indeed have been executed
+by the drive. This poor kernel behaviour makes the PIO data security commands
+rather useless at the moment.
+<p>
+Note that the "security erase" and "security disable" commands have been
+implemented as two consecutive PIO data commands and will not succeed on a
+locked drive because the second command will not be issued after the segfault.
+See the code for hints how patch it to work around this problem. Despite the
+segfault it is often still possible to run two instances of hdparm
+consecutively and issue the two necessary commands that way.
+<h1 class="manpages">AUTHOR</h1>
+<b>hdparm</b> has been written by Mark Lord &lt;<a href="mailto:mlord@pobox.com">mlord@pobox.com</a>&gt;, the original primary
+developer and maintainer of the (E)IDE driver for Linux,
+with suggestions from many netfolk.
+<p>
+The disable Seagate auto-powersaving code
+is courtesy of Tomi Leppikangas(<a href="mailto:tomilepp@paju.oulu.fi">tomilepp@paju.oulu.fi</a>).
+<p>
+Security freeze command by Benjamin Benz &lt;<a href="mailto:bbe@heise.de">bbe@heise.de</a>&gt;, 2005.
+<p>
+PIO data out security commands by Leonard den Ottolander
+&lt;leonard den ottolander nl&gt;, 2005.
+Parts by Benjamin Benz &lt;<a href="mailto:bbe@heise.de">bbe@heise.de</a>&gt; and others.
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+Technical Committee T13 ATA Attachment.
+<p>
+<b><a href="http://www.serialata.org/">http://www.serialata.org</a>/</b> Serial ATA International Organization.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion909b.html?tutorial=unix_commands&amp;file=hdparm.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/hdparm.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:46 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,734 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/irattach.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:49 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>irattach - Unix, Linux Command</title>
+<meta name="Description" Content="irattach - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>irattach - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+ Steve Cheng &lt;<a href="mailto:steve@ggi-project.org">steve@ggi-project.org</a>&gt;.
+<p>
+<h1 class="manpages">NAME</h1>
+irattach - binds the Linux-IrDA stack to a IrDA port
+<h1 class="manpages">SYNOPSIS</h1>
+<p>
+<b>irattach</b> [ <b>&lt;dev&gt;</b> ] [ <b></b><i>-s</i><b></b> ] [ <b></b><i>-d dongle</i><b></b> ] [ <b></b><i>-v</i><b></b> ] [ <b></b><i>-h</i><b></b> ]
+<p>
+<h1 class="manpages">DESCRIPTION</h1>
+<p>
+<b>irattach</b> binds the Linux-IrDA stack to an IrDA
+port. It configures the low level of the Linux-IrDA stack in the
+kernel. This step is usually necessary before you (or applications)
+can use the higher layer of the IrDA stack.
+<p>
+The <b>irattach</b> command loads the necessary Linux-IrDA
+driver, which configures the IrDA hardware, and configures the IrDA
+stack to operate on the new IrDA port. Multiple IrDA ports can be
+activated through multiple <b>irattach</b> commands.
+<p>
+<b>irattach</b> by default uses the
+<b>irtty</b> driver which connects to the Linux TTY
+subsystem and use the standard Linux serial driver. This works well
+for most machines and configurations, but limits the baud rate to
+115200bps (IrDA SIR mode). The mode of operation will work with most
+FIR hardware (as found in laptops - they provide serial emulation) and
+most serial dongles (provided the proper dongle type is specified),
+making it a safe choice. However, USB dongles and a few FIR hardware
+don&#146;t support serial emulation and can&#146;t be used with the
+<b>irtty</b> driver.
+<p>
+<b>irattach</b> can also use one of the Linux FIR drivers
+(including USB dongle drivers) instead of the <b>irtty</b>
+driver. Most FIR drivers require proper configuration of module
+parameters (this is documented below). FIR drivers allow you to use
+higher baud rates (generally up to 4Mbps). In general, Linux FIR
+support is not as stable and mature, due to lack of time and
+documentation.
+<p>
+<b>irattach</b> must be run as root or installed setuid
+root, as it requires root privileges. If you have compiled the IrDA
+stack as modules (recommended), then you will need to edit the
+<i>/etc/modules.conf</i> file.  See the Infrared-HOWTO for
+details.
+<h1 class="manpages">OPTIONS</h1>
+<p>
+<b>&lt;dev&gt;</b> : this is the name of a TTY, an IrDA
+interface or IrDA driver. <b>irattach</b> decides to use
+the <b>irtty</b> driver or one of the FIR drivers based on
+this argument.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>TTY name</b> : this is the serial port to be configured
+using the <b>irtty</b> driver, such as
+<b>/dev/ttyS0</b>&#46; <b>irattach</b> will use the
+<b>irtty</b> driver, so only SIR will be available. You need
+to check your serial configuration or BIOS to know which serial port
+is the IrDA port that need to be passed to <b>irattach</b>&#46;
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>interface name</b> : this is the device name of an IrDA
+interface, such as <b>irda0</b>&#46; <b>irattach</b>
+will use one of the FIR drivers (including USB dongle drivers). The
+selected FIR driver must be loaded prior to the call to
+<b>irattach</b>, or the proper alias for the device name
+must be set in <i>/etc/modules.conf</i>&#46;
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>module name</b> : this is the name of an FIR driver
+module, such as <b>nsc-ircc</b> (see list below). All new
+IrDA interfaces created after loading the module will be configured,
+so this won&#146;t work if the module is already loaded. This feature is
+still experimental.
+</td></tr>
+<!-- PP ends table -->
+</table>
+<b>-s</b> : starts discovery of remote IrDA devices (note that
+the form "-s 1" is no longer supported)
+<p>
+<b>-v</b> : shows version information (this happens, when no option
+is given, too)
+<p>
+<b>-h</b> : shows help information.
+<p>
+<b>-d dongle</b> : attaches an additional dongle driver to the
+IrDA port.
+<p>
+You need a dongle driver if you have an infrared device that connects
+to your computer&#146;s serial port (normal 9-pin serial port
+connector). These devices are called dongles, and can currently be
+used by any SIR driver (IrTTY or irport).  This option is not
+compatible with FIR drivers, and only works with the irtty and irport
+drivers.
+<p>
+The currently known (serial) dongles are:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>esi</b>        Extended Systems JetEye PC ESI-9680
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>tekram</b>     Tekram IrMate IR-210B dongle
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>actisys</b>    ACTiSYS IR-220L dongle
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>actisys+</b>   ACTiSYS IR-220L+ dongle
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>girbil</b>     Greenwich GIrBIL dongle
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>litelink </b>  Parallax LiteLink dongle & Extended
+Systems JetEye PC ESI-9680B
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>airport</b>    N.N.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>old_belkin</b> Belkin (old) SmartBeam dongle or any
+dongle only capable of 9600 bauds
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>ep7211</b>     IR port driver for the Cirrus Logic EP7211
+processor (ARM based)
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>mcp2120</b>    Dongles based on the MCP2120 (Microchip)
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>act200l</b>    ACTiSYS Ir-200L dongles
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>ma600</b>      Mobile Action ma600 dongles
+</td></tr>
+</table>
+<h1 class="manpages">FIR DRIVER MODULES</h1>
+<p>
+If you are one of the lucky people which have a FIR chipset or USB
+dongle that is supported by one of the Linux-IrDA drivers, you can use
+<b>irattach</b> with the interface name of the IrDA port
+to configure. You will need to configure
+<i>/etc/conf.modules</i> appropriately, with at least an
+alias of <b>irda0</b> to the driver name, or load the driver
+manually beforehand.
+<p>
+You don&#146;t strictly need to use <b>irattach</b> with FIR
+drivers, you can use <b>modprobe</b> to load the driver,
+<b>ifconfig</b> to bring up the interface and set the
+various sysctl by hand, but <b>irattach</b> offer a
+convenient way to do it.
+<p>
+Of course, you need to know which FIR driver applies to your hardware.
+You may use <b>findchip</b> to get information about the
+FIR chip. If this doesn&#146;t help, the Infrared-HOWTO shows other means to
+retrieve these data.
+<p>
+Also, you often need to configure the <b>Linux-serial
+driver</b> to ignore the IrDA port, otherwise both drivers will
+conflict. This can usually be done with
+<b>setserial /dev/ttySx uart none</b>&#46;
+<p>
+The currently known FIR drivers are:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>ali-ircc</b>
+ALi FIR Controller Driver for ALi M5123
+(options: io, irq, dma).
+This driver supports SIR, MIR and FIR (4Mbps) speeds.
+This chipset is used by e.g.:
+<p>
+The ALi M5123 FIR Controller
+is embedded in ALi M1543C, M1535, M1535D, M1535+, M1535D South Bridge.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>irda-usb</b> IrDA-USB device driver, for USB
+devices/dongles that comply with the official IrDA-USB class
+specification. Note: USB 2.0 is not yet tested.
+(options: qos_mtt_bits int, description "Minimum Turn Time").
+This is used, for e.g.:
+<p>
+ACTiSYS ACT-IR2000U
+<p>
+KC Technology KC-180
+<p>
+Extended Systems XTNDAccess ESI-9685
+<p>
+Note that there is another USB driver for those devices called
+<b>ir-usb</b> which is NOT compatible with the IrDA stack
+and conflict with <b>irda-usb</b>&#46; Because it
+always loads first, you have to remove <b>ir-usb</b> completely.
+<p>
+Devices based on the SigmaTel chip are not not compliant with the
+IrDA-USB class specification and therfore not supported by this
+driver.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>nsc-ircc</b>
+NSC IrDA device driver
+(options: io, irq, dma, dongle_id, qos_mtt_bits).
+This chipset is used by e.g.:
+<p>
+IBM ThinkPad  dongle_id=0x09
+<p>
+HP OmniBook 6000 dongle_id=0x08
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>sa1100_ir</b>
+Infrared driver for devices based on the StrongARM SA1100 embedded
+microprocessor
+(options: power_level, tx_lpm).
+This driver may support FIR on devices that can do it.
+This chipset is used by e.g.:
+<p>
+Samsung YOPY, COMPAQ iPAQ, SHARP Zaurus SL5000/5500
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>smc-ircc</b>
+SMC IrCC controller driver
+(options: ircc_dma, ircc_irq).
+This chipset is used by e.g.:
+<p>
+Fujitsu-Siemens Lifebook 635t
+Sony PCG-505TX
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>w83977af_ir</b>
+Winbond W83977AF IrDA device driver
+(options: io, irq, qos_mtt_bits).
+This chipset is used by e.g.:
+<p>
+Corel NetWinder
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>toshoboe</b>
+Toshiba OBOE IrDA device driver, supports Toshiba Type-O IR chipset.
+(options: max_baud).
+This chipset is used by e.g.:
+<p>
+Toshiba Libretto 100CT., and many more old Toshiba laptops.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>donauboe</b>
+is a new version of <b>toshoboe</b> and has better FIR support
+and compability with the Donauoboe chip <a href="http://libxg.free.fr/lib-irda.html">http://libxg.free.fr/lib-irda.html</a>
+(options: ..).
+This chipset is used by e.g.:
+<p>
+Toshiba Libretto 100CT., Tecra 8100, Portege 7020 and many more
+Toshiba laptops.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>vlsi_ir</b>
+VLSI 82C147 SIR/MIR/FIR device driver
+This chipset is used by e.g.:
+<p>
+HP Omnibook 800
+<p>
+(options: ..).
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+clksrc int, description "clock input source selection"
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+ringsize int array (min = 1, max = 2), description "tx, rx ring
+descriptor size"
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+sirpulse int, description "sir pulse width tuning"
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+mtt_bits int, description "IrLAP bitfield representing min-turn-time"
+</td></tr>
+</table>
+</td></tr>
+</table>
+<h1 class="manpages">EXAMPLES</h1>
+<p>
+Attach the IrDA stack to the second serial port (integrated IrDA port
+using serial emulation) and start discovery:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>irattach /dev/ttyS1 -s</b>
+</td></tr>
+<!-- PP ends table -->
+</table>
+Attach the IrDA stack to the first serial port where you have an
+external ACTiSYS serial dongle and start discovery:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>irattach /dev/ttyS0 -d actisys+ -s</b>
+</td></tr>
+<!-- PP ends table -->
+</table>
+Attach the IrDA stack to the first IrDA-USB dongle and start discovery:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>modprobe irda-usb ; irattach irda0 -s</b>
+</td></tr>
+<!-- PP ends table -->
+</table>
+Attach the IrDA stack to the NSC FIR (4Mbps) device driver on a Thinkpad
+laptop:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>modprobe nsc-ircc dongle_id=0x9 ; irattach irda0 -s</b>&#46;
+</td></tr>
+<!-- PP ends table -->
+</table>
+Attach the IrDA stack to the NSC FIR (4Mbps) device driver on a Thinkpad
+laptop:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>irattach irda0 -s</b>&#46;
+<p>
+This assume that you have added the following entries to
+<i>/etc/conf.modules</i>:
+<p>
+options nsc-ircc dongle_id=0x09
+<p>
+alias irda0 nsc-ircc
+</td></tr>
+</table>
+<h1 class="manpages">CAVEATS</h1>
+<p>
+The following hints are a very short introduction into the
+configuration of Linux/IrDA. If this doesn&#146;t help
+read the Linux/IrDA-Tutorial and/or the Infrared-HOWTO .
+Before configuring Linux/IrDA make sure whether you want to configure
+SIR or FIR. It&#146;s recommended to try SIR first, unless your device is
+not compatible with SIR (for example USB dongles).
+<p>
+To get the SIR "serial" device
+have a look into the BIOS. Then run <b>dmesg | grep tty</b>
+to get a survey of tty devices supported by your machine. Now try to
+choose the one, which is probably the IrDA device and use
+<b>irattach /dev/ttySx -s</b>&#46;
+<p>
+If you don&#146;t succeed with SIR (which seems a rare case) you may
+try FIR. First look up the BIOS. Then run <b>findchip</b>
+to get information about the IrDA controller chip. Use
+<b>setserial /dev/ttySx uart none </b> to avoid conflicts with the serial driver.
+Note: don&#146;t use <b>setserial</b> if you configure SIR.
+Now you may use <b>irattach</b>&#46;
+<p>
+Finally <b>irdadump</b> should show at least your computer
+itself. If it doesn&#146;t start at the beginning.
+<p>
+This man page deal only with the low level of the IrDA stack (IrDA
+ports and IrDA drivers). After this step is done, you usually need to
+setup your favorite application to access the high level IrDA stack
+(via IrCOMM, IrLPT, IrNET, IrLAN or IrSOCK), which is documented
+elsewhere.
+<p>
+This man page doesn&#146;t document the usage of the irport driver. The
+irport driver support the same hardware as the irtty driver, but is
+configured like a FIR driver.
+<h1 class="manpages">DIAGNOSTICS</h1>
+<p>
+This section currently contains the raw error messages from source
+code only.
+<p>
+"ioctl(TIOCGETD): %m"
+<p>
+"irattach: tty: set_disc(%d): %s"
+<p>
+"tcsetattr: %m"
+<p>
+"Failed to open %s: %m"
+<p>
+"Couldn&#146;t get device fd flags: %m"
+<p>
+"Couldn&#146;t set device to non-blocking mode: %m"
+<h1 class="manpages">BUGS</h1>
+<p>
+N.N.
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<a href="../irattach.html">irattach(8)</a>, <a href="../irdaping.html">irdaping(8)</a>, <a href="../irdadump.html">irdadump(8)</a>, <a href="../findchip.html">findchip(8)</a>,
+<a href="../irpsion5.html">irpsion5(8)</a>, <a href="../modprobe.html">modprobe(8)</a>
+<p>
+Linux/IrDA Project <a href="http://irda.sourceforge.net/">http://irda.sourceforge.net</a> -*-
+Linux/IrDA-Tutorial <a href="http://www.hpl.hp.com/personal/Jean_Tourrilhes/IrDA/index.html">http://www.hpl.hp.com/personal/Jean_Tourrilhes/IrDA/index.html</a> -*-
+Infrared-HOWTO <a href="http://tuxmobil.org/howtos.html">http://tuxmobil.org/howtos.html</a> -*-
+Infrared-Hardware-Survey <a href="http://tuxmobil.org/ir_misc.html">http://tuxmobil.org/ir_misc.html</a>
+<h1 class="manpages">AUTHOR</h1>
+<p>
+This manual page is written by Werner Heuser
+&lt;<a href="mailto:wehe@tuxmobil.org">wehe@tuxmobil.org</a>&gt;&#46; It is based on the READMEs
+from <b>irda-utils</b> by the Linux/IrDA Project and the Linux/IrDA-Tutorial&#46;
+It was subsequently updated and modified by Jean Tourrilhes
+&lt;<a href="mailto:jt@hpl.hp.com">jt@hpl.hp.com</a>&gt;&#46;
+<h1 class="manpages">COPYRIGHT</h1>
+<p>
+Copyright (c) 2001 Werner Heuser
+Copyright (c) 2002 Jean Tourrilhes
+<p>
+Permission is granted to copy, distribute
+and/or modify this document under
+the terms of the GNU Free Documentation
+License (GFDL), Version 1.1 or any later version published by the
+Free Software Foundation; with no Invariant Sections, no Front-Cover
+Texts and no Back-Cover Texts.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion8867.html?tutorial=unix_commands&amp;file=irattach.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/irattach.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:49 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

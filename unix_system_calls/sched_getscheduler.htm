@@ -1,0 +1,514 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_system_calls/sched_getscheduler.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>sched_setscheduler() - Unix, Linux System Call</title>
+<meta name="Description" Content="sched_setscheduler() - Unix, Linux System Calls Manual Pages (Manpages) ,  Learning fundamentals of UNIX in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - System Calls</b></a></li>
+<li><a class="left" target="_top" href="../unix_commands/index.html">Unix - Commands List</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>sched_setscheduler() - Unix, Linux System Call</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+sched_setscheduler, sched_getscheduler -
+set and get scheduling algorithm/parameters
+<h1 class="manpages">SYNOPSIS</h1>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<b>#include &lt;sched.h&gt;</b> 
+<p>
+<b>int sched_setscheduler(pid_t </b><i>pid</i><b>, int </b><i>policy</i><b>,</b> 
+<!-- Need break --><br />
+<b>                       const struct sched_param *</b><i>param</i><b>);</b> 
+<p>
+<b>int sched_getscheduler(pid_t </b><i>pid</i><b>);</b> 
+<p>
+<b>struct sched_param {
+    ...
+    int </b><i>sched_priority</i><b>;
+    ...
+};
+</pre></td></tr>
+</table>
+<h1 class="manpages">DESCRIPTION</h1>
+</b><b>sched_setscheduler</b>() sets both the scheduling policy and the associated parameters for the
+process identified by <i>pid</i>. If <i>pid</i> equals zero, the
+scheduler of the calling process will be set. The interpretation of
+the parameter <i>param</i> depends on the selected policy. Currently, the
+following three scheduling policies are supported under Linux:
+<i>SCHED_FIFO</i>, <i>SCHED_RR</i>, <i>SCHED_OTHER</i>, and
+<i>SCHED_BATCH</i>; their respective semantics are described below.
+<p>
+<b>sched_getscheduler</b>() queries the scheduling policy currently applied to the process
+identified by <i>pid</i>. If <i>pid</i> equals zero, the policy of the
+calling process will be retrieved.
+<h2><i>Scheduling Policies</i></h2>
+The scheduler is the kernel part that decides which runnable process
+will be executed by the CPU next. The Linux scheduler offers three
+different scheduling policies, one for normal processes and two for
+real-time applications. A static priority value <i>sched_priority</i>
+is assigned to each process and this value can be changed only via
+system calls. Conceptually, the scheduler maintains a list of runnable
+processes for each possible <i>sched_priority</i> value, and
+<i>sched_priority</i> can have a value in the range 0 to 99. In order
+to determine the process that runs next, the Linux scheduler looks for
+the non-empty list with the highest static priority and takes the
+process at the head of this list. The scheduling policy determines for
+each process, where it will be inserted into the list of processes
+with equal static priority and how it will move inside this list.
+<p>
+<i>SCHED_OTHER</i> is the default universal time-sharing scheduler
+policy used by most processes.
+<i>SCHED_BATCH</i> is intended for "batch" style execution of processes.
+<i>SCHED_FIFO</i> and <i>SCHED_RR</i> are
+intended for special time-critical applications that need precise
+control over the way in which runnable processes are selected for
+execution.
+<p>
+Processes scheduled with <i>SCHED_OTHER</i> or <i>SCHED_BATCH</i>
+must be assigned the static priority 0.
+Processes scheduled under <i>SCHED_FIFO</i> or
+<i>SCHED_RR</i> can have a static priority in the range 1 to 99.
+The system calls <b>sched_get_priority_min</b>() and
+<b>sched_get_priority_max</b>() can be used to find out the valid
+priority range for a scheduling policy in a portable way on all
+POSIX.1-2001 conforming systems.
+<p>
+All scheduling is preemptive: If a process with a higher static
+priority gets ready to run, the current process will be preempted and
+returned into its wait list. The scheduling policy only determines the
+ordering within the list of runnable processes with equal static
+priority.
+<h2><i>SCHED_FIFO: First In-First Out scheduling</i></h2>
+<i>SCHED_FIFO</i> can only be used with static priorities higher than
+0, which means that when a <i>SCHED_FIFO</i> processes becomes runnable,
+it will always immediately preempt any currently running
+<i>SCHED_OTHER</i> or <i>SCHED_BATCH</i> process.
+<i>SCHED_FIFO</i> is a simple scheduling
+algorithm without time slicing. For processes scheduled under the
+<i>SCHED_FIFO</i> policy, the following rules are applied: A
+<i>SCHED_FIFO</i> process that has been preempted by another process of
+higher priority will stay at the head of the list for its priority and
+will resume execution as soon as all processes of higher priority are
+blocked again. When a <i>SCHED_FIFO</i> process becomes runnable, it
+will be inserted at the end of the list for its priority. A call to
+<b>sched_setscheduler</b>() or <b>sched_setparam</b>() will put the
+<i>SCHED_FIFO</i> (or <i>SCHED_RR</i>) process identified by
+<i>pid</i> at the start of the list if it was runnable.
+As a consequence, it may preempt the currently running process if
+it has the same priority.
+(POSIX.1-2001 specifies that the process should go to the end
+of the list.)
+A process calling <b>sched_yield</b>() will be
+put at the end of the list. No other events will move a process
+scheduled under the <i>SCHED_FIFO</i> policy in the wait list of
+runnable processes with equal static priority. A <i>SCHED_FIFO</i>
+process runs until either it is blocked by an I/O request, it is
+preempted by a higher priority process, or it calls <b>sched_yield</b>().
+<h2><i>SCHED_RR: Round Robin scheduling</i></h2>
+<i>SCHED_RR</i> is a simple enhancement of <i>SCHED_FIFO</i>. Everything
+described above for <i>SCHED_FIFO</i> also applies to <i>SCHED_RR</i>,
+except that each process is only allowed to run for a maximum time
+quantum. If a <i>SCHED_RR</i> process has been running for a time
+period equal to or longer than the time quantum, it will be put at the
+end of the list for its priority. A <i>SCHED_RR</i> process that has
+been preempted by a higher priority process and subsequently resumes
+execution as a running process will complete the unexpired portion of
+its round robin time quantum. The length of the time quantum can be
+retrieved using <b>sched_rr_get_interval</b>(2).
+<h2><i>SCHED_OTHER: Default Linux time-sharing scheduling</i></h2>
+<i>SCHED_OTHER</i> can only be used at static priority 0.
+<i>SCHED_OTHER</i> is the standard Linux time-sharing scheduler that is
+intended for all processes that do not require special static priority
+real-time mechanisms. The process to run is chosen from the static
+priority 0 list based on a dynamic priority that is determined only
+inside this list. The dynamic priority is based on the nice level (set
+by <b>nice</b>(2) or <b>setpriority</b>(2)) and increased for
+each time quantum the process is ready to run, but denied to run by
+the scheduler. This ensures fair progress among all <i>SCHED_OTHER</i>
+processes.
+<h2><i>SCHED_BATCH: Scheduling batch processes</i></h2>
+(Since Linux 2.6.16.)
+<i>SCHED_BATCH</i> can only be used at static priority 0.
+This policy is similar to <i>SCHED_OTHER</i>, except that
+this policy will cause the scheduler to always assume
+that the process is CPU-intensive.
+Consequently, the scheduler will apply a small scheduling
+penalty so that this process is mildly disfavoured in scheduling
+decisions.
+This policy is useful for workloads that are non-interactive,
+but do not want to lower their nice value,
+and for workloads that want a deterministic scheduling policy without
+interactivity causing extra preemptions (between the workload&#146;s tasks).
+<h2><i>Privileges and resource limits</i></h2>
+In Linux kernels before 2.6.12, only privileged
+(<b>CAP_SYS_NICE</b>) processes can set a non-zero static priority.
+The only change that an unprivileged process can make is to set the
+<b>SCHED_OTHER</b> policy, and this can only be done if the effective user ID of the caller of
+<b>sched_setscheduler</b>() matches the real or effective user ID of the target process
+(i.e., the process specified by
+<i>pid</i>) whose policy is being changed.
+<p>
+Since Linux 2.6.12, the
+<b>RLIMIT_RTPRIO</b> resource limit defines a ceiling on an unprivileged process&#146;s
+priority for the
+<b>SCHED_RR</b> and
+<b>SCHED_FIFO</b> policies.
+If an unprivileged process has a non-zero
+<b>RLIMIT_RTPRIO</b> soft limit, then it can change its scheduling policy and priority,
+subject to the restriction that the priority cannot be set to a
+value higher than the
+<b>RLIMIT_RTPRIO</b> soft limit.
+If the
+<b>RLIMIT_RTPRIO</b> soft limit is 0, then the only permitted change is to lower the priority.
+Subject to the same rules,
+another unprivileged process can also make these changes,
+as long as the effective user ID of the process making the change
+matches the real or effective user ID of the target process.
+See
+<b>getrlimit</b>(2)
+for further information on
+<b>RLIMIT_RTPRIO</b>. Privileged
+(<b>CAP_SYS_NICE</b>) processes ignore this limit; as with older older kernels,
+they can make arbitrary changes to scheduling policy and priority.
+<h2><i>Response time</i></h2>
+A blocked high priority process waiting for the I/O has a certain
+response time before it is scheduled again. The device driver writer
+can greatly reduce this response time by using a "slow interrupt"
+interrupt handler.
+<h2><i>Miscellaneous</i></h2>
+Child processes inherit the scheduling algorithm and parameters across a
+<b>fork</b>(). The scheduling algorithm and parameters are preserved across
+<b>execve</b>(2).
+<p>
+Memory locking is usually needed for real-time processes to avoid
+paging delays, this can be done with
+<b>mlock</b>() or
+<b>mlockall</b>(). <p>
+As a non-blocking end-less loop in a process scheduled under
+<i>SCHED_FIFO</i> or <i>SCHED_RR</i> will block all processes with lower
+priority forever, a software developer should always keep available on
+the console a shell scheduled under a higher static priority than the
+tested application. This will allow an emergency kill of tested
+real-time applications that do not block or terminate as expected.
+<p>
+POSIX systems on which
+<b>sched_setscheduler</b>() and
+<b>sched_getscheduler</b>() are available define
+<i>_POSIX_PRIORITY_SCHEDULING</i> in &lt;unistd.h&gt;.
+<h1 class="manpages">RETURN VALUE</h1>
+On success,
+<b>sched_setscheduler</b>() returns zero. 
+On success,
+<b>sched_getscheduler</b>() returns the policy for the process (a non-negative integer). 
+On error, -1 is returned, and
+<i>errno</i> is set appropriately.
+<h1 class="manpages">ERRORS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>EINVAL</b> </td><td valign="bottom">
+The scheduling <i>policy</i> is not one of the recognized policies,
+or the parameter <i>param</i> does not make sense for the <i>policy</i>.
+</td></tr>
+<tr valign="top"><td>
+<b>EPERM</b> </td><td valign="bottom">
+The calling process does not have appropriate privileges.
+</td></tr>
+<tr valign="top"><td>
+<b>ESRCH</b> </td><td valign="bottom">
+The process whose ID is <i>pid</i> could not be found.
+</td></tr>
+</table>
+<h1 class="manpages">CONFORMING TO</h1>
+POSIX.1-2001.
+The <i>SCHED_BATCH</i> policy is Linux specific.
+<h1 class="manpages">NOTES</h1>
+Standard Linux is a general-purpose operating system
+and can handle background processes,
+interactive applications, and soft real-time applications
+(applications that need to usually meet timing deadlines).
+This man page is directed at these kinds of applications.
+<p>
+Standard Linux is
+<i>not</i> designed to support
+hard real-time applications, that is, applications in which deadlines
+(often much shorter than a second) must be guaranteed or the system
+will fail catastrophically.
+Like all general-purpose operating systems, Linux
+is designed to maximize average case performance
+instead of worst case performance.
+Linux&#146;s worst case performance for
+interrupt handling is much poorer than its average case, its various
+kernel locks (such as for SMP) produce long maximum wait times, and
+many of its performance improvement techniques decrease average time by
+increasing worst-case time.
+For most situations, that&#146;s what you want, but
+if you truly are developing a hard real-time application,
+consider using hard real-time extensions to Linux such as
+RTLinux (<a href="http://www.rtlinux.org/">http://www.rtlinux.org</a>) or RTAI (<a href="http://www.rtai.org/">http://www.rtai.org</a>)
+or use a different operating system
+designed specifically for hard real-time applications.
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="getpriority.htm">getpriority (2)</a></p></li>
+<li><p><a href="mlock.htm">mlock (2)</a></p></li>
+<li><p><a href="mlockall.htm">mlockall (2)</a></p></li>
+<li><p><a href="munlock.htm">munlock (2)</a></p></li>
+<li><p><a href="munlockall.htm">munlockall (2)</a></p></li>
+<li><p><a href="nice.htm">nice (2)</a></p></li>
+<li><p><a href="sched_get_priority_max.htm">sched_get_priority_max (2)</a></p></li>
+<li><p><a href="sched_get_priority_min.htm">sched_get_priority_min (2)</a></p></li>
+<li><p><a href="sched_getaffinity.htm">sched_getaffinity (2)</a></p></li>
+<li><p><a href="sched_getparam.htm">sched_getparam (2)</a></p></li>
+<li><p><a href="sched_rr_get_interval.htm">sched_rr_get_interval (2)</a></p></li>
+<li><p><a href="sched_setaffinity.htm">sched_setaffinity (2)</a></p></li>
+<li><p><a href="sched_setparam.htm">sched_setparam (2)</a></p></li>
+<li><p><a href="sched_yield.htm">sched_yield (2)</a></p></li>
+<li><p><a href="setpriority.htm">setpriority (2)</a></p></li>
+</ul>
+<i>Programming for the real world - POSIX.4</i> by Bill O. Gallmeister, O&#146;Reilly & Associates, Inc., ISBN 1-56592-074-0
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversioncdeb.html?tutorial=unix_system_calls&amp;file=sched_setscheduler.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_system_calls/sched_getscheduler.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

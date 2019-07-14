@@ -1,0 +1,413 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/unix/unix-basic-utilities.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Apr 2013 20:02:37 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>Unix Basic Utilities - Printing, Email</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="description" content="Unix Basic Utilities Printing, Email - Learning fundamentals of UNIX in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+#topmenu a:hover {text-decoration:none;color:#00afe4  !important;background-color:transparent;font-weight:bold;}
+#header{ 
+background:#00afe4  !important;
+}
+#topmenu
+{
+background-color:#113e78 !important;
+}
+#leftcol ul.menu li.heading 
+{
+background:#00afe4 !important;
+border:1px solid #113e78  !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1400px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index.htm">Tutorials Point - Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index.htm" target="_top">HOME </a>
+<a href="../java/index.htm" target="_top">JAVA </a>
+<a href="../php/index.htm" target="_top">PHP </a>
+<a href="../python/index.htm" target="_top">Python </a>
+<a href="../ruby/index.htm" target="_top">Ruby </a>
+<a href="../perl/index.htm" target="_top">Perl </a>
+<a href="../html/index.htm" target="_top">HTML </a>
+<a href="../css/index.htm" target="_top">CSS </a>
+<a href="../javascript/index.htm" target="_top">Javascript </a>
+<a href="../mysql/index.htm" target="_top">MySQL </a>
+<a href="../cplusplus/index.htm" target="_top">C++ </a>
+<a href="index.htm" target="_top">UNIX </a>
+<a href="../more.htm" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.htm" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.htm" target="_top">ABOUT</a> |
+<a href="../about/contact_us.htm" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/unix-mini-logo.png" alt="Unix Tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">Unix for Beginners</li>
+<li><a target="_top" href="index.htm">Unix - Home</a></li>
+<li><a target="_top" href="unix-getting-started.htm">Unix - Getting Started</a></li>
+<li><a target="_top" href="unix-file-management.htm">Unix - File Management</a></li>
+<li><a target="_top" href="unix-directories.htm">Unix - Directories</a></li>
+<li><a target="_top" href="unix-file-permission.htm">Unix - File Permission</a></li>
+<li><a target="_top" href="unix-environment.htm">Unix - Environment</a></li>
+<li><a target="_top" href="unix-basic-utilities.htm"><b>Unix - Basic Utilities</b></a></li>
+<li><a target="_top" href="unix-pipes-filters.htm">Unix - Pipes &amp; Filters</a></li>
+<li><a target="_top" href="unix-processes.htm">Unix - Processes</a></li>
+<li><a target="_top" href="unix-communication.htm">Unix - Communication</a></li>
+<li><a target="_top" href="unix-vi-editor.htm">Unix - The vi Editor</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Unix Shell Programming</li>
+<li><a target="_top" href="unix-shell.htm">Unix - What is Shell?</a></li>
+<li><a target="_top" href="unix-using-variables.htm">Unix - Using Variables</a></li>
+<li><a target="_top" href="unix-special-variables.htm">Unix - Special Variables</a></li>
+<li><a target="_top" href="unix-using-arrays.htm">Unix - Using Arrays</a></li>
+<li><a target="_top" href="unix-basic-operators.htm">Unix - Basic Operators</a></li>
+<li><a target="_top" href="unix-decision-making.htm">Unix - Decision Making</a></li>
+<li><a target="_top" href="unix-shell-loops.htm">Unix - Shell Loops</a></li>
+<li><a target="_top" href="unix-loop-control.htm">Unix - Loop Control</a></li>
+<li><a target="_top" href="unix-shell-substitutions.htm">Unix - Shell Substitutions</a></li>
+<li><a target="_top" href="unix-quoting-mechanisms.htm">Unix - Quoting Mechanisms</a></li>
+<li><a target="_top" href="unix-io-redirections.htm">Unix - IO Redirections</a></li>
+<li><a target="_top" href="unix-shell-functions.htm">Unix - Shell Functions</a></li>
+<li><a target="_top" href="unix-manpage-help.htm">Unix - Manpage Help</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Advanced Unix</li>
+<li><a target="_top" href="unix-regular-expressions.htm">Unix - Regular Expressions</a></li>
+<li><a target="_top" href="unix-file-system.htm">Unix - File System Basics</a></li>
+<li><a target="_top" href="unix-user-administration.htm">Unix - User Administration</a></li>
+<li><a target="_top" href="unix-system-performance.htm">Unix - System Performance</a></li>
+<li><a target="_top" href="unix-system-logging.htm">Unix - System Logging</a></li>
+<li><a target="_top" href="unix-signals-traps.htm">Unix - Signals and Traps</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Unix Useful Resources</li>
+<li><a target="_top" href="unix-useful-commands.htm">Unix - Useful Commands</a></li>
+<li><a target="_top" href="unix-quick-guide.htm">Unix - Quick Guide</a></li>
+<li><a target="_top" href="unix-builtin-functions.htm">Unix - Builtin Functions</a></li>
+<li><a target="_top" href="../unix_system_calls/index.htm">Unix - System Calls</a></li>
+<li><a target="_top" href="../unix_commands/index.htm">Unix - Commands List</a></li>
+<li><a target="_top" href="unix-useful-resources.htm">Unix Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+ <div class="content">
+<h1>Unix Basic Utilities - Printing, Email</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="unix-environment.htm">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="unix-pipes-filters.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>So far you must have got some idea about Unix OS and nature of its basic commands. This tutorial would cover few very basic but important Unix utilities  which you would use in your day to day life.</p>
+<h2>Printing Files:</h2>
+<p>Before you print a file on a UNIX system, you may want to reformat it to adjust the margins, highlight some words, and so on. Most files can also be printed without reformatting, but the raw printout may not look quite as nice.</p>
+<p>Many versions of UNIX include two powerful text formatters, <b>nroff</b> and <b>troff</b>. They are not covered in this tutorial but you would quit a lot material on the net for these utilities.</p> 
+<h2>The pr Command:</h2>
+<p>The <b>pr</b> command does minor formatting of files on the terminal screen or for a printer. For example, if you have a long list of names in a file, you can format it onscreen into two or more columns.</p>
+<p>Here is the syntax of <b>pr</b> command:</p>
+<pre class="prettyprint">
+pr option(s) filename(s)
+</pre>
+<p>The <b>pr</b> changes the format of the file only on the screen or on the printed copy; it doesn't modify the original file. Following table lists some pr options:</p>
+<table class="src">
+<tr>
+<th style="width:25%">Option</th><th>Description</th>
+</tr>
+<tr><td><b>-k</b></td><td>Produces k columns of output</td></tr>
+<tr><td><b>-d</b></td><td> Double-spaces the output (not on all pr versions).</td></tr>
+<tr><td><b>-h "header"</b></td><td>Takes the next item as a report header.</td></tr>
+<tr><td><b>-t</b></td><td>Eliminates printing of header and top/bottom margins.</td></tr>
+<tr><td><b>-l PAGE_LENGTH</b></td><td>Set the page length to PAGE_LENGTH (66) lines. Default number of lines of text 56.</td></tr>
+<tr><td><b>-o MARGIN</b></td><td>Offset each line with MARGIN (zero) spaces.</td></tr>
+<tr><td><b>-w PAGE_WIDTH</b></td><td>Set page width to PAGE_WIDTH (72) characters for multiple text-column output only.</td></tr>
+</table>
+<p>Before using <b>pr</b>, here are the contents of a sample file named food</p>
+<pre class="prettyprint">
+$cat food
+Sweet Tooth
+Bangkok Wok
+Mandalay
+Afghani Cuisine
+Isle of Java
+Big Apple Deli
+Sushi and Sashimi
+Tio Pepe's Peppers
+........
+$
+</pre>
+<p>Let's use <b>pr</b> command to make a two-column report with the header <i>Restaurants</i>:</p>
+<pre class="prettyprint">
+$pr -2 -h "Restaurants" food
+Nov  7  9:58 1997  Restaurants   Page 1
+
+Sweet Tooth              Isle of Java
+Bangkok Wok              Big Apple Deli
+Mandalay                 Sushi and Sashimi
+Afghani Cuisine          Tio Pepe's Peppers
+........
+$
+</pre>
+<h2>The lp and lpr Commands:</h2>
+<p>The command <b>lp</b> or <b>lpr</b> prints a file onto paper as opposed to the screen display. Once you are ready with formatting using <b>pr</b> command, you can use any of these commands to print your file on printer connected with your computer.</p>
+<p>Your system administrator has probably set up a default printer at your site. To print a file named food on the default printer, use the lp or lpr command, as in this example: </p>
+<pre class="prettyprint">
+$lp food
+request id is laserp-525  (1 file)
+$
+</pre>
+<p>The lp command shows an ID that you can use to cancel the print job or check its status.</p>
+<ul class="list">
+<li><p>If you are using lp command, you can use -n<b>Num</b> option to print Num number of copies. Along with the command lpr, you can use <b>-Num</b> for the same.</p></li>
+<li><p>If there are multiple printers connected with the shared network, then you can choose a printer using -d<b>printer</b> option along with lp command and for the same purpose you can use -P<b>printer</b> option along with lpr command. Here printer is the printer name.</p></li>
+</ul>
+<h2>The lpstat and lpq Commands:</h2>
+<p>The lpstat command shows what's in the printer queue: request IDs, owners, file sizes, when the jobs were sent for printing, and the status of the requests.</p>
+<p>Use lpstat -o if you want to see all output requests rather than just your own. Requests are shown in the order they'll be printed:</p>
+<pre class="prettyprint">
+$lpstat -o
+laserp-573  john  128865  Nov 7  11:27  on laserp
+laserp-574  grace  82744  Nov 7  11:28
+laserp-575  john   23347  Nov 7  11:35
+$
+</pre>
+<p>The <b>lpq</b> gives slightly different information than lpstat -o:</p>
+<pre class="prettyprint">
+$lpq
+laserp is ready and printing
+Rank   Owner      Job  Files                  Total Size
+active john       573  report.ps              128865 bytes
+1st    grace      574  ch03.ps ch04.ps        82744 bytes
+2nd    john       575  standard input         23347 bytes
+$
+</pre>
+<p>Here the first line displays the printer status. If the printer is disabled or out of paper, you may see different messages on this first line.</p>
+<h2>The cancel and lprm Commands:</h2>
+<p>The <b>cancel</b> terminates a printing request from the lp command. The <b>lprm</b> terminates lpr requests. You can specify either the ID of the request (displayed by lp or lpq) or the name of the printer.</p>
+<pre class="prettyprint">
+$cancel laserp-575
+request "laserp-575" cancelled
+$
+</pre>
+<p>To cancel whatever request is currently printing, regardless of its ID, simply enter cancel and the printer name:</p>
+<pre class="prettyprint">
+$cancel laserp
+request "laserp-573" cancelled
+$
+</pre>
+<p>The lprm command will cancel the active job if it belongs to you. Otherwise, you can give job numbers as arguments, or use a dash (-) to remove all of your jobs:</p>
+<pre class="prettyprint">
+$lprm 575
+dfA575diamond dequeued
+cfA575diamond dequeued
+$
+</pre>
+<p>The lprm command tells you the actual filenames removed from the printer queue.</p>
+<h2>Sending Email:</h2>
+<p>You use the Unix mail command to send and receive mail. Here is the syntax to send an email:</p>
+<pre class="prettyprint">
+$mail [-s subject] [-c cc-addr] [-b bcc-addr] to-addr
+</pre>
+<p>Here are important options related to mail command:</p>
+<table class="src">
+<tr>
+<th style="width:25%">Option</th><th>Description</th>
+</tr>
+<tr><td><b>-s</b></td><td>Specify subject on command line.</td></tr>
+<tr><td><b>-c</b></td><td>Send carbon copies to list of users. List should be a comma-separated list of names.</td></tr>
+<tr><td><b>-b</b></td><td>Send blind carbon copies to list. List should be a comma-separated list of names.</td></tr>
+</table>
+<p>Following is the example to send a test message to admin@yahoo.com.</p>
+<pre class="prettyprint">
+$mail -s "Test Message" admin@yahoo.com 
+</pre>
+<p>You are then expected to type in your message, followed by an "control-D" at the beginning of a line. To stop simply type dot (.) as follows:</p>
+<pre class="prettyprint">
+Hi,
+
+This is a test
+.
+Cc: 
+</pre>
+<p>You can send a complete file using a redirect &lt; operator as follows:</p>
+<pre class="prettyprint">
+$mail -s "Report 05/06/07" admin@yahoo.com &lt; demo.txt 
+</pre>
+<p>To check incoming email at your Unix system you simply type email as follows:</p>
+<pre class="prettyprint">
+$mail
+no email
+</pre>
+<hr />
+<div class="pre-btn">
+<a href="unix-environment.htm">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/unix-basic-utilities.pdf" alt="Unix Basic Utilities - Printing, Email" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="unix-pipes-filters.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.htm" target="_top">ASP.NET </a> |
+<a href="../jquery/index.htm" target="_top">jQuery </a> |
+<a href="../ajax/index.htm" target="_top">AJAX </a> |
+<a href="../ant/index.htm" target="_top">ANT</a> |
+<a href="../jsp/index.htm" target="_top">JSP </a> |
+<a href="../servlets/index.htm" target="_top">Servlets </a> |
+<a href="../log4j/index.htm" target="_top">log4j </a> |
+<a href="../ibatis/index.htm" target="_top">iBATIS </a> |
+<a href="../hibernate/index.htm" target="_top">Hibernate </a> |
+<a href="../jdbc/index.htm" target="_top">JDBC </a> |
+<a href="../struts_2/index.htm" target="_top">Struts </a> |
+<a href="../html5/index.htm" target="_top">HTML5 </a> |
+<a href="../sql/index.htm" target="_top">SQL </a> |
+<a href="../mysql/index.htm" target="_top">MySQL </a> |
+<a href="../cplusplus/index.htm" target="_top">C++ </a> |
+<a href="index.htm" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix/unix-basic-utilities.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Apr 2013 20:02:42 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,879 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/dmraid.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>dmraid - Unix, Linux Command</title>
+<meta name="Description" Content="dmraid - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>dmraid - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+dmraid - discover, configure and activate software (ATA)RAID
+<h1 class="manpages">SYNOPSIS</h1>
+<b>dmraid</b> <br />
+ {-a|--activate} {y|n|yes|no} 
+<br />
+ [-d|--debug]... [-v|--verbose]... [-i|--ignorelocking]
+<br />
+ [-f|--format FORMAT[,FORMAT...]]
+<br />
+ [{-P|--partchar} CHAR]
+<br />
+ [-p|--no_partitions]
+<br />
+ [-Z|--rm_partitions]
+<br />
+ [--separator SEPARATOR]
+<br />
+ [-t|--test]
+<br />
+ [RAID-set...]
+<br />
+
+<b>dmraid</b> <br />
+ {-b|--block_devices}
+<br />
+ [-c|--display_columns][FIELD[,FIELD...]]...
+<br />
+ [-d|--debug]... [-v|--verbose]...
+<br />
+ [--separator SEPARATOR]
+<br />
+ [device-path...]
+<br />
+
+<b>dmraid</b> <br />
+ {-h|--help}
+<br />
+
+<b>dmraid</b> <br />
+ {-l|--list_formats}
+<br />
+ [-d|--debug]... [-v|--verbose]...
+<br />
+
+<b>dmraid</b> <br />
+ {-n|--native_log}
+<br />
+ [-d|--debug]... [-v|--verbose]... [-i|--ignorelocking]
+<br />
+ [-f|--format FORMAT[,FORMAT...]]
+<br />
+ [--separator SEPARATOR]
+<br />
+ [device-path...]
+<br />
+
+<b>dmraid</b> <br />
+ {-R| --rebuild}
+<br />
+ RAID-set
+<br />
+ [device-path]
+<br />
+
+<b>dmraid</b> <br />
+ {-x| --remove}
+<br />
+ [RAID-set]
+<br />
+
+<b>dmraid</b> <br />
+ -f FORMAT-handler
+{-C| --create} set 
+<br />
+ --type raidlevel
+<br />
+ [--size=setsize --strip stridesize] 
+<br />
+ --disk "device-path, device-path [, device-path ...]"
+<br />
+
+<b>dmraid</b> [ -f|--format FORMAT-handler]
+-S|--spare [RAID-set]
+-M|--media  "device-path"
+<br />
+
+<b>dmraid</b> <br />
+ {-r|--raid_devices}
+<br />
+ [-c|--display_columns][FIELD[,FIELD...]]...
+<br />
+ [-d|--debug]... [-v|--verbose]... [-i|--ignorelocking]
+<br />
+ [-D|--dump_metadata]
+<br />
+ [-f|--format FORMAT[,FORMAT...]]
+<br />
+ [--separator SEPARATOR]
+<br />
+ [device-path...]
+<br />
+
+<b>dmraid</b> <br />
+ {-r|--raid_devices}
+<br />
+ [-d|--debug]... [-v|--verbose]... [-i|--ignorelocking]
+<br />
+ [-E|--erase_metadata]
+<br />
+ [-f|--format FORMAT[,FORMAT...]]
+<br />
+ [--separator SEPARATOR]
+<br />
+ [device-path...]
+<br />
+
+<b>dmraid</b> <br />
+ {-s|--sets}...[a|i|active|inactive]
+<br />
+ [-c|--display_columns][FIELD[,FIELD...]]...
+<br />
+ [-d|--debug]... [-v|--verbose]... [-i|--ignorelocking]
+<br />
+ [-f|--format FORMAT[,FORMAT...]]
+<br />
+ [-g|--display_group]
+<br />
+ [--separator SEPARATOR]
+<br />
+ [RAID-set...]
+<br />
+
+<b>dmraid</b> <br />
+ {-V/--version}
+<br />
+
+<h1 class="manpages">DESCRIPTION</h1>
+dmraid discovers block and software RAID devices (eg, ATARAID)
+by using multiple different metadata format handlers which
+support various formats (eg, Highpoint 37x series).
+It offers activating RAID sets made up by 2 or more
+discovered RAID devices, display properties of devices and sets (see option
+<b>-l</b> for supported metadata formats).
+Block device access to activated RAID sets occurs via device-mapper nodes
+/dev/mapper/RaidSetName.
+RaidSetName starts with the format name (see
+<b>-l</b> option) which can be used to access all RAID sets of a specific format
+easily with certain options (eg,
+<b>-a</b> below).
+<br />
+
+<h2><i>OPTIONS</i></h2>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<i>-a, --activate {y|n} [RAID set...]</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Activates or deactivates all or particular software RAID set.
+In case metadata format handlers are chosen with
+<b>-f</b> , only RAID sets with such format(s) can be activated or deactivated.
+Useful if devices have multiple metadata signatures.
+When activating RAID sets,
+<b>-p</b> disables the activation of partitions on them, and
+<b>-Z</b> will make dmraid tell the kernel to remove the partitions from the disks
+underlying the set, ie if sda is part of the set, remove sda1, sda2, etc.
+This prevents applications from directly accessiong the disks bypassing dmraid.
+RAID set names given on command line don&#146;t need to be fully specified
+(eg, "dmraid -ay sil" would activate all discovered Silicon Image Medley
+RAID sets).
+<br />
+
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>{-b|--block_devices} [device-path...]</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+List all or particular discovered block devices with their
+properties (size, serial number).
+Add
+<b>-c</b> to display block device names only and
+<b>-cc</b> for CSV column output of block device properties.
+See description of
+<b>-c</b> below for FIELD identifiers.
+<br />
+
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>[-d|--debug]...</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Enable debugging output. Opion can be given multiple times
+increasing the debug output level.
+<br />
+
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>[-c|--display_columns][FIELD[,FIELD...]]...</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Display properties of block devices, RAID sets and devices in column(s).
+Optional list specifying which FIELDs to display.
+<!-- Need break --><br />
+For
+<b>-b:</b> <!-- Need break --><br />
+d[evpath]|p[ath], sec[tors]|si[ze], ser[ialnumber].
+<!-- Need break --><br />
+For
+<b>-r:</b> <!-- Need break --><br />
+de[vpath]|p[ath], f[ormat], r[aidname], t[ype], st[atus], se[ctors]|si[ze], da[taoffset]|o[ffset].
+<!-- Need break --><br />
+For
+<b>-s:</b> <!-- Need break --><br />
+f[ormat], r[aidname], t[ype], sta[tus], str[ide], se[ctors]|si[ze], su[bsets], d[evices], sp[ares].
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>[-f|--format FORMAT[,FORMAT...]]</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Use metadata format handler(s) to discover RAID devices.
+See
+<b>-l</b> for a list of supported format handler names. This is useful to
+select particular formats in case multiple metadata signatures are found
+on a device. A comma seperated list of format names can be specified which 
+may not contain white space.
+<br />
+
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>{-h|--help}</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Display help text.
+<br />
+
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>{-i|--ignorelocking}</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Don&#146;t take out any locks. Useful in early boot where no read/write
+access to /var is available.
+<br />
+
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>{-l|--list_formats}</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+List all available metadata format handlers with their names and
+descriptions. Supported RAID levels are listed in parenthesis:
+<!-- Need break --><br />
+
+S: Span (concatination)
+<!-- Need break --><br />
+0: RAID0 (stripe)
+<!-- Need break --><br />
+1: RAID1 (mirror)
+<!-- Need break --><br />
+10: RAID10 (mirror on top of stripes)
+<!-- Need break --><br />
+01: RAID10 (stripe on top of mirrors) Note: Intel OROM displays this as RAID10
+<br />
+
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>{-n|--native_log} [device-path...]</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Display metadata in native, vendor-specific format.
+In case a metadata format handler is chosen with
+<b>-f</b> only RAID devices with such format will be displayed in native format.
+If device-path(s) is/are given on the command line, native metadata output
+is restricted to those listed.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>[{-P|--partchar} CHAR]</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Use CHAR as the separator between the device name and the partition number.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>{-R| --rebuild} RAID-set [device-path]</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Rebuild raid array after a drive has failed and a new drive is added. 
+For Intel chipset based systems, there are two methods in which a new drive 
+is added to the system.
+<br />
+
+1. Using OROM to identify a new drive
+<br />
+    During system reboot, enter OROM and mark the new drive as the rebuild drive.  
+<br />
+    After booting to the OS, use the dmraid command to rebuild.
+<br />
+
+<br />
+    Example: dmraid -R raid_set 
+<br />
+
+2. Using dmraid to identify a new drive
+<br />
+    Boot to the OS and use the dmraid command with the new drive as
+the second parameter.
+<br />
+
+<br />
+    Example: dmraid -R raid_set /dev/sdc
+<br />
+
+3. Using hot spare drive
+<br />
+    Mark a drive as hot spare using the "dmraid -f isw -S" command. Then use the dmraid command to start the rebuild.
+<br />
+
+<br />
+    Example: dmraid -R raid_set
+<br />
+
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>{-x|--remove} [RAID-set]</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Delete one or all existing software RAID devices from the metadata.
+<br />
+
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>-f FORMAT-handler {-C|--create} --type raidlevel [--size=setsize --strip stripsize] --disk device-path, device-path [,device-path]</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Delete one or all existing Configure a software RAID device  and store the configuration data in a group of hard drive devices consisting of this array. This command requires the following options:
+<p>
+-f FORMAT-handler
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;metadata format (see "dmraid -l")
+<!-- Need break --><br />
+--type digit[digit...]
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specify the raid level of the software RAID set.
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0:  raid0
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1:  raid1
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5:  raid5
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;01: raid01 (isw raid10)
+<!-- Need break --><br />
+--size: [digits[k|K|m|M|g|G][b|B]]
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specify the size of the RAID set.The number is an integer followed by [kKmMgG] and/or [bB].
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b: byte (default)
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B: block (512 bytes)
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;K or K: on the base of 1024
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m or M: on the base of 1024*1024
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;g or G: on the base of 1024*1024*1024
+<!-- Need break --><br />
+If this option is missing, it&#146;s set to the default value pre-configured by the vendor. Note that different vendors may apply different constraints on the granularity of the size or the minimal value.
+<!-- Need break --><br />
+--strip: [digits[k|K|m|M|g|G][b|B]]
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specify the strip size of a RAID1, RAID5, and RAID10 RAID set (as above)
+<!-- Need break --><br />
+--disk: device-path[{,| }device-path...]
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specify the array of the hard drives, e.g. /dev/sda.
+<br />
+
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>-f FORMAT-handler -S -M device-path</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+<i>-S -M device-path</i> <br />
+
+This command adds hot spare support for one or more RAID sets.
+<br />
+
+1. When used with a format handler, which supports hot spare sets (e.g. isw), a hot spare is marked to be used when rebuilding any RAID set of that format.
+2. When used when specifying a RAID set, the drive is added to that RAID set and will be used only to rebuild that set. Note: If the specified name does not match an existing RAID-set, a set with the new name will be created.
+<br />
+
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>{-r|--raid_devices} [device-path...]</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+List all discovered RAID devices with format, RAID level, sectors used
+and data offset into the device.
+In case a metadata format handler is chosen with
+<b>-f</b> , only RAID devices with such format can be discovered. Useful if devices
+have multiple metadata signatures.
+If 
+<b>-D</b> is added to
+<b>-r</b> the RAID metadata gets dumped into a subdirectory named dmraid.format_name
+(eg. format_name = isw) in files named devicename.dat.
+The byte offset where the metadata is located on the device is written
+into files named devicename.offset and the size of the device in sectors
+into files named devicename.size.
+<br />
+
+If 
+<b>-E</b> is added to
+<b>-r</b> the RAID metadata on the devices gets conditionally erased.
+Useful to erase old metadata after new one of different type has been
+stored on a device in order to avoid discovering both. If you enter
+<b>-E</b> option
+<b>-D</b> will be enforced in order to have a fallback in case the wrong metadata
+got erased.
+Manual copying back onto the device is needed to recover from erasing
+the wrong metadata using the dumped files devicename_formatname.dat
+and devicename_formatname.offset.
+Eg, to restore all *.dat files in the working directory to the respective devices:
+<br />
+
+<!-- Need break --><br />
+for f in *.dat
+<!-- Need break --><br />
+do
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dd if=$f of=/dev/${f%%.dat} \
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;seek=&#145;cat ${f%%dat}offset&#145; bs=1
+<!-- Need break --><br />
+done
+<!-- Need break --><br />
+
+If device-path(s) is/are given on the command line, the above actions
+are restricted to those listed.
+Add
+<b>-c</b> to display RAID device names only and
+<b>-cc</b> for CSV column output of RAID device properties.
+See description of
+<b>-c</b> above for FIELD identifiers.
+<br />
+
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>--separator SEPARATOR</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Use SEPARATOR as a delimiter for all options taking or displaying lists.
+<br />
+
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>-s... [a|i] [RAID-set...]</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Display properties of RAID sets. Multiple RAID set names can be given
+on the command line which don&#146;t need to be fully specified (eg, "dmraid -s hpt"
+would display all discovered Highpoint RAID sets). Enter
+<b>-s</b> twice to display RAID subsets too.
+Add
+<b>-c</b> to display names of RAID sets only,
+<b>-cc</b> for CSV column output of RAID set properties and
+<b>-ccc</b> for inclusion of block devices in the listing. Doesn&#146;t imply
+<b>-s -s</b> to show RAID subsets (implied for group sets, e.g. isw).
+Add
+<b>-g</b> to include information about group RAID sets (as with Intel Software
+RAID) in the listing.
+See description of
+<b>-c</b> above for FIELD identifiers.
+Note: Size is given in sectors (not bytes).
+<br />
+
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>[-v|--verbose]...</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Enable verbose runtime information output. Opion can be given multiple times
+increasing the verbosity level.
+<br />
+
+</td></tr>
+</table>
+<h1 class="manpages">EXAMPLES</h1>
+"dmraid -l" lists all supported metadata formats with their names along with
+some descriptive information, eg:
+<!-- Need break --><br />
+hpt37x : (+) Highpoint HPT37X
+<!-- Need break --><br />
+hpt45x : (+) Highpoint HPT45X
+<!-- Need break --><br />
+isw    : (+) Intel Software RAID
+<!-- Need break --><br />
+lsi    : (0) LSI Logic MegaRAID
+<!-- Need break --><br />
+nvidia : (+) NVidia RAID
+<!-- Need break --><br />
+pdc    : (+) Promise FastTrack
+<!-- Need break --><br />
+sil    : (+) Silicon Image(tm) Medley(tm)
+<!-- Need break --><br />
+via    : (+) VIA Software RAID
+<!-- Need break --><br />
+dos    : (+) DOS partitions on SW RAIDs
+<!-- Need break --><br />
+(0): Discover, (+): Discover+Activate
+<br />
+
+"dmraid -ay" activates all software RAID sets discovered.
+<br />
+
+"dmraid -an" deactivates all active software RAID sets which are not open
+(eg, mounted filesystem on them).
+<br />
+
+"dmraid -ay -f pdc" (pdc looked up from "dmraid -l") activates all
+software RAID sets with Promise format discovered and ignores all other
+supported formats.
+<br />
+
+"dmraid -r" discovers all software RAID devices supported on your system, eg:
+<!-- Need break --><br />
+/dev/dm-46: hpt45x, "hpt45x_chidjhaiaa-0", striped, ok, 320172928 sectors, data@ 0
+<!-- Need break --><br />
+/dev/dm-50: hpt45x, "hpt45x_chidjhaiaa-0", striped, ok, 320172928 sectors, data@ 0
+<!-- Need break --><br />
+/dev/dm-54: hpt45x, "hpt45x_chidjhaiaa-1", striped, ok, 320172928 sectors, data@ 0
+<!-- Need break --><br />
+/dev/dm-58: hpt45x, "hpt45x_chidjhaiaa-1", striped, ok, 320172928 sectors, data@ 0
+<br />
+
+<br />
+
+"dmraid -s -s hpt45x_chidjhaiaa" displays properties of
+set "hpt45x_chidjhaiaa", eg:
+<!-- Need break --><br />
+*** Superset
+<!-- Need break --><br />
+name   : hpt45x_chidjhaiaa
+<!-- Need break --><br />
+size   : 640345856
+<!-- Need break --><br />
+stride : 128
+<!-- Need break --><br />
+type   : raid10
+<!-- Need break --><br />
+status : ok
+<!-- Need break --><br />
+subsets: 2
+<!-- Need break --><br />
+dev    : 4
+<!-- Need break --><br />
+spare  : 0
+<!-- Need break --><br />
+---&gt; Subset
+<!-- Need break --><br />
+name   : hpt45x_chidjhaiaa-0
+<!-- Need break --><br />
+size   : 640345856
+<!-- Need break --><br />
+stride : 128
+<!-- Need break --><br />
+type   : stripe
+<!-- Need break --><br />
+status : ok
+<!-- Need break --><br />
+subsets: 0
+<!-- Need break --><br />
+dev    : 2
+<!-- Need break --><br />
+spare  : 0
+<!-- Need break --><br />
+---&gt; Subset
+<!-- Need break --><br />
+name   : hpt45x_chidjhaiaa-1
+<!-- Need break --><br />
+size   : 640345856
+<!-- Need break --><br />
+stride : 128
+<!-- Need break --><br />
+type   : stripe
+<!-- Need break --><br />
+status : ok
+<!-- Need break --><br />
+subsets: 0
+<!-- Need break --><br />
+dev    : 2
+<!-- Need break --><br />
+spare  : 0
+<!-- Need break --><br />
+
+"dmraid -s -ccs hpt45" displays properties in column format of all sets
+and subsets with hpt45* format, eg:
+<!-- Need break --><br />
+hpt45x_chidjhaiaa,640345856,128,raid10,ok,4,0
+<!-- Need break --><br />
+hpt45x_chidjhaiaa-a,640345856,128,stripe,ok,2,0
+<!-- Need break --><br />
+hpt45x_chidjhaiaa-b,640345856,128,stripe,ok,2,0
+<br />
+
+"dmraid -r --sep : -cpath:size" display paths and sizes in sectors for
+RAID devices in column format using &#146;:&#146; as a delimiter, eg:
+<!-- Need break --><br />
+/dev/dm-8:320173055
+<!-- Need break --><br />
+/dev/dm-12:320173055
+<!-- Need break --><br />
+/dev/dm-22:320173055
+<!-- Need break --><br />
+/dev/dm-26:320173055
+<!-- Need break --><br />
+/dev/dm-30:586114703
+<!-- Need break --><br />
+/dev/dm-34:586114703
+<!-- Need break --><br />
+/dev/dm-38:586114703
+<!-- Need break --><br />
+/dev/dm-42:586114703
+<!-- Need break --><br />
+/dev/dm-46:156301487
+<!-- Need break --><br />
+/dev/dm-50:156301487
+<!-- Need break --><br />
+/dev/dm-54:390624896
+<!-- Need break --><br />
+/dev/dm-58:390624896
+<!-- Need break --><br />
+/dev/dm-62:390624896
+<!-- Need break --><br />
+/dev/dm-66:390624896
+<br />
+
+"dmraid -f isw -C Raid0 --type 0 --strip 8k --size 20g --disk "/dev/sdb /dev/sdc"" creates an ISW volume with
+a name of "Raid0", 20Gig bytes in total, and 8kilo bytes strip size on two disks.
+<br />
+
+"dmraid -f isw -C Test0 --type 0 --disk "/dev/sdd /dev/sde"" creates an ISW volume with the default size and strip size.
+<br />
+
+"dmraid -f isw -C Test10 --type 01 --strip 128B --disk "/dev/sda /dev/sdb /dev/sdc /dev/sdd" creates a stacked
+RAID device, RAID10 (isw format), with a name of "Test10", 128 blocks (512bytes) strip size , and the default volume size on
+4 disks.
+<br />
+
+"dmraid -f isw -S -M /dev/sde" marks the device /dev/sde as a hot spare for rebuild
+<br />
+
+"dmraid -R isw_djaggchdde_RAID1 /dev/sde" starts rebuild of the RAID volume on device /dev/sde
+<br />
+
+<h1 class="manpages">DIAGNOSTICS</h1>
+dmraid returns an exit code of 0 for success or 1 for error.
+<br />
+
+<h1 class="manpages">AUTHOR</h1>
+Heinz Mauelshagen &lt;<a href="mailto:Mauelshagen@RedHat.com">Mauelshagen@RedHat.com</a>&gt;
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversiona58d.html?tutorial=unix_commands&amp;file=dmraid.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/dmraid.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

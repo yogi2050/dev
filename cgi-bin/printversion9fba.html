@@ -1,0 +1,330 @@
+<html>
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=perl&file=perl_variables.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>PERL Variable Types</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="Keywords" content="Perl, Programming, Language, Object Oriented Perl, Perl Variables, Scalars, Arrays, Hash, File I/O, Looping, Regular Expressions, Subroutines, Coding Standard, Writing Modules, Process Management, Socket, Examples, References, Special Variables, Syntax Overview, Advanced Perl, Tutorial, Tutorials, Operators, Built-in Functions, Quiz">
+<meta name="Description" content="PERL Variable Types - Free tutorials and references for PERL Programming Common Gateway Interface (CGI) Database Interface (DBI) with PERL Object Oriented Perl and Perl Variables Scalars Arrays Hash File I/O Looping Regular Expressions Subroutines Coding Standard Writing Modules Process Management Socket Examples References Special Variables Syntax Overview Advanced Perl Tutorial Perl Operators Built-in Functions and Quiz">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base >
+<link rel="stylesheet" type="text/css" href="../print.css"/>
+</head>
+<body>
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+<h1>PERL Variable Types</h1>
+<a href="../perl/perl_syntax.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../perl/perl_scalars.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<br />
+<p>Perl has three built in variable types:</p>
+<ul>
+<li>Scalar</li>
+<li>Array</li>
+<li>Hash</li>
+</ul>
+</p>
+<h1>Scalar variable type</h1>
+<p>A scalar represents a single value as follows:</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+ my $animal = "camel"; my $answer = 42;
+</pre></td></tr>
+</table>
+<p>Here <b>my</b> is a keyword which has been explained in the same section at the bottom.</p>
+<p>A scalar values can be strings, integers or floating point numbers, and Perl will automatically convert between them as required. There is no need to pre-declare your variable types. Scalar values can be used in various ways:</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+print $animal;
+print "The animal is $animal\n";
+print "The square of $answer is ", $answer * $answer, "\n";
+</pre></td></tr>
+</table>
+<p>There are a number of "magic" scalars with names that look like punctuation or line noise. These special variables are used for all kinds of purposes and they wioll be discussed in Special Variables sections. The only one you need to know about for now is <b>$_</b> which is the "default variable". It's used as the default argument to a number of functions in Perl, and it's set implicitly by certain looping constructs.</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+ print;       # prints contents of $_ by default
+</pre></td></tr>
+</table>
+<h1>Array variable type:</h1>
+<p>An array represents a list of values:</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+my @animals = ("camel", "llama", "owl");
+
+my @numbers = (23, 42, 69);
+
+my @mixed   = ("camel", 42, 1.23);
+</pre></td></tr>
+</table>
+<p>Arrays are zero-indexed but you can change this setting by changing default variable $[ or $ARRAY_BASE.  Here's how you get at elements in an array:</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+print $animals[0];              # prints "camel"
+print $animals[1];              # prints "llama"
+</pre></td></tr>
+</table>
+<p>The special variable $#array tells you the index of the last element of an array:</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+print $mixed[$#mixed];       # last element, prints 1.23
+</pre></td></tr>
+</table>
+<p>You might be tempted to use $#array + 1 to tell you how many items there are in an array. Don't bother. As it happens, using @array where Perl expects to find a scalar value ("in scalar context") will give you the number of elements in the array:</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+if (@animals &lt; 5) { ... } # Here @animals will return 3
+</pre></td></tr>
+</table>
+<p>The elements we're getting from the array start with a <b>$</b> because we're getting just a single value out of the array -- you ask for a scalar, you get a scalar.</p>
+<p>To get multiple values from an array:</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+@animals[0,1];          # gives ("camel", "llama");
+
+@animals[0..2];         # gives ("camel", "llama", "owl");
+
+@animals[1..$#animals]; # gives all except the first element
+</pre></td></tr>
+</table>
+<p>This is called an "array slice". You can do various useful things to lists as follows:</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+my @sorted    = sort @animals;
+
+my @backwards = reverse @numbers;
+
+# Here sort and reverse are Perl's built-in functions
+</pre></td></tr>
+</table>
+<p>There are a couple of special arrays too, such as <b>@ARGV</b> (the command line arguments to your script) and <b>@_</b> (the arguments passed to a subroutine). These are documented in next section "Special Variables".</p>
+<h1>Hash variable type:</h1>
+<p>A hash represents a set of key/value pairs. Actaully hash are type of arrays with the exception that hash index could be a number or string. They are prefixed by <b>%</b> sign as follows:</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+my %fruit_color = ("apple", "red", "banana", "yellow");
+</pre></td></tr>
+</table>
+<p>You can use whitespace and the =&gt; operator to lay them out more nicely:</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+my %fruit_color = (
+   apple  => "red",
+
+   banana => "yellow",
+);
+</pre></td></tr>
+</table>
+<p>To get a hash elements:</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+$fruit_color{"apple"};           # gives "red"
+</pre></td></tr>
+</table>
+<p>You can get at lists of keys and values with keys() and values() built-in functions.</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+my @fruits = keys %fruit_colors;
+
+ my @colors = values %fruit_colors;
+</pre></td></tr>
+</table>
+<p>Hashes have no particular internal order, though you can sort the keys and loop through them. Just like special scalars and arrays, there are also special hashes. The most well known of these is %ENV which contains environment variables.</p>
+<p>More complex data types can be constructed using references, which allow you to build lists and hashes within lists and hashes. A reference is a scalar value and can refer to any other Perl data type. So by storing a reference as the value of an array or hash element, you can easily create lists and hashes within lists and hashes.</p>
+<p>The following example shows a 2 level hash of hash structure using anonymous hash references.</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+my $variables = {
+
+   scalar  =&gt;  { 
+      description =&gt; "single item",
+      sigil =&gt; '$',
+
+     },
+   array   =&gt;  {
+      description =&gt; "ordered list of items",
+
+      sigil =&gt; '@',
+     },
+   hash    =&gt;  {
+
+      description =&gt; "key/value pairs",
+      sigil =&gt; '%',
+     },
+
+};
+</pre></td></tr>
+</table>
+<p>Following line will print $ </p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+ print "$variables->{'scalar'}->{'sigil'}\n"    ;
+</pre></td></tr>
+</table>
+<h1>Variable Context:</h1>
+<p>PERL treats same variable differently based on Context. For example </p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+my @animals = ("camel", "llama", "owl");
+</pre></td></tr>
+</table>
+<p>Here @animals is an array, but when it is used in scalar context then it returnes number of elements contacined in it as following.</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+if (@animals &lt; 5) { ... } # Here @animals will return 3
+</pre></td></tr>
+</table>
+<p>Another examples:</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+my $number = 30;
+</pre></td></tr>
+</table>
+<p>Here $number is an scalar and contained number in it but when it is called along with a string then it becomes number which is 0, in stead of string:</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+$result = "This is " + "$number";
+print "$result";
+</pre></td></tr>
+</table>
+<p>Here output will be 30</p>
+<h1>Escaping Characters:</h1>
+<p>In PERL we use the backslash (\) character to escape any type of character that might interfere with our code. Below is the example</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+$result = "This is " . "\"number\"";
+print "$result";
+</pre></td></tr>
+</table>
+<p>Here output will be This is "number"</p>
+<h1>Case Sensitivity:</h1>
+<p>Variable names are case sensitive; $foo, $FOO, and $fOo are all separate variables as far as Perl is concerned.</p>
+<h1>Variable Scoping:</h1>
+<p>Throughout the previous section all the examples have used the following syntax:</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+my $var = "value";
+</pre></td></tr>
+</table>
+<p>The my is actually not required; you could just use:</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+$var = "value";
+</pre></td></tr>
+</table>
+<p>However, the above usage will create global variables throughout your program, which is bad programming practice. But  <b>my</b> creates lexically scoped variables instead. The variables are scoped to the block (i.e. a bunch of statements surrounded by curly-braces) in which they are defined. Have a look at the following example:</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+my $a = "foo";
+if ($some_condition) {
+
+   my $b = "bar";
+   print $a;    # prints "foo"
+
+   print $b;    # prints "bar"
+}
+print $a;       # prints "foo"
+ 
+print $b;       # prints nothing; $b has fallen out of scope
+</pre></td></tr>
+</table>
+<p>Using <b>my</b> in combination with a use <b>strict</b>; at the top of your Perl scripts means that the interpreter will pick up certain common programming errors. For instance, in the example above, the final print $b would cause a compile-time error and prevent you from running the program. Using <b>strict</b> is highly recommended. Following is the usage:</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+use strict;
+
+my $a = "foo";
+if ($some_condition) {
+
+   my $b = "bar";
+   print $a;    # prints "foo"
+ 
+   print $b;    # prints "bar"
+}
+print $a;       # prints "foo"
+
+print $b;       # prints nothing; $b has fallen out of scope
+</pre></td></tr>
+</table>
+<h1>Private Variables via my():</h1>
+<p>The <b>my</b> operator declares the listed variables to be lexically confined to the following but not limited to </p>
+<ul>
+<li><p>Enclosing blocks,</p></li>
+<li><p>Conditional (if/unless/elsif/else) </p></li>
+<li><p>Loop (for/foreach/while/until/continue) </p></li>
+<li><p>Subroutine </p></li>
+<li><p>eval or do/require/use'd file </p></li>
+</ul>
+<p>If more than one value is listed, the list must be placed in parentheses. All listed elements must be legal lvalues. Scoped--magical built-ins like $/ must currently be localized with local instead. </p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+my $foo;           # declare $foo lexically local
+my (@wid, %get); 	 # declare list of variables local
+my $foo = "flurp"; # declare $foo lexical, and init it
+my @oof = @bar;	 # declare @oof lexical, and init it
+my $x : Foo = $y;	 # similar, with an attribute applied
+</pre></td></tr>
+</table>
+<p>Lexical scopes of control structures are not bounded precisely by the braces that delimit their controlled blocks; control expressions are part of that scope, too. Thus in the loop the scope of $line extends from its declaration throughout the rest of the loop construct (including the continue clause), but not beyond it.</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+while (my $line = &lt;&gt;) {
+   $line = lc $line;
+}continue {
+    print $line;
+}
+</pre></td></tr>
+</table>
+<p>Similarly, in the conditional the scope of $answer extends from its declaration through the rest of that conditional, including any elsif and else clauses, but not beyond it.</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+if ((my $answer = &lt;STDIN&gt;) =~ /^yes$/i) {
+     user_agrees();
+} elsif ($answer =~ /^no$/i) {
+     user_disagrees();
+} else {
+chomp $answer;
+     die "'$answer' is neither 'yes' nor 'no'";
+}
+</pre></td></tr>
+</table>
+<p>We encourage the use of lexically scoped variables. Use the following line at the top of your program file to avoid any error. This will remind you to scope the variable using <b>local</b> or <b>my</b> keyword.</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+use strict 'vars';
+</pre></td></tr>
+</table>
+<h1>Temporary Values via local():</h1>
+<p>A <b>local</b> modifies its listed variables to be "local" to the enclosing block, eval, or do FILE --and to any subroutine called from within that block. A local just gives temporary values to global (meaning package) variables. It does not create a local variable. This is known as dynamic scoping.</p>
+<p>Lexical scoping is done with <b>my</b>, which works more like C's auto declarations. </p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+local $foo;             # make $foo dynamically local
+local (@wid, %get);     # make list of variables local
+local $foo = "flurp";   # make $foo dynamic, and init it
+local @oof = @bar;      # make @oof dynamic, and init it
+</pre></td></tr>
+</table>
+<p>Because local is a run-time operator, it gets executed each time through a loop. Consequently, it's more efficient to localize your variables outside the loop.</p>
+<p>If you localize a special variable, you'll be giving a new value to it, but its magic won't go away. That means that all side-effects related to this magic still work with the localized value. This feature allows code like this to work :</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+# Read the whole contents of FILE in $slurp
+{ local $/ = undef; $slurp = &lt;FILE&gt; ; }
+</pre></td></tr>
+</table>
+<br>
+<a href="../perl/perl_syntax.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../perl/perl_scalars.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=perl&file=perl_variables.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

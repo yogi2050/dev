@@ -1,0 +1,773 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/hwclock.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:46 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>hwclock - Unix, Linux Command</title>
+<meta name="Description" Content="hwclock - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>hwclock - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+hwclock - query and set the hardware clock (RTC)
+<h1 class="manpages">SYNOPSIS</h1>
+<b>hwclock -r</b> or <b>hwclock --show</b> <!-- Need break --><br />
+<b>hwclock -w</b> or <b>hwclock --systohc</b> <!-- Need break --><br />
+<b>hwclock -s</b> or <b>hwclock --hctosys</b> <!-- Need break --><br />
+<b>hwclock -a</b> or <b>hwclock --adjust</b> <!-- Need break --><br />
+<b>hwclock -v</b> or <b>hwclock --version</b> <!-- Need break --><br />
+<b>hwclock --set --date=newdate</b> <!-- Need break --><br />
+<b>hwclock --getepoch</b> <!-- Need break --><br />
+<b>hwclock --setepoch --epoch=year</b> <p>
+other options:
+<p>
+<b>[-u|--utc]  --localtime  --noadjfile --directisa</b> <b>--test [-D|--debug]</b> <p>
+and arcane options for DEC Alpha:
+<p>
+<b>[-A|--arc] [-J|--jensen] [-S|--srm] [-F|--funky-toy]</b> <p>
+Minimum unique abbreviations of all options are acceptable.
+<p>
+Also, -h asks for a help message.
+<p>
+<h1 class="manpages">DESCRIPTION</h1>
+<b>hwclock</b> is a tool for accessing the Hardware Clock.  You can display the
+current time, set the Hardware Clock to a specified time, set the
+Hardware Clock to the System Time, and set the System Time from the
+Hardware Clock.
+<p>
+You can also run
+<b>hwclock</b> periodically to insert or remove time from the Hardware Clock to
+compensate for systematic drift (where the clock consistently gains or
+loses time at a certain rate if left to run).
+<p>
+<h1 class="manpages">OPTIONS</h1>
+You need exactly one of the following options to tell
+<b>hwclock</b> what function to perform:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>--show</b> </td><td valign="bottom">
+Read the Hardware Clock and print the time on Standard Output.
+The time shown is always in local time, even if you keep your Hardware Clock
+in Coordinated Universal Time.  See the
+<b>--utc</b> option.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>--set</b> </td><td valign="bottom">
+Set the Hardware Clock to the time given by the
+<b>--date</b> option.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--hctosys</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set the System Time from the Hardware Clock. 
+<p>
+Also set the kernel&#146;s timezone value to the local timezone
+as indicated by the TZ environment variable and/or
+<i>/usr/share/zoneinfo</i>, as
+<b>tzset</b>(3)
+would interpret them.
+The obsolete tz_dsttime field of the kernel&#146;s timezone value is set
+to DST_NONE. (For details on what this field used to mean, see
+<b>settimeofday</b>(2).)
+<p>
+This is a good option to use in one of the system startup scripts.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--systohc</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set the Hardware Clock to the current System Time.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--adjust</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Add or subtract time from the Hardware Clock to account for systematic
+drift since the last time the clock was set or adjusted.  See discussion
+below.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--getepoch</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Print the kernel&#146;s Hardware Clock epoch value to standard output.
+This is the number of years into AD to which a zero year value in the
+Hardware Clock refers.  For example, if you are using the convention
+that the year counter in your Hardware Clock contains the number of
+full years since 1952, then the kernel&#146;s Hardware Counter epoch value
+must be 1952.
+<p>
+This epoch value is used whenever hwclock reads or sets the Hardware Clock.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--setepoch</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set the kernel&#146;s Hardware Clock epoch value to the value specified by the
+<b>--epoch</b> option.  See the
+<b>--getepoch</b> option for details.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--version</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Print the version of
+<b>hwclock</b> on Standard Output.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--date=date_string</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+You need this option if you specify the
+<b>--set</b> option.  Otherwise, it is ignored.
+This specifies the time to which to set the Hardware Clock.
+The value of this option is an argument to the
+<b>date</b>(1)
+program.
+For example,
+<p>
+<i>hwclock --set --date= 9/22/96 16:45:05</i> <p>
+The argument is in local time, even if you keep your Hardware Clock in
+Coordinated Universal time.  See the
+<b>--utc</b> option.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--epoch=year</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies the year which is the beginning of the Hardware Clock&#146;s
+epoch.  I.e. the number of years into AD to which a zero value in the
+Hardware Clock&#146;s year counter refers. It is used together with
+the --setepoch option to set the kernel&#146;s idea of the epoch of the
+Hardware Clock, or otherwise to specify the epoch for use with
+direct ISA access.
+<p>
+For example, on a Digital Unix machine:
+<p>
+<i>hwclock --setepoch --epoch=1952</i> <p>
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+The following options apply to most functions.
+</td></tr>
+<tr valign="top"><td>
+<b>--utc</b> <!-- Consumed .TP -->
+<br />
+<b>--localtime</b> </td><td valign="bottom">
+Indicates that the Hardware Clock is kept in Coordinated Universal
+Time or local time, respectively.  It is your choice whether to keep
+your clock in UTC or local time, but nothing in the clock tells which
+you&#146;ve chosen.  So this option is how you give that information to
+<b>hwclock</b>. <p>
+If you specify the wrong one of these options (or specify neither and
+take a wrong default), both setting and querying of the Hardware Clock
+will be messed up.
+<p>
+If you specify neither
+<b>--utc</b> nor
+<b>--localtime</b> , the default is whichever was specified the last time
+<b>hwclock</b> was used to set the clock (i.e. hwclock was successfully run with the
+<b>--set</b> ,
+<b>--systohc</b> ,
+or
+<b>--adjust</b> options), as recorded in the adjtime file.  If the adjtime file doesn&#146;t
+exist, the default is local time.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--noadjfile</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+disables the facilities provided by
+<i>/etc/adjtime</i>. <b>hwclock</b> will not read nor write to that file with this option. Either
+<b>--utc</b> or
+<b>--localtime</b> must be specified when using this option.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--directisa</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+is meaningful only on an ISA machine or an Alpha (which implements enough
+of ISA to be, roughly speaking, an ISA machine for
+<b>hwclock</b>&#146;s purposes).  For other machines, it has no effect.  This option tells
+<b>hwclock</b> to use explicit I/O instructions to access the Hardware Clock.
+Without this option,
+<b>hwclock</b> will try to use the /dev/rtc device (which it assumes to be driven by the
+rtc device driver).  If it is unable to open the device (for read), it will
+use the explicit I/O instructions anyway.
+<p>
+The rtc device driver was new in Linux Release 2.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--badyear</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Indicates that the Hardware Clock is incapable of storing years outside
+the range 1994-1999.  There is a problem in some BIOSes (almost all
+Award BIOSes made between 4/26/94 and 5/31/95) wherein they are unable
+to deal with years after 1999.  If one attempts to set the year-of-century
+value to something less than 94 (or 95 in some cases), the value that
+actually gets set is 94 (or 95).  Thus, if you have one of these machines,
+<b>hwclock</b> cannot set the year after 1999 and cannot use the value of the clock as
+the true time in the normal way.
+<p>
+To compensate for this (without your getting a BIOS update, which would
+definitely be preferable), always use
+<b>--badyear</b> if you have one of these machines.  When 
+<b>hwclock</b> knows it&#146;s working with a brain-damaged clock, it ignores the year part of
+the Hardware Clock value and instead tries to guess the year based on the
+last calibrated date in the adjtime file, by assuming that that date is
+within the past year.  For this to work, you had better do a
+<i>hwclock --set</i> or
+<i>hwclock --systohc</i> at least once a year!
+<p>
+Though
+<b>hwclock</b> ignores the year value when it reads the Hardware Clock, it sets the
+year value when it sets the clock.  It sets it to 1995, 1996, 1997, or
+1998, whichever one has the same position in the leap year cycle as
+the true year.  That way, the Hardware Clock inserts leap days where
+they belong.  Again, if you let the Hardware Clock run for more than a
+year without setting it, this scheme could be defeated and you could
+end up losing a day.
+<p>
+<b>hwclock</b> warns you that you probably need
+<b>--badyear</b> whenever it finds your Hardware Clock set to 1994 or 1995. 
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>--srm</b> </td><td valign="bottom">
+This option is equivalent to
+<b>--epoch=1900</b> and is used to specify the most common epoch on Alphas
+with SRM console.
+</td></tr>
+<tr valign="top"><td>
+<b>--arc</b> </td><td valign="bottom">
+This option is equivalent to
+<b>--epoch=1980</b> and is used to specify the most common epoch on Alphas
+with ARC console (but Ruffians have epoch 1900).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--jensen</b> <!-- Consumed .TP -->
+<br />
+<b>--funky-toy</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+These two options specify what kind of Alpha machine you have.  They
+are invalid if you don&#146;t have an Alpha and are usually unnecessary
+if you do, because
+<b>hwclock</b> should be able to determine by itself what it&#146;s
+running on, at least when
+<i>/proc</i> is mounted.
+(If you find you need one of these options to make
+<b>hwclock</b> work, contact the maintainer to see if the program can be improved
+to detect your system automatically. Output of &#145;hwclock --debug&#146;
+and &#145;cat /proc/cpuinfo&#146; may be of interest.)
+<p>
+<b>--jensen</b> means you are running on a Jensen model.
+<p>
+<b>--funky-toy</b> means that on your machine, one has to use the UF bit instead
+of the UIP bit in the Hardware Clock to detect a time transition.  "Toy"
+in the option name refers to the Time Of Year facility of the machine.
+<p>
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>--test</b> </td><td valign="bottom">
+Do everything except actually updating the Hardware Clock or anything
+else.  This is useful, especially in conjunction with
+<b>--debug,</b> in learning about
+<b>hwclock.</b> </td></tr>
+<tr valign="top"><td>
+<b>--debug</b> </td><td valign="bottom">
+Display a lot of information about what
+<b>hwclock</b> is doing internally.  Some of its function is complex and this output
+can help you understand how the program works.
+<p>
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">NOTES</h1>
+<p>
+<p>
+<h1 class="manpages">Clocks in a Linux System</h1>
+<p>
+There are two main clocks in a Linux system:
+<p>
+<b>The Hardware Clock:</b> This is a clock that runs independently of any control program running
+in the CPU and even when the machine is powered off.
+<p>
+On an ISA system, this clock is specified as part of the ISA standard.
+The control program can read or set this clock to a whole second, but
+the control program can also detect the edges of the 1 second clock
+ticks, so the clock actually has virtually infinite precision.
+<p>
+This clock is commonly called the hardware clock, the real time clock,
+the RTC, the BIOS clock, and the CMOS clock.  Hardware Clock, in its
+capitalized form, was coined for use by
+<b>hwclock</b> because all of the other names are inappropriate to the point of being
+misleading.
+<p>
+<b>The System Time:</b> This is the time kept by a clock inside the Linux kernel and driven by
+a timer interrupt.  (On an ISA machine, the timer interrupt is part of
+the ISA standard).  It has meaning only while Linux is running on the
+machine.  The System Time is the number of seconds since 00:00:00
+January 1, 1970 UTC (or more succinctly, the number of seconds since
+1969).  The System Time is not an integer, though.  It has virtually
+infinite precision.
+<p>
+The System Time is the time that matters.  The Hardware Clock&#146;s basic
+purpose in a Linux system is to keep time when Linux is not running.  You
+initialize the System Time to the time from the Hardware Clock when Linux
+starts up, and then never use the Hardware Clock again.  Note that in DOS,
+for which ISA was designed, the Hardware Clock is the only real time clock.
+<p>
+It is important that the System Time not have any discontinuities such as
+would happen if you used the
+<b>date</b>(1L)
+program to set it while the system is running.  You can, however, do whatever
+you want to the Hardware Clock while the system is running, and the next
+time Linux starts up, it will do so with the adjusted time from the Hardware
+Clock.  You can also use the program
+<b>adjtimex</b>(8)
+to smoothly adjust the System Time while the system runs.
+<p>
+A Linux kernel maintains a concept of a local timezone for the system.
+But don&#146;t be misled -- almost nobody cares what timezone the kernel
+thinks it is in.  Instead, programs that care about the timezone
+(perhaps because they want to display a local time for you) almost
+always use a more traditional method of determining the timezone: They
+use the TZ environment variable and/or the
+<i>/usr/share/zoneinfo</i> directory, as explained in the man page for
+<b>tzset</b>(3).
+However, some
+programs and fringe parts of the Linux kernel such as filesystems use
+the kernel timezone value.  An example is the vfat filesystem.  If the
+kernel timezone value is wrong, the vfat filesystem will report and
+set the wrong timestamps on files.
+<p>
+<b>hwclock</b> sets the kernel timezone to the value indicated by TZ and/or
+<i>/usr/share/zoneinfo</i> when you set the System Time using the
+<b>--hctosys</b> option.
+<p>
+The timezone value actually consists of two parts: 1) a field
+tz_minuteswest indicating how many minutes local time (not adjusted
+for DST) lags behind UTC, and 2) a field tz_dsttime indicating
+the type of Daylight Savings Time (DST) convention that is in effect
+in the locality at the present time.
+This second field is not used under Linux and is always zero.
+(See also
+<b>settimeofday</b>(2).)
+<p>
+<h1 class="manpages">How hwclock Accesses the Hardware Clock</h1>
+<p>
+<b>hwclock</b> Uses many different ways to get and set Hardware Clock values.
+The most normal way is to do I/O to the device special file /dev/rtc,
+which is presumed to be driven by the rtc device driver.  However,
+this method is not always available.  For one thing, the rtc driver is
+a relatively recent addition to Linux.  Older systems don&#146;t have it.
+Also, though there are versions of the rtc driver that work on DEC
+Alphas, there appear to be plenty of Alphas on which the rtc driver
+does not work (a common symptom is hwclock hanging).
+<p>
+On older systems, the method of accessing the Hardware Clock depends on
+the system hardware.
+<p>
+On an ISA system,
+<b>hwclock</b> can directly access the "CMOS memory" registers that
+constitute the clock, by doing I/O to Ports 0x70 and 0x71.  It does
+this with actual I/O instructions and consequently can only do it if
+running with superuser effective userid.  (In the case of a Jensen
+Alpha, there is no way for
+<b>hwclock</b> to execute those I/O instructions, and so it uses instead the
+/dev/port device special file, which provides almost as low-level an
+interface to the I/O subsystem).
+<p>
+This is a really poor method of accessing the clock, for all the
+reasons that user space programs are generally not supposed to do
+direct I/O and disable interrupts.  Hwclock provides it because it is
+the only method available on ISA and Alpha systems which don&#146;t have
+working rtc device drivers available.
+<p>
+<p>
+On an m68k system,
+<b>hwclock</b> can access the clock via the console driver, via the device special
+file /dev/tty1.
+<p>
+<b>hwclock</b> tries to use /dev/rtc.  If it is compiled for a kernel that doesn&#146;t have
+that function or it is unable to open /dev/rtc,
+<b>hwclock</b> will fall back to another method, if available.  On an ISA or Alpha
+machine, you can force
+<b>hwclock</b> to use the direct manipulation of the CMOS registers without even trying
+<i>/dev/rtc</i> by specifying the --directisa option.
+<p>
+<p>
+<h1 class="manpages">The Adjust Function</h1>
+<p>
+The Hardware Clock is usually not very accurate.  However, much of its
+inaccuracy is completely predictable - it gains or loses the same amount
+of time every day.  This is called systematic drift.
+<b>hwclock</b>&#146;s "adjust" function lets you make systematic corrections to correct the
+systematic drift.
+<p>
+It works like this: 
+<b>hwclock</b> keeps a file,
+<i>/etc/adjtime,</i> that keeps some historical information.  This is called the adjtime file.
+<p>
+Suppose you start with no adjtime file.  You issue a
+<i>hwclock --set</i> command to set the Hardware Clock to the true current time. 
+<b>Hwclock</b> creates the adjtime file and records in it the current time as the
+last time the clock was calibrated.
+5 days later, the clock has gained 10 seconds, so you issue another
+<i>hwclock --set</i> command to set it back 10 seconds. 
+<b>Hwclock</b> updates the adjtime file to show the current time as the last time the
+clock was calibrated, and records 2 seconds per day as the systematic
+drift rate.  24 hours go by, and then you issue a
+<i>hwclock --adjust</i> command. 
+<b>Hwclock</b> consults the adjtime file and sees that the clock gains 2 seconds per
+day when left alone and that it has been left alone for exactly one
+day.  So it subtracts 2 seconds from the Hardware Clock.  It then
+records the current time as the last time the clock was adjusted.
+Another 24 hours goes by and you issue another
+<i>hwclock --adjust.</i> <b>Hwclock</b> does the same thing: subtracts 2 seconds and updates the adjtime file
+with the current time as the last time the clock was adjusted.
+<p>
+Every time you calibrate (set) the clock (using
+<i>--set</i> or
+<i>--systohc</i> ),
+<b>hwclock</b> recalculates the systematic drift rate based on how long it has been
+since the last calibration, how long it has been since the last
+adjustment, what drift rate was assumed in any intervening
+adjustments, and the amount by which the clock is presently off.
+<p>
+A small amount of error creeps in any time
+<b>hwclock</b> sets the clock, so it refrains from making an adjustment that would be
+less than 1 second.  Later on, when you request an adjustment again,
+the accumulated drift will be more than a second and
+<b>hwclock</b> will do the adjustment then.
+<p>
+It is good to do a
+<i>hwclock --adjust</i> just before the
+<i>hwclock --hctosys</i> at system startup time, and maybe periodically while the system is
+running via cron.
+<p>
+The adjtime file, while named for its historical purpose of controlling
+adjustments only, actually contains other information for use by hwclock
+in remembering information from one invocation to the next.
+<p>
+The format of the adjtime file is, in ASCII:
+<p>
+Line 1: 3 numbers, separated by blanks: 1) systematic drift rate in
+seconds per day, floating point decimal; 2) Resulting number of
+seconds since 1969 UTC of most recent adjustment or calibration,
+decimal integer; 3) zero (for compatibility with
+<b>clock</b>(8))
+as a decimal integer.
+<p>
+Line 2: 1 number: Resulting number of seconds since 1969 UTC of most
+recent calibration.  Zero if there has been no calibration yet or it
+is known that any previous calibration is moot (for example, because
+the Hardware Clock has been found, since that calibration, not to
+contain a valid time).  This is a decimal integer.
+<p>
+Line 3: "UTC" or "LOCAL".  Tells whether the Hardware Clock is set to
+Coordinated Universal Time or local time.  You can always override this
+value with options on the
+<b>hwclock</b> command line.
+<p>
+You can use an adjtime file that was previously used with the
+<b>clock</b>(8)
+program with
+<b>hwclock.</b> <p>
+<p>
+<h1 class="manpages">Automatic Hardware Clock Synchronization By the Kernel</h1>
+<p>
+You should be aware of another way that the Hardware Clock is kept
+synchronized in some systems.  The Linux kernel has a mode wherein it
+copies the System Time to the Hardware Clock every 11 minutes. 
+This is a good mode to use when you are using something sophisticated
+like ntp to keep your System Time synchronized. (ntp is a way to keep
+your System Time synchronized either to a time server somewhere on the
+network or to a radio clock hooked up to your system.  See RFC 1305).
+<p>
+This mode (we&#146;ll call it "11 minute mode") is off until something
+turns it on.  The ntp daemon xntpd is one thing that turns it on.  You
+can turn it off by running anything, including
+<i>hwclock --hctosys</i>, that sets the System Time the old fashioned way.
+<p>
+To see if it is on or
+off, use the command
+<i>adjtimex --print</i> and look at the value of "status".  If the "64" bit of this number
+(expressed in binary) equal to 0, 11 minute mode is on.  Otherwise, it
+is off.
+<p>
+If your system runs with 11 minute mode on, don&#146;t use
+<i>hwclock --adjust</i> or
+<i>hwclock --hctosys</i>. You&#146;ll just make a mess.  It is acceptable to use a
+<i>hwclock --hctosys</i> at startup time to get a reasonable System Time until your system is
+able to set the System Time from the external source and start 11
+minute mode.
+<p>
+<p>
+<h1 class="manpages">ISA Hardware Clock Century value</h1>
+<p>
+There is some sort of standard that defines CMOS memory Byte 50 on an ISA
+machine as an indicator of what century it is. 
+<b>hwclock</b> does not use or set that byte because there are some machines that
+don&#146;t define the byte that way, and it really isn&#146;t necessary anyway,
+since the year-of-century does a good job of implying which century it
+is.
+<p>
+If you have a bona fide use for a CMOS century byte, contact the
+<b>hwclock</b> maintainer; an option may be appropriate.
+<p>
+Note that this section is only relevant when you are using the "direct
+ISA" method of accessing the Hardware Clock.
+<p>
+<p>
+<p>
+<h1 class="manpages">ENVIRONMENT VARIABLES</h1>
+<i>TZ</i> <p>
+<h1 class="manpages">FILES</h1>
+<i>/etc/adjtime</i> <i>/usr/share/zoneinfo/</i> (<i>/usr/lib/zoneinfo</i> on old systems)
+<i>/dev/rtc</i> <i>/dev/port</i> <i>/dev/tty1</i> <i>/proc/cpuinfo</i> <p>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="adjtimex.html">adjtimex (8)</a></p></li>
+<li><p><a href="date.htm">date (1)</a></p></li>
+<li><p><a href="../unix_system_calls/gettimeofday.htm">gettimeofday (2)</a></p></li>
+<li><p><a href="../unix_system_calls/settimeofday.htm">settimeofday (2)</a></p></li>
+<li><p><a href="crontab.htm">crontab (1)</a></p></li>
+</ul>
+<h1 class="manpages">AUTHORS</h1>
+Written by Bryan Henderson, September 1996 (<a href="mailto:bryanh@giraffe-data.com">bryanh@giraffe-data.com</a>),
+based on work done on the
+<i>clock</i> program by Charles Hedrick, Rob Hooft, and Harald Koenig. 
+See the source code for complete history and credits.
+<p>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionad95.html?tutorial=unix_commands&amp;file=hwclock.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/hwclock.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:46 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+<!-- Mirrored from www.tutorialspoint.com/ansi_c/c_preprocessors.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:42 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>C - Pre-Processors, #if, #define, #elseif, #endif and #include</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="Keywords" content="ANSI, C, Programming, Tutorial, References, ISO, GNU, K and R, C99, Program, Learning, Computer, Language, Easy,Steps, Most, Popular, System, Coaching,Assembly." />
+<meta name="Description" content="C Pre-Processors, #if, #define, #elseif, #endif and #include - Free tutorial and references for ANSI C Programming. You will learn ISO GNU K and R C99 C Programming computer language in easy steps. C is the most popular system programming and widely used computer language in the computer world." />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="18" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Learning C</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="index.htm">C - Programming HOME</a></li>
+<li><a class="left" target="_top" href="c_introduction.htm" >C - Basic Introduction</a></li>
+<li><a class="left" target="_top" href="c_program_structure.htm" >C - Program Structure</a></li>
+<li><a class="left" target="_top" href="c_reserved_keywords.htm" >C - Reserved Keywords</a></li>
+<li><a class="left" target="_top" href="c_basic_datatypes.htm" >C - Basic Datatypes</a></li>
+<li><a class="left" target="_top" href="c_variable_types.htm" >C - Variable Types</a></li>
+<li><a class="left" target="_top" href="c_storage_classes.htm" >C - Storage Classes</a></li>
+<li><a class="left" target="_top" href="c_using_constants.htm" >C - Using Constants</a></li>
+<li><a class="left" target="_top" href="c_operator_types.htm" >C - Operator Types</a></li>
+<li><a class="left" target="_top" href="c_control_statements.htm" >C - Control Statements</a></li>
+<li><a class="left" target="_top" href="c_input_output.htm" >C - Input and Output</a></li>
+<li><a class="left" target="_top" href="c_pointing_data.htm" >C - Pointing to Data</a></li>
+<li><a class="left" target="_top" href="c_using_functions.htm" >C - Using Functions</a></li>
+<li><a class="left" target="_top" href="c_play_with_strings.htm" >C - Play with Strings</a></li>
+<li><a class="left" target="_top" href="c_structured_datatypes.htm" >C - Structured Datatypes</a></li>
+<li><a class="left" target="_top" href="c_working_with_files.htm" >C - Working with Files</a></li>
+<li><a class="left" target="_top" href="c_bits_manipulation.htm" >C - Bits Manipulation</a></li>
+<li><a class="left" target="_top" href="c_preprocessors.htm" ><b>C - Pre-Processors</b></a></li>
+<li><a class="left" target="_top" href="c_useful_concepts.htm" >C - Useful Concepts</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>C Function References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="c_function_references.html" >C - Built-in Functions</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>C Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="c_useful_resources.htm" >C - Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+<td  style="width:10px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/about_advertising.html">Advertising</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle"  cellpadding="5" cellspacing="0">
+<tr>
+<td align="left">
+<!-- PRINTING STARTS HERE -->
+<a href="../cprogramming/index.html"  title="C Programming Language Tutorial"><img src="../images/obsolete.html" alt="Latest C Tutorial"/></a>
+<h1>C - Pre-Processors</h1>
+<a href="c_bits_manipulation.htm"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="c_useful_concepts.htm"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<hr />
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="top">
+<p>The C Preprocessor is not part of the compiler, but is a separate step in the compilation process. In simplistic terms, a C Preprocessor is just a text substitution tool. We'll refer to the C Preprocessor as the CPP.</p>
+<p>All preprocessor lines begin with #</p>
+<ul>
+<li><p>The unconditional directives are:</p>
+	<ul>
+	<li><p>#include - Inserts a particular header from another file</p></li>
+	<li><p>#define - Defines a preprocessor macro</p></li>
+	<li><p>#undef - Undefines a preprocessor macro</p></li>
+	</ul>
+</li>
+<li><p>The conditional directives are:</p>
+	<ul>
+	<li><p>#ifdef - If this macro is defined</p></li>
+	<li><p>#ifndef - If this macro is not defined</p></li>
+	<li><p>#if - Test if a compile time condition is true</p></li>
+	<li><p>#else - The alternative for #if</p></li>
+	<li><p>#elif - #else an #if in one statement</p></li>
+	<li><p>#endif - End preprocessor conditional</p></li>
+	</ul>
+</li>
+<li><p>Other directives include:</p>
+	<ul>
+	<li><p># - Stringization, replaces a macro parameter with a string constant</p></li>
+	<li><p>## - Token merge, creates a single token from two adjacent ones</p></li>
+	</ul>
+</li>
+</ul>
+<h1>Pre-Processors Examples:</h1>
+<p>Analyze following examples to understand various directives.</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+  #define MAX_ARRAY_LENGTH 20
+</pre></td></tr></table>
+<p>Tells the CPP to replace instances of MAX_ARRAY_LENGTH with 20. Use <i>#define</i> for constants to increase readability. </p>
+
+<table class="src" cellpadding="5"><tr><td><pre>
+  #include &lt;stdio.h&gt;
+  #include "myheader.h"
+</pre></td></tr></table>
+<p>Tells the CPP to get stdio.h from <b>System Libraries</b> and add the text to this file. The next line tells CPP to get myheader.h from the local directory and add the text to the file.</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+  #undef  FILE_SIZE
+  #define FILE_SIZE 42
+</pre></td></tr></table>
+<p>Tells the CPP to undefine FILE_SIZE and define it for 42.</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+  #ifndef MESSAGE
+  #define MESSAGE "You wish!"
+  #endif
+</pre></td></tr></table>
+<p>Tells the CPP to define MESSAGE only if MESSAGE isn't defined already.</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+  #ifdef DEBUG
+    /* Your debugging statements here */
+  #endif
+</pre></td></tr></table>
+<p>Tells the CPP to do the following statements if DEBUG is defined. This is useful if you pass the <i>-DDEBUG</i> flag to gcc. This will define DEBUG, so you can turn debugging on and off on the fly!</p>
+<h1> Stringize (#):</h1>
+<p>The stringize or number-sign operator ('#'), when used within a macro definition, converts a macro parameter into a string constant. This operator may be used only in a macro that has a specified argument or parameter list.</p>
+<p>When the stringize operator immediately precedes the name of one of the macro parameters, the parameter passed to the macro is enclosed within quotation marks and is treated as a string literal. For example:</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+#include &lt;stdio.h&gt;
+
+#define   message_for(a, b)  \
+          printf(#a " and " #b ": We love you!\n")
+
+int main(void)
+{
+   message_for(Carole, Debra);
+   return 0;
+}
+</pre></td></tr></table>
+<p>This will produce following result using stringization macro <i>message_for</i></p>
+<table class="src" cellpadding="5"><tr><td><pre>
+Carole and Debra: We love you!
+</pre></td></tr></table>
+<h1> Token Pasting (##):</h1>
+<p>The token-pasting operator (##) within a macro definition combines two arguments. It permits two separate tokens in the macro definition to be joined into a single token.</p>
+<p>If the name of a macro parameter used in the macro definition is immediately preceded or followed by the token-pasting operator, the macro parameter and the token-pasting operator are replaced by the value of the passed parameter.Text that is adjacent to the token-pasting operator that is not the name of a macro parameter is not affected. For example:</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+#define tokenpaster(n) printf ("token" #n " = %d", token##n)
+
+tokenpaster(34);
+</pre></td></tr></table>
+<p>This example results in the following actual output from the preprocessor:</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+printf ("token34 = %d", token34);
+</pre></td></tr></table>
+<p>This example shows the concatenation of token##n into token34. Both the stringize and the token-pasting operators are used in this example.</p>
+<h1>Parameterized Macros:</h1>
+<p>One of the powerful functions of the CPP is the ability to simulate functions using parameterized macros. For example, we might have some code to square a number:</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+int square(int x) {
+    return x * x;
+  }
+</pre></td></tr></table>
+<p>We can instead rewrite this using a macro:</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+#define square(x) ((x) * (x))
+</pre></td></tr></table>
+<p>Macros with arguments must be defined using the #define directive before they can be used. The argument list is enclosed in parentheses and must immediately follow the macro name. Spaces are not allowed between and macro name and open parenthesis. For example:</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+#define MAX(x,y) ((x) &gt; (y) ? (x) : (y))
+</pre></td></tr></table>
+<h1> Macro Caveats:</h1>
+<ul>
+<li><p>Macro definitions are not stored in the object file. They are only active for the duration of a single source file starting when they are defined and ending when they are undefined (using #undef), redefined, or when the end of the source file is found.</p></li>
+<li><p>Macro definitions you wish to use in multiple source files may be defined in an include file which may be included in each source file where the macros are required.</p></li>
+<li><p>When a macro with arguments is invoked, the macro processor substitutes the arguments into the macro body and then processes the results again for additional macro calls. This makes it possible, but confusing, to piece together a macro call from the macro body and from the macro arguments.</p></li>
+<li><p>Most experienced C programmers enclose macro arguments in parentheses when they are used in the macro body. This technique prevents undesired grouping of compound expressions used as arguments and helps avoid operator precedence rules overriding the intended meaning of a macro.</p></li>
+<li><p>While a macro may contain references to other macros, references to itself are not expanded. Self-referencing macros are a special feature of ANSI Standard C in that the self-reference is not interpreted as a macro call. This special rule also applies to indirectly self-referencing macros (or macros that reference themselves through another macro).</p></li>
+</ul>
+</td>
+</tr>
+</table>
+<br />
+<hr />
+<a href="c_bits_manipulation.htm"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="c_useful_concepts.htm"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion2797.html?tutorial=ansi_c&amp;file=c_preprocessors.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/ansi_c/c_preprocessors.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:42 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

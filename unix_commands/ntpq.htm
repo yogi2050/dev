@@ -1,0 +1,839 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/ntpq.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>ntpq - Unix, Linux Command</title>
+<meta name="Description" Content="ntpq - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>ntpq - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+ntpq - standard NTP query program
+<h1 class="manpages"></h1>
+<p>
+<h1 class="manpages">SYNOPSIS</h1>
+<b>ntpq [-46dinp] [-c </b><i>command</i><b>] [</b><i>host</i><b>] [...]</b>
+<p>
+<h1 class="manpages">DESCRIPTION</h1>
+<p>
+The <b>ntpq</b> utility program is used to monitor NTP daemon <b>ntpd</b> operations and determine performance. It uses the standard NTP mode 6 control message formats defined in Appendix B of the NTPv3 specification RFC1305. The same formats are used in NTPv4, although some of the variables have changed and new ones added. The description on this page is for the NTPv4 variables.
+<p>
+The program can be run either in interactive mode or controlled using command line arguments. Requests to read and write arbitrary variables can be assembled, with raw and pretty-printed output options being available. The <b>ntpq</b> can also obtain and print a list of peers in a common format by sending multiple queries to the server.
+<p>
+If one or more request options is included on the command line when <b>ntpq</b> is executed, each of the requests will be sent to the NTP servers running on each of the hosts given as command line arguments, or on localhost by default. If no request options are given, <b>ntpq</b> will attempt to read commands from the standard input and execute these on the NTP server running on the first host given on the command line, again defaulting to localhost when no other host is specified. <b>ntpq</b> will prompt for commands if the standard input is a terminal device.
+<p>
+<b>ntpq</b> uses NTP mode 6 packets to communicate with the NTP server, and hence can be used to query any compatible server on the network which permits it. Note that since NTP is a UDP protocol this communication will be somewhat unreliable, especially over large distances in terms of network topology. <b>ntpq</b> makes one attempt to retransmit requests, and will time requests out if the remote host is not heard from within a suitable timeout time.
+<p>
+Note that in contexts where a host name is expected, a <b>-4</b> qualifier preceding the host name forces DNS resolution to the IPv4 namespace, while a <b>-6</b> qualifier forces DNS resolution to the IPv6 namespace.
+<p>
+For examples and usage, see the NTP Debugging Techniques page.
+<p>
+Command line options are described following. Specifying a command line option other than <b>-i</b> or <b>-n</b> will cause the specified query (queries) to be sent to the indicated host(s) immediately. Otherwise, <b>ntpq</b> will attempt to read interactive format commands from the standard input.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-4</b>
+</td><td valign="bottom">
+Force DNS resolution of following host names on the command line to the IPv4 namespace.
+</td></tr>
+<tr valign="top"><td>
+<b>-6</b>
+</td><td valign="bottom">
+Force DNS resolution of following host names on the command line to the IPv6 namespace.
+</td></tr>
+<tr valign="top"><td>
+<b>-c</b>
+</td><td valign="bottom">
+The following argument is interpreted as an interactive format command and is added to the list of commands to be executed on the specified host(s). Multiple <b>-c</b> options may be given.
+</td></tr>
+<tr valign="top"><td>
+<b>-d</b>
+</td><td valign="bottom">
+Turn on debugging mode.
+</td></tr>
+<tr valign="top"><td>
+<b>-i</b>
+</td><td valign="bottom">
+Force <b>ntpq</b> to operate in interactive mode. Prompts will be written to the standard output and commands read from the standard input.
+</td></tr>
+<tr valign="top"><td>
+<b>-n</b>
+</td><td valign="bottom">
+Output all host addresses in dotted-quad numeric format rather than converting to the canonical host names.
+</td></tr>
+<tr valign="top"><td>
+<b>-p</b>
+</td><td valign="bottom">
+Print a list of the peers known to the server as well as a summary of their state. This is equivalent to the <b>peers</b> interactive command.
+</td></tr>
+</table>
+<p>
+<h1 class="manpages">INTERNAL COMMANDS</h1>
+<p>
+Interactive format commands consist of a keyword followed by zero to four arguments. Only enough characters of the full keyword to uniquely identify the command need be typed. The output of a command is normally sent to the standard output, but optionally the output of individual commands may be sent to a file by appending a <b>&gt;</b>, followed by a file name, to the command line. A number of interactive format commands are executed entirely within the <b>ntpq</b> program itself and do not result in NTP mode 6 requests being sent to a server. These are described following.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>? [</b><i>command_keyword</i><b>]</b>
+<!-- Consumed .TP 8 -->
+<br />
+<b>helpl [</b><i>command_keyword</i><b>]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+A <b>?</b> by itself will print a list of all the command keywords known to this incarnation of <b>ntpq</b>[char46] A <b>?</b> followed by a command keyword will print function and usage information about the command. This command is probably a better source of information about <b>ntpq</b> than this manual page.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>addvars </b><i>variable_name</i><b> [ = </b><i>value</i><b>] [...]</b>
+<!-- Consumed .TP 8 -->
+<br />
+<b>rmvars </b><i>variable_name</i><b> [...]</b>
+<!-- Consumed .TP 8 -->
+<br />
+<b>clearvars</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+The data carried by NTP mode 6 messages consists of a list of items of the form <b></b><i>variable_name</i><b> = </b><i>value</i><b></b>, where the <b>= </b><i>value</i><b></b> is ignored, and can be omitted, in requests to the server to read variables. <b>ntpq</b> maintains an internal list in which data to be included in control messages can be assembled, and sent using the <b>readlist</b> and <b>writelist</b> commands described below. The <b>addvars</b> command allows variables and their optional values to be added to the list. If more than one variable is to be added, the list should be comma-separated and not contain white space. The <b>rmvars</b> command can be used to remove individual variables from the list, while the <b>clearlist</b> command removes all variables from the list.
+</td></tr>
+<tr valign="top"><td>
+<b>cooked</b>
+</td><td valign="bottom">
+Causes output from query commands to be "cooked", so that variables which are recognized by <b>ntpq</b> will have their values reformatted for human consumption. Variables which <b>ntpq</b> thinks should have a decodable value but didn&#146;t are marked with a trailing <b>?</b>[char46]
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>debug more | less | off</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Turns internal query program debugging on and off.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>delay </b><i>milliseconds</i><b></b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Specify a time interval to be added to timestamps included in requests which require authentication. This is used to enable (unreliable) server reconfiguration over long delay network paths or between machines whose clocks are unsynchronized. Actually the server does not now require timestamps in authenticated requests, so this command may be obsolete.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>host </b><i>hostname</i><b></b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Set the host to which future queries will be sent. Hostname may be either a host name or a numeric address.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>hostnames [yes | no]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+If <b>yes</b> is specified, host names are printed in information displays. If <b>no</b> is specified, numeric addresses are printed instead. The default is <b>yes</b>, unless modified using the command line <b>-n</b> switch.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>keyid </b><i>keyid</i><b></b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+This command specifies the key number to be used to authenticate configuration requests. This must correspond to a key number the server has been configured to use for this purpose.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ntpversion 1 | 2 | 3 | 4</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Sets the NTP version number which <b>ntpq</b> claims in packets. Defaults to 2, Note that mode 6 control messages (and modes, for that matter) didn&#146;t exist in NTP version 1.
+</td></tr>
+<tr valign="top"><td>
+<b>passwd</b>
+</td><td valign="bottom">
+This command prompts for a password (which will not be echoed) which will be used to authenticate configuration requests. The password must correspond to the key configured for NTP server for this purpose.
+</td></tr>
+<tr valign="top"><td>
+<b>quit</b>
+</td><td valign="bottom">
+Exit <b>ntpq</b>[char46]
+</td></tr>
+<tr valign="top"><td>
+<b>raw</b>
+</td><td valign="bottom">
+Causes all output from query commands is printed as received from the remote server. The only formatting/interpretation done on the data is to transform non-ASCII data into a printable (but barely understandable) form.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>timeout </b><i>millseconds</i><b></b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Specify a timeout period for responses to server queries. The default is about 5000 milliseconds. Note that since <b>ntpq</b> retries each query once after a timeout, the total waiting time for a timeout will be twice the timeout value set.
+</td></tr>
+</table>
+<p>
+<h1 class="manpages">CONTROL MESSAGE COMMANDS</h1>
+<p>
+Each association known to an NTP server has a 16 bit integer association identifier. NTP control messages which carry peer variables must identify the peer the values correspond to by including its association ID. An association ID of 0 is special, and indicates the variables are system variables, whose names are drawn from a separate name space.
+<p>
+Control message commands result in one or more NTP mode 6 messages being sent to the server, and cause the data returned to be printed in some format. Most commands currently implemented send a single message and expect a single response. The current exceptions are the peers command, which will send a preprogrammed series of messages to obtain the data it needs, and the mreadlist and mreadvar commands, which will iterate over a range of associations.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>associations</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Obtains and prints a list of association identifiers and peer statuses for in-spec peers of the server being queried. The list is printed in columns. The first of these is an index numbering the associations from 1 for internal use, the second the actual association identifier returned by the server and the third the status word for the peer. This is followed by a number of columns containing data decoded from the status word. See the peers command for a decode of the <b>condition</b> field. Note that the data returned by the <b>associations</b> command is cached internally in <b>ntpq</b>[char46] The index is then of use when dealing with stupid servers which use association identifiers which are hard for humans to type, in that for any subsequent commands which require an association identifier as an argument, the form &index may be used as an alternative.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>clockvar [</b><i>assocID</i><b>] [</b><i>variable_name</i><b> [ = </b><i>value</i><b> [...]] [...]</b>
+<!-- Consumed .TP 8 -->
+<br />
+<b>cv [</b><i>assocID</i><b>] [</b><i>variable_name</i><b> [ = </b><i>value</i><b> [...] ][...]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Requests that a list of the server&#146;s clock variables be sent. Servers which have a radio clock or other external synchronization will respond positively to this. If the association identifier is omitted or zero the request is for the variables of the <b>system clock</b> and will generally get a positive response from all servers with a clock. If the server treats clocks as pseudo-peers, and hence can possibly have more than one clock connected at once, referencing the appropriate peer association ID will show the variables of a particular clock. Omitting the variable list will cause the server to return a default variable display.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>lassociations</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Obtains and prints a list of association identifiers and peer statuses for all associations for which the server is maintaining state. This command differs from the <b>associations</b> command only for servers which retain state for out-of-spec client associations (i.e., fuzzballs). Such associations are normally omitted from the display when the <b>associations</b> command is used, but are included in the output of <b>lassociations</b>[char46]
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>lpassociations</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Print data for all associations, including out-of-spec client associations, from the internally cached list of associations. This command differs from <b>passociations</b> only when dealing with fuzzballs.
+</td></tr>
+<tr valign="top"><td>
+<b>lpeers</b>
+</td><td valign="bottom">
+Like R peers, except a summary of all associations for which the server is maintaining state is printed. This can produce a much longer list of peers from fuzzball servers.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>mreadlist </b><i>assocID</i><b> </b><i>assocID</i><b></b>
+<!-- Consumed .TP 8 -->
+<br />
+<b>mrl </b><i>assocID</i><b> </b><i>assocID</i><b></b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Like the <b>readlist</b> command, except the query is done for each of a range of (nonzero) association IDs. This range is determined from the association list cached by the most recent <b>associations</b> command.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>mreadvar </b><i>assocID</i><b> </b><i>assocID</i><b> [ </b><i>variable_name</i><b> [ = </b><i>value</i><b>[ ... ]</b>
+<!-- Consumed .TP 8 -->
+<br />
+<b>mrv </b><i>assocID</i><b> </b><i>assocID</i><b> [ </b><i>variable_name</i><b> [ = </b><i>value</i><b>[ ... ]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Like the <b>readvar</b> command, except the query is done for each of a range of (nonzero) association IDs. This range is determined from the association list cached by the most recent <b>associations</b> command.
+</td></tr>
+<tr valign="top"><td>
+<b>opeers</b>
+</td><td valign="bottom">
+An old form of the <b>peers</b> command with the reference ID replaced by the local interface address.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>passociations</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Displays association data concerning in-spec peers from the internally cached list of associations. This command performs identically to the <b>associations</b> except that it displays the internally stored data rather than making a new query.
+</td></tr>
+<tr valign="top"><td>
+<b>peers</b>
+</td><td valign="bottom">
+Obtains a current list peers of the server, along with a summary of each peer&#146;s state. Summary information includes the address of the remote peer, the reference ID (0.0.0.0 if this is unknown), the stratum of the remote peer, the type of the peer (local, unicast, multicast or broadcast), when the last packet was received, the polling interval, in seconds, the reachability register, in octal, and the current estimated delay, offset and dispersion of the peer, all in milliseconds. The character at the left margin of each line shows the synchronization status of the association and is a valuable diagnostic tool. The encoding and meaning of this character, called the tally code, is given later in this page.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>pstatus </b><i>assocID</i><b></b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Sends a read status request to the server for the given association. The names and values of the peer variables returned will be printed. Note that the status word from the header is displayed preceding the variables, both in hexadecimal and in pidgeon English.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>readlist [ </b><i>assocID</i><b> ]</b>
+<!-- Consumed .TP 8 -->
+<br />
+<b>rl [ </b><i>assocID</i><b> ]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Requests that the values of the variables in the internal variable list be returned by the server. If the association ID is omitted or is 0 the variables are assumed to be system variables. Otherwise they are treated as peer variables. If the internal variable list is empty a request is sent without data, which should induce the remote server to return a default display.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>readvar </b><i>assocID</i><b> </b><i>variable_name</i><b> [ = </b><i>value</i><b> ] [ ...]</b>
+<!-- Consumed .TP 8 -->
+<br />
+<b>rv </b><i>assocID</i><b> [ </b><i>variable_name</i><b> [ = </b><i>value</i><b> ] [...]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Requests that the values of the specified variables be returned by the server by sending a read variables request. If the association ID is omitted or is given as zero the variables are system variables, otherwise they are peer variables and the values returned will be those of the corresponding peer. Omitting the variable list will send a request with no data which should induce the server to return a default display. The encoding and meaning of the variables derived from NTPv3 is given in RFC-1305; the encoding and meaning of the additional NTPv4 variables are given later in this page.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>writevar </b><i>assocID</i><b> </b><i>variable_name</i><b> [ = </b><i>value</i><b> [ ...]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Like the readvar request, except the specified variables are written instead of read.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>writelist [ </b><i>assocID</i><b> ]</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Like the readlist request, except the internal list variables are written instead of read.
+</td></tr>
+</table>
+<p>
+<h1 class="manpages">TALLY CODES</h1>
+<p>
+The character in the left margin in the <b>peers</b> billboard, called the tally code, shows the fate of each association in the clock selection process. Following is a list of these characters, the pigeon used in the <b>rv</b> command, and a short explanation of the condition revealed.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>space reject</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+The peer is discarded as unreachable, synchronized to this server (synch loop) or outrageous synchronization distance.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>x  falsetick</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+The peer is discarded by the intersection algorithm as a falseticker.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>[char46]  excess</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+The peer is discarded as not among the first ten peers sorted by synchronization distance and so is probably a poor candidate for further consideration.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-  outlyer</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+The peer is discarded by the clustering algorithm as an outlyer.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>+  candidat</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+The peer is a survivor and a candidate for the combining algorithm.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>#  selected</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+The peer is a survivor, but not among the first six peers sorted by synchronization distance. If the association is ephemeral, it may be demobilized to conserve resources.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>*  sys.peer</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+The peer has been declared the system peer and lends its variables to the system variables.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>o  pps.peer</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+The peer has been declared the system peer and lends its variables to the system variables. However, the actual system synchronization is derived from a pulse-per-second (PPS) signal, either indirectly via the PPS reference clock driver or directly via kernel interface.
+</td></tr>
+</table>
+<p>
+<h1 class="manpages">SYSTEM VARIABLES</h1>
+<p>
+The <b>status, leap, stratum, precision, rootdelay, rootdispersion, refid, reftime, poll, offset, and frequency</b> variables are described in RFC-1305 specification. Additional NTPv4 system variables include the following.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>version</b>
+</td><td valign="bottom">
+Everything you might need to know about the software version and generation time.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>processor</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+The processor and kernel identification string.
+</td></tr>
+<tr valign="top"><td>
+<b>system</b>
+</td><td valign="bottom">
+The operating system version and release identifier.
+</td></tr>
+<tr valign="top"><td>
+<b>state</b>
+</td><td valign="bottom">
+The state of the clock discipline state machine. The values are described in the architecture briefing on the NTP Project page linked from www.ntp.org.
+</td></tr>
+<tr valign="top"><td>
+<b>peer</b>
+</td><td valign="bottom">
+The internal integer used to identify the association currently designated the system peer.
+</td></tr>
+<tr valign="top"><td>
+<b>jitter</b>
+</td><td valign="bottom">
+The estimated time error of the system clock measured as an exponential average of RMS time differences.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>stability</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+The estimated frequency stability of the system clock measured as an exponential average of RMS frequency differences.
+</td></tr>
+</table>
+<p>
+When the NTPv4 daemon is compiled with the OpenSSL software library, additional system variables are displayed, including some or all of the following, depending on the particular dance:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>flags</b>
+</td><td valign="bottom">
+The current flags word bits and message digest algorithm identifier (NID) in hex format. The high order 16 bits of the four-byte word contain the NID from the OpenSSL ligrary, while the low-order bits are interpreted as follows:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>0x01</b>
+</td><td valign="bottom">
+autokey enabled
+</td></tr>
+<tr valign="top"><td>
+<b>0x02</b>
+</td><td valign="bottom">
+NIST leapseconds file loaded
+</td></tr>
+<tr valign="top"><td>
+<b>0x10</b>
+</td><td valign="bottom">
+PC identity scheme
+</td></tr>
+<tr valign="top"><td>
+<b>0x20</b>
+</td><td valign="bottom">
+IFF identity scheme
+</td></tr>
+<tr valign="top"><td>
+<b>0x40</b>
+</td><td valign="bottom">
+GQ identity scheme
+</td></tr>
+</table>
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>hostname</b>
+</td><td valign="bottom">
+The name of the host as returned by the Unix <b>gethostname()</b> library function.
+</td></tr>
+<tr valign="top"><td>
+<b>hostkey</b>
+</td><td valign="bottom">
+The NTP filestamp of the host key file.
+</td></tr>
+<tr valign="top"><td>
+<b>cert</b>
+</td><td valign="bottom">
+A list of certificates held by the host. Each entry includes the subject, issuer, flags and NTP filestamp in order. The bits are interpreted as follows:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>0x01</b>
+</td><td valign="bottom">
+certificate has been signed by the server
+</td></tr>
+<tr valign="top"><td>
+<b>0x02</b>
+</td><td valign="bottom">
+certificate is trusted
+</td></tr>
+<tr valign="top"><td>
+<b>0x04</b>
+</td><td valign="bottom">
+certificate is private
+</td></tr>
+<tr valign="top"><td>
+<b>0x08</b>
+</td><td valign="bottom">
+certificate contains errors and should not be trusted
+</td></tr>
+</table>
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>leapseconds</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+The NTP filestamp of the NIST leapseconds file.
+</td></tr>
+<tr valign="top"><td>
+<b>refresh</b>
+</td><td valign="bottom">
+The NTP timestamp when the host public cryptographic values were refreshed and signed.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>signature</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+The host digest/signature scheme name from the OpenSSL library.
+</td></tr>
+<tr valign="top"><td>
+<b>tai</b>
+</td><td valign="bottom">
+The TAI-UTC offset in seconds obtained from the NIST leapseconds table.
+</td></tr>
+</table>
+<p>
+<h1 class="manpages">PEER VARIABLES</h1>
+<p>
+The <b>status, srcadr, srcport, dstadr, dstport, leap, stratum, precision, rootdelay, rootdispersion, readh, hmode, pmode, hpoll, ppoll, offset, delay, dspersion, reftime</b> variables are described in the RFC-1305 specification, as are the timestamps <b>org, rec and xmt</b>[char46] Additional NTPv4 system variables include the following.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>flash</b>
+</td><td valign="bottom">
+The flash code for the most recent packet received. The encoding and meaning of these codes is given later in this page.
+</td></tr>
+<tr valign="top"><td>
+<b>jitter</b>
+</td><td valign="bottom">
+The estimated time error of the peer clock measured as an exponential average of RMS time differences.
+</td></tr>
+<tr valign="top"><td>
+<b>unreach</b>
+</td><td valign="bottom">
+The value of the counter which records the number of poll intervals since the last valid packet was received.
+</td></tr>
+</table>
+<p>
+When the NTPv4 daemon is compiled with the OpenSSL software library, additional peer variables are displayed, including the following:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>flags</b>
+</td><td valign="bottom">
+The current flag bits. This word is the server host status word with additional bits used by the Autokey state machine. See the source code for the bit encoding.
+</td></tr>
+<tr valign="top"><td>
+<b>hostname</b>
+</td><td valign="bottom">
+The server host name.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>initkey </b><i>key</i><b></b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+The initial key used by the key list generator in the Autokey protocol.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>initsequence </b><i>index</i><b></b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+The initial index used by the key list generator in the Autokey protocol.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>signature</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+The server message digest/signature scheme name from the OpenSSL software library.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>timestamp </b><i>time</i><b></b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+The NTP timestamp when the last Autokey key list was generated and signed.
+</td></tr>
+</table>
+<p>
+<h1 class="manpages">FLASH CODES</h1>
+<p>
+The <b>flash</b> code is a valuable debugging aid displayed in the peer variables list. It shows the results of the original sanity checks defined in the NTP specification RFC-1305 and additional ones added in NTPv4. There are 12 tests designated <b>TEST1</b> through <b>TEST12</b>[char46] The tests are performed in a certain order designed to gain maximum diagnostic information while protecting against accidental or malicious errors. The <b>flash</b> variable is initialized to zero as each packet is received. If after each set of tests one or more bits are set, the packet is discarded.
+<p>
+Tests <b>TEST1</b> through <b>TEST3</b> check the packet timestamps from which the offset and delay are calculated. If any bits are set, the packet is discarded; otherwise, the packet header variables are saved. <b>TEST4</b> and <b>TEST5</b> are associated with access control and cryptographic authentication. If any bits are set, the packet is discarded immediately with nothing changed.
+<p>
+Tests <b>TEST6</b> through <b>TEST8</b> check the health of the server. If any bits are set, the packet is discarded; otherwise, the offset and delay relative to the server are calculated and saved. <b>TEST9</b> checks the health of the association itself. If any bits are set, the packet is discarded; otherwise, the saved variables are passed to the clock filter and mitigation algorithms.
+<p>
+Tests <b>TEST10</b> through <b>TEST12</b> check the authentication state using Autokey public-key cryptography, as described in the Authentication Options page. If any bits are set and the association has previously been marked reachable, the packet is discarded; otherwise, the originate and receive timestamps are saved, as required by the NTP protocol, and processing continues.
+<p>
+The <b>flash</b> bits for each test are defined as follows.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>0x001 TEST1</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Duplicate packet. The packet is at best a casual retransmission and at worst a malicious replay.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>0x002 TEST2</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Bogus packet. The packet is not a reply to a message previously sent. This can happen when the NTP daemon is restarted and before somebody else notices.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>0x004 TEST3</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Unsynchronized. One or more timestamp fields are invalid. This normally happens when the first packet from a peer is received.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>0x008 TEST4</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Access is denied. See the Access Control Options page.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>0x010 TEST5</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Cryptographic authentication fails. See the Authentication Options page.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>0x020 TEST6</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+The server is unsynchronized. Wind up its clock first.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>0x040 TEST7</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+The server stratum is at the maximum than 15. It is probably unsynchronized and its clock needs to be wound up.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>0x080 TEST8</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Either the root delay or dispersion is greater than one second, which is highly unlikely unless the peer is unsynchronized to Mars.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>0x100 TEST9</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Either the peer delay or dispersion is greater than one second, which is highly unlikely unless the peer is on Mars.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>0x200 TEST10</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+The autokey protocol has detected an authentication failure. See the Authentication Options page.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>0x400 TEST11</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+The autokey protocol has not verified the server or peer is proventic and has valid public key credentials. See the Authentication Options page.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>0x800 TEST12</b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+A protocol or configuration error has occurred in the public key algorithms or a possible intrusion event has been detected. See the Authentication Options page.
+</td></tr>
+</table>
+<p>
+<h1 class="manpages">BUGS</h1>
+<p>
+The peers command is non-atomic and may occasionally result in spurious error messages about invalid associations occurring and terminating the command. The timeout time is a fixed constant, which means you wait a long time for timeouts since it assumes sort of a worst case. The program should improve the timeout estimate as it sends queries to a particular host, but doesn&#146;t.
+<p>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<a href="../ntpd.html">ntpd(8)</a>, <a href="../ntpdc.html">ntpdc(8)</a>
+<p>
+Primary source of documentation: /usr/share/doc/ntp-*
+<p>
+This file was automatically generated from HTML source.
+<p>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionfd5e.html?tutorial=unix_commands&amp;file=ntpq.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/ntpq.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

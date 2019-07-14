@@ -1,0 +1,719 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/pkg-config.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>pkg-config - Unix, Linux Command</title>
+<meta name="Description" Content="pkg-config - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>pkg-config - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- ignored unsupported tag .ie -->
+<!-- ignored unsupported tag .\} -->
+<p>
+<!-- ignored unsupported tag .\{ -->
+<!-- ignored unsupported tag .\} -->
+<h1 class="manpages">NAME</h1>
+pkg-config - Return metainformation about installed libraries
+<h1 class="manpages">SYNOPSIS</h1>
+<p>
+<b>pkg-config</b> [--modversion] [--help] [--print-errors] [--silence-errors]
+[--cflags] [--libs] [--libs-only-L]
+[--libs-only-l] [--cflags-only-I]
+[--variable=VARIABLENAME]
+[--define-variable=VARIABLENAME=VARIABLEVALUE]
+[--uninstalled]
+[--exists] [--atleast-version=VERSION] [--exact-version=VERSION]
+[--max-version=VERSION] [LIBRARIES...]
+<h1 class="manpages">DESCRIPTION</h1>
+<p>
+The <i>pkg-config</i> program is used to retrieve information about
+installed libraries in the system.  It is typically used to compile
+and link against one or more libraries.  Here is a typical usage
+scenario in a Makefile:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+program: program.c
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cc program.c &#145;pkg-config --cflags --libs gnomeui&#145;
+</pre></td></tr>
+</table>
+<p>
+<p>
+<p>
+<i>pkg-config</i> retrieves information about packages from
+special metadata files. These files are named after the package,
+with the extension <i>.pc</i>. By default, pkg-config looks in
+the directory <i>prefix</i>/lib/pkgconfig for these files; it will also
+look in the colon-separated (on Windows, semicolon-separated)
+list of directories specified by the
+PKG_CONFIG_PATH environment variable.
+<p>
+<p>
+The package name specified on the <i>pkg-config</i> command line is
+defined to be the name of the metadata file, minus the <i>.pc</i>
+extension. If a library can install multiple versions simultaneously,
+it must give each version its own name (for example, GTK 1.2 might
+have the package name "gtk+" while GTK 2.0 has "gtk+-2.0").
+<p>
+<h1 class="manpages">OPTIONS</h1>
+The following options are supported:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<i>--modversion</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Requests that the version information of the libraries specified on
+the command line be displayed.  If <i>pkg-config</i> can find all the
+libraries on the command line, each library&#146;s version string is
+printed to stdout, one version per line. In this case <i>pkg-config</i>
+exits successfully. If one or more libraries is unknown,
+<i>pkg-config</i> exits with a nonzero code, and the contents of stdout
+are undefined.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>--help</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Displays a help message and terminates.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>--print-errors</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+If one or more of the modules on the command line, or their
+dependencies, are not found, or if an error occurs in parsing
+a <i>.pc</i> file, then this option will cause errors explaining the
+problem to be printed. With "predicate" options such as "--exists"
+<i>pkg-config</i> runs silently by default, because it&#146;s usually used
+in scripts that want to control what&#146;s output. This option can be used
+alone (to just print errors encountered locating modules on the
+command line) or with other options. The PKG_CONFIG_DEBUG_SPEW
+environment variable overrides this option.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>--silence-errors</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+If one or more of the modules on the command line, or their
+dependencies, are not found, or if an error occurs in parsing a
+a <i>.pc</i> file, then this option will keep errors explaining the
+problem from being printed. With "predicate" options such as
+"--exists" <i>pkg-config</i> runs silently by default, because it&#146;s
+usually used in scripts that want to control what&#146;s output. So this
+option is only useful with options such as "--cflags" or
+"--modversion" that print errors by default. The PKG_CONFIG_DEBUG_SPEW
+environment variable overrides this option.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>--errors-to-stdout</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+If printing errors, print them to stdout rather than the default stderr
+<p>
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+The following options are used to compile and link programs:
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>--cflags</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This prints pre-processor and compile flags required to compile the
+packages on the command line, including flags for all their
+dependencies. Flags are "compressed" so that each identical flag
+appears only once. <i>pkg-config</i> exits with a nonzero code if it
+can&#146;t find metadata for one or more of the packages on the command
+line.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>--libs</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This option is identical to "--cflags", only it prints the link
+flags. As with "--cflags", duplicate flags are merged (maintaining
+proper ordering), and flags for dependencies are included in the
+output.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>--libs-only-L</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This prints the -L/-R part of "--libs". That is, it defines the
+library search path but doesn&#146;t specify which libraries to link with.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>--libs-only-l</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This prints the -l part of "--libs" for the libraries specified on
+the command line. Note that the union of "--libs-only-l" and
+"--libs-only-L" may be smaller than "--libs", due to flags such as
+-rdynamic.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>--variable=VARIABLENAME</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This returns the value of a variable defined in a package&#146;s <i>.pc</i>
+file. Most packages define the variable "prefix", for example, so you
+can say:
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+  $ pkg-config --variable=prefix glib-2.0
+  /usr/
+</pre></td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>--define-variable=VARIABLENAME=VARIABLEVALUE</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This sets a global value for a variable, overriding the value in any
+<i>.pc</i> files. Most packages define the variable "prefix", for
+example, so you can say:
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+  $ pkg-config --print-errors --define-variable=prefix=/foo &#92;
+               --variable=prefix glib-2.0
+  /foo
+</pre></td></tr>
+</table>
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>--uninstalled</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Normally if you request the package "foo" and the package
+"foo-uninstalled" exists, <i>pkg-config</i> will prefer the
+"-uninstalled" variant. This allows compilation/linking against
+uninstalled packages. If you specify the "--uninstalled" option,
+<i>pkg-config</i> will return successfully if any "-uninstalled"
+packages are being used, and return failure (false) otherwise.
+(The "PKG_CONFIG_DISABLE_UNINSTALLED" environment variable keeps
+<i>pkg-config</i> from implicitly choosing "-uninstalled" packages, so
+if that variable is set, they will only have been used if you pass
+a name like "foo-uninstalled" on the command line explicitly.)
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>--exists</i> <!-- Consumed .TP -->
+<br />
+<i>--atleast-version=VERSION</i> <!-- Consumed .TP -->
+<br />
+<i>--exact-version=VERSION</i> <!-- Consumed .TP -->
+<br />
+<i>--max-version=VERSION</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+These options test whether the package or list of packages on the
+command line are known to <i>pkg-config</i>, and optionally
+whether the version number of a package meets certain contraints.
+If all packages exist and meet the specified version constraints,
+<i>pkg-config</i> exits successfully. Otherwise it exits unsuccessfully.
+<p>
+Rather than using the version-test options, you can simply give a version
+constraint after each package name, for example:
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+  $ pkg-config --exists &#146;glib-2.0 &gt;= 1.3.4 libxml = 1.8.3&#146;
+</pre></td></tr>
+</table>
+Remember to use --print-errors if you want error messages.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>--msvc-syntax</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This option is available only on Windows. It causes <i>pkg-config</i>
+to output -l and -L flags in the form recognized by the Microsoft
+Visual C++ command-line compiler, <i>cl</i>. Specifically, instead of
+<i>-Lx:/some/path</i> it prints <i>/libpath:x/some/path</i>, and instead
+of <i>-lfoo</i> it prints <i>foo.lib</i>. Note that the --libs output
+consists of flags for the linker, and should be placed on the cl
+command line after a /link switch.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>--dont-define-prefix</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This option is available only on Windows. It prevents <i>pkg-config</i>
+from automatically trying to override the value of the variable
+"prefix" in each .pc file.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>--prefix-variable=PREFIX</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Also this option is available only on Windows. It sets the name of the
+variable that <i>pkg-config</i> automatically sets as described above.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>--static</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Output libraries suitable for static linking.  That means including
+any private libraries in the output.  This relies on proper tagging in
+the .pc files, else a too large number of libraries will ordinarily be
+output.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">ENVIRONMENT VARIABLES</h1>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<i>PKG_CONFIG_PATH</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+A colon-separated (on Windows, semicolon-separated) list of
+directories to search for .pc files.  The default directory will
+always be searched after searching the path; the default is
+<i>libdir</i>/pkgconfig:<i>datadir</i>/pkgconfig where <i>libdir</i> is
+the libdir where <i>pkg-config</i> and <i>datadir</i> is the datadir
+where <i>pkg-config</i> was installed.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>PKG_CONFIG_DEBUG_SPEW</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+If set, causes <i>pkg-config</i> to print all kinds of
+debugging information and report all errors.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>PKG_CONFIG_TOP_BUILD_DIR</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+A value to set for the magic variable <i>pc_top_builddir</i>
+which may appear in <i>.pc</i> files. If the environment variable is
+not set, the default value &#146;$(top_builddir)&#146; will be used. This
+variable should refer to the top builddir of the Makefile where the
+compile/link flags reported by <i>pkg-config</i> will be used.
+This only matters when compiling/linking against a package that hasn&#146;t
+yet been installed.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>PKG_CONFIG_DISABLE_UNINSTALLED</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Normally if you request the package "foo" and the package
+"foo-uninstalled" exists, <i>pkg-config</i> will prefer the
+"-uninstalled" variant. This allows compilation/linking against
+uninstalled packages.  If this environment variable is set, it
+disables said behavior.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>PKG_CONFIG_ALLOW_SYSTEM_CFLAGS</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Don&#146;t strip -I/usr/include out of cflags.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>PKG_CONFIG_ALLOW_SYSTEM_LIBS</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Don&#146;t strip -L/usr/lib out of libs
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>PKG_CONFIG_LIBDIR</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Replaces the default <i>pkg-config</i> search directory.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">WINDOWS SPECIALITIES</h1>
+If a .pc file is found in a directory that matches the usual
+conventions (i.e., ends with \lib\pkgconfig), the prefix for that
+package is assumed to be the grandparent of the directory where the
+file was found, and the <i>prefix</i> variable is overridden for that
+file accordingly.
+<p>
+In addition to the <i>PKG_CONFIG_PATH</i> environment variable, the
+Registry keys
+<!-- ignored unsupported tag .DW -->
+<i>HKEY_CURRENT_USER\Software\pkgconfig\PKG_CONFIG_PATH</i> and
+<!-- ignored unsupported tag .EW -->
+<i>HKEY_LOCAL_MACHINE\Software\pkgconfig\PKG_CONFIG_PATH</i> can be
+used to specify directories to search for .pc files. Each (string)
+value in these keys is treated as a directory where to look for .pc
+files.
+<p>
+<h1 class="manpages">AUTOCONF MACROS</h1>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<i>PKG_CHECK_MODULES(VARIABLE-PREFIX,MODULES[,ACTION-IF-FOUND,[ACTION-IF-NOT-FOUND]])</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+<p>
+The macro PKG_CHECK_MODULES can be used in <i>configure.ac</i> to
+check whether modules exist. A typical usage would be:
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+ PKG_CHECK_MODULES([MYSTUFF], [gtk+-2.0 &gt;= 1.3.5 libxml = 1.8.4])
+</pre></td></tr>
+</table>
+<p>
+This would result in MYSTUFF_LIBS and MYSTUFF_CFLAGS substitution
+variables, set to the libs and cflags for the given module list.
+If a module is missing or has the wrong version, by default configure
+will abort with a message. To replace the default action,
+specify an ACTION-IF-NOT-FOUND. PKG_CHECK_MODULES will not print any
+error messages if you specify your own ACTION-IF-NOT-FOUND.
+However, it will set the variable MYSTUFF_PKG_ERRORS, which you can
+use to display what went wrong.
+<p>
+Note that if there is a possibility the first call to
+PKG_CHECK_MODULES might not happen, you should be sure to include an
+explicit call to PKG_PROG_PKG_CONFIG in your configure.ac
+<p>
+<i>PKG_PROG_PKG_CONFIG([MIN-VERSION])</i> <p>
+Defines the PKG_CONFIG variable to the best pkg-config available,
+useful if you need pkg-config but don&#146;t want to use PKG_CHECK_MODULES.
+<p>
+<i>PKG_CHECK_EXISTS(MODULES, [ACTION-IF-FOUND], [ACTION-IF-NOT-FOUND])</i> <p>
+Check to see whether a particular set of modules exists.  Similar
+to PKG_CHECK_MODULES(), but does not set variables or print errors.
+<p>
+Similar to PKG_CHECK_MODULES, make sure that the first instance of
+this or PKG_CHECK_MODULES is called, or make sure to call
+PKG_CHECK_EXISTS manually
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">METADATA FILE SYNTAX</h1>
+To add a library to the set of packages <i>pkg-config</i> knows about,
+simply install a <i>.pc</i> file. You should install this file to
+<i>libdir</i>/pkgconfig.
+<p>
+<p>
+Here is an example file:
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+# This is a comment
+prefix=/home/hp/unst   # this defines a variable
+exec_prefix=${prefix}  # defining another variable in terms of the first
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+<p>
+Name: GObject                            # human-readable name
+Description: Object/type system for GLib # human-readable description
+Version: 1.3.1
+URL: <a href="http://www.gtk.org/">http://www.gtk.org</a>
+Requires: glib-2.0 = 1.3.1
+Conflicts: foobar &lt;= 4.5
+Libs: -L${libdir} -lgobject-1.3
+Libs.private: -lm
+Cflags: -I${includedir}/glib-2.0 -I${libdir}/glib/include
+</pre></td></tr>
+</table>
+<p>
+<p>
+You would normally generate the file using configure, of course, so
+that the prefix, etc. are set to the proper values.
+<p>
+<p>
+Files have two kinds of line: keyword lines start with a keyword plus
+a colon, and variable definitions start with an alphanumeric string
+plus an equals sign. Keywords are defined in advance and have special
+meaning to <i>pkg-config</i>; variables do not, you can have any
+variables that you wish (however, users may expect to retrieve the
+usual directory name variables).
+<p>
+<p>
+Note that variable references are written "${foo}"; you can escape
+literal "${" as "$${".
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<i>Name:</i> </td><td valign="bottom">
+This field should be a human-readable name for the package. Note that
+it is not the name passed as an argument to <i>pkg-config</i>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>Description:</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This should be a brief description of the package
+</td></tr>
+<tr valign="top"><td>
+<i>URL:</i> </td><td valign="bottom">
+An URL where people can get more information about and download the package
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>Version:</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This should be the most-specific-possible package version string.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>Requires:</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This is a comma-separated list of packages that are required by your
+package. Flags from dependent packages will be merged in to the flags
+reported for your package. Optionally, you can specify the version
+of the required package (using the operators =, &lt;, &gt;, &gt;=, &lt;=);
+specifying a version allows <i>pkg-config</i> to perform extra sanity
+checks. You may only mention the same package one time on the
+<i>Requires:</i> line. If the version of a package is unspecified, any version will
+be used with no checking.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>Conflicts:</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This optional line allows <i>pkg-config</i> to perform additional
+sanity checks, primarily to detect broken user installations.  The
+syntax is the same as
+<i>Requires:</i> except that
+you can list the same package more than once here, for example
+"foobar = 1.2.3, foobar = 1.2.5, foobar &gt;= 1.3", if you have reason to
+do so. If a version isn&#146;t specified, then your package conflicts with
+all versions of the mentioned package.
+If a user tries to use your package and a conflicting package at the
+same time, then <i>pkg-config</i> will complain.
+</td></tr>
+<tr valign="top"><td>
+<i>Libs:</i> </td><td valign="bottom">
+This line should give the link flags specific to your package.
+Don&#146;t add any flags for required packages; <i>pkg-config</i> will
+add those automatically.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>Libs.private:</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This line should list any private libraries in use.  Private libraries
+are libraries which are not exposed through your library, but are
+needed in the case of static linking.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>Cflags:</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This line should list the compile flags specific to your package.
+Don&#146;t add any flags for required packages; <i>pkg-config</i> will
+add those automatically.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">AUTHOR</h1>
+<p>
+<i>pkg-config</i> was written by James Henstridge, rewritten by Martijn
+van Beers, and rewritten again by Havoc Pennington. Tim Janik, Owen
+Taylor, and Raja Harinath submitted suggestions and some code.
+<i>gnome-config</i> was written by Miguel de Icaza, Raja Harinath and
+various hackers in the GNOME team.  It was inspired by Owen Taylor&#146;s
+<i>gtk-config</i> program.
+<p>
+<h1 class="manpages">BUGS</h1>
+<p>
+<i>pkg-config</i> does not handle mixing of parameters with and without
+= well.  Stick with one.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion6b1f.html?tutorial=unix_commands&amp;file=pkg-config.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/pkg-config.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,497 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/cryptsetup.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:31 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>cryptsetup - Unix, Linux Command</title>
+<meta name="Description" Content="cryptsetup - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>cryptsetup - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+cryptsetup - setup cryptographic volumes for dm-crypt (including LUKS extension)
+<h1 class="manpages">SYNOPSIS</h1>
+<p>
+<b>cryptsetup &lt;options&gt; &lt;action&gt; &lt;action args&gt;</b> <p>
+<h1 class="manpages">DESCRIPTION</h1>
+<p>
+cryptsetup is used to conveniently setup up dm-crypt managed device-mapper mappings. For basic dm-crypt mappings, there are five operations.
+<h1 class="manpages">ACTIONS</h1>
+These strings are valid for <b>&lt;action&gt;</b>, followed by their <b>&lt;action args&gt;</b>:
+<p>
+<i>create</i> &lt;name&gt; &lt;device&gt;
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+creates a mapping with &lt;name&gt; backed by device &lt;device&gt;.
+&lt;options&gt; can be [--hash, --cipher, --verify-passphrase, --key-file, --key-size, --offset, --skip, --readonly]
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+<i>remove</i> &lt;name&gt;
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+removes an existing mapping &lt;name&gt;. No options.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+<i>status</i> &lt;name&gt;
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+reports the status for the mapping &lt;name&gt;. No options.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+<i>reload</i> &lt;name&gt;
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+modifies an active mapping &lt;name&gt;. Same options as for create.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+<i>resize</i> &lt;name&gt;
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+resizes an active mapping &lt;name&gt;. &lt;options&gt; must include --size
+</td></tr>
+<!-- PP ends table -->
+</table>
+<h1 class="manpages">LUKS EXTENSION</h1>
+<p>
+LUKS, Linux Unified Key Setup, is a standard for hard disk encryption. It standardizes a partition header, as well as the format of the bulk data. LUKS can manage multiple passwords, that can be revoked effectively and that are protected against dictionary attacks with PBKDF2.
+<p>
+These are valid LUKS actions:
+<p>
+<i>luksFormat</i> &lt;device&gt; [&lt;key file&gt;]
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+initializes a LUKS partition and set the initial key, either via prompting or via &lt;key file&gt;.
+&lt;options&gt; can be [--cipher, --verify-passphrase, --key-size]
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+<i>luksOpen</i> &lt;device&gt; &lt;name&gt;
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+opens the LUKS partition &lt;device&gt; and sets up a mapping &lt;name&gt; after successful verification of the supplied key material (either via key file by --key-file, or via prompting).
+&lt;options&gt; can be [--key-file, --readonly].
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+<i>luksClose</i> &lt;name&gt;
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+identical to <i>remove</i>.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+<i>luksAddKey</i> &lt;device&gt; [&lt;new key file&gt;]
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+add a new key file/passphrase. An existing passphrase or key file (via --key-file) must be supplied. The key file with the new material is supplied as after <i>luksAddKey</i> as positional argument. &lt;options&gt; can be [--key-file].
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+<i>luksDelKey</i> &lt;key slot number&gt;
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+remove key from key slot. No options.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+<i>luksUUID</i> &lt;device&gt;
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+print UUID, if &lt;device&gt; has a LUKS header. No options.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+<i>isLuks</i> &lt;device&gt;
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+returns true, if &lt;device&gt; is a LUKS partition. Otherwise, false. No options.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+<i>luksDump</i> &lt;device&gt;
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+dumps the header information of a LUKS partition. No options.
+</td></tr>
+<!-- PP ends table -->
+</table>
+<p>
+For more information about LUKS, see <b><a href="http://luks.endorphin.org/">http://luks.endorphin.org</a></b>
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>--hash, -h</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+specifies hash to use for password hashing. This option is only relevant for the "create" action. The hash string is passed to libgcrypt, so all hashes accepted by gcrypt are supported.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--cipher, -c</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+set cipher specification string. Usually, this is "aes-cbc-plain". For pre-2.6.10 kernels, use "aes-plain" as they don&#146;t understand the new cipher spec strings. To use ESSIV, use "aes-cbc-essiv:sha256".
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--verify-passphrase, -y</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+query for passwords twice. Useful, when creating a (regular) mapping for the first time, or when running <i>luksFormat</i>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--key-file, -d</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+use file as key material. With LUKS, key material supplied in key files via -d are always used for existing passphrases. If you want to set a new key via a key file, you have to use a positional arg to <i>luksFormat</i> or <i>luksAddKey</i>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--key-size, -s</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+set key size in bits. Usually, this is 128, 192 or 256. Can be used for <i>create</i> or <i>luksFormat</i>, all other LUKS actions will ignore this flag, as the key-size is specified by the partition header.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--size, -b</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+force the size of the underlaying device in sectors.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--offset, -o</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+start offset in the backend device.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--skip, -p</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+how many sectors of the encrypted data to skip at the beginning. This is different from the --offset options with respect to IV calculations. Using --offset will shift the IV calculcation by the same negative amount. Hence, if --offset <i>n</i>, sector <i>n</i> will be the first sector on the mapping with IV <i>0</i>. Using --skip would have resulted in sector <i>n</i> being the first sector also, but with IV <i>n</i>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--readonly</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+setup a read-only mapping.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--iter-time, -i</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The number of microseconds to spend with PBKDF2 password processing. This options is only relevant to LUKS key setting operations as <i>luksFormat</i> or <i>luksAddKey</i>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--batch-mode, -q</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Do not ask for confirmation. This option is only relevant for <i>luksFormat</i>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--timeout, -t</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The number of seconds to wait before timeout. This option is relevant evertime a password is asked, like <i>create</i>, <i>luksOpen</i>, <i>luksFormat</i> or <i>luksAddKey</i>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--align-payload=</b><i>value</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Align payload at a boundary of <i>value</i> 512-byte sectors.  This option is relevant for <i>luksFormat</i>.  If your block device lives on a RAID it is
+useful to align the filesystem at full stripe boundaries so it can take advantage of the RAID&#146;s geometry.  See for instance the sunit and swidth options
+in the mkfs.xfs manual page.  By default the payload is aligned at an 8 sector (4096 byte) boundary.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--version</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Show the version.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">NOTES ON PASSWORD PROCESSING FOR REGULAR MAPPINGS</h1>
+<i>From a file descriptor or a terminal</i>: Password processing is new-line sensitive, meaning the reading will stop after encountering \n. It will processed the read material with the default hash or the hash given by --hash. After hashing it will be cropped to the key size given by -s (or default 256bit).
+<p>
+<i>From a key file</i>: It will be cropped to the size given by -s. If there is insufficient key material in the key file, cryptsetup will quit with an error.
+<h1 class="manpages">NOTES ON PASSWORD PROCESSING FOR LUKS</h1>
+Password processing is totally different for LUKS. LUKS uses PBKDF2 to protect against dictionary attacks (see RFC 2898).
+LUKS will always use SHA1 in HMAC mode, and no other mode is supported at the moment.
+Hence, -h is ignored.
+<p>
+LUKS will always do an exhaustive password reading. Hence, password can not be read from /dev/random, /dev/zero or any other stream, that does not terminate.
+<p>
+LUKS saves the processing options when a password is set to the respective key slot.
+Therefore, no options can be given to luksOpen.
+For any password creation action (luksAddKey, or luksFormat), the user specify, how much the time the password processing should consume.
+Increasing the time will lead to a more secure password, but also will take luksOpen longer to complete. The default setting of one second is sufficient for good security.
+<h1 class="manpages">NOTES ON PASSWORDS</h1>
+Mathematic can&#146;t be bribed. Make sure you keep your passwords save. There are a few nice tricks for constructing a fallback, when suddely out of (or after being) blue, your brain refuses to cooperate. These fallbacks are possible with LUKS, as it&#146;s only possible with LUKS to have multiple passwords.
+<h1 class="manpages">AUTHORS</h1>
+cryptsetup is written by Christophe Saout &lt;<a href="mailto:christophe@saout.de">christophe@saout.de</a>&gt;
+<!-- Need break --><br />
+LUKS extensions, and man page by Clemens Fruhwirth &lt;<a href="mailto:clemens@endorphin.org">clemens@endorphin.org</a>&gt;
+<h1 class="manpages">REPORTING BUGS</h1>
+Report bugs to &lt;<a href="mailto:dm-crypt@saout.de">dm-crypt@saout.de</a>&gt;.
+<h1 class="manpages">COPYRIGHT</h1>
+Copyright &#169; 2004 Christophe Saout
+<!-- Need break --><br />
+Copyright &#169; 2004-2006 Clemens Fruhwirth
+<p>
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+dm-crypt website, <b><a href="http://www.saout.de/misc/dm-crypt">http://www.saout.de/misc/dm-crypt</a>/</b>
+<p>
+LUKS website, <b><a href="http://luks.endorphin.org/">http://luks.endorphin.org</a></b>
+<p>
+dm-crypt TWiki, <b><a href="http://www.saout.de/tikiwiki/tiki-index.php">http://www.saout.de/tikiwiki/tiki-index.php</a></b>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionc091.html?tutorial=unix_commands&amp;file=cryptsetup.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/cryptsetup.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:31 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

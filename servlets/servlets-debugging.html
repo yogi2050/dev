@@ -1,0 +1,336 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/servlets/servlets-debugging.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 19:42:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>Servlets Debugging</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="description" content="Servlets, Tutorials, Learning, Beginners, Basics, Environment, Life Cycle, Examples, Client Request, Server Response, Http Codes, Writing Filters, Exceptions, Cookies, Sessions, Database Access, File Uploading, File Uploading, Internationalization." />
+<meta name="keywords" content="Servlets Debugging - Learning Java Servlets in simple and easy steps using this beginner's tutorial containing basic to advanced knowledge of Java Servlet Technology including Form Data, HTTP Request Header, Response Header, Status Codes, Cookies Handling and Session Tracking." />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+#topmenu a:hover {text-decoration:none;color:#de3b43  !important;background-color:transparent;font-weight:bold;}
+#header{ 
+background:#fb5f67  !important;
+}
+#topmenu
+{
+background-color:#6c6b6b !important;
+}
+#leftcol ul.menu li.heading 
+{
+background:#fb5f67 !important;
+border:1px solid #6c6b6b  !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1200px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index-2.html">Tutorials Point - Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index-2.html" target="_top">HOME </a>
+<a href="../java/index.html" target="_top">JAVA </a>
+<a href="../php/index.html" target="_top">PHP </a>
+<a href="../python/index.html" target="_top">Python </a>
+<a href="../ruby/index.html" target="_top">Ruby </a>
+<a href="../perl/index.html" target="_top">Perl </a>
+<a href="../html/index.html" target="_top">HTML </a>
+<a href="../css/index.html" target="_top">CSS </a>
+<a href="../javascript/index.html" target="_top">Javascript </a>
+<a href="../mysql/index.html" target="_top">MySQL </a>
+<a href="../cplusplus/index.html" target="_top">C++ </a>
+<a href="../unix/index.html" target="_top">UNIX </a>
+<a href="../more.html" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.html" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.html" target="_top">ABOUT</a> |
+<a href="../about/contact_us.html" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/servlets-mini-logo.png" alt="Servlets Tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">Servlets Tutorial</li>
+<li><a target="_top" href="index.html">Servlets - Home</a></li>
+<li><a target="_top" href="servlets-overview.html">Servlets - Overview</a></li>
+<li><a target="_top" href="servlets-environment-setup.html">Servlets - Environment</a></li>
+<li><a target="_top" href="servlets-life-cycle.html">Servlets - Life Cycle</a></li>
+<li><a target="_top" href="servlets-first-example.html">Servlets - Examples</a></li>
+<li><a target="_top" href="servlets-form-data.html">Servlets - Form Data</a></li>
+<li><a target="_top" href="servlets-client-request.html">Servlets - Client Request</a></li>
+<li><a target="_top" href="servlets-server-response.html">Servlets - Server Response</a></li>
+<li><a target="_top" href="servlets-http-status-codes.html">Servlets - Http Codes</a></li>
+<li><a target="_top" href="servlets-writing-filters.html">Servlets - Writing Filters</a></li>
+<li><a target="_top" href="servlets-exception-handling.html">Servlets - Exceptions</a></li>
+<li><a target="_top" href="servlets-cookies-handling.html">Servlets - Cookies Handling</a></li>
+<li><a target="_top" href="servlets-session-tracking.html">Servlets - Session Tracking</a></li>
+<li><a target="_top" href="servlets-database-access.html">Servlets - Database Access</a></li>
+<li><a target="_top" href="servlets-file-uploading.html">Servlets - File Uploading</a></li>
+<li><a target="_top" href="servlets-handling-date.html">Servlets - Handling Date</a></li>
+<li><a target="_top" href="servlets-page-redirect.html">Servlets - Page Redirect</a></li>
+<li><a target="_top" href="servlets-hits-counter.html">Servlets - Hits Counter</a></li>
+<li><a target="_top" href="servlets-auto-refresh.html">Servlets - Auto Refresh</a></li>
+<li><a target="_top" href="servlets-sending-email.html">Servlets - Sending Email</a></li>
+<li><a target="_top" href="servlets-packaging.html">Servlets - Packaging</a></li>
+<li><a target="_top" href="servlets-debugging.html"><b>Servlets - Debugging</b></a></li>
+<li><a target="_top" href="servlets-internationalization.html">Servlet Internationalization</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Servlets Useful Resources</li>
+<li><a target="_top" href="servlets-quick-guide.html">Servlets - Quick Guide</a></li>
+<li><a target="_top" href="servlets-useful-resources.html">Servlets Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.html">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>Servlets Debugging</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="servlets-packaging.html">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="servlets-internationalization.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>It is always difficult to testing/debugging a servlets. Servlets tend to involve a large amount of client/server interaction, making errors likely but hard to reproduce.</p>
+<p>Here are a few hints and suggestions that may aid you in your debugging.</p>
+<h2>System.out.println()</h2>
+<p>System.out.println() is easy to use as a marker to test whether a certain piece of code is being executed or not. We can print out variable values as well. Additionally:</p>
+<ul class="list">
+<li><p>Since the System object is part of the core Java objects, it can be used everywhere without the need to install any extra classes. This includes Servlets, JSP, RMI, EJB's, ordinary Beans and classes, and standalone applications.</p></li>
+<li><p>Compared to stopping at breakpoints, writing to System.out doesn't interfere much with the normal execution flow of the application, which makes it very valuable when timing is crucial.</p></li>
+</ul>
+<p>Following is the syntax to use System.out.println():</p>
+<pre class="prettyprint">
+System.out.println("Debugging message");
+</pre>
+<p>All the messages generated by above syntax would be logged in web server log file.</p>
+<h2>Message Logging:</h2>
+<p>It is always great idea to use proper logging method to log all the debug, warning and error messages using a standard logging method. I use <a href="../log4j/index.html">log4J</a> to log all the messages.</p>
+<p> The Servlet API also provides a simple way of outputting information by using the log() method as follows:</p>
+<pre class="prettyprint">
+// Import required java libraries
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class ContextLog extends HttpServlet {
+  public void doGet(HttpServletRequest request, 
+      HttpServletResponse response) throws ServletException,
+         java.io.IOException {
+    
+      String par = request.getParameter("par1");
+      //Call the two ServletContext.log methods
+      ServletContext context = getServletContext( );
+
+      if (par == null || par.equals(""))
+      //log version with Throwable parameter
+      context.log("No message received:",
+          new IllegalStateException("Missing parameter"));
+      else
+          context.log("Here is the visitor's message: " + par);
+      
+      response.setContentType("text/html");
+      java.io.PrintWriter out = response.getWriter( );
+      String title = "Context Log";
+      String docType =
+      "&lt;!doctype html public \"-//w3c//dtd html 4.0 " +
+      "transitional//en\"&gt;\n";
+      out.println(docType +
+        "&lt;html&gt;\n" +
+        "&lt;head&gt;&lt;title&gt;" + title + "&lt;/title&gt;&lt;/head&gt;\n" +
+        "&lt;body bgcolor=\"#f0f0f0\"&gt;\n" +
+        "&lt;h1 align=\"center\"&gt;" + title + "&lt;/h1&gt;\n" +
+        "&lt;h2 align=\"center\"&gt;Messages sent&lt;/h2&gt;\n" +
+        "&lt;/body&gt;&lt;/html&gt;");
+    } //doGet
+}
+</pre>
+<p>The ServletContext logs its text messages to the servlet container's log file. With Tomcat these logs are found in &lt;Tomcat-installation-directory&gt;/logs. </p>
+<p>The log files do give an indication of new emerging bugs or the frequency of problems. For that reason it's good to use the log() function in the catch clause of exceptions which should normally not occur.</p>
+<h2>Using JDB Debugger:</h2>
+<p>You can debug servlets with the same jdb commands you use to debug an applet or an application.</p>
+<p>To debug a servlet, we can debug sun.servlet.http.HttpServer, then watch as HttpServer executes servlets in response to HTTP requests we make from a browser. This is very similar to how applets are debugged. The difference is that with applets, the actual program being debugged is sun.applet.AppletViewer.</p>
+<p>Most debuggers hide this detail by automatically knowing how to debug applets. Until they do the same for servlets, you have to help your debugger by doing the following: </p>
+<ul class="list">
+<li><p>Set your debugger's classpath so that it can find sun.servlet.http.Http-Server and associated classes. </p></li>
+<li><p>Set your debugger's classpath so that it can also find your servlets and support classes, typically server_root/servlets and server_root/classes. </p></li>
+</ul>
+<p>You normally wouldn't want server_root/servlets in your classpath because it disables servlet reloading. This inclusion, however, is useful for debugging. It allows your debugger to set breakpoints in a servlet before the custom servlet loader in HttpServer loads the servlet.</p>
+<p>Once you have set the proper classpath, start debugging sun.servlet.http.HttpServer. You can set breakpoints in whatever servlet you're interested in debugging, then use a web browser to make a request to the HttpServer for the given servlet (http://localhost:8080/servlet/ServletToDebug). You should see execution stop at your breakpoints.</p>
+<h2>Using Comments:</h2>
+<p>Comments in your code can help the debugging process in various ways. Comments can be used in lots of other ways in the debugging process.</p>
+<p>The Servlet uses Java comments and single line (// ...) and multiple line (/* ... */) comments can be used to temporarily remove parts of your Java code. If the bug disappears, take a closer look at the code you just commented and find out the problem.</p>
+<h2>Client and Server Headers:</h2>
+<p>Sometimes when a servlet doesn't behave as expected, it's useful to look at the raw HTTP request and response. If you're familiar with the structure of HTTP, you can read the request and response and see exactly what exactly is going with those headers.</p>
+<h2>Important Debugging Tips:</h2>
+<p>Here is a list of some more debugging tips on servlet debugging:</p>
+<ul class="list">
+<li><p>Be aware that server_root/classes doesn't reload and that server_root/servlets probably does. </p></li>
+<li><p>Ask a browser to show the raw content of the page it is displaying. This can help identify formatting problems. It's usually an option under the View menu.</p></li>
+<li><p>Make sure the browser isn't caching a previous request's output by forcing a full reload of the page. With Netscape Navigator, use Shift-Reload; with Internet Explorer use Shift-Refresh.</p></li>
+<li><p>Verify that your servlet's init() method takes a ServletConfig parameter and calls super.init(config) right away. </p></li>
+</ul>
+<hr />
+<div class="pre-btn">
+<a href="servlets-packaging.html">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/servlets-debugging.pdf" alt="Servlets Debugging" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="servlets-internationalization.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.html" target="_top">ASP.NET </a> |
+<a href="../jquery/index.html" target="_top">jQuery </a> |
+<a href="../ajax/index.html" target="_top">AJAX </a> |
+<a href="../ant/index.html" target="_top">ANT</a> |
+<a href="../jsp/index.html" target="_top">JSP </a> |
+<a href="index.html" target="_top">Servlets </a> |
+<a href="../log4j/index.html" target="_top">log4j </a> |
+<a href="../ibatis/index.html" target="_top">iBATIS </a> |
+<a href="../hibernate/index.html" target="_top">Hibernate </a> |
+<a href="../jdbc/index.html" target="_top">JDBC </a> |
+<a href="../struts_2/index.html" target="_top">Struts </a> |
+<a href="../html5/index.html" target="_top">HTML5 </a> |
+<a href="../sql/index.html" target="_top">SQL </a> |
+<a href="../mysql/index.html" target="_top">MySQL </a> |
+<a href="../cplusplus/index.html" target="_top">C++ </a> |
+<a href="../unix/index.html" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2012 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/servlets/servlets-debugging.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 19:42:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

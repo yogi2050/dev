@@ -1,0 +1,1572 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/sql/sql-date-functions.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:01:29 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>SQL - Date Functions</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="Keywords" content="Learning, SQL, Structured, Programming, Language, Syntax, Database, Clauses, database concepts, SQL Syntax, SELECT, INSERT, DELETE, UPDATE, DROP, TRUNCATE, DISTINCT, ORDER BY, GROUP BY, WHERE" />
+<meta name="description" content="SQL Date Functions - Learn SQL (Structured Programming Language) in simple and easy steps starting from basics to advanced concepts. This tutorial would give you complete understanding on database concepts, SQL Syntax, SELECT, INSERT, DELETE, UPDATE, DROP, TRUNCATE, DISTINCT, ORDER BY, GROUP BY, WHERE clauses." />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+/* SQL Scheme */
+#topmenu a:link {text-decoration:none;color:#fff !important;background-color:transparent;font-weight:bold;}
+#topmenu a:visited {text-decoration:none;color:#fff !important;background-color:transparent;font-weight:bold;}
+#topmenu a:hover {text-decoration:none;color:#36B8D7 !important;background-color:transparent;font-weight:bold;}
+#header{ 
+background:#36B8D7 !important;
+}
+#topmenu
+{
+background-color:#005C71 !important;
+}
+#leftcol ul.menu li.heading 
+{
+background:#36B8D7 !important;
+border:1px solid #005C71 !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1650px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index-2.html">Tutorials Point - Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index-2.html" target="_top">HOME </a>
+<a href="../java/index.html" target="_top">JAVA </a>
+<a href="../php/index.html" target="_top">PHP </a>
+<a href="../python/index.html" target="_top">Python </a>
+<a href="../ruby/index.html" target="_top">Ruby </a>
+<a href="../perl/index.html" target="_top">Perl </a>
+<a href="../html/index.html" target="_top">HTML </a>
+<a href="../css/index.html" target="_top">CSS </a>
+<a href="../javascript/index.html" target="_top">Javascript </a>
+<a href="../mysql/index.html" target="_top">MySQL </a>
+<a href="../cplusplus/index.html" target="_top">C++ </a>
+<a href="../unix/index.html" target="_top">UNIX </a>
+<a href="../more.html" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.html" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.html" target="_top">ABOUT</a> |
+<a href="../about/contact_us.html" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/sql-mini-logo.png" alt="SQL Tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">Basic SQL</li>
+<li><a target="_top" href="index.html">SQL - Home</a></li>
+<li><a target="_top" href="sql-overview.html" >SQL - Overview</a></li>
+<li><a target="_top" href="sql-rdbms-concepts.html">SQL -  RDBMS Concepts</a></li>
+<li><a target="_top" href="sql-databases.html" >SQL - Databases</a></li>
+<li><a target="_top" href="sql-syntax.html" >SQL - Syntax</a></li>
+<li><a target="_top" href="sql-data-types.html" >SQL - Data Types</a></li>
+<li><a target="_top" href="sql-operators.html" >SQL - Operators</a></li>
+<li><a target="_top" href="sql-expressions.html" >SQL - Expressions</a></li>
+<li><a target="_top" href="sql-create-database.html" >SQL - Create Database</a></li>
+<li><a target="_top" href="sql-drop-database.html" >SQL - Drop Database</a></li>
+<li><a target="_top" href="sql-select-database.html" >SQL - Select Database</a></li>
+<li><a target="_top" href="sql-create-table.html" >SQL - Create Table</a></li>
+<li><a target="_top" href="sql-drop-table.html" >SQL - Drop Table</a></li>
+<li><a target="_top" href="sql-insert-query.html" >SQL - Insert Query</a></li>
+<li><a target="_top" href="sql-select-query.html" >SQL - Select Query</a></li>
+<li><a target="_top" href="sql-where-clause.html" >SQL - Where Clause</a></li>
+<li><a target="_top" href="sql-and-or-clauses.html" >SQL - AND &amp; OR Clauses</a></li>
+<li><a target="_top" href="sql-update-query.html" >SQL - Update Query</a></li>
+<li><a target="_top" href="sql-delete-query.html" >SQL - Delete Query</a></li>
+<li><a target="_top" href="sql-like-clause.html" >SQL - Like Clause</a></li>
+<li><a target="_top" href="sql-top-clause.html" >SQL - Top Clause</a></li>
+<li><a target="_top" href="sql-order-by.html" >SQL - Order By</a></li>
+<li><a target="_top" href="sql-group-by.html" >SQL - Group By</a></li>
+<li><a target="_top" href="sql-distinct-keyword.html" >SQL - Distinct Keyword</a></li>
+<li><a target="_top" href="sql-sorting-results.html" >SQL - Sorting Results</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Advanced SQL</li>
+<li><a target="_top" href="sql-constraints.html" >SQL - Constraints</a></li>
+<li><a target="_top" href="sql-using-joins.html" >SQL - Using Joins</a></li>
+<li><a target="_top" href="sql-unions-clause.html" >SQL - Unions Clause</a></li>
+<li><a target="_top" href="sql-null-values.html" >SQL - NULL Values</a></li>
+<li><a target="_top" href="sql-alias-syntax.html" >SQL - Alias Syntax</a></li>
+<li><a target="_top" href="sql-indexes.html" >SQL - Indexes</a></li>
+<li><a target="_top" href="sql-alter-command.html" >SQL - Alter Command</a></li>
+<li><a target="_top" href="sql-truncate-table.html" >SQL - Truncate Table</a></li>
+<li><a target="_top" href="sql-using-views.html" >SQL - Using Views</a></li>
+<li><a target="_top" href="sql-having-clause.html" >SQL - Having Clause</a></li>
+<li><a target="_top" href="sql-transactions.html" >SQL - Transactions</a></li>
+<li><a target="_top" href="sql-wildcards.html" >SQL - Wildcards</a></li>
+<li><a target="_top" href="sql-date-functions.html" ><b>SQL - Date Functions</b></a></li>
+<li><a target="_top" href="sql-temporary-tables.html" >SQL - Temporary Tables</a></li>
+<li><a target="_top" href="sql-clone-tables.html" >SQL - Clone Tables</a></li>
+<li><a target="_top" href="sql-sub-queries.html" >SQL - Sub Queries</a></li>
+<li><a target="_top" href="sql-using-sequences.html" >SQL - Using Sequences</a></li>
+<li><a target="_top" href="sql-handling-duplicates.html" >SQL - Handling Duplicates</a></li>
+<li><a target="_top" href="sql-injection.html" >SQL - Injection</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">SQL Useful Resources</li>
+<li><a target="_top" href="sql-quick-guide.html" >SQL - Quick Guide</a></li>
+<li><a target="_top" href="sql-useful-functions.html" >SQL - Useful Functions</a></li>
+<li><a target="_top" href="sql-useful-resources.html" >SQL - Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.html">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>SQL - Date Functions</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="sql-wildcards.html">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="sql-temporary-tables.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>Following is the list of all important Date and Time related functions available through SQL. There are various other functions supported by your RDBMS. Given list is based on MySQL RDBMS.</p>
+<table class="src">
+<tr><th><strong>Name</strong></th><th><strong>Description</strong></th></tr>
+<tr>
+<td>
+<a href="sql-date-functions.html#function_adddate">ADDDATE()</a></td>
+<td>Add dates</td>
+</tr>
+<tr>
+<td>
+<a href="sql-date-functions.html#function_addtime">ADDTIME()</a></td>
+<td>Add time</td>
+</tr>
+<tr>
+<td>
+<a href="sql-date-functions.html#function_convert-tz">CONVERT_TZ()</a></td>
+<td>Convert from one timezone to another</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_curdate">CURDATE()</a></td>
+<td>Return the current date</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_current-date">CURRENT_DATE(), CURRENT_DATE</a></td>
+<td>Synonyms for CURDATE()</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_current-time">CURRENT_TIME(), CURRENT_TIME</a></td>
+<td>Synonyms for CURTIME()</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_current-timestamp">CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP</a></td>
+<td>Synonyms for NOW()</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_curtime">CURTIME()</a></td>
+<td>Return the current time</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_date-add">DATE_ADD()</a></td>
+<td>Add two dates</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_date-format">DATE_FORMAT()</a></td>
+<td>Format date as specified</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_date-sub">DATE_SUB()</a></td>
+<td>Subtract two dates</td>
+</tr>
+<tr>
+<td>
+<a href="sql-date-functions.html#function_date">DATE()</a></td>
+<td>Extract the date part of a date or datetime expression</td>
+</tr>
+<tr>
+<td>
+<a href="sql-date-functions.html#function_datediff">DATEDIFF()</a></td>
+<td>Subtract two dates</td>
+</tr>
+<tr>
+<td>
+<a href="sql-date-functions.html#function_day">DAY()</a></td>
+<td>Synonym for DAYOFMONTH()</td>
+</tr>
+<tr>
+<td>
+<a href="sql-date-functions.html#function_dayname">DAYNAME()</a></td>
+<td>Return the name of the weekday</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_dayofmonth">DAYOFMONTH()</a></td>
+<td>Return the day of the month (1-31)</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_dayofweek">DAYOFWEEK()</a></td>
+<td>Return the weekday index of the argument</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_dayofyear">DAYOFYEAR()</a></td>
+<td>Return the day of the year (1-366)</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_extract">EXTRACT</a></td>
+<td>Extract part of a date</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_from-days">FROM_DAYS()</a></td>
+<td>Convert a day number to a date</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_from-unixtime">FROM_UNIXTIME()</a></td>
+<td>Format date as a UNIX timestamp</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_hour">HOUR()</a></td>
+<td>Extract the hour</td>
+</tr>
+<tr>
+<td>
+<a href="sql-date-functions.html#function_last-day">LAST_DAY</a></td>
+<td>Return the last day of the month for the argument</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_localtime">LOCALTIME(), LOCALTIME</a></td>
+<td>Synonym for NOW()</td>
+</tr>
+<tr>
+<td>
+<a href="sql-date-functions.html#function_localtimestamp">LOCALTIMESTAMP, LOCALTIMESTAMP()</a></td>
+<td>Synonym for NOW()</td>
+</tr>
+<tr>
+<td>
+<a href="sql-date-functions.html#function_makedate">MAKEDATE()</a></td>
+<td>Create a date from the year and day of year</td>
+</tr>
+<tr>
+<td>
+<a href="sql-date-functions.html#function_maketime">MAKETIME</a></td>
+<td>MAKETIME()</td>
+</tr>
+<tr>
+<td>
+<a href="sql-date-functions.html#function_microsecond">MICROSECOND()</a></td>
+<td>Return the microseconds from argument</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_minute">MINUTE()</a></td>
+<td>Return the minute from the argument</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_month">MONTH()</a></td>
+<td>Return the month from the date passed</td>
+</tr>
+<tr>
+<td>
+<a href="sql-date-functions.html#function_monthname">MONTHNAME()</a></td>
+<td>Return the name of the month</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_now">NOW()</a></td>
+<td>Return the current date and time</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_period-add">PERIOD_ADD()</a></td>
+<td>Add a period to a year-month</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_period-diff">PERIOD_DIFF()</a></td>
+<td>Return the number of months between periods</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_quarter">QUARTER()</a></td>
+<td>Return the quarter from a date argument</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_sec-to-time">SEC_TO_TIME()</a></td>
+<td>Converts seconds to 'HH:MM:SS' format</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_second">SECOND()</a></td>
+<td>Return the second (0-59)</td>
+</tr>
+<tr>
+<td>
+<a href="sql-date-functions.html#function_str-to-date">STR_TO_DATE()</a></td>
+<td>Convert a string to a date</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_subdate">SUBDATE()</a></td>
+<td>When invoked with three arguments a synonym for DATE_SUB()</td>
+</tr>
+<tr>
+<td>
+<a href="sql-date-functions.html#function_subtime">SUBTIME()</a></td>
+<td>Subtract times</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_sysdate">SYSDATE()</a></td>
+<td>Return the time at which the function executes</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_time-format">TIME_FORMAT()</a></td>
+<td>Format as time</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_time-to-sec">TIME_TO_SEC()</a></td>
+<td>Return the argument converted to seconds</td>
+</tr>
+<tr>
+<td>
+<a href="sql-date-functions.html#function_time">TIME()</a></td>
+<td>Extract the time portion of the expression passed</td>
+</tr>
+<tr>
+<td>
+<a href="sql-date-functions.html#function_timediff">TIMEDIFF()</a></td>
+<td>Subtract time</td>
+</tr>
+<tr>
+<td>
+<a href="sql-date-functions.html#function_timestamp">TIMESTAMP()</a></td>
+<td>With a single argument, this function returns the date or  datetime expression. With two arguments, the sum of the arguments</td>
+</tr>
+<tr>
+<td>
+<a href="sql-date-functions.html#function_timestampadd">TIMESTAMPADD()</a></td>
+<td>Add an interval to a datetime expression</td>
+</tr>
+<tr>
+<td>
+<a href="sql-date-functions.html#function_timestampdiff">TIMESTAMPDIFF()</a></td>
+<td>Subtract an interval from a datetime expression</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_to-days">TO_DAYS()</a></td>
+<td>Return the date argument converted to days</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_unix-timestamp">UNIX_TIMESTAMP()</a></td>
+<td>Return a UNIX timestamp</td>
+</tr>
+<tr>
+<td>
+<a href="sql-date-functions.html#function_utc-date">UTC_DATE()</a></td>
+<td>Return the current UTC date</td>
+</tr>
+<tr>
+<td>
+<a href="sql-date-functions.html#function_utc-time">UTC_TIME()</a></td>
+<td>Return the current UTC time</td>
+</tr>
+<tr>
+<td>
+<a href="sql-date-functions.html#function_utc-timestamp">UTC_TIMESTAMP()</a></td>
+<td>Return the current UTC date and time</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_week">WEEK()</a></td>
+<td>Return the week number</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_weekday">WEEKDAY()</a></td>
+<td>Return the weekday index</td>
+</tr>
+<tr>
+<td>
+<a href="sql-date-functions.html#function_weekofyear">WEEKOFYEAR()</a></td>
+<td>Return the calendar week of the date (1-53)</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_year">YEAR()</a></td>
+<td>Return the year</td>
+</tr>
+<tr>
+<td><a href="sql-date-functions.html#function_yearweek">YEARWEEK()</a></td>
+<td>Return the year and week</td>
+</tr>
+</table>
+<a name="function_adddate"></a>
+<h2>ADDDATE(date,INTERVAL expr unit), ADDDATE(expr,days)</h2>
+<p>When invoked with the INTERVAL form of the second argument, ADDDATE() is a synonym for DATE_ADD(). The related function SUBDATE() is a synonym for DATE_SUB(). For information on the INTERVAL unit argument, see the discussion for DATE_ADD().</p>
+<pre class="prettyprint">
+mysql&gt; SELECT DATE_ADD('1998-01-02', INTERVAL 31 DAY);
++---------------------------------------------------------+
+| DATE_ADD('1998-01-02', INTERVAL 31 DAY)                 |
++---------------------------------------------------------+
+| 1998-02-02                                              |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql&gt; SELECT ADDDATE('1998-01-02', INTERVAL 31 DAY);
++---------------------------------------------------------+
+| ADDDATE('1998-01-02', INTERVAL 31 DAY)                  |
++---------------------------------------------------------+
+| 1998-02-02                                              |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<p>When invoked with the days form of the second argument, MySQL treats it as an integer number of days to be added to expr. </p>
+<pre class="prettyprint">
+mysql&gt; SELECT ADDDATE('1998-01-02', 31);
++---------------------------------------------------------+
+| DATE_ADD('1998-01-02', INTERVAL 31 DAY)                 |
++---------------------------------------------------------+
+| 1998-02-02                                              |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_addtime"></a>
+<h2>ADDTIME(expr1,expr2)</h2>
+<p>ADDTIME() adds expr2 to expr1 and returns the result. expr1 is a time or datetime expression, and expr2 is a time expression.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT ADDTIME('1997-12-31 23:59:59.999999','1 1:1:1.000002');
++---------------------------------------------------------+
+| DATE_ADD('1997-12-31 23:59:59.999999','1 1:1:1.000002') |
++---------------------------------------------------------+
+| 1998-01-02 01:01:01.000001                              |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_convert-tz"></a>
+<h2>CONVERT_TZ(dt,from_tz,to_tz)</h2>
+<p>This converts a datetime value dt from the time zone given by from_tz to the time zone given by to_tz and returns the resulting value. This function returns NULL if the arguments are invalid. </p>
+<pre class="prettyprint">
+mysql&gt; SELECT CONVERT_TZ('2004-01-01 12:00:00','GMT','MET');
++---------------------------------------------------------+
+| CONVERT_TZ('2004-01-01 12:00:00','GMT','MET')           |
++---------------------------------------------------------+
+| 2004-01-01 13:00:00                                     |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql&gt; SELECT CONVERT_TZ('2004-01-01 12:00:00','+00:00','+10:00');
++---------------------------------------------------------+
+| CONVERT_TZ('2004-01-01 12:00:00','+00:00','+10:00')     |
++---------------------------------------------------------+
+| 2004-01-01 22:00:00                                     |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_curdate"></a>
+<h2>CURDATE()</h2>
+<p>Returns the current date as a value in 'YYYY-MM-DD' or YYYYMMDD format, depending on whether the function is used in a string or numeric context.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT CURDATE();
++---------------------------------------------------------+
+| CURDATE()                                               |
++---------------------------------------------------------+
+| 1997-12-15                                              |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql&gt; SELECT CURDATE() + 0;
++---------------------------------------------------------+
+| CURDATE() + 0                                           |
++---------------------------------------------------------+
+| 19971215                                                |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_current-date"></a>
+<h2>CURRENT_DATE and CURRENT_DATE() </h2>
+<p>CURRENT_DATE and CURRENT_DATE() are synonyms for CURDATE()</p>
+<a name="function_curtime"></a>
+<h2>CURTIME()</h2>
+<p>Returns the current time as a value in 'HH:MM:SS' or HHMMSS format, depending on whether the function is used in a string or numeric context. The value is expressed in the current time zone.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT CURTIME();
++---------------------------------------------------------+
+| CURTIME()                                               |
++---------------------------------------------------------+
+| 23:50:26                                                |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql&gt; SELECT CURTIME() + 0;
++---------------------------------------------------------+
+| CURTIME() + 0                                           |
++---------------------------------------------------------+
+| 235026                                                  |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_current-time"></a>
+<h2>CURRENT_TIME and CURRENT_TIME()</h2>
+<p>CURRENT_TIME and CURRENT_TIME() are synonyms for CURTIME().</p>
+<a name="function_current-timestamp"></a>
+<h2>CURRENT_TIMESTAMP and CURRENT_TIMESTAMP()</h2>
+<p>CURRENT_TIMESTAMP and CURRENT_TIMESTAMP() are synonyms for NOW().</p>
+<a name="function_date"></a>
+<h2>DATE(expr)</h2>
+<p>Extracts the date part of the date or datetime expression expr.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT DATE('2003-12-31 01:02:03');
++---------------------------------------------------------+
+| DATE('2003-12-31 01:02:03')                             |
++---------------------------------------------------------+
+|  2003-12-31                                             |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_datediff"></a>
+<h2>DATEDIFF(expr1,expr2)</h2>
+<p>DATEDIFF() returns expr1 . expr2 expressed as a value in days from one date to the other. expr1 and expr2 are date or date-and-time expressions. Only the date parts of the values are used in the calculation.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT DATEDIFF('1997-12-31 23:59:59','1997-12-30');
++---------------------------------------------------------+
+| DATEDIFF('1997-12-31 23:59:59','1997-12-30')            |
++---------------------------------------------------------+
+| 1                                                       |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_date-add"></a>
+<h2>DATE_ADD(date,INTERVAL expr unit), DATE_SUB(date,INTERVAL expr unit)</h2>
+<p>These functions perform date arithmetic. date is a DATETIME or DATE value specifying the starting date. expr is an expression specifying the interval value to be added or subtracted from the starting date. expr is a string; it may start with a .-. for negative intervals. unit is a keyword indicating the units in which the expression should be interpreted.</p>
+<p>The INTERVAL keyword and the unit specifier are not case sensitive.</p>
+<p>The following table shows the expected form of the expr argument for each unit value;</p>
+<table class="src">
+<tbody>
+<tr>
+<td>
+<span>unit <strong>Value</strong></span>
+</td>
+<td>
+<strong>Expected</strong>expr<strong>Format</strong>
+</td>
+</tr>
+<tr>
+<td>MICROSECOND</td>
+<td>MICROSECONDS</td>
+</tr>
+<tr>
+<td>SECOND</td>
+<td>SECONDS</td>
+</tr>
+<tr>
+<td>MINUTE</td>
+<td>MINUTES</td>
+</tr>
+<tr>
+<td>HOUR</td>
+<td>HOURS</td>
+</tr>
+<tr>
+<td>DAY</td>
+<td>DAYS</td>
+</tr>
+<tr>
+<td>WEEK</td>
+<td>WEEKS</td>
+</tr>
+<tr>
+<td>MONTH</td>
+<td>MONTHS</td>
+</tr>
+<tr>
+<td>QUARTER</td>
+<td>QUARTERS</td>
+</tr>
+<tr>
+<td>YEAR</td>
+<td>YEARS</td>
+</tr>
+<tr>
+<td>SECOND_MICROSECOND</td>
+<td>'SECONDS.MICROSECONDS'</td>
+</tr>
+<tr>
+<td>MINUTE_MICROSECOND</td>
+<td>'MINUTES.MICROSECONDS'</td>
+</tr>
+<tr>
+<td>MINUTE_SECOND</td>
+<td>'MINUTES:SECONDS'</td>
+</tr>
+<tr>
+<td>HOUR_MICROSECOND</td>
+<td>'HOURS.MICROSECONDS'</td>
+</tr>
+<tr>
+<td>HOUR_SECOND</td>
+<td>'HOURS:MINUTES:SECONDS'</td>
+</tr>
+<tr>
+<td>HOUR_MINUTE</td>
+<td>'HOURS:MINUTES'</td>
+</tr>
+<tr>
+<td>DAY_MICROSECOND</td>
+<td>'DAYS.MICROSECONDS'</td>
+</tr>
+<tr>
+<td>DAY_SECOND</td>
+<td>'DAYS HOURS:MINUTES:SECONDS'</td>
+</tr>
+<tr>
+<td>DAY_MINUTE</td>
+<td>'DAYS HOURS:MINUTES'</td>
+</tr>
+<tr>
+<td>DAY_HOUR</td>
+<td>'DAYS HOURS'</td>
+</tr>
+<tr>
+<td>YEAR_MONTH</td>
+<td>'YEARS-MONTHS'</td>
+</tr>
+</tbody>
+</table>
+<p>The values QUARTER and WEEK are available beginning with MySQL 5.0.0.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT DATE_ADD('1997-12-31 23:59:59', 
+    -&gt; INTERVAL '1:1' MINUTE_SECOND);
++---------------------------------------------------------+
+| DATE_ADD('1997-12-31 23:59:59', INTERVAL...             |
++---------------------------------------------------------+
+| 1998-01-01 00:01:00                                     |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql&gt; SELECT DATE_ADD('1999-01-01', INTERVAL 1 HOUR);
++---------------------------------------------------------+
+| DATE_ADD('1999-01-01', INTERVAL 1 HOUR)                 |
++---------------------------------------------------------+
+| 1999-01-01 01:00:00                                     |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_date-format"></a>
+<h2>DATE_FORMAT(date,format)</h2>
+<p>Formats the date value according to the format string.</p>
+<p>The following specifiers may be used in the format string. The .%. character is required before format specifier characters.</p>
+<table class="src">
+<tbody>
+<tr>
+<td><strong>Specifier</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>%a</td>
+<td>Abbreviated weekday name (Sun..Sat)</td>
+</tr>
+<tr>
+<td>%b</td>
+<td>Abbreviated month name (Jan..Dec)</td>
+</tr>
+<tr>
+<td>%c</td>
+<td>Month, numeric (0..12)</td>
+</tr>
+<tr>
+<td>%D</td>
+<td>Day of the month with English suffix (0th, 1st, 2nd, 3rd, .)</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>Day of the month, numeric (00..31)</td>
+</tr>
+<tr>
+<td>%e</td>
+<td>Day of the month, numeric (0..31)</td>
+</tr>
+<tr>
+<td>%f</td>
+<td>Microseconds (000000..999999)</td>
+</tr>
+<tr>
+<td>%H</td>
+<td>Hour (00..23)</td>
+</tr>
+<tr>
+<td>%h</td>
+<td>Hour (01..12)</td>
+</tr>
+<tr>
+<td>%I</td>
+<td>Hour (01..12)</td>
+</tr>
+<tr>
+<td>%i</td>
+<td>Minutes, numeric (00..59)</td>
+</tr>
+<tr>
+<td>%j</td>
+<td>Day of year (001..366)</td>
+</tr>
+<tr>
+<td>%k</td>
+<td>Hour (0..23)</td>
+</tr>
+<tr>
+<td>%l</td>
+<td>Hour (1..12)</td>
+</tr>
+<tr>
+<td>%M</td>
+<td>Month name (January..December)</td>
+</tr>
+<tr>
+<td>%m</td>
+<td>Month, numeric (00..12)</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>
+AM or PM
+</td>
+</tr>
+<tr>
+<td>%r</td>
+<td>Time, 12-hour (hh:mm:ss followed by  AM or PM)</td>
+</tr>
+<tr>
+<td>%S</td>
+<td>Seconds (00..59)</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>Seconds (00..59)</td>
+</tr>
+<tr>
+<td>%T</td>
+<td>Time, 24-hour (hh:mm:ss)</td>
+</tr>
+<tr>
+<td>%U</td>
+<td>Week (00..53), where Sunday is the first day of the week</td>
+</tr>
+<tr>
+<td>%u</td>
+<td>Week (00..53), where Monday is the first day of the week</td>
+</tr>
+<tr>
+<td>%V</td>
+<td>Week (01..53), where Sunday is the first day of the week; used with %X
+</td>
+</tr>
+<tr>
+<td>%v</td>
+<td>Week (01..53), where Monday is the first day of the week; used with %x
+</td>
+</tr>
+<tr>
+<td>%W</td>
+<td>Weekday name (Sunday..Saturday)</td>
+</tr>
+<tr>
+<td>%w</td>
+<td>Day of the week (0=Sunday..6=Saturday)</td>
+</tr>
+<tr>
+<td>%X</td>
+<td>Year for the week where Sunday is the first day of the week, numeric, four digits; used with %V
+</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>Year for the week, where Monday is the first day of the week, numeric, four digits; used with %v
+</td>
+</tr>
+<tr>
+<td>%Y</td>
+<td>Year, numeric, four digits</td>
+</tr>
+<tr>
+<td>%y</td>
+<td>Year, numeric (two digits)</td>
+</tr>
+<tr>
+<td>%%</td>
+<td>A literal .%. character</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>x, for any.x. not listed above</td>
+</tr>
+</tbody>
+</table>
+<br />
+<pre class="prettyprint">
+mysql&gt; SELECT DATE_FORMAT('1997-10-04 22:23:00', '%W %M %Y');
++---------------------------------------------------------+
+| DATE_FORMAT('1997-10-04 22:23:00', '%W %M %Y')          |
++---------------------------------------------------------+
+| Saturday October 1997                                   |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql&gt; SELECT DATE_FORMAT('1997-10-04 22:23:00'
+    -&gt; '%H %k %I %r %T %S %w');
++---------------------------------------------------------+
+| DATE_FORMAT('1997-10-04 22:23:00.......                 |
++---------------------------------------------------------+
+|  22 22 10 10:23:00 PM 22:23:00 00 6                     |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_date-sub"></a>
+<h2>DATE_SUB(date,INTERVAL expr unit)</h2>
+<p>This is similar to DATE_ADD() function.</p>
+<a name="function_day"></a>
+<h2>DAY(date)</h2>
+<p>DAY() is a synonym for DAYOFMONTH().</p>
+<a name="function_dayname"></a>
+<h2>DAYNAME(date) </h2>
+<p>Returns the name of the weekday for date.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT DAYNAME('1998-02-05');
++---------------------------------------------------------+
+| DAYNAME('1998-02-05')                                   |
++---------------------------------------------------------+
+| Thursday                                                |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_dayofmonth"></a>
+<h2>DAYOFMONTH(date)</h2>
+<p>Returns the day of the month for date, in the range 0 to 31.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT DAYOFMONTH('1998-02-03');
++---------------------------------------------------------+
+| DAYOFMONTH('1998-02-03')                                |
++---------------------------------------------------------+
+| 3                                                       |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_dayofweek"></a>
+<h2>DAYOFWEEK(date)</h2>
+<p>Returns the weekday index for date (1 = Sunday, 2 = Monday, ., 7 = Saturday). These index values correspond to the ODBC standard.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT DAYOFWEEK('1998-02-03');
++---------------------------------------------------------+
+|DAYOFWEEK('1998-02-03')                                  |
++---------------------------------------------------------+
+| 3                                                       |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_dayofyear"></a>
+<h2>DAYOFYEAR(date)</h2>
+<p>Returns the day of the year for date, in the range 1 to 366.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT DAYOFYEAR('1998-02-03');
++---------------------------------------------------------+
+| DAYOFYEAR('1998-02-03')                                 |
++---------------------------------------------------------+
+| 34                                                      |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_extract"></a>
+<h2>EXTRACT(unit FROM date)</h2>
+<p>The EXTRACT() function uses the same kinds of unit specifiers as DATE_ADD() or DATE_SUB(), but extracts parts from the date rather than performing date arithmetic.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT EXTRACT(YEAR FROM '1999-07-02');
++---------------------------------------------------------+
+| EXTRACT(YEAR FROM '1999-07-02')                         |
++---------------------------------------------------------+
+| 1999                                                    |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql&gt; SELECT EXTRACT(YEAR_MONTH FROM '1999-07-02 01:02:03');
++---------------------------------------------------------+
+| EXTRACT(YEAR_MONTH FROM '1999-07-02 01:02:03')          |
++---------------------------------------------------------+
+| 199907                                                  |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_from-days"></a>
+<h2>FROM_DAYS(N)</h2>
+<p>Given a day number N, returns a DATE value.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT FROM_DAYS(729669);
++---------------------------------------------------------+
+| FROM_DAYS(729669)                                       |
++---------------------------------------------------------+
+| 1997-10-07                                              |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<p>Use FROM_DAYS() with caution on old dates. It is not intended for use with values that precede the advent of the Gregorian calendar (1582). </p>
+<a name="function_from-unixtime"></a>
+<h2>FROM_UNIXTIME(unix_timestamp)</h2>
+<h2>FROM_UNIXTIME(unix_timestamp,format)</h2>
+<p>Returns a representation of the unix_timestamp argument as a value in 'YYYY-MM-DD HH:MM:SS' or YYYYMMDDHHMMSS format, depending on whether the function is used in a string or numeric context. The value is expressed in the current time zone. unix_timestamp is an internal timestamp value such as is produced by the UNIX_TIMESTAMP() function.</p>
+<p>If format is given, the result is formatted according to the format string, which is used the same way as listed in the entry for the DATE_FORMAT() function.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT FROM_UNIXTIME(875996580);
++---------------------------------------------------------+
+| FROM_UNIXTIME(875996580)                                |
++---------------------------------------------------------+
+| 1997-10-04 22:23:00                                     |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_hour"></a>
+<h2>HOUR(time)</h2>
+<p>Returns the hour for time. The range of the return value is 0 to 23 for time-of-day values. However, the range of TIME values actually is much larger, so HOUR can return values greater than 23.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT HOUR('10:05:03');
++---------------------------------------------------------+
+| HOUR('10:05:03')                                        |
++---------------------------------------------------------+
+| 10                                                      |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_last-day"></a>
+<h2>LAST_DAY(date)</h2>
+<p>Takes a date or datetime value and returns the corresponding value for the last day of the month. Returns NULL if the argument is invalid.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT LAST_DAY('2003-02-05');
++---------------------------------------------------------+
+| LAST_DAY('2003-02-05')                                  |
++---------------------------------------------------------+
+| 2003-02-28                                              |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_localtime"></a>
+<h2>LOCALTIME and LOCALTIME()</h2>
+<p>LOCALTIME and LOCALTIME() are synonyms for NOW().</p>
+<a name="function_localtimestamp"></a>
+<h2>LOCALTIMESTAMP and LOCALTIMESTAMP()</h2>
+<p>LOCALTIMESTAMP and LOCALTIMESTAMP() are synonyms for NOW().</p>
+<a name="function_makedate"></a>
+<h2>MAKEDATE(year,dayofyear)</h2>
+<p>Returns a date, given year and day-of-year values. dayofyear must be greater than 0 or the result is NULL.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT MAKEDATE(2001,31), MAKEDATE(2001,32);
++---------------------------------------------------------+
+| MAKEDATE(2001,31), MAKEDATE(2001,32)                    |
++---------------------------------------------------------+
+| '2001-01-31', '2001-02-01'                              |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_maketime"></a>
+<h2>MAKETIME(hour,minute,second)</h2>
+<p>Returns a time value calculated from the hour, minute, and second arguments.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT MAKETIME(12,15,30);
++---------------------------------------------------------+
+| MAKETIME(12,15,30)                                      |
++---------------------------------------------------------+
+| '12:15:30'                                              |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_microsecond"></a>
+<h2>MICROSECOND(expr)</h2>
+<p>Returns the microseconds from the time or datetime expression expr as a number in the range from 0 to 999999.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT MICROSECOND('12:00:00.123456');
++---------------------------------------------------------+
+| MICROSECOND('12:00:00.123456')                          |
++---------------------------------------------------------+
+| 123456                                                  |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_minute"></a>
+<h2>MINUTE(time)</h2>
+<p>Returns the minute for time, in the range 0 to 59.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT MINUTE('98-02-03 10:05:03');
++---------------------------------------------------------+
+| MINUTE('98-02-03 10:05:03')                             |
++---------------------------------------------------------+
+| 5                                                       |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_month"></a>
+<h2>MONTH(date)</h2>
+<p>Returns the month for date, in the range 0 to 12.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT MONTH('1998-02-03')
++---------------------------------------------------------+
+| MONTH('1998-02-03')                                     |
++---------------------------------------------------------+
+| 2                                                       |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_monthname"></a>
+<h2>MONTHNAME(date)</h2>
+<p>Returns the full name of the month for date. </p>
+<pre class="prettyprint">
+mysql&gt; SELECT MONTHNAME('1998-02-05');
++---------------------------------------------------------+
+| MONTHNAME('1998-02-05')                                 |
++---------------------------------------------------------+
+| February                                                |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+ <a name="function_now"></a>
+ <h2>NOW()</h2>
+ <p>Returns the current date and time as a value in 'YYYY-MM-DD HH:MM:SS' or YYYYMMDDHHMMSS format, depending on whether the function is used in a string or numeric context. The value is expressed in the current time zone.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT NOW();
++---------------------------------------------------------+
+| NOW()                                                   |
++---------------------------------------------------------+
+| 1997-12-15 23:50:26                                     |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+ <a name="function_period-add"></a>
+ <h2>PERIOD_ADD(P,N)</h2>
+ <p>Adds N months to period P (in the format YYMM or YYYYMM). Returns a value in the format YYYYMM. Note that the period argument P is not a date value.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT PERIOD_ADD(9801,2);
++---------------------------------------------------------+
+| PERIOD_ADD(9801,2)                                      |
++---------------------------------------------------------+
+| 199803                                                  |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_period-diff"></a>
+<h2>PERIOD_DIFF(P1,P2)</h2>
+<p>Returns the number of months between periods P1 and P2. P1 and P2 should be in the format YYMM or YYYYMM. Note that the period arguments P1 and P2 are not date values.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT PERIOD_DIFF(9802,199703);
++---------------------------------------------------------+
+| PERIOD_DIFF(9802,199703)                                |
++---------------------------------------------------------+
+| 11                                                      |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_quarter"></a>
+<h2>QUARTER(date)</h2>
+<p>Returns the quarter of the year for date, in the range 1 to 4.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT QUARTER('98-04-01');
++---------------------------------------------------------+
+| QUARTER('98-04-01')                                     |
++---------------------------------------------------------+
+| 2                                                       |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_second"></a>
+<h2>SECOND(time)</h2>
+<p>Returns the second for time, in the range 0 to 59.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT SECOND('10:05:03');
++---------------------------------------------------------+
+| SECOND('10:05:03')                                      |
++---------------------------------------------------------+
+| 3                                                       |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+ <a name="function_sec-to-time"></a>
+ <h2>SEC_TO_TIME(seconds)</h2>
+ <p>Returns the seconds argument, converted to hours, minutes, and seconds, as a value in 'HH:MM:SS' or HHMMSS format, depending on whether the function is used in a string or numeric context.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT SEC_TO_TIME(2378);
++---------------------------------------------------------+
+| SEC_TO_TIME(2378)                                       |
++---------------------------------------------------------+
+| 00:39:38                                                |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_str-to-date"></a>
+<h2>STR_TO_DATE(str,format)</h2>
+<p>This is the inverse of the DATE_FORMAT() function. It takes a string str and a format string format. STR_TO_DATE() returns a DATETIME value if the format string contains both date and time parts, or a DATE or TIME value if the string contains only date or time parts.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT STR_TO_DATE('04/31/2004', '%m/%d/%Y');
++---------------------------------------------------------+
+| STR_TO_DATE('04/31/2004', '%m/%d/%Y')                   |
++---------------------------------------------------------+
+| 2004-04-31                                              |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_subdate"></a>
+<h2>SUBDATE(date,INTERVAL expr unit) and SUBDATE(expr,days) </h2>
+<p>When invoked with the INTERVAL form of the second argument, SUBDATE() is a synonym for DATE_SUB(). For information on the INTERVAL unit argument, see the discussion for DATE_ADD().</p>
+<pre class="prettyprint">
+mysql&gt; SELECT DATE_SUB('1998-01-02', INTERVAL 31 DAY);
++---------------------------------------------------------+
+| DATE_SUB('1998-01-02', INTERVAL 31 DAY)                 |
++---------------------------------------------------------+
+| 1997-12-02                                              |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql&gt; SELECT SUBDATE('1998-01-02', INTERVAL 31 DAY);
++---------------------------------------------------------+
+| SUBDATE('1998-01-02', INTERVAL 31 DAY)                  |
++---------------------------------------------------------+
+| 1997-12-02                                              |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_subtime"></a>
+<h2>SUBTIME(expr1,expr2)</h2>
+<p>SUBTIME() returns expr1 . expr2 expressed as a value in the same format as expr1. expr1 is a time or datetime expression, and expr2 is a time.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT SUBTIME('1997-12-31 23:59:59.999999',
+    -&gt; '1 1:1:1.000002');
++---------------------------------------------------------+
+| SUBTIME('1997-12-31 23:59:59.999999'...                 |
++---------------------------------------------------------+
+| 1997-12-30 22:58:58.999997                              |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_sysdate"></a>
+<h2>SYSDATE()</h2>
+<p>Returns the current date and time as a value in 'YYYY-MM-DD HH:MM:SS' or YYYYMMDDHHMMSS format, depending on whether the function is used in a string or numeric context.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT SYSDATE();
++---------------------------------------------------------+
+| SYSDATE()                                               |
++---------------------------------------------------------+
+| 2006-04-12 13:47:44                                     |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_time"></a>
+<h2>TIME(expr)</h2>
+<p>Extracts the time part of the time or datetime expression expr and returns it as a string.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT TIME('2003-12-31 01:02:03');
++---------------------------------------------------------+
+| TIME('2003-12-31 01:02:03')                             |
++---------------------------------------------------------+
+| 01:02:03                                                |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_timediff"></a>
+<h2>TIMEDIFF(expr1,expr2)</h2>
+<p>TIMEDIFF() returns expr1 . expr2 expressed as a time value. expr1 and expr2 are time or date-and-time expressions, but both must be of the same type.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT TIMEDIFF('1997-12-31 23:59:59.000001',
+    -&gt; '1997-12-30 01:01:01.000002');
++---------------------------------------------------------+
+| TIMEDIFF('1997-12-31 23:59:59.000001'.....              |
++---------------------------------------------------------+
+|  46:58:57.999999                                        |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+ <a name="function_timestamp"></a>
+ <h2>TIMESTAMP(expr), TIMESTAMP(expr1,expr2)</h2>
+ <p>With a single argument, this function returns the date or datetime expression expr as a datetime value. With two arguments, it adds the time expression expr2 to the date or datetime expression expr1 and returns the result as a datetime value.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT TIMESTAMP('2003-12-31');
++---------------------------------------------------------+
+| TIMESTAMP('2003-12-31')                                 |
++---------------------------------------------------------+
+| 2003-12-31 00:00:00                                     |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_timestampadd"></a>
+<h2>TIMESTAMPADD(unit,interval,datetime_expr)</h2>
+<p>Adds the integer expression interval to the date or datetime expression datetime_expr. The unit for interval is given by the unit argument, which should be one of the following values: FRAC_SECOND, SECOND, MINUTE, HOUR, DAY, WEEK, MONTH, QUARTER, or YEAR.</p>
+<p>The unit value may be specified using one of keywords as shown, or with a prefix of SQL_TSI_. For example, DAY and SQL_TSI_DAY both are legal.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT TIMESTAMPADD(MINUTE,1,'2003-01-02');
++---------------------------------------------------------+
+| TIMESTAMPADD(MINUTE,1,'2003-01-02')                     |
++---------------------------------------------------------+
+| 2003-01-02 00:01:00                                     |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+          <a class="indexterm" name="id3221361"></a>
+<a name="function_timestampdiff"></a>
+<h2>TIMESTAMPDIFF(unit,datetime_expr1,datetime_expr2)</h2>
+<p>Returns the integer difference between the date or datetime expressions datetime_expr1 and datetime_expr2. The unit for the result is given by the unit argument. The legal values for unit are the same as those listed in the description of the TIMESTAMPADD() function.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT TIMESTAMPDIFF(MONTH,'2003-02-01','2003-05-01');
++---------------------------------------------------------+
+| TIMESTAMPDIFF(MONTH,'2003-02-01','2003-05-01')          |
++---------------------------------------------------------+
+| 3                                                       |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+ <a name="function_time-format"></a>
+ <h2>TIME_FORMAT(time,format)</h2>
+ <p>This is used like the DATE_FORMAT() function, but the format string may contain format specifiers only for hours, minutes, and seconds.</p>
+ <p>If the time value contains an hour part that is greater than 23, the %H and %k hour format specifiers produce a value larger than the usual range of 0..23. The other hour format specifiers produce the hour value modulo 12.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT TIME_FORMAT('100:00:00', '%H %k %h %I %l');
++---------------------------------------------------------+
+| TIME_FORMAT('100:00:00', '%H %k %h %I %l')              |
++---------------------------------------------------------+
+| 100 100 04 04 4                                         |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_time-to-sec"></a>
+<h2>TIME_TO_SEC(time)</h2>
+<p>Returns the time argument, converted to seconds.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT TIME_TO_SEC('22:23:00');
++---------------------------------------------------------+
+| TIME_TO_SEC('22:23:00')                                 |
++---------------------------------------------------------+
+| 80580                                                   |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_to-days"></a>
+<h2>TO_DAYS(date)</h2>
+<p>Given a date date, returns a day number (the number of days since year 0).</p>
+<pre class="prettyprint">
+mysql&gt; SELECT TO_DAYS(950501);
++---------------------------------------------------------+
+| TO_DAYS(950501)                                         |
++---------------------------------------------------------+
+| 728779                                                  |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+ <a name="function_unix-timestamp"></a>
+ <h2>UNIX_TIMESTAMP(), UNIX_TIMESTAMP(date)</h2>
+ <p>If called with no argument, returns a Unix timestamp (seconds since '1970-01-01 00:00:00' UTC) as an unsigned integer. If UNIX_TIMESTAMP() is called with a date argument, it returns the value of the argument as seconds since '1970-01-01 00:00:00' UTC. date may be a DATE string, a DATETIME string, a TIMESTAMP, or a number in the format YYMMDD or YYYYMMDD.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT UNIX_TIMESTAMP();
++---------------------------------------------------------+
+| UNIX_TIMESTAMP()                                        |
++---------------------------------------------------------+
+| 882226357                                               |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql&gt; SELECT UNIX_TIMESTAMP('1997-10-04 22:23:00');
++---------------------------------------------------------+
+| UNIX_TIMESTAMP('1997-10-04 22:23:00')                   |
++---------------------------------------------------------+
+| 875996580                                               |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_utc-date"></a>
+<h2>UTC_DATE, UTC_DATE()</h2>
+<p>Returns the current UTC date as a value in 'YYYY-MM-DD' or YYYYMMDD format, depending on whether the function is used in a string or numeric context.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT UTC_DATE(), UTC_DATE() + 0;
++---------------------------------------------------------+
+| UTC_DATE(), UTC_DATE() + 0                              |
++---------------------------------------------------------+
+| 2003-08-14, 20030814                                    |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_utc-time"></a>
+<h2>UTC_TIME, UTC_TIME()</h2>
+<p>Returns the current UTC time as a value in 'HH:MM:SS' or HHMMSS format, depending on whether the function is used in a string or numeric context.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT UTC_TIME(), UTC_TIME() + 0;
++---------------------------------------------------------+
+| UTC_TIME(), UTC_TIME() + 0                              |
++---------------------------------------------------------+
+| 18:07:53, 180753                                        |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+ <a name="function_utc-timestamp"></a>
+ <h2>UTC_TIMESTAMP, UTC_TIMESTAMP()</h2>
+ <p>Returns the current UTC date and time as a value in 'YYYY-MM-DD HH:MM:SS' or YYYYMMDDHHMMSS format, depending on whether the function is used in a string or numeric context.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT UTC_TIMESTAMP(), UTC_TIMESTAMP() + 0;
++---------------------------------------------------------+
+| UTC_TIMESTAMP(), UTC_TIMESTAMP() + 0                    |
++---------------------------------------------------------+
+| 2003-08-14 18:08:04, 20030814180804                     |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_week"></a>
+<h2>WEEK(date[,mode]) </h2>
+<p>This function returns the week number for date. The two-argument form of WEEK() allows you to specify whether the week starts on Sunday or Monday and whether the return value should be in the range from 0 to 53 or from 1 to 53. If the mode argument is omitted, the value of the default_week_format system variable is used</p>
+<table border="1" class="src" cellpadding="5">
+<tr>
+<td><strong>Mode</strong></td>
+<td><strong>First Day of week</strong></td>
+<td><strong>Range</strong></td>
+<td><strong>Week 1 is the first week .</strong></td>
+</tr>
+<tr>
+<td>0</td>
+<td>Sunday</td>
+<td>0-53</td>
+<td>with a Sunday in this year</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Monday</td>
+<td>0-53</td>
+<td>with more than 3 days this year</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Sunday</td>
+<td>1-53</td>
+<td>with a Sunday in this year</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Monday</td>
+<td>1-53</td>
+<td>with more than 3 days this year</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Sunday</td>
+<td>0-53</td>
+<td>with more than 3 days this year</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Monday</td>
+<td>0-53</td>
+<td>with a Monday in this year</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Sunday</td>
+<td>1-53</td>
+<td>with more than 3 days this year</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Monday</td>
+<td>1-53</td>
+<td>with a Monday in this year</td>
+</tr>
+</table>
+<br />
+<pre class="prettyprint">
+mysql&gt; SELECT WEEK('1998-02-20');
++---------------------------------------------------------+
+| WEEK('1998-02-20')                                      |
++---------------------------------------------------------+
+| 7                                                       |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_weekday"></a>
+<h2>WEEKDAY(date)</h2>
+<p>Returns the weekday index for date (0 = Monday, 1 = Tuesday, . 6 = Sunday).</p>
+<pre class="prettyprint">
+mysql&gt; SELECT WEEKDAY('1998-02-03 22:23:00');
++---------------------------------------------------------+
+| WEEKDAY('1998-02-03 22:23:00')                          |
++---------------------------------------------------------+
+| 1                                                       |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+ <a name="function_weekofyear"></a>
+ <h2>WEEKOFYEAR(date)</h2>
+ <p>Returns the calendar week of the date as a number in the range from 1 to 53. WEEKOFYEAR() is a compatibility function that is equivalent to WEEK(date,3).</p>
+<pre class="prettyprint">
+mysql&gt; SELECT WEEKOFYEAR('1998-02-20');
++---------------------------------------------------------+
+| WEEKOFYEAR('1998-02-20')                                |
++---------------------------------------------------------+
+| 8                                                       |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_year"></a>
+<h2>YEAR(date)</h2>
+<p>Returns the year for date, in the range 1000 to 9999, or 0 for the .zero. date.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT YEAR('98-02-03');
++---------------------------------------------------------+
+| YEAR('98-02-03')                                        |
++---------------------------------------------------------+
+| 1998                                                    |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<a name="function_yearweek"></a>
+<h2>YEARWEEK(date), YEARWEEK(date,mode)</h2>
+<p>Returns year and week for a date. The mode argument works exactly like the mode argument to WEEK(). The year in the result may be different from the year in the date argument for the first and the last week of the year.</p>
+<pre class="prettyprint">
+mysql&gt; SELECT YEARWEEK('1987-01-01');
++---------------------------------------------------------+
+| YEAR('98-02-03')YEARWEEK('1987-01-01')                  |
++---------------------------------------------------------+
+| 198653                                                  |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+</pre>
+<p>Note that the week number is different from what the WEEK() function would return (0) for optional arguments 0 or 1, as WEEK() then returns the week in the context of the given year.</p>
+<p>For more information check <a target="_blank"  href="http://dev.mysql.com/doc/en/Date_and_time_functions.html">MySQL Official Website - Date and Time Functions</a></p>
+<hr />
+<div class="pre-btn">
+<a href="sql-wildcards.html">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/sql-date-functions.html" alt="SQL - Date Functions" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="sql-temporary-tables.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.html" target="_top">ASP.NET </a> |
+<a href="../jquery/index.html" target="_top">jQuery </a> |
+<a href="../ajax/index.html" target="_top">AJAX </a> |
+<a href="../ant/index.html" target="_top">ANT</a> |
+<a href="../jsp/index.html" target="_top">JSP </a> |
+<a href="../servlets/index.html" target="_top">Servlets </a> |
+<a href="../log4j/index.html" target="_top">log4j </a> |
+<a href="../ibatis/index.html" target="_top">iBATIS </a> |
+<a href="../hibernate/index.html" target="_top">Hibernate </a> |
+<a href="../jdbc/index.html" target="_top">JDBC </a> |
+<a href="../struts_2/index.html" target="_top">Struts </a> |
+<a href="../html5/index.html" target="_top">HTML5 </a> |
+<a href="index.html" target="_top">SQL </a> |
+<a href="../mysql/index.html" target="_top">MySQL </a> |
+<a href="../cplusplus/index.html" target="_top">C++ </a> |
+<a href="../unix/index.html" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/sql/sql-date-functions.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:01:29 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,582 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/python/python_files_io.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Apr 2013 19:43:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>Python Files I/O</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="description" content="Python Files I/O - Learning Python in simple and easy steps : A beginner's tutorial containing complete knowledge of Python Syntax Object Oriented Language, Methods, Tuples, Tools/Utilities, Exceptions Handling, Sockets, GUI, Extentions, XML Programming" />
+<meta name="Keywords" content="Python, Tutorials, Learning, Beginners, Basics, Object Oriented Language, Methods, Overriding, Networking, Multithreading,Methods, Tuples, Tools/Utilities, Exceptions Handling, Sockets, GUI, Extentions, XML, Programming" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+#topmenu a:link {text-decoration:none;color:#000 !important;background-color:transparent;font-weight:bold;}
+#topmenu a:visited {text-decoration:none;color:#000 !important;background-color:transparent;font-weight:bold;}
+#topmenu a:hover {text-decoration:none;color:#fff !important;background-color:transparent;font-weight:bold;}
+#header{ 
+   background:#3777ab !important;
+}
+#topmenu
+{
+   background-color:#fbc62f !important;
+}
+#leftcol ul.menu li.heading 
+{
+   background:#3777ab !important;
+   border:1px solid #fbc62f !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1250px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+   _uacct = "UA-232293-6";
+   urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index.htm">Tutorials Point Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index.htm" target="_top">HOME </a>
+<a href="../java/index.htm" target="_top">JAVA </a>
+<a href="../php/index.htm" target="_top">PHP </a>
+<a href="index.htm" target="_top">Python </a>
+<a href="../ruby/index.htm" target="_top">Ruby </a>
+<a href="../perl/index.htm" target="_top">Perl </a>
+<a href="../html/index.htm" target="_top">HTML </a>
+<a href="../css/index.htm" target="_top">CSS </a>
+<a href="../javascript/index.htm" target="_top">Javascript </a>
+<a href="../mysql/index.htm" target="_top">MySQL </a>
+<a href="../cplusplus/index.htm" target="_top">C++ </a>
+<a href="../unix/index.htm" target="_top">UNIX </a>
+<a href="../more.htm" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.htm" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.htm" target="_top">ABOUT</a> |
+<a href="../about/contact_us.htm" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/python-mini.png" alt="Python tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">Python Basic Tutorial</li>
+<li><a target="_top" href="index.htm">Python - Home</a></li>
+<li><a target="_top" href="python_overview.htm">Python - Overview</a></li>
+<li><a target="_top" href="python_environment.htm">Python - Environment</a></li>
+<li><a target="_top" href="python_basic_syntax.htm">Python - Basic Syntax</a></li>
+<li><a target="_top" href="python_variable_types.htm">Python - Variable Types</a></li>
+<li><a target="_top" href="python_basic_operators.htm">Python - Basic Operators</a></li>
+<li><a target="_top" href="python_decision_making.htm">Python - Decision Making</a></li>
+<li><a target="_top" href="python_loops.htm">Python - Loops</a></li>
+<li><a target="_top" href="python_numbers.htm">Python - Numbers</a></li>
+<li><a target="_top" href="python_strings.htm">Python - Strings</a></li>
+<li><a target="_top" href="python_lists.htm">Python - Lists</a></li>
+<li><a target="_top" href="python_tuples.htm">Python - Tuples</a></li>
+<li><a target="_top" href="python_dictionary.htm">Python - Dictionary</a></li>
+<li><a target="_top" href="python_date_time.htm">Python - Date &amp; Time</a></li>
+<li><a target="_top" href="python_functions.htm">Python - Functions</a></li>
+<li><a target="_top" href="python_modules.htm">Python - Modules</a></li>
+<li><a target="_top" href="python_files_io.htm"><b>Python - Files I/O</b></a></li>
+<li><a target="_top" href="python_exceptions.htm">Python - Exceptions</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Python Advanced Tutorial</li>
+<li><a target="_top" href="python_classes_objects.htm">Python - Classes/Objects</a></li>
+<li><a target="_top" href="python_reg_expressions.htm">Python - Reg Expressions</a></li>
+<li><a target="_top" href="python_cgi_programming.htm">Python - CGI Programming</a></li>
+<li><a target="_top" href="python_database_access.htm">Python - Database Access</a></li>
+<li><a target="_top" href="python_networking.htm">Python - Networking</a></li>
+<li><a target="_top" href="python_sending_email.htm">Python - Sending Email</a></li>
+<li><a target="_top" href="python_multithreading.htm">Python - Multithreading</a></li>
+<li><a target="_top" href="python_xml_processing.htm">Python - XML Processing</a></li>
+<li><a target="_top" href="python_gui_programming.htm">Python - GUI Programming</a></li>
+<li><a target="_top" href="python_further_extensions.htm">Python - Further Extensions</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Python  Useful Resources</li>
+<li><a target="_top" href="python_quick_guide.htm">Python - Quick Guide</a></li>
+<li><a target="_top" href="python_tools_utilities.htm">Python - Tools/Utilities</a></li>
+<li><a target="_top" href="python_useful_resources.htm">Python Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>Python Files I/O</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="python_modules.htm">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="python_exceptions.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>This chapter will cover all the basic I/O functions available in Python. For more functions please refere to standard Python documentation.</p>
+<h2>Printing to the Screen:</h2>
+<p>The simplest way to produce output is using the <i>print</i> statement where you can pass zero or more expressions, separated by commas. This function converts the expressions you pass it to a string and writes the result to standard output as follows:</p>
+<pre class="prettyprint">
+#!/usr/bin/python
+
+print "Python is really a great language,", "isn't it?";
+</pre>
+<p>This would produce following result on your standard screen:</p>
+<pre class="prettyprint">
+Python is really a great language, isn't it?
+</pre>
+<h2>Reading Keyboard Input:</h2>
+<p>Python provides two built-in functions to read a line of text from standard input, which by default comes from the keyboard. These functions are:</p>
+<ul class="list">
+<li><p>raw_input</p></li>
+<li><p>input</p></li>
+</ul>
+<h2>The <i>raw_input</i> Function:</h2>
+<p>The <i>raw_input([prompt])</i> function reads one line from standard input and returns it as a string (removing the trailing newline):</p>
+<pre class="prettyprint">
+#!/usr/bin/python
+
+str = raw_input("Enter your input: ");
+print "Received input is : ", str
+</pre>
+<p>This would prompt you to enter any string and it would display same string on the screen. When I typed "Hello Python!", it output is like this:</p>
+<pre class="prettyprint">
+Enter your input: Hello Python
+Received input is :  Hello Python
+</pre>
+<h2>The <i>input</i> Function:</h2>
+<p>The <i>input([prompt])</i> function is equivalent to raw_input, except that it assumes the input is a valid Python expression and returns the evaluated result to you:</p>
+<pre class="prettyprint">
+#!/usr/bin/python
+
+str = input("Enter your input: ");
+print "Received input is : ", str
+</pre>
+<p>This would produce following result against the entered input:</p>
+<pre class="prettyprint">
+Enter your input: [x*5 for x in range(2,10,2)]
+Recieved input is :  [10, 20, 30, 40]
+</pre>
+<h2>Opening and Closing Files:</h2>
+<p>Until now, you have been reading and writing to the standard input and output. Now we will see how to play with actual data files.</p>
+<p>Python provides basic functions and methods necessary to manipulate files by default. You can do your most of the file manipulation using a <b>file</b> object.</p>
+<h2>The <i>open</i> Function:</h2>
+<p>Before you can read or write a file, you have to open it using Python's built-in <i>open()</i> function. This function creates a <b>file</b> object which would be utilized to call other support methods associated with it.</p>
+<h3>Syntax:</h3>
+<pre class="prettyprint">
+file object = open(file_name [, access_mode][, buffering])
+</pre>
+<p>Here is paramters detail:</p>
+<ul class="list">
+<li><p><b>file_name:</b> The file_name argument is a string value that contains the name of the file that you want to access.</p></li>
+<li><p><b>access_mode:</b> The access_mode determines the mode in which the file has to be opened ie. read, write append etc. A complete list of possible values is given below in the table. This is optional parameter and the default file access mode is read (r) </p></li>
+<li><p><b>buffering:</b> If the buffering value is set to 0, no buffering will take place. If the buffering value is 1, line buffering will be performed while accessing a file. If you specify the buffering value as an integer greater than 1, then buffering action will be performed with the indicated buffer size. If negative, the buffer size is the system default(default behavior).</p></li>
+</ul>
+<p>Here is a list of the different modes of opening a file:</p>
+<table class="src">
+<tr><th style="width:10%">Modes</th><th>Description</th></tr>
+<tr><td>r</td><td>Opens a file for reading only. The file pointer is placed at the beginning of the file. This is the default mode.</td></tr>
+<tr><td>rb</td><td>Opens a file for reading only in binary format. The file pointer is placed at the beginning of the file. This is the default mode.</td></tr>
+<tr><td>r+</td><td>Opens a file for both reading and writing. The file pointer will be at the beginning of the file.</td></tr>
+<tr><td>rb+</td><td>Opens a file for both reading and writing in binary format. The file pointer will be at the beginning of the file.</td></tr>
+<tr><td>w</td><td>Opens a file for writing only. Overwrites the file if the file exists. If the file does not exist, creates a new file for writing.</td></tr>
+<tr><td>wb</td><td>Opens a file for writing only in binary format. Overwrites the file if the file exists. If the file does not exist, creates a new file for writing.</td></tr>
+<tr><td>w+</td><td>Opens a file for both writing and reading. Overwrites the existing file if the file exists. If the file does not exist, creates a new file for
+reading and writing.</td></tr> 
+<tr><td>wb+</td><td>Opens a file for both writing and reading in binary format. Overwrites the existing file if the file exists. If the file does not exist, creates a new file for reading and writing.</td></tr>
+<tr><td>a</td><td>Opens a file for appending. The file pointer is at the end of the file if the file exists. That is, the file is in the append mode. If the file does not exist, it creates a new file for writing.</td></tr> 
+<tr><td>ab</td><td>Opens a file for appending in binary format. The file pointer is at the end of the file if the file exists. That is, the file is in the append mode. If the file does not exist, it creates a new file for writing.</td></tr> 
+<tr><td>a+</td><td>Opens a file for both appending and reading. The file pointer is at the end of the file if the file exists. The file opens in the append mode. If the file does not exist, it creates a new file for reading and writing.</td></tr> 
+<tr><td>ab+</td><td>Opens a file for both appending and reading in binary format. The file pointer is at the end of the file if the file exists. The file opens in the append mode. If the file does not exist, it creates a new file for reading and writing.</td></tr>
+</table>
+<h2>The <i>file</i> object atrributes:</h2>
+<p>Once a file is opened and you have one <i>file</i> object, you can get various information related to that file.</p>
+<p>Here is a list of all attributes related to file object:</p>
+<table class="src">
+<tr><th>Attribute</th><th>Description</th></tr>
+<tr><td>file.closed</td><td>Returns true if file is closed, false otherwise.</td></tr>
+<tr><td>file.mode</td><td>Returns access mode with which file was opened.</td></tr>
+<tr><td>file.name</td><td>Returns name of the file.</td></tr>
+<tr><td>file.softspace</td><td>Returns false if space explicitly required with print, true otherwise.</td></tr>
+</table>
+<h3>Example:</h3>
+<pre class="prettyprint">
+#!/usr/bin/python
+
+# Open a file
+fo = open("foo.txt", "wb")
+print "Name of the file: ", fo.name
+print "Closed or not : ", fo.closed
+print "Opening mode : ", fo.mode
+print "Softspace flag : ", fo.softspace
+</pre>
+<p>This would produce following result:</p>
+<pre class="prettyprint">
+Name of the file:  foo.txt
+Closed or not :  False
+Opening mode :  wb
+Softspace flag :  0
+</pre>
+<h2>The <i>close()</i> Method:</h2>
+<p>The close() method of a <i>file</i> object flushes any unwritten information and closes the file object, after which no more writing can be done.</p>
+<p>Python automatically closes a file when the reference object of a file is reassigned to another file. It is a good practice to use the close() method to close a file.</p>
+<h3>Syntax:</h3>
+<pre class="prettyprint">
+fileObject.close();
+</pre>
+<h3>Example:</h3>
+<pre class="prettyprint">
+#!/usr/bin/python
+
+# Open a file
+fo = open("foo.txt", "wb")
+print "Name of the file: ", fo.name
+
+# Close opend file
+fo.close()
+</pre>
+<p>This would produce following result:</p>
+<pre class="prettyprint">
+Name of the file:  foo.txt
+</pre>
+<h2>Reading and Writing Files:</h2>
+<p>The <i>file</i> object provides a set of access methods to make our lives easier. We would see how to use <i>read()</i> and <i>write()</i> methods to read and write files.</p>
+<h2>The <i>write()</i> Method:</h2>
+<p>The <i>write()</i> method writes any string to an open file. It is important to note that Python strings can have binary data and not just text.</p>
+<p>The write() method does not add a newline character ('\n') to the end of the string:</p>
+<h3>Syntax:</h3>
+<pre class="prettyprint">
+fileObject.write(string);
+</pre>
+<p>Here passed parameter is the content to be written into the opend file.</p>
+<h3>Example:</h3>
+<pre class="prettyprint">
+#!/usr/bin/python
+
+# Open a file
+fo = open("foo.txt", "wb")
+fo.write( "Python is a great language.\nYeah its great!!\n");
+
+# Close opend file
+fo.close()
+</pre>
+<p>The above method would create <i>foo.txt</i> file and would write given content in that file and finally it would close that file. If you would open this file, it would have following content</p>
+<pre class="prettyprint">
+Python is a great language.
+Yeah its great!!
+</pre>
+<h2>The <i>read()</i> Method:</h2>
+<p>The <i>read()</i> method read a string from an open file. It is important to note that Python strings can have binary data and not just text.</p>
+<h3>Syntax:</h3>
+<pre class="prettyprint">
+fileObject.read([count]);
+</pre>
+<p>Here passed parameter is the number of bytes to be read from the opend file. This method starts reading from the beginning of the file and if <i>count</i> is missing then it tries to read as much as possible, may be until the end of file.</p>
+<h3>Example:</h3>
+<p> Let's take a file <i>foo.txt</i> which we have created above.</p>
+<pre class="prettyprint">
+#!/usr/bin/python
+
+# Open a file
+fo = open("foo.txt", "r+")
+str = fo.read(10);
+print "Read String is : ", str
+# Close opend file
+fo.close()
+</pre>
+<p>This would produce following result:</p>
+<pre class="prettyprint">
+Read String is :  Python is
+</pre>
+<h2>File Positions:</h2>
+<p>The <i>tell()</i> method tells you the current position within the file in other words, the next read or write will occur at that many bytes from the beginning of the file:</p>
+<p>The <i>seek(offset[, from])</i> method changes the current file position. The <i>offset</i> argument indicates the number of bytes to be moved. The <i>from</i>
+argument specifies the reference position from where the bytes are to be moved.</p>
+<p>If <i>from</i> is set to 0, it means use the beginning of the file as the reference position and 1 means use the current position as the reference position and if it is set to 2 then the end of the file would be taken as the reference position.</p>
+<h3>Example:</h3>
+<p> Let's take a file <i>foo.txt</i> which we have created above.</p>
+<pre class="prettyprint">
+#!/usr/bin/python
+
+# Open a file
+fo = open("foo.txt", "r+")
+str = fo.read(10);
+print "Read String is : ", str
+
+# Check current position
+position = fo.tell();
+print "Current file position : ", position
+
+# Reposition pointer at the beginning once again
+position = fo.seek(0, 0);
+str = fo.read(10);
+print "Again read String is : ", str
+# Close opend file
+fo.close()
+</pre>
+<p>This would produce following result:</p>
+<pre class="prettyprint">
+Read String is :  Python is
+Current file position :  10
+Again read String is :  Python is
+</pre>
+<h2>Renaming and Deleting Files:</h2>
+<p>Python <b>os</b> module provides methods that help you perform file-processing operations, such as renaming and deleting files.</p>
+<p>To use this module you need to import it first and then you can all any related functions.</p>
+<h2>The rename() Method:</h2>
+<p>The <i>rename()</i> method takes two arguments, the current filename and the new filename.</p>
+<h3>Syntax:</h3>
+<pre class="prettyprint">
+os.rename(current_file_name, new_file_name)
+</pre>
+<h3>Example:</h3>
+<p>Following is the example to rename an existing file <i>test1.txt</i>:</p>
+<pre class="prettyprint">
+#!/usr/bin/python
+import os
+
+# Rename a file from test1.txt to test2.txt
+os.rename( "test1.txt", "test2.txt" )
+
+</pre>
+<h2>The <i>remove()</i> Method:</h2>
+<p>You can use the <i>remove()</i> method to delete files by supplying the name of the file to be deleted as the argument.</p>
+<h3>Syntax:</h3>
+<pre class="prettyprint">
+os.remove(file_name)
+</pre>
+<h3>Example:</h3>
+<p>Following is the example to delete an existing file <i>test2.txt</i>:</p>
+<pre class="prettyprint">
+#!/usr/bin/python
+import os
+
+# Delete file test2.txt
+os.remove("text2.txt")
+</pre>
+<h2>Directories in Python:</h2>
+<p>All files are contained within various directories, and Python has no problem handling these too. The <b>os</b> module has several methods that help you create, remove, and change directories.</p>
+<h2>The <i>mkdir()</i> Method:</h2>
+<p>You can use the <i>mkdir()</i> method of the os module to create directories in the current directory. You need to supply an argument to this method, which contains the name of the directory to be created.</p>
+<h3>Syntax:</h3>
+<pre class="prettyprint">
+os.mkdir("newdir")
+</pre>
+<h3>Example:</h3>
+<p>Following is the example to create a directory <i>test</i> in the current directory:</p>
+<pre class="prettyprint">
+#!/usr/bin/python
+import os
+
+# Create a directory "test"
+os.mkdir("test")
+</pre>
+<h2>The <i>chdir()</i> Method:</h2>
+<p>You can use the <i>chdir()</i> method to change the current directory. The chdir() method takes an argument, which is the name of the
+directory that you want to make the current directory.</p>
+<h3>Syntax:</h3>
+<pre class="prettyprint">
+os.chdir("newdir")
+</pre>
+<h3>Example:</h3>
+<p>Following is the example to go into "/home/newdir" directory:</p>
+<pre class="prettyprint">
+#!/usr/bin/python
+import os
+
+# Changing a directory to "/home/newdir"
+os.chdir("/home/newdir")
+</pre>
+<h2>The <i>getcwd()</i> Method:</h2>
+<p>The <i>getcwd()</i> method displays the current working directory.</p>
+<h3>Syntax:</h3>
+<pre class="prettyprint">
+os.getcwd()
+</pre>
+<h3>Example:</h3>
+<p>Following is the example to give current directory:</p>
+<pre class="prettyprint">
+#!/usr/bin/python
+import os
+
+# This would give location of the current directory
+os.getcwd()
+</pre>
+<h2>The <i>rmdir()</i> Method:</h2>
+<p>The <i>rmdir()</i> method deletes the directory, which is passed as an argument in the method.</p>
+<p>Before removing a directory, all the contents in it should be removed.</p>
+<h3>Syntax:</h3>
+<pre class="prettyprint">
+os.rmdir('dirname')
+</pre>
+<h3>Example:</h3>
+<p>Following is the example to remove "/tmp/test" directory. It is required to give fully qualified name of the directory otherwise it would search for that directory in the current directory.</p>
+<pre class="prettyprint">
+#!/usr/bin/python
+import os
+
+# This would  remove "/tmp/test"  directory.
+os.rmdir( "/tmp/test"  )
+</pre>
+<h2>File &amp; Directory Related Methods:</h2>
+<p>There are three important sources which provide a wide range of utility methods to handle and manipulate files &amp; directories on Windows and Unix operating systems. They are as follows:</p>
+<ul class="list">
+<li><p><a href="file_methods.htm">File Object Methods</a>: The <i>file</i> object provides functions to manipulate files.</p></li>
+<li><p><a href="os_file_methods.htm">OS Object Methods.</a>: This provides methods to process files as well as directories. </p></li>
+<!--
+<li><p><a href="/python/os_path_methods.htm">OS.Path Object Methods.</a>: This provides important functions to get information about a file or directory. </p></li>
+-->
+</ul>
+<hr />
+<div class="pre-btn">
+<a href="python_modules.htm">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/python_files_io.pdf" alt="Python Files I/O" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="python_exceptions.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.htm" target="_top">ASP.NET </a> |
+<a href="../jquery/index.htm" target="_top">jQuery </a> |
+<a href="../ajax/index.htm" target="_top">AJAX </a> |
+<a href="../ant/index.htm" target="_top">ANT</a> |
+<a href="../jsp/index.htm" target="_top">JSP </a> |
+<a href="../servlets/index.htm" target="_top">Servlets </a> |
+<a href="../log4j/index.htm" target="_top">log4j </a> |
+<a href="../ibatis/index.htm" target="_top">iBATIS </a> |
+<a href="../hibernate/index.htm" target="_top">Hibernate </a> |
+<a href="../jdbc/index.htm" target="_top">JDBC </a> |
+<a href="../struts_2/index.htm" target="_top">Struts </a> |
+<a href="../html5/index.htm" target="_top">HTML5 </a> |
+<a href="../sql/index.htm" target="_top">SQL </a> |
+<a href="../mysql/index.htm" target="_top">MySQL </a> |
+<a href="../cplusplus/index.htm" target="_top">C++ </a> |
+<a href="../unix/index.htm" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/python/python_files_io.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Apr 2013 19:43:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,585 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/dmidecode.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>dmidecode - Unix, Linux Command</title>
+<meta name="Description" Content="dmidecode - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>dmidecode - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+dmidecode - <font size="-1">DMI</font> table decoder
+<h1 class="manpages">SYNOPSIS</h1>
+<b>dmidecode</b> [<b>OPTIONS</b>] <p>
+<h1 class="manpages">DESCRIPTION</h1>
+<b>dmidecode</b> is a tool for dumping a computer&#146;s <font size="-1">DMI</font> (some say <font size="-1">SMBIOS</font>) table
+contents in a human-readable format. This table contains a description of the
+system&#146;s hardware components, as well as other useful pieces of information
+such as serial numbers and <font size="-1">BIOS</font> revision. Thanks to this table, you can
+retrieve this information without having to probe for the actual hardware.
+While this is a good point in terms of report speed and safeness, this also
+makes the presented information possibly unreliable.
+<p>
+The <font size="-1">DMI</font> table doesn&#146;t only describe what the system is currently made
+of, it also can report the possible evolutions (such as the fastest supported
+<font size="-1">CPU</font> or the maximal amount of memory supported).
+<p>
+<font size="-1">SMBIOS</font> stands for System Management <font size="-1">BIOS</font>, while <font size="-1">DMI</font>
+stands for Desktop Management Interface. Both standards are tightly related
+and developed by the <font size="-1">DMTF</font> (Desktop Management Task Force).
+<p>
+As you run it,
+<b>dmidecode</b> will try to locate the <font size="-1">DMI</font> table. If it succeeds, it will then parse
+this table and display a list of records like this one:
+<p>
+Handle 0x0002, DMI type 2, 8 bytes.
+Base Board Information
+<br />
+        Manufacturer: Intel
+<br />
+        Product Name: C440GX+
+<br />
+        Version: 727281-001
+<br />
+        Serial Number: INCY92700942
+<p>
+Each record has:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=1%>
+o
+</td><td>
+A handle. This is a unique identifier, which allows records to
+reference each other. For example, processor records usually reference
+cache memory records using their handles.
+</td></tr>
+<tr valign="top"><td width=1%>
+o
+</td><td>
+A type. The <font size="-1">SMBIOS</font> specification defines different types of elements
+a computer can be made of. In this example, the type is 2, which
+means that the record contains "Base Board Information".
+</td></tr>
+<tr valign="top"><td width=1%>
+o
+</td><td>
+A size. Each record has a 4-byte header (2 for the handle, 1 for the type,
+1 for the size), the rest is used by the record data. This value doesn&#146;t
+take text strings into account (these are placed at the end of the record),
+so the actual length of the record may be (and is often) greater than the
+displayed value.
+</td></tr>
+<tr valign="top"><td width=1%>
+o
+</td><td>
+Decoded values. The information presented of course depends on the type
+of record. Here, we learn about the board&#146;s manufacturer, model, version
+and serial number.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>-d</b>, <b>--dev-mem FILE</b> </td></tr><tr valign="top"><td width=1%>&nbsp;</td><td>
+Read memory from device <b>FILE</b> (default: <b>/dev/mem</b>)
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-q</b>, <b>--quiet</b> </td></tr><tr valign="top"><td width=1%>&nbsp;</td><td>
+Be less verbose. Unknown, inactive and <font size="-1">OEM</font>-specific entries are not
+displayed. Meta-data and handle references are hidden.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-s</b>, <b>--string KEYWORD</b> </td></tr><tr valign="top"><td width=1%>&nbsp;</td><td>
+Only display the value of the <font size="-1">DMI</font> string identified by <b>KEYWORD</b>.
+<b>KEYWORD</b> must be a keyword from the following list: <b>bios-vendor</b>,
+<b>bios-version</b>, <b>bios-release-date</b>,
+<b>system-manufacturer</b>, <b>system-product-name</b>,
+<b>system-version</b>, <b>system-serial-number</b>,
+<b>system-uuid</b>,
+<b>baseboard-manufacturer</b>, <b>baseboard-product-name</b>,
+<b>baseboard-version</b>, <b>baseboard-serial-number</b>,
+<b>baseboard-asset-tag</b>, <b>chassis-manufacturer</b>,
+<b>chassis-type</b>,
+<b>chassis-version</b>, <b>chassis-serial-number</b>,
+<b>chassis-asset-tag</b>, <b>processor-family</b>,
+<b>processor-manufacturer</b>,
+<b>processor-version</b>, <b>processor-frequency</b>.
+Each keyword corresponds to a given <font size="-1">DMI</font> type and a given offset
+within this entry type.
+Not all strings may be meaningful or even defined on all systems. Some
+keywords may return more than one result on some systems (e.g.
+<b>processor-version</b> on a multi-processor system).
+If <b>KEYWORD</b> is not provided or not valid, a list of all valid
+keywords is printed and
+<b>dmidecode</b> exits with an error.
+This option cannot be used more than once.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-t</b>, <b>--type TYPE</b> </td></tr><tr valign="top"><td width=1%>&nbsp;</td><td>
+Only display the entries of type <b>TYPE</b>. <b>TYPE</b> can be either a
+<font size="-1">DMI</font> type number, or a comma-separated list of type numbers, or a
+keyword from the following list: <b>bios</b>, <b>system</b>,
+<b>baseboard</b>, <b>chassis</b>, <b>processor</b>, <b>memory</b>,
+<b>cache</b>, <b>connector</b>, <b>slot</b>. Refer to the DMI TYPES section
+below for details.
+If this option is used more than once, the set of displayed entries will be
+the union of all the given types.
+If <b>TYPE</b> is not provided or not valid, a list of all valid keywords
+is printed and
+<b>dmidecode</b> exits with an error.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-u</b>, <b>--dump</b> </td></tr><tr valign="top"><td width=1%>&nbsp;</td><td>
+Do not decode the entries, dump their contents as hexadecimal instead.
+Note that this is still a text output, no binary data will be thrown upon
+you. The strings attached to each entry are displayed as both
+hexadecimal and <font size="-1">ASCII</font>. This option is mainly useful for debugging.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>  </b>  <b>--dump-bin FILE</b> </td></tr><tr valign="top"><td width=1%>&nbsp;</td><td>
+Do not decode the entries, instead dump the DMI data to a file in binary
+form. The generated file is suitable to pass to <b>--from-dump</b>
+later.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>  </b>  <b>--from-dump FILE</b> </td></tr><tr valign="top"><td width=1%>&nbsp;</td><td>
+Read the DMI data from a binary file previously generated using
+<b>--dump-bin</b>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-h</b>, <b>--help</b> </td></tr><tr valign="top"><td width=1%>&nbsp;</td><td>
+Display usage information and exit
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-V</b>, <b>--version</b> </td></tr><tr valign="top"><td width=1%>&nbsp;</td><td>
+Display the version and exit
+</td></tr>
+<!-- P ends table -->
+</table>
+Options --string, --type and --dump-bin
+determine the output format and are mutually exclusive.
+<p>
+<h1 class="manpages">DMI TYPES</h1>
+The <font size="-1">SMBIOS</font> specification defines the following <font size="-1">DMI</font> types:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td align="right">Type</td><td>Information</td></tr>
+<tr valign="top">
+</tr>
+<tr valign="top">
+<td align="right">1</td><td>System</td></tr>
+<tr valign="top">
+<td align="right">2</td><td>Base Board</td></tr>
+<tr valign="top">
+<td align="right">3</td><td>Chassis</td></tr>
+<tr valign="top">
+<td align="right">4</td><td>Processor</td></tr>
+<tr valign="top">
+<td align="right">5</td><td>Memory Controller</td></tr>
+<tr valign="top">
+<td align="right">6</td><td>Memory Module</td></tr>
+<tr valign="top">
+<td align="right">7</td><td>Cache</td></tr>
+<tr valign="top">
+<td align="right">8</td><td>Port Connector</td></tr>
+<tr valign="top">
+<td align="right">9</td><td>System Slots</td></tr>
+<tr valign="top">
+<td align="right">10</td><td>On Board Devices</td></tr>
+<tr valign="top">
+<td align="right">11</td><td>OEM Strings</td></tr>
+<tr valign="top">
+<td align="right">12</td><td>System Configuration Options</td></tr>
+<tr valign="top">
+<td align="right">13</td><td>BIOS Language</td></tr>
+<tr valign="top">
+<td align="right">14</td><td>Group Associations</td></tr>
+<tr valign="top">
+<td align="right">15</td><td>System Event Log</td></tr>
+<tr valign="top">
+<td align="right">16</td><td>Physical Memory Array</td></tr>
+<tr valign="top">
+<td align="right">17</td><td>Memory Device</td></tr>
+<tr valign="top">
+<td align="right">18</td><td>32-bit Memory Error</td></tr>
+<tr valign="top">
+<td align="right">19</td><td>Memory Array Mapped Address</td></tr>
+<tr valign="top">
+<td align="right">20</td><td>Memory Device Mapped Address</td></tr>
+<tr valign="top">
+<td align="right">21</td><td>Built-in Pointing Device</td></tr>
+<tr valign="top">
+<td align="right">22</td><td>Portable Battery</td></tr>
+<tr valign="top">
+<td align="right">23</td><td>System Reset</td></tr>
+<tr valign="top">
+<td align="right">24</td><td>Hardware Security</td></tr>
+<tr valign="top">
+<td align="right">25</td><td>System Power Controls</td></tr>
+<tr valign="top">
+<td align="right">26</td><td>Voltage Probe</td></tr>
+<tr valign="top">
+<td align="right">27</td><td>Cooling Device</td></tr>
+<tr valign="top">
+<td align="right">28</td><td>Temperature Probe</td></tr>
+<tr valign="top">
+<td align="right">29</td><td>Electrical Current Probe</td></tr>
+<tr valign="top">
+<td align="right">30</td><td>Out-of-band Remote Access</td></tr>
+<tr valign="top">
+<td align="right">31</td><td>Boot Integrity Services</td></tr>
+<tr valign="top">
+<td align="right">32</td><td>System Boot</td></tr>
+<tr valign="top">
+<td align="right">33</td><td>64-bit Memory Error</td></tr>
+<tr valign="top">
+<td align="right">34</td><td>Management Device</td></tr>
+<tr valign="top">
+<td align="right">35</td><td>Management Device Component</td></tr>
+<tr valign="top">
+<td align="right">36</td><td>Management Device Threshold Data</td></tr>
+<tr valign="top">
+<td align="right">37</td><td>Memory Channel</td></tr>
+<tr valign="top">
+<td align="right">38</td><td>IPMI Device</td></tr>
+<tr valign="top">
+<td align="right">39</td><td>Power Supply</td></tr>
+<tr valign="top">
+<td align="right">40</td><td>Additional Information</td></tr>
+<tr valign="top">
+<td align="right">41</td><td>Onboard Device</td></tr>
+</table>
+<p>
+Additionally, type 126 is used for disabled entries and type 127 is an
+end-of-table marker. Types 128 to 255 are for <font size="-1">OEM</font>-specific data.
+<b>dmidecode</b> will display these entries by default, but it can only decode them
+when the vendors have contributed documentation or code for them.
+<p>
+Keywords can be used instead of type numbers with <b>--type</b>.
+Each keyword is equivalent to a list of type numbers:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td>Keyword</td><td>Types</td></tr>
+<tr valign="top">
+</tr>
+<tr valign="top">
+<td>system</td><td>1, 12, 15, 23, 32</td></tr>
+<tr valign="top">
+<td>baseboard</td><td>2, 10, 41</td></tr>
+<tr valign="top">
+<td>chassis</td><td>3</td></tr>
+<tr valign="top">
+<td>processor</td><td>4</td></tr>
+<tr valign="top">
+<td>memory</td><td>5, 6, 16, 17</td></tr>
+<tr valign="top">
+<td>cache</td><td>7</td></tr>
+<tr valign="top">
+<td>connector</td><td>8</td></tr>
+<tr valign="top">
+<td>slot</td><td>9</td></tr>
+</table>
+<p>
+Keywords are matched case-insensitively. The following command lines are equivalent:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=1%>
+o
+</td><td>
+dmidecode --type 0 --type 13
+</td></tr>
+<tr valign="top"><td width=1%>
+o
+</td><td>
+dmidecode --type 0,13
+</td></tr>
+<tr valign="top"><td width=1%>
+o
+</td><td>
+dmidecode --type bios
+</td></tr>
+<tr valign="top"><td width=1%>
+o
+</td><td>
+dmidecode --type BIOS
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">BINARY DUMP FILE FORMAT</h1>
+The binary dump files generated by --dump-bin and read using --from-dump
+are formatted as follows:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=1%>
+o
+</td><td>
+The SMBIOS or DMI entry point is located at offset 0x00.
+It is crafted to hard-code the table address at offset 0x20.
+</td></tr>
+<tr valign="top"><td width=1%>
+o
+</td><td>
+The DMI table is located at offset 0x20.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">FILES</h1>
+<i>/dev/mem</i> <h1 class="manpages">BUGS</h1>
+More often than not, information contained in the <font size="-1">DMI</font> tables is inaccurate,
+incomplete or simply wrong.
+<h1 class="manpages">AUTHORS</h1>
+Alan Cox, Jean Delvare
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="biosdecode.html">biosdecode (8)</a></p></li>
+<li><p><a href="ownership.htm">ownership (8)</a></p></li>
+<li><p><a href="vpddecode.htm">vpddecode (8)</a></p></li>
+</ul>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionb45a.html?tutorial=unix_commands&amp;file=dmidecode.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/dmidecode.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

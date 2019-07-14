@@ -1,0 +1,1493 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/mail.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:56 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>mail - Unix, Linux Command</title>
+<meta name="Description" Content="mail - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>mail - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+<b> mail</b>
+- send and receive mail
+<h1 class="manpages">SYNOPSIS</h1>
+<b> mail</b>
+[-<b>iInv</b>]
+[-<b>s</b><i> subject</i>]
+[-<b>c</b><i> cc-addr</i>]
+[-<b>b</b><i> bcc-addr</i>]
+<i> to-addr...</i>
+[-<b>-</b><i> sendmail-options...</i>]
+<b> mail</b>
+[-<b>iInNv</b>]
+-<b>f</b> 
+[<i>name</i>]
+<b> mail</b>
+[-<b>iInNv</b>]
+[-<b>u</b><i> user</i>]
+<h1 class="manpages">INTRODUCTION</h1>
+<b> Mail</b>
+is an intelligent mail processing system, which has
+a command syntax reminiscent of
+<b>ed</b>(1)
+with lines replaced by messages.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>-<b>v</b> 
+</td><td>
+Verbose mode.
+The details of
+delivery are displayed on the user&#146;s terminal.
+</td></tr>
+<tr valign="top"><td>-<b>i</b> 
+</td><td>
+Ignore tty interrupt signals.
+This is
+particularly useful when using
+<b> mail</b>
+on noisy phone lines.
+</td></tr>
+<tr valign="top"><td>-<b>I</b> 
+</td><td>
+Forces mail to run in interactive mode even when
+input isn&#146;t a terminal.
+In particular, the
+&#39;<b>~</b>&#39;
+special
+character when sending mail is only active in interactive mode.
+</td></tr>
+<tr valign="top"><td>-<b>n</b> 
+</td><td>
+Inhibits reading
+<tt> /etc/mail.rc</tt>
+upon startup.
+</td></tr>
+<tr valign="top"><td>-<b>N</b> 
+</td><td>
+Inhibits the initial display of message headers
+when reading mail or editing a mail folder.
+</td></tr>
+<tr valign="top"><td>-<b>s</b> 
+</td><td>
+Specify subject on command line
+(only the first argument after the
+-<b>s</b> 
+flag is used as a subject; be careful to quote subjects
+containing spaces.)
+</td></tr>
+<tr valign="top"><td>-<b>c</b> 
+</td><td>
+Send carbon copies to
+<i> list</i>
+of users.
+</td></tr>
+<tr valign="top"><td>-<b>b</b> 
+</td><td>
+Send blind carbon copies to
+<i> list</i>.
+List should be a comma-separated list of names.
+</td></tr>
+<tr valign="top"><td>-<b>f</b> 
+</td><td>
+Read in the contents of your
+<i> mbox</i>
+(or the specified file)
+for processing; when you
+<i> quit</i>,
+<b> mail</b>
+writes undeleted messages back to this file.
+</td></tr>
+<tr valign="top"><td>-<b>u</b> 
+</td><td>
+Is equivalent to:
+<p>
+<p>&nbsp; &nbsp; <tt> mail -f /var/spool/mail/user</tt><p>
+
+</td></tr>
+</table>
+<h2><i>Sending mail</i></h2>
+To send a message to one or more people,
+<b> mail</b>
+can be invoked with arguments which are the names of people to
+whom the mail will be sent.
+You are then expected to type in
+your message, followed
+by an
+&#39;control-D&#39;
+at the beginning of a line.
+The section below
+<i> Replying to or originating mail</i>,
+describes some features of
+<b> mail</b>
+available to help you compose your letter.
+<p>
+<h2><i>Reading mail</i></h2>
+In normal usage
+<b> mail</b>
+is given no arguments and checks your mail out of the
+post office, then
+prints out a one line header of each message found.
+The current message is initially the first message (numbered 1)
+and can be printed using the
+<b> print</b>
+command (which can be abbreviated
+&#145;<tt><b>p</b></tt>&#146;).
+You can move among the messages much as you move between lines in
+<b>ed</b>(1),
+with the commands
+&#145;<tt><b>+</b></tt>&#146;
+and
+&#145;<tt><b>-</b></tt>&#146;
+moving backwards and forwards, and
+simple numbers.
+<p>
+<h2><i>Disposing of mail.</i></h2>
+After examining a message you can
+<b> delete</b>
+&#145;<tt><b>d</b></tt>&#146;)
+the message or
+<b> reply</b>
+&#145;<tt><b>r</b></tt>&#146;)
+to it.
+Deletion causes the
+<b> mail</b>
+program to forget about the message.
+This is not irreversible; the message can be
+<b> undeleted</b>
+&#145;<tt><b>u</b></tt>&#146;)
+by giving its number, or the
+<b> mail</b>
+session can be aborted by giving the
+<b> exit</b>
+&#145;<tt><b>x</b></tt>&#146;)
+command.
+Deleted messages will, however, usually disappear never to be seen again.
+<p>
+<h2><i>Specifying messages</i></h2>
+Commands such as
+<b> print</b>
+and
+<b> delete</b>
+can be given a list of message numbers as arguments to apply
+to a number of messages at once.
+Thus
+"delete 1 2"
+deletes messages 1 and 2, while
+"delete 1-5"
+deletes messages 1 through 5.
+The special name
+&#145;<tt>*</tt>&#146;
+addresses all messages, and
+&#145;<tt>$</tt>&#146;
+addresses
+the last message; thus the command
+<b> top</b>
+which prints the first few lines of a message could be used in
+"top *"
+to print the first few lines of all messages.
+<p>
+<h2><i>Replying to or originating mail.</i></h2>
+You can use the
+<b> reply</b>
+command to
+set up a response to a message, sending it back to the
+person who it was from.
+Text you then type in, up to an end-of-file,
+defines the contents of the message.
+While you are composing a message,
+<b> mail</b>
+treats lines beginning with the character
+&#145;<tt><b>~</b></tt>&#146;
+specially.
+For instance, typing
+&#145;<tt><b>~m</b></tt>&#146;
+(alone on a line) will place a copy
+of the current message into the response right shifting it by a tabstop
+(see
+<i> indentprefix</i>
+variable, below).
+Other escapes will set up subject fields, add and delete recipients
+to the message and allow you to escape to an editor to revise the
+message or to a shell to run some commands.
+(These options
+are given in the summary below.)
+<p>
+<h2><i>Ending a mail processing session.</i></h2>
+You can end a
+<b> mail</b>
+session with the
+<b> quit</b>
+&#145;<tt><b>q</b></tt>&#146;)
+command.
+Messages which have been examined go to your
+<i> mbox</i>
+file unless they have been deleted in which case they are discarded.
+Unexamined messages go back to the post office.
+(See the
+-<b>f</b> 
+option above).
+<p>
+<h2><i>Personal and systemwide distribution lists.</i></h2>
+It is also possible to create a personal distribution lists so that,
+for instance, you can send mail to
+"cohorts"
+and have it go
+to a group of people.
+Such lists can be defined by placing a line like
+<p>
+<p>&nbsp; &nbsp; <tt> alias cohorts bill ozalp jkf mark kridle@ucbcory</tt><p>
+
+<p>
+in the file
+<tt> &#46;mailrc</tt>
+in your home directory.
+The current list of such aliases can be displayed with the
+<b> alias</b>
+command in
+<b> mail</b>.
+System wide distribution lists can be created by editing
+<tt> /etc/aliases</tt>,
+see
+<b>aliases</b>(5)
+and
+<b>sendmail</b>(8);
+these are kept in a different syntax.
+In mail you send, personal aliases will be expanded in mail sent
+to others so that they will be able to
+<b> reply</b>
+to the recipients.
+System wide
+<b> aliases</b>
+are not expanded when the mail is sent,
+but any reply returned to the machine will have the system wide
+alias expanded as all mail goes through
+<b>sendmail</b>.
+<p>
+<h2><i>Network mail (ARPA, UUCP, Berknet)</i></h2>
+See
+<b>mailaddr</b>(7)
+for a description of network addresses.
+<p>
+<b> Mail</b>
+has a number of options which can be set in the
+<tt> .mailrc</tt>
+file to alter its behavior; thus
+"set askcc"
+enables the
+<i> askcc</i>
+feature.
+(These options are summarized below.)
+<h1 class="manpages">SUMMARY</h1>
+(Adapted from the &#145;Mail Reference Manual&#146;)
+<p>
+Each command is typed on a line by itself, and may take arguments
+following the command word.
+The command need not be typed in its
+entirety - the first command which matches the typed prefix is used.
+For commands which take message lists as arguments, if no message
+list is given, then the next message forward which satisfies the
+command&#146;s requirements is used.
+If there are no messages forward of
+the current message, the search proceeds backwards, and if there are no
+good messages at all,
+<b> mail</b>
+types
+"No applicable messages"
+and
+aborts the command.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td><b> -</b>
+</td><td>
+Print out the preceding message.
+If given a numeric
+argument
+<i> n</i>,
+goes to the
+<i> n &#146;th</i>
+previous message and prints it.
+</td></tr>
+<tr valign="top"><td><b> ?</b>
+</td><td>
+Prints a brief summary of commands.
+</td></tr>
+<tr valign="top"><td><b> !</b>
+</td><td>
+Executes the shell
+(see
+<b>sh</b>(1)
+and
+<b>csh</b>(1))
+command which follows.
+</td></tr>
+<tr valign="top"><td><b> Print</b>
+</td><td>
+(<b>P</b>)
+Like
+<b> print</b>
+but also prints out ignored header fields.
+See also
+<b> print</b>,
+<b> ignore</b>
+and
+<b> retain</b>.
+</td></tr>
+<tr valign="top"><td><b> Reply</b>
+</td><td>
+(<b>R</b>)
+Reply to originator.
+Does not reply to other
+recipients of the original message.
+</td></tr>
+<tr valign="top"><td><b> Type</b>
+</td><td>
+(<b>T</b>)
+Identical to the
+<b> Print</b>
+command.
+</td></tr>
+<tr valign="top"><td><b> alias</b>
+</td><td>
+(<b>a</b>)
+With no arguments, prints out all currently-defined aliases.
+With one
+argument, prints out that alias.
+With more than one argument, creates
+a new alias or changes an old one.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> alternates</b>
+</td></tr><tr><td>&nbsp;</td><td>
+(<b>alt</b>)
+The
+<b> alternates</b>
+command is useful if you have accounts on several machines.
+It can be used to inform
+<b> mail</b>
+that the listed addresses are really you.
+When you
+<b> reply</b>
+to messages,
+<b> mail</b>
+will not send a copy of the message to any of the addresses
+listed on the
+<b> alternates</b>
+list.
+If the
+<b> alternates</b>
+command is given with no argument, the current set of alternate
+names is displayed.
+</td></tr>
+<tr valign="top"><td><b> chdir</b>
+</td><td>
+(<b>c</b>)
+Changes the user&#146;s working directory to that specified, if given.
+If
+no directory is given, then changes to the user&#146;s login directory.
+</td></tr>
+<tr valign="top"><td><b> copy</b>
+</td><td>
+(<b>co</b>)
+The
+<b> copy</b>
+command does the same thing that
+<b> save</b>
+does, except that it does not mark the messages it
+is used on for deletion when you quit.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> delete</b>
+</td></tr><tr><td>&nbsp;</td><td>
+(<b>d</b>)
+Takes a list of messages as argument and marks them all as deleted.
+Deleted messages will not be saved in
+<i> mbox</i>,
+nor will they be available for most other commands.
+</td></tr>
+<tr valign="top"><td><b> dp</b>
+</td><td>
+(also
+<b> dt</b>)
+Deletes the current message and prints the next message.
+If there is no next message,
+<b> mail</b>
+says
+"at EOF".
+</td></tr>
+<tr valign="top"><td><b> edit</b>
+</td><td>
+(<b>e</b>)
+Takes a list of messages and points the text editor at each one in
+turn.
+On return from the editor, the message is read back in.
+</td></tr>
+<tr valign="top"><td><b> exit</b>
+</td><td>
+(<b> ex</b>
+or
+<b> x</b>)
+Effects an immediate return to the Shell without
+modifying the user&#146;s system mailbox, his
+<i> mbox</i>
+file, or his edit file in
+-<b>f</b> .
+</td></tr>
+<tr valign="top"><td><b> file</b>
+</td><td>
+(<b>fi</b>)
+The same as
+<b> folder</b>.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> folders</b>
+</td></tr><tr><td>&nbsp;</td><td>
+List the names of the folders in your folder directory.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> folder</b>
+</td></tr><tr><td>&nbsp;</td><td>
+(<b>fo</b>)
+The
+<b> folder</b>
+command switches to a new mail file or folder.
+With no
+arguments, it tells you which file you are currently reading.
+If you give it an argument, it will write out changes (such
+as deletions) you have made in the current file and read in
+the new file.
+Some special conventions are recognized for
+the name.
+# means the previous file, % means your system
+mailbox, %user means user&#146;s system mailbox, & means
+your
+<i> mbox</i>
+file, and
++folder means a file in your folder
+directory.
+</td></tr>
+<tr valign="top"><td><b> from</b>
+</td><td>
+(<b>f</b>)
+Takes a list of messages and prints their message headers.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> headers</b>
+</td></tr><tr><td>&nbsp;</td><td>
+(<b>h</b>)
+Lists the current range of headers, which is an 18-message group.
+If
+a
+&#145;<tt>+</tt>&#146;
+argument is given, then the next 18-message group is printed, and if
+a
+&#145;<tt>-</tt>&#146;
+argument is given, the previous 18-message group is printed.
+</td></tr>
+<tr valign="top"><td><b> help</b>
+</td><td>
+A synonym for
+<b> ?</b>
+</td></tr>
+<tr valign="top"><td><b> hold</b>
+</td><td>
+(<b> ho</b>,
+also
+<b> preserve</b>)
+Takes a message list and marks each
+message therein to be saved in the
+user&#146;s system mailbox instead of in
+<i> mbox</i>.
+Does not override the
+<b> delete</b>
+command.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> ignore</b>
+</td></tr><tr><td>&nbsp;</td><td>
+Add the list of header fields named to the
+<i> ignored list</i>.
+Header fields in the ignore list are not printed
+on your terminal when you print a message.
+This
+command is very handy for suppression of certain machine-generated
+header fields.
+The
+<b> Type</b>
+and
+<b> Print</b>
+commands can be used to print a message in its entirety, including
+ignored fields.
+If
+<b> ignore</b>
+is executed with no arguments, it lists the current set of
+ignored fields.
+</td></tr>
+<tr valign="top"><td><b> mail</b>
+</td><td>
+(<b>m</b>)
+Takes as argument login names and distribution group names and sends
+mail to those people.
+</td></tr>
+<tr valign="top"><td><b> mbox</b>
+</td><td>
+Indicate that a list of messages be sent to
+<b> mbox</b>
+in your home directory when you quit.
+This is the default
+action for messages if you do
+<i> not</i>
+have the
+<b> hold</b>
+option set.
+</td></tr>
+<tr valign="top"><td><b> next</b>
+</td><td>
+(<b>n</b>)
+like
+<b> +</b>
+or
+<i> CR</i>)
+Goes to the next message in sequence and types it.
+With an argument list, types the next matching message.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> preserve</b>
+</td></tr><tr><td>&nbsp;</td><td>
+(<b>pre</b>)
+A synonym for
+<b> hold</b>.
+</td></tr>
+<tr valign="top"><td><b> print</b>
+</td><td>
+(<b>p</b>)
+Takes a message list and types out each message on the user&#146;s terminal.
+</td></tr>
+<tr valign="top"><td><b> quit</b>
+</td><td>
+(<b>q</b>)
+Terminates the session, saving all undeleted, unsaved messages in
+the user&#146;s
+<i> mbox</i>
+file in his login directory, preserving all messages marked with
+<b> hold</b>
+or
+<b> preserve</b>
+or never referenced
+in his system mailbox, and removing all other messages from his system
+mailbox.
+If new mail has arrived during the session, the message
+"You have new mail"
+is given.
+If given while editing a
+mailbox file with the
+-<b>f</b> 
+flag, then the edit file is rewritten.
+A return to the Shell is
+effected, unless the rewrite of edit file fails, in which case the user
+can escape with the
+<b> exit</b>
+command.
+</td></tr>
+<tr valign="top"><td><b> reply</b>
+</td><td>
+(<b>r</b>)
+Takes a message list and sends mail to the sender and all
+recipients of the specified message.
+The default message must not be deleted.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> respond</b>
+</td></tr><tr><td>&nbsp;</td><td>
+A synonym for
+<b> reply</b>.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> retain</b>
+</td></tr><tr><td>&nbsp;</td><td>
+Add the list of header fields named to the
+<i> retained list</i>
+Only the header fields in the retain list
+are shown on your terminal when you print a message.
+All other header fields are suppressed.
+The
+<b> Type</b>
+and
+<b> Print</b>
+commands can be used to print a message in its entirety.
+If
+<b> retain</b>
+is executed with no arguments, it lists the current set of
+retained fields.
+</td></tr>
+<tr valign="top"><td><b> save</b>
+</td><td>
+(<b>s</b>)
+Takes a message list and a filename and appends each message in
+turn to the end of the file.
+The filename in quotes, followed by the line
+count and character count is echoed on the user&#146;s terminal.
+</td></tr>
+<tr valign="top"><td><b> set</b>
+</td><td>
+(<b>se</b>)
+With no arguments, prints all variable values.
+Otherwise, sets
+option.
+Arguments are of the form
+<i> option=value</i>
+(no space before or after =) or
+<i> option</i>.
+Quotation marks may be placed around any part of the assignment statement to
+quote blanks or tabs, i.e.
+"set indentprefix=&#34;-&gt;&#34;"
+</td></tr>
+<tr valign="top"><td colspan="2"><b> saveignore</b>
+</td></tr><tr><td>&nbsp;</td><td>
+<b> Saveignore</b>
+is to
+<b> save</b>
+what
+<b> ignore</b>
+is to
+<b> print</b>
+and
+<b> type</b>.
+Header fields thus marked are filtered out when
+saving a message by
+<b> save</b>
+or when automatically saving to
+<i> mbox</i>.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> saveretain</b>
+</td></tr><tr><td>&nbsp;</td><td>
+<b> Saveretain</b>
+is to
+<b> save</b>
+what
+<b> retain</b>
+is to
+<b> print</b>
+and
+<b> type</b>.
+Header fields thus marked are the only ones saved
+with a message when saving by
+<b> save</b>
+or when automatically saving to
+<i> mbox</i>.
+<b> Saveretain</b>
+overrides
+<b> saveignore</b>.
+</td></tr>
+<tr valign="top"><td><b> shell</b>
+</td><td>
+(<b>sh</b>)
+Invokes an interactive version of the shell.
+</td></tr>
+<tr valign="top"><td><b> size</b>
+</td><td>
+Takes a message list and prints out the size in characters of each
+message.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> source</b>
+</td></tr><tr><td>&nbsp;</td><td>
+The
+<b> source</b>
+command reads
+commands from a file.
+</td></tr>
+<tr valign="top"><td><b> top</b>
+</td><td>
+Takes a message list and prints the top few lines of each.
+The number of
+lines printed is controlled by the variable
+<b> toplines</b>
+and defaults to five.
+</td></tr>
+<tr valign="top"><td><b> type</b>
+</td><td>
+(<b>t</b>)
+A synonym for
+<b> print</b>.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> unalias</b>
+</td></tr><tr><td>&nbsp;</td><td>
+Takes a list of names defined by
+<b> alias</b>
+commands and discards the remembered groups of users.
+The group names
+no longer have any significance.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> undelete</b>
+</td></tr><tr><td>&nbsp;</td><td>
+(<b>u</b>)
+Takes a message list and marks each message as
+<b> not</b>
+being deleted.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> unread</b>
+</td></tr><tr><td>&nbsp;</td><td>
+(<b>U</b>)
+Takes a message list and marks each message as
+<b> not</b>
+having been read.
+</td></tr>
+<tr valign="top"><td><b> unset</b>
+</td><td>
+Takes a list of option names and discards their remembered values;
+the inverse of
+<b> set</b>.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> visual</b>
+</td></tr><tr><td>&nbsp;</td><td>
+(<b>v</b>)
+Takes a message list and invokes the display editor on each message.
+</td></tr>
+<tr valign="top"><td><b> write</b>
+</td><td>
+(<b>w</b>)
+Similar to
+<b> save</b>,
+except that
+<b> only</b>
+the message body
+(<i>without</i>)
+the header) is saved.
+Extremely useful for such tasks as sending and receiving source
+program text over the message system.
+</td></tr>
+<tr valign="top"><td><b> xit</b>
+</td><td>
+(<b>x</b>)
+A synonym for
+<b> exit</b>.
+</td></tr>
+<tr valign="top"><td><b> z</b>
+</td><td>
+<b> Mail</b>
+presents message headers in windowfuls as described under the
+<b> headers</b>
+command.
+You can move
+<b> mail &#146;s</b>
+attention forward to the next window with the
+<b> z</b>
+command.
+Also, you can move to the previous window by using
+<b> z-</b>.
+</td></tr>
+</table>
+<h2><i>Tilde/Escapes</i></h2>
+<p>
+Here is a summary of the tilde escapes,
+which are used when composing messages to perform
+special functions.
+Tilde escapes are only recognized at the beginning
+of lines.
+The name
+"<i>tilde escape</i>"
+is somewhat of a misnomer since the actual escape character can be set
+by the option
+<b> escape</b>.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2"><b> ~!</b><i> command</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Execute the indicated shell command, then return to the message.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> ~b</b><i> name ...</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Add the given names to the list of carbon copy recipients but do not make
+the names visible in the Cc: line ("blind" carbon copy).
+</td></tr>
+<tr valign="top"><td colspan="2"><b> ~c</b><i> name ...</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Add the given names to the list of carbon copy recipients.
+</td></tr>
+<tr valign="top"><td><b> ~d</b>
+</td><td>
+Read the file
+"<tt>dead.letter</tt>"
+from your home directory into the message.
+</td></tr>
+<tr valign="top"><td><b> ~e</b>
+</td><td>
+Invoke the text editor on the message collected so far.
+After the
+editing session is finished, you may continue appending text to the
+message.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> ~f</b><i> messages</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Read the named messages into the message being sent.
+If no messages are specified, read in the current message.
+Message headers currently being ignored (by the
+<b> ignore</b>
+or
+<b> retain</b>
+command) are not included.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> ~F</b><i> messages</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Identical to
+<b> ~f</b>,
+except all message headers are included.
+</td></tr>
+<tr valign="top"><td><b> ~h</b>
+</td><td>
+Edit the message header fields by typing each one in turn and allowing
+the user to append text to the end or modify the field by using the
+current terminal erase and kill characters.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> ~m</b><i> messages</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Read the named messages into the message being sent, indented by a
+tab or by the value of
+<i> indentprefix</i>.
+If no messages are specified,
+read the current message.
+Message headers currently being ignored (by the
+<b> ignore</b>
+or
+<b> retain</b>
+command) are not included.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> ~M</b><i> messages</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Identical to
+<b> ~m</b>,
+except all message headers are included.
+</td></tr>
+<tr valign="top"><td><b> ~p</b>
+</td><td>
+Print out the message collected so far, prefaced by the message header
+fields.
+</td></tr>
+<tr valign="top"><td><b> ~q</b>
+</td><td>
+Abort the message being sent, copying the message to
+"<tt>dead.letter</tt>"
+in your home directory if
+<b> save</b>
+is set.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> ~r</b><i> filename</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Read the named file into the message.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> ~s</b><i> string</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Cause the named string to become the current subject field.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> ~t</b><i> name ...</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Add the given names to the direct recipient list.
+</td></tr>
+<tr valign="top"><td><b> ~v</b>
+</td><td>
+Invoke an alternate editor (defined by the
+<i> VISUAL</i>
+option) on the
+message collected so far.
+Usually, the alternate editor will be a
+screen editor.
+After you quit the editor, you may resume appending
+text to the end of your message.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> ~w</b><i> filename</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Write the message onto the named file.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> ~|</b><i> command</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Pipe the message through the command as a filter.
+If the command gives
+no output or terminates abnormally, retain the original text of the
+message.
+The command
+<b>fmt</b>(1)
+is often used as
+<b> command</b>
+to rejustify the message.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> ~:</b><i> mail-command</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Execute the given mail command.
+Not all commands, however, are allowed.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> ~~</b><i> string</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Insert the string of text in the message prefaced by a single ~.
+If
+you have changed the escape character, then you should double
+that character in order to send it.
+</td></tr>
+</table>
+<h2><i>Mail Options</i></h2>
+Options are controlled via
+<b> set</b>
+and
+<b> unset</b>
+commands.
+Options may be either binary, in which case it is only
+significant to see whether they are set or not; or string, in which
+case the actual value is of interest.
+The binary options include the following:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2"><i> append</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Causes messages saved in
+<i> mbox</i>
+to be appended to the end rather than prepended.
+This should always be set (perhaps in
+<tt> /etc/mail.rc</tt>).
+</td></tr>
+<tr valign="top"><td colspan="2"><i> ask, asksub</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Causes
+<b> mail</b>
+to prompt you for the subject of each message you send.
+If
+you respond with simply a newline, no subject field will be sent.
+</td></tr>
+<tr valign="top"><td><i> askcc</i>
+</td><td>
+Causes you to be prompted for additional carbon copy recipients at the
+end of each message.
+Responding with a newline indicates your
+satisfaction with the current list.
+</td></tr>
+<tr valign="top"><td colspan="2"><i> askbcc</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Causes you to be prompted for additional blind carbon copy recipients at the
+end of each message.
+Responding with a newline indicates your
+satisfaction with the current list.
+</td></tr>
+<tr valign="top"><td colspan="2"><i> autoprint</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Causes the
+<b> delete</b>
+command to behave like
+<b> dp</b>
+- thus, after deleting a message, the next one will be typed
+automatically.
+</td></tr>
+<tr valign="top"><td><i> debug</i>
+</td><td>
+Setting the binary option
+<i> debug</i>
+is the same as specifying
+-<b>d</b> 
+on the command line and causes
+<b> mail</b>
+to output all sorts of information useful for debugging
+<b> mail</b>.
+</td></tr>
+<tr valign="top"><td><i> dot</i>
+</td><td>
+The binary option
+<i> dot</i>
+causes
+<b> mail</b>
+to interpret a period alone on a line as the terminator
+of a message you are sending.
+</td></tr>
+<tr valign="top"><td><i> hold</i>
+</td><td>
+This option is used to hold messages in the system mailbox
+by default.
+</td></tr>
+<tr valign="top"><td colspan="2"><i> ignore</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Causes interrupt signals from your terminal to be ignored and echoed as
+@&#146;s.
+</td></tr>
+<tr valign="top"><td colspan="2"><i> ignoreeof</i>
+</td></tr><tr><td>&nbsp;</td><td>
+An option related to
+<i> dot</i>
+is
+<i> ignoreeof</i>
+which makes
+<b> mail</b>
+refuse to accept a control-d as the end of a message.
+<i> Ignoreeof</i>
+also applies to
+<b> mail</b>
+command mode.
+</td></tr>
+<tr valign="top"><td><i> metoo</i>
+</td><td>
+Usually, when a group is expanded that contains the sender, the sender
+is removed from the expansion.
+Setting this option causes the sender
+to be included in the group.
+</td></tr>
+<tr valign="top"><td colspan="2"><i> noheader</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Setting the option
+<i> noheader</i>
+is the same as giving the
+-<b>N</b> 
+flag on the command line.
+</td></tr>
+<tr valign="top"><td colspan="2"><i> nosave</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Normally, when you abort a message with two
+<i> RUBOUT</i>
+(erase or delete)
+<b> mail</b>
+copies the partial letter to the file
+"<tt>dead.letter</tt>"
+in your home directory.
+Setting the binary option
+<i> nosave</i>
+prevents this.
+</td></tr>
+<tr valign="top"><td colspan="2"><i> Replyall</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Reverses the sense of
+<b> reply</b>
+and
+<b> Reply</b>
+commands.
+</td></tr>
+<tr valign="top"><td><i> quiet</i>
+</td><td>
+Suppresses the printing of the version when first invoked.
+</td></tr>
+<tr valign="top"><td colspan="2"><i> searchheaders</i>
+</td></tr><tr><td>&nbsp;</td><td>
+If this option is set, then a message-list specifier in the form &#145;&#145;/x:y&#146;&#146;
+will expand to all messages containing the substring &#145;&#145;y&#146;&#146; in the header
+field &#145;&#145;x&#146;&#146;.  The string search is case insensitive.
+</td></tr>
+<tr valign="top"><td colspan="2"><i> verbose</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Setting the option
+<i> verbose</i>
+is the same as using the
+-<b>v</b> 
+flag on the command line.
+When mail runs in verbose mode,
+the actual delivery of messages is displayed on the user&#146;s
+terminal.
+</td></tr>
+</table>
+<h2><i>Option String Values</i></h2>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2"><i> EDITOR</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Pathname of the text editor to use in the
+<b> edit</b>
+command and
+<b> ~e</b>
+escape.
+If not defined, then a default editor is used.
+</td></tr>
+<tr valign="top"><td colspan="2"><i> LISTER</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Pathname of the directory lister to use in the
+<b> folders</b>
+command.
+Default is
+<tt> /bin/ls</tt>.
+</td></tr>
+<tr valign="top"><td><i> PAGER</i>
+</td><td>
+Pathname of the program to use in the
+<b> more</b>
+command or when
+<b> crt</b>
+variable is set.
+The default paginator
+<b>more</b>(1)
+is used if this option is not defined.
+</td></tr>
+<tr valign="top"><td><i> SHELL</i>
+</td><td>
+Pathname of the shell to use in the
+<b> !</b>
+command and the
+<b> ~!</b>
+escape.
+A default shell is used if this option is
+not defined.
+</td></tr>
+<tr valign="top"><td colspan="2"><i> VISUAL</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Pathname of the text editor to use in the
+<b> visual</b>
+command and
+<b> ~v</b>
+escape.
+</td></tr>
+<tr valign="top"><td><i> crt</i>
+</td><td>
+The valued option
+<i> crt</i>
+is used as a threshold to determine how long a message must
+be before
+<i> PAGER</i>
+is used to read it.
+If
+<i> crt</i>
+is set without a value,
+then the height of the terminal screen stored in the system
+is used to compute the threshold (see
+<b>stty</b>(1)).
+</td></tr>
+<tr valign="top"><td colspan="2"><i> escape</i>
+</td></tr><tr><td>&nbsp;</td><td>
+If defined, the first character of this option gives the character to
+use in the place of ~ to denote escapes.
+</td></tr>
+<tr valign="top"><td colspan="2"><i> folder</i>
+</td></tr><tr><td>&nbsp;</td><td>
+The name of the directory to use for storing folders of
+messages.
+If this name begins with a &#145;/&#146;,
+<b> mail</b>
+considers it to be an absolute pathname; otherwise, the
+folder directory is found relative to your home directory.
+</td></tr>
+<tr valign="top"><td><i> MBOX</i>
+</td><td>
+The name of the
+<i> mbox</i>
+file.
+It can be the name of a folder.
+The default is
+"mbox"
+in the user&#146;s home directory.
+</td></tr>
+<tr valign="top"><td colspan="2"><i> record</i>
+</td></tr><tr><td>&nbsp;</td><td>
+If defined, gives the pathname of the file used to record all outgoing
+mail.
+If not defined, then outgoing mail is not so saved.
+</td></tr>
+<tr valign="top"><td colspan="2"><i> indentprefix</i>
+</td></tr><tr><td>&nbsp;</td><td>
+String used by the &#145;&#145;~m&#146;&#146; tilde escape for indenting messages, in place of
+the normal tab character (^I).
+Be sure to quote the value if it contains
+spaces or tabs.
+</td></tr>
+<tr valign="top"><td colspan="2"><i> toplines</i>
+</td></tr><tr><td>&nbsp;</td><td>
+If defined, gives the number of lines of a message to be printed out
+with the
+<b> top</b>
+command; normally, the first five lines are printed.
+</td></tr>
+</table>
+<h1 class="manpages">ENVIRONMENT</h1>
+<b> Mail</b>
+utilizes the
+<i> HOME,</i>
+<i> USER,</i>
+<i> SHELL,</i>
+<i> DEAD,</i>
+<i> PAGER,</i>
+<i> LISTER,</i>
+<i> EDITOR,</i>
+<i> VISUAL</i>
+and
+<i> MBOX</i>
+environment variables.
+<h1 class="manpages">FILES</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td><tt> /var/spool/mail/*</tt>
+</td><td>
+Post office.
+</td></tr>
+<tr valign="top"><td> ~/mbox
+</td><td>
+User&#146;s old mail.
+</td></tr>
+<tr valign="top"><td> ~/.mailrc
+</td><td>
+File giving initial mail commands.  Only used if the owner of the file is the
+user running this copy of mail.
+</td></tr>
+<tr valign="top"><td><tt> /tmp/R*</tt>
+</td><td>
+Temporary files.
+</td></tr>
+<tr valign="top"><td colspan="2"><tt> /usr/lib/mail.*help</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+Help files.
+</td></tr>
+<tr valign="top"><td><tt> /etc/mail.rc</tt>
+</td><td>
+System initialization file.
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<b>newaliases</b>(1),
+<b>vacation</b>(1),
+<b>aliases</b>(5),
+<b>mailaddr</b>(7),
+<b>sendmail</b>(8)
+and
+<br />.Rs 
+<i> The Mail Reference Manual</i>.
+<br />.Re 
+<h1 class="manpages">HISTORY</h1>
+A
+<b> mail</b>
+command
+appeared in
+<i>AT&T v6 .</i>
+This man page is derived from
+<i> The Mail Reference Manual</i>
+originally written by Kurt Shoens.
+<h1 class="manpages">BUGS</h1>
+There are some flags that are not documented here.
+Most are
+not useful to the general user.
+<p>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion6de9.html?tutorial=unix_commands&amp;file=mail.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/mail.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:56 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

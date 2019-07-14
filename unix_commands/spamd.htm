@@ -1,0 +1,993 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/spamd.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:27 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>spamd - Unix, Linux Command</title>
+<meta name="Description" Content="spamd - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>spamd - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- Not defining reserved macro 'Sh' ! -->
+<!-- ignored unsupported tag .tr -->
+<!-- ignored unsupported tag .ie -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .el\{ -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .rr -->
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .hy -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .tm -->
+<h1 class="manpages">NAME</h1>
+spamd - daemonized version of spamassassin
+<h1 class="manpages">SYNOPSIS</h1>
+<!-- ignored unsupported tag .tm -->
+spamd [options]
+<p>
+Options:
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+ -l, --allow-tell                  Allow learning/reporting
+ -c, --create-prefs                Create user preferences files
+ -C path, --configpath=path        Path for default config files
+ --siteconfigpath=path             Path for site configs
+ --cf=&#146;config line&#146;                Additional line of configuration
+ -d, --daemonize                   Daemonize
+ -h, --help                        Print usage message
+ -i [ipaddr], --listen-ip=ipaddr   Listen on the IP ipaddr
+ --ipv4only, --ipv4-only, --ipv4   Disable attempted use of ipv6 for DNS
+ -p port, --port=port              Listen on specified port
+ -m num, --max-children=num        Allow maximum num children
+ --min-children=num                Allow minimum num children
+ --min-spare=num                Lower limit for number of spare children
+ --max-spare=num                Upper limit for number of spare children
+ --max-conn-per-child=num          Maximum connections accepted by child
+                                   before it is respawned
+ --round-robin                     Use traditional prefork algorithm
+ --timeout-tcp=secs                Connection timeout for client headers
+ --timeout-child=secs              Connection timeout for message checks
+ -q, --sql-config                  Enable SQL config (needs -x)
+ -Q, --setuid-with-sql             Enable SQL config (needs -x,
+                                   enables use of -H)
+ --ldap-config                     Enable LDAP config (needs -x)
+ --setuid-with-ldap                Enable LDAP config (needs -x,
+                                   enables use of -H)
+ --virtual-config-dir=dir          Enable pattern based Virtual configs
+                                   (needs -x)
+ -r pidfile, --pidfile             Write the process id to pidfile
+ -s facility, --syslog=facility    Specify the syslog facility
+ --syslog-socket=type              How to connect to syslogd
+ -u username, --username=username  Run as username
+ -g groupname, --groupname=groupname  Run as groupname
+ -v, --vpopmail                    Enable vpopmail config
+ -x, --nouser-config               Disable user config files
+ --auth-ident                      Use ident to authenticate spamc user
+ --ident-timeout=timeout           Timeout for ident connections
+ -A host,..., --allowed-ips=..,..  Limit ip addresses which can connect
+ -D, --debug[=areas]               Print debugging messages (for areas)
+ -L, --local                       Use local tests only (no DNS)
+ -P, --paranoid                    Die upon user errors
+ -H [dir], --helper-home-dir[=dir]  Specify a different HOME directory
+ --ssl                             Run an SSL server
+ --ssl-port port                   Listen on port for SSL connections
+ --ssl-version sslversion          Specify SSL protocol version to use
+ --server-key keyfile              Specify an SSL keyfile
+ --server-cert certfile            Specify an SSL certificate
+ --socketpath=path                 Listen on given UNIX domain socket
+ --socketowner=name                Set UNIX domain socket file&#146;s owner
+ --socketgroup=name                Set UNIX domain socket file&#146;s group
+ --socketmode=mode                 Set UNIX domain socket file&#146;s mode
+ -V, --version                     Print version and exit
+</tt></pre></td></tr>
+</table>
+<h1 class="manpages">DESCRIPTION</h1>
+<!-- ignored unsupported tag .tm -->
+The purpose of this program is to provide a daemonized version of the
+spamassassin executable.  The goal is improving throughput performance for
+automated mail checking.
+<p>
+This is intended to be used alongside <tt>spamc</tt>, a fast, low-overhead C client
+program.
+<p>
+See the <font size="-1">README</font> file in the <tt>spamd</tt> directory of the SpamAssassin distribution
+for more details.
+<p>
+Note: Although <tt>spamd</tt> will check per-user config files for every message, any
+changes to the system-wide config files will require either restarting spamd
+or forcing it to reload itself via <b><font size="-1">SIGHUP</font></b> for the changes to take effect.
+<p>
+Note: If <tt>spamd</tt> receives a <b><font size="-1">SIGHUP</font></b>, it internally reloads itself, which
+means that it will change its pid and might not restart at all if its
+environment changed  (ie. if it can&#146;t change back into its own directory).  If
+you plan to use <b><font size="-1">SIGHUP</font></b>, you should always start <tt>spamd</tt> with the <b>-r</b>
+switch to know its current pid.
+<h1 class="manpages">OPTIONS</h1>
+<!-- ignored unsupported tag .tm -->
+Options of the long form can be shortened as long as they remain
+unambiguous.  (i.e. <b>--dae</b> can be used instead of <b>--daemonize</b>)
+Also, boolean options (like <b>--user-config</b>) can be negated by
+adding <i>no</i> (<b>--nouser-config</b>), however, this is usually unnecessary.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+<b>-l</b>, <b>--allow-tell</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Allow learning and forgetting (to a local Bayes database), reporting
+and revoking (to a remote database) by spamd. The client issues a <font size="-1">TELL</font>
+command to tell what type of message is being processed and whether
+local (learn/forget) or remote (report/revoke) databases should be
+updated.
+<p>
+<!-- ignored unsupported tag .if -->
+Note that spamd always trusts the username passed in (unless
+<b>--auth-ident</b> is used) so clients could maliciously learn messages
+for other users. (This is not ususally a concern with an <font size="-1">SQL</font> Bayes
+store as users will typically have read-write access directly to the
+database, and can also use <tt>sa-learn</tt> with the <b>-u</b> option to
+achieve the same result.)
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-c</b>, <b>--create-prefs</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Create user preferences files if they don&#146;t exist (default: don&#146;t).
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-C</b> <i>path</i>, <b>--configpath</b>=<i>path</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Use the specified path for locating the distributed configuration files.
+Ignore the default directories (usually <tt>/usr/share/spamassassin</tt> or similar).
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--siteconfigpath</b>=<i>path</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Use the specified path for locating site-specific configuration files.  Ignore
+the default directories (usually <tt>/etc/mail/spamassassin</tt> or similar).
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--cf=&#146;config line&#146;</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Add additional lines of configuration directly from the command-line, parsed
+after the configuration files are read.   Multiple <b>--cf</b> arguments can be
+used, and each will be considered a separate line of configuration.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-d</b>, <b>--daemonize</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Detach from starting process and run in background (daemonize).
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-h</b>, <b>--help</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Print a brief help message, then exit without further action.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-V</b>, <b>--version</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Print version information, then exit without further action.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-i</b> [<i>ipaddress</i>], <b>--listen-ip</b>[=<i>ipaddress</i>], <b>--ip-address</b>[=<i>ipaddress</i>]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Tells spamd to listen on the specified <font size="-1">IP</font> address (defaults to 127.0.0.1).  If
+you specify no <font size="-1">IP</font> address after the switch, spamd will listen on all interfaces.
+(This is equal to the address 0.0.0.0).  You can also use a valid hostname which
+will make spamd listen on the first address that name resolves to.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-p</b> <i>port</i>, <b>--port</b>=<i>port</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Optionally specifies the port number for the server to listen on (default: 783).
+<p>
+<!-- ignored unsupported tag .if -->
+If the <b>--ssl</b> switch is used, and <b>--ssl-port</b> is not supplied, then this
+port will be used to accept <font size="-1">SSL</font> connections instead of unencrypted connections.
+If the <b>--ssl</b> switch is used, and <b>--ssl-port</b> is set, then unencrypted
+connections will be accepted on the <b>--port</b> at the same time as encrypted
+connections are accepted at <b>--ssl-port</b>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-q</b>, <b>--sql-config</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Turn on <font size="-1">SQL</font> lookups even when per-user config files have been disabled
+with <b>-x</b>. this is useful for spamd hosts which don&#146;t have user&#146;s
+home directories but do want to load user preferences from an <font size="-1">SQL</font>
+database.
+<p>
+<!-- ignored unsupported tag .if -->
+If your spamc client does not support sending the <tt>User:</tt> header,
+like <tt>exiscan</tt>, then the <font size="-1">SQL</font> username used will always be <b>nobody</b>.
+<p>
+<!-- ignored unsupported tag .if -->
+This inhibits the <i>setuid()</i> behavior, so the <tt>-u</tt> option is
+required. If you want the <i>setuid()</i> behaviour, use <tt>-Q</tt> or
+<tt>--setuid-with-sql</tt> instead.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--ldap-config</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Turn on <font size="-1">LDAP</font> lookups. This is completely analog to <tt>--sql-config</tt>,
+only it is using an <font size="-1">LDAP</font> server.
+<p>
+<!-- ignored unsupported tag .if -->
+Like <tt>--sql-config</tt>, this disables the setuid behavior, and requires
+<tt>-u</tt>. If you want it, use <tt>--setuid-with-ldap</tt> instead.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-Q</b>, <b>--setuid-with-sql</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Turn on <font size="-1">SQL</font> lookups even when per-user config files have been disabled
+with <b>-x</b> and also setuid to the user.  This is useful for spamd hosts
+which want to load user preferences from an <font size="-1">SQL</font> database but also wish to
+support the use of <b>-H</b> (Helper home directories.)
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--setuid-with-ldap</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Turn on <font size="-1">LDAP</font> lookups even when per-user config files have been disabled
+with <b>-x</b> and also setuid to the user.  This is again completely analog
+to <tt>--setuid-with-sql</tt>, only it is using an <font size="-1">LDAP</font> server.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--virtual-config-dir</b>=<i>pattern</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+This option specifies where per-user preferences can be found for virtual
+users, for the <b>-x</b> switch. The <i>pattern</i> is used as a base pattern for the
+directory name.  Any of the following escapes can be used:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+%u &#151; replaced with the full name of the current user, as sent by spamc.
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+%l &#151; replaced with the &#146;local part&#146; of the current username.  In other words, if the username is an email address, this is the part before the <tt>@</tt> sign.
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+%d &#151; replaced with the &#146;domain&#146; of the current username.  In other words, if the username is an email address, this is the part after the <tt>@</tt> sign.
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+%% &#151; replaced with a single percent sign (%).
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .if -->
+So for example, if <tt>/vhome/users/%u/spamassassin</tt> is specified, and spamc
+sends a virtual username of <tt><a href="mailto:jm@example.com">jm@example.com</a></tt>, the directory
+<tt>/vhome/users/<a href="mailto:jm@example.com">jm@example.com</a>/spamassassin</tt> will be used.
+<p>
+<!-- ignored unsupported tag .if -->
+The set of characters allowed in the virtual username for this path are
+restricted to:
+<p>
+<!-- ignored unsupported tag .if -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+        A-Z a-z 0-9 - + _ . , @ =
+</tt></pre></td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .if -->
+All others will be replaced by underscores (<tt>_</tt>).
+<p>
+<!-- ignored unsupported tag .if -->
+This path must be a writable directory.  It will be created if it does not
+already exist.  If a file called <b>user_prefs</b> exists in this directory (note:
+<b>not</b> in a <tt>.spamassassin</tt> subdirectory!), it will be loaded as the user&#146;s
+preferences.  The Bayes databases for that user will be stored in this directory.
+<p>
+<!-- ignored unsupported tag .if -->
+Note that this <b>requires</b> that <b>-x</b> is used, and cannot be combined with
+<font size="-1">SQL-</font> or LDAP-based configuration.
+<p>
+<!-- ignored unsupported tag .if -->
+The pattern <b>must</b> expand to an absolute directory when spamd is running
+daemonized (<b>-d</b>).
+<p>
+<!-- ignored unsupported tag .if -->
+Currently, use of this without <b>-u</b> is not supported. This inhibits setuid.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-r</b> <i>pidfile</i>, <b>--pidfile</b>=<i>pidfile</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Write the process <font size="-1">ID</font> of the spamd parent to the file specified by <i>pidfile</i>.
+The file will be unlinked when the parent exits.  Note that when running
+with the <b>-u</b> option, the file must be writable by that user.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-v</b>, <b>--vpopmail</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Enable vpopmail config.  If specified with with <b>-u</b> set to the vpopmail user,
+this allows spamd to lookup/create user_prefs in the vpopmail user&#146;s own
+maildir.  This option is useful for vpopmail virtual users who do not have an
+entry in the system /etc/passwd file.
+<p>
+<!-- ignored unsupported tag .if -->
+Currently, use of this without <b>-u</b> is not supported. This inhibits setuid.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-s</b> <i>facility</i>, <b>--syslog</b>=<i>facility</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Specify the syslog facility to use (default: mail).  If <tt>stderr</tt> is specified,
+output will be written to stderr. (This is useful if you&#146;re running <tt>spamd</tt>
+under the <tt>daemontools</tt> package.) With a <i>facility</i> of <tt>file</tt>, all output
+goes to spamd.log. <i>facility</i> is interpreted as a file name to log to if it
+contains any characters except a-z and 0-9. <tt>null</tt> disables logging completely
+(used internally).
+<p>
+<!-- ignored unsupported tag .if -->
+Examples:
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;spamd -s mail                 # use syslog, facility mail (default)
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;spamd -s ./mail               # log to file ./mail
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;spamd -s stderr 2&gt;/dev/null   # log to stderr, throw messages away
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;spamd -s null                 # the same as above
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;spamd -s file                 # log to file ./spamd.log
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;spamd -s /var/log/spamd.log   # log to file /var/log/spamd.log
+<p>
+<!-- ignored unsupported tag .if -->
+If logging to a file is enabled and that log file is rotated, the spamd server
+must be restarted with a <font size="-1">SIGHUP</font>. (If the log file is just truncated, this is
+not needed but still recommended.)
+<p>
+<!-- ignored unsupported tag .if -->
+Note that logging to a file does not use locking, so you cannot intermix
+logging from spamd and other processes into the same file.  If you want
+to mix logging like this, use syslog instead.
+<p>
+<!-- ignored unsupported tag .if -->
+If you use syslog logging, it is essential to send a <font size="-1">SIGHUP</font> to the spamd daemon
+when you restart the syslogd daemon.  (This is due to a shortcoming in Perl&#146;s
+syslog handling, where the disappearance of the connection to the syslogd is
+considered a fatal error.)
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--syslog-socket</b>=<i>type</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Specify how spamd should send messages to syslogd.  The options are <tt>unix</tt>,
+<tt>inet</tt> or <tt>none</tt>.   The default is to try <tt>unix</tt> first, falling back to
+<tt>inet</tt> if perl detects errors in its <tt>unix</tt> support.
+<p>
+<!-- ignored unsupported tag .if -->
+Some platforms, or versions of perl, are shipped with dysfunctional versions of
+the <b>Sys::Syslog</b> package which do not support some socket types, so you may
+need to set this.  If you get error messages regarding <b>__PATH_LOG</b> or similar
+from spamd, try changing this setting.
+<p>
+<!-- ignored unsupported tag .if -->
+The socket type <tt>file</tt> is used internally and should not be specified.  Use
+the <tt>-s</tt> switch instead.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-u</b> <i>username</i>, <b>--username</b>=<i>username</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Run as the named user.  If this option is not set, the default behaviour
+is to <i>setuid()</i> to the user running <tt>spamc</tt>, if <tt>spamd</tt> is running
+as root.
+<p>
+<!-- ignored unsupported tag .if -->
+Note: --username=root is not a valid option.  If specified, <tt>spamd</tt> will
+exit with a fatal error on startup.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-g</b> <i>groupname</i>, <b>--groupname</b>=<i>groupname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Run as the named group if --username is being used. If this option is
+not set when --username is used then the primary group for the user
+given to --username is used.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-x</b>, <b>--nouser-config</b>, <b>--user-config</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Turn off (on) reading of per-user configuration files (user_prefs) from the
+user&#146;s home directory.  The default behaviour is to read per-user
+configuration from the user&#146;s home directory (<b>--user-config</b>).
+<p>
+<!-- ignored unsupported tag .if -->
+This option does not disable or otherwise influence the <font size="-1">SQL</font>, <font size="-1">LDAP</font> or
+Virtual Config Dir settings.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--auth-ident</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Verify the username provided by spamc using ident.  This is only
+useful if connections are only allowed from trusted hosts (because an
+identd that lies is trivial to create) and if spamc <font size="-1">REALLY</font> <font size="-1">SHOULD</font> be
+running as the user it represents.  Connections are terminated
+immediately if authentication fails.  In this case, spamc will pass
+the mail through unchecked.  Failure to connect to an ident server,
+and response timeouts are considered authentication failures.  This
+requires that Net::Ident be installed.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--ident-timeout</b>=<i>timeout</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Wait at most <i>timeout</i> seconds for a response to ident queries.
+Authentication that takes long that <i>timeout</i> seconds will fail, and
+mail will not be processed.  Setting this to 0.0 or less results in no
+timeout, which is <font size="-1">STRONGLY</font> discouraged.  The default is 5 seconds.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-A</b> <i>host,...</i>, <b>--allowed-ips</b>=<i>host,...</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Specify a list of authorized hosts or networks which can connect to this spamd
+instance. Single <font size="-1">IP</font> addresses can be given, ranges of <font size="-1">IP</font> addresses in
+address/masklength <font size="-1">CIDR</font> format, or ranges of <font size="-1">IP</font> addresses by listing 3 or less
+octets with a trailing dot.  Hostnames are not supported, only <font size="-1">IP</font> addresses.
+This option can be specified multiple times, or can take a list of addresses
+separated by commas.  Examples:
+<p>
+<!-- ignored unsupported tag .if -->
+<b>-A 10.11.12.13</b> &#151; only allow connections from <tt>10.11.12.13</tt>.
+<p>
+<!-- ignored unsupported tag .if -->
+<b>-A 10.11.12.13,10.11.12.14</b> &#151; only allow connections from <tt>10.11.12.13</tt> and
+<tt>10.11.12.14</tt>.
+<p>
+<!-- ignored unsupported tag .if -->
+<b>-A 10.200.300.0/24</b> &#151; allow connections from any machine in the range
+<tt>10.200.300.*</tt>.
+<p>
+<!-- ignored unsupported tag .if -->
+<b>-A 10.</b> &#151; allow connections from any machine in the range <tt>10.*.*.*</tt>.
+<p>
+<!-- ignored unsupported tag .if -->
+By default, connections are only accepted from localhost [127.0.0.1].
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-D</b> [<i>area,...</i>], <b>--debug</b> [<i>area,...</i>]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Produce debugging output. If no areas are listed, all debugging information is
+printed. Diagnostic output can also be enabled for each area individually;
+<i>area</i> is the area of the code to instrument. For example, to produce
+diagnostic output on bayes, learn, and dns, use:
+<p>
+<!-- ignored unsupported tag .if -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+        spamassassin -D bayes,learn,dns
+</tt></pre></td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .if -->
+Higher priority informational messages that are suitable for logging in normal
+circumstances are available with an area of info.
+<p>
+<!-- ignored unsupported tag .if -->
+For more information about which areas (also known as channels) are available,
+please see the documentation at:
+<p>
+<!-- ignored unsupported tag .if -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+        C&lt;<a href="http://wiki.apache.org/spamassassin/DebugChannels">http://wiki.apache.org/spamassassin/DebugChannels</a>&gt;
+</tt></pre></td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=4%>
+<b> --ipv4only</b>, <b>--ipv4-only</b>, <b>--ipv4</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Do not use IPv6 for <font size="-1">DNS</font> tests. Use if the existing tests
+for IPv6 availablity produce incorrect results or crashes.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-L</b>, <b>--local</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Perform only local tests on all mail.  In other words, skip <font size="-1">DNS</font> and other
+network tests.  Works the same as the <tt>-L</tt> flag to <tt>spamassassin(1)</tt>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-P</b>, <b>--paranoid</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Die on user errors (for the user passed from spamc) instead of falling back to
+user <i>nobody</i> and using the default configuration.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-m</b> <i>number</i> , <b>--max-children</b>=<i>number</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+This option specifies the maximum number of children to spawn.
+Spamd will spawn that number of children, then sleep in the background
+until a child dies, wherein it will go and spawn a new child.
+<p>
+<!-- ignored unsupported tag .if -->
+Incoming connections can still occur if all of the children are busy,
+however those connections will be queued waiting for a free child.
+The minimum value is <tt>1</tt>, the default value is <tt>5</tt>.
+<p>
+<!-- ignored unsupported tag .if -->
+Please note that there is a <font size="-1">OS</font> specific maximum of connections that can be
+queued (Try <tt>perl -MSocket -e&#146;print SOMAXCONN&#146;</tt> to find this maximum).
+<p>
+<!-- ignored unsupported tag .if -->
+Note that if you run too many servers for the amount of free <font size="-1">RAM</font> available, you
+run the danger of hurting performance by causing a high swap load as server
+processes are swapped in and out continually.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--min-children</b>=<i>number</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The minimum number of children that will be kept running.  The minimum value is
+<tt>1</tt>, the default value is <tt>1</tt>.  If you have lots of free <font size="-1">RAM</font>, you may want to
+increase this.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--min-spare</b>=<i>number</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The lower limit for the number of spare children allowed to run.  A
+spare, or idle, child is one that is not handling a scan request.   If
+there are too few spare children available, a new server will be started
+every second or so.  The default value is <tt>1</tt>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--max-spare</b>=<i>number</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The upper limit for the number of spare children allowed to run.  If there
+are too many spare children, one will be killed every second or so until
+the number of idle children is in the desired range.  The default value
+is <tt>2</tt>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--max-conn-per-child</b>=<i>number</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+This option specifies the maximum number of connections each child
+should process before dying and letting the master spamd process spawn
+a new child.  The minimum value is <tt>1</tt>, the default value is <tt>200</tt>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--round-robin</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+By default, <tt>spamd</tt> will attempt to keep a small number of hot child
+processes as busy as possible, and keep any others as idle as possible, using
+something similar to the Apache httpd server scaling algorithm.  This is
+accomplished by the master process coordinating the activities of the children.
+This switch will disable this scaling algorithm, and the behaviour seen in
+the 3.0.x versions will be used instead, where all processes receive an
+equal load and no scaling takes place.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--timeout-tcp</b>=<i>number</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+This option specifies the number of seconds to wait for headers from a
+client (spamc) before closing the connection.  The minimum value is <tt>1</tt>,
+the default value is <tt>30</tt>, and a value of <tt>0</tt> will disable socket
+timeouts completely.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--timeout-child</b>=<i>number</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+This option specifies the number of seconds to wait for a spamd child to
+to process or check a message.  The minimum value is <tt>1</tt>, the default
+value is <tt>300</tt>, and a value of <tt>0</tt> will disable child timeouts completely.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-H</b> <i>directory</i>, <b>--helper-home-dir</b>=<i>directory</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Specify that external programs such as Razor, <font size="-1">DCC</font>, and Pyzor should have
+a <font size="-1">HOME</font> environment variable set to a specific directory.  The default
+is to use the <font size="-1">HOME</font> environment variable setting from the shell running
+spamd.  By specifying no argument, spamd will use the spamc caller&#146;s
+home directory instead.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--ssl</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Accept only <font size="-1">SSL</font> connections on the associated port.
+The <b>IO::Socket::SSL</b> perl module must be installed.
+<p>
+<!-- ignored unsupported tag .if -->
+If the <b>--ssl</b> switch is used, and <b>--ssl-port</b> is not supplied, then
+<b>--port</b> port will be used to accept <font size="-1">SSL</font> connections instead of unencrypted
+connections.  If the <b>--ssl</b> switch is used, and <b>--ssl-port</b> is set, then
+unencrypted connections will be accepted on the <b>--port</b>, at the same time as
+encrypted connections are accepted at <b>--ssl-port</b>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--ssl-port</b>=<i>port</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Optionally specifies the port number for the server to listen on for
+<font size="-1">SSL</font> connections (default: whatever --port uses).  See <b>--ssl</b> for
+more details.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--ssl-version</b>=<i>sslversion</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Specify the <font size="-1">SSL</font> protocol version to use, one of
+<b>sslv2</b>, <b>sslv3</b>, <b>tlsv1</b>, or <b>sslv23</b>.
+The default, <b>sslv23</b>, is the most flexible, accepting a SSLv2 or higher
+hello handshake, then negotiating use of SSLv3 or TLSv1 protocol if the client
+can accept it.
+Specifying <b>--ssl-version</b> implies <b>--ssl</b>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--server-key</b> <i>keyfile</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Specify the <font size="-1">SSL</font> key file to use for <font size="-1">SSL</font> connections.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--server-cert</b> <i>certfile</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Specify the <font size="-1">SSL</font> certificate file to use for <font size="-1">SSL</font> connections.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--socketpath</b> <i>pathname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Listen on <font size="-1">UNIX</font> domain path <i>pathname</i> instead of a <font size="-1">TCP</font> socket.
+<p>
+<!-- ignored unsupported tag .if -->
+Warning: the Perl support on <font size="-1">BSD</font> platforms for <font size="-1">UNIX</font> domain sockets seems to
+have a bug regarding paths of over 100 bytes or so (SpamAssassin bug 4380).  If
+you see a &#146;could not find newly-created <font size="-1">UNIX</font> socket&#146; error message, and the
+path appears truncated, this may be the cause.  Try using a shorter path
+to the socket.
+<p>
+<!-- ignored unsupported tag .if -->
+By default, use of <b>--socketpath</b> will inhibit <font size="-1">SSL</font> connections and unencrypted
+<font size="-1">TCP</font> connections.  To enable them, specify <b>--port</b> and/or <b>--ssl-port</b>
+explicitly.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--socketowner</b> <i>name</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set <font size="-1">UNIX</font> domain socket to be owned by the user named <i>name</i>.  Note
+that this requires that spamd be started as <tt>root</tt>, and if <tt>-u</tt>
+is used, that user should have write permissions to unlink the file
+later, for when the <tt>spamd</tt> server is killed.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--socketgroup</b> <i>name</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set <font size="-1">UNIX</font> domain socket to be owned by the group named <i>name</i>.  See
+<tt>--socketowner</tt> for notes on ownership and permissions.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--socketmode</b> <i>mode</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set <font size="-1">UNIX</font> domain socket to use the octal mode <i>mode</i>.  Note that if <tt>-u</tt> is
+used, that user should have write permissions to unlink the file later, for
+when the <tt>spamd</tt> server is killed.
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<i>spamc</i>(1)
+<i>spamassassin</i>(1)
+<i>Mail::SpamAssassin::Conf</i>(3)
+<i>Mail::SpamAssassin</i>(3)
+<h1 class="manpages">PREREQUISITES</h1>
+<!-- ignored unsupported tag .tm -->
+<tt>Mail::SpamAssassin</tt>
+<h1 class="manpages">AUTHORS</h1>
+<!-- ignored unsupported tag .tm -->
+The SpamAssassin(tm) Project (<a href="http://spamassassin.apache.org/">http://spamassassin.apache.org</a>/)
+<h1 class="manpages">LICENSE</h1>
+<!-- ignored unsupported tag .tm -->
+SpamAssassin is distributed under the Apache License, Version 2.0, as
+described in the file <tt>LICENSE</tt> included with the distribution.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion4654.html?tutorial=unix_commands&amp;file=spamd.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/spamd.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:27 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

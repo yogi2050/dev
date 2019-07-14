@@ -1,0 +1,804 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/grn.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>grn - Unix, Linux Command</title>
+<meta name="Description" Content="grn - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>grn - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+grn - groff preprocessor for gremlin files
+<h1 class="manpages">SYNOPSIS</h1>
+<b>grn</b> [
+<b>-Cv</b> ]
+[
+<b>-T</b><i>dev</i> ]
+[
+<b>-M</b><i>dir</i> ]
+[
+<b>-F</b><i>dir</i> ]
+[
+<i>file&#46;&#46;&#46;</i> ]
+<p>
+It is possible to have whitespace between a command line option and its
+parameter.
+<h1 class="manpages">DESCRIPTION</h1>
+<i>grn</i> is a preprocessor for including
+<i>gremlin</i> pictures in
+<i>groff</i> input.
+<i>grn</i> writes to standard output, processing only input lines between two that
+start with
+<b>.GS</b> and
+<b>.GE.</b> Those lines must contain
+<i>grn</i> commands (see below).
+These commands request a
+<i>gremlin</i> file, and the picture in that file is
+converted and placed in the
+<i>troff</i> input stream.
+The
+<b>.GS</b> request may be followed by a C, L, or R to center, left, or right
+justify the whole
+<i>gremlin</i> picture (default justification is center).
+If no
+<i>file</i> is mentioned, the standard input is read.
+At the end of the picture, the position on the page is the bottom of the
+<i>gremlin</i> picture.
+If the
+<i>grn</i> entry is ended with
+<b>.GF</b> instead of
+<b>.GE</b>, the position is left at the top of the picture.
+<p>
+Please note that currently only the -me macro package has support for
+<b>.GS</b>, <b>.GE</b>, and
+<b>.GF</b>. <p>
+The following command-line options are understood:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-T</b><i>dev</i> </td><td valign="bottom">
+Prepare output for printer
+<i>dev</i>. The default device is
+<b>ps</b>. See
+<b>groff</b>(1)
+for acceptable devices.
+</td></tr>
+<tr valign="top"><td>
+<b>-M</b><i>dir</i> </td><td valign="bottom">
+Prepend
+<i>dir</i> to the default search path for
+<i>gremlin</i> files.
+The default path is (in that order) the current directory, the home
+directory,
+<b>/usr/lib/groff/site-tmac</b>, <b>/usr/share/groff/site-tmac</b>, and
+<b>/usr/share/groff/1.18.1.1/tmac</b>. </td></tr>
+<tr valign="top"><td>
+<b>-F</b><i>dir</i> </td><td valign="bottom">
+Search
+<i>dir</i> for subdirectories
+<b>dev</b><i>name</i> (<i>name</i> is the name of the device) for the
+<b>DESC</b> file before the default font directories
+<b>/usr/share/groff/site-font</b>, <b>/usr/share/groff/1.18.1.1/font</b>, and
+<b>/usr/lib/font</b>. </td></tr>
+<tr valign="top"><td>
+<b>-C</b> </td><td valign="bottom">
+Recognize
+<b>.GS</b> and
+<b>.GE</b> (resp.
+<b>.GF</b>) even when followed by a character other than space or newline.
+</td></tr>
+<tr valign="top"><td>
+<b>-v</b> </td><td valign="bottom">
+Print the version number.
+</td></tr>
+</table>
+<h1 class="manpages">GRN COMMANDS</h1>
+Each input line between
+<b>.GS</b> and
+<b>.GE</b> may have one
+<i>grn</i> command.
+Commands consist of one or two strings separated by white space, the first
+string being the command and the second its operand.
+Commands may be upper or lower case and abbreviated down to one character.
+<p>
+Commands that affect a picture&#146;s environment (those listed before
+<b>default</b>, see below) are only in effect for the current picture:
+The environment is reinitialized to the defaults at the start of the next
+picture.
+The commands are as follows:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>1 </b><i>N</i> </td><td valign="bottom">
+<!-- ignored unsupported tag .ns -->
+</td></tr>
+<tr valign="top"><td>
+<b>2 </b><i>N</i> </td><td valign="bottom">
+<!-- ignored unsupported tag .ns -->
+</td></tr>
+<tr valign="top"><td>
+<b>3 </b><i>N</i> </td><td valign="bottom">
+<!-- ignored unsupported tag .ns -->
+</td></tr>
+<tr valign="top"><td>
+<b>4 </b><i>N</i> </td><td valign="bottom">
+Set
+<i>gremlin</i>&#146;s text size number 1 (2, 3, or 4) to
+<i>N</i> points.
+The default is 12 (resp. 16, 24, and 36).
+</td></tr>
+<tr valign="top"><td>
+<b>roman </b><i>f</i> </td><td valign="bottom">
+<!-- ignored unsupported tag .ns -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>italics </b><i>f</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ns -->
+</td></tr>
+<tr valign="top"><td>
+<b>bold </b><i>f</i> </td><td valign="bottom">
+<!-- ignored unsupported tag .ns -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>special </b><i>f</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set the roman (italics, bold, or special) font to
+<i>troff</i>&#146;s font
+<i>f</i> (either a name or number).
+The default is R (resp. I, B, and S).
+</td></tr>
+<tr valign="top"><td>
+<b>l </b><i>f</i> </td><td valign="bottom">
+<!-- ignored unsupported tag .ns -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>stipple </b><i>f</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set the stipple font to
+<i>troff</i>&#146;s stipple font
+<i>f</i> (name or number).
+The command
+<b>stipple</b> may be abbreviated down as far as &#145;st&#146; (to avoid
+confusion with
+<b>special</b>). There is
+<i>no</i> default for stipples (unless one is set by the default command), and it is
+invalid to include a
+<i>gremlin</i> picture with polygons without specifying a
+stipple font.
+</td></tr>
+<tr valign="top"><td>
+<b>x </b><i>N</i> </td><td valign="bottom">
+<!-- ignored unsupported tag .ns -->
+</td></tr>
+<tr valign="top"><td>
+<b>scale </b><i>N</i> </td><td valign="bottom">
+Magnify the picture (in addition to any default magnification) by
+<i>N</i>, a floating point number larger than zero.
+The command
+<b>scale</b> may be abbreviated down to &#145;sc&#146;.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>narrow </b><i>N</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ns -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>medium </b><i>N</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ns -->
+</td></tr>
+<tr valign="top"><td>
+<b>thick </b><i>N</i> </td><td valign="bottom">
+Set the thickness of
+<i>gremlin</i>&#146;s narrow (resp. medium and thick) lines to
+<i>N</i> times 0.15pt (this value can be changed at compile time).
+The default is 1.0 (resp. 3.0 and 5.0), which corresponds to 0.15pt
+(resp. 0.45pt and 0.75pt).
+A thickness value of zero selects the smallest available line thickness.
+Negative values cause the line thickness to be proportional to the current
+point size.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>pointscale </b><i>&lt;off/on&gt;</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Scale text to match the picture.
+Gremlin text is usually printed in the point size specified with the
+commands
+<b>1</b>, <b>2</b>, <b>3</b>, or <b>4</b> regardless of any scaling factors in the picture.
+Setting
+<b>pointscale</b> will cause the point sizes to scale with the picture (within
+<i>troff</i>&#146;s limitations, of course).
+An operand of anything but
+<i>off</i> will turn text scaling on.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>default</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Reset the picture environment defaults to the settings in the current
+picture.
+This is meant to be used as a global parameter setting mechanism at the
+beginning of the
+<i>troff</i> input file, but can be used at any time to reset the
+default settings.
+</td></tr>
+<tr valign="top"><td>
+<b>width </b><i>N</i> </td><td valign="bottom">
+Forces the picture to be
+<i>N</i> inches wide.
+This overrides any scaling factors present in the same picture.
+&#145;<b>width</b> <i>0</i>&#146; is ignored.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>height </b><i>N</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Forces picture to be
+<i>N</i> inches high, overriding other scaling factors.
+If both &#145;width&#146; and &#145;height&#146; are specified the tighter constraint will
+determine the scale of the picture.
+<b>Height</b> and
+<b>width</b> commands are not saved with a
+<b>default</b> command.
+They will, however, affect point size scaling if that option is set.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>file </b><i>name</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Get picture from
+<i>gremlin</i> file
+<i>name</i> located the current directory (or in the library directory; see the
+<b>-M</b> option above).
+If two
+<b>file</b> commands are given, the second one overrides the first.
+If
+<i>name</i> doesn&#146;t exist, an error message is reported and processing continues from
+the
+<b>.GE</b> line.
+</td></tr>
+</table>
+<h1 class="manpages">NOTES ABOUT GROFF</h1>
+Since
+<i>grn</i> is a preprocessor, it doesn&#146;t know about current indents, point sizes,
+margins, number registers, etc.
+Consequently, no
+<i>troff</i> input can be placed between the
+<b>.GS</b> and
+<b>.GE</b> requests.
+However,
+<i>gremlin</i> text is now processed by
+<i>troff</i>, so anything legal in a single line of
+<i>troff</i> input is legal in a line of
+<i>gremlin</i> text (barring &#145;.&#146; directives at the beginning of a line).
+Thus, it is possible to have equations within a
+<i>gremlin</i> figure by including in the
+<i>gremlin</i> file
+<i>eqn</i> expressions enclosed by previously defined delimiters (e.g.
+<i>$$</i>). <p>
+When using
+<i>grn</i> along with other preprocessors, it is best to run
+<i>tbl</i> before
+<i>grn</i>, <i>pic</i>, and/or
+<i>ideal</i> to avoid overworking
+<i>tbl</i>. <i>Eqn</i> should always be run last.
+<p>
+A picture is considered an entity, but that doesn&#146;t stop
+<i>troff</i> from trying to break it up if it falls off the end of a page.
+Placing the picture between &#145;keeps&#146; in -me macros will ensure proper
+placement.
+<p>
+<i>grn</i> uses
+<i>troff</i>&#146;s number registers
+<b>g1</b> through
+<b>g9</b> and sets registers
+<b>g1</b> and
+<b>g2</b> to the width and height of the
+<i>gremlin</i> figure (in device units) before entering the
+<b>.GS</b> request (this is for those who want to rewrite these macros).
+<h1 class="manpages">GREMLIN FILE FORMAT</h1>
+There exist two distinct
+<i>gremlin</i> file formats, the original format from the
+<i>AED</i> graphic terminal version, and the
+<i>SUN</i> or
+<i>X11</i> version.
+An extension to the
+<i>SUN</i>/<i>X11</i> version allowing reference points with negative coordinates is
+<b>not</b> compatible with the
+<i>AED</i> version.
+As long as a
+<i>gremlin</i> file does not contain negative coordinates, either format will be read
+correctly by either version of
+<i>gremlin</i> or
+<i>grn</i>. The other difference to the
+<i>SUN</i>/<i>X11</i> format is the use of names for picture objects (e.g., POLYGON, CURVE)
+instead of numbers.
+Files representing the same picture are shown in Table 1 in each format.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td>sungremlinfile</td><td>&nbsp;</td><td>gremlinfile</td></tr>
+<tr valign="top">
+<td>0 240.00 128.00</td><td>&nbsp;</td><td>0 240.00 128.00</td></tr>
+<tr valign="top">
+<td>CENTCENT</td><td>&nbsp;</td><td>2</td></tr>
+<tr valign="top">
+<td>240.00 128.00</td><td>&nbsp;</td><td>240.00 128.00</td></tr>
+<tr valign="top">
+<td>185.00 120.00</td><td>&nbsp;</td><td>185.00 120.00</td></tr>
+<tr valign="top">
+<td>240.00 120.00</td><td>&nbsp;</td><td>240.00 120.00</td></tr>
+<tr valign="top">
+<td>296.00 120.00</td><td>&nbsp;</td><td>296.00 120.00</td></tr>
+<tr valign="top">
+<td>*</td><td>&nbsp;</td><td>-1.00 -1.00</td></tr>
+<tr valign="top">
+<td>2 3</td><td>&nbsp;</td><td>2 3</td></tr>
+<tr valign="top">
+<td>10 A Triangle</td><td>&nbsp;</td><td>10 A Triangle</td></tr>
+<tr valign="top">
+<td>POLYGON</td><td>&nbsp;</td><td>6</td></tr>
+<tr valign="top">
+<td>224.00 416.00</td><td>&nbsp;</td><td>224.00 416.00</td></tr>
+<tr valign="top">
+<td>96.00 160.00</td><td>&nbsp;</td><td>96.00 160.00</td></tr>
+<tr valign="top">
+<td>384.00 160.00</td><td>&nbsp;</td><td>384.00 160.00</td></tr>
+<tr valign="top">
+<td>*</td><td>&nbsp;</td><td>-1.00 -1.00</td></tr>
+<tr valign="top">
+<td>5 1</td><td>&nbsp;</td><td>5 1</td></tr>
+<tr valign="top">
+<td>0</td><td>&nbsp;</td><td>0</td></tr>
+<tr valign="top">
+<td>-1</td><td>&nbsp;</td><td>-1</td></tr>
+<tr valign="top">
+<td align="center" colspan=3>Table 1. File examples</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+The first line of each
+<i>gremlin</i> file contains either the string
+<b>gremlinfile</b> (<i>AED</i> version) or
+<b>sungremlinfile</b> (<i>SUN</i>/<i>X11</i>) </td></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+The second line of the file contains an orientation, and
+<b>x</b> and
+<b>y</b> values for a positioning point, separated by spaces.
+The orientation, either
+<b>0</b> or
+<b>1</b>, is ignored by the
+<i>SUN</i>/<i>X11</i> version.
+<b>0</b> means that
+<i>gremlin</i> will display things in horizontal format (drawing area wider than it is
+tall, with menu across top).
+<b>1</b> means that
+<i>gremlin</i> will display things in vertical format (drawing area taller than it is wide,
+with menu on left side).
+<b>x</b> and
+<b>y</b> are floating point values giving a positioning point to be used when this
+file is read into another file.
+The stuff on this line really isn&#146;t all that important; a value of &#145;&#145;1 0.00
+0.00&#146;&#146; is suggested.
+</td></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+The rest of the file consists of zero or more element specifications.
+After the last element specification is a line containing the string &#145;&#145;-1&#146;&#146;.
+</td></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+Lines longer than 127 characters are chopped to this limit.
+</td></tr>
+</table>
+<h1 class="manpages">ELEMENT SPECIFICATIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+The first line of each element contains a single decimal number giving the
+type of the element
+(<i>AED</i> version) or its ASCII name
+(<i>SUN</i>/<i>X11</i> version).
+See Table 2.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td align="center" colspan=3><i>gremlin</i> File Format - Object Type Specification</td></tr>
+<tr valign="top">
+<td align="center"><i>AED</i> Number</td><td align="center"><i>SUN</i>/<i>X11</i> Name</td><td align="center">Description</td></tr>
+<tr valign="top">
+<td align="right">0</td><td>BOTLEFT</td><td>bottom-left-justified text</td></tr>
+<tr valign="top">
+<td align="right">1</td><td>BOTRIGHT</td><td>bottom-right-justified text</td></tr>
+<tr valign="top">
+<td align="right">2</td><td>CENTCENT</td><td>center-justified text</td></tr>
+<tr valign="top">
+<td align="right">3</td><td>VECTOR</td><td>vector</td></tr>
+<tr valign="top">
+<td align="right">4</td><td>ARC</td><td>arc</td></tr>
+<tr valign="top">
+<td align="right">5</td><td>CURVE</td><td>curve</td></tr>
+<tr valign="top">
+<td align="right">6</td><td>POLYGON</td><td>polygon</td></tr>
+<tr valign="top">
+<td align="right">7</td><td>BSPLINE</td><td>b-spline</td></tr>
+<tr valign="top">
+<td align="right">8</td><td>BEZIER</td><td>B[&#146;e]zier</td></tr>
+<tr valign="top">
+<td align="right">10</td><td>TOPLEFT</td><td>top-left-justified text</td></tr>
+<tr valign="top">
+<td align="right">11</td><td>TOPCENT</td><td>top-center-justified text</td></tr>
+<tr valign="top">
+<td align="right">12</td><td>TOPRIGHT</td><td>top-right-justified text</td></tr>
+<tr valign="top">
+<td align="right">13</td><td>CENTLEFT</td><td>left-center-justified text</td></tr>
+<tr valign="top">
+<td align="right">14</td><td>CENTRIGHT</td><td>right-center-justified text</td></tr>
+<tr valign="top">
+<td align="right">15</td><td>BOTCENT</td><td>bottom-center-justified text</td></tr>
+<tr valign="top">
+<td align="center" colspan=3>Table 2.</td></tr>
+<tr valign="top">
+<td align="center" colspan=3>Type Specifications in <i>gremlin</i> Files</td></tr>
+</table>
+<p>
+</td></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+After the object type comes a variable number of lines, each specifying a
+point used to display the element.
+Each line contains an x-coordinate and a y-coordinate in floating point
+format, separated by spaces.
+The list of points is terminated by a line containing the string &#145;&#145;-1.0
+-1.0&#146;&#146;
+(<i>AED</i> version) or a single asterisk, &#145;&#145;*&#146;&#146;
+(<i>SUN</i>/<i>X11</i> version).
+</td></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+After the points comes a line containing two decimal values, giving the
+brush and size for the element.
+The brush determines the style in which things are drawn.
+For vectors, arcs, and curves there are six legal brush values:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td align="right">1 -</td><td align="center">&nbsp;</td><td>thin dotted lines</td></tr>
+<tr valign="top">
+<td align="right">2 -</td><td align="center">&nbsp;</td><td>thin dot-dashed lines</td></tr>
+<tr valign="top">
+<td align="right">3 -</td><td align="center">&nbsp;</td><td>thick solid lines</td></tr>
+<tr valign="top">
+<td align="right">4 -</td><td align="center">&nbsp;</td><td>thin dashed lines</td></tr>
+<tr valign="top">
+<td align="right">5 -</td><td align="center">&nbsp;</td><td>thin solid lines</td></tr>
+<tr valign="top">
+<td align="right">6 -</td><td align="center">&nbsp;</td><td>medium solid lines</td></tr>
+</table>
+<p>
+For polygons, one more value, 0, is legal.
+It specifies a polygon with an invisible border.
+For text, the brush selects a font as follows:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td align="right">1 -</td><td align="center">&nbsp;</td><td>roman (R font in groff)</td></tr>
+<tr valign="top">
+<td align="right">2 -</td><td align="center">&nbsp;</td><td>italics (I font in groff)</td></tr>
+<tr valign="top">
+<td align="right">3 -</td><td align="center">&nbsp;</td><td>bold (B font in groff)</td></tr>
+<tr valign="top">
+<td align="right">4 -</td><td align="center">&nbsp;</td><td>special (S font in groff)</td></tr>
+</table>
+<p>
+If you&#146;re using
+<i>grn</i> to run your pictures through
+<i>groff</i>, the font is really just a starting font:
+The text string can contain formatting sequences like
+&#145;&#145;&#92;fI&#146;&#146;
+or
+&#145;&#145;&#92;d&#146;&#146;
+which may change the font (as well as do many other things).
+For text, the size field is a decimal value between 1 and 4.
+It selects the size of the font in which the text will be drawn.
+For polygons, this size field is interpreted as a stipple number to fill the
+polygon with.
+The number is used to index into a stipple font at print time.
+</td></tr>
+<tr valign="top"><td width=6%>
+o
+</td><td>
+The last line of each element contains a decimal number and a string of
+characters, separated by a single space.
+The number is a count of the number of characters in the string.
+This information is only used for text elements, and contains the text
+string.
+There can be spaces inside the text.
+For arcs, curves, and vectors, this line of the element contains the string
+&#145;&#145;0&#146;&#146;.
+</td></tr>
+</table>
+<h1 class="manpages">NOTES ON COORDINATES</h1>
+<i>gremlin</i> was designed for
+<i>AED</i>s, and its coordinates reflect the
+<i>AED</i> coordinate space.
+For vertical pictures, x-values range 116 to 511, and y-values from 0 to
+483.
+For horizontal pictures, x-values range from 0 to 511 and y-values range
+from 0 to 367.
+Although you needn&#146;t absolutely stick to this range, you&#146;ll get best results
+if you at least stay in this vicinity.
+Also, point lists are terminated by a point of (-1, -1), so you shouldn&#146;t
+ever use negative coordinates.
+<i>gremlin</i> writes out coordinates using format &#145;&#145;%f1.2&#146;&#146;; it&#146;s probably a good idea to
+use the same format if you want to modify the
+<i>grn</i> code.
+<h1 class="manpages">NOTES ON SUN/X11 COORDINATES</h1>
+There is no longer a restriction on the range of coordinates used to create
+objects in the
+<i>SUN</i>/<i>X11</i> version of
+<i>gremlin</i>. However, files with negative coordinates
+<b>will</b> cause problems if displayed on the
+<i>AED</i>. <h1 class="manpages">FILES</h1>
+<!-- ignored unsupported tag .ie -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>/usr/share/groff/1.18.1.1/font/dev</b><i>name</i><b>/DESC</b> </td></tr><tr valign="top"><td width=41.5%>&nbsp;</td><td>
+Device description file for device
+<i>name</i>. </td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="gremlin.html">gremlin (1)</a></p></li>
+<li><p><a href="groff.htm">groff (1)</a></p></li>
+<li><p><a href="pic.htm">pic (1)</a></p></li>
+<li><p><a href="ideal.html">ideal (1)</a></p></li>
+</ul>
+<p>
+David Slattengren and Barry Roitblat wrote the original Berkeley
+<i>grn</i>. <p>
+Daniel Senderowicz and Werner Lemberg modified it for
+<i>groff</i>. <br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionef44.html?tutorial=unix_commands&amp;file=grn.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/grn.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

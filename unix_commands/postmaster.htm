@@ -1,0 +1,666 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/postmaster.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:14 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>postmaster - Unix, Linux Command</title>
+<meta name="Description" Content="postmaster - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>postmaster - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- ignored unsupported tag ._DBLSLASH_ -->
+<h1 class="manpages">NAME</h1>
+postmaster - PostgreSQL multiuser database server
+<p>
+<h1 class="manpages">SYNOPSIS</h1>
+<p>
+<b>postmaster</b> [ <b>-A  0 | 1</b>  ]  [ <b>-B </b><i>nbuffers</i><b></b> ]  [ <b>-c </b><i>name</i><b>=</b><i>value</i><b></b> ]  [ <b>-d </b><i>debug-level</i><b></b> ]  [ <b>-D </b><i>datadir</i><b></b> ]  [ <b>-F</b> ]  [ <b>-h </b><i>hostname</i><b></b> ]  [ <b>-i</b> ]  [ <b>-k </b><i>directory</i><b></b> ]  [ <b>-l</b> ]  [ <b>-N </b><i>max-connections</i><b></b> ]  [ <b>-o </b><i>extra-options</i><b></b> ]  [ <b>-p </b><i>port</i><b></b> ]  [ <b>-S</b> ]  [ <b>--</b><i>name</i><b>=</b><i>value</i><b></b> ]  [ <b>-n</b> | <b>-s</b> ]
+<h1 class="manpages">DESCRIPTION</h1>
+<p>
+<b>postmaster</b> is the
+PostgreSQL multiuser database server.
+In order for a client application to access a database it connects
+(over a network or locally) to a running
+<b>postmaster</b>. The
+<b>postmaster</b> then starts a separate server
+process (&#145;&#145;<b>postgres</b>(1)&#146;&#146;) to handle
+the connection. The <b>postmaster</b> also
+manages the communication among server processes.
+<p>
+By default the <b>postmaster</b> starts in the
+foreground and prints log messages to the standard error stream. In
+practical applications the <b>postmaster</b>
+should be started as a background process, perhaps at boot time.
+<p>
+One <b>postmaster</b> always manages the data
+from exactly one database cluster. A database cluster is a
+collection of databases that is stored at a common file system
+location (the &#145;&#145;data area&#146;&#146;).
+More than one <b>postmaster</b> process can run on a system
+at one time, so long as they use different data areas and different
+communication ports (see below). A data area is created with <b>initdb</b>(1).
+<p>
+When the <b>postmaster</b> starts it needs
+to know the location of the data area.
+The location must be specified by the <b>-D</b> option
+or the <b>PGDATA</b> environment variable; there is no default.
+Typically, <b>-D</b> or <b>PGDATA</b> points
+directly to the data area directory created by <b>initdb</b>.
+Other possible file layouts are discussed in
+the documentation.
+<h1 class="manpages">OPTIONS</h1>
+<p>
+<b>postmaster</b> accepts the following
+command line arguments. For a detailed discussion of the options
+consult the documentation. You can also save typing most of these
+options by setting up a configuration file.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-A 0|1</b>
+</td><td valign="bottom">
+Enables run-time assertion checks, which is a debugging aid to
+detect programming mistakes. This option is only available if
+assertions were enabled when PostgreSQL was
+compiled. If so, the default is on.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-B </b><i>nbuffers</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Sets the number of shared buffers for use by the server
+processes. The default value of this parameter is chosen
+automatically by <b>initdb</b>; refer to the documentation for more information.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-c </b><i>name</i><b>=</b><i>value</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Sets a named run-time parameter. The configuration parameters
+supported by PostgreSQL are
+described in the documentation. Most of the
+other command line options are in fact short forms of such a
+parameter assignment. <b>-c</b> can appear multiple times
+to set multiple parameters.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-d </b><i>debug-level</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Sets the debug level. The higher this value is set, the more
+debugging output is written to the server log. Values are from
+1 to 5.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-D </b><i>datadir</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies the file system location of the data directory or
+configuration file(s). See
+the documentation for details.
+</td></tr>
+<tr valign="top"><td>
+<b>-F</b>
+</td><td valign="bottom">
+Disables <b>fsync</b> calls for improved
+performance, at the risk of data corruption in the event of a
+system crash. Specifying this option is equivalent to
+disabling the fsync configuration
+parameter. Read the detailed documentation before using this!
+<p>
+<b>--fsync=true</b> has the opposite effect
+of this option.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-h </b><i>hostname</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies the IP host name or address on which the
+<b>postmaster</b> is to listen for TCP/IP
+connections from client applications. The value can also be a
+comma-separated list of addresses, or * to specify
+listening on all available interfaces. An empty value
+specifies not listening on any IP addresses, in which case
+only Unix-domain sockets can be used to connect to the
+<b>postmaster</b>. Defaults to listening only on
+<b>localhost</b>.
+Specifying this option is equivalent to setting the listen_addresses configuration parameter.
+</td></tr>
+<tr valign="top"><td>
+<b>-i</b>
+</td><td valign="bottom">
+Allows remote clients to connect via TCP/IP (Internet domain)
+connections. Without this option, only local connections are
+accepted. This option is equivalent to setting
+listen_addresses to * in
+<i>postgresql.conf</i> or via <b>-h</b>.
+<p>
+This option is deprecated since it does not allow access to the
+full functionality of listen_addresses.
+It&#146;s usually better to set listen_addresses directly.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-k </b><i>directory</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies the directory of the Unix-domain socket on which the
+<b>postmaster</b> is to listen for
+connections from client applications. The default is normally
+<i>/tmp</i>, but can be changed at build time.
+</td></tr>
+<tr valign="top"><td>
+<b>-l</b>
+</td><td valign="bottom">
+Enables secure connections using SSL.
+PostgreSQL must have been compiled with
+support for SSL for this option to be
+available. For more information on using SSL,
+refer to the documentation.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-N </b><i>max-connections</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Sets the maximum number of client connections that this
+<b>postmaster</b> will accept. By
+default, this value is 32, but it can be set as high as your
+system will support. (Note that
+<b>-B</b> is required to be at least twice
+<b>-N</b>. See the documentation for a discussion of
+system resource requirements for large numbers of client
+connections.) Specifying this option is equivalent to setting the
+max_connections configuration parameter.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-o </b><i>extra-options</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The command line-style options specified in <i>extra-options</i> are passed to
+all server processes started by this
+<b>postmaster</b>. See <b>postgres</b>(1) for possibilities. If the option
+string contains any spaces, the entire string must be quoted.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-p </b><i>port</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies the TCP/IP port or local Unix domain socket file
+extension on which the <b>postmaster</b>
+is to listen for connections from client applications.
+Defaults to the value of the <b>PGPORT</b> environment
+variable, or if <b>PGPORT</b> is not set, then
+defaults to the value established during compilation (normally
+5432). If you specify a port other than the default port,
+then all client applications must specify the same port using
+either command-line options or <b>PGPORT</b>.
+</td></tr>
+<tr valign="top"><td>
+<b>-S</b>
+</td><td valign="bottom">
+Specifies that the <b>postmaster</b>
+process should start up in silent mode. That is, it will
+disassociate from the user&#146;s (controlling) terminal, start its
+own process group, and redirect its standard output and
+standard error to <i>/dev/null</i>.
+<p>
+Using this switch discards all logging output, which is
+probably not what you want, since it makes it very difficult
+to troubleshoot problems. See below for a better way to start
+the <b>postmaster</b> in the background.
+<p>
+<b>--silent-mode=false</b> has the opposite effect
+of this option.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--</b><i>name</i><b>=</b><i>value</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Sets a named run-time parameter; a shorter form of
+<b>-c</b>.
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+Two additional command line options are available for debugging
+problems that cause a server process to die abnormally. The
+ordinary strategy in this situation is to notify all other server
+processes that they must terminate and then reinitialize the
+shared memory and semaphores. This is because an errant server
+process could have corrupted some shared state before terminating.
+These options select alternative behaviors of the
+<b>postmaster</b> in this situation.
+<b>Neither option is intended for use in ordinary
+operation.</b>
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+These special-case options are:
+</td></tr>
+<tr valign="top"><td>
+<b>-n</b>
+</td><td valign="bottom">
+<b>postmaster</b>
+will not reinitialize shared data structures. A knowledgeable system
+programmer can then use a debugger
+to examine shared memory and semaphore state.
+</td></tr>
+<tr valign="top"><td>
+<b>-s</b>
+</td><td valign="bottom">
+<b>postmaster</b>
+will stop all other server processes by sending the signal
+SIGSTOP,
+but will not cause them to terminate. This permits system programmers
+to collect core dumps from all server processes by hand.
+</td></tr>
+<!-- PP ends table -->
+</table>
+<h1 class="manpages">ENVIRONMENT</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>PGCLIENTENCODING</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Default character encoding used by clients. (The clients may
+override this individually.) This value can also be set in the
+configuration file.
+</td></tr>
+<tr valign="top"><td>
+<b>PGDATA</b>
+</td><td valign="bottom">
+Default data directory location
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>PGDATESTYLE</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Default value of the datestyle run-time
+parameter. (The use of this environment variable is deprecated.)
+</td></tr>
+<tr valign="top"><td>
+<b>PGPORT</b>
+</td><td valign="bottom">
+Default port (preferably set in the configuration file)
+</td></tr>
+<tr valign="top"><td>
+<b>TZ</b>
+</td><td valign="bottom">
+Server time zone
+</td></tr>
+</table>
+<h1 class="manpages">DIAGNOSTICS</h1>
+<p>
+A failure message mentioning semget or shmget
+probably indicates you need to configure your kernel to provide adequate
+shared memory and semaphores. For more discussion see the documentation.
+<p>
+<b>Tip:</b> You may be able to postpone reconfiguring your kernel by
+decreasing shared_buffers to reduce the
+shared memory consumption of PostgreSQL, and/or
+by reducing max_connections to reduce the
+semaphore consumption.
+<p>
+<p>
+A failure message suggesting that another postmaster is already running
+should be checked carefully, for example by using the command
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+$ <b>ps ax | grep postmaster</b>
+<p>
+</pre></td></tr>
+</table>
+or
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+$ <b>ps -ef | grep postmaster</b>
+<p>
+</pre></td></tr>
+</table>
+depending on your system. If you are certain that no conflicting
+postmaster is running, you may remove the lock file mentioned in the
+message and try again.
+<p>
+A failure message indicating inability to bind to a port may
+indicate that that port is already in use by some
+non-PostgreSQL process. You may also
+get this error if you terminate the <b>postmaster</b>
+and immediately restart it using the same port; in this case, you
+must simply wait a few seconds until the operating system closes
+the port before trying again. Finally, you may get this error if
+you specify a port number that your operating system considers to
+be reserved. For example, many versions of Unix consider port
+numbers under 1024 to be &#145;&#145;trusted&#146;&#146; and only permit
+the Unix superuser to access them.
+<h1 class="manpages">NOTES</h1>
+<p>
+If at all possible, <b>do not</b> use
+SIGKILL to kill the
+<b>postmaster</b>. Doing so will prevent
+<b>postmaster</b> from freeing the system
+resources (e.g., shared memory and semaphores) that it holds before
+terminating. This may cause problems for starting a fresh
+<b>postmaster</b> run.
+<p>
+To terminate the <b>postmaster</b> normally,
+the signals SIGTERM, SIGINT,
+or SIGQUIT can be used. The first will wait for
+all clients to terminate before quitting, the second will
+forcefully disconnect all clients, and the third will quit
+immediately without proper shutdown, resulting in a recovery run
+during restart. The SIGHUP signal will
+reload the server configuration files.
+<p>
+The utility command <b>pg_ctl</b>(1) can be used to
+start and shut down the <b>postmaster</b>
+safely and comfortably.
+<p>
+The <b>--</b> options will not work on <b>FreeBSD</b> or <b>OpenBSD</b>.
+Use <b>-c</b> instead. This is a bug in the affected operating
+systems; a future release of PostgreSQL
+will provide a workaround if this is not fixed.
+<h1 class="manpages">EXAMPLES</h1>
+<p>
+To start <b>postmaster</b> in the background
+using default values, type:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+$ <b>nohup postmaster &gt;logfile 2&gt;&1 &lt;/dev/null &</b>
+<p>
+</pre></td></tr>
+</table>
+<p>
+To start <b>postmaster</b> with a specific
+port:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+$ <b>postmaster -p 1234</b>
+<p>
+</pre></td></tr>
+</table>
+This command will start up <b>postmaster</b>
+communicating through the port 1234. In order to connect to this
+<b>postmaster</b> using <b>psql</b>, you would need to
+run it as
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+$ <b>psql -p 1234</b>
+<p>
+</pre></td></tr>
+</table>
+or set the environment variable <b>PGPORT</b>:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+$ <b>export PGPORT=1234</b>
+$ <b>psql</b>
+<p>
+</pre></td></tr>
+</table>
+<p>
+Named run-time parameters can be set in either of these styles:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+$ <b>postmaster -c work_mem=1234</b>
+$ <b>postmaster --work-mem=1234</b>
+<p>
+</pre></td></tr>
+</table>
+Either form overrides whatever setting might exist for work_mem
+in <i>postgresql.conf</i>. Notice that underscores in parameter
+names can be written as either underscore or dash on the command line.
+<p>
+<b>Tip:</b> Except for short-term experiments,
+it&#146;s probably better practice to edit the setting in
+<i>postgresql.conf</i> than to rely on a command-line switch
+to set a parameter.
+<p>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<b>initdb</b>(1),
+<b>pg_ctl</b>(1)
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion3c27.html?tutorial=unix_commands&amp;file=postmaster.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/postmaster.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:14 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,1048 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/mysqld_multi.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:04 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>mysqld_multi - Unix, Linux Command</title>
+<meta name="Description" Content="mysqld_multi - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>mysqld_multi - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- ignored unsupported tag .nh -->
+<!-- ignored unsupported tag .ad -->
+<h1 class="manpages">NAME</h1>
+mysqld_multi - manage multiple MySQL servers
+<h1 class="manpages">SYNOPSIS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>mysqld_multi [</b><b></b><i>options</i><b>] {start|stop|report} [</b><b></b><i>GNR</i><b>[,</b><b></b><i>GNR</i><b>] &#46;&#46;&#46;]</b>
+</td></tr>
+</table>
+<h1 class="manpages">DESCRIPTION</h1>
+<p>
+<b>mysqld_multi</b>
+is designed to manage several
+<b>mysqld</b>
+processes that listen for connections on different Unix socket files and TCP/IP ports&#46; It can start or stop servers, or report their current status&#46; The MySQL Instance Manager is an alternative means of managing multiple servers (see
+<b>mysqlmanager</b>(8))&#46;
+<p>
+<b>mysqld_multi</b>
+searches for groups named
+[mysqld<i>N</i>]
+in
+my&#46;cnf
+(or in the file named by the
+<b>--config-file</b>
+option)&#46;
+<i>N</i>
+can be any positive integer&#46; This number is referred to in the following discussion as the option group number, or
+<i>GNR</i>&#46; Group numbers distinguish option groups from one another and are used as arguments to
+<b>mysqld_multi</b>
+to specify which servers you want to start, stop, or obtain a status report for&#46; Options listed in these groups are the same that you would use in the
+[mysqld]
+group used for starting
+<b>mysqld</b>&#46; (See, for example,
+Section 2.12.1.2, <blink><blink>\(</blink>lq</blink>Starting and Stopping MySQL Automatically<blink><blink>\(</blink>rq</blink>&#46;) However, when using multiple servers, it is necessary that each one use its own value for options such as the Unix socket file and TCP/IP port number&#46; For more information on which options must be unique per server in a multiple-server environment, see
+Section 5.6, <blink><blink>\(</blink>lq</blink>Running Multiple MySQL Servers on the Same Machine<blink><blink>\(</blink>rq</blink>&#46;
+<p>
+To invoke
+<b>mysqld_multi</b>, use the following syntax:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqld_multi [</b><b></b><i>options</i><b>] {start|stop|report} [</b><b></b><i>GNR</i><b>[,</b><b></b><i>GNR</i><b>] &#46;&#46;&#46;]</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+start,
+stop, and
+report
+indicate which operation to perform&#46; You can perform the designated operation for a single server or multiple servers, depending on the
+<i>GNR</i>
+list that follows the option name&#46; If there is no list,
+<b>mysqld_multi</b>
+performs the operation for all servers in the option file&#46;
+<p>
+Each
+<i>GNR</i>
+value represents an option group number or range of group numbers&#46; The value should be the number at the end of the group name in the option file&#46; For example, the
+<i>GNR</i>
+for a group named
+[mysqld17]
+is
+17&#46; To specify a range of numbers, separate the first and last numbers by a dash&#46; The
+<i>GNR</i>
+value
+10-13
+represents groups
+[mysqld10]
+through
+[mysqld13]&#46; Multiple groups or group ranges can be specified on the command line, separated by commas&#46; There must be no whitespace characters (spaces or tabs) in the
+<i>GNR</i>
+list; anything after a whitespace character is ignored&#46;
+<p>
+This command starts a single server using option group
+[mysqld17]:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqld_multi start 17</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+This command stops several servers, using option groups
+[mysqld8]
+and
+[mysqld10]
+through
+[mysqld13]:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqld_multi stop 8,10-13</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+For an example of how you might set up an option file, use this command:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqld_multi --example</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+As of MySQL 5&#46;1&#46;18,
+<b>mysqld_multi</b>
+searches for option files as follows:
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+With
+<b>--no-defaults</b>, no option files are read&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+With
+<b>--defaults-file=</b><b></b><i>file_name</i>, only the named file is read&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+Otherwise, option files in the standard list of locations are read, including any file named by the
+<b>--defaults-extra-file=</b><b></b><i>file_name</i>
+option, if one is given&#46; (If the option is given multiple times, the last value is used&#46;)
+</td></tr>
+</table>
+<p>
+Before MySQL 5&#46;1&#46;18, the preceding options are not recognized&#46; Files in the standard locations are read, and any file named by the
+<b>--config-file=</b><b></b><i>file_name</i>
+option, if one is given&#46; A file named by
+<b>--config-file</b>
+is read only for
+[mysqld<i>N</i>]
+option groups, not the
+[mysqld_multi]
+group&#46;
+<p>
+Option files read are searched for
+[mysqld_multi]
+and
+[mysqld<i>N</i>]
+option groups&#46; The
+[mysqld_multi]
+group can be used for options to
+<b>mysqld_multi</b>
+itself&#46;
+[mysqld<i>N</i>]
+groups can be used for options passed to specific
+<b>mysqld</b>
+instances&#46;
+<p>
+As of MySQL 5&#46;1&#46;35, the
+[mysqld]
+or
+[mysqld_safe]
+groups can be used for common options read by all instances of
+<b>mysqld</b>
+or
+<b>mysqld_safe</b>&#46; You can specify a
+<b>--defaults-file=</b><b></b><i>file_name</i>
+option to use a different configuration file for that instance, in which case the
+[mysqld]
+or
+[mysqld_safe]
+groups from that file will be used for that instance&#46; Before MySQL 5&#46;1&#46;35, some versions of
+<b>mysqld_multi</b>
+pass the
+<b>--no-defaults</b>
+options to instances, so these techniques are inapplicable&#46;
+<p>
+<b>mysqld_multi</b>
+supports the following options&#46;
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--help</b>
+<p>
+Display a help message and exit&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--config-file=</b><b></b><i>file_name</i>
+<p>
+As of MySQL 5&#46;1&#46;18, this option is deprecated&#46; If given, it is treated the same way as
+<b>--defaults-extra-file</b>, described earlier&#46;
+<b>--config-file</b>
+is removed in MySQL 5&#46;5&#46;
+<p>
+Before MySQL 5&#46;1&#46;18, this option specifies the name of an extra option file&#46; It affects where
+<b>mysqld_multi</b>
+looks for
+[mysqld<i>N</i>]
+option groups&#46; Without this option, all options are read from the usual
+my&#46;cnf
+file&#46; The option does not affect where
+<b>mysqld_multi</b>
+reads its own options, which are always taken from the
+[mysqld_multi]
+group in the usual
+my&#46;cnf
+file&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--example</b>
+<p>
+Display a sample option file&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--log=</b><b></b><i>file_name</i>
+<p>
+Specify the name of the log file&#46; If the file exists, log output is appended to it&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--mysqladmin=</b><b></b><i>prog_name</i>
+<p>
+The
+<b>mysqladmin</b>
+binary to be used to stop servers&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--mysqld=</b><b></b><i>prog_name</i>
+<p>
+The
+<b>mysqld</b>
+binary to be used&#46; Note that you can specify
+<b>mysqld_safe</b>
+as the value for this option also&#46; If you use
+<b>mysqld_safe</b>
+to start the server, you can include the
+mysqld
+or
+ledir
+options in the corresponding
+[mysqld<i>N</i>]
+option group&#46; These options indicate the name of the server that
+<b>mysqld_safe</b>
+should start and the path name of the directory where the server is located&#46; (See the descriptions for these options in
+<b>mysqld_safe</b>(1)&#46;) Example:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+[mysqld38]
+mysqld = mysqld-debug
+ledir  = /opt/local/mysql/libexec
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--no-log</b>
+<p>
+Print log information to
+stdout
+rather than to the log file&#46; By default, output goes to the log file&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--password=</b><b></b><i>password</i>
+<p>
+The password of the MySQL account to use when invoking
+<b>mysqladmin</b>&#46; Note that the password value is not optional for this option, unlike for other MySQL programs&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--silent</b>
+<p>
+Silent mode; disable warnings&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--tcp-ip</b>
+<p>
+Connect to each MySQL server through the TCP/IP port instead of the Unix socket file&#46; (If a socket file is missing, the server might still be running, but accessible only through the TCP/IP port&#46;) By default, connections are made using the Unix socket file&#46; This option affects
+stop
+and
+report
+operations&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--user=</b><b></b><i>user_name</i>
+<p>
+The user name of the MySQL account to use when invoking
+<b>mysqladmin</b>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--verbose</b>
+<p>
+Be more verbose&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--version</b>
+<p>
+Display version information and exit&#46;
+</td></tr>
+</table>
+<p>
+Some notes about
+<b>mysqld_multi</b>:
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>Most important</b>: Before using
+<b>mysqld_multi</b>
+be sure that you understand the meanings of the options that are passed to the
+<b>mysqld</b>
+servers and
+<i>why</i>
+you would want to have separate
+<b>mysqld</b>
+processes&#46; Beware of the dangers of using multiple
+<b>mysqld</b>
+servers with the same data directory&#46; Use separate data directories, unless you
+<i>know</i>
+what you are doing&#46; Starting multiple servers with the same data directory does
+<i>not</i>
+give you extra performance in a threaded system&#46; See
+Section 5.6, <blink><blink>\(</blink>lq</blink>Running Multiple MySQL Servers on the Same Machine<blink><blink>\(</blink>rq</blink>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<p>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .it -->
+<font size="1"><b>Important</b>
+</font><!-- Need break --><br />
+Make sure that the data directory for each server is fully accessible to the Unix account that the specific
+<b>mysqld</b>
+process is started as&#46;
+<i>Do not</i>
+use the Unix
+<i>root</i>
+account for this, unless you
+<i>know</i>
+what you are doing&#46; See
+Section 5.3.6, <blink><blink>\(</blink>lq</blink>How to Run MySQL as a Normal User<blink><blink>\(</blink>rq</blink>&#46;
+<p>
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+Make sure that the MySQL account used for stopping the
+<b>mysqld</b>
+servers (with the
+<b>mysqladmin</b>
+program) has the same user name and password for each server&#46; Also, make sure that the account has the
+SHUTDOWN
+privilege&#46; If the servers that you want to manage have different user names or passwords for the administrative accounts, you might want to create an account on each server that has the same user name and password&#46; For example, you might set up a common
+multi_admin
+account by executing the following commands for each server:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysql -u root -S /tmp/mysql&#46;sock -p</b>
+Enter password:
+mysql&gt; <b>GRANT SHUTDOWN ON *&#46;*</b>
+    -&gt; <b>TO &#39;multi_admin&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;multipass&#39;;</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+<p>
+See
+Section 5.4, <blink><blink>\(</blink>lq</blink>The MySQL Access Privilege System<blink><blink>\(</blink>rq</blink>&#46; You have to do this for each
+<b>mysqld</b>
+server&#46; Change the connection parameters appropriately when connecting to each one&#46; Note that the host name part of the account name must permit you to connect as
+multi_admin
+from the host where you want to run
+<b>mysqld_multi</b>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+The Unix socket file and the TCP/IP port number must be different for every
+<b>mysqld</b>&#46; (Alternatively, if the host has multiple network addresses, you can use
+<b>--bind-address</b>
+to cause different servers to listen to different interfaces&#46;)
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+The
+<b>--pid-file</b>
+option is very important if you are using
+<b>mysqld_safe</b>
+to start
+<b>mysqld</b>
+(for example,
+<b>--mysqld=mysqld_safe</b>) Every
+<b>mysqld</b>
+should have its own process ID file&#46; The advantage of using
+<b>mysqld_safe</b>
+instead of
+<b>mysqld</b>
+is that
+<b>mysqld_safe</b>
+monitors its
+<b>mysqld</b>
+process and restarts it if the process terminates due to a signal sent using
+kill -9
+or for other reasons, such as a segmentation fault&#46; Please note that the
+<b>mysqld_safe</b>
+script might require that you start it from a certain place&#46; This means that you might have to change location to a certain directory before running
+<b>mysqld_multi</b>&#46; If you have problems starting, please see the
+<b>mysqld_safe</b>
+script&#46; Check especially the lines:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+----------------------------------------------------------------
+MY_PWD=&#145;pwd&#145;
+# Check if we are starting this relative (for the binary release)
+if test -d $MY_PWD/data/mysql -a &#92;
+   -f &#46;/share/mysql/english/errmsg&#46;sys -a &#92;
+   -x &#46;/bin/mysqld
+----------------------------------------------------------------
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+<p>
+The test performed by these lines should be successful, or you might encounter problems&#46; See
+<b>mysqld_safe</b>(1)&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+You might want to use the
+<b>--user</b>
+option for
+<b>mysqld</b>, but to do this you need to run the
+<b>mysqld_multi</b>
+script as the Unix superuser (root)&#46; Having the option in the option file doesn&#39;t matter; you just get a warning if you are not the superuser and the
+<b>mysqld</b>
+processes are started under your own Unix account&#46;
+</td></tr>
+</table>
+<p>
+The following example shows how you might set up an option file for use with
+<b>mysqld_multi</b>&#46; The order in which the
+<b>mysqld</b>
+programs are started or stopped depends on the order in which they appear in the option file&#46; Group numbers need not form an unbroken sequence&#46; The first and fifth
+[mysqld<i>N</i>]
+groups were intentionally omitted from the example to illustrate that you can have
+<blink><blink>\(</blink>lq</blink>gaps<blink><blink>\(</blink>rq</blink>
+in the option file&#46; This gives you more flexibility&#46;
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+# This file should probably be in your home dir (~/&#46;my&#46;cnf)
+# or /etc/my&#46;cnf
+# Version 2&#46;1 by Jani Tolonen
+[mysqld_multi]
+mysqld     = /usr/local/bin/mysqld_safe
+mysqladmin = /usr/local/bin/mysqladmin
+user       = multi_admin
+password   = multipass
+[mysqld2]
+socket     = /tmp/mysql&#46;sock2
+port       = 3307
+pid-file   = /usr/local/mysql/var2/hostname&#46;pid2
+datadir    = /usr/local/mysql/var2
+language   = /usr/local/share/mysql/english
+user       = john
+[mysqld3]
+socket     = /tmp/mysql&#46;sock3
+port       = 3308
+pid-file   = /usr/local/mysql/var3/hostname&#46;pid3
+datadir    = /usr/local/mysql/var3
+language   = /usr/local/share/mysql/swedish
+user       = monty
+[mysqld4]
+socket     = /tmp/mysql&#46;sock4
+port       = 3309
+pid-file   = /usr/local/mysql/var4/hostname&#46;pid4
+datadir    = /usr/local/mysql/var4
+language   = /usr/local/share/mysql/estonia
+user       = tonu
+[mysqld6]
+socket     = /tmp/mysql&#46;sock6
+port       = 3311
+pid-file   = /usr/local/mysql/var6/hostname&#46;pid6
+datadir    = /usr/local/mysql/var6
+language   = /usr/local/share/mysql/japanese
+user       = jani
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+See
+Section 4.2.3.3, <blink><blink>\(</blink>lq</blink>Using Option Files<blink><blink>\(</blink>rq</blink>&#46;
+<h1 class="manpages">COPYRIGHT</h1>
+<p>
+Copyright &#169; 1997, 2011, Oracle and/or its affiliates. All rights reserved.
+<p>
+This documentation is free software; you can redistribute it and/or modify it only under the terms of the GNU General Public License as published by the Free Software Foundation; version 2 of the License.
+<p>
+This documentation is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+<p>
+You should have received a copy of the GNU General Public License along with the program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA or see <a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a>/.
+<p>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+which may already be installed locally and which is also available
+online at <a href="http://dev.mysql.com/doc">http://dev.mysql.com/doc</a>/.
+<h1 class="manpages">AUTHOR</h1>
+Oracle Corporation (<a href="http://dev.mysql.com/">http://dev.mysql.com</a>/).
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionbcd3.html?tutorial=unix_commands&amp;file=mysqld_multi.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/mysqld_multi.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:04 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

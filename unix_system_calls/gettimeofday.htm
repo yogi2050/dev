@@ -1,0 +1,417 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_system_calls/gettimeofday.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>gettimeofday() - Unix, Linux System Call</title>
+<meta name="Description" Content="gettimeofday() - Unix, Linux System Calls Manual Pages (Manpages) ,  Learning fundamentals of UNIX in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - System Calls</b></a></li>
+<li><a class="left" target="_top" href="../unix_commands/index.html">Unix - Commands List</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>gettimeofday() - Unix, Linux System Call</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+gettimeofday, settimeofday - get / set time
+<h1 class="manpages">SYNOPSIS</h1>
+<b>#include &lt;sys/time.h&gt;</b> <p>
+<b>int gettimeofday(struct timeval *</b><i>tv</i><b>, struct timezone *</b><i>tz</i><b>);</b> <!-- Need break --><br />
+<b>int settimeofday(const struct timeval *</b><i>tv</i> <b>, const struct timezone *</b><i>tz</i><b>);</b> <h1 class="manpages">DESCRIPTION</h1>
+The functions
+<b>gettimeofday</b>() and
+<b>settimeofday</b>() can get and set the time as well as a timezone.
+The   
+<i>tv</i> argument is a
+<i>struct timeval</i> (as specified  in
+<i>&lt;sys/time.h&gt;</i>): <p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+struct timeval {
+    time_t      tv_sec;     /* seconds */
+    suseconds_t tv_usec;    /* microseconds */
+};
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+and gives the number of seconds and microseconds since the Epoch (see
+<b>time</b>(2)).
+The
+<i>tz</i> argument is a
+<i>struct timezone</i>: <p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+struct timezone {
+    int tz_minuteswest;     /* minutes west of Greenwich */
+    int tz_dsttime;         /* type of DST correction */
+};
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+If either
+<i>tv</i> or
+<i>tz</i> is NULL, the corresponding structure is not set or returned.
+<p>
+The use of the
+<i>timezone</i> structure is obsolete; the
+<i>tz</i> argument should normally be specified as NULL.
+The
+<i>tz_dsttime</i> field has never been used under Linux; it has not
+been and will not be supported by libc or glibc.
+Each and every occurrence of this field in the kernel source
+(other than the declaration) is a bug. Thus, the following
+is purely of historic interest.
+<p>
+The field
+<i>tz_dsttime</i> contains a symbolic constant (values are given below)
+that indicates in which part of the year Daylight Saving Time
+is in force. (Note: its value is constant throughout the year:
+it does not indicate that DST is in force, it just selects an
+algorithm.)
+The daylight saving time algorithms defined are as follows :
+<p>
+<b> DST_NONE</b>    /* not on dst */
+<!-- Need break --><br />
+<b> DST_USA</b>     /* USA style dst */
+<!-- Need break --><br />
+<b> DST_AUST</b>    /* Australian style dst */
+<!-- Need break --><br />
+<b> DST_WET</b>     /* Western European dst */
+<!-- Need break --><br />
+<b> DST_MET</b>     /* Middle European dst */
+<!-- Need break --><br />
+<b> DST_EET</b>     /* Eastern European dst */
+<!-- Need break --><br />
+<b> DST_CAN</b>     /* Canada */
+<!-- Need break --><br />
+<b> DST_GB</b>      /* Great Britain and Eire */
+<!-- Need break --><br />
+<b> DST_RUM</b>     /* Rumania */
+<!-- Need break --><br />
+<b> DST_TUR</b>     /* Turkey */
+<!-- Need break --><br />
+<b> DST_AUSTALT</b> /* Australian style with shift in 1986 */
+<p>
+Of course it turned out that the period in which
+Daylight Saving Time is in force cannot be given
+by a simple algorithm, one per country; indeed,
+this period is determined by unpredictable political
+decisions. So this method of representing time zones
+has been abandoned. Under Linux, in a call to
+<b>settimeofday</b>() the
+<i>tz_dsttime</i> field should be zero.
+<p>
+Under Linux there is some peculiar &#145;warp clock&#146; semantics associated
+to the
+<b>settimeofday</b>() system call if on the very first call (after booting)
+that has a non-NULL
+<i>tz</i> argument, the
+<i>tv</i> argument is NULL and the
+<i>tz_minuteswest</i> field is non-zero. In such a case it is assumed that the CMOS clock
+is on local time, and that it has to be incremented by this amount
+to get UTC system time.
+No doubt it is a bad idea to use this feature.
+<p>
+The following macros are defined to operate on a
+<i>struct timeval</i>: <p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+#define timerisset(tvp)\
+&nbsp; &nbsp;((tvp)-&gt;tv_sec || (tvp)-&gt;tv_usec)
+#define timercmp(tvp, uvp, cmp)\
+<!-- ignored unsupported tag .in -->
+((tvp)-&gt;tv_sec cmp (uvp)-&gt;tv_sec ||\
+(tvp)-&gt;tv_sec == (uvp)-&gt;tv_sec &&\
+(tvp)-&gt;tv_usec cmp (uvp)-&gt;tv_usec)
+<!-- ignored unsupported tag .in -->
+#define timerclear(tvp)\
+&nbsp; &nbsp;((tvp)-&gt;tv_sec = (tvp)-&gt;tv_usec = 0)
+</pre></td></tr>
+</table>
+<h1 class="manpages">RETURN VALUE</h1>
+<b>gettimeofday</b>() and
+<b>settimeofday</b>() return 0 for success, or -1 for failure (in which case
+<i>errno</i> is set appropriately).
+<h1 class="manpages">ERRORS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>EFAULT</b> </td><td valign="bottom">
+One of
+<i>tv</i> or
+<i>tz</i> pointed outside the accessible address space.
+</td></tr>
+<tr valign="top"><td>
+<b>EINVAL</b> </td><td valign="bottom">
+Timezone (or something else) is invalid.
+</td></tr>
+<tr valign="top"><td>
+<b>EPERM</b> </td><td valign="bottom">
+The calling process has insufficient privilege to call
+<b>settimeofday</b>(); under Linux the
+<b>CAP_SYS_TIME</b> capability is required.
+</td></tr>
+</table>
+<h1 class="manpages">NOTE</h1>
+The prototype for
+<b>settimeofday</b>() and the defines for
+<b>timercmp</b>, <b>timerisset</b>, <b>timerclear</b>, <b>timeradd</b>, <b>timersub</b> are (since glibc2.2.2) only available if
+<b>_BSD_SOURCE</b> is defined.
+<p>
+Traditionally, the fields of
+<i>struct timeval</i> were longs.
+<h1 class="manpages">CONFORMING TO</h1>
+SVr4, 4.3BSD.
+POSIX.1-2001 describes
+<b>gettimeofday</b>() but not
+<b>settimeofday</b>(). <h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="../unix_commands/date.htm">date (1)</a></p></li>
+<li><p><a href="adjtimex.htm">adjtimex (2)</a></p></li>
+<li><p><a href="time.htm">time (2)</a></p></li>
+</ul>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion66b2.html?tutorial=unix_system_calls&amp;file=gettimeofday.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_system_calls/gettimeofday.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

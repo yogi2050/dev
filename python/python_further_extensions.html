@@ -1,0 +1,561 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/python/python_further_extensions.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 15:57:31 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>Python Extension Programming with C </title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="description" content="Python Extension Programming with C - Learning Python in simple and easy steps : A beginner's tutorial containing complete knowledge of Python Syntax Object Oriented Language, Methods, Tuples, Tools/Utilities, Exceptions Handling, Sockets, GUI, Extentions, XML Programming" />
+<meta name="Keywords" content="Python, Tutorials, Learning, Beginners, Basics, Object Oriented Language, Methods, Overriding, Networking, Multithreading,Methods, Tuples, Tools/Utilities, Exceptions Handling, Sockets, GUI, Extentions, XML, Programming" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+#topmenu a:link {text-decoration:none;color:#000 !important;background-color:transparent;font-weight:bold;}
+#topmenu a:visited {text-decoration:none;color:#000 !important;background-color:transparent;font-weight:bold;}
+#topmenu a:hover {text-decoration:none;color:#fff !important;background-color:transparent;font-weight:bold;}
+#header{ 
+   background:#3777ab !important;
+}
+#topmenu
+{
+   background-color:#fbc62f !important;
+}
+#leftcol ul.menu li.heading 
+{
+   background:#3777ab !important;
+   border:1px solid #fbc62f !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1250px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+   _uacct = "UA-232293-6";
+   urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index-2.html">Tutorials Point Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index-2.html" target="_top">HOME </a>
+<a href="../java/index.html" target="_top">JAVA </a>
+<a href="../php/index.html" target="_top">PHP </a>
+<a href="index.html" target="_top">Python </a>
+<a href="../ruby/index.html" target="_top">Ruby </a>
+<a href="../perl/index.html" target="_top">Perl </a>
+<a href="../html/index.html" target="_top">HTML </a>
+<a href="../css/index.html" target="_top">CSS </a>
+<a href="../javascript/index.html" target="_top">Javascript </a>
+<a href="../mysql/index.html" target="_top">MySQL </a>
+<a href="../cplusplus/index.html" target="_top">C++ </a>
+<a href="../unix/index.html" target="_top">UNIX </a>
+<a href="../more.html" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.html" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.html" target="_top">ABOUT</a> |
+<a href="../about/contact_us.html" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/python-mini.png" alt="Python tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">Python Basic Tutorial</li>
+<li><a target="_top" href="index.html">Python - Home</a></li>
+<li><a target="_top" href="python_overview.html">Python - Overview</a></li>
+<li><a target="_top" href="python_environment.html">Python - Environment</a></li>
+<li><a target="_top" href="python_basic_syntax.html">Python - Basic Syntax</a></li>
+<li><a target="_top" href="python_variable_types.html">Python - Variable Types</a></li>
+<li><a target="_top" href="python_basic_operators.html">Python - Basic Operators</a></li>
+<li><a target="_top" href="python_decision_making.html">Python - Decision Making</a></li>
+<li><a target="_top" href="python_loops.html">Python - Loops</a></li>
+<li><a target="_top" href="python_numbers.html">Python - Numbers</a></li>
+<li><a target="_top" href="python_strings.html">Python - Strings</a></li>
+<li><a target="_top" href="python_lists.html">Python - Lists</a></li>
+<li><a target="_top" href="python_tuples.html">Python - Tuples</a></li>
+<li><a target="_top" href="python_dictionary.html">Python - Dictionary</a></li>
+<li><a target="_top" href="python_date_time.html">Python - Date &amp; Time</a></li>
+<li><a target="_top" href="python_functions.html">Python - Functions</a></li>
+<li><a target="_top" href="python_modules.html">Python - Modules</a></li>
+<li><a target="_top" href="python_files_io.html">Python - Files I/O</a></li>
+<li><a target="_top" href="python_exceptions.html">Python - Exceptions</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Python Advanced Tutorial</li>
+<li><a target="_top" href="python_classes_objects.html">Python - Classes/Objects</a></li>
+<li><a target="_top" href="python_reg_expressions.html">Python - Reg Expressions</a></li>
+<li><a target="_top" href="python_cgi_programming.html">Python - CGI Programming</a></li>
+<li><a target="_top" href="python_database_access.html">Python - Database Access</a></li>
+<li><a target="_top" href="python_networking.html">Python - Networking</a></li>
+<li><a target="_top" href="python_sending_email.html">Python - Sending Email</a></li>
+<li><a target="_top" href="python_multithreading.html">Python - Multithreading</a></li>
+<li><a target="_top" href="python_xml_processing.html">Python - XML Processing</a></li>
+<li><a target="_top" href="python_gui_programming.html">Python - GUI Programming</a></li>
+<li><a target="_top" href="python_further_extensions.html"><b>Python - Further Extensions</b></a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Python  Useful Resources</li>
+<li><a target="_top" href="python_quick_guide.html">Python - Quick Guide</a></li>
+<li><a target="_top" href="python_tools_utilities.html">Python - Tools/Utilities</a></li>
+<li><a target="_top" href="python_useful_resources.html">Python Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.html">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>Python Extension Programming with C</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="python_gui_programming.html">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="python_quick_guide.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>Any code that you write using any compiled language like C, C++ or Java can be integrated or imported into another Python script. This code is considered as an "extension".</p>
+<p>A Python extension module is nothing more than a normal C library. On Unix machines, these libraries usually end in <b>.so</b> (for shared object). On Windows machines, you typically see <b>.dll</b> (for dynamically linked library).</p>
+<h2>Pre-Requisite:</h2>
+<p>To start writing your extension you are going to need the Python header files.</p>
+<ul class="list">
+<li><p>On Unix machines, this usually requires installing a developer-specific package such as <a href="http://packages.debian.org/etch-m68k/python2.5-dev" target="_blank">python2.5-dev</a>.</p></li>
+<li><p>Windows users get these headers as part of the package when they use the binary Python installer.</p></li>
+</ul>
+<p>Additionally, it is assumed that you have good knowledge of C or C++ to write any Python Extension using C programming.</p>
+<h2>First look at a Python extension:</h2>
+<p>For your first look at a Python extension module, you'll be grouping your code into four parts:</p>
+<ul class="list">
+<li><p>The header file <i>Python.h</i>.</p></li>
+<li><p>The C functions you want to expose as the interface from your module.</p></li>
+<li><p>A table mapping the names of your functions as Python developers will see them to C functions inside the extension module.</p></li>
+<li><p>An initialization function.</p></li>
+</ul>
+<h2>The header file <i>Python.h</i></h2>
+<p>Start including <i>Python.h</i> header file in your C source file, which will give you access to the internal Python API used to hook your module into the interpreter.</p>
+<p>Be sure to include Python.h before any other headers you might need. You'll follow the includes with the functions you want to call from Python.</p>
+<h2>The C functions:</h2>
+<p>The signatures of the C implementations of your functions will always take one of the following three forms:</p>
+<pre class="prettyprint">
+static PyObject *MyFunction( PyObject *self, PyObject *args );
+
+static PyObject *MyFunctionWithKeywords(PyObject *self,
+                                 PyObject *args,
+                                 PyObject *kw);
+
+static PyObject *MyFunctionWithNoArgs( PyObject *self );
+</pre>
+<p>Each one of the preceding declarations returns a Python object. There's no such thing as a <i>void</i> function in Python as there is in C. If you don't want your functions to return a value, return the C equivalent of Python's <b>None</b> value. The Python headers define a macro, Py_RETURN_NONE, that does this for us.</p>
+<p>The names of your C functions can be whatever you like as they will never be seen outside of the extension module. So they would be defined as <i>static</i> function.</p>
+<p>Your C functions usually are named by combining the Python module and function names together, as shown here:</p>
+<pre class="prettyprint">
+static PyObject *<i>module_func</i>(PyObject *self, PyObject *args) {
+   /* Do your stuff here. */
+   Py_RETURN_NONE;
+}
+</pre>
+<p>This would be a Python function called <i>func</i> inside of the module <i>module</i>. You'll be putting pointers to your C functions into the method table for the module that usually comes next in your source code.</p>
+<h2>The method mapping table:</h2>
+<p>This method table is a simple array of PyMethodDef structures. That structure looks something like this:</p>
+<pre class="prettyprint">
+struct PyMethodDef {
+   char *ml_name;
+   PyCFunction ml_meth;
+   int ml_flags;
+   char *ml_doc;
+};
+</pre>
+<p>Here is the description of the members of this structure:</p>
+<ul class="list">
+<li><p><b>ml_name:</b> This is the name of the function as the Python interpreter will present it when it is used in Python programs.</p></li>
+<li><p><b>ml_meth:</b> This must be the address to a function that has any one of the signatures described in previous seection.</p></li>
+<li><p><b>ml_flags:</b> This tells the interpreter which of the three signatures ml_meth is using. </p>
+    <ul class="list">
+	<li><p>This flag  will usually have a value of METH_VARARGS.</p></li>
+	<li><p>This flag can be bitwise or'ed with METH_KEYWORDS if you want to allow keyword arguments into your function.</p></li>
+	<li><p>This can also have a value of METH_NOARGS that indicates you don't want to accept any arguments.</p></li>
+	</ul>
+</li>
+<li><p><b>ml_doc:</b> This is the docstring for the function, which could be NULL if you don't feel like writing one</p></li>
+</ul>
+<p>This table needs to be terminated with a sentinel that consists of NULL and 0 values for the appropriate members.</p>
+<h3>Example:</h3>
+<p>For the above defined function, we would have following method mapping table:</p>
+<pre class="prettyprint">
+static PyMethodDef <i>module</i>_methods[] = {
+   { "<i>func</i>", (PyCFunction)<i>module_func</i>, METH_NOARGS, NULL },
+   { NULL, NULL, 0, NULL }
+};
+</pre>
+<h2>The initialization function:</h2>
+<p>The last part of your extension module is the initialization function. This function is called by the Python interpreter when the module is loaded. It's required that the function be named <b>init<i>Module</i></b>, where <i>Module</i> is the name of the module.</p>
+<p>The initialization function needs to be exported from the library you'll be building. The Python headers define PyMODINIT_FUNC to include the appropriate incantations for that to happen for the particular environment in which we're compiling. All you have to do is use it when defining the function.</p>
+<p>Your C initialization function generally has the following overall structure:</p>
+<pre class="prettyprint">
+PyMODINIT_FUNC init<i>Module</i>() {
+   Py_InitModule3(<i>func</i>, <i>module</i>_methods, "docstring...");
+}
+</pre>
+<p>Here is the description of <i>Py_InitModule3</i> function:</p>
+<ul class="list">
+<li><p><b>func:</b> This is the function to be exported.</p></li>
+<li><p><b><i>module</i>_methods:</b> This is the mapping table name defined above.</p></li>
+<li><p><b><i>docstring:</i></b> This is the comment you want to give in your extension.</p></li>
+</ul>
+<p>Putting this all together looks like the following:</p>
+<pre class="prettyprint">
+#include &lt;Python.h&gt;
+
+static PyObject *<i>module_func</i>(PyObject *self, PyObject *args) {
+   /* Do your stuff here. */
+   Py_RETURN_NONE;
+}
+
+static PyMethodDef <i>module</i>_methods[] = {
+   { "<i>func</i>", (PyCFunction)<i>module_func</i>, METH_NOARGS, NULL },
+   { NULL, NULL, 0, NULL }
+};
+
+PyMODINIT_FUNC init<i>Module</i>() {
+   Py_InitModule3(<i>func</i>, <i>module</i>_methods, "docstring...");
+}
+</pre>
+<h3>Example:</h3>
+<p>A simple example that makes use of all the above concepts:</p>
+<pre class="prettyprint">
+#include &lt;Python.h&gt;
+
+static PyObject* helloworld(PyObject* self)
+{
+    return Py_BuildValue("s", "Hello, Python extensions!!");
+}
+
+static char helloworld_docs[] =
+    "helloworld( ): Any message you want to put here!!\n";
+
+static PyMethodDef helloworld_funcs[] = {
+    {"helloworld", (PyCFunction)helloworld, 
+     METH_NOARGS, helloworld_docs},
+    {NULL}
+};
+
+void inithelloworld(void)
+{
+    Py_InitModule3("helloworld", helloworld_funcs,
+                   "Extension module example!");
+}
+</pre>
+<p>Here the <i>Py_BuildValue</i> function is used to build a Python value. Save above code in hello.c file. We would see how to compile and install this module to be called from Python script.</p>
+<h2>Building and Installing Extensions:</h2>
+<p>The <i>distutils</i> package makes it very easy to distribute Python modules, both pure Python and extension modules, in a standard way. Modules are distributed in source form and built and installed via a setup script usually called <i>setup.py</i> as follows.</p>
+<p>For the above module, you would have to prepare following setup.py script:</p>
+<pre class="prettyprint">
+from distutils.core import setup, Extension
+setup(name='helloworld', version='1.0',  \
+      ext_modules=[Extension('helloworld', ['hello.c'])])
+</pre>
+<p>Now use the following command, which would perform all needed compilation and linking steps, with the right compiler and linker commands and flags, and copies the resulting dynamic library into an appropriate directory:</p>
+<pre class="prettyprint">
+$ python setup.py install
+</pre>
+<p>On Unix-based systems, you'll most likely need to run this command as root in order to have permissions to write to the site-packages directory. This usually isn't a problem on Windows</p>
+<h2>Import Extensions:</h2>
+<p>Once you installed your extension, you would be able to import and call that extension in your Python script as follows:</p>
+<pre class="prettyprint">
+#!/usr/bin/python
+import helloworld
+
+print helloworld.helloworld()
+</pre>
+<p>This would produce following result:</p>
+<pre class="prettyprint">
+Hello, Python extensions!!
+</pre>
+<h2>Passing Function Parameters:</h2>
+<p>Because you'll most likely want to define functions that do accept arguments, you can use one of the other signatures for your C functions. For example, following function, that accepts some number of parameters, would be defined like this:</p>
+<pre class="prettyprint">
+static PyObject *<i>module_func</i>(PyObject *self, PyObject *args) {
+   /* Parse args and do something interesting here. */
+   Py_RETURN_NONE;
+}
+</pre>
+<p>The method table containing an entry for the new function would look like this:</p>
+<pre class="prettyprint">
+static PyMethodDef <i>module</i>_methods[] = {
+   { "<i>func</i>", (PyCFunction)<i>module_func</i>, METH_NOARGS, NULL },
+   { "<i>func</i>", <i>module_func</i>, METH_VARARGS, NULL },
+   { NULL, NULL, 0, NULL }
+};
+</pre>
+<p>You can use API <i>PyArg_ParseTuple</i> function to extract the arguments from the one PyObject pointer passed into your C function.</p>
+<p>The first argument to PyArg_ParseTuple is the args argument. This is the object you'll be <i>parsing</i>. The second argument is a format string describing the arguments as you expect them to appear. Each argument is represented by one or more characters in the format string as follows.</p>
+<pre class="prettyprint">
+static PyObject *<i>module_func</i>(PyObject *self, PyObject *args) {
+   int i;
+   double d;
+   char *s;
+
+   if (!PyArg_ParseTuple(args, "ids", &amp;i, &amp;d, &amp;s)) {
+      return NULL;
+   }
+   
+   /* Do something interesting here. */
+   Py_RETURN_NONE;
+}
+</pre>
+<p>Compiling the new version of your module and importing it will enable you to invoke the new function with any number of arguments of any type:</p>
+<pre class="prettyprint">
+module.func(1, s="three", d=2.0)
+module.func(i=1, d=2.0, s="three")
+module.func(s="three", d=2.0, i=1)
+</pre>
+<p>You can probably come up with even more variations.</p>
+<h2>The <i>PyArg_ParseTuple</i> Function:</h2>
+<p>Here is the standard signature for <b>PyArg_ParseTuple</b> function:</p>
+<pre class="prettyprint">
+int PyArg_ParseTuple(PyObject* tuple,char* format,...)
+</pre>
+<p>This function returns 0 for errors, and a value not equal to 0 for success. tuple is the PyObject* that was the C function's second argument. Here <i>format</i> is a C string that describes mandatory and optional arguments.</p>
+<p>Here is a list of format codes for <b>PyArg_ParseTuple</b> function:</p>
+<table class="src">
+<tr>
+<th style="width:10%">Code</th><th style="width:10%">C type</th><th>Meaning</th>
+</tr>
+<tr><td>c</td><td>char</td><td> A Python string of length 1 becomes a C char.</td></tr>
+<tr><td>d</td><td>double</td><td>A Python float becomes a C double.</td></tr>
+<tr><td>f</td><td>float</td><td>A Python float becomes a C float.</td></tr>
+<tr><td>i</td><td>int</td><td>A Python int becomes a C int.</td></tr>
+<tr><td>l</td><td>long</td><td>A Python int becomes a C long.</td></tr>
+<tr><td>L</td><td>long long</td><td>A Python int becomes a C long long</td></tr>
+<tr><td>O</td><td>PyObject*</td><td>Gets non-NULL borrowed reference to Python argument.</td></tr>
+<tr><td>s</td><td>char*</td><td>Python string without embedded nulls to C char*.</td></tr>
+<tr><td>s#</td><td>char*+int</td><td>Any Python string to C address and length.</td></tr>
+<tr><td>t#</td><td>char*+int</td><td>Read-only single-segment buffer to C address and length.</td></tr>
+<tr><td>u</td><td>Py_UNICODE*</td><td>Python Unicode without embedded nulls to C.</td></tr>
+<tr><td>u#</td><td>Py_UNICODE*+int</td><td>Any Python Unicode C address and length.</td></tr>
+<tr><td>w#</td><td>char*+int</td><td>Read/write single-segment buffer to C address and length.</td></tr>
+<tr><td>z</td><td>char*</td><td>Like s, also accepts None (sets C char* to NULL).</td></tr>
+<tr><td>z#</td><td>char*+int</td><td>Like s#, also accepts None (sets C char* to NULL).</td></tr>
+<tr><td>(...)</td><td>as per ...</td><td>A Python sequence is treated as one argument per item.</td></tr>
+<tr><td>|</td><td>&nbsp;</td><td>The following arguments are optional.</td></tr>
+<tr><td>:</td><td>&nbsp;</td><td>Format end, followed by function name for error messages.</td></tr>
+<tr><td>;</td><td>&nbsp;</td><td>Format end, followed by entire error message text.</td></tr>
+</table>
+<h2>Returning Values:</h2>
+<p><i>Py_BuildValue</i> takes in a format string much like <i>PyArg_ParseTuple</i> does. Instead of passing in the addresses of the values you're building, you pass in the actual values. Here's an example showing how to implement an add function:</p>
+<pre class="prettyprint">
+static PyObject *foo_add(PyObject *self, PyObject *args) {
+   int a;
+   int b;
+
+   if (!PyArg_ParseTuple(args, "ii", &amp;a, &amp;b)) {
+      return NULL;
+   }
+   return Py_BuildValue("i", a + b);
+}
+</pre>
+<p>This is what it would look like if implemented in Python:</p>
+<pre class="prettyprint">
+def add(a, b):
+   return (a + b)
+</pre>
+<p>You can return two values from your function as follows, this would be cauptured using a list in Python.</p>
+<pre class="prettyprint">
+static PyObject *foo_add_subtract(PyObject *self, PyObject *args) {
+   int a;
+   int b;
+
+   if (!PyArg_ParseTuple(args, "ii", &amp;a, &amp;b)) {
+      return NULL;
+   }
+   return Py_BuildValue("ii", a + b, a - b);
+}
+</pre>
+<p>This is what it would look like if implemented in Python:</p>
+<pre class="prettyprint">
+def add_subtract(a, b):
+   return (a + b, a - b)
+</pre>
+<h2>The <i>Py_BuildValue</i> Function:</h2>
+<p>Here is the standard signature for <b>Py_BuildValue</b> function:</p>
+<pre class="prettyprint">
+PyObject* Py_BuildValue(char* format,...)
+</pre>
+<p>Here <i>format</i> is a C string that describes the Python object to build. The following arguments of <i>Py_BuildValue</i> are C values from which the result is built. The <i>PyObject*</i> result is a new reference.</p>
+<p>Following table lists the commonly used code strings, of which zero or more are joined into string format.</p>
+<table class="src">
+<tr>
+<th style="width:10%">Code</th><th style="width:10%">C type</th><th>Meaning</th>
+</tr>
+<tr><td>c</td><td>char</td><td>A C char becomes a Python string of length 1.</td></tr>
+<tr><td>d</td><td>double</td><td>A C double becomes a Python float.</td></tr>
+<tr><td>f</td><td>float</td><td>A C float becomes a Python float.</td></tr>
+<tr><td>i</td><td>int</td><td>A C int becomes a Python int.</td></tr>
+<tr><td>l</td><td>long</td><td>A C long becomes a Python int.</td></tr>
+<tr><td>N</td><td>PyObject*</td><td>Passes a Python object and steals a reference.</td></tr>
+<tr><td>O</td><td>PyObject*</td><td>Passes a Python object and INCREFs it as normal.</td></tr>
+<tr><td>O&amp;</td><td>convert+void*</td><td>Arbitrary conversion</td></tr>
+<tr><td>s</td><td>char*</td><td>C 0-terminated char* to Python string, or NULL to None.</td></tr>
+<tr><td>s#</td><td>char*+int</td><td>C char* and length to Python string, or NULL to None.</td></tr>
+<tr><td>u</td><td>Py_UNICODE*</td><td>C-wide, null-terminated string to Python Unicode, or NULL to None.</td></tr>
+<tr><td>u#</td><td>Py_UNICODE*+int</td><td>C-wide string and length to Python Unicode, or NULL to None.</td></tr>
+<tr><td>w#</td><td>char*+int</td><td>Read/write single-segment buffer to C address and length.</td></tr>
+<tr><td>z</td><td>char*</td><td>Like s, also accepts None (sets C char* to NULL).</td></tr>
+<tr><td>z#</td><td>char*+int</td><td>Like s#, also accepts None (sets C char* to NULL).</td></tr>
+<tr><td>(...)</td><td>as per ...</td><td>Builds Python tuple from C values.</td></tr>
+<tr><td>[...]</td><td>as per ...</td><td>Builds Python list from C values.</td></tr>
+<tr><td>{...}</td><td>as per ...</td><td>Builds Python dictionary from C values, alternating keys and values.</td></tr>
+</table>
+<p>Code {...} builds dictionaries from an even number of C values, alternately keys and values. For example, Py_BuildValue("{issi}",23,"zig","zag",42) returns a dictionary like Python's {23:'zig','zag':42}.</p>
+<hr />
+<div class="pre-btn">
+<a href="python_gui_programming.html">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/python_further_extensions.pdf" alt="Python Extension Programming with C " target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="python_quick_guide.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.html" target="_top">ASP.NET </a> |
+<a href="../jquery/index.html" target="_top">jQuery </a> |
+<a href="../ajax/index.html" target="_top">AJAX </a> |
+<a href="../ant/index.html" target="_top">ANT</a> |
+<a href="../jsp/index.html" target="_top">JSP </a> |
+<a href="../servlets/index.html" target="_top">Servlets </a> |
+<a href="../log4j/index.html" target="_top">log4j </a> |
+<a href="../ibatis/index.html" target="_top">iBATIS </a> |
+<a href="../hibernate/index.html" target="_top">Hibernate </a> |
+<a href="../jdbc/index.html" target="_top">JDBC </a> |
+<a href="../struts_2/index.html" target="_top">Struts </a> |
+<a href="../html5/index.html" target="_top">HTML5 </a> |
+<a href="../sql/index.html" target="_top">SQL </a> |
+<a href="../mysql/index.html" target="_top">MySQL </a> |
+<a href="../cplusplus/index.html" target="_top">C++ </a> |
+<a href="../unix/index.html" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/python/python_further_extensions.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 15:57:32 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

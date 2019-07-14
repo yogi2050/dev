@@ -1,0 +1,823 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/sftp.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:24 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>sftp - Unix, Linux Command</title>
+<meta name="Description" Content="sftp - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>sftp - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+<b> sftp</b>
+- secure file transfer program
+<h1 class="manpages">SYNOPSIS</h1>
+<b> sftp</b>
+<br />.Bk -words
+[-<b>1Cv</b>]
+[-<b>B</b><i> buffer_size</i>]
+[-<b>b</b><i> batchfile</i>]
+[-<b>F</b><i> ssh_config</i>]
+[-<b>o</b><i> ssh_option</i>]
+[-<b>P</b><i> sftp_server_path</i>]
+[-<b>R</b><i> num_requests</i>]
+[-<b>S</b><i> program</i>]
+[-<b>s</b><i> subsystem | sftp_server</i>]
+<i> host</i>
+<br />.Ek 
+<b> sftp</b>
+[[<i>user@]</i>
+<i> host[:</i><i>file[</i>
+<i> file]]]</i>
+<b> sftp</b>
+[[<i>user@]</i>
+<i> host[:</i><i>dir</i>
+[<i>/]]]</i>
+<b> sftp</b>
+-<b>b</b> <i> batchfile</i>
+[<i>user @</i><i>host</i>]
+<h1 class="manpages">DESCRIPTION</h1>
+<b>sftp</b>
+is an interactive file transfer program, similar to
+<b>ftp</b>(1),
+which performs all operations over an encrypted
+<b>ssh</b>(1)
+transport.
+It may also use many features of ssh, such as public key authentication and
+compression.
+<b>sftp</b>
+connects and logs into the specified
+<i> host</i>,
+then enters an interactive command mode.
+<p>
+The second usage format will retrieve files automatically if a non-interactive
+authentication method is used; otherwise it will do so after
+successful interactive authentication.
+<p>
+The third usage format allows
+<b>sftp</b>
+to start in a remote directory.
+<p>
+The final usage format allows for automated sessions using the
+-<b>b</b> 
+option.
+In such cases, it is necessary to configure non-interactive authentication
+to obviate the need to enter a password at connection time (see
+<b>sshd</b>(8)
+and
+<b>ssh-keygen</b>(1)
+for details).
+The options are as follows:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>-<b>1</b> 
+</td><td>
+Specify the use of protocol version 1.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>B</b> <i> buffer_size</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specify the size of the buffer that
+<b>sftp</b>
+uses when transferring files.
+Larger buffers require fewer round trips at the cost of higher
+memory consumption.
+The default is 32768 bytes.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>b</b> <i> batchfile</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Batch mode reads a series of commands from an input
+<i> batchfile</i>
+instead of
+<i> stdin</i>.
+Since it lacks user interaction it should be used in conjunction with
+non-interactive authentication.
+A
+<i> batchfile</i>
+of
+&#39;-&#39;
+may be used to indicate standard input.
+<b>sftp</b>
+will abort if any of the following
+commands fail:
+<b> get, put, rename, ln</b>,
+<b> rm, mkdir, chdir, ls</b>,
+<b> lchdir, chmod, chown, chgrp, lpwd</b>
+and
+<b> lmkdir</b>.
+Termination on error can be suppressed on a command by command basis by
+prefixing the command with a
+&#39;-&#39;
+character (for example,
+<b> -rm /tmp/blah*</b>).
+</td></tr>
+<tr valign="top"><td>-<b>C</b> 
+</td><td>
+Enables compression (via ssh&#146;s
+-<b>C</b> 
+flag).
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>F</b> <i> ssh_config</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specifies an alternative
+per-user configuration file for
+<b>ssh</b>(1).
+This option is directly passed to
+<b>ssh</b>(1).
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>o</b> <i> ssh_option</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Can be used to pass options to
+<b> ssh</b>
+in the format used in
+<b>ssh_config</b>(5).
+This is useful for specifying options
+for which there is no separate
+<b> sftp</b>
+command-line flag.
+For example, to specify an alternate port use:
+<b> sftp -oPort=24</b>.
+For full details of the options listed below, and their possible values, see
+<b>ssh_config</b>(5).
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2"> AddressFamily
+<br />
+ BatchMode
+<br />
+ BindAddress
+<br />
+ ChallengeResponseAuthentication
+<br />
+ CheckHostIP
+<br />
+ Cipher
+<br />
+ Ciphers
+<br />
+ Compression
+<br />
+ CompressionLevel
+<br />
+ ConnectionAttempts
+<br />
+ ConnectTimeout
+<br />
+ ControlMaster
+<br />
+ ControlPath
+<br />
+ GlobalKnownHostsFile
+<br />
+ GSSAPIAuthentication
+<br />
+ GSSAPIDelegateCredentials
+<br />
+ HashKnownHosts
+<br />
+ Host
+<br />
+ HostbasedAuthentication
+<br />
+ HostKeyAlgorithms
+<br />
+ HostKeyAlias
+<br />
+ HostName
+<br />
+ IdentityFile
+<br />
+ IdentitiesOnly
+<br />
+ KbdInteractiveDevices
+<br />
+ LogLevel
+<br />
+ MACs
+<br />
+ NoHostAuthenticationForLocalhost
+<br />
+ NumberOfPasswordPrompts
+<br />
+ PasswordAuthentication
+<br />
+ Port
+<br />
+ PreferredAuthentications
+<br />
+ Protocol
+<br />
+ ProxyCommand
+<br />
+ PubkeyAuthentication
+<br />
+ RekeyLimit
+<br />
+ RhostsRSAAuthentication
+<br />
+ RSAAuthentication
+<br />
+ SendEnv
+<br />
+ ServerAliveInterval
+<br />
+ ServerAliveCountMax
+<br />
+ SmartcardDevice
+<br />
+ StrictHostKeyChecking
+<br />
+ TCPKeepAlive
+<br />
+ UsePrivilegedPort
+<br />
+ User
+<br />
+ UserKnownHostsFile
+<br />
+ VerifyHostKeyDNS
+</td></tr><tr><td>&nbsp;</td><td>
+</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">-<b>P</b> <i> sftp_server_path</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Connect directly to a local sftp server
+(rather than via
+<b>ssh</b>(1)).
+This option may be useful in debugging the client and server.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>R</b> <i> num_requests</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specify how many requests may be outstanding at any one time.
+Increasing this may slightly improve file transfer speed
+but will increase memory usage.
+The default is 64 outstanding requests.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>S</b> <i> program</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Name of the
+<i> program</i>
+to use for the encrypted connection.
+The program must understand
+<b>ssh</b>(1)
+options.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>s</b> <i> subsystem | sftp_server</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specifies the SSH2 subsystem or the path for an sftp server
+on the remote host.
+A path is useful for using
+<b>sftp</b>
+over protocol version 1, or when the remote
+<b>sshd</b>(8)
+does not have an sftp subsystem configured.
+</td></tr>
+<tr valign="top"><td>-<b>v</b> 
+</td><td>
+Raise logging level.
+This option is also passed to ssh.
+</td></tr>
+</table>
+<h1 class="manpages">INTERACTIVE COMMANDS</h1>
+Once in interactive mode,
+<b>sftp</b>
+understands a set of commands similar to those of
+<b>ftp</b>(1).
+Commands are case insensitive.
+Pathnames that contain spaces must be enclosed in quotes.
+Any special characters contained within pathnames that are recognized by
+<b>glob</b>(3)
+must be escaped with backslashes
+(&#39;&#92;&#39;).
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td><b> bye</b>
+</td><td>
+Quit
+<b> sftp</b>.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> cd</b><i> path</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Change remote directory to
+<i> path</i>.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> chgrp</b><i> grp</i><i> path</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Change group of file
+<i> path</i>
+to
+<i> grp</i>.
+<i> path</i>
+may contain
+<b>glob</b>(3)
+characters and may match multiple files.
+<i> grp</i>
+must be a numeric GID.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> chmod</b><i> mode</i><i> path</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Change permissions of file
+<i> path</i>
+to
+<i> mode</i>.
+<i> path</i>
+may contain
+<b>glob</b>(3)
+characters and may match multiple files.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> chown</b><i> own</i><i> path</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Change owner of file
+<i> path</i>
+to
+<i> own</i>.
+<i> path</i>
+may contain
+<b>glob</b>(3)
+characters and may match multiple files.
+<i> own</i>
+must be a numeric UID.
+</td></tr>
+<tr valign="top"><td><b> exit</b>
+</td><td>
+Quit
+<b> sftp</b>.
+</td></tr>
+<tr valign="top"><td colspan="2">[-<b>P</b>]
+<i> remote-path</i>
+[<i>local-path</i>]
+</td></tr><tr><td>&nbsp;</td><td>
+Retrieve the
+<i> remote-path</i>
+and store it on the local machine.
+If the local
+path name is not specified, it is given the same name it has on the
+remote machine.
+<i> remote-path</i>
+may contain
+<b>glob</b>(3)
+characters and may match multiple files.
+If it does and
+<i> local-path</i>
+is specified, then
+<i> local-path</i>
+must specify a directory.
+If the
+-<b>P</b> 
+flag is specified, then full file permissions and access times are
+copied too.
+</td></tr>
+<tr valign="top"><td><b> help</b>
+</td><td>
+Display help text.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> lcd</b><i> path</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Change local directory to
+<i> path</i>.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> lls </b>[<i>ls-options </i>[<i>path</i>]]
+</td></tr><tr><td>&nbsp;</td><td>
+Display local directory listing of either
+<i> path</i>
+or current directory if
+<i> path</i>
+is not specified.
+<i> ls-options</i>
+may contain any flags supported by the local system&#146;s
+<b>ls</b>(1)
+command.
+<i> path</i>
+may contain
+<b>glob</b>(3)
+characters and may match multiple files.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> lmkdir</b><i> path</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Create local directory specified by
+<i> path</i>.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> ln</b><i> oldpath</i><i> newpath</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Create a symbolic link from
+<i> oldpath</i>
+to
+<i> newpath</i>.
+</td></tr>
+<tr valign="top"><td><b> lpwd</b>
+</td><td>
+Print local working directory.
+</td></tr>
+<tr valign="top"><td colspan="2">[-<b>1aflnrSt</b>]
+[<i>path</i>]
+</td></tr><tr><td>&nbsp;</td><td>
+Display a remote directory listing of either
+<i> path</i>
+or the current directory if
+<i> path</i>
+is not specified.
+<i> path</i>
+may contain
+<b>glob</b>(3)
+characters and may match multiple files.
+<p>
+The following flags are recognized and alter the behaviour of
+<b> ls</b>
+accordingly:
+</td></tr>
+<tr valign="top"><td>-<b>1</b> 
+</td><td>
+Produce single columnar output.
+</td></tr>
+<tr valign="top"><td>-<b>a</b> 
+</td><td>
+List files beginning with a dot
+(&#39;&#46;&#39;).
+</td></tr>
+<tr valign="top"><td>-<b>f</b> 
+</td><td>
+Do not sort the listing.
+The default sort order is lexicographical.
+</td></tr>
+<tr valign="top"><td>-<b>l</b> 
+</td><td>
+Display additional details including permissions
+and ownership information.
+</td></tr>
+<tr valign="top"><td>-<b>n</b> 
+</td><td>
+Produce a long listing with user and group information presented
+numerically.
+</td></tr>
+<tr valign="top"><td>-<b>r</b> 
+</td><td>
+Reverse the sort order of the listing.
+</td></tr>
+<tr valign="top"><td>-<b>S</b> 
+</td><td>
+Sort the listing by file size.
+</td></tr>
+<tr valign="top"><td>-<b>t</b> 
+</td><td>
+Sort the listing by last modification time.
+</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2"><b> lumask</b><i> umask</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Set local umask to
+<i> umask</i>.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> mkdir</b><i> path</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Create remote directory specified by
+<i> path</i>.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> progress</b>
+</td></tr><tr><td>&nbsp;</td><td>
+Toggle display of progress meter.
+</td></tr>
+<tr valign="top"><td colspan="2">[-<b>P</b>]
+<i> local-path</i>
+[<i>remote-path</i>]
+</td></tr><tr><td>&nbsp;</td><td>
+Upload
+<i> local-path</i>
+and store it on the remote machine.
+If the remote path name is not specified, it is given the same name it has
+on the local machine.
+<i> local-path</i>
+may contain
+<b>glob</b>(3)
+characters and may match multiple files.
+If it does and
+<i> remote-path</i>
+is specified, then
+<i> remote-path</i>
+must specify a directory.
+If the
+-<b>P</b> 
+flag is specified, then the file&#146;s full permission and access time are
+copied too.
+</td></tr>
+<tr valign="top"><td><b> pwd</b>
+</td><td>
+Display remote working directory.
+</td></tr>
+<tr valign="top"><td><b> quit</b>
+</td><td>
+Quit
+<b> sftp</b>.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> rename</b><i> oldpath</i><i> newpath</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Rename remote file from
+<i> oldpath</i>
+to
+<i> newpath</i>.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> rm</b><i> path</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Delete remote file specified by
+<i> path</i>.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> rmdir</b><i> path</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Remove remote directory specified by
+<i> path</i>.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> symlink</b><i> oldpath</i><i> newpath</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Create a symbolic link from
+<i> oldpath</i>
+to
+<i> newpath</i>.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> version</b>
+</td></tr><tr><td>&nbsp;</td><td>
+Display the
+<b>sftp</b>
+protocol version.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> !</b><i> command</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Execute
+<i> command</i>
+in local shell.
+</td></tr>
+<tr valign="top"><td><b> !</b>
+</td><td>
+Escape to local shell.
+</td></tr>
+<tr valign="top"><td><b> ?</b>
+</td><td>
+Synonym for help.
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<b>ls</b>(1),
+<b>scp</b>(1),
+<b>ssh</b>(1),
+<b>ssh-add</b>(1),
+<b>ssh-keygen</b>(1),
+<b>glob</b>(3),
+<b>ssh_config</b>(5),
+<b>sftp-server</b>(8),
+<b>sshd</b>(8)
+<br />.Rs 
+<!-- ignored unsupported tag .%A -->
+<!-- ignored unsupported tag .%A -->
+<i> SSH File Transfer Protocol</i>
+<!-- ignored unsupported tag .%N -->
+<!-- ignored unsupported tag .%D -->
+<!-- ignored unsupported tag .%O -->
+<br />.Re 
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionc630.html?tutorial=unix_commands&amp;file=sftp.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/sftp.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:24 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

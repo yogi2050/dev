@@ -1,0 +1,534 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_system_calls/quotactl.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:14 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>quotactl() - Unix, Linux System Call</title>
+<meta name="Description" Content="quotactl() - Unix, Linux System Calls Manual Pages (Manpages) ,  Learning fundamentals of UNIX in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - System Calls</b></a></li>
+<li><a class="left" target="_top" href="../unix_commands/index.html">Unix - Commands List</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>quotactl() - Unix, Linux System Call</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+quotactl - manipulate disk quotas
+<h1 class="manpages">SYNOPSIS</h1>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<b>#include &lt;sys/quota.h&gt;</b> 
+<b>#include &lt;sys/types.h&gt;</b> 
+<b>#include &lt;xfs/xqm.h&gt;</b> 
+<b>#include &lt;linux/dqblk_v1.h&gt;</b> 
+<b>#include &lt;linux/dqblk_v2.h&gt;</b> 
+<p>
+<b>long quotactl(int cmd, char *special, qid_t id, caddr_t addr)</b> 
+</pre></td></tr>
+</table>
+<h1 class="manpages">DESCRIPTION</h1>
+<p>
+<!-- ignored unsupported tag .IX -->
+<!-- ignored unsupported tag .IX -->
+<!-- ignored unsupported tag .IX -->
+<p>
+The
+<b>quotactl()</b> call manipulates disk quotas.
+<i>cmd</i> indicates a command to be applied to
+<font size="-1">UID</font> <i>id</i> or
+<font size="-1">GID</font> <i>id</i>. To set the type of quota use the
+<i>QCMD(cmd, type)</i> macro.
+<i>special</i> is a pointer to a null-terminated string containing the path
+name of the block special device for the filesystem being manipulated.
+<i>addr</i> is the address of an optional, command specific, data structure
+which is copied in or out of the system.  The interpretation of
+<i>addr</i> is given with each command below.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b><font size="-1">Q_QUOTAON</font></b> </td><td valign="bottom">
+Turn on quotas for a filesystem.
+<i>id</i> is the identification number of the quota format to be used. Format numbers
+are defined in the header file of appropriate format. Currently there are
+two supported quota formats whose numbers are defined by constants
+<i>QFMT_VFS_OLD</i> (original quota format) and
+<i>QFMT_VFS_V0</i> (new VFS v0 quota format).
+<i>addr</i> points to the path name of file containing the quotas for the filesystem.
+The quota file must exist; it is normally created with the
+<b>quotacheck</b>(8)
+program.  This call is restricted to the super-user.
+</td></tr>
+<tr valign="top"><td>
+<b><font size="-1">Q_QUOTAOFF</font></b> </td><td valign="bottom">
+Turn off quotas for a filesystem.
+<i>addr</i> and
+<i>id</i> are ignored.
+This call is restricted to the super-user.
+</td></tr>
+<tr valign="top"><td>
+<b><font size="-1">Q_GETQUOTA</font></b> </td><td valign="bottom">
+Get disk quota limits and current usage for user or group
+<i>id</i>. <i>addr</i> is a pointer to an
+<b>if_dqblk</b> structure (defined in
+<b>&lt;sys/quota.h&gt;</b>). The field
+<i>dqb_valid</i> defines the entries in the structure which are set correctly. On
+<b>Q_GETQUOTA</b> call all entries are valid. Only the super-user may get the quotas
+of a user other than himself.
+</td></tr>
+<tr valign="top"><td>
+<b><font size="-1">Q_SETQUOTA</font></b> </td><td valign="bottom">
+Set current quota information for user or group
+<i>id</i>. <i>addr</i> is a pointer to an
+<b>if_dqblk</b> structure (defined in
+<b>&lt;sys/quota.h&gt;</b>). The field
+<i>dqb_valid</i> defines which entries in the quota structure are valid and should be set. The constants for
+<i>dqb_valid</i> field are defined in the
+<b>&lt;sys/quota.h&gt;</b> header file. This call obsoletes calls
+<b>Q_SETQLIM</b> and
+<b>Q_SETUSE</b> in the previous quota interfaces. This call is restricted to the super-user.
+</td></tr>
+<tr valign="top"><td>
+<b><font size="-1">Q_GETINFO</font></b> </td><td valign="bottom">
+Get information (like grace times) about quotafile.
+<i>addr</i> should be a pointer to an
+<b>if_dqinfo</b> structure (defined in
+<i>&lt;sys/quota.h&gt;</i>). The
+<i>dqi_valid</i> field in the structure defines entries in it
+which are valid. On
+<b>Q_GETINFO</b> call all entries are valid.
+Parameter
+<i>id</i> is ignored.
+</td></tr>
+<tr valign="top"><td>
+<b><font size="-1">Q_SETINFO</font></b> </td><td valign="bottom">
+Set information about quotafile.
+<i>addr</i> should be a pointer to
+<b>if_dqinfo</b> structure (defined in
+<i>&lt;sys/quota.h&gt;</i>). The field
+<i>dqi_valid</i> defines which entries in the quota info structure are valid and should be set. The constants for
+<i>dqi_valid</i> field are defined in the
+<b>&lt;sys/quota.h&gt;</b> header file. This call obsoletes calls
+<b>Q_SETGRACE</b> and
+<b>Q_SETFLAGS</b> in the previous quota interfaces. Parameter
+<i>id</i> is ignored. This operation is restricted to super-user.
+</td></tr>
+<tr valign="top"><td>
+<b><font size="-1">Q_GETFMT</font></b> </td><td valign="bottom">
+Get quota format used on the specified filesystem.
+<i>addr</i> should be a pointer to a memory (4 bytes) where the format number will be stored.
+</td></tr>
+<tr valign="top"><td>
+<b><font size="-1">Q_SYNC</font></b> </td><td valign="bottom">
+Update the on-disk copy of quota usages for a filesystem.
+If
+<i>special</i> is null then all filesystems with active quotas are sync&#146;ed.
+<i>addr</i> and
+<i>id</i> are ignored.
+</td></tr>
+<tr valign="top"><td>
+<b><font size="-1">Q_GETSTATS</font></b> </td><td valign="bottom">
+Get statistics and other generic information about quota subsystem.
+<i>addr</i> should be a pointer to
+<b>dqstats</b> structure (defined in
+<b>&lt;sys/quota.h&gt;</b>) in which data should be stored.
+<i>special</i> and
+<i>id</i> are ignored.
+</td></tr>
+<tr valign="top"><td colspan="2">
+For XFS filesystems making use of the XFS Quota Manager (XQM), the above commands are bypassed and the following commands are used:
+<!-- Consumed .TP 15 -->
+<br />
+<b><font size="-1">Q_XQUOTAON</font></b> </td></tr><tr valign="top"><td width=15%>&nbsp;</td><td>
+Turn on quotas for an XFS filesystem.
+XFS provides the ability to turn on/off quota limit enforcement
+with quota accounting.
+Therefore, XFS expects the addr to be a pointer to an unsigned int
+that contains either the flags XFS_QUOTA_UDQ_ACCT and/or
+XFS_QUOTA_UDQ_ENFD (for user quota), or XFS_QUOTA_GDQ_ACCT and/or
+XFS_QUOTA_GDQ_ENFD (for group quota), as defined in
+<b>&lt;xfs/xqm.h&gt;</b>. This call is restricted to the superuser.
+</td></tr>
+<tr valign="top"><td>
+<b><font size="-1">Q_XQUOTAOFF</font></b> </td><td valign="bottom">
+Turn off quotas for an XFS filesystem.
+As in Q_QUOTAON, XFS filesystems expect a pointer to an unsigned int
+that specifies whether quota accounting and/or limit enforcement need
+to be turned off.
+This call is restricted to the superuser.
+</td></tr>
+<tr valign="top"><td>
+<b><font size="-1">Q_XGETQUOTA</font></b> </td><td valign="bottom">
+Get disk quota limits and current usage for user
+<i>id</i>. <i>addr</i> is a pointer to a
+<b>fs_disk_quota</b> structure (defined in
+<b>&lt;xfs/xqm.h&gt;</b>). Only the superuser may get the quotas of a user other than himself.
+</td></tr>
+<tr valign="top"><td>
+<b><font size="-1">Q_XSETQLIM</font></b> </td><td valign="bottom">
+Set disk quota limits for user
+<i>id</i>. <i>addr</i> is a pointer to a
+<b>fs_disk_quota</b> structure (defined in
+<b>&lt;xfs/xqm.h&gt;</b>). This call is restricted to the superuser.
+</td></tr>
+<tr valign="top"><td>
+<b><font size="-1">Q_XGETQSTAT</font></b> </td><td valign="bottom">
+Returns a
+<b>fs_quota_stat</b> structure containing XFS filesystem specific quota information.
+This is useful in finding out how much space is spent to store quota
+information, and also to get quotaon/off status of a given local XFS
+filesystem.
+</td></tr>
+<tr valign="top"><td>
+<b><font size="-1">Q_XQUOTARM</font></b> </td><td valign="bottom">
+Free the disk space taken by disk quotas.
+Quotas must have already been turned off.
+</td></tr>
+<!-- PP ends table -->
+</table>
+There is no command equivalent to
+<b>Q_SYNC</b> for XFS since
+<b>sync</b>(1)
+writes quota information to disk (in addition to the other filesystem
+metadata it writes out).
+<h1 class="manpages">RETURN VALUES</h1>
+<p>
+<b>quotactl()</b> returns:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+0
+</td><td valign="bottom">
+on success.
+</td></tr>
+<tr valign="top"><td>
+-1
+</td><td valign="bottom">
+on failure and sets
+<b>errno</b> to indicate the error.
+</td></tr>
+</table>
+<h1 class="manpages">ERRORS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<font size="-1">EFAULT</font> </td><td valign="bottom">
+<i>addr</i> or
+<i>special</i> are invalid.
+</td></tr>
+<tr valign="top"><td>
+<font size="-1">ENOSYS</font> </td><td valign="bottom">
+The kernel has not been compiled with the
+<b><font size="-1">QUOTA</font></b> option.
+</td></tr>
+<tr valign="top"><td>
+<!-- Suppressing TP body due to .IP -->
+<font size="-1">EINVAL</font> </td></tr>
+<tr valign="top"><td width=15%>
+
+</td><td>
+<i>cmd</i> or
+<i>type</i> is invalid.
+</td></tr>
+<tr valign="top"><td>
+<font size="-1">ENOENT</font> </td><td valign="bottom">
+The file specified by
+<i>special</i> or
+<i>addr</i> does not exist.
+</td></tr>
+<tr valign="top"><td>
+<font size="-1">ENOTBLK</font> </td><td valign="bottom">
+<i>special</i> is not a block device.
+</td></tr>
+<tr valign="top"><td>
+<font size="-1">EPERM</font> </td><td valign="bottom">
+The call is privileged and the caller was not the super-user.
+</td></tr>
+<tr valign="top"><td>
+<font size="-1">ESRCH</font> </td><td valign="bottom">
+No disc quota is found for the indicated user.
+</td></tr>
+<tr valign="top"><td width=15%>
+
+</td><td>
+Quotas have not been turned on for this filesystem.
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+If
+<i>cmd</i> is
+<b><font size="-1">Q_QUOTAON</font></b>, <b>quotactl()</b> may set errno to:
+</td></tr>
+<tr valign="top"><td>
+<font size="-1">EACCES</font> </td><td valign="bottom">
+The quota file pointed to by
+<i>addr</i> exists but is not a regular file.
+</td></tr>
+<tr valign="top"><td width=15%>
+
+</td><td>
+The quota file pointed to by
+<i>addr</i> exists but is not on the
+filesystem pointed to by
+<i>special</i>. </td></tr>
+<tr valign="top"><td>
+<font size="-1">EINVAL</font> </td><td valign="bottom">
+The quota file is corrupted.
+</td></tr>
+<tr valign="top"><td>
+<font size="-1">ESRCH</font> </td><td valign="bottom">
+Specified quota format was not found.
+</td></tr>
+<tr valign="top"><td>
+<font size="-1">EBUSY</font> </td><td valign="bottom">
+<b><font size="-1">Q_QUOTAON</font></b> attempted while another
+<b><font size="-1">Q_QUOTAON</font></b> has already taken place.
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="../unix_commands/quota.htm">quota (1)</a></p></li>
+<li><p><a href="getrlimit.htm">getrlimit (2)</a></p></li>
+<li><p><a href="../unix_commands/quotacheck.htm">quotacheck (8)</a></p></li>
+<li><p><a href="../unix_commands/quotaon.htm">quotaon (8)</a></p></li>
+</ul>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion1dbc.html?tutorial=unix_system_calls&amp;file=quotactl.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_system_calls/quotactl.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:14 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

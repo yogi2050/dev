@@ -1,0 +1,595 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/orbd.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>orbd - Unix, Linux Command</title>
+<meta name="Description" Content="orbd - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>orbd - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+orbd - The Object Request Broker Daemon
+<p>
+<b>orbd</b> is used to enable clients to transparently locate and invoke
+persistent objects on servers in the CORBA environment.
+<h1 class="manpages">SYNOPSIS</h1>
+<b>orbd</b> [
+<i>options</i> ]
+<h1 class="manpages">DESCRIPTION</h1>
+The Server Manager included with the
+<b>orbd</b> tool is used to enable clients to transparently locate and
+invoke persistent objects on server in the CORBA environment.
+The persistent servers, while publishing the persistent
+object references in the Naming Service, include the port
+number of the ORBD in the object reference instead of the
+port number of the Server. The inclusion of ORBD port
+number in the object reference for persistent object
+references has the following advantages:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+o The object reference in the Naming Service remains
+</td></tr><tr valign="top"><td width=2%>&nbsp;</td><td>
+independent of the server life cycle. For example, the object
+reference could be published by the server in the Naming
+Service when it is first installed, and then independent
+of how many times the server is started or shutdown, the
+ORBD will always return the correct object reference
+to the invoking client.
+</td></tr>
+<tr valign="top"><td colspan="2">
+o The client needs to lookup the object reference in
+</td></tr><tr valign="top"><td width=2%>&nbsp;</td><td>
+the Naming Service only once, and can keep re-using
+this reference independent of the chanes introduced
+due to server life cycle.
+</td></tr>
+<!-- LP ends table -->
+</table>
+To access ORBD&#146;s Server Manager, the server must
+be started using servertool, which is a
+command-line interface for application programmers
+to register, unregister, startup, and
+shutdown a persistent server. For more information on
+the Server Manager, see the section in
+this document titled Server Manager.
+<h1 class="manpages">REQUIRED OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>-ORBInitialPort</b><i> nameserverport</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies the port on which the name server should
+be started. Once started, orbd will
+listen for incoming requests on this port. Note
+that when using Solaris software, you must
+become root to start a process on a port under
+1024. For this reason, we recommend that
+you use a port number greater than or equal to 1024. (required)
+</td></tr>
+</table>
+<h1 class="manpages">OTHER OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>-port</b><i> port</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies the activation port where the ORBD
+should be started. The default value for this port
+is 1049. This port number is added to the port
+field of the persistent Interoperable Object
+References (IOR). (optional)
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-defaultdb</b><i> directory</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies the base where the ORBD persistent
+storage directory
+<b>orb.db</b> is created. If this option
+is not specified, the default value is "./orb.db".
+(optional)
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-serverPollingTime</b><i> milliseconds</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies how often the daemon thread checks for
+the health of registered servers. ORBD polls
+process health every
+<b>milliseconds.</b> The default
+value is 1,000 ms (or 1 second). The value
+specified for
+<b>milliseconds</b> must be a valid integer.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-serverStartupDelay</b><i> milliseconds</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies how long the ServerManager waits
+before sending a location forward exception after
+the server is restarted. ORBD waits for
+<b>milliseconds</b> before raising a location forward
+exception. The default value is 1,000 ms (or 1
+second). The value specified for
+<b>milliseconds</b> must be a valid integer.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>J  option</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Pass
+<i>option</i> to the Java virtual machine, where
+<i>option</i> is one of the options described on the man page for the
+java application launcher, java(1). For example,
+<i>-J-Xms48m</i> sets the startup memory to 48 megabytes. It is a common convention for
+<b>-J</b> to pass options to the underlying virtual machine.
+</td></tr>
+</table>
+<h1 class="manpages">Starting and Stopping the Name Service</h1>
+A Naming Service is a CORBA service that allows
+CORBA objects to be named by means of binding a name to
+an object reference. The name binding may
+be stored in the naming service, and a client may supply the
+name to obtain the desired object reference.
+<p>
+Prior to running a client or a server, you
+will start ORBD. ORBD includes a persistent Naming Service and a
+transient Naming Service, both of which are an
+implementation of the COS Naming Service.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+o The Persistent Naming Service provides persistence
+</td></tr><tr valign="top"><td width=2%>&nbsp;</td><td>
+for naming contexts. This means that this
+information is persistent across service shutdowns
+and startups, and is recoverable in the event of a
+service failure. If ORBD is restarted, the
+Persistent Naming Service will restore the naming context
+graph, so that the binding of all clients&#146; and
+servers&#146; names remains intact (persistent).
+</td></tr>
+<tr valign="top"><td colspan="2">
+o For backward compatibility, tnameserv, a
+</td></tr><tr valign="top"><td width=2%>&nbsp;</td><td>
+Transient Naming Service shipped with older versions of
+the JDK, is also included in this release of
+J2SE. A transient naming service retains naming contexts as
+long as it is running. If there is a service
+interruption, the naming context graph is lost.
+</td></tr>
+<!-- LP ends table -->
+</table>
+The -ORBInitialPort argument is a required
+command-line argument for orbd, and is used to set the port
+number on which the Naming Service will run.
+The following instructions assume you can use port 1050 for
+the Java IDL Object Request Broker Daemon. When
+using Solaris software, you must become root to start a
+process on a port under 1024. For this reason,
+we recommend that you use a port number greater than or
+equal to 1024. You can substitute a different port if necessary.
+<p>
+TO start orbd from a UNIX command shell, enterL
+<p>
+orbd -ORBInitialPort 1050&
+<p>
+From an MS-DOS system prompt (Windows), enter:
+<p>
+start orbd -ORBInitialPort 1050
+<p>
+Now that ORBD is running, you can run your server
+and client applications. When running the client and
+server applications, they must be made aware of
+the port number (and machine name, if applicable) where
+the Naming Service is running. One way to do this
+is to add the following code to your application:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+Properties props = new Properties();
+props.put("org.omg.CORBA.ORBInitialPort", "1050");
+props.put("org.omg.CORBA.ORBInitialHost", "MyHost");
+ORB orb = ORB.init(args, props);
+</pre></td></tr>
+</table>
+<p>
+In this example, the Naming Service is running
+on port 1050 on host "MyHost". Another way is to specify the
+port number and/or machine name when running the
+server or client application from the command line. For
+example, you would start your "HelloApplication"
+with the following command line:
+<p>
+java HelloApplication -ORBInitialPort 1050 -ORBInitialHost MyHost
+<p>
+To stop the naming service, use the relevant
+operating system command, such as pkill orbd on Solaris, or
+Ctrl+C in the DOS window in which orbd is
+running. Note that names registered with the naming service
+may disappear when the service is terminated if
+the naming service is transient. The Java IDL naming service
+will run until it is explicitly stopped.
+<p>
+For more information on the Naming Service
+included with ORBD, see Naming Service.
+<h1 class="manpages">Server Manager</h1>
+To access ORBD&#146;s Server Manager and run a
+persistent server, the server
+must be started using servertool,
+which is a command-line interface for
+application programmers to register,
+unregister, startup, and shutdown
+a persistent server. When a server is
+started using servertool, it must be
+started on the same host and port
+on which orbd is executing. If the server is
+run on a different port, the
+information stored in the database for
+local contexts will be invalid and
+the service will not work properly.
+<h2><i>Server Manager: an Example</i></h2>
+Using the sample tutorial for our demonstration,
+you would run the idlj compiler and javac compiler as
+shown in the tutorial. To run the Server
+Manager, follow these steps for
+running the application:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+1. Start orbd.
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+To start orbd from a UNIX command shell, enter:
+<p>
+</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=5%>&nbsp;</td><td>
+orbd -ORBInitialPort 1050
+</td></tr>
+<!-- Found tag RS -->
+<tr><td colspan="2">
+From an MS-DOS system prompt (Windows), enter:
+<p>
+</td></tr>
+<tr><td width=5%>&nbsp;</td><td>
+start orbd -ORBInitialPort 1050
+</td></tr>
+<!-- LP ends table -->
+</table>
+Note that 1050 is the port on which you
+want the name server to run. -ORBInitialPort
+is a required
+command-line argument. When using Solaris
+software, you must become root to start a process on a
+port under 1024. For this reason, we
+recommend that you use a port
+number greater than or equal to 1024.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+2. Start the servertool:
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+To start the Hello server, enter:
+<p>
+</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=5%>&nbsp;</td><td>
+servertool -ORBInitialPort 1050
+</td></tr>
+<!-- LP ends table -->
+</table>
+Make sure the name server (orbd) port is the
+same as in the previous step, for example,
+-ORBInitialPort 1050. The servertool must
+be started on the same port as the name server.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<!-- Suppressing TP body due to .LP -->
+3.Start the Hello server from the servertool prompt:
+<p>
+</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=5%>&nbsp;</td><td>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+servertool  &gt; register -server HelloServer -classpath .
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-applicationName HelloServerApName
+</td></tr>
+<!-- LP ends table -->
+</table>
+The servertool registers the server, assigns it
+the name of "HelloServerApName", and displays its
+server id.
+</pre></td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<!-- Suppressing TP body due to .LP -->
+4. Run the client application from another terminal window or prompt:
+<p>
+</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=5%>&nbsp;</td><td>
+java HelloClient -ORBInitialPort 1050 -ORBInitialHost localhost
+</td></tr>
+<!-- LP ends table -->
+</table>
+For this example, you can omit -ORBInitialHost
+localhost since the name server is running on the
+same host as the Hello client. If the name
+server is running on a different host,
+use -ORBInitialHost
+nameserverhost to specify the host on which
+the IDL name server is running.
+<p>
+Specify the name server (orbd) port as done in
+the previous step, for example, -ORBInitialPort 1050.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+5. When you have finished experimenting with
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the Server Manager, be sure to shut down or kill the name
+server (orbd) and servertool.
+</td></tr>
+<!-- LP ends table -->
+</table>
+To shut down orbd from a DOS prompt, select the
+window that is running the server and enter Ctrl+C
+to shut it down. To shut down orbdfrom a Unix
+shell, find the process, and kill it. The server will
+continue to wait for invocations until it is explicitly stopped.
+<p>
+To shut down the servertool, type quit
+and press the Enter key on the keyboard.
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<b>servertool</b> <br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion028b.html?tutorial=unix_commands&amp;file=orbd.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/orbd.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

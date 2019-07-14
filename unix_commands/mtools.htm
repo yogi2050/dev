@@ -1,0 +1,843 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/mtools.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:03 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>mtools - Unix, Linux Command</title>
+<meta name="Description" Content="mtools - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>mtools - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">Name</h1>
+mtools - utilities to access DOS disks in Unix.
+<p>
+<!-- ignored unsupported tag .tr -->
+<!-- ignored unsupported tag .tr -->
+<!-- ignored unsupported tag .tr -->
+<p>
+<p>
+<h1 class="manpages">Introduction</h1>
+Mtools is a public domain collection of tools to allow Unix systems to
+manipulate MS-DOS files: read, write, and move around files on an MS-DOS
+filesystem (typically a floppy disk).  Where reasonable, each program
+attempts to emulate the MS-DOS equivalent command. However, unnecessary
+restrictions and oddities of DOS are not emulated. For instance, it is
+possible to move subdirectories from one subdirectory to another.
+<p>
+Mtools is sufficient to give access to MS-DOS filesystems.  For
+instance, commands such as <tt>mdir a:</tt> work on the <tt>a:</tt> floppy
+without any preliminary mounting or initialization (assuming the default
+<tt>oo/etc/mtools.confI</tt> works on your machine).  With mtools, one can
+change floppies too without unmounting and mounting.
+<p>
+<h1 class="manpages">Where to get mtools</h1>
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+<p>
+Mtools can be found at the following places (and their mirrors):
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<b><!-- ignored unsupported tag .in -->
+<a href="http://mtools.linux.lu/mtools-3.9.10.tar.gz">http://mtools.linux.lu/mtools-3.9.10.tar.gz</a>
+<a href="ftp://www.tux.org/pub/knaff/mtools/mtools-3.9.10.tar.gz">ftp://www.tux.org/pub/knaff/mtools/mtools-3.9.10.tar.gz</a>
+<a href="ftp://ibiblio.unc.edu/pub/Linux/utils/disk-management/mtools-3.9.10.tar.gz">ftp://ibiblio.unc.edu/pub/Linux/utils/disk-management/mtools-3.9.10.tar.gz</a>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+</b><!-- ignored unsupported tag .lp -->
+<p>
+
+<p>
+Before reporting a bug, make sure that it has not yet been fixed in the
+Alpha patches which can be found at:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<b><!-- ignored unsupported tag .in -->
+<a href="http://mtools.linux.lu/">http://mtools.linux.lu</a>/
+<a href="ftp://www.tux.org/pub/knaff/mtools">ftp://www.tux.org/pub/knaff/mtools</a>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+</b><!-- ignored unsupported tag .lp -->
+<p>
+
+<p>
+These patches are named
+<tt>mtools-</tt><i>version</i><tt>-</tt><i>ddmm</i><tt>.taz</tt>, where version
+stands for the base version, <i>dd</i> for the day and <i>mm</i> for the
+month. Due to a lack of space, I usually leave only the most recent
+patch.
+<p>
+There is an mtools mailing list at mtools @ tux.org .  Please
+send all bug reports to this list.  You may subscribe to the list by
+sending a message with &#146;subscribe mtools @ tux.org&#146; in its
+body to majordomo @ tux.org . (N.B. Please remove the spaces
+around the "@" both times. I left them there in order to fool
+spambots.)  Announcements of new mtools versions will also be sent to
+the list, in addition to the linux announce newsgroups.  The mailing
+list is archived at <a href="http://www.tux.org/hypermail/mtools/latest">http://www.tux.org/hypermail/mtools/latest</a>
+<p>
+<h1 class="manpages">Common features of all mtools commands</h1>
+<p>
+<h2><i>Options and filenames</i></h2>
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+MS-DOS filenames are composed of a drive letter followed by a colon, a
+subdirectory, and a filename. Only the filename part is mandatory, the
+drive letter and the subdirectory are optional. Filenames without a
+drive letter refer to Unix files. Subdirectory names can use either the
+&#146;<tt>/</tt>&#146; or &#146;<tt>&#92;</tt>&#146; separator.  The use of the &#146;<tt>&#92;</tt>&#146; separator
+or wildcards requires the names to be enclosed in quotes to protect them
+from the shell. However, wildcards in Unix filenames should not be
+enclosed in quotes, because here we <b>want</b> the shell to expand
+them.
+<p>
+The regular expression "pattern matching" routines follow the Unix-style
+rules.  For example, &#145;<tt>*</tt>&#146; matches all MS-DOS files in lieu of
+&#145;<tt>*.*</tt>&#146;.  The archive, hidden, read-only and system attribute bits
+are ignored during pattern matching.
+<p>
+All options use the <tt>-</tt> (minus) as their first character, not
+<tt>/</tt> as you&#146;d expect in MS-DOS.
+<p>
+Most mtools commands allow multiple filename parameters, which
+doesn&#146;t follow MS-DOS conventions, but which is more user-friendly.
+<p>
+Most mtools commands allow options that instruct them how to handle file
+name clashes. See section name clashes, for more details on these. All
+commands accept the <tt>-V</tt> flags which prints the version, and most
+accept the <tt>-v</tt> flag, which switches on verbose mode. In verbose
+mode, these commands print out the name of the MS-DOS files upon which
+they act, unless stated otherwise. See section Commands, for a description of
+the options which are specific to each command.
+<p>
+<h2><i>Drive letters</i></h2>
+<p>
+The meaning of the drive letters depends on the target architectures.
+However, on most target architectures, drive A is the first floppy
+drive, drive B is the second floppy drive (if available), drive J is a
+Jaz drive (if available), and drive Z is a Zip drive (if available).  On
+those systems where the device name is derived from the SCSI id, the Jaz
+drive is assumed to be at Scsi target 4, and the Zip at Scsi target 5
+(factory default settings).  On Linux, both drives are assumed to be the
+second drive on the Scsi bus (/dev/sdb). The default settings can be
+changes using a configuration file (see section  Configuration).
+<p>
+The drive letter : (colon) has a special meaning. It is used to access
+image files which are directly specified on the command line using the
+<tt>-i</tt> options.
+<p>
+Example:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<b><!-- ignored unsupported tag .in -->
+ mcopy -i my-image-file.bin ::file1 ::file2 .
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+</b><!-- ignored unsupported tag .lp -->
+<p>
+
+<p>
+This copies <tt>file1</tt> and <tt>file2</tt> from the image file
+(<tt>my-image-file.bin</tt>) to the <tt>/tmp</tt> directory.
+<p>
+<h2><i>Current working directory</i></h2>
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+<p>
+The <tt>mcd</tt> command (oomcdI) is used to establish the device and
+the current working directory (relative to the MS-DOS filesystem),
+otherwise the default is assumed to be <tt>A:/</tt>. However, unlike
+MS-DOS, there is only one working directory for all drives, and not one
+per drive.
+<p>
+<h2><i>VFAT-style long file names</i></h2>
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+<p>
+This version of mtools supports VFAT style long filenames. If a Unix
+filename is too long to fit in a short DOS name, it is stored as a
+VFAT long name, and a companion short name is generated. This short
+name is what you see when you examine the disk with a pre-7.0 version
+of DOS.
+<br />
+ The following table shows some examples of short names:
+<p>
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<b><!-- ignored unsupported tag .in -->
+Long name       MS-DOS name     Reason for the change
+---------       ----------      ---------------------
+thisisatest     THISIS~1        filename too long
+alain.knaff     ALAIN~1.KNA     extension too long
+prn.txt         PRN~1.TXT       PRN is a device name
+&#46;abc            ABC~1           null filename
+hot+cold        HOT_CO~1        illegal character
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+</b><!-- ignored unsupported tag .lp -->
+<p>
+
+<p>
+ As you see, the following transformations happen to derive a short
+name:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+*  
+</td><td valign="bottom">
+Illegal characters are replaced by underscores. The illegal characters
+are <tt>;+=[]&#146;,&#92;"*&#92;&#92;&lt;&gt;/?:|</tt>.
+</td></tr>
+<tr valign="top"><td>
+*  
+</td><td valign="bottom">
+Extra dots, which cannot be interpreted as a main name/extension
+separator are removed
+</td></tr>
+<tr valign="top"><td>
+*  
+</td><td valign="bottom">
+A <tt>~</tt><i>n</i> number is generated,
+</td></tr>
+<tr valign="top"><td>
+*  
+</td><td valign="bottom">
+The name is shortened so as to fit in the 8+3 limitation
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+ The initial Unix-style file name (whether long or short) is also called
+the <i>primary</i> name, and the derived short name is also called the
+<i>secondary</i> name.
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+ Example:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<b><!-- ignored unsupported tag .in -->
+ mcopy /etc/motd a:Reallylongname
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+</b><!-- ignored unsupported tag .lp -->
+<p>
+ Mtools creates a VFAT entry for Reallylongname, and uses REALLYLO as
+a short name. Reallylongname is the primary name, and REALLYLO is the
+secondary name.
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<b><!-- ignored unsupported tag .in -->
+ mcopy /etc/motd a:motd
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+</b><!-- ignored unsupported tag .lp -->
+<p>
+ Motd fits into the DOS filename limits. Mtools doesn&#146;t need to
+derivate another name. Motd is the primary name, and there is no
+secondary name.
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+ In a nutshell: The primary name is the long name, if one exists, or
+the short name if there is no long name.
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+ Although VFAT is much more flexible than FAT, there are still names
+that are not acceptable, even in VFAT. There are still some illegal
+characters left (<tt>&#92;"*&#92;&#92;&lt;&gt;/?:|</tt>), and device names are still
+reserved.
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<b><!-- ignored unsupported tag .in -->
+Unix name       Long name       Reason for the change
+---------       ----------      ---------------------
+prn             prn-1           PRN is a device name
+ab:c            ab_c-1          illegal character
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+</b><!-- ignored unsupported tag .lp -->
+<p>
+
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+ As you see, the following transformations happen if a long name is
+illegal:
+</td></tr>
+<tr valign="top"><td>
+*  
+</td><td valign="bottom">
+Illegal characters are replaces by underscores,
+</td></tr>
+<tr valign="top"><td>
+*  
+</td><td valign="bottom">
+A <tt>-</tt><i>n</i> number is generated,
+</td></tr>
+<!-- PP ends table -->
+</table>
+<h2><i>Name clashes</i></h2>
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+<p>
+When writing a file to disk, its long name or short name may collide
+with an already existing file or directory. This may happen for all
+commands which create new directory entries, such as <tt>mcopy</tt>,
+<tt>mmd</tt>, <tt>mren</tt>, <tt>mmove</tt>. When a name clash happens, mtools
+asks you what it should do. It offers several choices:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<tt>overwrite</tt>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Overwrites the existing file. It is not possible to overwrite a
+directory with a file.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<tt>rename</tt>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Renames the newly created file. Mtools prompts for the new filename
+</td></tr>
+<tr valign="top"><td colspan="2">
+<tt>autorename</tt>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Renames the newly created file. Mtools chooses a name by itself, without
+prompting
+</td></tr>
+<tr valign="top"><td colspan="2">
+<tt>skip</tt>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Gives up on this file, and moves on to the next (if any)
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+To chose one of these actions, type its first letter at the prompt. If
+you use a lower case letter, the action only applies for this file only,
+if you use an upper case letter, the action applies to all files, and
+you won&#146;t be prompted again.
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+You may also chose actions (for all files) on the command line, when
+invoking mtools:
+</td></tr>
+<tr valign="top"><td colspan="2">
+<tt>-D o</tt>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Overwrites primary names by default.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<tt>-D O</tt>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Overwrites secondary names by default.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<tt>-D r</tt>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Renames primary name by default.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<tt>-D R</tt>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Renames secondary name by default.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<tt>-D a</tt>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Autorenames primary name by default.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<tt>-D A</tt>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Autorenames secondary name by default.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<tt>-D s</tt>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Skip primary name by default.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<tt>-D S</tt>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Skip secondary name by default.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<tt>-D m</tt>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Ask user what to do with primary name.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<tt>-D M</tt>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Ask user what to do with secondary name.
+</td></tr>
+<!-- PP ends table -->
+</table>
+Note that for command line switches lower/upper differentiates between
+primary/secondary name whereas for interactive choices, lower/upper
+differentiates between just-this-time/always.
+<p>
+The primary name is the name as displayed in Windows 95 or Windows NT:
+i.e. the long name if it exists, and the short name otherwise.  The
+secondary name is the "hidden" name, i.e. the short name if a long name
+exists.
+<p>
+By default, the user is prompted if the primary name clashes, and the
+secondary name is autorenamed.
+<p>
+If a name clash occurs in a Unix directory, mtools only asks whether
+to overwrite the file, or to skip it.
+<p>
+<h2><i>Case sensitivity of the VFAT filesystem</i></h2>
+<!-- ignored unsupported tag .iX -->
+<p>
+The VFAT filesystem is able to remember the case of the
+filenames. However, filenames which differ only in case are not allowed
+to coexist in the same directory. For example if you store a file called
+LongFileName on a VFAT filesystem, mdir shows this file as LongFileName,
+and not as Longfilename. However, if you then try to add LongFilename to
+the same directory, it is refused, because case is ignored for clash
+checks.
+<p>
+The VFAT filesystem allows to store the case of a filename in the
+attribute byte, if all letters of the filename are the same case, and if
+all letters of the extension are the same case too. Mtools uses this
+information when displaying the files, and also to generate the Unix
+filename when mcopying to a Unix directory. This may have unexpected
+results when applied to files written using an pre-7.0 version of DOS:
+Indeed, the old style filenames map to all upper case. This is different
+from the behavior of the old version of mtools which used to generate
+lower case Unix filenames.
+<p>
+<h2><i>high capacity formats</i></h2>
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+<p>
+Mtools supports a number of formats which allow to store more data on
+disk as usual. Due to different operating system abilities, these
+formats are not supported on all OS&#146;es. Mtools recognizes these formats
+transparently where supported.
+<p>
+In order to format these disks, you need to use an operating system
+specific tool. For Linux, suitable floppy tools can be found in the
+<tt>fdutils</tt> package at the following locations~:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<b><!-- ignored unsupported tag .in -->
+</b><tt><a href="ftp://www.tux.org/pub/knaff/fdutils/.">ftp://www.tux.org/pub/knaff/fdutils/.</a>
+</tt><tt><a href="ftp://ibiblio.unc.edu/pub/Linux/utils/disk-management/fdutils-">ftp://ibiblio.unc.edu/pub/Linux/utils/disk-management/fdutils-</a>*
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+</tt><!-- ignored unsupported tag .lp -->
+<p>
+
+<p>
+See the manpages included in that package for further detail: Use
+<tt>superformat</tt> to format all formats except XDF, and use
+<tt>xdfcopy</tt> to format XDF.
+<p>
+<h2><i>  More sectors</i></h2>
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+<p>
+The oldest method of fitting more data on a disk is to use more sectors
+and more cylinders. Although the standard format uses 80 cylinders and
+18 sectors (on a 3 1/2 high density disk), it is possible to use up to
+83 cylinders (on most drives) and up to 21 sectors. This method allows
+to store up to 1743K on a 3 1/2 HD disk. However, 21 sector disks are
+twice as slow as the standard 18 sector disks because the sectors are
+packed so close together that we need to interleave them. This problem
+doesn&#146;t exist for 20 sector formats.
+<p>
+These formats are supported by numerous DOS shareware utilities such as
+<tt>fdformat</tt> and <tt>vgacopy</tt>. In his infinite hybris, Bill Gate$
+believed that he invented this, and called it <tt>ooDMF disksI</tt>, or
+<tt>ooWindows formatted disksI</tt>. But in reality, it has already existed
+years before! Mtools supports these formats on Linux, on SunOs and on
+the DELL Unix PC.
+<p>
+<h2><i>  Bigger sectors</i></h2>
+<!-- ignored unsupported tag .iX -->
+By using bigger sectors it is possible to go beyond the capacity which
+can be obtained by the standard 512-byte sectors. This is because of the
+sector header. The sector header has the same size, regardless of how
+many data bytes are in the sector. Thus, we save some space by using
+<i>fewer</i>, but bigger sectors. For example, 1 sector of 4K only takes
+up header space once, whereas 8 sectors of 512 bytes have also 8
+headers, for the same amount of useful data.
+<p>
+This method allows to store up to 1992K on a 3 1/2 HD disk.
+<p>
+Mtools supports these formats only on Linux.
+<p>
+<h2><i>  2m</i></h2>
+<!-- ignored unsupported tag .iX -->
+<p>
+The 2m format was originally invented by Ciriaco Garcia de Celis. It
+also uses bigger sectors than usual in order to fit more data on the
+disk.  However, it uses the standard format (18 sectors of 512 bytes
+each) on the first cylinder, in order to make these disks easyer to
+handle by DOS. Indeed this method allows to have a standard sized
+bootsector, which contains a description of how the rest of the disk
+should be read.
+<p>
+However, the drawback of this is that the first cylinder can hold less
+data than the others. Unfortunately, DOS can only handle disks where
+each track contains the same amount of data. Thus 2m hides the fact that
+the first track contains less data by using a <i>shadow
+FAT</i>. (Usually, DOS stores the FAT in two identical copies, for
+additional safety.  XDF stores only one copy, and it tells DOS that it
+stores two. Thus the same that would be taken up by the second FAT copy
+is saved.) This also means that your should <b>never use a 2m disk
+to store anything else than a DOS fs</b>.
+<p>
+Mtools supports these format only on Linux.
+<p>
+<h2><i>  XDF</i></h2>
+<!-- ignored unsupported tag .iX -->
+<!-- ignored unsupported tag .iX -->
+<p>
+XDF is a high capacity format used by OS/2. It can hold 1840 K per
+disk. That&#146;s lower than the best 2m formats, but its main advantage is
+that it is fast: 600 milliseconds per track. That&#146;s faster than the 21
+sector format, and almost as fast as the standard 18 sector format. In
+order to access these disks, make sure mtools has been compiled with XDF
+support, and set the <tt>use_xdf</tt> variable for the drive in the
+configuration file. See section Compiling mtools, and oomisc variablesI,
+for details on how to do this. Fast XDF access is only available for
+Linux kernels which are more recent than 1.1.34.
+<p>
+Mtools supports this format only on Linux.
+<p>
+<b>Caution / Attention distributors</b>: If mtools is compiled on a
+Linux kernel more recent than 1.3.34, it won&#146;t run on an older
+kernel. However, if it has been compiled on an older kernel, it still
+runs on a newer kernel, except that XDF access is slower. It is
+recommended that distribution authors only include mtools binaries
+compiled on kernels older than 1.3.34 until 2.0 comes out. When 2.0 will
+be out, mtools binaries compiled on newer kernels may (and should) be
+distributed. Mtools binaries compiled on kernels older than 1.3.34 won&#146;t
+run on any 2.1 kernel or later.
+<p>
+<h2><i>Exit codes</i></h2>
+All the Mtools commands return 0 on success, 1 on utter failure, or 2
+on partial failure.  All the Mtools commands perform a few sanity
+checks before going ahead, to make sure that the disk is indeed an
+MS-DOS disk (as opposed to, say an ext2 or minix disk). These checks
+may reject partially corrupted disks, which might otherwise still be
+readable. To avoid these checks, set the MTOOLS_SKIP_CHECK
+environmental variable or the corresponding configuration file variable
+(see section  global variables)
+<h2><i>Bugs</i></h2>
+An unfortunate side effect of not guessing the proper device (when
+multiple disk capacities are supported) is an occasional error message
+from the device driver.  These can be safely ignored. 
+<p>
+The fat checking code chokes on 1.72 Mb disks mformatted with pre-2.0.7
+mtools. Set the environmental variable MTOOLS_FAT_COMPATIBILITY (or the
+corresponding configuration file variable, ooglobal variablesI) to
+bypass the fat checking.
+<p>
+<h1 class="manpages">See also</h1>
+floppyd_installtest
+mattrib
+mbadblocks
+mcd
+mcopy
+mdel
+mdeltree
+mdir
+mdu
+mformat
+minfo
+mkmanifest
+mlabel
+mmd
+mmount
+mmove
+mrd
+mren
+mtoolstest
+mtype
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion39bf.html?tutorial=unix_commands&amp;file=mtools.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/mtools.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:03 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

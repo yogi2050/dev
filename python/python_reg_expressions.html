@@ -1,0 +1,565 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/python/python_reg_expressions.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 15:56:49 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>Python Regular Expressions</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="description" content="Python Regular Expressions - Learning Python in simple and easy steps : A beginner's tutorial containing complete knowledge of Python Syntax Object Oriented Language, Methods, Tuples, Tools/Utilities, Exceptions Handling, Sockets, GUI, Extentions, XML Programming" />
+<meta name="Keywords" content="Python, Tutorials, Learning, Beginners, Basics, Object Oriented Language, Methods, Overriding, Networking, Multithreading,Methods, Tuples, Tools/Utilities, Exceptions Handling, Sockets, GUI, Extentions, XML, Programming" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+#topmenu a:link {text-decoration:none;color:#000 !important;background-color:transparent;font-weight:bold;}
+#topmenu a:visited {text-decoration:none;color:#000 !important;background-color:transparent;font-weight:bold;}
+#topmenu a:hover {text-decoration:none;color:#fff !important;background-color:transparent;font-weight:bold;}
+#header{ 
+   background:#3777ab !important;
+}
+#topmenu
+{
+   background-color:#fbc62f !important;
+}
+#leftcol ul.menu li.heading 
+{
+   background:#3777ab !important;
+   border:1px solid #fbc62f !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1250px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+   _uacct = "UA-232293-6";
+   urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index-2.html">Tutorials Point Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index-2.html" target="_top">HOME </a>
+<a href="../java/index.html" target="_top">JAVA </a>
+<a href="../php/index.html" target="_top">PHP </a>
+<a href="index.html" target="_top">Python </a>
+<a href="../ruby/index.html" target="_top">Ruby </a>
+<a href="../perl/index.html" target="_top">Perl </a>
+<a href="../html/index.html" target="_top">HTML </a>
+<a href="../css/index.html" target="_top">CSS </a>
+<a href="../javascript/index.html" target="_top">Javascript </a>
+<a href="../mysql/index.html" target="_top">MySQL </a>
+<a href="../cplusplus/index.html" target="_top">C++ </a>
+<a href="../unix/index.html" target="_top">UNIX </a>
+<a href="../more.html" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.html" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.html" target="_top">ABOUT</a> |
+<a href="../about/contact_us.html" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/python-mini.png" alt="Python tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">Python Basic Tutorial</li>
+<li><a target="_top" href="index.html">Python - Home</a></li>
+<li><a target="_top" href="python_overview.html">Python - Overview</a></li>
+<li><a target="_top" href="python_environment.html">Python - Environment</a></li>
+<li><a target="_top" href="python_basic_syntax.html">Python - Basic Syntax</a></li>
+<li><a target="_top" href="python_variable_types.html">Python - Variable Types</a></li>
+<li><a target="_top" href="python_basic_operators.html">Python - Basic Operators</a></li>
+<li><a target="_top" href="python_decision_making.html">Python - Decision Making</a></li>
+<li><a target="_top" href="python_loops.html">Python - Loops</a></li>
+<li><a target="_top" href="python_numbers.html">Python - Numbers</a></li>
+<li><a target="_top" href="python_strings.html">Python - Strings</a></li>
+<li><a target="_top" href="python_lists.html">Python - Lists</a></li>
+<li><a target="_top" href="python_tuples.html">Python - Tuples</a></li>
+<li><a target="_top" href="python_dictionary.html">Python - Dictionary</a></li>
+<li><a target="_top" href="python_date_time.html">Python - Date &amp; Time</a></li>
+<li><a target="_top" href="python_functions.html">Python - Functions</a></li>
+<li><a target="_top" href="python_modules.html">Python - Modules</a></li>
+<li><a target="_top" href="python_files_io.html">Python - Files I/O</a></li>
+<li><a target="_top" href="python_exceptions.html">Python - Exceptions</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Python Advanced Tutorial</li>
+<li><a target="_top" href="python_classes_objects.html">Python - Classes/Objects</a></li>
+<li><a target="_top" href="python_reg_expressions.html"><b>Python - Reg Expressions</b></a></li>
+<li><a target="_top" href="python_cgi_programming.html">Python - CGI Programming</a></li>
+<li><a target="_top" href="python_database_access.html">Python - Database Access</a></li>
+<li><a target="_top" href="python_networking.html">Python - Networking</a></li>
+<li><a target="_top" href="python_sending_email.html">Python - Sending Email</a></li>
+<li><a target="_top" href="python_multithreading.html">Python - Multithreading</a></li>
+<li><a target="_top" href="python_xml_processing.html">Python - XML Processing</a></li>
+<li><a target="_top" href="python_gui_programming.html">Python - GUI Programming</a></li>
+<li><a target="_top" href="python_further_extensions.html">Python - Further Extensions</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Python  Useful Resources</li>
+<li><a target="_top" href="python_quick_guide.html">Python - Quick Guide</a></li>
+<li><a target="_top" href="python_tools_utilities.html">Python - Tools/Utilities</a></li>
+<li><a target="_top" href="python_useful_resources.html">Python Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.html">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>Python Regular Expressions</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="python_classes_objects.html">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="python_cgi_programming.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>A <i>regular expression</i> is a special sequence of characters that helps you match or find other strings or sets of strings, using a specialized syntax held in a pattern. Regular expressions are widely used in UNIX world.</p>
+<p>The module <b>re</b> provides full support for Perl-like regular expressions in Python. The re module raises the exception re.error if an error occurs while compiling or
+using a regular expression.</p>
+<p>We would cover two important functions which would be used to handle regular expressions.  But a small thing first: There are various characters which would have special meaning when they are used in regular expression. To avoid any confusion while dealing with regular expressions we would use Raw Strings as <b>r'expression'</b>.</p>
+<h2>The <i>match</i> Function</h2>
+<p>This function attempts to match RE <i>pattern</i> to <i>string</i> with optional <i>flags</i>.</p>
+<p>Here is the syntax for this function:</p>
+<pre class="prettyprint">
+re.match(pattern, string, flags=0)
+</pre>
+<p>Here is the description of the parameters:</p>
+<table class="src">
+<tr>
+<th style="width:30%">Parameter</th><th>Description</th>
+</tr>
+<tr><td>pattern</td><td>This is the regular expression to be matched.</td></tr>
+<tr><td>string</td><td>This is the string which would be searched to match the pattern at the beginning of string.</td></tr>
+<tr><td>flags</td><td>You can specifiy different flags using bitwise OR (|). These are modifiers which are listed in the table below.</td></tr>
+</table>
+<p>The <i>re.match</i> function returns a <b>match</b> object on success, <b>None</b> on failure. We would use <i>group(num)</i> or <i>groups()</i> function of <b>match</b> object to get matched expression.</p>
+<table class="src">
+<tr>
+<th style="width:30%">Match Object Methods</th><th>Description</th>
+</tr>
+<tr><td>group(num=0)</td><td>This methods returns entire match (or specific subgroup num)</td></tr>
+<tr><td>groups()</td><td>This method return all matching subgroups in a tuple (empty if there weren't any)</td></tr>
+</table>
+<h3>Example:</h3>
+<pre class="prettyprint">
+#!/usr/bin/python
+import re
+
+line = "Cats are smarter than dogs";
+
+matchObj = re.match( r'(.*) are(\.*)', line, re.M|re.I)
+
+if matchObj:
+   print "matchObj.group() : ", matchObj.group()
+   print "matchObj.group(1) : ", matchObj.group(1)
+   print "matchObj.group(2) : ", matchObj.group(2)
+else:
+   print "No match!!"
+</pre>
+<p>When the above code is  executed, it produces following result:</p>
+<pre class="result">
+matchObj.group(): Cats are
+matchObj.group(1) : Cats
+matchObj.group(2) :
+</pre>
+<h2>The <i>search</i> Function</h2>
+<p>This function search for first occurrence of RE <i>pattern</i> within <i>string</i> with optional <i>flags</i>.</p>
+<p>Here is the syntax for this function:</p>
+<pre class="prettyprint">
+re.search(pattern, string, flags=0)
+</pre>
+<p>Here is the description of the parameters:</p>
+<table class="src">
+<tr>
+<th style="width:30%">Parameter</th><th>Description</th>
+</tr>
+<tr><td>pattern</td><td>This is the regular expression to be matched.</td></tr>
+<tr><td>string</td><td>This is the string which would be searched to match the pattern anywhere in the string.</td></tr>
+<tr><td>flags</td><td>You can specifiy different flags using bitwise OR (|). These are modifiers which are listed in the table below.</td></tr>
+</table>
+<p>The <i>re.search</i> function returns a <b>match</b> object on success, <b>None</b> on failure. We would use <i>group(num)</i> or <i>groups()</i> function of <b>match</b> object to get matched expression.</p>
+<table class="src">
+<tr>
+<th style="width:30%">Match Object Methods</th><th>Description</th>
+</tr>
+<tr><td>group(num=0)</td><td>This methods returns entire match (or specific subgroup num)</td></tr>
+<tr><td>groups()</td><td>This method return all matching subgroups in a tuple (empty if there weren't any)</td></tr>
+</table>
+<h3>Example:</h3>
+<pre class="prettyprint">
+#!/usr/bin/python
+import re
+
+line = "Cats are smarter than dogs";
+
+matchObj = re.search( r'(.*) are(\.*)', line, re.M|re.I)
+
+if matchObj:
+   print "matchObj.group() : ", matchObj.group()
+   print "matchObj.group(1) : ", matchObj.group(1)
+   print "matchObj.group(2) : ", matchObj.group(2)
+else:
+   print "No match!!"
+</pre>
+<p>When the above code is  executed, it produces following result:</p>
+<pre class="result">
+matchObj.group(): Cats are
+matchObj.group(1) : Cats
+matchObj.group(2) :
+</pre>
+<h2>Matching vs Searching:</h2>
+<p>Python offers two different primitive operations based on regular expressions: <b>match</b> checks for a match only at the beginning of the string, while <b>search</b> checks for a match anywhere in the string (this is what Perl does by default).</p>
+<h3>Example:</h3>
+<pre class="prettyprint">
+#!/usr/bin/python
+import re
+
+line = "Cats are smarter than dogs";
+
+matchObj = re.match( r'dogs', line, re.M|re.I)
+if matchObj:
+   print "match --&gt; matchObj.group() : ", matchObj.group()
+else:
+   print "No match!!"
+
+matchObj = re.search( r'dogs', line, re.M|re.I)
+if matchObj:
+   print "search --&gt; matchObj.group() : ", matchObj.group()
+else:
+   print "No match!!"
+</pre>
+<p>When the above code is  executed, it produces following result:</p>
+<pre class="result">
+No match!!
+search --&gt; matchObj.group() :  dogs
+</pre>
+<h2>Search and Replace:</h2>
+<p>Some of the most important <b>re</b> methods that use regular expressions is <b>sub</b>.</p>
+<h3>Syntax:</h3>
+<pre class="prettyprint">
+re.sub(pattern, repl, string, max=0)
+</pre>
+<p>This method replace all occurrences of the RE <i>pattern</i> in <i>string</i> with <i>repl</i>, substituting all occurrences unless <i>max</i> provided. This method would return modified string.</p>
+<h3>Example:</h3>
+<p>Following is the example:</p>
+<pre class="prettyprint">
+#!/usr/bin/python
+
+phone = "2004-959-559 #This is Phone Number"
+
+# Delete Python-style comments
+num = re.sub(r'#.*$', "", phone)
+print "Phone Num : ", num
+
+# Remove anything other than digits
+num = re.sub(r'\D', "", phone)    
+print "Phone Num : ", num
+</pre>
+<p>When the above code is  executed, it produces following result:</p>
+<pre class="result">
+Phone Num :  2004-959-559
+Phone Num :  2004959559
+</pre>
+<h2>Regular-expression Modifiers - Option Flags</h2>
+<p>Regular expression literals may include an optional modifier to control various aspects of matching. The modifier are specified as an optional flag. You can provide multiple modified using exclusive OR (|), as shown previously and may be represented by one of these:</p>
+<table class="src">
+<tr><th style="width:25%">Modifier</th><th>Description</th></tr>
+<tr><td>re.I</td><td>Performs case-insensitive matching.</td></tr>
+<tr><td>re.L</td><td>Interprets words according to the current locale.This interpretation affects the alphabetic group (\w and \W), as well as word boundary behavior
+(\b and \B).</td></tr>
+<tr><td>re.M</td><td>Makes $ match the end of a line (not just the end of the string) and makes ^ match the start of any line (not just the start of the string).</td></tr>
+<tr><td>re.S</td><td>Makes a period (dot) match any character, including a newline.</td></tr>
+<tr><td>re.U</td><td>Interprets letters according to the Unicode character set. This flag affects the behavior of \w, \W, \b, \B.</td></tr>
+<tr><td>re.X</td><td>Permits "cuter" regular expression syntax. It ignores whitespace (except inside a set [] or when escaped by a backslash), and treats unescaped #
+as a comment marker.</td></tr>
+</table>
+<h2>Regular-expression patterns:</h2>
+<p>Except for control characters, <b>(+ ? . * ^ $ ( ) [ ] { } | \)</b>, all characters match themselves. You can escape a control character by preceding it with a backslash.</p>
+<p>Following table lists the regular expression syntax that is available in Python.</p>
+<table class="src">
+<tr><th style="width:25%">Pattern</th><th>Description</th></tr>
+<tr><td>^</td><td>Matches beginning of line.</td></tr>
+<tr><td>$</td><td>Matches end of line.</td></tr>
+<tr><td>.</td><td>Matches any single character except newline. Using m option allows it to match
+newline as well.</td></tr>
+<tr><td>[...]</td><td>Matches any single character in brackets.</td></tr>
+<tr><td>[^...]</td><td>Matches any single character not in brackets</td></tr>
+<tr><td>re*</td><td>Matches 0 or more occurrences of preceding expression.</td></tr>
+<tr><td>re+</td><td>Matches 1 or more occurrence of preceding expression.</td></tr>
+<tr><td>re?</td><td>Matches 0 or 1 occurrence of preceding expression.</td></tr>
+<tr><td>re{ n}</td><td>Matches exactly n number of occurrences of preceding expression.</td></tr>
+<tr><td>re{ n,}</td><td>Matches n or more occurrences of preceding expression.</td></tr>
+<tr><td>re{ n, m}</td><td>Matches at least n and at most m occurrences of preceding expression.</td></tr>
+<tr><td>a| b</td><td>Matches either a or b.</td></tr>
+<tr><td>(re)</td><td>Groups regular expressions and remembers matched text.</td></tr>
+<tr><td>(?imx)</td><td>Temporarily toggles on i, m, or x options within a regular expression. If in parentheses,
+only that area is affected.</td></tr>
+<tr><td>(?-imx)</td><td>Temporarily toggles off i, m, or x options within a regular expression. If in
+parentheses, only that area is affected.</td></tr>
+<tr><td>(?: re)</td><td>Groups regular expressions without remembering matched text.</td></tr>
+<tr><td>(?imx: re)</td><td>Temporarily toggles on i, m, or x options within parentheses.</td></tr>
+<tr><td>(?-imx: re)</td><td>Temporarily toggles off i, m, or x options within parentheses.</td></tr>
+<tr><td>(?#...)</td><td>Comment.</td></tr>
+<tr><td>(?= re)</td><td>Specifies position using a pattern. Doesn't have a range.</td></tr>
+<tr><td>(?! re)</td><td>Specifies position using pattern negation. Doesn't have a range.</td></tr>
+<tr><td>(?&gt; re)</td><td>Matches independent pattern without backtracking.</td></tr>
+<tr><td>\w</td><td>Matches word characters.</td></tr>
+<tr><td>\W</td><td>Matches nonword characters.</td></tr>
+<tr><td>\s</td><td>Matches whitespace. Equivalent to [\t\n\r\f].</td></tr>
+<tr><td>\S</td><td>Matches nonwhitespace.</td></tr>
+<tr><td>\d</td><td>Matches digits. Equivalent to [0-9].</td></tr>
+<tr><td>\D</td><td>Matches nondigits.</td></tr>
+<tr><td>\A</td><td>Matches beginning of string.</td></tr>
+<tr><td>\Z</td><td>Matches end of string. If a newline exists, it matches just before newline.</td></tr>
+<tr><td>\z</td><td>Matches end of string.</td></tr>
+<tr><td>\G</td><td>Matches point where last match finished.</td></tr>
+<tr><td>\b</td><td>Matches word boundaries when outside brackets. Matches backspace (0x08) when inside brackets.</td></tr>
+<tr><td>\B</td><td>Matches nonword boundaries.</td></tr>
+<tr><td>\n, \t, etc.</td><td>Matches newlines, carriage returns, tabs, etc.</td></tr>
+<tr><td>\1...\9</td><td>Matches nth grouped subexpression.</td></tr>
+<tr><td>\10</td><td>Matches nth grouped subexpression if it matched already. Otherwise refers to the octal
+representation of a character code.</td></tr>
+</table>
+<h1 style="text-align:left;">Regular-expression Examples</h1>
+<h2>Literal characters:</h2>
+<table class="src">
+<tr><th style="width:25%">Example</th><th>Description</th></tr>
+<tr><td>python</td><td>Match "python". </td></tr>
+</table>
+<h2>Character classes:</h2>
+<table class="src">
+<tr><th style="width:25%">Example</th><th>Description</th></tr>
+<tr><td>[Pp]ython </td><td>Match "Python" or "python"</td></tr>
+<tr><td>rub[ye]</td><td>Match "ruby" or "rube"</td></tr>
+<tr><td>[aeiou]</td><td>Match any one lowercase vowel</td></tr>
+<tr><td>[0-9]</td><td>Match any digit; same as [0123456789]</td></tr>
+<tr><td>[a-z]</td><td>Match any lowercase ASCII letter</td></tr>
+<tr><td>[A-Z]</td><td>Match any uppercase ASCII letter</td></tr>
+<tr><td>[a-zA-Z0-9]</td><td>Match any of the above</td></tr>
+<tr><td>[^aeiou]</td><td>Match anything other than a lowercase vowel</td></tr>
+<tr><td>[^0-9]</td><td>Match anything other than a digit</td></tr>
+</table>
+<h2>Special Character Classes:</h2>
+<table class="src">
+<tr><th style="width:25%">Example</th><th>Description</th></tr>
+<tr><td>.</td><td>Match any character except newline</td></tr>
+<tr><td>\d</td><td>Match a digit: [0-9]</td></tr>
+<tr><td>\D </td><td>Match a nondigit: [^0-9]</td></tr>
+<tr><td>\s</td><td>Match a whitespace character: [ \t\r\n\f]</td></tr>
+<tr><td>\S </td><td>Match nonwhitespace: [^ \t\r\n\f]</td></tr>
+<tr><td>\w</td><td>Match a single word character: [A-Za-z0-9_]</td></tr>
+<tr><td>\W</td><td>Match a nonword character: [^A-Za-z0-9_]</td></tr>
+</table>
+<h2>Repetition Cases:</h2>
+<table class="src">
+<tr><th style="width:25%">Example</th><th>Description</th></tr>
+<tr><td>ruby? </td><td>Match "rub" or "ruby": the y is optional</td></tr>
+<tr><td>ruby* </td><td>Match "rub" plus 0 or more ys</td></tr>
+<tr><td>ruby+</td><td>Match "rub" plus 1 or more ys</td></tr>
+<tr><td>\d{3}</td><td>Match exactly 3 digits</td></tr>
+<tr><td>\d{3,}</td><td>Match 3 or more digits</td></tr>
+<tr><td>\d{3,5}</td><td>Match 3, 4, or 5 digits</td></tr>
+</table>
+<h2>Nongreedy repetition:</h2>
+<p>This matches the smallest number of repetitions:</p>
+<table class="src">
+<tr><th style="width:25%">Example</th><th>Description</th></tr>
+<tr><td>&lt;.*&gt;</td><td>Greedy repetition: matches "&lt;python&gt;perl&gt;"</td></tr>
+<tr><td>&lt;.*?&gt;</td><td>Nongreedy: matches "&lt;python&gt;" in "&lt;python&gt;perl&gt;"</td></tr>
+</table>
+<h2>Grouping with parentheses:</h2>
+<table class="src">
+<tr><th style="width:25%">Example</th><th>Description</th></tr>
+<tr><td>\D\d+</td><td>No group: + repeats \d</td></tr>
+<tr><td>(\D\d)+</td><td>Grouped: + repeats \D\d pair</td></tr>
+<tr><td>([Pp]ython(, )?)+</td><td>Match "Python", "Python, python, python", etc.</td></tr>
+</table>
+<h2>Backreferences:</h2>
+<p>This matches a previously matched group again:</p>
+<table class="src">
+<tr><th style="width:25%">Example</th><th>Description</th></tr>
+<tr><td>([Pp])ython&amp;\1ails</td><td>Match python&amp;rails or Python&amp;Rails</td></tr>
+<tr><td>(['"])[^\1]*\1</td><td>Single or double-quoted string. \1 matches whatever the 1st group matched
+. \2 matches whatever the 2nd group matched, etc.</td></tr>
+</table>
+<h2>Alternatives:</h2>
+<table class="src">
+<tr><th style="width:25%">Example</th><th>Description</th></tr>
+<tr><td>python|perl</td><td>Match "python" or "perl"</td></tr>
+<tr><td>rub(y|le))</td><td>Match "ruby" or "ruble"</td></tr>
+<tr><td>Python(!+|\?)</td><td>"Python" followed by one or more ! or one ?</td></tr>
+</table>
+<h2>Anchors:</h2>
+<p>This need to specify match position</p>
+<table class="src">
+<tr><th style="width:25%">Example</th><th>Description</th></tr>
+<tr><td>^Python</td><td>Match "Python" at the start of a string or internal line</td></tr>
+<tr><td>Python$ </td><td>Match "Python" at the end of a string or line</td></tr>
+<tr><td>\APython </td><td>Match "Python" at the start of a string</td></tr>
+<tr><td>Python\Z</td><td>Match "Python" at the end of a string</td></tr>
+<tr><td>\bPython\b</td><td>Match "Python" at a word boundary</td></tr>
+<tr><td>\brub\B</td><td>\B is nonword boundary: match "rub" in "rube" and "ruby" but not alone</td></tr>
+<tr><td>Python(?=!)</td><td>Match "Python", if followed by an exclamation point</td></tr>
+<tr><td>Python(?!!)</td><td>Match "Python", if not followed by an exclamation point</td></tr>
+</table>
+<h2>Special syntax with parentheses:</h2>
+<table class="src">
+<tr><th style="width:25%">Example</th><th>Description</th></tr>
+<tr><td>R(?#comment)</td><td>Matches "R". All the rest is a comment</td></tr>
+<tr><td>R(?i)uby</td><td>Case-insensitive while matching "uby"</td></tr>
+<tr><td>R(?i:uby)</td><td>Same as above</td></tr>
+<tr><td>rub(?:y|le))</td><td>Group only without creating \1 backreference</td></tr>
+</table>
+<hr />
+<div class="pre-btn">
+<a href="python_classes_objects.html">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/python_reg_expressions.pdf" alt="Python Regular Expressions" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="python_cgi_programming.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.html" target="_top">ASP.NET </a> |
+<a href="../jquery/index.html" target="_top">jQuery </a> |
+<a href="../ajax/index.html" target="_top">AJAX </a> |
+<a href="../ant/index.html" target="_top">ANT</a> |
+<a href="../jsp/index.html" target="_top">JSP </a> |
+<a href="../servlets/index.html" target="_top">Servlets </a> |
+<a href="../log4j/index.html" target="_top">log4j </a> |
+<a href="../ibatis/index.html" target="_top">iBATIS </a> |
+<a href="../hibernate/index.html" target="_top">Hibernate </a> |
+<a href="../jdbc/index.html" target="_top">JDBC </a> |
+<a href="../struts_2/index.html" target="_top">Struts </a> |
+<a href="../html5/index.html" target="_top">HTML5 </a> |
+<a href="../sql/index.html" target="_top">SQL </a> |
+<a href="../mysql/index.html" target="_top">MySQL </a> |
+<a href="../cplusplus/index.html" target="_top">C++ </a> |
+<a href="../unix/index.html" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/python/python_reg_expressions.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 15:56:55 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

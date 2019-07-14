@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=css&file=css_at_rules.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>CSS @ Rules - @charset, @import and !important </title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="Keywords" content="CSS, Tutorials, Learning, Beginners, CSS, Basics, Advanced, Cascading Style Sheet, CSS2, Properties, HTMl, XHTML, Reference, Manual" />
+<meta name="description" content="CSS @ Rules - @charset, @import and !important -  CSS Tutorials for beginners to advanced developers - Learning Cascading Style Sheet in simple and easy steps with examples. A complete reference manual for CSS2 properties." />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../print.css"/>
+</head>
+<body>
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+<h1>CSS - @ Rules</h1>
+<a href="../css/css_pseudo_elements.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../css/css_text_effects.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<br />
+<p>This tutorial will cover following important @ rules</p>
+<ul>
+<li><p>The <b>@import:</b> rule imports another style sheet into the current style sheet.</p></li>
+<li><p>The <b>@charset</b> rule indicates the character set the style sheet uses.</p></li>
+<li><p>The <b>@font-face</b> rule is used to exhaustively describe a font face for use in a document.</p></li>
+<li><p>The <b>!important</b> rule indicates that a user-defined rule should take precedence over the author's style sheets.</p></li>
+</ul>
+<p><b>NOTE:</b> There are other @ rules which I will cover in subsequent chapters.</p>
+
+<h1>The @import rule</h1>
+<p>The @import rule allows you to import styles from another style sheet. It should appear right at the start of the style sheet before any of the rules, and its value is a URL.</p>
+<p>It can be written in one of two ways:</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+&lt;style tyle="text/css"&gt;
+&lt;!--
+@import "mystyle.css";
+or
+@import url("mystyle.css");
+.......other CSS rules .....
+--&gt;
+&lt;/style&gt;
+</pre></td></tr>
+</table>
+<p>The significance of the @import rule is that it allows you to develop your style sheets with a modular approach. You can create various style sheets and then include them wherever you need them.</p>
+
+<h1>The @charset Rule</h1>
+<p>If you are writing your document using a character set other than ASCII or ISO-8859-1 you might want to set the @charset rule at the top of your style sheet to indicate what character set the style sheet is written in.</p>
+<p>The @charset rule must be written right at the beginning of the style sheet without even a space before it. The value is held in quotes and should be one of the standard character-sets. For example</p>
+<p>It can be written in one of two ways:</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+&lt;style tyle="text/css"&gt;
+&lt;!--
+@charset "iso-8859-1"
+.......other CSS rules .....
+--&gt;
+&lt;/style&gt;
+</pre></td></tr>
+</table>
+<h1>The @font-face Rule</h1>
+<p>The @font-face rule is used to exhaustively describe a font face for use in a document. @font-face may also be used to define the location of a font for download, although this may run into implementation-specific limits.</p>
+<p>In general, @font-face is extremely complicated, and its use is not recommended for any except those who are expert in font metrics.</p>
+<p>here is the example:</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+&lt;style tyle="text/css"&gt;
+&lt;!--
+@font-face {
+  font-family: "Scarborough Light";
+ src: url("http://www.font.site/s/scarbo-lt");
+}
+@font-face {
+ font-family: Santiago;
+ src: local ("Santiago"),
+ url("http://www.font.site/s/santiago.tt")
+ format("truetype");
+ unicode-range: U+??,U+100-220;
+ font-size: all;
+ font-family: sans-serif;
+}
+--&gt;
+&lt;/style&gt;
+</pre></td></tr>
+</table>
+<h1>The !important Rule</h1>
+<p>Cascading Style Sheets cascade. This means that the styles are applied in order as they are read by the browser. The first style is applied and then the second and so on.</p>
+<p>The !important rule is a way to make your CSS cascade but also have the rules you feel are most crucial always be applied. A rule that has the !important property will always be applied no matter where that rule appears in the CSS document.</p>
+<p>For example, in the following style sheet, the paragraph text will be black, even though the first style property applied is red:</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+&lt;style tyle="text/css"&gt;
+&lt;!--
+p { color: #ff0000; }
+p { color: #000000; }
+--&gt;
+&lt;/style&gt;
+</pre></td></tr>
+</table>
+<p>So if you wanted to make sure that a property always applied, you would add the !important property to the tag. So, to make the paragraph text always red, you should write it as follows:</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+&lt;style tyle="text/css"&gt;
+&lt;!--
+p { color: #ff0000 !important; }
+p { color: #000000; }
+--&gt;
+&lt;/style&gt;
+</pre></td></tr>
+</table>
+<p>Here you have made <i>p { color: #ff0000 !important; }</i> mandatory, now this rule will always apply even you have defined another rule <i>p { color: #000000; }</i></p>
+<p>To Become more comfortable - <a href="practice27da.html?file=css_important_rule" target="_blank">Do Online Practice</a></p>
+<a href="../css/css_pseudo_elements.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../css/css_text_effects.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=css&file=css_at_rules.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

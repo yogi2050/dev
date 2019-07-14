@@ -1,0 +1,219 @@
+<html>
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=perl&file=perl_socket.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>PERL Socket - Networking Programming</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="Keywords" content="Perl, Programming, Language, Object Oriented Perl, Perl Variables, Scalars, Arrays, Hash, File I/O, Looping, Regular Expressions, Subroutines, Coding Standard, Writing Modules, Process Management, Socket, Examples, References, Special Variables, Syntax Overview, Advanced Perl, Tutorial, Tutorials, Operators, Built-in Functions, Quiz">
+<meta name="Description" content="Free tutorials and references for PERL Programming Common Gateway Interface (CGI) Database Interface (DBI) with PERL Object Oriented Perl and Perl Variables Scalars Arrays Hash File I/O Looping Regular Expressions Subroutines Coding Standard Writing Modules Process Management Socket Examples References Special Variables Syntax Overview Advanced Perl Tutorial Perl Operators Built-in Functions and Quiz">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base >
+<link rel="stylesheet" type="text/css" href="../print.css"/>
+</head>
+<body>
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+<h1>PERL Socket - Networking Programing</h1>
+<a href="../perl/perl_coding_standard.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../perl/perl_modules.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<br />
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="top">
+<p>
+<STRONG>NOTE:</STRONG> If you are aware of Unix Sockets then you can leave introduction part
+
+</p>
+<h2>What is a socket?</h2>
+<p>
+Just another bit of computer jargon? Going back a little into networking history, it is a Berkeley UNIX mechanism of creating a virtual duplex connection between processes. This was later ported on to every known OS enabling communication between systems across geographical location running on different OS software. If not for the socket, most of the network communication between systems would never ever have happened.
+</p>
+<p>
+Taking a closer look; a typical computer system on a network receives and sends information as desired by the various applications running on it. This information is routed to the system, since a unique IP address is designated to it. On the system, this information is given to the relevant applications which listen on different ports. For example a net browser listens on port 80 for information. Also we can write applications which listen and send information on a specific port number. 
+</p>
+<p>
+For now, let's sum up that a socket is an IP address and a port, enabling connection.
+</p>
+<p>To explain the socket we will take an example of Client - Server Programming. To complete a client server architecture we would have to go through the following steps
+<h2>Creating A Server</h2>
+<ul>
+<li>Create a socket with socket call.
+<li>Bind the socket to a port address with bind call. 
+<li>Listen to the socket at the port address with listen call. 
+<li>Accept client connections with accept call.
+</ul>
+<h2>Creating A Client</h2>
+<ul>
+<li>Create a socket with socket call. 
+<li>Connect (the socket) to the remote machine with connect call.
+</ul>
+</p>
+<hr>
+<h2>Create a socket</h2>
+<p>The first step in establishing a network connection is creating a socket, with the sockt() function
+</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+socket( SOCKET, DOMAIN, TYPE, PROTOCOL ); creates a socket 
+</tr></tr></table></pre>
+<p>
+socket creates a SOCKET. The other three arguments are integers which should have the following values for TCP/IP connections.
+<ul>
+<li><strong>DOMAIN</strong> should be PF_INET. It's probable 2 on your computer.
+<li><strong>TYPE</strong> should be SOCK_STREAM for TCP/IP connection.
+<li><strong>PROTOCOL</strong> should be <code class="inline">(getprotobyname('tcp'))[2]</code>. It is the particular protocol such as TCP to be spoken over the socket.
+</ul>
+</p>
+
+<p>So socket function call will be something like this:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+  use Socket     #defines PF_INET and SOCK_STREAM
+  socket(SOCKET,PF_INET,SOCK_STREAM,(getprotobyname('tcp'))[2]);
+</tr></tr></table></pre>
+<br>
+<hr>
+<h2>Bind to a socket address</h2>
+The sockets created by socket are innocent and they have not yet been polluted by a computer hostname or a port number. Next socket function <code class="inline">bind()</code> fleshes out the socket with these values. Server uses bind() function to specify the port at which they will be accepting connections from the clients.
+</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+ bind( SOCKET, ADDRESS ) binds a network ADDRESS to a SOCKET.
+</tr></tr></table></pre>
+
+<p>ADDRESS is a socket address which ( for TCP/IP ) is a packet string containing three elements
+<ol>
+<li> The address family (For TCP/IP, that's AF_INET, probably 2 on your system )
+<li> The port number ( for example 21 )
+<li> The internet address of the computer ( for example 10.12.12.168 )
+</ol>
+<p>As the bind() is used by a server which does not need to know its own address so the argument list looks like this:
+<table cellpadding=5 class="src"><tr><td><pre>
+   $port = 12345;    # the port 
+   bind( SOCKET, pack( 'Sn4x8', AF_INET, $port, "\0\0\0\0" ))
+       or die "Can't bind to port $port! \n";
+</tr></tr></table></pre>
+<p>The <strong>or die</strong> clause is very important - if a server dies without outstanding connections the port won't be immediately reusable unless you use  the option SO_REUSEADDR using <code class="inline">setsockopt()</code> function. Here <code class="inline">pack()</code> function is being used to pack all the data into binary format.</p>
+<hr>
+<h2>Listening on the port</h2>
+<p>If this is a server program then it is required to issue a call to <code class="inline">listen()</code> on the specified port.
+</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+ listen( SOCKET, QUEUESIZE );
+</tr></tr></table></pre>
+<p>The above call is mandatory for all the servers and here QUEUESIZE is the maximum number of outstanding connection request allowed. Generally, listen() is used in an infinite loop. As soon as one connection arrives the server deals with it and then goes back to listen for more connections.
+</p>
+<hr>
+<h2> Accepting connections</h2>
+<p>If this is a server program then it is required to issue a call to <code class="inline">access()</code> function to accept the incoming connections.</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+accept( NEW_SOCKET, SOCKET );
+</tr></tr></table></pre>
+<p>The accept call receive  SOCKET descriptor returned by socket() function. Upon successful completion of this call, a new socket descriptor is returned. All future communication between client and server then takes place over NEW_SOCKET and SOCKET returns to what it does best : listen()ing for a new connection. If access() call fails then it returns FLASE which is defined in Socket module which we have used initially.
+</p>
+<p>You will often see accept() used inside a <i>while</i> loop as follows
+<table cellpadding=5 class="src"><tr><td><pre>
+   while(1) {
+      accept( NEW_SOCKET, SOCKT );
+      .......
+   }
+</tr></tr></table></pre>
+<p> Now all the calls related to server are over and let us see a call which will be required by the client</p>
+<hr>
+<h2>Connection Establishment</h2>
+<p>If you are going to prepare client program then after using <i>socket()</i> call you would have to use another call <i>connect()</i> to connect to the server.</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+ connect( SOCKET, ADDRESS );
+</tr></tr></table></pre>
+
+Here ADDRESS is a socket address similar to <i>bind</i> call, except that it contains the IP address of the remote server. 
+<table cellpadding=5 class="src"><tr><td><pre>
+   $port = 21;    # the  ftp port
+   $server_ip_address = "10.12.12.168";
+   connect( SOCKET, pack( 'Sn4x8', AF_INET, $port, $server ))
+       or die "Can't connect to port $port! \n";
+</tr></tr></table></pre>
+<p>If you connect to the server successfully then you can start sending your commands to the server using SOCKET descriptor.</p>
+<p>So now lets put all the things together</p>
+<hr>
+<h2>Script to Create a Server</h2>
+<table cellpadding=5 class="src"><tr><td><pre>
+#!/usr/bin/perl -w
+# server.pl
+#--------------------
+
+use strict;
+use Socket;
+
+# use port 7890 as default
+my $port = shift || 7890;
+my $proto = getprotobyname('tcp');
+
+# create a socket, make it reusable
+socket(SOCKET, PF_INET, SOCK_STREAM, $proto) 
+   or die "Can't open socket $!\n";
+setsockopt(SOCKET, SOL_SOCKET, SO_REUSEADDR, 1) 
+   or die "Can't set socket option to SO_REUSEADDR $!\n";
+
+# bind to a port, then listen
+bind( SOCKET, pack( 'Sn4x8', AF_INET, $port, "\0\0\0\0" ))
+       or die "Can't bind to port $port! \n";
+listen(SOCKET, 5) or die "listen: $!";
+print "SERVER started on port $port\n";
+
+# accepting a connection
+my $client_addr;
+while ($client_addr = accept(NET_SOCKET, SOCKET)) {
+	# send them a message, close connection
+	print NEW_SOCKET "Smile from the server";
+	close NEW_SOCKET;
+}
+</tr></tr></table></pre>
+<br>
+<h2>Now starting above Server</h2>
+<p>To run the server in background mode issue the following command on Unix prompt
+<table cellpadding=5 class="src"><tr><td><pre>
+$sever.pl&
+</tr></tr></table></pre>
+<br>
+<hr>
+<h2>Script to Create a Client</h2>
+<table cellpadding=5 class="src"><tr><td><pre>
+#!/usr/bin/perl -w
+# client.pl
+#----------------
+
+use strict;
+use Socket;
+
+# initialize host and port
+my $host = shift || 'localhost';
+my $port = shift || 7890;
+my $server = "10.12.12.168";
+
+# create the socket, connect to the port
+socket(SOCKET,PF_INET,SOCK_STREAM,(getprotobyname('tcp'))[2])
+   or die "Can't create a socket $!\n";
+connect( SOCKET, pack( 'Sn4x8', AF_INET, $port, $server ))
+       or die "Can't connect to port $port! \n";
+
+my $line;
+while ($line = &lt;SOCKET&gt;) {
+	print "$line\n";
+}
+close SOCKET or die "close: $!";
+</tr></tr></table></pre>
+</td>
+</tr></table>
+<br>
+<a href="../perl/perl_coding_standard.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../perl/perl_modules.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=perl&file=perl_socket.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

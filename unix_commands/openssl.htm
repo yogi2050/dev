@@ -1,0 +1,747 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/openssl.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title> - Unix, Linux Command</title>
+<meta name="Description" Content=" - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1> - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- Not defining reserved macro 'Sh' ! -->
+<!-- ignored unsupported tag .tr -->
+<!-- ignored unsupported tag .ie -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .el\{ -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .rr -->
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .hy -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .tm -->
+<h1 class="manpages">NAME</h1>
+openssl - OpenSSL command line tool
+<h1 class="manpages">SYNOPSIS</h1>
+<!-- ignored unsupported tag .tm -->
+<b>openssl</b>
+<i>command</i>
+[ <i>command_opts</i> ]
+[ <i>command_args</i> ]
+<p>
+<b>openssl</b> [ <b>list-standard-commands</b> | <b>list-message-digest-commands</b> | <b>list-cipher-commands</b> ]
+<p>
+<b>openssl</b> <b>no-</b><i><font size="-1">XXX</font></i> [ <i>arbitrary options</i> ]
+<h1 class="manpages">DESCRIPTION</h1>
+<!-- ignored unsupported tag .tm -->
+OpenSSL is a cryptography toolkit implementing the Secure Sockets Layer (<font size="-1">SSL</font>
+v2/v3) and Transport Layer Security (<font size="-1">TLS</font> v1) network protocols and related
+cryptography standards required by them.
+<p>
+The <b>openssl</b> program is a command line tool for using the various
+cryptography functions of OpenSSL&#146;s <b>crypto</b> library from the shell.
+It can be used for
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+ o  Creation of RSA, DH and DSA key parameters
+ o  Creation of X.509 certificates, CSRs and CRLs
+ o  Calculation of Message Digests
+ o  Encryption and Decryption with Ciphers
+ o  SSL/TLS Client and Server Tests
+ o  Handling of S/MIME signed or encrypted mail
+</tt></pre></td></tr>
+</table>
+<h1 class="manpages">COMMAND SUMMARY</h1>
+<!-- ignored unsupported tag .tm -->
+The <b>openssl</b> program provides a rich variety of commands (<i>command</i> in the
+<font size="-1">SYNOPSIS</font> above), each of which often has a wealth of options and arguments
+(<i>command_opts</i> and <i>command_args</i> in the <font size="-1">SYNOPSIS</font>).
+<p>
+The pseudo-commands <b>list-standard-commands</b>, <b>list-message-digest-commands</b>,
+and <b>list-cipher-commands</b> output a list (one entry per line) of the names
+of all standard commands, message digest commands, or cipher commands,
+respectively, that are available in the present <b>openssl</b> utility.
+<p>
+The pseudo-command <b>no-</b><i><font size="-1">XXX</font></i> tests whether a command of the
+specified name is available.  If no command named <i><font size="-1">XXX</font></i> exists, it
+returns 0 (success) and prints <b>no-</b><i><font size="-1">XXX</font></i>; otherwise it returns 1
+and prints <i><font size="-1">XXX</font></i>.  In both cases, the output goes to <b>stdout</b> and
+nothing is printed to <b>stderr</b>.  Additional command line arguments
+are always ignored.  Since for each cipher there is a command of the
+same name, this provides an easy way for shell scripts to test for the
+availability of ciphers in the <b>openssl</b> program.  (<b>no-</b><i><font size="-1">XXX</font></i> is
+not able to detect pseudo-commands such as <b>quit</b>,
+<b>list-</b><i>...</i><b>-commands</b>, or <b>no-</b><i><font size="-1">XXX</font></i> itself.)
+<h1 class="manpages"><font size="-1">STANDARD</font> <font size="-1">COMMANDS</font></h1>
+<!-- ignored unsupported tag .tm -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=10%>
+<b>asn1parse</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Parse an <font size="-1">ASN</font>.1 sequence.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>ca</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Certificate Authority (<font size="-1">CA</font>) Management. 
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>ciphers</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Cipher Suite Description Determination.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>crl</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Certificate Revocation List (<font size="-1">CRL</font>) Management.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>crl2pkcs7</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">CRL</font> to PKCS#7 Conversion.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>dgst</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Message Digest Calculation.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>dh</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Diffie-Hellman Parameter Management.
+Obsoleted by <b>dhparam</b>.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>dsa</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">DSA</font> Data Management.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>dsaparam</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">DSA</font> Parameter Generation.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>enc</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Encoding with Ciphers.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>errstr</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Error Number to Error String Conversion.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>dhparam</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Generation and Management of Diffie-Hellman Parameters.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>gendh</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Generation of Diffie-Hellman Parameters.
+Obsoleted by <b>dhparam</b>.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>gendsa</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Generation of <font size="-1">DSA</font> Parameters.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>genrsa</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Generation of <font size="-1">RSA</font> Parameters.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>ocsp</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Online Certificate Status Protocol utility.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>passwd</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Generation of hashed passwords.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>pkcs12</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+PKCS#12 Data Management.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>pkcs7</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+PKCS#7 Data Management.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>rand</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Generate pseudo-random bytes.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>req</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+X.509 Certificate Signing Request (<font size="-1">CSR</font>) Management.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>rsa</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">RSA</font> Data Management.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>rsautl</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">RSA</font> utility for signing, verification, encryption, and decryption.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>s_client</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+This implements a generic <font size="-1">SSL/TLS</font> client which can establish a transparent
+connection to a remote server speaking <font size="-1">SSL/TLS</font>. It&#146;s intended for testing
+purposes only and provides only rudimentary interface functionality but
+internally uses mostly all functionality of the OpenSSL <b>ssl</b> library.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>s_server</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+This implements a generic <font size="-1">SSL/TLS</font> server which accepts connections from remote
+clients speaking <font size="-1">SSL/TLS</font>. It&#146;s intended for testing purposes only and provides
+only rudimentary interface functionality but internally uses mostly all
+functionality of the OpenSSL <b>ssl</b> library.  It provides both an own command
+line oriented protocol for testing <font size="-1">SSL</font> functions and a simple <font size="-1">HTTP</font> response
+facility to emulate an SSL/TLS-aware webserver.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>s_time</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">SSL</font> Connection Timer.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>sess_id</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">SSL</font> Session Data Management.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>smime</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+S/MIME mail processing.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>speed</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Algorithm Speed Measurement.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>verify</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+X.509 Certificate Verification.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>version</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+OpenSSL Version Information.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>x509</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+X.509 Certificate Data Management.
+</td></tr>
+</table>
+<h1 class="manpages"><font size="-1">MESSAGE</font> <font size="-1">DIGEST</font> <font size="-1">COMMANDS</font></h1>
+<!-- ignored unsupported tag .tm -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=10%>
+<b>md2</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">MD2</font> Digest
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>md5</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">MD5</font> Digest
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>mdc2</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">MDC2</font> Digest
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>rmd160</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">RMD-160</font> Digest
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>sha</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">SHA</font> Digest
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>sha1</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">SHA-1</font> Digest
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>sha224</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">SHA-224</font> Digest
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>sha256</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">SHA-256</font> Digest
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>sha384</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">SHA-384</font> Digest
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>sha512</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">SHA-512</font> Digest
+</td></tr>
+</table>
+<h1 class="manpages"><font size="-1">ENCODING</font> <font size="-1">AND</font> <font size="-1">CIPHER</font> <font size="-1">COMMANDS</font></h1>
+<!-- ignored unsupported tag .tm -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=10%>
+<b>base64</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Base64 Encoding
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>bf bf-cbc bf-cfb bf-ecb bf-ofb</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Blowfish Cipher
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>cast cast-cbc</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">CAST</font> Cipher
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>cast5-cbc cast5-cfb cast5-ecb cast5-ofb</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">CAST5</font> Cipher
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>des des-cbc des-cfb des-ecb des-ede des-ede-cbc des-ede-cfb des-ede-ofb des-ofb</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">DES</font> Cipher
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>des3 desx des-ede3 des-ede3-cbc des-ede3-cfb des-ede3-ofb</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Triple-DES Cipher
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>idea idea-cbc idea-cfb idea-ecb idea-ofb</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">IDEA</font> Cipher
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>rc2 rc2-cbc rc2-cfb rc2-ecb rc2-ofb</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">RC2</font> Cipher
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>rc4</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">RC4</font> Cipher
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>rc5 rc5-cbc rc5-cfb rc5-ecb rc5-ofb</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">RC5</font> Cipher
+</td></tr>
+</table>
+<h1 class="manpages">PASS PHRASE ARGUMENTS</h1>
+<!-- ignored unsupported tag .tm -->
+Several commands accept password arguments, typically using <b>-passin</b>
+and <b>-passout</b> for input and output passwords respectively. These allow
+the password to be obtained from a variety of sources. Both of these
+options take a single argument whose format is described below. If no
+password argument is given and a password is required then the user is
+prompted to enter one: this will typically be read from the current
+terminal with echoing turned off.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=10%>
+<b>pass:password</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+the actual password is <b>password</b>. Since the password is visible
+to utilities (like &#146;ps&#146; under Unix) this form should only be used
+where security is not important.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>env:var</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+obtain the password from the environment variable <b>var</b>. Since
+the environment of other processes is visible on certain platforms
+(e.g. ps under certain Unix OSes) this option should be used with caution.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>file:pathname</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+the first line of <b>pathname</b> is the password. If the same <b>pathname</b>
+argument is supplied to <b>-passin</b> and <b>-passout</b> arguments then the first
+line will be used for the input password and the next line for the output
+password. <b>pathname</b> need not refer to a regular file: it could for example
+refer to a device or named pipe.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>fd:number</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+read the password from the file descriptor <b>number</b>. This can be used to
+send the data via a pipe for example.
+</td></tr>
+<tr valign="top"><td width=10%>
+<b>stdin</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+read the password from standard input.
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<i>asn1parse</i>(1), <i>ca</i>(1), <i>config</i>(5),
+<i>crl</i>(1), <i>crl2pkcs7</i>(1), <i>dgst</i>(1),
+<i>dhparam</i>(1), <i>dsa</i>(1), <i>dsaparam</i>(1),
+<i>enc</i>(1), <i>gendsa</i>(1),
+<i>genrsa</i>(1), <i>nseq</i>(1), <i>openssl</i>(1),
+<i>passwd</i>(1),
+<i>pkcs12</i>(1), <i>pkcs7</i>(1), <i>pkcs8</i>(1),
+<i>rand</i>(1), <i>req</i>(1), <i>rsa</i>(1),
+<i>rsautl</i>(1), <i>s_client</i>(1),
+<i>s_server</i>(1), <i>s_time</i>(1),
+<i>smime</i>(1), <i>spkac</i>(1),
+<i>verify</i>(1), <i>version</i>(1), <i>x509</i>(1),
+<i>crypto</i>(3), <i>ssl</i>(3)
+<h1 class="manpages">HISTORY</h1>
+<!-- ignored unsupported tag .tm -->
+The <i>openssl</i>(1) document appeared in OpenSSL 0.9.2.
+The <b>list-</b><i><font size="-1">XXX</font></i><b>-commands</b> pseudo-commands were added in OpenSSL 0.9.3;
+the <b>no-</b><i><font size="-1">XXX</font></i> pseudo-commands were added in OpenSSL 0.9.5a.
+For notes on the availability of other commands, see their individual
+manual pages.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionbe7d.html?tutorial=unix_commands&amp;file=.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/openssl.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

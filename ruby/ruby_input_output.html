@@ -1,0 +1,612 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/ruby/ruby_input_output.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 15:58:59 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>Ruby File I/O, Directories</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="Keywords" content="Ruby, Tutorials, Learning, Beginners, Basics, Scripting Language, Syntax, Classes, , Variables, Comments, Loops, File, I/O, Functions, Objects, TK, Ranges, iterators, arrays, strings, methods, blocks, Exception, Multi-Threading, Hashes, Modules, LDAP, Web Services, Web Programming." />
+<meta name="description" content="Ruby File I/O, Directories - Learning Ruby in simple and easy steps - A beginner's tutorial containing complete knowledge of Ruby Syntax Syntax, Classes, , Variables, Comments, Loops, File, I/O, Functions, Objects, TK, Ranges, iterators, arrays, strings, methods, blocks, Exception, Multi-Threading, Hashes, Modules, LDAP, Web Services, Web Programming." />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+/* Ruby Scheme */
+#topmenu a:link {text-decoration:none;color:#fff !important;background-color:transparent;font-weight:bold;}
+#topmenu a:visited {text-decoration:none;color:#fff !important;background-color:transparent;font-weight:bold;}
+#topmenu a:hover {text-decoration:none;color:#C83932 !important;background-color:transparent;font-weight:bold;}
+#header{ 
+background:#C83932 !important;
+}
+#topmenu
+{
+background-color:#5E0500 !important;
+}
+#leftcol ul.menu li.heading 
+{
+background:#C83932 !important;
+border:1px solid #964800 !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1500px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index-2.html">Tutorials Point - Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index-2.html" target="_top">HOME </a>
+<a href="../java/index.html" target="_top">JAVA </a>
+<a href="../php/index.html" target="_top">PHP </a>
+<a href="../python/index.html" target="_top">Python </a>
+<a href="index.html" target="_top">Ruby </a>
+<a href="../perl/index.html" target="_top">Perl </a>
+<a href="../html/index.html" target="_top">HTML </a>
+<a href="../css/index.html" target="_top">CSS </a>
+<a href="../javascript/index.html" target="_top">Javascript </a>
+<a href="../mysql/index.html" target="_top">MySQL </a>
+<a href="../cplusplus/index.html" target="_top">C++ </a>
+<a href="../unix/index.html" target="_top">UNIX </a>
+<a href="../more.html" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.html" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.html" target="_top">ABOUT</a> |
+<a href="../about/contact_us.html" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/ruby-mini-logo.png" alt="Ruby Tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">Ruby Basics</li>
+<li><a class="left" target="_top" href="index.html">Ruby Home</a></li>
+<li><a class="left" target="_top" href="ruby_overview.html">Ruby Overview</a></li>
+<li><a class="left" target="_top" href="ruby_environment.html">Ruby Environment</a></li>
+<li><a class="left" target="_top" href="ruby_syntax.html">Ruby Syntax</a></li>
+<li><a class="left" target="_top" href="ruby_classes.html">Ruby Classes</a></li>
+<li><a class="left" target="_top" href="ruby_variables.html">Ruby Variables</a></li>
+<li><a class="left" target="_top" href="ruby_operators.html">Ruby Operators</a></li>
+<li><a class="left" target="_top" href="ruby_comments.html">Ruby Comments</a></li>
+<li><a class="left" target="_top" href="ruby_if_else.html">Ruby IF...ELSE</a></li>
+<li><a class="left" target="_top" href="ruby_loops.html">Ruby Loops</a></li>
+<li><a class="left" target="_top" href="ruby_methods.html">Ruby Methods</a></li>
+<li><a class="left" target="_top" href="ruby_blocks.html">Ruby Blocks</a></li>
+<li><a class="left" target="_top" href="ruby_modules.html">Ruby Modules</a></li>
+<li><a class="left" target="_top" href="ruby_strings.html">Ruby Strings</a></li>
+<li><a class="left" target="_top" href="ruby_arrays.html">Ruby Arrays</a></li>
+<li><a class="left" target="_top" href="ruby_hashes.html">Ruby Hashes</a></li>
+<li><a class="left" target="_top" href="ruby_date_time.html">Ruby Date &amp; Time</a></li>
+<li><a class="left" target="_top" href="ruby_ranges.html">Ruby Ranges</a></li>
+<li><a class="left" target="_top" href="ruby_iterators.html">Ruby Iterators</a></li>
+<li><a class="left" target="_top" href="ruby_input_output.html"><b>Ruby File I/O</b></a></li>
+<li><a class="left" target="_top" href="ruby_exceptions.html">Ruby Exceptions</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Ruby Advanced</li>
+<li><a class="left" target="_top" href="ruby_object_oriented.html">Ruby Object Oriented</a></li>
+<li><a class="left" target="_top" href="ruby_regular_expressions.html">Ruby Regular Expressions</a></li>
+<li><a class="left" target="_top" href="ruby_database_access.html">Ruby Database Access</a></li>
+<li><a class="left" target="_top" href="ruby_web_applications.html">Ruby Web Applications</a></li>
+<li><a class="left" target="_top" href="ruby_sending_email.html">Ruby Sending Email</a></li>
+<li><a class="left" target="_top" href="ruby_socket_programming.html">Ruby Socket Programming</a></li>
+<li><a class="left" target="_top" href="ruby_xml_xslt.html">Ruby/XML, XSLT</a></li>
+<li><a class="left" target="_top" href="ruby_web_services.html">Ruby Web Services</a></li>
+<li><a class="left" target="_top" href="ruby_tk_guide.html">Ruby/Tk Guide</a></li>
+<li><a class="left" target="_top" href="ruby_ldap.html">Ruby/LDAP Tutorial</a></li>
+<li><a class="left" target="_top" href="ruby_multithreading.html">Ruby Multithreading</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Ruby Useful Resources</li>
+<li><a class="left" target="_top" href="ruby_quick_guide.html">Ruby Quick Guide</a></li>
+<li><a class="left" target="_top" href="ruby_builtin_functions.html">Ruby Built-in Functions</a></li>
+<li><a class="left" target="_top" href="ruby_predefined_variables.html">Ruby Predefined Variables</a></li>
+<li><a class="left" target="_top" href="ruby_predefined_constants.html">Ruby Predefined Constants</a></li>
+<li><a class="left" target="_top" href="ruby_associated_tools.html">Ruby Associated Tools</a></li>
+<li><a class="left" target="_top" href="ruby_resources.html">Ruby Useful Resources</a></li>
+<li><a class="left" target="_top" href="../ruby-on-rails/index.html">Ruby on Rails Tutorial</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.html">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>Ruby File I/O, Directories</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="ruby_iterators.html">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="ruby_exceptions.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>Ruby provides a whole set of I/O-related methods implemented in the Kernel module. All the I/O methods are derived from the class IO.</p>
+<p>The class <i>IO</i> provides all the basic methods, such as <i>read, write, gets, puts, readline, getc,</i> and <i>printf</i>.</p>
+<p>This chapter will cover all  ithe basic I/O functions available in Ruby. For more functions please refere to Ruby Class <i>IO</i>.</p>
+<h2>The <i>puts</i> Statement:</h2>
+<p>In previous chapters, you assigned values to variables and then printed the output using <i>puts</i> statement.</p>
+<p>The <i>puts</i> statement instructs the program to display the value stored in the variable. This will add a new line at the end of each line it writes.</p>
+<h2>Example:</h2>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+val1 = "This is variable one"
+val2 = "This is variable two"
+puts val1
+puts val2
+</pre>
+<p>This will produce following result:</p>
+<pre class="prettyprint">
+This is variable one
+This is variable two
+</pre>
+<h2>The <i>gets</i> Statement:</h2>
+<p>The <i>gets</i> statement can be used to take any input from the user from standard screen called STDIN.</p>
+<h2>Example:</h2>
+<p>The following code shows you how to use the gets statement. This code will prompt the user to enter a value, which will be
+stored in a variable val and finally will be printed on STDOUT.</p>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+puts "Enter a value :"
+val = gets
+puts val
+</pre>
+<p>This will produce following result:</p>
+<pre class="prettyprint">
+Enter a value :
+This is entered value
+This is entered value
+</pre>
+<h2>The <i>putc</i> Statement:</h2>
+<p>Unlike the <i>puts</i> statement, which outputs the entire string onto the screen, the <i>putc</i> statement can be used to output one character at a time.</p>
+<h2>Example:</h2>
+<p>The output of the following code is just the character H:</p>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+str="Hello Ruby!"
+putc str
+</pre>
+<p>This will produce following result:</p>
+<pre class="prettyprint">
+H
+</pre>
+<h2>The <i>print</i> Statement:</h2>
+<p>The <i>print</i> statement is similar to the <i>puts</i> statement. The only difference is that the <i>puts</i> statement goes to the next line after printing the contents, whereas with the <i>print</i> statement the cursor is positioned on the same line.</p>
+<h2>Example:</h2>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+print "Hello World"
+print "Good Morning"
+</pre>
+<p>This will produce following result:</p>
+<pre class="prettyprint">
+Hello WorldGood Morning
+</pre>
+<h2>Opening and Closing Files:</h2>
+<p>Until now, you have been reading and writing to the standard input and output. Now we will see how to play with actual data files.</p>
+<h2>The <i>File.new</i> Method:</h2>
+<p>You can create a <i>File</i> object using <i>File.new</i> method for reading, writing, or both, according to the mode string. Finally you can use <i>File.close</i> method to close that file.</p>
+<h2>Syntax:</h2>
+<pre class="prettyprint">
+aFile = File.new("filename", "mode")
+   # ... process the file
+aFile.close
+</pre>
+<h2>The <i>File.open</i> Method:</h2>
+<p>You can use <i>File.open</i> method to create a new file object and assign that file object to a file. However, there
+is one difference in between <i>File.open</i> and <i>File.new</i> methods. The difference is that the <i>File.open</i> method can be
+associated with a block, whereas you cannot do the same using the <i>File.new</i> method.</p>
+<pre class="prettyprint">
+File.open("filename", "mode") do |aFile|
+   # ... process the file
+end
+</pre>
+<p>Here is a list of The Different Modes of Opening a File:</p>
+<table class="src">
+<tr><th>Modes</th><th>Description</th></tr>
+<tr><td>r</td><td>Read-only mode. The file pointer is placed at the beginning of the file. This is the default mode.</td></tr>
+<tr><td>r+</td><td>Read-write mode. The file pointer will be at the beginning of the file.</td></tr>
+<tr><td>w</td><td>Write-only mode. Overwrites the file if the file exists. If the file does not exist, creates a new file for writing.</td></tr>
+<tr><td>w+</td><td>Read-write mode. Overwrites the existing file if the file exists. If the file does not exist, creates a new file for
+reading and writing.</td></tr> 
+<tr><td>a</td><td>Write-only mode. The file pointer is at the end of the file if the file exists. That is, the file is in the append mode. If the file does not exist, it creates a new file for writing.</td></tr> 
+<tr><td>a+</td><td>Read and write mode. The file pointer is at the end of the file if the file exists. The file opens in the append mode. If the file does not exist, it creates a new file for reading and writing.</td></tr> 
+</table>
+<h2>Reading and Writing Files:</h2>
+<p>The same methods that we've been using for 'simple' I/O are available for all file objects. So, gets reads a line from standard input, and <i>aFile.gets</i> reads a line from the file object aFile.</p>
+<p>However, I/O objects provides additional set of access methods to make our lives easier.</p>
+<h2>The <i>sysread</i> Method:</h2>
+<p>You can use the method <i>sysread</i> to read the contents of a file. You can open the file in any of the modes when using the method sysread. For example :</p>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+aFile = File.new("/var/www/tutorialspoint/ruby/test", "r")
+if aFile
+   content = aFile.sysread(20)
+   puts content
+else
+   puts "Unable to open file!"
+end
+</pre>
+<p>This statement will output the first 20 characters of the file. The file pointer will now be placed at the 21st character in the file.</p>
+<h2>The <i>syswrite</i> Method:</h2>
+<p>You can use the method syswrite to write the contents into a file. You need to open the file in write mode when using the method syswrite. For example :</p>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+aFile = File.new("/var/www/tutorialspoint/ruby/test", "r+")
+if aFile
+   aFile.syswrite("ABCDEF")
+else
+   puts "Unable to open file!"
+end
+</pre>
+<p>This statement will write "ABCDEF" into the file.</p>
+<h2>The <i>each_byte</i> Method:</h2>
+<p>This method belongs to the class <i>File</i>. The method <i>each_byte</i> is always associated with a block. Consider the following code sample: :</p>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+aFile = File.new("/var/www/tutorialspoint/ruby/test", "r")
+if aFile
+   aFile.syswrite("ABCDEF")
+   aFile.each_byte {|ch| putc ch; putc ?. }
+else
+   puts "Unable to open file!"
+end
+</pre>
+<p>Characters are passed one by one to the variable ch and then displayed on the screen as follows:</p>
+<pre class="prettyprint">
+T.h.i.s. .i.s. .l.i.n.e. .o.n.e.
+.T.h.i.s. .i.s. .l.i.n.e. .t.w.o.
+.T.h.i.s. .i.s. .l.i.n.e. .t.h.r.e.e.
+.A.n.d. .s.o. .o.n.......
+</pre>
+<h2>The <i>IO.readlines</i> Method:</h2>
+<p>The class <i>File</i> is a subclass of the class IO. The class IO also has some methods which can be used to manipulate files.</p>
+<p>One of the IO class methods is <i>IO.readlines</i>. This method returns the contents of the file line by line. The following code displays the use of the method <i>IO.readlines</i>:</p>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+arr = IO.readlines("/var/www/tutorialspoint/ruby/test")
+puts arr[0]
+puts arr[1]
+</pre>
+<p>In this code, the variable arr is an array. Each line of the file <i>test</i> will be an element in the array arr. Therefore, arr[0] will contain the first line, whereas arr[1] will contain the second line of the file.</p>
+<h2>The <i>IO.foreach</i> Method:</h2>
+<p>This method also returns output line by line. The difference between the method <i>foreach</i> and the method <i>readlines</i> is that the method <i>foreach</i> is associated with a block. However, unlike the method <i>readlines</i>, the method <i>foreach</i> does not return an array. For example:</p>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+IO.foreach("test"){|block| puts block}
+</pre>
+<p>This code will pass the contents of the file <i>test</i> line by line to the variable block, and then the output will be displayed on the screen.</p>
+<h2>Renaming and Deleting Files:</h2>
+<p>You can rename and delete files programmatically with Ruby with the <i>rename</i> and <i>delete</i> methods.</p>
+<p>Following is the example to rename an existing file <i>test1.txt</i>:</p>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+# Rename a file from test1.txt to test2.txt
+File.rename( "test1.txt", "test2.txt" )
+
+</pre>
+<p>Following is the example to delete an existing file <i>test2.txt</i>:</p>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+# Delete file test2.txt
+File.delete("text2.txt")
+</pre>
+<h2>File Modes and Ownership:</h2>
+<p>Use the <i>chmod</i> method with a mask to change the mode or permissions/access list of a file:</p>
+<p>Following is the example to change mode of an existing file <i>test.txt</i> to a mask value:</p>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+file = File.new( "test.txt", "w" )
+file.chmod( 0755 )
+</pre>
+<p>Following is the table which can help you to choose different mask for <i>chmod</i> method:</p>
+<table class="src">
+<tr><th style="width:25%">Mask</th><th>Description</th></tr>
+<tr><td>0700</td><td>rwx mask for owner</td></tr>
+<tr><td>0400</td><td>r for owner</td></tr>
+<tr><td>0200</td><td>w for owner</td></tr>
+<tr><td>0100</td><td>x for owner</td></tr>
+<tr><td>0070</td><td>rwx mask for group</td></tr>
+<tr><td>0040</td><td>r for group</td></tr>
+<tr><td>0020</td><td>w for group</td></tr>
+<tr><td>0010</td><td>x for group</td></tr>
+<tr><td>0007</td><td>rwx mask for other</td></tr>
+<tr><td>0004</td><td>r for other</td></tr>
+<tr><td>0002</td><td>w for other</td></tr>
+<tr><td>0001</td><td>x for other</td></tr>
+<tr><td>4000</td><td>Set user ID on execution</td></tr>
+<tr><td>2000</td><td>Set group ID on execution</td></tr>
+<tr><td>1000</td><td>Save swapped text, even after use</td></tr>
+</table>
+<h2>File Inquiries:</h2>
+<p>The following command tests whether a file exists before opening it:</p>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+File.open("file.rb") if File::exists?( "file.rb" )
+</pre>
+<p>The following command inquire whether the file is really a file:</p>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+# This returns either <i>true</i> or <i>false</i>
+File.file?( "text.txt" ) 
+</pre>
+<p>The following command finds out if it given file name is a directory:</p>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+# a directory
+File::directory?( "/usr/local/bin" ) # =&gt; true
+
+# a file
+File::directory?( "file.rb" ) # =&gt; false
+</pre>
+<p>The following command finds whether the file is readable, writable or executable:</p>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+File.readable?( "test.txt" )   # =&gt; true
+File.writable?( "test.txt" )   # =&gt; true
+File.executable?( "test.txt" ) # =&gt; false
+</pre>
+<p>The following command finds whether the file has zero size or not:</p>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+File.zero?( "test.txt" )      # =&gt; true
+</pre>
+<p>The following command returns size of the file :</p>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+File.size?( "text.txt" )     # =&gt; 1002
+</pre>
+<p>The following command can be used to find out a type of file :</p>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+File::ftype( "test.txt" )     # =&gt; file
+</pre>
+<p>The ftype method identifies the type of the file by returning one of the following: <i>file, directory, characterSpecial,
+blockSpecial, fifo, link, socket, or unknown.</i></p>
+<p>The following command can be used to find when a file was created, modified, or last accessed :</p>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+File::ctime( "test.txt" ) # =&gt; Fri May 09 10:06:37 -0700 2008
+File::mtime( "text.txt" ) # =&gt; Fri May 09 10:44:44 -0700 2008
+File::atime( "text.txt" ) # =&gt; Fri May 09 10:45:01 -0700 2008
+</pre>
+<h2>Directories in Ruby:</h2>
+<p>All files are contained within various directories, and Ruby has no problem handling these too. Whereas the <i>File</i> class handles files, directories are handled with the <i>Dir</i> class.</p>
+<h2>Navigating Through Directories:</h2>
+<p>To change directory within a Ruby program, use <i>Dir.chdir</i> as follows. This example changes the current directory to <i>/usr/bin</i>.</p>
+<pre class="prettyprint">
+Dir.chdir("/usr/bin")
+</pre>
+<p>You can find out what the current directory is with <i> Dir.pwd</i>:</p>
+<pre class="prettyprint">
+puts Dir.pwd # This will return something like /usr/bin
+</pre>
+<p>You can get a list of the files and directories within a specific directory using <i>Dir.entries</i>:</p>
+<pre class="prettyprint">
+puts Dir.entries("/usr/bin").join(' ')
+</pre>
+<p><i>Dir.entries</i> returns an array with all the entries within the specified directory. <i>Dir.foreach</i> provides the same feature:</p>
+<pre class="prettyprint">
+Dir.foreach("/usr/bin") do |entry|
+   puts entry
+end
+</pre>
+<p>An even more concise way of getting directory listings is by using Dir's class array method:</p>
+<pre class="prettyprint">
+Dir["/usr/bin/*"]
+</pre>
+<h2>Creating a Directory:</h2>
+<p>The <i>Dir.mkdir</i> can be used  to create directories:</p>
+<pre class="prettyprint">
+Dir.mkdir("mynewdir")
+</pre>
+<p>You can also set permissions on a new directory (not one that already exists) with mkdir: </p>
+<p><b>NOTE:</b> The mask 755 sets permissions owner, group, world [anyone] to rwxr-xr-x where r = read, w = write, and x = execute.</p>
+<pre class="prettyprint">
+Dir.mkdir( "mynewdir", 755 )
+</pre>
+<h2>Deleting a Directory:</h2>
+<p>The <i>Dir.delete</i> can be used to delete a directory. The <i>Dir.unlink</i> and <i>Dir.rmdir</i> perform exactly the same function and are provided for convenience.</p>
+<pre class="prettyprint">
+Dir.delete("testdir")
+</pre>
+<h2>Creating Files &amp; Temporary Directories:</h2>
+<p>Temporary files are those that might be created briefly during a program's execution but aren't a permanent store of information.</p>
+<p><i>Dir.tmpdir</i> provides the path to the temporary directory on the current system, although the method is not available by default. To make <i>Dir.tmpdir</i> available it's necessary to use require 'tmpdir'.</p>
+<p>You can use <i>Dir.tmpdir</i> with <i>File.join</i> to create a platform-independent temporary file:</p>
+<pre class="prettyprint">
+require 'tmpdir'
+   tempfilename = File.join(Dir.tmpdir, "tingtong")
+   tempfile = File.new(tempfilename, "w")
+   tempfile.puts "This is a temporary file"
+   tempfile.close
+   File.delete(tempfilename)
+</pre>
+<p>This code creates a temporary file, writes data to it, and deletes it. Ruby's standard library also includes a library called <i>Tempfile</i> that can create temporary files for you:</p>
+<pre class="prettyprint">
+require 'tempfile'
+   f = Tempfile.new('tingtong')
+   f.puts "Hello"
+   puts f.path
+   f.close
+</pre>
+<h2>Built-in Functions:</h2>
+<p>Here is the complete list of ruby buil-in functions to process files and directories:</p>
+<ul class="list">
+<li><p><a href="ruby_file_methods.htm" title="Ruby File Class and Methods">File Class and Methods</a>.</p></li>
+<li><p><a href="ruby_dir_methods.htm" title="Ruby Dir Class and Methods">Dir Class and Methods</a>.</p></li>
+</ul>
+<hr />
+<div class="pre-btn">
+<a href="ruby_iterators.html">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/ruby_input_output.pdf" alt="Ruby File I/O, Directories" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="ruby_exceptions.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.html" target="_top">ASP.NET </a> |
+<a href="../jquery/index.html" target="_top">jQuery </a> |
+<a href="../ajax/index.html" target="_top">AJAX </a> |
+<a href="../ant/index.html" target="_top">ANT</a> |
+<a href="../jsp/index.html" target="_top">JSP </a> |
+<a href="../servlets/index.html" target="_top">Servlets </a> |
+<a href="../log4j/index.html" target="_top">log4j </a> |
+<a href="../ibatis/index.html" target="_top">iBATIS </a> |
+<a href="../hibernate/index.html" target="_top">Hibernate </a> |
+<a href="../jdbc/index.html" target="_top">JDBC </a> |
+<a href="../struts_2/index.html" target="_top">Struts </a> |
+<a href="../html5/index.html" target="_top">HTML5 </a> |
+<a href="../sql/index.html" target="_top">SQL </a> |
+<a href="../mysql/index.html" target="_top">MySQL </a> |
+<a href="../cplusplus/index.html" target="_top">C++ </a> |
+<a href="../unix/index.html" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/ruby/ruby_input_output.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 15:59:01 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,566 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/telinit.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:31 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>init - Unix, Linux Command</title>
+<meta name="Description" Content="init - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>init - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+init, telinit - process control initialization
+<h1 class="manpages">SYNOPSIS</h1>
+<b>/sbin/init</b> [<b> -a </b>] [<b> -s </b>] [<b> -b </b>] [<b> -z xxx </b>] [<b> 0123456Ss </b>] <!-- Need break --><br />
+<b>/sbin/telinit</b> [<b> -t sec </b>] [<b> 0123456sSQqabcUu </b>] <h1 class="manpages">DESCRIPTION</h1>
+<h2><i>Init</i></h2>
+<b><a href=#3>Init</a></b> is the parent of all processes.  Its primary role is to create processes
+from a script stored in the file <b>/etc/inittab</b> (see
+<i>inittab</i>(5)).  This file usually has entries which cause <b>init</b>
+to spawn <b>getty</b>s on each line that users can log in.  It also
+controls autonomous processes required by any particular system.
+<p>
+<h1 class="manpages">RUNLEVELS</h1>
+A <i>runlevel</i> is a software configuration of the system which allows
+only a selected group of processes to exist.  The processes spawned by
+<b>init</b> for each of these runlevels are defined in the
+<b>/etc/inittab</b> file.  <b><a href=#3>Init</a></b> can be in one of eight runlevels:
+<b>0-6</b> and <b>S</b> or <b>s</b>.  The runlevel is
+changed by having a privileged user run <b>telinit</b>, which sends
+appropriate signals to <b>init</b>, telling it which runlevel to change
+to.
+<p>
+Runlevels <b>0</b>, <b>1</b>, and <b>6</b> are reserved. Runlevel 0 is used to
+halt the system, runlevel 6 is used to reboot the system, and runlevel
+1 is used to get the system down into single user mode. Runlevel <b>S</b>
+is not really meant to be used directly, but more for the scripts that are
+executed when entering runlevel 1. For more information on this,
+see the manpages for <b>shutdown</b>(8) and <b>inittab</b>(5).
+<p>
+Runlevels 7-9 are also valid, though not really documented. This is
+because "traditional" Unix variants don&#146;t use them.
+In case you&#146;re curious, runlevels <i>S</i> and <i>s</i> are in fact the same.
+Internally they are aliases for the same runlevel.
+<p>
+<h1 class="manpages">BOOTING</h1>
+After <b>init</b> is invoked as the last step of the kernel boot sequence,
+it looks for the file <b>/etc/inittab</b> to see if there is an entry of the
+type <b>initdefault</b> (see <i>inittab</i>(5)). The <b>initdefault</b> entry
+determines the initial runlevel of the system.  If there is no such
+entry (or no <b>/etc/inittab</b> at all), a runlevel must be
+entered at the system console.
+<p>
+Runlevel <b>S</b> or <b>s</b> bring the system to single user mode
+and do not require an <b>/etc/inittab</b> file.  In single user mode,
+a root shell is opened on <b>/dev/console</b>.
+<p>
+When entering single user mode, <b>init</b> initializes the consoles
+<b>stty</b> settings to sane values. Clocal mode is set. Hardware
+speed and handshaking are not changed.
+<p>
+When entering a multi-user mode for the first time, <b>init</b> performs the
+<b>boot</b> and <b>bootwait</b> entries to allow file systems to be
+mounted before users can log in.  Then all entries matching the runlevel
+are processed.
+<p>
+When starting a new process, <b>init</b> first checks whether the file
+<i>/etc/initscript</i> exists. If it does, it uses this script to
+start the process.
+<p>
+Each time a child terminates, <b>init</b> records the fact and the reason
+it died in <b>/var/run/utmp</b> and <b>/var/log/wtmp</b>,
+provided that these files exist.
+<h1 class="manpages">CHANGING RUNLEVELS</h1>
+After it has spawned all of the processes specified, <b>init</b> waits
+for one of its descendant processes to die, a powerfail signal, or until
+it is signaled by <b>telinit</b> to change the system&#146;s runlevel. 
+When one of the above three conditions occurs, it re-examines
+the <b>/etc/inittab</b> file.  New entries can be added to this file at
+any time.  However, <b>init</b> still waits for one of the above three
+conditions to occur.  To provide for an instantaneous response, the
+<b>telinit Q</b> or <b>q</b> command can wake up <b>init</b> to re-examine the
+<b>/etc/inittab</b> file.
+<p>
+If <b>init</b> is not in single user mode and receives a powerfail
+signal (SIGPWR), it reads the file <b>/etc/powerstatus</b>. It then starts
+a command based on the contents of this file:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+F(AIL)
+</td><td>
+Power is failing, UPS is providing the power. Execute the <b>powerwait</b>
+and <b>powerfail</b> entries.
+</td></tr>
+<tr valign="top"><td width=6%>
+O(K)
+</td><td>
+The power has been restored, execute the <b>powerokwait</b> entries.
+</td></tr>
+<tr valign="top"><td width=6%>
+L(OW)
+</td><td>
+The power is failing and the UPS has a low battery. Execute the
+<b>powerfailnow</b> entries.
+</td></tr>
+<!-- PP ends table -->
+</table>
+If /etc/powerstatus doesn&#146;t exist or contains anything else then the
+letters <b>F</b>, <b>O</b> or <b>L</b>, init will behave as if it has read
+the letter <b>F</b>.
+<p>
+Usage of <b>SIGPWR</b> and <b>/etc/powerstatus</b> is discouraged. Someone
+wanting to interact with <b>init</b> should use the <b>/dev/initctl</b>
+control channel - see the source code of the <b>sysvinit</b> package
+for more documentation about this.
+<p>
+When <b>init</b> is requested to change the runlevel, it sends the
+warning signal <font size="-1"><b>SIGTERM</b></font> to all processes that are undefined
+in the new runlevel.  It then waits 5 seconds before forcibly
+terminating these processes via the <font size="-1"><b>SIGKILL</b></font> signal.
+Note that <b>init</b> assumes that all these processes (and their
+descendants) remain in the same process group which <b>init</b>
+originally created for them.  If any process changes its process group
+affiliation it will not receive these signals.  Such processes need to
+be terminated separately.
+<h1 class="manpages">TELINIT</h1>
+<b>/sbin/telinit</b> is linked to <b>/sbin/init</b>.  It takes a
+one-character argument and signals <b>init</b> to perform the appropriate
+action.  The following arguments serve as directives to
+<b>telinit</b>:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>0</b>,<b>1</b>,<b>2</b>,<b>3</b>,<b>4</b>,<b>5</b> or <b>6</b>
+</td><td>
+tell <b>init</b> to switch to the specified run level.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>a</b>,<b>b</b>,<b>c</b>
+</td><td>
+tell <b>init</b> to process only those <b>/etc/inittab</b> file
+entries having runlevel <b>a</b>,<b>b</b> or <b>c</b>.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>Q</b> or <b>q</b>
+</td><td>
+tell <b>init</b> to re-examine the <b>/etc/inittab</b> file.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>S</b> or <b>s</b>
+</td><td>
+tell <b>init</b> to switch to single user mode.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>U</b> or <b>u</b>
+</td><td>
+tell <b>init</b> to re-execute itself (preserving the state). No re-examining of
+<b>/etc/inittab</b> file happens. Run level should be one of <b>Ss12345</b>,
+otherwise request would be silently ignored.
+</td></tr>
+<!-- PP ends table -->
+</table>
+<b>telinit</b> can also tell <b>init</b> how long it should wait
+between sending processes the SIGTERM and SIGKILL signals.  The default
+is 5 seconds, but this can be changed with the <b>-t sec</b> option.
+<p>
+<b>telinit</b> can be invoked only by users with appropriate
+privileges.
+<p>
+The <b>init</b> binary checks if it is <b>init</b> or <b>telinit</b> by looking
+at its <i>process id</i>; the real <b>init</b>&#146;s process id is always <b>1</b>.
+From this it follows that instead of calling <b>telinit</b> one can also
+just use <b>init</b> instead as a shortcut.
+<h1 class="manpages">ENVIRONMENT</h1>
+<b><a href=#3>Init</a></b> sets the following environment variables for all its children:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>PATH</b>
+</td><td>
+<i>/bin:/usr/bin:/sbin:/usr/sbin</i>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>INIT_VERSION</b>
+</td><td>
+As the name says. Useful to determine if a script runs directly from <b>init</b>.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>RUNLEVEL</b>
+</td><td>
+The current system runlevel.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>PREVLEVEL</b>
+</td><td>
+The previous runlevel (useful after a runlevel switch).
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>CONSOLE</b>
+</td><td>
+The system console. This is really inherited from the kernel; however
+if it is not set <b>init</b> will set it to <b>/dev/console</b> by default.
+</td></tr>
+</table>
+<h1 class="manpages">BOOTFLAGS</h1>
+It is possible to pass a number of flags to <b>init</b> from the
+boot monitor (eg. LILO). <b><a href=#3>Init</a></b> accepts the following flags:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>-s, S, single</b> </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Single user mode boot. In this mode <i>/etc/inittab</i> is
+examined and the bootup rc scripts are usually run before
+the single user mode shell is started.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td>
+<b>1-5</b> </td><td valign="bottom">
+Runlevel to boot into.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-b, emergency</b> </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Boot directly into a single user shell without running any
+other startup scripts.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-a, auto</b> </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+The LILO boot loader adds the word "auto" to the command line if it
+booted the kernel with the default command line (without user intervention).
+If this is found <b>init</b> sets the "AUTOBOOT" environment
+variable to "yes". Note that you cannot use this for any security
+measures - of course the user could specify "auto" or -a on the
+command line manually.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-z xxx</b> </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+The argument to -z is ignored. You can use this to expand the command
+line a bit, so that it takes some more space on the stack. <b><a href=#3>Init</a></b>
+can then manipulate the command line so that <b>ps</b>(1) shows
+the current runlevel.
+</td></tr>
+<!-- PP ends table -->
+</table>
+<h1 class="manpages">INTERFACE</h1>
+Init listens on a <i>fifo</i> in /dev, <i>/dev/initctl</i>, for messages.
+<b><a href=#7>Telinit</a></b> uses this to communicate with init. The interface is not
+very well documented or finished. Those interested should study the
+<i>initreq.h</i> file in the <i>src/</i> subdirectory of the <b>init</b>
+source code tar archive.
+<h1 class="manpages">SIGNALS</h1>
+Init reacts to several signals:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>SIGHUP</b> </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Has the same effect as <b>telinit q</b>.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>SIGUSR1</b> </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+On receipt of this signals, init closes and re-opens its control fifo,
+<b>/dev/initctl</b>. Useful for bootscripts when /dev is remounted.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>SIGINT</b> </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Normally the kernel sends this signal to init when CTRL-ALT-DEL is
+pressed. It activates the <i>ctrlaltdel</i> action.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>SIGWINCH</b> </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+The kernel sends this signal when the <i>KeyboardSignal</i> key is hit.
+It activates the <i>kbrequest</i> action.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">CONFORMING TO</h1>
+<b><a href=#3>Init</a></b> is compatible with the System V init. It works closely
+together with the scripts in the directories
+<i>/etc/init.d</i> and <i>/etc/rc{runlevel}.d</i>.
+If your system uses this convention, there should be a <i>README</i>
+file in the directory <i>/etc/init.d</i> explaining how these scripts work.
+<h1 class="manpages">FILES</h1>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+/etc/inittab
+/etc/initscript
+/dev/console
+/var/run/utmp
+/var/log/wtmp
+/dev/initctl
+</pre></td></tr>
+</table>
+<h1 class="manpages">WARNINGS</h1>
+<b><a href=#3>Init</a></b> assumes that processes and descendants of processes
+remain in the same process group which was originally created
+for them.  If the processes change their group, <b>init</b> can&#146;t
+kill them and you may end up with two processes reading from one
+terminal line.
+<h1 class="manpages">DIAGNOSTICS</h1>
+If <b>init</b> finds that it is continuously respawning an entry
+more than 10 times in 2 minutes, it will assume that there is an error
+in the command string, generate an error message on the system console,
+and refuse to respawn this entry until either 5 minutes has elapsed or
+it receives a signal.  This prevents it from eating up system resources
+when someone makes a typographical error in the <b>/etc/inittab</b> file
+or the program for the entry is removed.
+<h1 class="manpages">AUTHOR</h1>
+Miquel van Smoorenburg (<a href="mailto:miquels@cistron.nl">miquels@cistron.nl</a>), initial manual
+page by Michael Haardt (<a href="mailto:u31b3hs@pool.informatik.rwth-aachen.de">u31b3hs@pool.informatik.rwth-aachen.de</a>).
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="getty.html">getty (1)</a></p></li>
+<li><p><a href="login.htm">login (1)</a></p></li>
+<li><p><a href="sh.htm">sh (1)</a></p></li>
+<li><p><a href="runlevel.htm">runlevel (8)</a></p></li>
+<li><p><a href="shutdown.htm">shutdown (8)</a></p></li>
+<li><p><a href="kill.htm">kill (1)</a></p></li>
+</ul>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion1178.html?tutorial=unix_commands&amp;file=init.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/telinit.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:31 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

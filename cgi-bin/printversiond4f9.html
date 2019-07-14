@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=javascript&file=javascript_cookies.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:51 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>JavaScript and Cookies</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="Keywords" content="Javascript, Tutorials, Learning, Beginners, Javascript Basics, Scripting Language, Javascript Tutorials, Functions, Objects, Usage" />
+<meta name="description" content="JavaScript and Cookies - Learning Javascript in simple and easy steps. A beginner's tutorial containing complete knowledge of Javascript Syntax Objects Embedding with  HTML Validations Cookies Regular Expressions Literals Variables Loops Conditions." />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../print.css"/>
+</head>
+<body>
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+<h1>JavaScript and Cookies</h1>
+<a href="../javascript/javascript_events.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../javascript/javascript_page_redirect.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<br />
+<br />
+<h1>What are Cookies ?</h1>
+<p>Web Browser and Server use HTTP protocol to communicate and HTTP is a stateless protocol. But for a commercial website it is required to maintain session information among different pages. For example one user registration ends after completing many pages. But how to maintain user's session information across all the web pages.</p>
+<p>In many situations, using cookies is the most efficient method of remembering and tracking preferences, purchases, commissions, and other information required for better visitor experience or site statistics.</p>
+<h2>How It Works ?</h2>
+<p>Your server sends some data to the visitor's browser in the form of a cookie. The browser may accept the cookie. If it does, it is stored as a plain text record on the visitor's hard drive. Now, when the visitor arrives at another page on your site, the browser sends the same cookie to the server for retrieval. Once retrieved, your server knows/remembers what was stored earlier.</p>
+<p>Cookies are a plain text data record of 5 variable-length fields:</p>
+<ul>
+<li><p><b>Expires :</b> The date the cookie will expire. If this is blank, the cookie will expire when the visitor quits the browser.</p></li>
+<li><p><b>Domain :</b> The domain name of your site.</p></li>
+<li><p><b>Path :</b> The path to the directory or web page that set the cookie. This may be blank if you want to retrieve the cookie from any directory or page.</p></li>
+<li><p><b>Secure :</b> If this field contains the word "secure" then the cookie may only be retrieved with a secure server. If this field is blank, no such restriction exists.</p></li>
+<li><p><b>Name=Value :</b> Cookies are set and retrieved in the form of key and value pairs.</p></li>
+</ul>
+<p>Cookies were originally designed for CGI programming and cookies' data is automatically transmitted between the web browser and web server, so CGI scripts on the server can read and write cookie values that are stored on the client.</p>
+<p>JavaScript can also manipulate cookies using the <i>cookie</i> property of the <i>Document</i> object. JavaScript can read, create, modify, and delete the cookie or cookies that apply to the current web page.</p>
+<h1>Storing Cookies:</h1>
+<p>The simplest way to create a cookie is to assign a string value to the <i>document.cookie</i> object, which looks like this:</p>
+<h2>Syntax:</h2>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+document.cookie = "key1=value1;key2=value2;expires=date";
+</pre></td></tr>
+</table>
+<p>Here <i>expires</i> attribute is option. If you provide this attribute with a valid date or time then cookie will expire at the given date or time and after that cookies' value will not be accessible.</p>
+<p><b>Note:</b> Cookie values may not include semicolons, commas, or whitespace. For this reason, you may want to use the JavaScript <i>escape()</i> function to encode the <i>value</i> before storing it in the cookie. If you do this, you will also have to use the corresponding <i>unescape()</i> function when you read the cookie value.</p>
+<h2>Example:</h2>
+<p>Following is the example to set a customer name in <i>input</i> cookie.</p>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;script type="text/javascript"&gt;
+&lt;!--
+function WriteCookie()
+{
+   if( document.myform.customer.value == "" ){
+      alert("Enter some value!");
+      return;
+   }
+
+   cookievalue= escape(document.myform.customer.value) + ";";
+   document.cookie="name=" + cookievalue;
+   alert("Setting Cookies : " + "name=" + cookievalue );
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;form name="myform" action=""&gt;
+Enter name: &lt;input type="text" name="customer"/&gt;
+&lt;input type="button" value="Set Cookie" onclick="WriteCookie();"/&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr>
+</table>
+<p>This will produce following result. Now enter something in the text box and press the button "Set Cookie" to set the cookies.</p>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td>
+<form name="myform" action="#">
+<span>Enter name: <input type="text" name="customer"/> <input type="button" value="Set Cookie" onclick="WriteCookie();"/></span>
+</form>
+</td></tr>
+</table>
+<p>Now your machine has a cookie called <i>name</i>. You can set multiple cookies using multiple <i>key=value</i> pairs separated by comma.</p>
+<p>You will learn how to read this cookie in next section.</p>
+<h1>Reading Cookies:</h1>
+<p>Reading a cookie is just as simple as writing one, because the value of the <i>document.cookie</i> object is the cookie. So you can use this string whenever you want to access the cookie.</p>
+<p>The <i>document.cookie</i> string will keep a list of <i>name=value</i> pairs separated by semicolons, where <i>name</i> is the <i>name</i> of a cookie and value is its string value.</p>
+<p>You can use strings' <i>split()</i> function to break the string into key and values as follows:</p>
+<h2>Example:</h2>
+<p>Following is the example to get the cookies set in previous section.</p>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;script type="text/javascript"&gt;
+&lt;!--
+function ReadCookie()
+{
+   var allcookies = document.cookie;
+   alert("All Cookies : " + allcookies );
+
+   // Get all the cookies pairs in an array
+   cookiearray  = allcookies.split(';');
+
+   // Now take key value pair out of this array
+   for(var i=0; i&lt;cookiearray.length; i++){
+      name = cookiearray[i].split('=')[0];
+      value = cookiearray[i].split('=')[1];
+      alert("Key is : " + name + " and Value is : " + value);
+   }
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;form name="myform" action=""&gt;
+&lt;input type="button" value="Get Cookie" onclick="ReadCookie()"/&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr>
+</table>
+<p><b>Note:</b> Here <i>length</i> is a method of <i>Array</i> class which returns the length of an array. We will discuss Arrays in a separate chapter. By that time please try to digest it.</p>
+<p>This will produce following result. Now press the button "Get Cookie" to see the cookies which you have set in previous section.</p>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td>
+<form name="yourform" action="#">
+<input type="button" value="Get Cookie" onclick="ReadCookie()"/>
+</form>
+</td></tr>
+</table>
+<p><b>Note:</b> There may be some other cookies already set on your machine. So above code will show you all the cookies set at your machine.</p>
+<h1>Setting the Cookies Expiration Date:</h1>
+<p>You can extend the life of a cookie beyond the current browser session by setting an expiration date and saving the expiration date within the cookie. This can be done by setting the <i>expires</i> attribute to a date and time.</p>
+<h2>Example:</h2>
+<p>The following example illustrates how to set cookie expiration date after 1 Month :</p>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;script type="text/javascript"&gt;
+&lt;!--
+function WriteCookie()
+{
+   var now = new Date();
+   now.setMonth( now.getMonth() + 1 ); 
+   cookievalue = escape(document.myform.customer.value) + ";"
+   document.cookie="name=" + cookievalue;
+   document.cookie = "expires=" + now.toUTCString() + ";"
+   alert("Setting Cookies : " + "name=" + cookievalue );
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;form name="formname" action=""&gt;
+Enter name: &lt;input type="text" name="customer"/&gt;
+&lt;input type="button" value="Set Cookie" onclick="WriteCookie()"/&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr>
+</table>
+<h1>Deleting a Cookie:</h1>
+<p>Sometimes you will want to delete a cookie so that subsequent attempts to read the cookie return nothing. To do this, you just need to set the expiration date to a time in the past.</p>
+<h2>Example:</h2>
+<p>The following example illustrates how to delete cookie by setting expiration date one Month in past :</p>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;script type="text/javascript"&gt;
+&lt;!--
+function WriteCookie()
+{
+   var now = new Date();
+   now.setMonth( now.getMonth() - 1 ); 
+   cookievalue = escape(document.myform.customer.value) + ";"
+   document.cookie="name=" + cookievalue;
+   document.cookie = "expires=" + now.toUTCString() + ";"
+   alert("Setting Cookies : " + "name=" + cookievalue );
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;form name="formname" action=""&gt;
+Enter name: &lt;input type="text" name="customer"/&gt;
+&lt;input type="button" value="Set Cookie" onclick="WriteCookie()"/&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr>
+</table>
+<p><b>Note:</b> Instead of setting date, you can see new time using <i>setTime()</i>  function.</p>
+<br />
+<a href="../javascript/javascript_events.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../javascript/javascript_page_redirect.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=javascript&file=javascript_cookies.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:51 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

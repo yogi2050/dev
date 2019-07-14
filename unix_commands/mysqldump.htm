@@ -1,0 +1,2802 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/mysqldump.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:04 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>mysqldump - Unix, Linux Command</title>
+<meta name="Description" Content="mysqldump - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>mysqldump - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- ignored unsupported tag .nh -->
+<!-- ignored unsupported tag .ad -->
+<h1 class="manpages">NAME</h1>
+mysqldump - a database backup program
+<h1 class="manpages">SYNOPSIS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>mysqldump [</b><b></b><i>options</i><b>] [</b><b></b><i>db_name</i><b> [</b><b></b><i>tbl_name</i><b> &#46;&#46;&#46;]]</b>
+</td></tr>
+</table>
+<h1 class="manpages">DESCRIPTION</h1>
+<p>
+The
+<b>mysqldump</b>
+client is a backup program originally written by Igor Romanenko&#46; It can be used to dump a database or a collection of databases for backup or transfer to another SQL server (not necessarily a MySQL server)&#46; The dump typically contains SQL statements to create the table, populate it, or both&#46; However,
+<b>mysqldump</b>
+can also be used to generate files in CSV, other delimited text, or XML format&#46;
+<p>
+If you are doing a backup on the server and your tables all are
+MyISAM
+tables, consider using the
+<b>mysqlhotcopy</b>
+instead because it can accomplish faster backups and faster restores&#46; See
+<b>mysqlhotcopy</b>(1)&#46;
+<p>
+There are three general ways to invoke
+<b>mysqldump</b>:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqldump [</b><b></b><i>options</i><b>] </b><b></b><i>db_name</i><b> [</b><b></b><i>tbl_name</i><b> &#46;&#46;&#46;]</b>
+shell&gt; <b>mysqldump [</b><b></b><i>options</i><b>] --databases </b><b></b><i>db_name</i><b> &#46;&#46;&#46;</b>
+shell&gt; <b>mysqldump [</b><b></b><i>options</i><b>] --all-databases</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+If you do not name any tables following
+<i>db_name</i>
+or if you use the
+<b>--databases</b>
+or
+<b>--all-databases</b>
+option, entire databases are dumped&#46;
+<p>
+<b>mysqldump</b>
+does not dump the
+INFORMATION_SCHEMA
+database by default&#46; As of MySQL 5&#46;1&#46;38,
+<b>mysqldump</b>
+dumps
+INFORMATION_SCHEMA
+if you name it explicitly on the command line, although you must also use the
+<b>--skip-lock-tables</b>
+option&#46; Before 5&#46;1&#46;38,
+<b>mysqldump</b>
+silently ignores
+INFORMATION_SCHEMA
+even if you name it explicitly on the command line&#46;
+<p>
+In MySQL Cluster NDB 7&#46;1&#46;7 and later, the
+ndbinfo
+information database is ignored and not dumped by
+<b>mysqldump</b>&#46;
+<p>
+To see a list of the options your version of
+<b>mysqldump</b>
+supports, execute
+<b>mysqldump --help</b>&#46;
+<p>
+Some
+<b>mysqldump</b>
+options are shorthand for groups of other options:
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+Use of
+<b>--opt</b>
+is the same as specifying
+<b>--add-drop-table</b>,
+<b>--add-locks</b>,
+<b>--create-options</b>,
+<b>--disable-keys</b>,
+<b>--extended-insert</b>,
+<b>--lock-tables</b>,
+<b>--quick</b>, and
+<b>--set-charset</b>&#46; All of the options that
+<b>--opt</b>
+stands for also are on by default because
+<b>--opt</b>
+is on by default&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+Use of
+<b>--compact</b>
+is the same as specifying
+<b>--skip-add-drop-table</b>,
+<b>--skip-add-locks</b>,
+<b>--skip-comments</b>,
+<b>--skip-disable-keys</b>, and
+<b>--skip-set-charset</b>
+options&#46;
+</td></tr>
+</table>
+<p>
+To reverse the effect of a group option, uses its
+<b>--skip-</b><b></b><i>xxx</i>
+form (<b>--skip-opt</b>
+or
+<b>--skip-compact</b>)&#46; It is also possible to select only part of the effect of a group option by following it with options that enable or disable specific features&#46; Here are some examples:
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+To select the effect of
+<b>--opt</b>
+except for some features, use the
+<b>--skip</b>
+option for each feature&#46; To disable extended inserts and memory buffering, use
+<b>--opt</b>
+<b>--skip-extended-insert</b>
+<b>--skip-quick</b>&#46; (Actually,
+<b>--skip-extended-insert</b>
+<b>--skip-quick</b>
+is sufficient because
+<b>--opt</b>
+is on by default&#46;)
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+To reverse
+<b>--opt</b>
+for all features except index disabling and table locking, use
+<b>--skip-opt</b>
+<b>--disable-keys</b>
+<b>--lock-tables</b>&#46;
+</td></tr>
+</table>
+<p>
+When you selectively enable or disable the effect of a group option, order is important because options are processed first to last&#46; For example,
+<b>--disable-keys</b>
+<b>--lock-tables</b>
+<b>--skip-opt</b>
+would not have the intended effect; it is the same as
+<b>--skip-opt</b>
+by itself&#46;
+<p>
+<b>mysqldump</b>
+can retrieve and dump table contents row by row, or it can retrieve the entire content from a table and buffer it in memory before dumping it&#46; Buffering in memory can be a problem if you are dumping large tables&#46; To dump tables row by row, use the
+<b>--quick</b>
+option (or
+<b>--opt</b>, which enables
+<b>--quick</b>)&#46; The
+<b>--opt</b>
+option (and hence
+<b>--quick</b>) is enabled by default, so to enable memory buffering, use
+<b>--skip-quick</b>&#46;
+<p>
+If you are using a recent version of
+<b>mysqldump</b>
+to generate a dump to be reloaded into a very old MySQL server, you should not use the
+<b>--opt</b>
+or
+<b>--extended-insert</b>
+option&#46; Use
+<b>--skip-opt</b>
+instead&#46;
+<!-- ignored unsupported tag .if -->
+<p>
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .it -->
+<font size="1"><b>Note</b>
+</font><p>
+<b>mysqldump</b>
+from MySQL 5&#46;1&#46;21 cannot be used to create dumps from MySQL server 5&#46;1&#46;20 and older&#46; This issue is fixed in MySQL 5&#46;1&#46;22&#46; (<blink>\m</blink>[blue]<b>Bug#30123</b><blink>\m</blink>[]<font size="-2"><sup>[1]</sup></font>)
+<p>
+<p>
+<b>mysqldump</b>
+supports the following options, which can be specified on the command line or in the
+[mysqldump]
+and
+[client]
+option file groups&#46;
+<b>mysqldump</b>
+also supports the options for processing option files described at
+Section 4.2.3.3.1, <blink><blink>\(</blink>lq</blink>Command-Line Options that Affect Option-File Handling<blink><blink>\(</blink>rq</blink>&#46;
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--help</b>,
+<b>-?</b>
+<p>
+Display a help message and exit&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--add-drop-database</b>
+<p>
+Add a
+DROP DATABASE
+statement before each
+CREATE DATABASE
+statement&#46; This option is typically used in conjunction with the
+<b>--all-databases</b>
+or
+<b>--databases</b>
+option because no
+CREATE DATABASE
+statements are written unless one of those options is specified&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--add-drop-table</b>
+<p>
+Add a
+DROP TABLE
+statement before each
+CREATE TABLE
+statement&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--add-drop-trigger</b>
+<p>
+Add a
+DROP TRIGGER
+statement before each
+CREATE TRIGGER
+statement&#46;
+<!-- ignored unsupported tag .if -->
+<p>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .it -->
+<font size="1"><b>Note</b>
+</font><!-- Need break --><br />
+This option is supported only by
+<b>mysqldump</b>
+as supplied with MySQL Cluster NDB 6&#46;3&#46;38, MySQL Cluster NDB 7&#46;0&#46;19, MySQL Cluster NDB 7&#46;1&#46;8, and later MySQL Cluster release&#46; It is not available when using MySQL 5&#46;1&#46;
+<p>
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--add-locks</b>
+<p>
+Surround each table dump with
+LOCK TABLES
+and
+UNLOCK TABLES
+statements&#46; This results in faster inserts when the dump file is reloaded&#46; See
+Section 7.3.2.1, <blink><blink>\(</blink>lq</blink>Speed of INSERT Statements<blink><blink>\(</blink>rq</blink>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--all-databases</b>,
+<b>-A</b>
+<p>
+Dump all tables in all databases&#46; This is the same as using the
+<b>--databases</b>
+option and naming all the databases on the command line&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--all-tablespaces</b>,
+<b>-Y</b>
+<p>
+Adds to a table dump all SQL statements needed to create any tablespaces used by an
+NDBCLUSTER
+table&#46; This information is not otherwise included in the output from
+<b>mysqldump</b>&#46; This option is currently relevant only to MySQL Cluster tables&#46;
+<p>
+This option was added in MySQL 5&#46;1&#46;6&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--allow-keywords</b>
+<p>
+Permit creation of column names that are keywords&#46; This works by prefixing each column name with the table name&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--bind-address=</b><b></b><i>ip_address</i>
+<p>
+On a computer having multiple network interfaces, this option can be used to select which interface is employed when connecting to the MySQL server&#46;
+<p>
+This option is supported only in the version of
+<b>mysqldump</b>
+that is supplied with MySQL Cluster, beginning with MySQL Cluster NDB 6&#46;3&#46;4&#46; It is not available in standard MySQL 5&#46;1 releases&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--character-sets-dir=</b><b></b><i>path</i>
+<p>
+The directory where character sets are installed&#46; See
+Section 9.5, <blink><blink>\(</blink>lq</blink>Character Set Configuration<blink><blink>\(</blink>rq</blink>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--comments</b>,
+<b>-i</b>
+<p>
+Write additional information in the dump file such as program version, server version, and host&#46; This option is enabled by default&#46; To suppress this additional information, use
+<b>--skip-comments</b>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--compact</b>
+<p>
+Produce more compact output&#46; This option enables the
+<b>--skip-add-drop-table</b>,
+<b>--skip-add-locks</b>,
+<b>--skip-comments</b>,
+<b>--skip-disable-keys</b>, and
+<b>--skip-set-charset</b>
+options&#46;
+<!-- ignored unsupported tag .if -->
+<p>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .it -->
+<font size="1"><b>Note</b>
+</font><!-- Need break --><br />
+Prior to MySQL 5&#46;1&#46;21, this option did not create valid SQL if the database dump contained views&#46; The recreation of views requires the creation and removal of temporary tables and this option suppressed the removal of those temporary tables&#46; As a workaround, use
+<b>--compact</b>
+with the
+<b>--add-drop-table</b>
+option and then manually adjust the dump file&#46;
+<p>
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--compatible=</b><b></b><i>name</i>
+<p>
+Produce output that is more compatible with other database systems or with older MySQL servers&#46; The value of
+<i>name</i>
+can be
+ansi,
+mysql323,
+mysql40,
+postgresql,
+oracle,
+mssql,
+db2,
+maxdb,
+no_key_options,
+no_table_options, or
+no_field_options&#46; To use several values, separate them by commas&#46; These values have the same meaning as the corresponding options for setting the server SQL mode&#46; See
+Section 5.1.7, <blink><blink>\(</blink>lq</blink>Server SQL Modes<blink><blink>\(</blink>rq</blink>&#46;
+<p>
+This option does not guarantee compatibility with other servers&#46; It only enables those SQL mode values that are currently available for making dump output more compatible&#46; For example,
+<b>--compatible=oracle</b>
+does not map data types to Oracle types or use Oracle comment syntax&#46;
+<p>
+<i>This option requires a server version of 4&#46;1&#46;0 or higher</i>&#46; With older servers, it does nothing&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--complete-insert</b>,
+<b>-c</b>
+<p>
+Use complete
+INSERT
+statements that include column names&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--compress</b>,
+<b>-C</b>
+<p>
+Compress all information sent between the client and the server if both support compression&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--create-options</b>
+<p>
+Include all MySQL-specific table options in the
+CREATE TABLE
+statements&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--databases</b>,
+<b>-B</b>
+<p>
+Dump several databases&#46; Normally,
+<b>mysqldump</b>
+treats the first name argument on the command line as a database name and following names as table names&#46; With this option, it treats all name arguments as database names&#46;
+CREATE DATABASE
+and
+USE
+statements are included in the output before each new database&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--debug[=</b><b></b><i>debug_options</i><b>]</b>,
+<b>-# [</b><b></b><i>debug_options</i><b>]</b>
+<p>
+Write a debugging log&#46; A typical
+<i>debug_options</i>
+string is
+&#39;d:t:o,<i>file_name</i>&#39;&#46; The default value is
+&#39;d:t:o,/tmp/mysqldump&#46;trace&#39;&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--debug-check</b>
+<p>
+Print some debugging information when the program exits&#46; This option was added in MySQL 5&#46;1&#46;21&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--debug-info</b>
+<p>
+Print debugging information and memory and CPU usage statistics when the program exits&#46; This option was added in MySQL 5&#46;1&#46;14&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--default-character-set=</b><b></b><i>charset_name</i>
+<p>
+Use
+<i>charset_name</i>
+as the default character set&#46; See
+Section 9.5, <blink><blink>\(</blink>lq</blink>Character Set Configuration<blink><blink>\(</blink>rq</blink>&#46; If no character set is specified,
+<b>mysqldump</b>
+uses
+utf8, and earlier versions use
+latin1&#46;
+<p>
+Prior to MySQL 5&#46;1&#46;38, this option has no effect for output data files produced by using the
+<b>--tab</b>
+option&#46; See the description for that option&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--delayed-insert</b>
+<p>
+Write
+INSERT DELAYED
+statements rather than
+INSERT
+statements&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--delete-master-logs</b>
+<p>
+On a master replication server, delete the binary logs by sending a
+PURGE BINARY LOGS
+statement to the server after performing the dump operation&#46; This option automatically enables
+<b>--master-data</b>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--disable-keys</b>,
+<b>-K</b>
+<p>
+For each table, surround the
+INSERT
+statements with
+/*!40000 ALTER TABLE <i>tbl_name</i> DISABLE KEYS */;
+and
+/*!40000 ALTER TABLE <i>tbl_name</i> ENABLE KEYS */;
+statements&#46; This makes loading the dump file faster because the indexes are created after all rows are inserted&#46; This option is effective only for nonunique indexes of
+MyISAM
+tables&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--dump-date</b>
+<p>
+If the
+<b>--comments</b>
+option is given,
+<b>mysqldump</b>
+produces a comment at the end of the dump of the following form:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+-- Dump completed on <i>DATE</i>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+<p>
+However, the date causes dump files taken at different times to appear to be different, even if the data are otherwise identical&#46;
+<b>--dump-date</b>
+and
+<b>--skip-dump-date</b>
+control whether the date is added to the comment&#46; The default is
+<b>--dump-date</b>
+(include the date in the comment)&#46;
+<b>--skip-dump-date</b>
+suppresses date printing&#46; This option was added in MySQL 5&#46;1&#46;23&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--events</b>,
+<b>-E</b>
+<p>
+Include Event Scheduler events for the dumped databases in the output&#46; This option was added in MySQL 5&#46;1&#46;8&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--extended-insert</b>,
+<b>-e</b>
+<p>
+Use multiple-row
+INSERT
+syntax that include several
+VALUES
+lists&#46; This results in a smaller dump file and speeds up inserts when the file is reloaded&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--fields-terminated-by=&#46;&#46;&#46;</b>,
+<b>--fields-enclosed-by=&#46;&#46;&#46;</b>,
+<b>--fields-optionally-enclosed-by=&#46;&#46;&#46;</b>,
+<b>--fields-escaped-by=&#46;&#46;&#46;</b>
+<p>
+These options are used with the
+<b>--tab</b>
+option and have the same meaning as the corresponding
+FIELDS
+clauses for
+LOAD DATA INFILE&#46; See
+Section 12.2.6, <blink><blink>\(</blink>lq</blink>LOAD DATA INFILE Syntax<blink><blink>\(</blink>rq</blink>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--first-slave</b>
+<p>
+Deprecated&#46; Use
+<b>--lock-all-tables</b>
+instead&#46;
+<b>--first-slave</b>
+is removed in MySQL 5&#46;5&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--flush-logs</b>,
+<b>-F</b>
+<p>
+Flush the MySQL server log files before starting the dump&#46; This option requires the
+RELOAD
+privilege&#46; If you use this option in combination with the
+<b>--all-databases</b>
+option, the logs are flushed
+<i>for each database dumped</i>&#46; The exception is when using
+<b>--lock-all-tables</b>
+or
+<b>--master-data</b>: In this case, the logs are flushed only once, corresponding to the moment that all tables are locked&#46; If you want your dump and the log flush to happen at exactly the same moment, you should use
+<b>--flush-logs</b>
+together with either
+<b>--lock-all-tables</b>
+or
+<b>--master-data</b>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--flush-privileges</b>
+<p>
+Send a
+FLUSH PRIVILEGES
+statement to the server after dumping the
+mysql
+database&#46; This option should be used any time the dump contains the
+mysql
+database and any other database that depends on the data in the
+mysql
+database for proper restoration&#46; This option was added in MySQL 5&#46;1&#46;12&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--force</b>,
+<b>-f</b>
+<p>
+Continue even if an SQL error occurs during a table dump&#46;
+<p>
+One use for this option is to cause
+<b>mysqldump</b>
+to continue executing even when it encounters a view that has become invalid because the definition refers to a table that has been dropped&#46; Without
+<b>--force</b>,
+<b>mysqldump</b>
+exits with an error message&#46; With
+<b>--force</b>,
+<b>mysqldump</b>
+prints the error message, but it also writes an SQL comment containing the view definition to the dump output and continues executing&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--host=</b><b></b><i>host_name</i>,
+<b>-h </b><b></b><i>host_name</i>
+<p>
+Dump data from the MySQL server on the given host&#46; The default host is
+localhost&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--hex-blob</b>
+<p>
+Dump binary columns using hexadecimal notation (for example,
+&#39;abc&#39;
+becomes
+0x616263)&#46; The affected data types are
+BINARY,
+VARBINARY, the
+BLOB
+types, and
+BIT&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--ignore-table=</b><b></b><i>db_name&#46;tbl_name</i>
+<p>
+Do not dump the given table, which must be specified using both the database and table names&#46; To ignore multiple tables, use this option multiple times&#46; This option also can be used to ignore views&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--insert-ignore</b>
+<p>
+Write
+INSERT IGNORE
+statements rather than
+INSERT
+statements&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--lines-terminated-by=&#46;&#46;&#46;</b>
+<p>
+This option is used with the
+<b>--tab</b>
+option and has the same meaning as the corresponding
+LINES
+clause for
+LOAD DATA INFILE&#46; See
+Section 12.2.6, <blink><blink>\(</blink>lq</blink>LOAD DATA INFILE Syntax<blink><blink>\(</blink>rq</blink>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--lock-all-tables</b>,
+<b>-x</b>
+<p>
+Lock all tables across all databases&#46; This is achieved by acquiring a global read lock for the duration of the whole dump&#46; This option automatically turns off
+<b>--single-transaction</b>
+and
+<b>--lock-tables</b>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--lock-tables</b>,
+<b>-l</b>
+<p>
+For each dumped database, lock all tables to be dumped before dumping them&#46; The tables are locked with
+READ LOCAL
+to permit concurrent inserts in the case of
+MyISAM
+tables&#46; For transactional tables such as
+InnoDB,
+<b>--single-transaction</b>
+is a much better option than
+<b>--lock-tables</b>
+because it does not need to lock the tables at all&#46;
+<p>
+Because
+<b>--lock-tables</b>
+locks tables for each database separately, this option does not guarantee that the tables in the dump file are logically consistent between databases&#46; Tables in different databases may be dumped in completely different states&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--log-error=</b><b></b><i>file_name</i>
+<p>
+Log warnings and errors by appending them to the named file&#46; The default is to do no logging&#46; This option was added in MySQL 5&#46;1&#46;18&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--master-data[=</b><b></b><i>value</i><b>]</b>
+<p>
+Use this option to dump a master replication server to produce a dump file that can be used to set up another server as a slave of the master&#46; It causes the dump output to include a
+CHANGE MASTER TO
+statement that indicates the binary log coordinates (file name and position) of the dumped server&#46; These are the master server coordinates from which the slave should start replicating after you load the dump file into the slave&#46;
+<p>
+If the option value is 2, the
+CHANGE MASTER TO
+statement is written as an SQL comment, and thus is informative only; it has no effect when the dump file is reloaded&#46; If the option value is 1, the statement is not written as a comment and takes effect when the dump file is reloaded&#46; If no option value is specified, the default value is 1&#46;
+<p>
+This option requires the
+RELOAD
+privilege and the binary log must be enabled&#46;
+<p>
+The
+<b>--master-data</b>
+option automatically turns off
+<b>--lock-tables</b>&#46; It also turns on
+<b>--lock-all-tables</b>, unless
+<b>--single-transaction</b>
+also is specified, in which case, a global read lock is acquired only for a short time at the beginning of the dump (see the description for
+<b>--single-transaction</b>)&#46; In all cases, any action on logs happens at the exact moment of the dump&#46;
+<p>
+It is also possible to set up a slave by dumping an existing slave of the master&#46; To do this, use the following procedure on the existing slave:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+ 1.
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4.2%>
+  1.
+</td><td>
+<!-- ignored unsupported tag .\} -->
+Stop the slave&#39;s SQL thread and get its current status:
+<p>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=4%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>STOP SLAVE SQL_THREAD;</b>
+mysql&gt; <b>SHOW SLAVE STATUS;</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+ 2.
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4.2%>
+  2.
+</td><td>
+<!-- ignored unsupported tag .\} -->
+From the output of the
+SHOW SLAVE STATUS
+statement, the binary log coordinates of the master server from which the new slave should start replicating are the values of the
+Relay_Master_Log_File
+and
+Exec_Master_Log_Pos
+fields&#46; Denote those values as
+<i>file_name</i>
+and
+<i>file_pos</i>&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+ 3.
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4.2%>
+  3.
+</td><td>
+<!-- ignored unsupported tag .\} -->
+Dump the slave server:
+<p>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=4%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqldump --master-data=2 --all-databases &gt; dumpfile</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+ 4.
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4.2%>
+  4.
+</td><td>
+<!-- ignored unsupported tag .\} -->
+Restart the slave:
+<p>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=4%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>START SLAVE;</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+ 5.
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4.2%>
+  5.
+</td><td>
+<!-- ignored unsupported tag .\} -->
+On the new slave, load the dump file:
+<p>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=4%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysql &lt; dumpfile</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+ 6.
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4.2%>
+  6.
+</td><td>
+<!-- ignored unsupported tag .\} -->
+On the new slave, set the replication coordinates to those of the master server obtained earlier:
+<p>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=4%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>CHANGE MASTER TO</b>
+    -&gt; <b>MASTER_LOG_FILE = &#39;</b><b></b><i>file_name</i><b>&#39;, MASTER_LOG_POS = </b><b></b><i>file_pos</i><b>;</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+<p>
+The
+CHANGE MASTER TO
+statement might also need other parameters, such as
+MASTER_HOST
+to point the slave to the correct master server host&#46; Add any such parameters as necessary&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--no-autocommit</b>
+<p>
+Enclose the
+INSERT
+statements for each dumped table within
+SET autocommit = 0
+and
+COMMIT
+statements&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--no-create-db</b>,
+<b>-n</b>
+<p>
+This option suppresses the
+CREATE DATABASE
+statements that are otherwise included in the output if the
+<b>--databases</b>
+or
+<b>--all-databases</b>
+option is given&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--no-create-info</b>,
+<b>-t</b>
+<p>
+Do not write
+CREATE TABLE
+statements that re-create each dumped table&#46;
+<!-- ignored unsupported tag .if -->
+<p>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .it -->
+<font size="1"><b>Note</b>
+</font><!-- Need break --><br />
+This option does
+<i>not</i>
+not exclude statements creating log file groups or tablespaces from
+<b>mysqldump</b>
+output; in MySQL 5&#46;1&#46;14 and later, you can use the
+<b>--no-tablespaces</b>
+option for this purpose&#46;
+<p>
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--no-data</b>,
+<b>-d</b>
+<p>
+Do not write any table row information (that is, do not dump table contents)&#46; This is useful if you want to dump only the
+CREATE TABLE
+statement for the table (for example, to create an empty copy of the table by loading the dump file)&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--no-set-names</b>,
+<b>-N</b>
+<p>
+This has the same effect as
+<b>--skip-set-charset</b>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--no-tablespaces</b>,
+<b>-y</b>
+<p>
+This option suppresses all
+CREATE LOGFILE GROUP
+and
+CREATE TABLESPACE
+statements in the output of
+<b>mysqldump</b>&#46;
+<p>
+This option was added in MySQL 5&#46;1&#46;14&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--opt</b>
+<p>
+This option is shorthand&#46; It is the same as specifying
+<b>--add-drop-table</b>
+<b>--add-locks</b>
+<b>--create-options</b>
+<b>--disable-keys</b>
+<b>--extended-insert</b>
+<b>--lock-tables</b>
+<b>--quick</b>
+<b>--set-charset</b>&#46; It should give you a fast dump operation and produce a dump file that can be reloaded into a MySQL server quickly&#46;
+<p>
+<i>The </i><i></i><b>--opt</b><i> option is enabled by default&#46; Use </i><i></i><b>--skip-opt</b><i> to disable it&#46;</i>
+See the discussion at the beginning of this section for information about selectively enabling or disabling a subset of the options affected by
+<b>--opt</b>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--order-by-primary</b>
+<p>
+Dump each table&#39;s rows sorted by its primary key, or by its first unique index, if such an index exists&#46; This is useful when dumping a
+MyISAM
+table to be loaded into an
+InnoDB
+table, but will make the dump operation take considerably longer&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--password[=</b><b></b><i>password</i><b>]</b>,
+<b>-p[</b><b></b><i>password</i><b>]</b>
+<p>
+The password to use when connecting to the server&#46; If you use the short option form (<b>-p</b>), you
+<i>cannot</i>
+have a space between the option and the password&#46; If you omit the
+<i>password</i>
+value following the
+<b>--password</b>
+or
+<b>-p</b>
+option on the command line,
+<b>mysqldump</b>
+prompts for one&#46;
+<p>
+Specifying a password on the command line should be considered insecure&#46; See
+Section 5.3.2.2, <blink><blink>\(</blink>lq</blink>End-User Guidelines for Password Security<blink><blink>\(</blink>rq</blink>&#46; You can use an option file to avoid giving the password on the command line&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--pipe</b>,
+<b>-W</b>
+<p>
+On Windows, connect to the server using a named pipe&#46; This option applies only if the server supports named-pipe connections&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--port=</b><b></b><i>port_num</i>,
+<b>-P </b><b></b><i>port_num</i>
+<p>
+The TCP/IP port number to use for the connection&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--protocol={TCP|SOCKET|PIPE|MEMORY}</b>
+<p>
+The connection protocol to use for connecting to the server&#46; It is useful when the other connection parameters normally would cause a protocol to be used other than the one you want&#46; For details on the permissible values, see
+Section 4.2.2, <blink><blink>\(</blink>lq</blink>Connecting to the MySQL Server<blink><blink>\(</blink>rq</blink>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--quick</b>,
+<b>-q</b>
+<p>
+This option is useful for dumping large tables&#46; It forces
+<b>mysqldump</b>
+to retrieve rows for a table from the server a row at a time rather than retrieving the entire row set and buffering it in memory before writing it out&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--quote-names</b>,
+<b>-Q</b>
+<p>
+Quote identifiers (such as database, table, and column names) within
+<blink><blink>\(</blink>lq</blink>&#145;<blink><blink>\(</blink>rq</blink>
+characters&#46; If the
+ANSI_QUOTES
+SQL mode is enabled, identifiers are quoted within
+<blink><blink>\(</blink>lq</blink>"<blink><blink>\(</blink>rq</blink>
+characters&#46; This option is enabled by default&#46; It can be disabled with
+<b>--skip-quote-names</b>, but this option should be given after any option such as
+<b>--compatible</b>
+that may enable
+<b>--quote-names</b>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--replace</b>
+<p>
+Write
+REPLACE
+statements rather than
+INSERT
+statements&#46; This option was added in MySQL 5&#46;1&#46;3&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--result-file=</b><b></b><i>file_name</i>,
+<b>-r </b><b></b><i>file_name</i>
+<p>
+Direct output to a given file&#46; This option should be used on Windows to prevent newline
+<blink><blink>\(</blink>lq</blink>&#92;n<blink><blink>\(</blink>rq</blink>
+characters from being converted to
+<blink><blink>\(</blink>lq</blink>&#92;r&#92;n<blink><blink>\(</blink>rq</blink>
+carriage return/newline sequences&#46; The result file is created and its previous contents overwritten, even if an error occurs while generating the dump&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--routines</b>,
+<b>-R</b>
+<p>
+Included stored routines (procedures and functions) for the dumped databases in the output&#46; Use of this option requires the
+SELECT
+privilege for the
+mysql&#46;proc
+table&#46; The output generated by using
+<b>--routines</b>
+contains
+CREATE PROCEDURE
+and
+CREATE FUNCTION
+statements to re-create the routines&#46; However, these statements do not include attributes such as the routine creation and modification timestamps&#46; This means that when the routines are reloaded, they will be created with the timestamps equal to the reload time&#46;
+<p>
+If you require routines to be re-created with their original timestamp attributes, do not use
+<b>--routines</b>&#46; Instead, dump and reload the contents of the
+mysql&#46;proc
+table directly, using a MySQL account that has appropriate privileges for the
+mysql
+database&#46;
+<p>
+This option was added in MySQL 5&#46;1&#46;2&#46; Before that, stored routines are not dumped&#46; Routine
+DEFINER
+values are not dumped until MySQL 5&#46;1&#46;8&#46; This means that before 5&#46;1&#46;8, when routines are reloaded, they will be created with the definer set to the reloading user&#46; If you require routines to be re-created with their original definer, dump and load the contents of the
+mysql&#46;proc
+table directly as described earlier&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--set-charset</b>
+<p>
+Add
+SET NAMES <i>default_character_set</i>
+to the output&#46; This option is enabled by default&#46; To suppress the
+SET NAMES
+statement, use
+<b>--skip-set-charset</b>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--single-transaction</b>
+<p>
+This option sends a
+START TRANSACTION
+SQL statement to the server before dumping data&#46; It is useful only with transactional tables such as
+InnoDB, because then it dumps the consistent state of the database at the time when
+BEGIN
+was issued without blocking any applications&#46;
+<p>
+When using this option, you should keep in mind that only
+InnoDB
+tables are dumped in a consistent state&#46; For example, any
+MyISAM
+or
+MEMORY
+tables dumped while using this option may still change state&#46;
+<p>
+While a
+<b>--single-transaction</b>
+dump is in process, to ensure a valid dump file (correct table contents and binary log coordinates), no other connection should use the following statements:
+ALTER TABLE,
+CREATE TABLE,
+DROP TABLE,
+RENAME TABLE,
+TRUNCATE TABLE&#46; A consistent read is not isolated from those statements, so use of them on a table to be dumped can cause the
+SELECT
+that is performed by
+<b>mysqldump</b>
+to retrieve the table contents to obtain incorrect contents or fail&#46;
+<p>
+The
+<b>--single-transaction</b>
+option and the
+<b>--lock-tables</b>
+option are mutually exclusive because
+LOCK TABLES
+causes any pending transactions to be committed implicitly&#46;
+<p>
+This option is not supported for MySQL Cluster tables; the results cannot be guaranteed to be consistent due to the fact that the
+NDBCLUSTER
+storage engine supports only the
+READ_COMMITTED
+transaction isolation level&#46; You should always use
+NDB
+backup and restore instead&#46;
+<p>
+To dump large tables, you should combine the
+<b>--single-transaction</b>
+option with
+<b>--quick</b>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--skip-comments</b>
+<p>
+See the description for the
+<b>--comments</b>
+option&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--skip-opt</b>
+<p>
+See the description for the
+<b>--opt</b>
+option&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--socket=</b><b></b><i>path</i>,
+<b>-S </b><b></b><i>path</i>
+<p>
+For connections to
+localhost, the Unix socket file to use, or, on Windows, the name of the named pipe to use&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--ssl*</b>
+<p>
+Options that begin with
+<b>--ssl</b>
+specify whether to connect to the server using SSL and indicate where to find SSL keys and certificates&#46; See
+Section 5.5.6.3, <blink><blink>\(</blink>lq</blink>SSL Command Options<blink><blink>\(</blink>rq</blink>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--tab=</b><b></b><i>path</i>,
+<b>-T </b><b></b><i>path</i>
+<p>
+Produce tab-separated text-format data files&#46; For each dumped table,
+<b>mysqldump</b>
+creates a
+<i>tbl_name</i>&#46;sql
+file that contains the
+CREATE TABLE
+statement that creates the table, and the server writes a
+<i>tbl_name</i>&#46;txt
+file that contains its data&#46; The option value is the directory in which to write the files&#46;
+<!-- ignored unsupported tag .if -->
+<p>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .it -->
+<font size="1"><b>Note</b>
+</font><!-- Need break --><br />
+This option should be used only when
+<b>mysqldump</b>
+is run on the same machine as the
+<b>mysqld</b>
+server&#46; You must have the
+FILE
+privilege, and the server must have permission to write files in the directory that you specify&#46;
+<p>
+</td></tr>
+</table>
+By default, the
+&#46;txt
+data files are formatted using tab characters between column values and a newline at the end of each line&#46; The format can be specified explicitly using the
+<b>--fields-</b><b></b><i>xxx</i>
+and
+<b>--lines-terminated-by</b>
+options&#46;
+<p>
+As of MySQL 5&#46;1&#46;38, column values are converted to the character set specified by the
+<b>--default-character-set</b>
+option&#46; Prior to 5&#46;1&#46;38 or if no such option is present, values are dumped using the
+binary
+character set&#46; In effect, there is no character set conversion&#46; If a table contains columns in several character sets, the output data file will as well and you may not be able to reload the file correctly&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--tables</b>
+<p>
+Override the
+<b>--databases</b>
+or
+<b>-B</b>
+option&#46;
+<b>mysqldump</b>
+regards all name arguments following the option as table names&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--triggers</b>
+<p>
+Include triggers for each dumped table in the output&#46; This option is enabled by default; disable it with
+<b>--skip-triggers</b>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--tz-utc</b>
+<p>
+This option enables
+TIMESTAMP
+columns to be dumped and reloaded between servers in different time zones&#46;
+<b>mysqldump</b>
+sets its connection time zone to UTC and adds
+SET TIME_ZONE=&#39;+00:00&#39;
+to the dump file&#46; Without this option,
+TIMESTAMP
+columns are dumped and reloaded in the time zones local to the source and destination servers, which can cause the values to change if the servers are in different time zones&#46;
+<b>--tz-utc</b>
+also protects against changes due to daylight saving time&#46;
+<b>--tz-utc</b>
+is enabled by default&#46; To disable it, use
+<b>--skip-tz-utc</b>&#46; This option was added in MySQL 5&#46;1&#46;2&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--user=</b><b></b><i>user_name</i>,
+<b>-u </b><b></b><i>user_name</i>
+<p>
+The MySQL user name to use when connecting to the server&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--verbose</b>,
+<b>-v</b>
+<p>
+Verbose mode&#46; Print more information about what the program does&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--version</b>,
+<b>-V</b>
+<p>
+Display version information and exit&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--where=&#39;</b><b></b><i>where_condition</i><b>&#39;</b>,
+<b>-w &#39;</b><b></b><i>where_condition</i><b>&#39;</b>
+<p>
+Dump only rows selected by the given
+WHERE
+condition&#46; Quotes around the condition are mandatory if it contains spaces or other characters that are special to your command interpreter&#46;
+<p>
+Examples:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+--where="user=&#39;jimf&#39;"
+-w"userid&gt;1"
+-w"userid&lt;1"
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--xml</b>,
+<b>-X</b>
+<p>
+Write dump output as well-formed XML&#46;
+<p>
+<b>NULL</b><b>, </b><b>&#39;NULL&#39;</b><b>, and Empty Values</b>: For a column named
+<i>column_name</i>, the
+NULL
+value, an empty string, and the string value
+&#39;NULL&#39;
+are distinguished from one another in the output generated by this option as follows&#46;
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td><b>Value&nbsp;&nbsp;&nbsp;
+</b></td><td><b>XML Representation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</b></td></tr>
+<tr valign="top">
+<td>NULL (<i>unknown value</i>)
+</td><td>&lt;field name="<i>column_name</i>" xsi&nbsp;&nbsp;&nbsp;nil="true" /&gt;
+</td></tr>
+<tr valign="top">
+<td>&#39;&#39; (<i>empty string</i>)
+</td><td>&lt;field name="<i>column_name</i>"&gt;&lt;/field&gt;
+</td></tr>
+<tr valign="top">
+<td>&#39;NULL&#39; (<i>string value</i>)
+</td><td>&lt;field name="<i>column_name</i>"&gt;NULL&lt;/field&gt;
+</td></tr>
+</table>
+<p>
+Beginning with MySQL 5&#46;1&#46;12, the output from the
+<b>mysql</b>
+client when run using the
+<b>--xml</b>
+option also follows the preceding rules&#46; (See
+the section called <blink><blink>\(</blink>lq</blink>MYSQL OPTIONS<blink><blink>\(</blink>rq</blink>&#46;)
+<p>
+Beginning with MySQL 5&#46;1&#46;18, XML output from
+<b>mysqldump</b>
+includes the XML namespace, as shown here:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqldump --xml -u root world City</b>
+&lt;?xml version="1&#46;0"?&gt;
+&lt;mysqldump xmlns:xsi="<a href="http://www/">http://www</a>&#46;w3&#46;org/2001/XMLSchema-instance"&gt;
+&lt;database name="world"&gt;
+&lt;table_structure name="City"&gt;
+&lt;field Field="ID" Type="int(11)" Null="NO" Key="PRI" Extra="auto_increment" /&gt;
+&lt;field Field="Name" Type="char(35)" Null="NO" Key="" Default="" Extra="" /&gt;
+&lt;field Field="CountryCode" Type="char(3)" Null="NO" Key="" Default="" Extra="" /&gt;
+&lt;field Field="District" Type="char(20)" Null="NO" Key="" Default="" Extra="" /&gt;
+&lt;field Field="Population" Type="int(11)" Null="NO" Key="" Default="0" Extra="" /&gt;
+&lt;key Table="City" Non_unique="0" Key_name="PRIMARY" Seq_in_index="1" Column_name="ID"
+Collation="A" Cardinality="4079" Null="" Index_type="BTREE" Comment="" /&gt;
+&lt;options Name="City" Engine="MyISAM" Version="10" Row_format="Fixed" Rows="4079"
+Avg_row_length="67" Data_length="273293" Max_data_length="18858823439613951"
+Index_length="43008" Data_free="0" Auto_increment="4080"
+Create_time="2007-03-31 01:47:01" Update_time="2007-03-31 01:47:02"
+Collation="latin1_swedish_ci" Create_options="" Comment="" /&gt;
+&lt;/table_structure&gt;
+&lt;table_data name="City"&gt;
+&lt;row&gt;
+&lt;field name="ID"&gt;1&lt;/field&gt;
+&lt;field name="Name"&gt;Kabul&lt;/field&gt;
+&lt;field name="CountryCode"&gt;AFG&lt;/field&gt;
+&lt;field name="District"&gt;Kabol&lt;/field&gt;
+&lt;field name="Population"&gt;1780000&lt;/field&gt;
+&lt;/row&gt;
+<i>&#46;&#46;&#46;</i>
+&lt;row&gt;
+&lt;field name="ID"&gt;4079&lt;/field&gt;
+&lt;field name="Name"&gt;Rafah&lt;/field&gt;
+&lt;field name="CountryCode"&gt;PSE&lt;/field&gt;
+&lt;field name="District"&gt;Rafah&lt;/field&gt;
+&lt;field name="Population"&gt;92020&lt;/field&gt;
+&lt;/row&gt;
+&lt;/table_data&gt;
+&lt;/database&gt;
+&lt;/mysqldump&gt;
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+<p>
+</td></tr>
+</table>
+<p>
+You can also set the following variables by using
+<b>--</b><b></b><i>var_name</i><b>=</b><b></b><i>value</i>
+syntax:
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+max_allowed_packet
+<p>
+The maximum size of the buffer for client/server communication&#46; The maximum is 1GB&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+net_buffer_length
+<p>
+The initial size of the buffer for client/server communication&#46; When creating multiple-row
+INSERT
+statements (as with the
+<b>--extended-insert</b>
+or
+<b>--opt</b>
+option),
+<b>mysqldump</b>
+creates rows up to
+net_buffer_length
+length&#46; If you increase this variable, you should also ensure that the
+net_buffer_length
+variable in the MySQL server is at least this large&#46;
+</td></tr>
+</table>
+<p>
+A common use of
+<b>mysqldump</b>
+is for making a backup of an entire database:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqldump </b><b></b><i>db_name</i><b> &gt; </b><b></b><i>backup-file&#46;sql</i>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+You can load the dump file back into the server like this:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysql </b><b></b><i>db_name</i><b> &lt; </b><b></b><i>backup-file&#46;sql</i>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+Or like this:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysql -e "source </b><b></b><i>/path-to-backup/backup-file&#46;sql</i><b>" </b><b></b><i>db_name</i>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+<b>mysqldump</b>
+is also very useful for populating databases by copying data from one MySQL server to another:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqldump --opt </b><b></b><i>db_name</i><b> | mysql --host=</b><b></b><i>remote_host</i><b> -C </b><b></b><i>db_name</i>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+It is possible to dump several databases with one command:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqldump --databases </b><b></b><i>db_name1</i><b> [</b><b></b><i>db_name2</i><b> &#46;&#46;&#46;] &gt; my_databases&#46;sql</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+To dump all databases, use the
+<b>--all-databases</b>
+option:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqldump --all-databases &gt; all_databases&#46;sql</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+For
+InnoDB
+tables,
+<b>mysqldump</b>
+provides a way of making an online backup:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqldump --all-databases --single-transaction &gt; all_databases&#46;sql</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+This backup acquires a global read lock on all tables (using
+FLUSH TABLES WITH READ LOCK) at the beginning of the dump&#46; As soon as this lock has been acquired, the binary log coordinates are read and the lock is released&#46; If long updating statements are running when the
+FLUSH
+statement is issued, the MySQL server may get stalled until those statements finish&#46; After that, the dump becomes lock free and does not disturb reads and writes on the tables&#46; If the update statements that the MySQL server receives are short (in terms of execution time), the initial lock period should not be noticeable, even with many updates&#46;
+<p>
+For point-in-time recovery (also known as
+<blink><blink>\(</blink>lq</blink>roll-forward,<blink><blink>\(</blink>rq</blink>
+when you need to restore an old backup and replay the changes that happened since that backup), it is often useful to rotate the binary log (see
+Section 5.2.4, <blink><blink>\(</blink>lq</blink>The Binary Log<blink><blink>\(</blink>rq</blink>) or at least know the binary log coordinates to which the dump corresponds:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqldump --all-databases --master-data=2 &gt; all_databases&#46;sql</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+Or:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqldump --all-databases --flush-logs --master-data=2</b>
+              <b>&gt; all_databases&#46;sql</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+The
+<b>--master-data</b>
+and
+<b>--single-transaction</b>
+options can be used simultaneously, which provides a convenient way to make an online backup suitable for use prior to point-in-time recovery if tables are stored using the
+InnoDB
+storage engine&#46;
+<p>
+For more information on making backups, see
+Section 6.2, <blink><blink>\(</blink>lq</blink>Database Backup Methods<blink><blink>\(</blink>rq</blink>, and
+Section 6.3, <blink><blink>\(</blink>lq</blink>Example Backup and Recovery Strategy<blink><blink>\(</blink>rq</blink>&#46;
+<p>
+If you encounter problems backing up views, please read the section that covers restrictions on views which describes a workaround for backing up views when this fails due to insufficient privileges&#46; See
+Section E.4, <blink><blink>\(</blink>lq</blink>Restrictions on Views<blink><blink>\(</blink>rq</blink>&#46;
+<h1 class="manpages">COPYRIGHT</h1>
+<p>
+Copyright &#169; 1997, 2011, Oracle and/or its affiliates. All rights reserved.
+<p>
+This documentation is free software; you can redistribute it and/or modify it only under the terms of the GNU General Public License as published by the Free Software Foundation; version 2 of the License.
+<p>
+This documentation is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+<p>
+You should have received a copy of the GNU General Public License along with the program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA or see <a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a>/.
+<p>
+<h1 class="manpages">NOTES</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+ 1.
+</td><td>
+Bug#30123
+&nbsp;<a href="http://bugs.mysql.com/bug.php">http://bugs.mysql.com/bug.php</a>?id=30123
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+which may already be installed locally and which is also available
+online at <a href="http://dev.mysql.com/doc">http://dev.mysql.com/doc</a>/.
+<h1 class="manpages">AUTHOR</h1>
+Oracle Corporation (<a href="http://dev.mysql.com/">http://dev.mysql.com</a>/).
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion7731.html?tutorial=unix_commands&amp;file=mysqldump.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/mysqldump.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:04 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

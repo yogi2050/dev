@@ -1,0 +1,756 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/ssh-keygen.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:28 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>ssh-keygen - Unix, Linux Command</title>
+<meta name="Description" Content="ssh-keygen - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>ssh-keygen - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+<b> ssh-keygen</b>
+- authentication key generation, management and conversion
+<h1 class="manpages">SYNOPSIS</h1>
+<b> ssh-keygen</b>
+<br />.Bk -words
+[-<b>q</b>]
+[-<b>b</b><i> bits</i>]
+-<b>t</b> <i> type</i>
+[-<b>N</b><i> new_passphrase</i>]
+[-<b>C</b><i> comment</i>]
+[-<b>f</b><i> output_keyfile</i>]
+<br />.Ek 
+<b> ssh-keygen</b>
+-<b>p</b> 
+[-<b>P</b><i> old_passphrase</i>]
+[-<b>N</b><i> new_passphrase</i>]
+[-<b>f</b><i> keyfile</i>]
+<b> ssh-keygen</b>
+-<b>i</b> 
+[-<b>f</b><i> input_keyfile</i>]
+<b> ssh-keygen</b>
+-<b>e</b> 
+[-<b>f</b><i> input_keyfile</i>]
+<b> ssh-keygen</b>
+-<b>y</b> 
+[-<b>f</b><i> input_keyfile</i>]
+<b> ssh-keygen</b>
+-<b>c</b> 
+[-<b>P</b><i> passphrase</i>]
+[-<b>C</b><i> comment</i>]
+[-<b>f</b><i> keyfile</i>]
+<b> ssh-keygen</b>
+-<b>l</b> 
+[-<b>f</b><i> input_keyfile</i>]
+<b> ssh-keygen</b>
+-<b>B</b> 
+[-<b>f</b><i> input_keyfile</i>]
+<b> ssh-keygen</b>
+-<b>D</b> <i> reader</i>
+<b> ssh-keygen</b>
+-<b>F</b> <i> hostname</i>
+[-<b>f</b><i> known_hosts_file</i>]
+<b> ssh-keygen</b>
+-<b>H</b> 
+[-<b>f</b><i> known_hosts_file</i>]
+<b> ssh-keygen</b>
+-<b>R</b> <i> hostname</i>
+[-<b>f</b><i> known_hosts_file</i>]
+<b> ssh-keygen</b>
+-<b>U</b> <i> reader</i>
+[-<b>f</b><i> input_keyfile</i>]
+<b> ssh-keygen</b>
+-<b>r</b> <i> hostname</i>
+[-<b>f</b><i> input_keyfile</i>]
+[-<b>g</b>]
+<b> ssh-keygen</b>
+-<b>G</b> <i> output_file</i>
+[-<b>v</b>]
+[-<b>b</b><i> bits</i>]
+[-<b>M</b><i> memory</i>]
+[-<b>S</b><i> start_point</i>]
+<b> ssh-keygen</b>
+-<b>T</b> <i> output_file</i>
+-<b>f</b> <i> input_file</i>
+[-<b>v</b>]
+[-<b>a</b><i> num_trials</i>]
+[-<b>W</b><i> generator</i>]
+<h1 class="manpages">DESCRIPTION</h1>
+<b>ssh-keygen</b>
+generates, manages and converts authentication keys for
+<b>ssh</b>(1).
+<b>ssh-keygen</b>
+can create RSA keys for use by SSH protocol version 1 and RSA or DSA
+keys for use by SSH protocol version 2.
+The type of key to be generated is specified with the
+-<b>t</b> 
+option.
+If invoked without any arguments,
+<b>ssh-keygen</b>
+will generate an RSA key for use in SSH protocol 2 connections.
+<p>
+<b>ssh-keygen</b>
+is also used to generate groups for use in Diffie-Hellman group
+exchange (DH-GEX).
+See the
+<a href=#3> MODULI GENERATION</a>
+section for details.
+<p>
+Normally each user wishing to use SSH
+with RSA or DSA authentication runs this once to create the authentication
+key in
+<tt> ~/.ssh/identity</tt>,
+<tt> ~/.ssh/id_dsa</tt>
+or
+<tt> ~/.ssh/id_rsa</tt>.
+Additionally, the system administrator may use this to generate host keys,
+as seen in
+<tt> /etc/rc</tt>.
+<p>
+Normally this program generates the key and asks for a file in which
+to store the private key.
+The public key is stored in a file with the same name but
+".pub"
+appended.
+The program also asks for a passphrase.
+The passphrase may be empty to indicate no passphrase
+(host keys must have an empty passphrase), or it may be a string of
+arbitrary length.
+A passphrase is similar to a password, except it can be a phrase with a
+series of words, punctuation, numbers, whitespace, or any string of
+characters you want.
+Good passphrases are 10-30 characters long, are
+not simple sentences or otherwise easily guessable (English
+prose has only 1-2 bits of entropy per character, and provides very bad
+passphrases), and contain a mix of upper and lowercase letters,
+numbers, and non-alphanumeric characters.
+The passphrase can be changed later by using the
+-<b>p</b> 
+option.
+<p>
+There is no way to recover a lost passphrase.
+If the passphrase is
+lost or forgotten, a new key must be generated and copied to the
+corresponding public key to other machines.
+<p>
+For RSA1 keys,
+there is also a comment field in the key file that is only for
+convenience to the user to help identify the key.
+The comment can tell what the key is for, or whatever is useful.
+The comment is initialized to
+"user@host"
+when the key is created, but can be changed using the
+-<b>c</b> 
+option.
+<p>
+After a key is generated, instructions below detail where the keys
+should be placed to be activated.
+<p>
+The options are as follows:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">-<b>a</b> <i> trials</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specifies the number of primality tests to perform when screening DH-GEX
+candidates using the
+-<b>T</b> 
+command.
+</td></tr>
+<tr valign="top"><td>-<b>B</b> 
+</td><td>
+Show the bubblebabble digest of specified private or public key file.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>b</b> <i> bits</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specifies the number of bits in the key to create.
+For RSA keys, the minimum size is 768 bits and the default is 2048 bits.
+Generally, 2048 bits is considered sufficient.
+DSA keys must be exactly 1024 bits as specified by FIPS 186-2.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>C</b> <i> comment</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Provides a new comment.
+</td></tr>
+<tr valign="top"><td>-<b>c</b> 
+</td><td>
+Requests changing the comment in the private and public key files.
+This operation is only supported for RSA1 keys.
+The program will prompt for the file containing the private keys, for
+the passphrase if the key has one, and for the new comment.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>D</b> <i> reader</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Download the RSA public key stored in the smartcard in
+<i> reader</i>.
+</td></tr>
+<tr valign="top"><td>-<b>e</b> 
+</td><td>
+This option will read a private or public OpenSSH key file and
+print the key in a
+&#39;SECSH Public Key File Format&#39;
+to stdout.
+This option allows exporting keys for use by several commercial
+SSH implementations.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>F</b> <i> hostname</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Search for the specified
+<i> hostname</i>
+in a
+<tt> known_hosts</tt>
+file, listing any occurrences found.
+This option is useful to find hashed host names or addresses and may also be
+used in conjunction with the
+-<b>H</b> 
+option to print found keys in a hashed format.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>f</b> <i> filename</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specifies the filename of the key file.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>G</b> <i> output_file</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Generate candidate primes for DH-GEX.
+These primes must be screened for
+safety (using the
+-<b>T</b> 
+option) before use.
+</td></tr>
+<tr valign="top"><td>-<b>g</b> 
+</td><td>
+Use generic DNS format when printing fingerprint resource records using the
+-<b>r</b> 
+command.
+</td></tr>
+<tr valign="top"><td>-<b>H</b> 
+</td><td>
+Hash a
+<tt> known_hosts</tt>
+file.
+This replaces all hostnames and addresses with hashed representations
+within the specified file; the original content is moved to a file with
+a .old suffix.
+These hashes may be used normally by
+<b> ssh</b>
+and
+<b> sshd</b>,
+but they do not reveal identifying information should the file&#146;s contents
+be disclosed.
+This option will not modify existing hashed hostnames and is therefore safe
+to use on files that mix hashed and non-hashed names.
+</td></tr>
+<tr valign="top"><td>-<b>i</b> 
+</td><td>
+This option will read an unencrypted private (or public) key file
+in SSH2-compatible format and print an OpenSSH compatible private
+(or public) key to stdout.
+<b>ssh-keygen</b>
+also reads the
+&#39;SECSH Public Key File Format&#39;.
+This option allows importing keys from several commercial
+SSH implementations.
+</td></tr>
+<tr valign="top"><td>-<b>l</b> 
+</td><td>
+Show fingerprint of specified public key file.
+Private RSA1 keys are also supported.
+For RSA and DSA keys
+<b>ssh-keygen</b>
+tries to find the matching public key file and prints its fingerprint.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>M</b> <i> memory</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specify the amount of memory to use (in megabytes) when generating
+candidate moduli for DH-GEX.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>N</b> <i> new_passphrase</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Provides the new passphrase.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>P</b> <i> passphrase</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Provides the (old) passphrase.
+</td></tr>
+<tr valign="top"><td>-<b>p</b> 
+</td><td>
+Requests changing the passphrase of a private key file instead of
+creating a new private key.
+The program will prompt for the file
+containing the private key, for the old passphrase, and twice for the
+new passphrase.
+</td></tr>
+<tr valign="top"><td>-<b>q</b> 
+</td><td>
+Silence
+<b> ssh-keygen</b>.
+Used by
+<tt> /etc/rc</tt>
+when creating a new key.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>R</b> <i> hostname</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Removes all keys belonging to
+<i> hostname</i>
+from a
+<tt> known_hosts</tt>
+file.
+This option is useful to delete hashed hosts (see the
+-<b>H</b> 
+option above).
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>r</b> <i> hostname</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Print the SSHFP fingerprint resource record named
+<i> hostname</i>
+for the specified public key file.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>S</b> <i> start</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specify start point (in hex) when generating candidate moduli for DH-GEX.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>T</b> <i> output_file</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Test DH group exchange candidate primes (generated using the
+-<b>G</b> 
+option) for safety.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>t</b> <i> type</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specifies the type of key to create.
+The possible values are
+"rsa1"
+for protocol version 1 and
+"rsa"
+or
+"dsa"
+for protocol version 2.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>U</b> <i> reader</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Upload an existing RSA private key into the smartcard in
+<i> reader</i>.
+</td></tr>
+<tr valign="top"><td>-<b>v</b> 
+</td><td>
+Verbose mode.
+Causes
+<b>ssh-keygen</b>
+to print debugging messages about its progress.
+This is helpful for debugging moduli generation.
+Multiple
+-<b>v</b> 
+options increase the verbosity.
+The maximum is 3.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>W</b> <i> generator</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specify desired generator when testing candidate moduli for DH-GEX.
+</td></tr>
+<tr valign="top"><td>-<b>y</b> 
+</td><td>
+This option will read a private
+OpenSSH format file and print an OpenSSH public key to stdout.
+</td></tr>
+</table>
+<h1 class="manpages">MODULI GENERATION</h1>
+<b>ssh-keygen</b>
+may be used to generate groups for the Diffie-Hellman Group Exchange
+(DH-GEX) protocol.
+Generating these groups is a two-step process: first, candidate
+primes are generated using a fast, but memory intensive process.
+These candidate primes are then tested for suitability (a CPU-intensive
+process).
+<p>
+Generation of primes is performed using the
+-<b>G</b> 
+option.
+The desired length of the primes may be specified by the
+-<b>b</b> 
+option.
+For example:
+<p>
+<p>&nbsp; &nbsp; <tt> # ssh-keygen -G moduli-2048.candidates -b 2048</tt><p>
+
+<p>
+By default, the search for primes begins at a random point in the
+desired length range.
+This may be overridden using the
+-<b>S</b> 
+option, which specifies a different start point (in hex).
+<p>
+Once a set of candidates have been generated, they must be tested for
+suitability.
+This may be performed using the
+-<b>T</b> 
+option.
+In this mode
+<b>ssh-keygen</b>
+will read candidates from standard input (or a file specified using the
+-<b>f</b> 
+option).
+For example:
+<p>
+<p>&nbsp; &nbsp; <tt> # ssh-keygen -T moduli-2048 -f moduli-2048.candidates</tt><p>
+
+<p>
+By default, each candidate will be subjected to 100 primality tests.
+This may be overridden using the
+-<b>a</b> 
+option.
+The DH generator value will be chosen automatically for the
+prime under consideration.
+If a specific generator is desired, it may be requested using the
+-<b>W</b> 
+option.
+Valid generator values are 2, 3, and 5.
+<p>
+Screened DH groups may be installed in
+<tt> /etc/moduli</tt>.
+It is important that this file contains moduli of a range of bit lengths and
+that both ends of a connection share common moduli.
+<h1 class="manpages">FILES</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2"><tt> ~/.ssh/identity</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+Contains the protocol version 1 RSA authentication identity of the user.
+This file should not be readable by anyone but the user.
+It is possible to
+specify a passphrase when generating the key; that passphrase will be
+used to encrypt the private part of this file using 3DES.
+This file is not automatically accessed by
+<b>ssh-keygen</b>
+but it is offered as the default file for the private key.
+<b>ssh</b>(1)
+will read this file when a login attempt is made.
+</td></tr>
+<tr valign="top"><td colspan="2"><tt> ~/.ssh/identity.pub</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+Contains the protocol version 1 RSA public key for authentication.
+The contents of this file should be added to
+<tt> ~/.ssh/authorized_keys</tt>
+on all machines
+where the user wishes to log in using RSA authentication.
+There is no need to keep the contents of this file secret.
+</td></tr>
+<tr valign="top"><td colspan="2"><tt> ~/.ssh/id_dsa</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+Contains the protocol version 2 DSA authentication identity of the user.
+This file should not be readable by anyone but the user.
+It is possible to
+specify a passphrase when generating the key; that passphrase will be
+used to encrypt the private part of this file using 3DES.
+This file is not automatically accessed by
+<b>ssh-keygen</b>
+but it is offered as the default file for the private key.
+<b>ssh</b>(1)
+will read this file when a login attempt is made.
+</td></tr>
+<tr valign="top"><td colspan="2"><tt> ~/.ssh/id_dsa.pub</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+Contains the protocol version 2 DSA public key for authentication.
+The contents of this file should be added to
+<tt> ~/.ssh/authorized_keys</tt>
+on all machines
+where the user wishes to log in using public key authentication.
+There is no need to keep the contents of this file secret.
+</td></tr>
+<tr valign="top"><td colspan="2"><tt> ~/.ssh/id_rsa</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+Contains the protocol version 2 RSA authentication identity of the user.
+This file should not be readable by anyone but the user.
+It is possible to
+specify a passphrase when generating the key; that passphrase will be
+used to encrypt the private part of this file using 3DES.
+This file is not automatically accessed by
+<b>ssh-keygen</b>
+but it is offered as the default file for the private key.
+<b>ssh</b>(1)
+will read this file when a login attempt is made.
+</td></tr>
+<tr valign="top"><td colspan="2"><tt> ~/.ssh/id_rsa.pub</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+Contains the protocol version 2 RSA public key for authentication.
+The contents of this file should be added to
+<tt> ~/.ssh/authorized_keys</tt>
+on all machines
+where the user wishes to log in using public key authentication.
+There is no need to keep the contents of this file secret.
+</td></tr>
+<tr valign="top"><td colspan="2"><tt> /etc/moduli</tt>
+</td></tr><tr><td>&nbsp;</td><td>
+Contains Diffie-Hellman groups used for DH-GEX.
+The file format is described in
+<b>moduli</b>(5).
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<b>ssh-add</b>(1),
+<b>ssh-agent</b>(1),
+<b>moduli</b>(5),
+<b>sshd</b>(8)
+<br />.Rs 
+<!-- ignored unsupported tag .%A -->
+<!-- ignored unsupported tag .%A -->
+<i> SECSH Public Key File Format</i>
+<!-- ignored unsupported tag .%N -->
+<!-- ignored unsupported tag .%D -->
+<!-- ignored unsupported tag .%O -->
+<br />.Re 
+<h1 class="manpages">AUTHORS</h1>
+OpenSSH is a derivative of the original and free
+ssh 1.2.12 release by Tatu Ylonen.
+Aaron Campbell, Bob Beck, Markus Friedl, Niels Provos,
+Theo de Raadt and Dug Song
+removed many bugs, re-added newer features and
+created OpenSSH.
+Markus Friedl contributed the support for SSH
+protocol versions 1.5 and 2.0.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionca92.html?tutorial=unix_commands&amp;file=ssh-keygen.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/ssh-keygen.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:28 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

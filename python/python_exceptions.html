@@ -1,0 +1,478 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/python/python_exceptions.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 15:56:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>Python Exceptions Handling</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="description" content="Python Exceptions - Learning Python in simple and easy steps : A beginner's tutorial containing complete knowledge of Python Syntax Object Oriented Language, Methods, Tuples, Tools/Utilities, Exceptions Handling, Sockets, GUI, Extentions, XML Programming" />
+<meta name="Keywords" content="Python, Tutorials, Learning, Beginners, Basics, Object Oriented Language, Methods, Overriding, Networking, Multithreading,Methods, Tuples, Tools/Utilities, Exceptions Handling, Sockets, GUI, Extentions, XML, Programming" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+#topmenu a:link {text-decoration:none;color:#000 !important;background-color:transparent;font-weight:bold;}
+#topmenu a:visited {text-decoration:none;color:#000 !important;background-color:transparent;font-weight:bold;}
+#topmenu a:hover {text-decoration:none;color:#fff !important;background-color:transparent;font-weight:bold;}
+#header{ 
+   background:#3777ab !important;
+}
+#topmenu
+{
+   background-color:#fbc62f !important;
+}
+#leftcol ul.menu li.heading 
+{
+   background:#3777ab !important;
+   border:1px solid #fbc62f !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1250px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+   _uacct = "UA-232293-6";
+   urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index-2.html">Tutorials Point Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index-2.html" target="_top">HOME </a>
+<a href="../java/index.html" target="_top">JAVA </a>
+<a href="../php/index.html" target="_top">PHP </a>
+<a href="index.html" target="_top">Python </a>
+<a href="../ruby/index.html" target="_top">Ruby </a>
+<a href="../perl/index.html" target="_top">Perl </a>
+<a href="../html/index.html" target="_top">HTML </a>
+<a href="../css/index.html" target="_top">CSS </a>
+<a href="../javascript/index.html" target="_top">Javascript </a>
+<a href="../mysql/index.html" target="_top">MySQL </a>
+<a href="../cplusplus/index.html" target="_top">C++ </a>
+<a href="../unix/index.html" target="_top">UNIX </a>
+<a href="../more.html" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.html" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.html" target="_top">ABOUT</a> |
+<a href="../about/contact_us.html" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/python-mini.png" alt="Python tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">Python Basic Tutorial</li>
+<li><a target="_top" href="index.html">Python - Home</a></li>
+<li><a target="_top" href="python_overview.html">Python - Overview</a></li>
+<li><a target="_top" href="python_environment.html">Python - Environment</a></li>
+<li><a target="_top" href="python_basic_syntax.html">Python - Basic Syntax</a></li>
+<li><a target="_top" href="python_variable_types.html">Python - Variable Types</a></li>
+<li><a target="_top" href="python_basic_operators.html">Python - Basic Operators</a></li>
+<li><a target="_top" href="python_decision_making.html">Python - Decision Making</a></li>
+<li><a target="_top" href="python_loops.html">Python - Loops</a></li>
+<li><a target="_top" href="python_numbers.html">Python - Numbers</a></li>
+<li><a target="_top" href="python_strings.html">Python - Strings</a></li>
+<li><a target="_top" href="python_lists.html">Python - Lists</a></li>
+<li><a target="_top" href="python_tuples.html">Python - Tuples</a></li>
+<li><a target="_top" href="python_dictionary.html">Python - Dictionary</a></li>
+<li><a target="_top" href="python_date_time.html">Python - Date &amp; Time</a></li>
+<li><a target="_top" href="python_functions.html">Python - Functions</a></li>
+<li><a target="_top" href="python_modules.html">Python - Modules</a></li>
+<li><a target="_top" href="python_files_io.html">Python - Files I/O</a></li>
+<li><a target="_top" href="python_exceptions.html"><b>Python - Exceptions</b></a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Python Advanced Tutorial</li>
+<li><a target="_top" href="python_classes_objects.html">Python - Classes/Objects</a></li>
+<li><a target="_top" href="python_reg_expressions.html">Python - Reg Expressions</a></li>
+<li><a target="_top" href="python_cgi_programming.html">Python - CGI Programming</a></li>
+<li><a target="_top" href="python_database_access.html">Python - Database Access</a></li>
+<li><a target="_top" href="python_networking.html">Python - Networking</a></li>
+<li><a target="_top" href="python_sending_email.html">Python - Sending Email</a></li>
+<li><a target="_top" href="python_multithreading.html">Python - Multithreading</a></li>
+<li><a target="_top" href="python_xml_processing.html">Python - XML Processing</a></li>
+<li><a target="_top" href="python_gui_programming.html">Python - GUI Programming</a></li>
+<li><a target="_top" href="python_further_extensions.html">Python - Further Extensions</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Python  Useful Resources</li>
+<li><a target="_top" href="python_quick_guide.html">Python - Quick Guide</a></li>
+<li><a target="_top" href="python_tools_utilities.html">Python - Tools/Utilities</a></li>
+<li><a target="_top" href="python_useful_resources.html">Python Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.html">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>Python Exceptions Handling</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="python_files_io.html">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="python_classes_objects.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>Python provides two very important features to handle any unexpected error in your Python programs and to add debugging capabilities in them:</p>
+<ul class="list">
+<li><p><b>Exception Handling:</b> This would be covered in this tutorial. Here is a list standard Exceptions available in Python: <a href="standard_exceptions.htm">Standard Exceptions</a>.</p> 
+<li><p><b>Assertions:</b> This would be covered in <a href="assertions_in_python.htm">Assertions in Python</a> tutorial.</p></li>
+</ul>
+<h2>What is Exception?</h2>
+<p>An exception is an event, which occurs during the execution of a program, that disrupts the normal flow of the program's instructions. In general, when a Python script encounters a situation that it can't cope with, it raises an exception. An exception is a Python object that represents an error.</p>
+<p>When a Python script raises an exception, it must either handle the exception immediately otherwise it would terminate and come out. </p>
+<h2>Handling an exception:</h2>
+<p>If you have some <i>suspicious</i> code that may raise an exception, you can defend your program by placing the suspicious code in a <b>try:</b> block. After the try: block, include an <b>except:</b> statement, followed by a block of code which handles the problem as elegantly as possible.</p>
+<h3>Syntax:</h3>
+<p>Here is simple syntax of <i>try....except...else</i> blocks:</p>
+<pre class="prettyprint">
+try:
+   You do your operations here;
+   ......................
+except <i>ExceptionI</i>:
+   If there is ExceptionI, then execute this block.
+except <i>ExceptionII</i>:
+   If there is ExceptionII, then execute this block.
+   ......................
+else:
+   If there is no exception then execute this block. 
+</pre>
+<p>Here are few important points above the above mentioned syntax:</p>
+<ul class="list">
+<li><p>A single try statement can have multiple except statements. This is useful when the try block contains statements that may throw different types of exceptions.</p></li>
+<li><p>You can also provide a generic except clause, which handles any exception.</p></li>
+<li><p>After the except clause(s), you can include an else-clause. The code in the else-block executes if the code in the try: block does not raise an exception.</p></li>
+<li><p>The else-block is a good place for code that does not need the try: block's protection.</p></li>
+</ul>
+<h3>Example:</h3>
+<p>Here is simple example which opens a file and writes the content in the file and comes out gracefully because there is no problem at all:</p>
+<pre class="prettyprint">
+#!/usr/bin/python
+
+try:
+   fh = open("testfile", "w")
+   fh.write("This is my test file for exception handling!!")
+except IOError:
+   print "Error: can\'t find file or read data"
+else:
+   print "Written content in the file successfully"
+   fh.close()
+</pre>
+<p>This will produce following result:</p>
+<pre class="prettyprint">
+Written content in the file successfully
+</pre>
+<h3>Example:</h3>
+<p>Here is one more simple example which tries to open a file where you do not have permission to write in the file so it raises an exception:</p>
+<pre class="prettyprint">
+#!/usr/bin/python
+
+try:
+   fh = open("testfile", "w")
+   fh.write("This is my test file for exception handling!!")
+except IOError:
+   print "Error: can\'t find file or read data"
+else:
+   print "Written content in the file successfully"
+</pre>
+<p>This will produce following result:</p>
+<pre class="prettyprint">
+Error: can't find file or read data
+</pre>
+<h2>The <i>except</i> clause with no exceptions:</h2>
+<p>You can also use the except statement with no exceptions defined as follows:</p>
+<pre class="prettyprint">
+try:
+   You do your operations here;
+   ......................
+except:
+   If there is any exception, then execute this block.
+   ......................
+else:
+   If there is no exception then execute this block. 
+</pre>
+<p>This kind of a <b>try-except</b> statement catches all the exceptions that occur. Using this kind of try-except statement is not considered a good
+programming practice, though, because it catches all exceptions but does not make the programmer identify the root cause of the problem that may occur.</p>
+<h2>The <i>except</i> clause with multiple exceptions:</h2>
+<p>You can also use the same <i>except</i> statement to handle multiple exceptions as follows:</p>
+<pre class="prettyprint">
+try:
+   You do your operations here;
+   ......................
+except(Exception1[, Exception2[,...ExceptionN]]]):
+   If there is any exception from the given exception list, 
+   then execute this block.
+   ......................
+else:
+   If there is no exception then execute this block. 
+</pre>
+<h2>The try-finally clause:</h2>
+<p>You can use a <b>finally:</b> block along with a <b>try:</b> block. The finally block is a place to put any code that must execute, whether the try-block
+raised an exception or not. The syntax of the try-finally statement is this:</p>
+<pre class="prettyprint">
+try:
+   You do your operations here;
+   ......................
+   Due to any exception, this may be skipped.
+finally:
+   This would always be executed.
+   ......................
+</pre>
+<p>Note that you can provide except clause(s), or a finally clause, but not both. You can not use <i>else</i> clause as well along with a finally clause.</p>
+<h3>Example:</h3>
+<pre class="prettyprint">
+#!/usr/bin/python
+
+try:
+   fh = open("testfile", "w")
+   fh.write("This is my test file for exception handling!!")
+finally:
+   print "Error: can\'t find file or read data"
+</pre>
+<p>If you do not have permission to open the file in writing mode then this will produce following result:</p>
+<pre class="prettyprint">
+Error: can't find file or read data
+</pre>
+<p>Same example can be written more cleanly as follows:</p>
+<pre class="prettyprint">
+#!/usr/bin/python
+
+try:
+   fh = open("testfile", "w")
+   try:
+      fh.write("This is my test file for exception handling!!")
+   finally:
+      fh.close()
+except IOError:
+   print "Error: can\'t find file or read data"
+</pre>
+<p>When an exception is thrown in the <i>try</i> block, the execution immediately passes to the <i>finally</i> block. After all the statements in the finally block are executed, the exception is raised again and is handled in the <i>except</i> statements if present in the next higher layer of the <i>try-except</i> statement.</p>
+<h2>Argument of an Exception:</h2>
+<p>An exception can have an <i>argument</i>, which is a value that gives additional information about the problem. The contents  of the argument vary by
+exception. You capture an exception's argument by supplying a variable in the except clause as follows:</p>
+<pre class="prettyprint">
+try:
+   You do your operations here;
+   ......................
+except <i>ExceptionType, Argument</i>:
+   You can print value of Argument here...
+</pre>
+<p>If you are writing the code to handle a single exception, you can have a variable follow the name of the exception in the except statement. If you are trapping multiple exceptions, you can have a variable follow the tuple of the exception.</p>
+<p>This variable will receive the value of the exception mostly containing the cause of the exception. The variable can receive a single value or multiple values in the form of a tuple. This tuple usually contains the error string, the error number, and an error location.</p>
+<h3>Example:</h3>
+<p>Following is an example for a single exception:</p>
+<pre class="prettyprint">
+#!/usr/bin/python
+
+# Define a function here.
+def temp_convert(var):
+   try:
+      return int(var)
+   except ValueError, Argument:
+      print "The argument does not contain numbers\n", Argument
+
+# Call above function here.
+temp_convert("xyz");
+</pre>
+<p>This would produce following result:</p>
+<pre class="prettyprint">
+The argument does not contain numbers
+invalid literal for int() with base 10: 'xyz'
+</pre>
+<h2>Raising an exceptions:</h2>
+<p>You can raise exceptions in several ways by using the raise statement. The general syntax for the <b>raise</b> statement.</p>
+<h3>Syntax:</h3>
+<pre class="prettyprint">
+raise [Exception [, args [, traceback]]]
+</pre>
+<p>Here <i>Exception</i> is the type of exception (for example, NameError) and <i>argument</i> is a value for the exception argument. The argument is optional; if not supplied, the exception argument is None.</p>
+<p>The final argument, traceback, is also optional (and rarely used in practice), and, if present, is the traceback object used for the exception</p>
+<h3>Example:</h3>
+<p>An exception can be a string, a class, or an object. Most of the exceptions that the Python core raises are classes, with an argument that is an instance of the class.
+Defining new exceptions is quite easy and can be done as follows:</p>
+<pre class="prettyprint">
+def functionName( level ):
+   if level &lt; 1:
+      raise "Invalid level!", level
+      # The code below to this would not be executed
+      # if we raise the exception
+</pre>
+<p><b>Note:</b> In order to catch an exception, an "except" clause must refer to the same exception thrown either class object or simple string. For example to capture above exception we must write our except clause as follows:</p>
+<pre class="prettyprint">
+try:
+   Business Logic here...
+except "Invalid level!":
+   Exception handling here...
+else:
+   Rest of the code here...
+</pre>
+<h2>User-Defined Exceptions:</h2>
+<p>Python also allows you to create your own exceptions by deriving classes from the standard built-in exceptions.</p>
+<p>Here is an example related to <i>RuntimeError</i>. Here a  class is created that is subclassed from <i>RuntimeError</i>. This is useful when you need
+to display more specific information when an exception is caught.</p>
+<p>In the try block, the user-defined exception is raised and caught in the except block. The variable e is used to create an instance of the class Networkerror.</p>
+<pre class="prettyprint">
+class Networkerror(RuntimeError):
+   def __init__(self, arg):
+      self.args = arg
+</pre>
+<p>So once you defined above class, you can raise your exception as follows:</p>
+<pre class="prettyprint">
+try:
+   raise Networkerror("Bad hostname")
+except Networkerror,e:
+   print e.args
+</pre>
+<hr />
+<div class="pre-btn">
+<a href="python_files_io.html">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/python_exceptions.pdf" alt="Python Exceptions Handling" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="python_classes_objects.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.html" target="_top">ASP.NET </a> |
+<a href="../jquery/index.html" target="_top">jQuery </a> |
+<a href="../ajax/index.html" target="_top">AJAX </a> |
+<a href="../ant/index.html" target="_top">ANT</a> |
+<a href="../jsp/index.html" target="_top">JSP </a> |
+<a href="../servlets/index.html" target="_top">Servlets </a> |
+<a href="../log4j/index.html" target="_top">log4j </a> |
+<a href="../ibatis/index.html" target="_top">iBATIS </a> |
+<a href="../hibernate/index.html" target="_top">Hibernate </a> |
+<a href="../jdbc/index.html" target="_top">JDBC </a> |
+<a href="../struts_2/index.html" target="_top">Struts </a> |
+<a href="../html5/index.html" target="_top">HTML5 </a> |
+<a href="../sql/index.html" target="_top">SQL </a> |
+<a href="../mysql/index.html" target="_top">MySQL </a> |
+<a href="../cplusplus/index.html" target="_top">C++ </a> |
+<a href="../unix/index.html" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/python/python_exceptions.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 15:56:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

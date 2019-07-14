@@ -1,0 +1,1087 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/gprof.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:43 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>gprof - Unix, Linux Command</title>
+<meta name="Description" Content="gprof - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>gprof - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- Not defining reserved macro 'Sh' ! -->
+<!-- ignored unsupported tag .tr -->
+<!-- ignored unsupported tag .ie -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .el\{ -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .rr -->
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .hy -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .tm -->
+<h1 class="manpages">NAME</h1>
+gprof - display call graph profile data
+<h1 class="manpages">SYNOPSIS</h1>
+<!-- ignored unsupported tag .tm -->
+gprof [ -[abcDhilLrsTvwxyz] ] [ -[ACeEfFJnNOpPqQZ][<i>name</i>] ]
+<br />
+ [ -I <i>dirs</i> ] [ -d[<i>num</i>] ] [ -k <i>from/to</i> ]
+<br />
+ [ -m <i>min-count</i> ] [ -R <i>map_file</i> ] [ -t <i>table-length</i> ]
+<br />
+ [ --[no-]annotated-source[=<i>name</i>] ]
+<br />
+ [ --[no-]exec-counts[=<i>name</i>] ]
+<br />
+ [ --[no-]flat-profile[=<i>name</i>] ] [ --[no-]graph[=<i>name</i>] ]
+<br />
+ [ --[no-]time=<i>name</i>] [ --all-lines ] [ --brief ]
+<br />
+ [ --debug[=<i>level</i>] ] [ --function-ordering ]
+<br />
+ [ --file-ordering <i>map_file</i> ] [ --directory-path=<i>dirs</i> ]
+<br />
+ [ --display-unused-functions ] [ --file-format=<i>name</i> ]
+<br />
+ [ --file-info ] [ --help ] [ --line ] [ --min-count=<i>n</i> ]
+<br />
+ [ --no-static ] [ --print-path ] [ --separate-files ]
+<br />
+ [ --static-call-graph ] [ --sum ] [ --table-length=<i>len</i> ]
+<br />
+ [ --traditional ] [ --version ] [ --width=<i>n</i> ]
+<br />
+ [ --ignore-non-functions ] [ --demangle[=<i><font size="-1">STYLE</font></i>] ]
+<br />
+ [ --no-demangle ] [ <i>image-file</i> ] [ <i>profile-file</i> ... ]
+<h1 class="manpages">DESCRIPTION</h1>
+<!-- ignored unsupported tag .tm -->
+<tt>gprof</tt> produces an execution profile of C, Pascal, or Fortran77
+programs.  The effect of called routines is incorporated in the profile
+of each caller.  The profile data is taken from the call graph profile file
+(<i>gmon.out</i> default) which is created by programs
+that are compiled with the <b>-pg</b> option of
+<tt>cc</tt>, <tt>pc</tt>, and <tt>f77</tt>.
+The <b>-pg</b> option also links in versions of the library routines
+that are compiled for profiling.  <tt>Gprof</tt> reads the given object
+file (the default is <tt>a.out</tt>) and establishes the relation between
+its symbol table and the call graph profile from <i>gmon.out</i>.
+If more than one profile file is specified, the <tt>gprof</tt>
+output shows the sum of the profile information in the given profile files.
+<p>
+<tt>Gprof</tt> calculates the amount of time spent in each routine.
+Next, these times are propagated along the edges of the call graph.
+Cycles are discovered, and calls into a cycle are made to share the time
+of the cycle.
+<p>
+Several forms of output are available from the analysis.
+<p>
+The <i>flat profile</i> shows how much time your program spent in each function,
+and how many times that function was called.  If you simply want to know
+which functions burn most of the cycles, it is stated concisely here.
+<p>
+The <i>call graph</i> shows, for each function, which functions called it, which
+other functions it called, and how many times.  There is also an estimate
+of how much time was spent in the subroutines of each function.  This can
+suggest places where you might try to eliminate function calls that use a
+lot of time. 
+<p>
+The <i>annotated source</i> listing is a copy of the program&#146;s
+source code, labeled with the number of times each line of the
+program was executed. 
+<h1 class="manpages">OPTIONS</h1>
+<!-- ignored unsupported tag .tm -->
+These options specify which of several output formats
+<tt>gprof</tt> should produce.
+<p>
+Many of these options take an optional <i>symspec</i> to specify
+functions to be included or excluded.  These options can be
+specified multiple times, with different symspecs, to include
+or exclude sets of symbols. 
+<p>
+Specifying any of these options overrides the default (<b>-p -q</b>),
+which prints a flat profile and call graph analysis
+for all functions.
+<!-- ignored unsupported tag .ie -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+<tt>-A[</tt><tt>symspec</tt><tt>]</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--annotated-source[=</tt><tt>symspec</tt><tt>]</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-A</b> option causes <tt>gprof</tt> to print annotated source code.
+If <i>symspec</i> is specified, print output only for matching symbols.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-b</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--brief</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+If the <b>-b</b> option is given, <tt>gprof</tt> doesn&#146;t print the
+verbose blurbs that try to explain the meaning of all of the fields in
+the tables.  This is useful if you intend to print out the output, or
+are tired of seeing the blurbs.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-C[</tt><tt>symspec</tt><tt>]</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--exec-counts[=</tt><tt>symspec</tt><tt>]</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-C</b> option causes <tt>gprof</tt> to
+print a tally of functions and the number of times each was called.
+If <i>symspec</i> is specified, print tally only for matching symbols.
+<p>
+<!-- ignored unsupported tag .if -->
+If the profile data file contains basic-block count records, specifying
+the <b>-l</b> option, along with <b>-C</b>, will cause basic-block
+execution counts to be tallied and displayed.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-i</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--file-info</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-i</b> option causes <tt>gprof</tt> to display summary information
+about the profile data file(s) and then exit.  The number of histogram,
+call graph, and basic-block count records is displayed.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-I </tt><tt>dirs</tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--directory-path=</tt><tt>dirs</tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-I</b> option specifies a list of search directories in
+which to find source files.  Environment variable <i><font size="-1">GPROF_PATH</font></i>
+can also be used to convey this information.
+Used mostly for annotated source output.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-J[</tt><tt>symspec</tt><tt>]</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--no-annotated-source[=</tt><tt>symspec</tt><tt>]</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-J</b> option causes <tt>gprof</tt> not to
+print annotated source code.
+If <i>symspec</i> is specified, <tt>gprof</tt> prints annotated source,
+but excludes matching symbols.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-L</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--print-path</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Normally, source filenames are printed with the path
+component suppressed.  The <b>-L</b> option causes <tt>gprof</tt>
+to print the full pathname of
+source filenames, which is determined
+from symbolic debugging information in the image file
+and is relative to the directory in which the compiler
+was invoked.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-p[</tt><tt>symspec</tt><tt>]</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--flat-profile[=</tt><tt>symspec</tt><tt>]</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-p</b> option causes <tt>gprof</tt> to print a flat profile.
+If <i>symspec</i> is specified, print flat profile only for matching symbols.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-P[</tt><tt>symspec</tt><tt>]</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--no-flat-profile[=</tt><tt>symspec</tt><tt>]</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-P</b> option causes <tt>gprof</tt> to suppress printing a flat profile.
+If <i>symspec</i> is specified, <tt>gprof</tt> prints a flat profile,
+but excludes matching symbols.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-q[</tt><tt>symspec</tt><tt>]</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--graph[=</tt><tt>symspec</tt><tt>]</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-q</b> option causes <tt>gprof</tt> to print the call graph analysis.
+If <i>symspec</i> is specified, print call graph only for matching symbols
+and their children.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-Q[</tt><tt>symspec</tt><tt>]</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--no-graph[=</tt><tt>symspec</tt><tt>]</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-Q</b> option causes <tt>gprof</tt> to suppress printing the
+call graph.
+If <i>symspec</i> is specified, <tt>gprof</tt> prints a call graph,
+but excludes matching symbols.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-t</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--table-length=</tt><tt>num</tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-t</b> option causes the <i>num</i> most active source lines in
+each source file to be listed when source annotation is enabled.  The
+default is 10.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-y</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--separate-files</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+This option affects annotated source output only.
+Normally, <tt>gprof</tt> prints annotated source files
+to standard-output.  If this option is specified,
+annotated source for a file named <i>path/</i><i>filename</i><i></i>
+is generated in the file <i></i><i>filename</i><i>-ann</i>.  If the underlying
+file system would truncate <i></i><i>filename</i><i>-ann</i> so that it
+overwrites the original <i></i><i>filename</i><i></i>, <tt>gprof</tt> generates
+annotated source in the file <i></i><i>filename</i><i>.ann</i> instead (if the
+original file name has an extension, that extension is <i>replaced</i>
+with <i>.ann</i>).
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-Z[</tt><tt>symspec</tt><tt>]</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--no-exec-counts[=</tt><tt>symspec</tt><tt>]</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-Z</b> option causes <tt>gprof</tt> not to
+print a tally of functions and the number of times each was called.
+If <i>symspec</i> is specified, print tally, but exclude matching symbols.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-r</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--function-ordering</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>--function-ordering</b> option causes <tt>gprof</tt> to print a
+suggested function ordering for the program based on profiling data.
+This option suggests an ordering which may improve paging, tlb and
+cache behavior for the program on systems which support arbitrary
+ordering of functions in an executable.
+<p>
+<!-- ignored unsupported tag .if -->
+The exact details of how to force the linker to place functions
+in a particular order is system dependent and out of the scope of this
+manual.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-R </tt><tt>map_file</tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--file-ordering </tt><tt>map_file</tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>--file-ordering</b> option causes <tt>gprof</tt> to print a
+suggested .o link line ordering for the program based on profiling data.
+This option suggests an ordering which may improve paging, tlb and
+cache behavior for the program on systems which do not support arbitrary
+ordering of functions in an executable.
+<p>
+<!-- ignored unsupported tag .if -->
+Use of the <b>-a</b> argument is highly recommended with this option.
+<p>
+<!-- ignored unsupported tag .if -->
+The <i>map_file</i> argument is a pathname to a file which provides
+function name to object file mappings.  The format of the file is similar to
+the output of the program <tt>nm</tt>.
+<p>
+<!-- ignored unsupported tag .if -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+        c-parse.o:00000000 T yyparse
+        c-parse.o:00000004 C yyerrflag
+        c-lang.o:00000000 T maybe_objc_method_name
+        c-lang.o:00000000 T print_lang_statistics
+        c-lang.o:00000000 T recognize_objc_keyword
+        c-decl.o:00000000 T print_lang_identifier
+        c-decl.o:00000000 T print_lang_type
+        ...
+</tt></pre></td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .if -->
+To create a <i>map_file</i> with <font size="-1">GNU</font> <tt>nm</tt>, type a command like
+<tt>nm --extern-only --defined-only -v --print-file-name program-name</tt>.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-T</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--traditional</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-T</b> option causes <tt>gprof</tt> to print its output in
+traditional <font size="-1">BSD</font> style.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-w </tt><tt>width</tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--width=</tt><tt>width</tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Sets width of output lines to <i>width</i>.
+Currently only used when printing the function index at the bottom
+of the call graph.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-x</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--all-lines</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+This option affects annotated source output only.
+By default, only the lines at the beginning of a basic-block
+are annotated.  If this option is specified, every line in
+a basic-block is annotated by repeating the annotation for the
+first line.  This behavior is similar to <tt>tcov</tt>&#146;s <b>-a</b>.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--demangle[=</tt><tt>style</tt><tt>]</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--no-demangle</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+These options control whether C<font size="-2">++</font> symbol names should be demangled when
+printing output.  The default is to demangle symbols.  The
+<tt>--no-demangle</tt> option may be used to turn off demangling. Different
+compilers have different mangling styles.  The optional demangling style
+argument can be used to choose an appropriate demangling style for your
+compiler.
+</td></tr>
+</table>
+<h1 class="manpages">Analysis Options</h1>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+<tt>-a</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--no-static</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-a</b> option causes <tt>gprof</tt> to suppress the printing of
+statically declared (private) functions.  (These are functions whose
+names are not listed as global, and which are not visible outside the
+file/function/block where they were defined.)  Time spent in these
+functions, calls to/from them, etc., will all be attributed to the
+function that was loaded directly before it in the executable file.
+This option affects both the flat profile and the call graph.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-c</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--static-call-graph</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-c</b> option causes the call graph of the program to be
+augmented by a heuristic which examines the text space of the object
+file and identifies function calls in the binary machine code.
+Since normal call graph records are only generated when functions are
+entered, this option identifies children that could have been called,
+but never were.  Calls to functions that were not compiled with
+profiling enabled are also identified, but only if symbol table
+entries are present for them.
+Calls to dynamic library routines are typically <i>not</i> found
+by this option.
+Parents or children identified via this heuristic
+are indicated in the call graph with call counts of <b>0</b>.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-D</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--ignore-non-functions</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-D</b> option causes <tt>gprof</tt> to ignore symbols which
+are not known to be functions.  This option will give more accurate
+profile data on systems where it is supported (Solaris and <font size="-1">HPUX</font> for
+example).
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-k </tt><tt>from</tt><tt>/</tt><tt>to</tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-k</b> option allows you to delete from the call graph any arcs from
+symbols matching symspec <i>from</i> to those matching symspec <i>to</i>.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-l</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--line</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-l</b> option enables line-by-line profiling, which causes
+histogram hits to be charged to individual source code lines,
+instead of functions.
+If the program was compiled with basic-block counting enabled,
+this option will also identify how many times each line of
+code was executed.
+While line-by-line profiling can help isolate where in a large function
+a program is spending its time, it also significantly increases
+the running time of <tt>gprof</tt>, and magnifies statistical
+inaccuracies.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-m </tt><tt>num</tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--min-count=</tt><tt>num</tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+This option affects execution count output only.
+Symbols that are executed less than <i>num</i> times are suppressed.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-n</tt><tt>symspec</tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--time=</tt><tt>symspec</tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-n</b> option causes <tt>gprof</tt>, in its call graph analysis,
+to only propagate times for symbols matching <i>symspec</i>.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-N</tt><tt>symspec</tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--no-time=</tt><tt>symspec</tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-n</b> option causes <tt>gprof</tt>, in its call graph analysis,
+not to propagate times for symbols matching <i>symspec</i>.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-z</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--display-unused-functions</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+If you give the <b>-z</b> option, <tt>gprof</tt> will mention all
+functions in the flat profile, even those that were never called, and
+that had no time spent in them.  This is useful in conjunction with the
+<b>-c</b> option for discovering which routines were never called.
+</td></tr>
+</table>
+<h1 class="manpages">Miscellaneous Options</h1>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+<tt>-d[</tt><tt>num</tt><tt>]</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--debug[=</tt><tt>num</tt><tt>]</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-d</b> <i>num</i> option specifies debugging options.
+If <i>num</i> is not specified, enable all debugging.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-h</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--help</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-h</b> option prints command line usage.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-O</tt><tt>name</tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--file-format=</tt><tt>name</tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Selects the format of the profile data files.  Recognized formats are
+<b>auto</b> (the default), <b>bsd</b>, <b>4.4bsd</b>, <b>magic</b>, and
+<b>prof</b> (not yet supported).
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-s</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--sum</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-s</b> option causes <tt>gprof</tt> to summarize the information
+in the profile data files it read in, and write out a profile data
+file called <i>gmon.sum</i>, which contains all the information from
+the profile data files that <tt>gprof</tt> read in.  The file <i>gmon.sum</i>
+may be one of the specified input files; the effect of this is to
+merge the data in the other input files into <i>gmon.sum</i>.
+<p>
+<!-- ignored unsupported tag .if -->
+Eventually you can run <tt>gprof</tt> again without <b>-s</b> to analyze the
+cumulative data in the file <i>gmon.sum</i>.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-v</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>--version</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-v</b> flag causes <tt>gprof</tt> to print the current version
+number, and then exit.
+</td></tr>
+</table>
+<h1 class="manpages">Deprecated Options</h1>
+<!-- ignored unsupported tag .tm -->
+These options have been replaced with newer versions that use symspecs.
+<!-- ignored unsupported tag .ie -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+<tt>-e </tt><tt>function_name</tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-e</b> <i>function</i> option tells <tt>gprof</tt> to not print
+information about the function <i>function_name</i> (and its
+children...) in the call graph.  The function will still be listed
+as a child of any functions that call it, but its index number will be
+shown as <b>[not printed]</b>.  More than one <b>-e</b> option may be
+given; only one <i>function_name</i> may be indicated with each <b>-e</b>
+option.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-E </tt><tt>function_name</tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <tt>-E </tt><tt>function</tt><tt></tt> option works like the <tt>-e</tt> option, but
+time spent in the function (and children who were not called from
+anywhere else), will not be used to compute the percentages-of-time for
+the call graph.  More than one <b>-E</b> option may be given; only one
+<i>function_name</i> may be indicated with each <b>-E</b> option.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-f </tt><tt>function_name</tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-f</b> <i>function</i> option causes <tt>gprof</tt> to limit the
+call graph to the function <i>function_name</i> and its children (and
+their children...).  More than one <b>-f</b> option may be given;
+only one <i>function_name</i> may be indicated with each <b>-f</b>
+option. 
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>-F </tt><tt>function_name</tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-F</b> <i>function</i> option works like the <tt>-f</tt> option, but
+only time spent in the function and its children (and their
+children...) will be used to determine total-time and
+percentages-of-time for the call graph.  More than one <b>-F</b> option
+may be given; only one <i>function_name</i> may be indicated with each
+<b>-F</b> option.  The <b>-F</b> option overrides the <b>-E</b> option.
+</td></tr>
+</table>
+<h1 class="manpages">FILES</h1>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+<tt></tt><tt>a.out</tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+the namelist and text space.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt></tt><tt>gmon.out</tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+dynamic call graph and profile.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt></tt><tt>gmon.sum</tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+summarized dynamic call graph and profile. 
+</td></tr>
+</table>
+<h1 class="manpages">BUGS</h1>
+<!-- ignored unsupported tag .tm -->
+The granularity of the sampling is shown, but remains
+statistical at best.
+We assume that the time for each execution of a function
+can be expressed by the total time for the function divided
+by the number of times the function is called.
+Thus the time propagated along the call graph arcs to the function&#146;s
+parents is directly proportional to the number of times that
+arc is traversed.
+<p>
+Parents that are not themselves profiled will have the time of
+their profiled children propagated to them, but they will appear
+to be spontaneously invoked in the call graph listing, and will
+not have their time propagated further.
+Similarly, signal catchers, even though profiled, will appear
+to be spontaneous (although for more obscure reasons).
+Any profiled children of signal catchers should have their times
+propagated properly, unless the signal catcher was invoked during
+the execution of the profiling routine, in which case all is lost.
+<p>
+The profiled program must call <tt>exit</tt>(2)
+or return normally for the profiling information to be saved
+in the <i>gmon.out</i> file.
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<i>monitor</i>(3), <i>profil</i>(2), <i>cc</i>(1), <i>prof</i>(1), and the Info entry for <i>gprof</i>.
+<p>
+An Execution Profiler for Modular Programs,
+by S. Graham, P. Kessler, M. McKusick;
+Software - Practice and Experience,
+Vol. 13, pp. 671-685, 1983.
+<p>
+gprof: A Call Graph Execution Profiler,
+by S. Graham, P. Kessler, M. McKusick;
+Proceedings of the <font size="-1">SIGPLAN</font> &#146;82 Symposium on Compiler Construction,
+<font size="-1">SIGPLAN</font> Notices, Vol. 17, No  6, pp. 120-126, June 1982.
+<h1 class="manpages">COPYRIGHT</h1>
+<!-- ignored unsupported tag .tm -->
+Copyright (C) 1988, 92, 97, 98, 99, 2000, 2001, 2003 Free Software Foundation, Inc.
+<p>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the <font size="-1">GNU</font> Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, with no Front-Cover Texts, and with no
+Back-Cover Texts.  A copy of the license is included in the
+section entitled <font size="-1">GNU</font> Free Documentation License.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion9d75.html?tutorial=unix_commands&amp;file=gprof.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/gprof.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:43 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

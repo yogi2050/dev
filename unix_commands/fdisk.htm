@@ -1,0 +1,461 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/fdisk.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:38 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>fdisk - Unix, Linux Command</title>
+<meta name="Description" Content="fdisk - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>fdisk - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+fdisk - Partition table manipulator for Linux
+<h1 class="manpages">SYNOPSIS</h1>
+<b>fdisk [-u] [-b </b><i>sectorsize</i><b>]</b> <b>[-C </b><i>cyls</i><b>] [-H </b><i>heads</i><b>] [-S </b><i>sects</i><b>] </b><i>device</i> <p>
+<b>fdisk -l [-u] [</b><i>device ...</i><b>]</b> <p>
+<b>fdisk -s </b><i>partition ...</i> <p>
+<b>fdisk</b><i>-v</i> <h1 class="manpages">DESCRIPTION</h1>
+Hard disks can be divided into one or more logical disks called
+<i>partitions</i>. This division is described in the
+<i>partition table</i> found in sector 0 of the disk.
+<p>
+In the BSD world one talks about &#145;disk slices&#146; and a &#145;disklabel&#146;.
+<p>
+Linux needs at least one partition, namely for its root file system.
+It can use swap files and/or swap partitions, but the latter are more
+efficient. So, usually one will want a second Linux partition
+dedicated as swap partition.
+On Intel compatible hardware, the BIOS that boots the system
+can often only access the first 1024 cylinders of the disk.
+For this reason people with large disks often create a third partition,
+just a few MB large, typically mounted on
+<i>/boot</i>, to store the kernel image and a few auxiliary files needed at boot time,
+so as to make sure that this stuff is accessible to the BIOS.
+There may be reasons of security, ease of administration and backup,
+or testing, to use more than the minimum number of partitions.
+<p>
+<b>fdisk</b> (in the first form of invocation)
+is a menu driven program for creation and manipulation of
+partition tables.
+It understands DOS type partition tables and BSD or SUN type disklabels.
+<p>
+<b>fdisk</b> doesn&#146;t understand GUID Partition Table (GPT) and
+it is not designed for large partitions. In particular case use more advanced GNU
+<b>parted(8).</b> <p>
+The
+<i>device</i> is usually /dev/sda, /dev/sdb or so. A device name refers to the entire disk.
+The old systems without libata (a library used inside the Linux kernel to
+support ATA host controllers and devices) make a difference between IDE and
+SCSI disks. In such a case the device name will be /dev/hd* (IDE) or /dev/sd*
+(SCSI).
+<p>
+The
+<i>partition</i> is a
+<i>device</i> name followed by a partition number.  For example,
+<b>/dev/sda1</b> is the first partition on the first hard disk in the system.
+See also Linux kernel documentation (the Documentation/devices.txt file).
+<p>
+A BSD/SUN type disklabel can describe 8 partitions,
+the third of which should be a &#145;whole disk&#146; partition.
+Do not start a partition that actually uses its first sector
+(like a swap partition) at cylinder 0, since that will
+destroy the disklabel.
+<p>
+An IRIX/SGI type disklabel can describe 16 partitions,
+the eleventh of which should be an entire &#145;volume&#146; partition,
+while the ninth should be labeled &#145;volume header&#146;.
+The volume header will also cover the partition table, i.e.,
+it starts at block zero and extends by default over five cylinders.
+The remaining space in the volume header may be used by header
+directory entries.  No partitions may overlap with the volume header.
+Also do not change its type and make some file system on it, since
+you will lose the partition table.  Use this type of label only when
+working with Linux on IRIX/SGI machines or IRIX/SGI disks under Linux.
+<p>
+A DOS type partition table can describe an unlimited number
+of partitions. In sector 0 there is room for the description
+of 4 partitions (called &#145;primary&#146;). One of these may be an
+extended partition; this is a box holding logical partitions,
+with descriptors found in a linked list of sectors, each
+preceding the corresponding logical partitions.
+The four primary partitions, present or not, get numbers 1-4.
+Logical partitions start numbering from 5.
+<p>
+In a DOS type partition table the starting offset and the size
+of each partition is stored in two ways: as an absolute number
+of sectors (given in 32 bits) and as a Cylinders/Heads/Sectors
+triple (given in 10+8+6 bits). The former is OK - with 512-byte
+sectors this will work up to 2 TB. The latter has two different
+problems. First of all, these C/H/S fields can be filled only
+when the number of heads and the number of sectors per track
+are known. Secondly, even if we know what these numbers should be,
+the 24 bits that are available do not suffice.
+DOS uses C/H/S only, Windows uses both, Linux never uses C/H/S.
+<p>
+If possible,
+<b>fdisk</b> will obtain the disk geometry automatically.  This is not
+necessarily the physical disk geometry (indeed, modern disks do not
+really have anything like a physical geometry, certainly not something
+that can be described in simplistic Cylinders/Heads/Sectors form),
+but is the disk geometry that MS-DOS uses for the partition table.
+<p>
+Usually all goes well by default, and there are no problems if
+Linux is the only system on the disk. However, if the disk has
+to be shared with other operating systems, it is often a good idea
+to let an fdisk from another operating system make at least one
+partition. When Linux boots it looks at the partition table, and
+tries to deduce what (fake) geometry is required for good
+cooperation with other systems.
+<p>
+Whenever a partition table is printed out, a consistency check is performed
+on the partition table entries.  This check verifies that the physical and
+logical start and end points are identical, and that the partition starts
+and ends on a cylinder boundary (except for the first partition).
+<p>
+Some versions of MS-DOS create a first partition which does not begin
+on a cylinder boundary, but on sector 2 of the first cylinder.
+Partitions beginning in cylinder 1 cannot begin on a cylinder boundary, but
+this is unlikely to cause difficulty unless you have OS/2 on your machine.
+<p>
+A sync() and a BLKRRPART ioctl() (reread partition table from disk)
+are performed before exiting when the partition table has been updated.
+Long ago it used to be necessary to reboot after the use of fdisk.
+I do not think this is the case anymore - indeed, rebooting too quickly
+might cause loss of not-yet-written data. Note that both the kernel
+and the disk hardware may buffer data.
+<p>
+<h1 class="manpages">DOS 6.x WARNING</h1>
+<p>
+The DOS 6.x FORMAT command looks for some information in the first
+sector of the data area of the partition, and treats this information
+as more reliable than the information in the partition table.  DOS
+FORMAT expects DOS FDISK to clear the first 512 bytes of the data area
+of a partition whenever a size change occurs.  DOS FORMAT will look at
+this extra information even if the /U flag is given -- we consider
+this a bug in DOS FORMAT and DOS FDISK.
+<p>
+The bottom line is that if you use fdisk to change the size of a
+DOS partition table entry, then you must also use
+<b>dd</b> to zero the first 512 bytes of that partition before using DOS FORMAT to
+format the partition.  For example, if you were using disk to make a DOS
+partition table entry for /dev/sda1, then (after exiting fdisk
+and rebooting Linux so that the partition table information is valid) you
+would use the command "dd if=/dev/zero of=/dev/sda1 bs=512 count=1" to zero
+the first 512 bytes of the partition.
+<p>
+<b>BE EXTREMELY CAREFUL</b> if you use the
+<b>dd</b> command, since a small typo can make all of the data on your disk useless.
+<p>
+For best results, you should always use an OS-specific partition table
+program.  For example, you should make DOS partitions with the DOS FDISK
+program and Linux partitions with the Linux fdisk program.
+<p>
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>-b </b><i>sectorsize</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specify the sector size of the disk. Valid values are 512, 1024, or 2048.
+(Recent kernels know the sector size. Use this only on old kernels or
+to override the kernel&#146;s ideas.)
+</td></tr>
+<tr valign="top"><td>
+<b>-C </b><i>cyls</i> </td><td valign="bottom">
+Specify the number of cylinders of the disk.
+I have no idea why anybody would want to do so.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-H </b><i>heads</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specify the number of heads of the disk. (Not the physical number,
+of course, but the number used for partition tables.)
+Reasonable values are 255 and 16.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-S </b><i>sects</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specify the number of sectors per track of the disk.
+(Not the physical number, of course, but the number used for
+partition tables.)
+A reasonable value is 63.
+</td></tr>
+<tr valign="top"><td>
+<b>-l</b> </td><td valign="bottom">
+List the partition tables for the specified devices and then exit.
+If no devices are given, those mentioned in
+<i>/proc/partitions</i> (if that exists) are used.
+</td></tr>
+<tr valign="top"><td>
+<b>-u</b> </td><td valign="bottom">
+When listing partition tables, give sizes in sectors instead
+of cylinders.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-s </b><i>partition</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The
+<i>size</i> of the partition (in blocks) is printed on the standard output.
+</td></tr>
+<tr valign="top"><td>
+<b>-v</b> </td><td valign="bottom">
+Print version number of
+<b>fdisk</b> program and exit.
+</td></tr>
+</table>
+<h1 class="manpages">BUGS</h1>
+There are several *fdisk programs around.
+Each has its problems and strengths.
+Try them in the order
+<b>parted</b>, <b>fdisk</b>, <b>sfdisk</b>. <p>
+The IRIX/SGI type disklabel is currently not supported by the kernel.
+Moreover, IRIX/SGI header directories are not fully supported yet.
+<p>
+The option &#145;dump partition table to file&#146; is missing.
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="mkfs.htm">mkfs (8)</a></p></li>
+<li><p><a href="parted.htm">parted (8)</a></p></li>
+<li><p><a href="sfdisk.htm">sfdisk (8)</a></p></li>
+</ul>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion4b77.html?tutorial=unix_commands&amp;file=fdisk.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/fdisk.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:38 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

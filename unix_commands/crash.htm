@@ -1,0 +1,700 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/crash.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>crash - Unix, Linux Command</title>
+<meta name="Description" Content="crash - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>crash - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+crash - Analyze Linux crash data or a live system
+<h1 class="manpages">SYNOPSIS</h1>
+<b>crash</b> [
+<b>-h</b> [
+<i>opt</i> ]
+]
+[
+<b>-v</b> ]
+[
+<b>-s</b> ]
+[
+<b>-i </b><i>file</i> ]
+[
+<b>-d </b><i>num</i> ]
+[
+<b>-S</b> ]
+[
+<i>mapfile</i> ]
+[
+<i>namelist</i> ]
+[
+<i>dumpfile</i> ]
+<h1 class="manpages">DESCRIPTION</h1>
+<b>Crash</b> is a tool for interactively analyzing the state of the Linux system
+while it is running, or after a kernel crash has occurred and a
+core dump has been created by the Red Hat
+<i>netdump,</i> <i>diskdump,</i> <i>kdump,</i> or
+<i>xendump</i> facilities.  It is loosely based on the SVR4 UNIX crash
+command, but has been significantly enhanced
+by completely merging it with the
+<i>gdb</i> debugger. The marriage of the two effectively combines the
+kernel-specific nature of the traditional UNIX crash utility with the
+source code level debugging capabilities of
+<i>gdb.</i> <p>
+The current set of commands consist of common kernel core analysis tools
+such as kernel stack back traces of all processes, source code disassembly,
+formatted kernel structure and variable displays, virtual memory data,
+dumps of linked-lists, etc., along with several commands that delve
+deeper into specific kernel subsystems.  Appropriate
+<i>gdb</i> commands may also be entered, which in
+turn are passed on to the gdb module for execution.
+<p>
+The crash utility is designed to be independent of Linux version
+dependencies. When new kernel source code impacts the
+correct functionality of crash and its command set, the utility will
+be updated to recognize new kernel code changes, while
+maintaining backwards compatibility with earlier releases.
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-h</b><i> opt</i> </td><td valign="bottom">
+<b>Crash</b> displays a help message.  If the optional
+<i>opt</i> argument is
+a
+<b>crash</b> command name, the help page for that command is displayed.  If it is
+the string "input", a page describing the various
+<b>crash</b> command line input options is displayed.  If it is the string "output", a
+page describing command line output options is displayed.
+</td></tr>
+<tr valign="top"><td>
+<b>-v</b> </td><td valign="bottom">
+<b>Crash</b> displays the versions of the original gdb and crash libraries
+that make up the
+<b>crash</b> executable.
+</td></tr>
+<tr valign="top"><td>
+<b>-s</b> </td><td valign="bottom">
+<b>Crash</b> does not display any version, GPL, or crash initialization data during startup.  It
+proceeds directly to the "crash&gt;" prompt.
+</td></tr>
+<tr valign="top"><td>
+<b>-i</b><i> file</i> </td><td valign="bottom">
+<b>Crash</b> reads and executes the crash command(s) contained in
+<i>file</i> before accepting any user input.
+</td></tr>
+<tr valign="top"><td>
+<b>-d</b><i> num</i> </td><td valign="bottom">
+<b>Crash</b> sets its internal debug level.
+The higher the number, the more debugging data will be printed while
+<b>crash</b> runs.
+</td></tr>
+<tr valign="top"><td>
+<b>-S</b> </td><td valign="bottom">
+<b>Crash</b> uses "/boot/System.map" as the
+<i>mapfile</i>. </td></tr>
+<tr valign="top"><td colspan="2">
+<i>namelist</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This is a pathname to an uncompressed kernel image
+(a vmlinux file) that has been compiled with the "-g" option,
+or that has an accessible, associated, debuginfo file.
+If the
+<i>dumpfile</i> argument is entered, then this argument must also be used.  If the
+<i>namelist</i> argument is not entered and no
+<i>dumpfile</i> argument is entered,
+<b>crash</b> will search in several typical directories
+for a kernel namelist that matches the live system.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>mapfile</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+If the live system kernel, or the kernel from which the
+<i>dumpfile</i> was derived, was not compiled with the -g switch, then the additional
+<i>mapfile</i> argument is required.  It may be either the associated System.map file, or
+the non-debug kernel namelist.  However, if the
+<i>mapfile</i> argument is used, then the
+<i>namelist</i> argument must be a kernel namelist of a similar kernel
+version that was built with the -g switch.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>dumpfile</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This is a pathname to a kernel memory core dump
+file.  If the
+<i>dumpfile</i> argument is not entered, the session will be invoked on the live system
+using /dev/mem, which usually requires root privileges.
+</td></tr>
+</table>
+<h1 class="manpages">COMMANDS</h1>
+Each crash command generally falls into one of the following categories:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<i>Symbolic display</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Displays of kernel text/data, which take full advantage of the power of
+<i>gdb</i> to format and display data structures symbolically.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>System state</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The majority of crash commands come consist of a set of "kernel-aware"
+commands, which delve into various kernel subsystems on a system-wide
+or per-task basis.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>Utility functions</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+A set of useful helper commands serving various purposes, some simple,
+others quite powerful.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>Session control</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Commands that control the crash session itself.
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+The following alphabetical list consists of a very simple overview of each crash command.
+However, since individual commands often have several options resulting in
+significantly different output, it is suggested that the full description
+of each command be viewed by entering the command
+<b>crash -h </b><i>command</i>, or during a crash session by simply entering
+<b></b><i>help command</i>. </td></tr>
+<tr valign="top"><td>
+<i>*</i> </td><td valign="bottom">
+"pointer to" is shorthand for either the
+<i>struct</i> or
+<i>union</i> commands.  It displays the contents of a kernel structure or union.
+</td></tr>
+<tr valign="top"><td>
+<i>alias</i> </td><td valign="bottom">
+creates a single-word alias for a command.
+</td></tr>
+<tr valign="top"><td>
+<i>ascii</i> </td><td valign="bottom">
+displays an ascii chart or translates a numeric value into its ascii components.
+</td></tr>
+<tr valign="top"><td>
+<i>bt</i> </td><td valign="bottom">
+displays a task&#146;s kernel-stack backtrace.  If it is given the
+<i>-a</i> option, it displays the stack traces of the active tasks on all CPUs.
+It is often used with the
+<i>foreach</i> command to display the backtraces of all tasks with one command.
+</td></tr>
+<tr valign="top"><td>
+<i>btop</i> </td><td valign="bottom">
+translates a byte value (physical offset) to it&#146;s page number.
+</td></tr>
+<tr valign="top"><td>
+<i>dev</i> </td><td valign="bottom">
+displays data concerning the character and block device
+assignments, I/O port usage, I/O memory usage, and PCI device data.
+</td></tr>
+<tr valign="top"><td>
+<i>dis</i> </td><td valign="bottom">
+disassembles memory, either entire kernel functions, from a
+location for a specified number of instructions, or from the start of a
+function up to a specified memory location.
+</td></tr>
+<tr valign="top"><td>
+<i>eval</i> </td><td valign="bottom">
+evalues an expression or numeric type and displays the result
+in hexadecimal, decimal, octal and binary.
+</td></tr>
+<tr valign="top"><td>
+<i>exit</i> </td><td valign="bottom">
+causes
+<b>crash</b> to exit.
+</td></tr>
+<tr valign="top"><td>
+<i>extend</i> </td><td valign="bottom">
+dynamically loads or unloads crash extension shared object
+libraries.
+</td></tr>
+<tr valign="top"><td>
+<i>files</i> </td><td valign="bottom">
+displays information about open files in a context.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>foreach</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+repeats a specified command for the specified (or all) tasks
+in the system.
+</td></tr>
+<tr valign="top"><td>
+<i>fuser</i> </td><td valign="bottom">
+displays the tasks using the specified file or socket.
+</td></tr>
+<tr valign="top"><td>
+<i>gdb</i> </td><td valign="bottom">
+passes its argument to the underlying
+<i>gdb</i> program.  It is useful for executing
+<i>GDB</i> commands that have the same name as
+<i>crash</i> commands.
+</td></tr>
+<tr valign="top"><td>
+<i>help</i> </td><td valign="bottom">
+alone displays the command menu; if followed by a command name, a full
+description of a command, its options, and examples are displayed.
+Its output is far more complete and useful than this man page.
+</td></tr>
+<tr valign="top"><td>
+<i>irq</i> </td><td valign="bottom">
+displays data concerning interrupt request numbers and
+bottom-half interrupt handling.
+</td></tr>
+<tr valign="top"><td>
+<i>kmem</i> </td><td valign="bottom">
+displays information about the use of kernel memory.
+</td></tr>
+<tr valign="top"><td>
+<i>list</i> </td><td valign="bottom">
+displays the contents of a linked list.
+</td></tr>
+<tr valign="top"><td>
+<i>log</i> </td><td valign="bottom">
+displays the kernel log_buf contents in chronological order.
+</td></tr>
+<tr valign="top"><td>
+<i>mach</i> </td><td valign="bottom">
+displays data specific to the machine type.
+</td></tr>
+<tr valign="top"><td>
+<i>mod</i> </td><td valign="bottom">
+displays information about the currently installed kernel modules,
+or adds or deletes symbolic or debugging information about specified kernel
+modules.
+</td></tr>
+<tr valign="top"><td>
+<i>mount</i> </td><td valign="bottom">
+displays information about the currently-mounted filesystems.
+</td></tr>
+<tr valign="top"><td>
+<i>net</i> </td><td valign="bottom">
+display various network related data.
+</td></tr>
+<tr valign="top"><td>
+<i>p</i> </td><td valign="bottom">
+passes its arguments to the
+<i>gdb</i> "print" command for evaluation and display.
+</td></tr>
+<tr valign="top"><td>
+<i>ps</i> </td><td valign="bottom">
+displays process status for specified, or all, processes
+in the system.
+</td></tr>
+<tr valign="top"><td>
+<i>pte</i> </td><td valign="bottom">
+translates the hexadecimal contents of a PTE into its physical
+page address and page bit settings.
+</td></tr>
+<tr valign="top"><td>
+<i>ptob</i> </td><td valign="bottom">
+translates a page frame number to its byte value.
+</td></tr>
+<tr valign="top"><td>
+<i>ptov</i> </td><td valign="bottom">
+translates a hexadecimal physical address into a kernel
+virtual address.
+</td></tr>
+<tr valign="top"><td>
+<i>q</i> </td><td valign="bottom">
+is an alias for the "exit" command.
+</td></tr>
+<tr valign="top"><td>
+<i>rd</i> </td><td valign="bottom">
+displays the contents of memory, with the output formatted
+in several different manners.
+</td></tr>
+<tr valign="top"><td>
+<i>repeat</i> </td><td valign="bottom">
+repeats a command indefinitely, optionally delaying a given
+number of seconds between each command execution.
+</td></tr>
+<tr valign="top"><td>
+<i>runq</i> </td><td valign="bottom">
+displays the tasks on the run queue.
+</td></tr>
+<tr valign="top"><td>
+<i>search</i> </td><td valign="bottom">
+searches a range of user or kernel memory space for given value.
+</td></tr>
+<tr valign="top"><td>
+<i>set</i> </td><td valign="bottom">
+either sets a new context, or gets the current context for
+display.
+</td></tr>
+<tr valign="top"><td>
+<i>sig</i> </td><td valign="bottom">
+displays signal-handling data of one or more tasks.
+</td></tr>
+<tr valign="top"><td>
+<i>struct</i> </td><td valign="bottom">
+displays either a structure definition or the contents of a
+kernel structure at a specified address.
+</td></tr>
+<tr valign="top"><td>
+<i>swap</i> </td><td valign="bottom">
+displays information about each configured swap device.
+</td></tr>
+<tr valign="top"><td>
+<i>sym</i> </td><td valign="bottom">
+translates a symbol to its virtual address, or a static
+kernel virtual address to its symbol -- or to a symbol-plus-offset value,
+if appropriate.
+</td></tr>
+<tr valign="top"><td>
+<i>sys</i> </td><td valign="bottom">
+displays system-specific data.
+</td></tr>
+<tr valign="top"><td>
+<i>task</i> </td><td valign="bottom">
+displays the contents of a task_struct.
+</td></tr>
+<tr valign="top"><td>
+<i>timer</i> </td><td valign="bottom">
+displays the timer queue entries, both old- and new-style,
+in chronological order.
+</td></tr>
+<tr valign="top"><td>
+<i>union</i> </td><td valign="bottom">
+is similar to the
+<i>struct</i> command, except that it works on kernel unions.
+</td></tr>
+<tr valign="top"><td>
+<i>vm</i> </td><td valign="bottom">
+displays basic virtual memory information of a context.
+</td></tr>
+<tr valign="top"><td>
+<i>vtop</i> </td><td valign="bottom">
+translates a user or kernel virtual address to its physical
+address.
+</td></tr>
+<tr valign="top"><td>
+<i>waitq</i> </td><td valign="bottom">
+walks the wait queue list displaying the tasks which
+are blocked on the specified wait queue.
+</td></tr>
+<tr valign="top"><td>
+<i>whatis</i> </td><td valign="bottom">
+displays the definition of structures, unions, typedefs or
+text/data symbols.
+</td></tr>
+<tr valign="top"><td>
+<i>wr</i> </td><td valign="bottom">
+modifies the contents of memory.  When writing to memory on
+a live system, this command should obviously be used with great care.
+</td></tr>
+</table>
+<h1 class="manpages">FILES</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<i>.crashrc</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Initialization commands.  The file can be located in the user&#146;s
+<b>HOME</b> directory and/or the current directory.  Commands found in the
+<i>.crashrc</i> file in the
+<b>HOME</b> directory are executed before those in the current directory&#146;s
+<i>.crashrc</i> file.
+</td></tr>
+</table>
+<h1 class="manpages">ENVIRONMENT</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>EDITOR</b> </td><td valign="bottom">
+Command input is read using
+<b>readline</b>(3). 
+If
+<b>EDITOR</b> is set to
+<i>emacs</i> or
+<i>vi</i> then suitable keybindings are used.  If
+<b>EDITOR</b> is not set, then
+<i>vi</i> is used.  This can be overridden by
+<b>set vi</b> or
+<b>set emacs</b> commands located in a
+<i>.crashrc</i> file, or by entering
+<b>-e emacs</b> on the
+<b>crash</b> command line.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>CRASHPAGER</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+If
+<b>CRASHPAGER</b> is set, its value is used as the name of the program to which command output will be sent.
+If not, then command output is sent to
+<b>/usr/bin/less -E -X</b> by default.
+</td></tr>
+</table>
+<h1 class="manpages">NOTES</h1>
+<p>
+If
+<b>crash</b> does not work, look for a newer version: kernel evolution frequently makes
+<b>crash</b> updates necessary.
+<p>
+The command
+<b>set scroll off</b> will cause output to be sent directly to
+the terminal rather than through a paging program.  This is useful,
+for example, if you are running
+<b>crash</b> in a window of
+<b>emacs</b>. <h1 class="manpages">AUTHOR</h1>
+Dave Anderson &lt;<a href="mailto:anderson@redhat.com">anderson@redhat.com</a>&gt; wrote
+<b>crash</b> <table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+Jay Fenlason &lt;<a href="mailto:fenlason@redhat.com">fenlason@redhat.com</a>&gt; wrote this man page.
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+The
+<i>help</i> command within
+<b>crash</b> provides more complete and accurate documentation than this man page.
+<p>
+<i><a href="http://people.redhat.com/anderson">http://people.redhat.com/anderson</a></i> - the home page of the
+<b>crash</b> utility.
+<p>
+<b>netdump</b>(8),
+<b>gdb</b>(1)
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion2aec.html?tutorial=unix_commands&amp;file=crash.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/crash.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

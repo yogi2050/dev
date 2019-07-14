@@ -1,0 +1,225 @@
+<html>
+
+<!-- Mirrored from www.tutorialspoint.com/makefile/makefile_recompile.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:01:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>Makefile Recompilation</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="Keywords" content="SOAP,XML-RPC,Web Services, AJAX, VB.NET,.NET,  JAVA, J2EE, Unix Makefile,PERL,XSL,XHTML,ASP,ADO,VBScript,DOM,SQL,COLORS,PHP,CGI,Authoring,Programming,Training,Learning, Beginner's guide,Primer,Lessons,School,Howto,Reference,Examples,Samples,Source Code,Tags,Demos,Tips,Links,FAQ,Tag list,Forms,Frames,HTML Entities, HTML Color,w3c,Cascading Style Sheets, CSS, Active Server Pages, ASP, Dynamic Html,DHTML, C++, C#, C, Pro*C, Internet,Database,Development,Web building,Webmaster,Html Guide" />
+<meta name="Description" content="Free tutorials and references for SOAP XML-RPC Web Services AJAX JavaScript J2EE ASP.NET VB.NET  C# C++ C Pro*C Makefile PERL Parrot Ruby JAVA J2EE CORBA BILLING CRM OM DLL PHP CGI MySQL PL/SQL SDLC CSS ASP DHTML Flash" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base >
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<table border=0 class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="18" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br>
+&nbsp;&nbsp;<b>Makefile Tutorial</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="index.html">Makefile HOME</a></li>
+<li><a class="left" target="_top" href="why_makefile.html" >Why Makefile ?</a></li>
+<li><a class="left" target="_top" href="makefile_macros.html" >Makefile Macros</a></li>
+<li><a class="left" target="_top" href="makefile_dependencies.html" >Make Dependencies</a></li>
+<li><a class="left" target="_top" href="makefile_rules.html" >Makefile Rules</a></li>
+<li><a class="left" target="_top" href="makefile_suffix_rules.html" >Suffix Rules</a></li>
+<li><a class="left" target="_top" href="makefile_directives.html" >Makefile Directives</a></li>
+<li><a class="left" target="_top" href="makefile_recompile.html" ><b>Re-Compilation</b></a></li>
+<li><a class="left" target="_top" href="makefile_features.html" >Other Features</a></li>
+<li><a class="left" target="_top" href="makefile_example.html" >Makefile Example</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</b></a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br><br>
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+<td  style="width:10px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/about_advertising.html">Advertising</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle"  cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>Makefile Recompilation</h1>
+<a href="makefile_directives.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="makefile_features.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<hr />
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="top">
+<p>The <i>make</i> program is an intelligent utility and works based on the changes you do in your source files. If you have four files main.cpp, hello.cpp, factorial.cpp and functions.h. Here all the reamining files are dependent on functions.h and main.cpp is dependent on hello.cpp and factorical.cpp. So if you make any change in functions.h then make will recompile all the source files to generate new object files. But if you make any change main.cpp, as this is not dependent of any other fil, then in this case only main.cpp file will be recompiled and hellp.cpp and factorial.cpp will not be recompiled.
+
+<p>While compiling a file, make checks its object file and comprare the time staps, if source file has newer time stamp than object file then it will generate new object file assuimg that source file has been changed.</p>
+<hr>
+<h2>Avoiding Recompilation</h2>
+<p>There may be a project consisted of thausands of files. Sometimes you may have changed a source file but you do not want to recompile all the files that depend on it. For example, suppose you add a macro or a declaration to a header file that many other files depend on. Being conservative, make assumes that any change in the header file requires recompilation of all dependent files, but you know that they do not need to be recompiled and you would rather not waste the time waiting for them to compile.</p>
+<p>If you anticipate the problem before changing the header file, you can use the `-t' flag. This flag tells make not to run the commands in the rules, but rather to mark the target up to date by changing its last-modification date. You would follow this procedure:</p>
+<ol>
+<li><p>Use the command `make' to recompile the source files that really need recompilation.</p>
+<li><p>Make the changes in the header files.</p>
+<li><p>Use the command `make -t' to mark all the object files as up to date. The next time you run make, the changes in the header files will not cause any recompilation.</p>
+</ol>
+
+<p>If you have already changed the header file at a time when some files do need recompilation, it is too late to do this. Instead, you can use the `-o file' flag, which marks a specified file as "old". This means that the file itself will not be remade, and nothing else will be remade on its account. Follow this procedure:</p>
+<oL>
+<li><p>Recompile the source files that need compilation for reasons independent of the particular header file, with `make -o headerfile'. If several header files are involved, use a separate `-o' option for each header file.</p>
+<li><p>Touch all the object files with `make -t'.</p>
+</td>
+</tr>
+</table>
+<br />
+<hr />
+<a href="makefile_directives.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="makefile_features.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion30e2.html?tutorial=makefile&amp;file=makefile_recompile.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<hr />
+<br />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/makefile/makefile_recompile.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:01:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

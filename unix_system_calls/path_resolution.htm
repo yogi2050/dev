@@ -1,0 +1,429 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_system_calls/path_resolution.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>path_resolution() - Unix, Linux System Call</title>
+<meta name="Description" Content="path_resolution() - Unix, Linux System Calls Manual Pages (Manpages) ,  Learning fundamentals of UNIX in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - System Calls</b></a></li>
+<li><a class="left" target="_top" href="../unix_commands/index.html">Unix - Commands List</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>path_resolution() - Unix, Linux System Call</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+Unix/Linux path resolution - find the file referred to by a filename
+<h1 class="manpages">DESCRIPTION</h1>
+Some Unix/Linux system calls have as parameter one or more filenames.
+A filename (or pathname) is resolved as follows.
+<p>
+<h2><i>Step 1: Start of the resolution process</i></h2>
+If the pathname starts with the &#146;/&#146; character, the starting lookup directory
+is the root directory of the current process. (A process inherits its
+root directory from its parent. Usually this will be the root directory
+of the file hierarchy. A process may get a different root directory
+by use of the
+<b>chroot</b>(2)
+system call. A process may get an entirely private namespace in case
+it &#151; or one of its ancestors &#151; was started by an invocation of the
+<b>clone</b>(2)
+system call that had the CLONE_NEWNS flag set.)
+This handles the &#146;/&#146; part of the pathname.
+<p>
+If the pathname does not start with the &#146;/&#146; character, the
+starting lookup directory of the resolution process is the current working
+directory of the process. (This is also inherited from the parent.
+It can be changed by use of the
+<b>chdir</b>(2)
+system call.)
+<p>
+Pathnames starting with a &#146;/&#146; character are called absolute pathnames.
+Pathnames not starting with a &#146;/&#146; are called relative pathnames.
+<p>
+<h2><i>Step 2: Walk along the path</i></h2>
+Set the current lookup directory to the starting lookup directory.
+Now, for each non-final component of the pathname, where a component
+is a substring delimited by &#146;/&#146; characters, this component is looked up
+in the current lookup directory.
+<p>
+If the process does not have search permission on the current lookup directory,
+an EACCES error is returned ("Permission denied").
+<p>
+If the component is not found, an ENOENT error is returned
+("No such file or directory").
+<p>
+If the component is found, but is neither a directory nor a symbolic link,
+an ENOTDIR error is returned ("Not a directory").
+<p>
+If the component is found and is a directory, we set the
+current lookup directory to that directory, and go to the
+next component.
+<p>
+If the component is found and is a symbolic link (symlink), we first
+resolve this symbolic link (with the current lookup directory
+as starting lookup directory). Upon error, that error is returned.
+If the result is not a directory, an ENOTDIR error is returned.
+If the resolution of the symlink is successful and returns a directory,
+we set the current lookup directory to that directory, and go to
+the next component.
+Note that the resolution process here involves recursion.
+In order to protect the kernel against stack overflow, and also
+to protect against denial of service, there are limits on the
+maximum recursion depth, and on the maximum number of symlinks
+followed. An ELOOP error is returned when the maximum is
+exceeded ("Too many levels of symbolic links").
+<p>
+<h2><i>Step 3: Find the final entry</i></h2>
+The lookup of the final component of the pathname goes just like
+that of all other components, as described in the previous step,
+with two differences: (i) the final component need not be a
+directory (at least as far as the path resolution process is concerned &#151;
+it may have to be a directory, or a non-directory, because of
+the requirements of the specific system call), and (ii) it
+is not necessarily an error if the component is not found &#151;
+maybe we are just creating it. The details on the treatment
+of the final entry are described in the manual pages of the specific
+system calls.
+<p>
+<h2><i>. and ..</i></h2>
+By convention, every directory has the entries "." and "..",
+which refer to the directory itself and to its parent directory,
+respectively.
+<p>
+The path resolution process will assume that these entries have
+their conventional meanings, regardless of whether they are
+actually present in the physical filesystem.
+<p>
+One cannot walk down past the root: "/.." is the same as "/".
+<p>
+<h2><i>Mount points</i></h2>
+After a "mount dev path" command, the pathname "path" refers to
+the root of the filesystem hierarchy on the device "dev", and no
+longer to whatever it referred to earlier.
+<p>
+One can walk out of a mounted filesystem: "path/.." refers to
+the parent directory of "path",
+outside of the filesystem hierarchy on "dev".
+<p>
+<h2><i>Trailing slashes</i></h2>
+If a pathname ends in a &#146;/&#146;, that forces resolution of the preceding
+component as in Step 2: it has to exist and resolve to a directory.
+Otherwise a trailing &#146;/&#146; is ignored.
+(Or, equivalently, a pathname with a trailing &#146;/&#146; is equivalent to
+the pathname obtained by appending &#146;.&#146; to it.)
+<p>
+<h2><i>Final symlink</i></h2>
+If the last component of a pathname is a symbolic link, then it
+depends on the system call whether the file referred to will be
+the symbolic link or the result of path resolution on its contents.
+For example, the system call
+<b>lstat</b>(2)
+will operate on the symlink, while
+<b>stat</b>(2)
+operates on the file pointed to by the symlink.
+<p>
+<h2><i>Length limit</i></h2>
+There is a maximum length for pathnames. If the pathname (or some
+intermediate pathname obtained while resolving symbolic links)
+is too long, an ENAMETOOLONG error is returned ("File name too long").
+<p>
+<h2><i>Empty pathname</i></h2>
+In the original Unix, the empty pathname referred to the current directory.
+Nowadays POSIX decrees that an empty pathname must not be resolved
+successfully. Linux returns ENOENT in this case.
+<p>
+<h2><i>Permissions</i></h2>
+The permission bits of a file consist of three groups of three bits, cf.
+<b>chmod</b>(1)
+and
+<b>stat</b>(2).
+The first group of three is used when the effective user ID of
+the current process equals the owner ID of the file. The second group
+of three is used when the group ID of the file either equals the
+effective group ID of the current process, or is one of the
+supplementary group IDs of the current process (as set by
+<b>setgroups</b>(2)).
+When neither holds, the third group is used.
+<p>
+Of the three bits used, the first bit determines read permission,
+the second write permission, and the last execute permission
+in case of ordinary files, or search permission in case of directories.
+<p>
+Linux uses the fsuid instead of the effective user ID in permission checks.
+Ordinarily the fsuid will equal the effective user ID, but the fsuid can be
+changed by the system call
+<b>setfsuid</b>(2).
+<p>
+(Here "fsuid" stands for something like "file system user ID".
+The concept was required for the implementation of a user space
+NFS server at a time when processes could send a signal to a process
+with the same effective user ID. It is obsolete now. Nobody should use
+<b>setfsuid</b>(2).)
+<p>
+Similarly, Linux uses the fsgid ("file system group ID")
+instead of the effective group ID. See
+<b>setfsgid</b>(2).
+<p>
+<h2><i>Bypassing permission checks: superuser and capabilities</i></h2>
+On a traditional Unix system, the superuser
+(<i>root</i>, user ID 0) is all-powerful, and bypasses all permissions restrictions
+when accessing files.
+<p>
+On Linux, superuser privileges are divided into capabilities (see
+<b>capabilities</b>(7)).
+Two capabilities are relevant for file permissions checks:
+CAP_DAC_OVERRIDE and CAP_DAC_READ_SEARCH.
+(A process has these capabilities if its fsuid is 0.)
+<p>
+The CAP_DAC_OVERRIDE capability overrides all permission checking,
+but only grants execute permission when at least one
+of the file&#146;s three execute permission bits is set.
+<p>
+The CAP_DAC_READ_SEARCH capability grants read and search permission
+on directories, and read permission on ordinary files.
+<p>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion2b3b.html?tutorial=unix_system_calls&amp;file=path_resolution.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_system_calls/path_resolution.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

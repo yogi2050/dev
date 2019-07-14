@@ -1,0 +1,952 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/cyradm.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:32 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>cyradm - Unix, Linux Command</title>
+<meta name="Description" Content="cyradm - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>cyradm - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- Not defining reserved macro 'Sh' ! -->
+<!-- ignored unsupported tag .tr -->
+<!-- ignored unsupported tag .ie -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .el\{ -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .rr -->
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .hy -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .tm -->
+<h1 class="manpages">NAME</h1>
+cyradm - Cyrus administration shell, alter ego of Cyrus::IMAP::Shell
+<h1 class="manpages">SYNOPSIS</h1>
+<!-- ignored unsupported tag .tm -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+  $ cyradm [--user user] [--[no]rc] [--systemrc file] [--userrc file] &#92;
+  &gt; [--port n] [--auth mechanism] [--tlskey keyfile] [--notls] &#92;
+  &gt; [--server] server
+</tt></pre></td></tr>
+</table>
+<p>
+but possibly
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+  $ perl -MCyrus::IMAP::Shell -e &#146;run("myscript")&#146;
+</tt></pre></td></tr>
+</table>
+<p>
+or even (not recommended)
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+  use Cyrus::IMAP::Admin::Shell;
+</tt></pre></td></tr>
+</table>
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+  run(&#146;myscriptname&#146;);
+</tt></pre></td></tr>
+</table>
+<h1 class="manpages">DESCRIPTION</h1>
+<!-- ignored unsupported tag .tm -->
+This module implements <b>cyradm</b> in Perl.  It is a shell around
+Cyrus::IMAP::Admin.  Commands are provided in both Tcl-compatible
+forms and GNU-style long option forms.
+<h1 class="manpages">COMMANDS</h1>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+<tt>authenticate</tt> [<tt>--minssf</tt> <i>N</i>] [<tt>--maxssf</tt> <i>N</i>] [<tt>--mechanisms</tt> <i>list</i>] [<i>user</i>]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>auth</tt> [<tt>--minssf</tt> <i>N</i>] [<tt>--maxssf</tt> <i>N</i>] [<tt>--mechanisms</tt> <i>list</i>] [<i>user</i>]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>login</tt> [<tt>--minssf</tt> <i>N</i>] [<tt>--maxssf</tt> <i>N</i>] [<tt>--mechanisms</tt> <i>list</i>] [<i>user</i>]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Authenticate to server.  You must already be connected to a server and
+Cyrus imapd will refuse to allow you to re-authenticate once you have
+authenticated once.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>chdir</tt> <i>directory</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>cd</tt> <i>directory</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Change directory.  A <tt>pwd</tt> builtin is not provided, but the default command
+action will run <tt>pwd</tt> from a shell if invoked.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>createmailbox</tt> [<tt>--partition</tt> <i>partition</i>] <i>mailbox</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>createmailbox</tt> <i>mailbox</i> <i>partition</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>create</tt> [<tt>--partition</tt> <i>partition</i>] <i>mailbox</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>create</tt> <i>mailbox</i> <i>partition</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>cm</tt> [<tt>--partition</tt> <i>partition</i>] <i>mailbox</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>cm</tt> <i>mailbox</i> <i>partition</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Create a mailbox on the default or a specified partition.  Both old-style
+and getopt-style usages are accepted (combining them will produce an error).
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>deleteaclmailbox</tt> <i>mailbox</i> <i>id</i> [...]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>deleteacl</tt> <i>mailbox</i> <i>id</i> [...]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>dam</tt> <i>mailbox</i> <i>id</i> [...]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Remove ACLs from the specified mailbox.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>deletemailbox</tt> <i>mailbox</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>delete</tt> <i>mailbox</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>dm</tt> <i>mailbox</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Delete the specified mailbox.
+<p>
+<!-- ignored unsupported tag .if -->
+Administrators do not have implicit delete rights on mailboxes.  Use the
+<b>setaclmailbox</b> command to grant the <tt>x</tt> permission to your
+principal if you need to delete a mailbox you do not own.
+<p>
+<!-- ignored unsupported tag .if -->
+Note that the online help admits to an optional host argument.  This argument
+is not currently used, and will be rejected with an error if specified; it
+is reserved for <font size="-1">IMSP</font>.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>disconnect</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>disc</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Disconnect from the current server.  The prompt will revert to <tt>cyradm&gt;</tt>.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>exit</tt> [<i>number</i>]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>quit</tt> [<i>number</i>]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Exit <b>cyradm</b>, optionally with a specific exit status; the exit status of the
+last command will be used if one is not specified.
+</td></tr>
+<tr valign="top"><td width=4%>
+help [command]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+? [command]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Show help for <tt>command</tt> or all commands.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>info</tt> [<i>mailbox</i>]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Display the mailbox/server metadata.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>listaclmailbox</tt> <i>mailbox</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>listacl</tt> <i>mailbox</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>lam</tt> <i>mailbox</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+List ACLs on the specified mailbox.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>listmailbox</tt> [<tt>--subscribed</tt>] [<i>pattern</i> [<i>reference</i>]]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>list</tt> [<tt>--subscribed</tt>] [<i>pattern</i> [<i>reference</i>]]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>lm</tt> [<tt>--subscribed</tt>] [<i>pattern</i> [<i>reference</i>]]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+List all, or all subscribed, mailboxes matching the specified pattern.
+The pattern may have embedded wildcards <tt><blink><blink>\(</blink>aq</blink>*<blink><blink>\(</blink>aq</blink></tt> or <tt><blink><blink>\(</blink>aq</blink>%<blink><blink>\(</blink>aq</blink></tt>, which match
+anything or anything except the separator character, respectively.
+<p>
+<!-- ignored unsupported tag .if -->
+Mailboxes returned will be relative to the specified reference if one
+is specified.  This allows a mailbox list to be limited to a particular
+hierarchy.
+<p>
+<!-- ignored unsupported tag .if -->
+In some cases when the <tt><blink><blink>\(</blink>aq</blink>%<blink><blink>\(</blink>aq</blink></tt> wildcard is used to end a pattern, it may
+match an entry which is not a mailbox but which contains other mailboxes.
+In this case, the entry will be parenthesized to indicate that it is a
+root for other mailboxes, as opposed to a mailbox itself.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>listquota</tt> <i>root</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>lq</tt> <i>root</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+List quotas on specified root.  If the specified mailbox path does not have
+a quota assigned, an error will be raised; see <i>listquotaroot</i> for a way to
+find the quota root for a mailbox.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>listquotaroot</tt> <i>mailbox</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>lqm</tt> <i>mailbox</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>lqr</tt> <i>mailbox?</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+show quota roots and quotas for mailbox
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>mboxconfig</tt> <i>mailbox</i> <i>attribute</i> <i>value</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>mboxcfg</tt> <i>mailbox</i> <i>attribute</i> <i>value</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set mailbox metadata.  A value of none will remove the attribute.
+The currently supported attributes are:
+<!-- ignored unsupported tag .ie -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+<tt>comment</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Sets a comment or description associated with the mailbox.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>condstore</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Enables the <font size="-1">IMAP</font> <font size="-1">CONDSTORE</font> extension (modification sequences) on the mailbox.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>expire</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Sets the number of days after which messages will be expired from the mailbox.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>sieve</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Indicates the name of the global sieve script that should be run when
+a message is delivered to the shared mailbox (not used for personal
+mailboxes).
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>squat</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Indicates that the mailbox should have a squat index created for it.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>news2mail</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Sets an email address to which messages injected into the server via <font size="-1">NNTP</font>
+will be sent.
+</td></tr>
+</table>
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>renamemailbox</tt> [<tt>--partition</tt> <i>partition</i>] <i>oldname</i> <i>newname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>rename</tt> [<tt>--partition</tt> <i>partition</i>] <i>oldname</i> <i>newname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>renm</tt> [<tt>--partition</tt> <i>partition</i>] <i>oldname</i> <i>newname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>renamemailbox</tt> <i>oldname</i> <i>newname</i> [<i>partition</i>]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>rename</tt> <i>oldname</i> <i>newname</i> [<i>partition</i>]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>renm</tt> <i>oldname</i> <i>newname</i> [<i>partition</i>]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Rename the specified mailbox, optionally moving it to a different partition.
+Both old-style and getopt-style usages are accepted; combining them will
+produce an error.
+</td></tr>
+<tr valign="top"><td width=4%>
+server [--noauthenticate] [server]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+connect [--noauthenticate] [server]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+servername [--noauthenticate] [server]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+With no arguments, show the current server.  With an argument, connect to that
+server.  It will prompt for automatic login unless the <tt>--noauthenticate</tt>
+option is specified.  (This may change; in particular, either automatic
+authentication will be removed or all <tt>authenticate</tt> options will be added.)
+<p>
+<!-- ignored unsupported tag .if -->
+When connected to a server, <b>cyradm</b>&#146;s prompt changes from <tt>cyradm&gt;</tt> to
+<tt>servername&gt;</tt>, where <i>servername</i> is the fully qualified domain name
+of the connected server.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>setaclmailbox</tt> <i>mailbox</i> <i>id</i> <i>rights</i> [<i>id</i> <i>rights</i> ...]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>setacl</tt> <i>mailbox</i> <i>id</i> <i>rights</i> [<i>id</i> <i>rights</i> ...]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>sam</tt> <i>mailbox</i> <i>id</i> <i>rights</i> [<i>id</i> <i>rights</i> ...]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set ACLs on a mailbox.  The <font size="-1">ACL</font> may be one of the special strings <tt>none</tt>,
+<tt>read</tt> (<tt>lrs</tt>), <tt>post</tt> (<tt>lrsp</tt>), <tt>append</tt> (<tt>lrsip</tt>), <tt>write</tt>
+(<tt>lrswipkxte</tt>), <tt>delete</tt> (<tt>lrxte</tt>), or <tt>all</tt> (<tt>lrswipkxte</tt>), or
+any combinations of the <font size="-1">ACL</font> codes:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+l
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Lookup (mailbox is visible to <font size="-1">LIST/LSUB</font>, <font size="-1">SUBSCRIBE</font> mailbox)
+</td></tr>
+<tr valign="top"><td width=4%>
+r
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Read (<font size="-1">SELECT/EXAMINE</font> the mailbox, perform <font size="-1">STATUS</font>)
+</td></tr>
+<tr valign="top"><td width=4%>
+s
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Seen (set/clear &#92;SEEN flag via <font size="-1">STORE</font>, also set &#92;SEEN flag during
+<br />
+    <font size="-1">APPEND/COPY/FETCH</font> BODY[...])
+</td></tr>
+<tr valign="top"><td width=4%>
+w
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Write flags other than &#92;SEEN and &#92;DELETED
+</td></tr>
+<tr valign="top"><td width=4%>
+i
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Insert (<font size="-1">APPEND</font>, <font size="-1">COPY</font> destination)
+</td></tr>
+<tr valign="top"><td width=4%>
+p
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Post (send mail to mailbox)
+</td></tr>
+<tr valign="top"><td width=4%>
+k
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Create mailbox (<font size="-1">CREATE</font> new sub-mailboxes, parent for new mailbox in <font size="-1">RENAME</font>)
+</td></tr>
+<tr valign="top"><td width=4%>
+x
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Delete mailbox (<font size="-1">DELETE</font> mailbox, old mailbox name in <font size="-1">RENAME</font>)
+</td></tr>
+<tr valign="top"><td width=4%>
+t
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Delete messages (set/clear &#92;DELETED flag via <font size="-1">STORE</font>, also set &#92;DELETED
+<br />
+    flag during <font size="-1">APPEND/COPY</font>)
+</td></tr>
+<tr valign="top"><td width=4%>
+e
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Perform <font size="-1">EXPUNGE</font> and expunge as part of <font size="-1">CLOSE</font>
+</td></tr>
+<tr valign="top"><td width=4%>
+a
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Administer (<font size="-1">SETACL/DELETEACL/GETACL/LISTRIGHTS</font>)
+</td></tr>
+</table>
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>setinfo</tt> <i>attribute</i> <i>value</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set server metadata.  A value of none will remove the attribute.
+The currently supported attributes are:
+<!-- ignored unsupported tag .ie -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+<tt>motd</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Sets a message of the day.  The message gets displayed as an <font size="-1">ALERT</font> after
+authentication.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>comment</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Sets a comment or description associated with the server.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>admin</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Sets the administrator email address for the server.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>shutdown</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Sets a shutdown message.  The message gets displayed as an <font size="-1">ALERT</font> and
+all users are disconnected from the server (subsequent logins are disallowed).
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>expire</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Sets the number of days after which messages will be expired from the
+server (unless overridden by a mailbox annotation).
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>squat</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Indicates that all mailboxes should have a squat indexes created for
+them (unless overridden by a mailbox annotation).
+</td></tr>
+</table>
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>setquota</tt> <i>root</i> <i>resource</i> <i>value</i> [<i>resource</i> <i>value</i> ...]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>sq</tt> <i>root</i> <i>resource</i> <i>value</i> [<i>resource</i> <i>value</i> ...]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set a quota on the specified root, which may or may not be an actual mailbox.
+The only <i>resource</i> understood by <b>Cyrus</b> is <tt>STORAGE</tt>.  The <i>value</i> may
+be the special string <tt>none</tt> which will remove the quota.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>version</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>ver</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Display the version info of the current server.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>xfermailbox</tt> [<tt>--partition</tt> <i>partition</i>] <i>mailbox</i> <i>server</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>xfer</tt> [<tt>--partition</tt> <i>partition</i>] <i>mailbox</i> <i>server</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>xfermailbox</tt> <i>mailbox</i> <i>server</i> [<i>partition</i>]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>xfer</tt> <i>mailbox</i> <i>server</i> [<i>partition</i>]
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Transfer (relocate) the specified mailbox to a different server.
+Both old-style and getopt-style usages are accepted; combining them will
+produce an error.
+</td></tr>
+</table>
+<h1 class="manpages">NOTES</h1>
+<!-- ignored unsupported tag .tm -->
+GNU-style long options must be given in their entirety; Tcl-style options
+may be abbreviated.
+<p>
+Tcl-style options are provided as a compatibility feature.  They will
+probably go away in the future.
+<p>
+Multiple commands can be given on a line, separated by <tt><blink><blink>\(</blink>aq</blink>;<blink><blink>\(</blink>aq</blink></tt> characters.
+<p>
+All commands set an exit status, which at present is not useful.
+<p>
+Unknown commands are passed to a subshell for execution.
+<p>
+The Tcl version of <b>cyradm</b> is used for scripting as well as interactively.
+While this is possible to a limited extent by use of the <tt>run</tt> method,
+scripting would normally be done with <tt>Cyrus::IMAP::Admin</tt>, which is far
+more flexible than either interactive <tt>cyradm</tt> or the Tcl scripting
+mechanism for Cyrus.
+<p>
+<b>cyradm</b> understands <b>/bin/sh</b>-style redirection:  any command can have
+its standard or error output redirected, with all <b>sh</b>-style redirections
+(except <tt>&lt;&gt;</tt>) supported.  It does not currently understand pipes
+or backgrounding.
+<p>
+If the <tt>Term::Readline::Perl</tt> or <tt>Term::Readline::GNU</tt> modules are
+available, <b>cyradm</b> will use it.
+<p>
+An alias facility is implemented internally, but no access is currently
+provided to it.  This will change, if only to allow some of the predefined
+aliases to be removed if they conflict with useful shell commands.
+<h1 class="manpages">AUTHOR</h1>
+<!-- ignored unsupported tag .tm -->
+Brandon S. Allbery, <a href="mailto:allbery@ece.cmu.edu">allbery@ece.cmu.edu</a>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+Cyrus::IMAP::Admin
+Term::ReadLine
+<i>sh</i>(1), <i>perl</i>(1), <i>imapd</i>(8).
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversiond1d8.html?tutorial=unix_commands&amp;file=cyradm.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/cyradm.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:32 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,166 @@
+<html>
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=perl&file=perl_error_handeling.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>Error Handling in PERL</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="Keywords" content="Perl, Programming, Language, Object Oriented Perl, Perl Variables, Scalars, Arrays, Hash, File I/O, Looping, Regular Expressions, Subroutines, Coding Standard, Writing Modules, Process Management, Socket, Examples, References, Special Variables, Syntax Overview, Advanced Perl, Tutorial, Tutorials, Operators, Built-in Functions, Quiz">
+<meta name="Description" content="Free tutorials and references for PERL Programming Common Gateway Interface (CGI) Database Interface (DBI) with PERL Object Oriented Perl and Perl Variables Scalars Arrays Hash File I/O Looping Regular Expressions Subroutines Coding Standard Writing Modules Process Management Socket Examples References Special Variables Syntax Overview Advanced Perl Tutorial Perl Operators Built-in Functions and Quiz">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base >
+<link rel="stylesheet" type="text/css" href="../print.css"/>
+</head>
+<body>
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+<h1>Error Handling in PERL</h1>
+<a href="../perl/perl_format.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../perl/perl_coding_standard.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<br />
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr><td valign="top">
+<p>You can identify and trap an error in a number of different ways. Its very easy to trap errors in Perl and then handling them properly. Here are few methods which can be used.</p>
+<h2>Using if</h2>
+<p>The <b>if</b> statement is the obvious choice when you need to check the return value from a statement; for example:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+if (open(DATA,$file))
+{
+   ...
+}
+else
+{
+   die "Error: Couldn't open the file $!";
+}
+</pre></td></tr></table>
+<p>Here variable $! returns the actual error message</p>
+<p>Alternatively, we can reduce the statement to one line in situations where it makes sense to do so; for example:</P>
+<table class="src" cellpadding=5><tr><td><pre>
+die "Error: Something went wrong\n" if (error());
+</pre></td></tr></table>
+<h2>Using unless</h2>
+<p>The <b>unless</b> function is the logical opposite to if: statements can completely bypass the success status and only be executed if the expression returns false. For example:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+unless(chdir("/etc"))
+{
+   die "Error: Can't change directory!: $!";
+}
+</pre></td></tr></table>
+<p>The <b>unless</b> statement is best used when you want to raise an error or alternative only if the expression fails. The statement also makes sense when used in a single-line statement:</P>
+<table class="src" cellpadding=5><tr><td><pre>
+die "Error: Can't change directory!: $!" unless(chdir("/etc"));
+</pre></td></tr></table>
+<p>Here we die only if the chdir operation fails, and it reads nicely.</p>
+<h2>Using the Conditional Operator</h2>
+<p>For very short tests, you can use the conditional operator:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+print(exists($hash{value}) ? 'There' : 'Missing',"\n");
+</pre></td></tr></table>
+<p>It's not quite so clear here what we are trying to achieve, but the effect is the same as using an if or unless statement. The conditional operator is best used when you want to quickly return one of two values within an expression or statement.</p>
+<h1>The Warn Function</h1>
+<p>The warn function just raises a warning, a message is printed to STDERR, but no further action is taken.</P>
+<table class="src" cellpadding=5><tr><td><pre>
+chdir('/etc') or warn "Can't change directory";
+</pre></td></tr></table>
+<h1>The Die Function</h1>
+<p>The die function works just like warn, except that it also calls exit. Within a normal
+script, this function has the effect of immediately terminating execution.</p>
+<table class="src" cellpadding=5><tr><td><pre>
+chdir('/etc') or die "Can't change directory";
+</pre></td></tr></table>
+<h1>Reporting Errors Within Modules</h1>
+<p>There are two different situations we need to be able to handle:</p>
+<ul>
+<li><p>Reporting an error in a module that quotes the module's filename and line
+number - this is useful when debugging a module, or when you specifically
+want to raise a module-related, rather than script-related, error.</p></li>
+<li><p>Reporting an error within a module that quotes the caller's information so that
+you can debug the line within the script that caused the error. Errors raised in
+this fashion are useful to the end-user, because they highlight the error in
+relation to the calling script's origination line.</P></li>
+</ul>
+<p>The warn and die functions work slightly differently than you would expect when
+called from within a module. For example, the simple module:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+package T;
+
+require Exporter;
+@ISA = qw/Exporter/;
+@EXPORT = qw/function/;
+use Carp;
+
+sub function
+{
+   warn "Error in module!";
+}
+1;
+</pre></td></tr></table>
+<p>when called from a script</p>
+<table class="src" cellpadding=5><tr><td><pre>
+use T;
+function();
+
+It will produce following result
+Error in module! at T.pm line 11.
+</pre></td></tr></table>
+<p>This is more or less what you might expect, but not necessarily what you want.  From a module programmer's perspective, the information is useful because it helps to point to a bug within the module itself. For an end-user, the information provided is fairly useless, and for all but the hardened programmer, it completely pointless.</p>
+<p>The solution for such problems is the Carp module, which provides a simplified method for reporting errors within modules that return information about the calling script. The Carp module provides four functions: carp, cluck, croak, and confess. These functions are discussed below</p>
+
+<h2>The Carp Function</h2>
+<p>The carp function is the basic equivalent of warn and prints the message to
+STDERR without actually exiting the script and printing the script name.</p>
+<table class="src" cellpadding=5><tr><td><pre>
+carp "Error in module!";
+
+This would result in
+Error in module! at test.pl line 3
+</pre></td></tr></table>
+<h2>The Cluck Function</h2>
+<p>The cluck function is a sort of supercharged carp, it follows the same basic principle
+but also prints a stack trace of all the modules that led to the function being called,
+including information on the original script.</p>
+<table class="src" cellpadding=5><tr><td><pre>
+cluck "Error in module!";
+
+This would result in something like
+Error in module! at T.pm line 11
+    T::function() called at S.pm line 13
+    S::raise() called at test.pl line 3
+</pre></td></tr></table>
+<h2>The Croak Function</h2>
+<p>The croak function is the equivalent of die, except that it reports the caller one level up. Like die, this function also exits the script after reporting the error to STDERR:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+croak "Definitely didn't work";
+
+This would result in
+Error in module! at S.pm line 13
+</pre></td></tr></table>
+<p>As with carp, the same basic rules apply regarding the including of line and file information according to the warn and die functions.</p>
+<h2>The Confess Function</h2>
+<p>The confess function is like cluck; it calls die and then prints a stack trace all the way
+up to the origination script.</p>
+<table class="src" cellpadding=5><tr><td><pre>
+confess "Failed around about there";
+
+This would result in
+Error in module! at T.pm line 11
+   T::function() called at S.pm line 13
+   S::raise() called at t2.pl line 3
+</pre></td></tr></table>
+
+
+</td></tr></table>
+<br>
+<a href="../perl/perl_format.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../perl/perl_coding_standard.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=perl&file=perl_error_handeling.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

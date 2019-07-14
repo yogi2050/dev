@@ -1,0 +1,683 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/nc.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:05 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>nc - Unix, Linux Command</title>
+<meta name="Description" Content="nc - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>nc - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+<b> nc</b>
+- arbitrary TCP and UDP connections and listens
+<h1 class="manpages">SYNOPSIS</h1>
+<b> nc</b>
+<br />.Bk -words
+[-<b>46DdhklnrStUuvz</b>]
+[-<b>i</b><i> interval</i>]
+[-<b>p</b><i> source_port</i>]
+[-<b>s</b><i> source_ip_address</i>]
+[-<b>T</b><i> ToS</i>]
+[-<b>w</b><i> timeout</i>]
+[-<b>X</b><i> proxy_protocol</i>]
+[Xo
+-<b>x</b> <i> proxy_address[:</i>
+<i> port]]</i>
+[<i>hostname</i>]
+[<i>port[</i><i>s</i>]]
+<br />.Ek 
+<h1 class="manpages">DESCRIPTION</h1>
+The
+<b>nc</b>
+(or
+<b> netcat</b>)
+utility is used for just about anything under the sun involving TCP
+or UDP.
+It can open TCP connections, send UDP packets, listen on arbitrary
+TCP and UDP ports, do port scanning, and deal with both IPv4 and
+IPv6.
+Unlike
+<b>telnet</b>(1),
+<b>nc</b>
+scripts nicely, and separates error messages onto standard error instead
+of sending them to standard output, as
+<b>telnet</b>(1)
+does with some.
+<p>
+Common uses include:
+<p>
+<ul>
+<LI>simple TCP proxies
+<LI>shell-script based HTTP clients and servers
+<LI>network daemon testing
+<LI>a SOCKS or HTTP ProxyCommand for
+<b>ssh</b>(1)
+<LI>and much, much more
+</ul>
+<p>
+The options are as follows:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>-<b>4</b> 
+</td><td>
+Forces
+<b>nc</b>
+to use IPv4 addresses only.
+</td></tr>
+<tr valign="top"><td>-<b>6</b> 
+</td><td>
+Forces
+<b>nc</b>
+to use IPv6 addresses only.
+</td></tr>
+<tr valign="top"><td>-<b>D</b> 
+</td><td>
+Enable debugging on the socket.
+</td></tr>
+<tr valign="top"><td>-<b>d</b> 
+</td><td>
+Do not attempt to read from stdin.
+</td></tr>
+<tr valign="top"><td>-<b>h</b> 
+</td><td>
+Prints out
+<b>nc</b>
+help.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>i</b> <i> interval</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specifies a delay time interval between lines of text sent and received.
+Also causes a delay time between connections to multiple ports.
+</td></tr>
+<tr valign="top"><td>-<b>k</b> 
+</td><td>
+Forces
+<b>nc</b>
+to stay listening for another connection after its current connection
+is completed.
+It is an error to use this option without the
+-<b>l</b> 
+option.
+</td></tr>
+<tr valign="top"><td>-<b>l</b> 
+</td><td>
+Used to specify that
+<b>nc</b>
+should listen for an incoming connection rather than initiate a
+connection to a remote host.
+It is an error to use this option in conjunction with the
+-<b>p</b> ,
+-<b>s</b> ,
+or
+-<b>z</b> 
+options.
+Additionally, any timeouts specified with the
+-<b>w</b> 
+option are ignored.
+</td></tr>
+<tr valign="top"><td>-<b>n</b> 
+</td><td>
+Do not do any DNS or service lookups on any specified addresses,
+hostnames or ports.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>p</b> <i> source_port</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specifies the source port
+<b>nc</b>
+should use, subject to privilege restrictions and availability.
+It is an error to use this option in conjunction with the
+-<b>l</b> 
+option.
+</td></tr>
+<tr valign="top"><td>-<b>r</b> 
+</td><td>
+Specifies that source and/or destination ports should be chosen randomly
+instead of sequentially within a range or in the order that the system
+assigns them.
+</td></tr>
+<tr valign="top"><td>-<b>S</b> 
+</td><td>
+Enables the RFC 2385 TCP MD5 signature option.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>s</b> <i> source_ip_address</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specifies the IP of the interface which is used to send the packets.
+It is an error to use this option in conjunction with the
+-<b>l</b> 
+option.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>T</b> <i> ToS</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specifies IP Type of Service (ToS) for the connection.
+Valid values are the tokens
+"lowdelay",
+"throughput",
+"reliability",
+or an 8-bit hexadecimal value preceded by
+"0x".
+</td></tr>
+<tr valign="top"><td>-<b>t</b> 
+</td><td>
+Causes
+<b>nc</b>
+to send RFC 854 DON&#146;T and WON&#146;T responses to RFC 854 DO and WILL requests.
+This makes it possible to use
+<b>nc</b>
+to script telnet sessions.
+</td></tr>
+<tr valign="top"><td>-<b>U</b> 
+</td><td>
+Specifies to use Unix Domain Sockets.
+</td></tr>
+<tr valign="top"><td>-<b>u</b> 
+</td><td>
+Use UDP instead of the default option of TCP.
+</td></tr>
+<tr valign="top"><td>-<b>v</b> 
+</td><td>
+Have
+<b>nc</b>
+give more verbose output.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>w</b> <i> timeout</i>
+</td></tr><tr><td>&nbsp;</td><td>
+If a connection and stdin are idle for more than
+<i> timeout</i>
+seconds, then the connection is silently closed.
+The
+-<b>w</b> 
+flag has no effect on the
+-<b>l</b> 
+option, i.e.
+<b>nc</b>
+will listen forever for a connection, with or without the
+-<b>w</b> 
+flag.
+The default is no timeout.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>X</b> <i> proxy_version</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Requests that
+<b>nc</b>
+should use the specified protocol when talking to the proxy server.
+Supported protocols are
+"4"
+(SOCKS v.4),
+"5"
+(SOCKS v.5)
+and
+"connect"
+(HTTPS proxy).
+If the protocol is not specified, SOCKS version 5 is used.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>x</b> <i> proxy_address[:</i>
+<i> port]</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Requests that
+<b>nc</b>
+should connect to
+<i> hostname</i>
+using a proxy at
+<i> proxy_address</i>
+and
+<i> port</i>.
+If
+<i> port</i>
+is not specified, the well-known port for the proxy protocol is used (1080
+for SOCKS, 3128 for HTTPS).
+</td></tr>
+<tr valign="top"><td>-<b>z</b> 
+</td><td>
+Specifies that
+<b>nc</b>
+should just scan for listening daemons, without sending any data to them.
+It is an error to use this option in conjunction with the
+-<b>l</b> 
+option.
+</td></tr>
+</table>
+<p>
+<i> hostname</i>
+can be a numerical IP address or a symbolic hostname
+(unless the
+-<b>n</b> 
+option is given).
+In general, a hostname must be specified,
+unless the
+-<b>l</b> 
+option is given
+(in which case the local host is used).
+<p>
+<i> port </i>[<i>s</i>]
+can be single integers or ranges.
+Ranges are in the form nn-mm.
+In general,
+a destination port must be specified,
+unless the
+-<b>U</b> 
+option is given
+(in which case a socket must be specified).
+<h1 class="manpages">CLIENT/SERVER MODEL</h1>
+It is quite simple to build a very basic client/server model using
+<b>nc</b>.
+On one console, start
+<b>nc</b>
+listening on a specific port for a connection.
+For example:
+<p>
+<p>&nbsp; &nbsp; <tt> $ nc -l 1234</tt><p>
+
+<p>
+<b>nc</b>
+is now listening on port 1234 for a connection.
+On a second console
+(or a second machine),
+connect to the machine and port being listened on:
+<p>
+<p>&nbsp; &nbsp; <tt> $ nc 127.0.0.1 1234</tt><p>
+
+<p>
+There should now be a connection between the ports.
+Anything typed at the second console will be concatenated to the first,
+and vice-versa.
+After the connection has been set up,
+<b>nc</b>
+does not really care which side is being used as a
+&#39;server&#39;
+and which side is being used as a
+&#39;client&#39;.
+The connection may be terminated using an
+<tt> EOF</tt>
+(&#39;^D&#39;).
+<h1 class="manpages">DATA TRANSFER</h1>
+The example in the previous section can be expanded to build a
+basic data transfer model.
+Any information input into one end of the connection will be output
+to the other end, and input and output can be easily captured in order to
+emulate file transfer.
+<p>
+Start by using
+<b>nc</b>
+to listen on a specific port, with output captured into a file:
+<p>
+<p>&nbsp; &nbsp; <tt> $ nc -l 1234 &gt; filename.out</tt><p>
+
+<p>
+Using a second machine, connect to the listening
+<b>nc</b>
+process, feeding it the file which is to be transferred:
+<p>
+<p>&nbsp; &nbsp; <tt> $ nc host.example.com 1234 &lt; filename.in</tt><p>
+
+<p>
+After the file has been transferred, the connection will close automatically.
+<h1 class="manpages">TALKING TO SERVERS</h1>
+It is sometimes useful to talk to servers
+"by hand"
+rather than through a user interface.
+It can aid in troubleshooting,
+when it might be necessary to verify what data a server is sending
+in response to commands issued by the client.
+For example, to retrieve the home page of a web site:
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+$ echo -n "GET / HTTP/1.0&#92;r&#92;n&#92;r&#92;n" | nc host.example.com 80
+</pre></td></tr>
+</table>
+<p>
+Note that this also displays the headers sent by the web server.
+They can be filtered, using a tool such as
+<b>sed</b>(1),
+if necessary.
+<p>
+More complicated examples can be built up when the user knows the format
+of requests required by the server.
+As another example, an email may be submitted to an SMTP server using:
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+$ nc localhost 25 &lt;&lt; EOF
+HELO host.example.com
+MAIL FROM: &lt;<a href="mailto:user@host.example.com">user@host.example.com</a>&gt;
+RCPT TO: &lt;<a href="mailto:user2@host.example.com">user2@host.example.com</a>&gt;
+DATA
+Body of email.
+&#46;
+QUIT
+EOF
+</pre></td></tr>
+</table>
+<h1 class="manpages">PORT SCANNING</h1>
+It may be useful to know which ports are open and running services on
+a target machine.
+The
+-<b>z</b> 
+flag can be used to tell
+<b>nc</b>
+to report open ports,
+rather than initiate a connection.
+For example:
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+$ nc -z host.example.com 20-30
+Connection to host.example.com 22 port [tcp/ssh] succeeded!
+Connection to host.example.com 25 port [tcp/smtp] succeeded!
+</pre></td></tr>
+</table>
+<p>
+The port range was specified to limit the search to ports 20 - 30.
+<p>
+Alternatively, it might be useful to know which server software
+is running, and which versions.
+This information is often contained within the greeting banners.
+In order to retrieve these, it is necessary to first make a connection,
+and then break the connection when the banner has been retrieved.
+This can be accomplished by specifying a small timeout with the
+-<b>w</b> 
+flag, or perhaps by issuing a
+"<tt>QUIT</tt>"
+command to the server:
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+$ echo "QUIT" | nc host.example.com 20-30
+SSH-1.99-OpenSSH_3.6.1p2
+Protocol mismatch.
+220 host.example.com IMS SMTP Receiver Version 0.84 Ready
+</pre></td></tr>
+</table>
+<h1 class="manpages">EXAMPLES</h1>
+Open a TCP connection to port 42 of host.example.com, using port 31337 as
+the source port, with a timeout of 5 seconds:
+<p>
+<p>&nbsp; &nbsp; <tt> $ nc -p 31337 -w 5 host.example.com 42</tt><p>
+
+<p>
+Open a UDP connection to port 53 of host.example.com:
+<p>
+<p>&nbsp; &nbsp; <tt> $ nc -u host.example.com 53</tt><p>
+
+<p>
+Open a TCP connection to port 42 of host.example.com using 10.1.2.3 as the
+IP for the local end of the connection:
+<p>
+<p>&nbsp; &nbsp; <tt> $ nc -s 10.1.2.3 host.example.com 42</tt><p>
+
+<p>
+Create and listen on a Unix Domain Socket:
+<p>
+<p>&nbsp; &nbsp; <tt> $ nc -lU /var/tmp/dsocket</tt><p>
+
+<p>
+Connect to port 42 of host.example.com via an HTTP proxy at 10.2.3.4,
+port 8080.
+This example could also be used by
+<b>ssh</b>(1);
+see the
+<b> ProxyCommand</b>
+directive in
+<b>ssh_config</b>(5)
+for more information.
+<p>
+<p>&nbsp; &nbsp; <tt> $ nc -x10.2.3.4:8080 -Xconnect host.example.com 42</tt><p>
+
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<b>ssh</b>(1)
+<h1 class="manpages">AUTHORS</h1>
+Original implementation by *Hobbit*
+&lt;<a href="mailto:hobbit@avian.org">hobbit@avian.org</a>&gt;.
+<!-- Need break --><br />
+Rewritten with IPv6 support by
+<br />.An Eric Jackson Aq <a href="mailto:ericj@monkey.org">ericj@monkey.org</a> .
+<h1 class="manpages">CAVEATS</h1>
+UDP port scans will always succeed
+(i.e. report the port as open),
+rendering the
+-<b>uz</b> 
+combination of flags relatively useless.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion7459.html?tutorial=unix_commands&amp;file=nc.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/nc.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:05 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

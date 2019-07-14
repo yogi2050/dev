@@ -1,0 +1,506 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_sockets/socket_core_functions.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:01:37 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>Socket Core Functions</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="Keywords" content="Learning, Unix, Sockets, Programming, C, Language, Networking" />
+<meta name="Description" content="Socket Core Functions - Learning Unix Sockets in simple steps with C porgramming language. Build Client and Server Networking Applications using Unix Sockets." />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="18" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Learning Unix Socket</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="index.html">Unix Socket HOME</a></li>
+<li><a class="left" target="_top" href="what_is_socket.html">What is a Socket?</a></li>
+<li><a class="left" target="_top" href="network_addresses.html">Network Addresses</a></li> 
+<li><a class="left" target="_top" href="network_host_names.html">Network Host Names</a></li>
+<li><a class="left" target="_top" href="client_server_model.html">Client Server Model</a></li>
+<li><a class="left" target="_top" href="socket_structures.html">Socket Structures</a></li>
+<li><a class="left" target="_top" href="ports_and_services.html">Ports and Services</a></li>
+<li><a class="left" target="_top" href="network_byte_orders.html">Network Byte Orders</a></li>
+<li><a class="left" target="_top" href="ip_address_functions.html">IP Address Functions</a></li>
+<li><a class="left" target="_top" href="socket_core_functions.html"><b>Socket Core Functions</b></a></li>
+<li><a class="left" target="_top" href="socket_helper_functions.html">Socket Helper Functions</a></li>
+<li><a class="left" target="_top" href="socket_server_example.html">Socket Server Example</a></li>
+<li><a class="left" target="_top" href="socket_client_example.html">Socket Client Example</a></li>
+<li><a class="left" target="_top" href="socket_summary.html">Socket Summary</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Socket Quick Guide</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="socket_quick_guide.html" >Socket Quick Guide</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Socket Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="socket_useful_resources.html" >Socket Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top" align="left" width="100%">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:10px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle"  cellpadding="5" cellspacing="0">
+<tr>
+<td align="left">
+<!-- PRINTING STARTS HERE -->
+<h1>Socket Core Functions</h1>
+<hr />
+<a href="ip_address_functions.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="socket_helper_functions.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<hr />
+<p>This tutorial describes the core socket functions required to write a complete TCP client and server.</p>
+<p>Following is the diagram showing complete Client and Server interaction:</p>
+<center>
+<img src="../images/socket_client_server.html" alt="Socket Client Server" />
+</center>
+<h1>The <i>socket</i> Function:</h1>
+<p>To perform network I/O, the first thing a process must do is call the socket function, specifying the type of communication protocol desired and protocol family etc.</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+#include &lt;sys/types.h&gt;
+#include &lt;sys/socket.h&gt;
+
+int socket (int family, int type, int protocol);
+</pre></td></tr>
+</table>
+<p>This call gives you a socket descriptor that you can use in later system calls or it gives you -1 on error.</p>
+<h2>Parameters:</h2>
+<p><b>family:</b> specifies the protocol family and is one of the constants shown below:</p>
+<table class="src" cellpadding="5" border="1">
+<tr><th>Family</th><th>Description</th></tr>
+<tr><td>AF_INET</td><td>IPv4 protocols</td></tr>
+<tr><td>AF_INET6</td><td>IPv6 protocols</td></tr>
+<tr><td>AF_LOCAL</td><td>Unix domain protocols</td></tr>
+<tr><td>AF_ROUTE</td><td>Routing Sockets</td></tr>
+<tr><td>AF_KEY</td><td>Ket socket</td></tr>
+</table>
+<p>This tutorial does not talk about other protocols except IPv4.</p>
+<p><b>type:</b> specifies kind of socket you want. It can take one of the following values:</p>
+<table class="src" cellpadding="5" border="1">
+<tr><th>Type</th><th>Description</th></tr>
+<tr><td>SOCK_STREAM</td><td>Stream socket</td></tr>
+<tr><td>SOCK_DGRAM</td><td>Datagram socket</td></tr>
+<tr><td>SOCK_SEQPACKET</td><td>Sequenced packet socket</td></tr>
+<tr><td>SOCK_RAW</td><td>Raw socket</td></tr>
+</table>
+<p><b>protocol:</b> argument should be set to the specific protocol type given below or 0 to select the system's default for the given
+combination of family and type:</p>
+<table class="src" cellpadding="5" border="1">
+<tr><th>Protocol</th><th>Description</th></tr>
+<tr><td>IPPROTO_TCP</td><td>TCP transport protocol</td></tr>
+<tr><td>IPPROTO_UDP</td><td>UDP transport protocol</td></tr>
+<tr><td>IPPROTO_SCTP</td><td>SCTP transport protocol</td></tr>
+</table>
+<h1>The <i>connect</i> Function:</h1>
+<p>The <i>connect</i> function is used by a TCP client to establish a connection with a TCP server.</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+#include &lt;sys/types.h&gt;
+#include &lt;sys/socket.h&gt;
+
+int connect(int sockfd, struct sockaddr *serv_addr, int addrlen);
+</pre></td></tr>
+</table>
+<p>This call returns 0 if it successfully connects to the server otherwise it gives you -1 on error.</p>
+<h2>Parameters:</h2>
+<ul>
+<li><p><b>sockfd:</b> is a socket descriptor returned by the socket function.</p></li>
+<li><p><b>serv_addr</b> is a pointer to struct sockaddr that contains destination IP address and port.</p></li>
+<li><p><b>addrlen</b> set it to sizeof(struct sockaddr).</p></li>
+</ul>
+<h1>The <i>bind</i> Function:</h1>
+<p>The <i>bind</i> function assigns a local protocol address to a socket. With the Internet protocols, the protocol address is the combination of either a 32-bit IPv4 address or a 128-bit IPv6 address, along with a 16-bit TCP or UDP port number. This function is called by TCP server only.</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+#include &lt;sys/types.h&gt;
+#include &lt;sys/socket.h&gt;
+
+int bind(int sockfd, struct sockaddr *my_addr,int addrlen);
+</pre></td></tr>
+</table>
+<p>This call returns 0 if it successfully binds to the address otherwise it gives you -1 on error.</p>
+<h2>Parameters:</h2>
+<ul>
+<li><p><b>sockfd:</b> is a socket descriptor returned by the socket function.</p></li>
+<li><p><b>my_addr</b> is a pointer to struct sockaddr that contains local IP address and port.</p></li>
+<li><p><b>addrlen</b> set it to sizeof(struct sockaddr).</p></li>
+</ul>
+<p>You can put your IP address and your port automatically:</p>
+<p>A 0 value  for port number means system will choose a random port and <i>INADDR_ANY</i> value for IP address means server's IP address will be assigned automatically.</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+server.sin_port = 0;  		     
+server.sin_addr.s_addr = INADDR_ANY;
+</pre></td></tr>
+</table>
+<p><b>NOTE:</b> As descript in Ports and Services tutorials, all ports bellow 1024 are reserved. So you can set a  port above 1024 and bellow 65535 unless the ones being used by other programs.</p>
+<h1>The  <i>listen</i> Function:</h1>
+<p>The <i>listen</i> function is called only by a TCP server and it performs two actions:</p>
+<ul>
+<li><p>The listen function converts an unconnected socket into a passive socket, indicating that the kernel should accept incoming connection requests directed to this socket.</p></li>
+<li><p>The second argument to this function specifies the maximum number of connections the kernel should queue for this socket.</p></li>
+</ul>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+#include &lt;sys/types.h&gt;
+#include &lt;sys/socket.h&gt;
+
+int listen(int sockfd,int backlog);
+</pre></td></tr>
+</table>
+<p>This call returns 0 on success otherwise it gives you -1 on error.</p>
+<h2>Parameters:</h2>
+<ul>
+<li><p><b>sockfd:</b> is a socket descriptor returned by the socket function.</p></li>
+<li><p><b>backlog</b> is the number of allowed connections.</p></li>
+</ul>
+<h1>The <i>accept</i> Function:</h1>
+<p>The <i>accept</i> function is called by a TCP server to return the next completed connection from the front of the completed connection queue. Following is the signature of the call:</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+#include &lt;sys/types.h&gt;
+#include &lt;sys/socket.h&gt;
+
+int accept (int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen);
+</pre></td></tr>
+</table>
+<p>This call returns non negative descriptor on success otherwise it gives you -1 on error. The returned decriptor is assumed to be a client socket descriptor and all read write operations will be done on this descripton to communicate with the client.</p>
+<h2>Parameters:</h2>
+<ul>
+<li><p><b>sockfd:</b> is a socket descriptor returned by the socket function.</p></li>
+<li><p><b>cliaddr</b> is a pointer to struct sockaddr that contains client IP address and port.</p></li>
+<li><p><b>addrlen</b> set it to sizeof(struct sockaddr).</p></li>
+</ul>
+<h1>The <i>send</i> Function:</h1>
+<p>The <i>send</i> function is used to send data over stream sockets or CONNECTED datagram sockets.	If you want to send data over UNCONNECTED datagram sockets you must use sendto() function.</p>
+<p>You can use <i>write()</i> system call to send the data. This call is explained in helper functions tutorial.</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+int send(int sockfd, const void *msg, int len, int flags);
+</pre></td></tr>
+</table>
+<p>This call returns the number of bytes sent out otherwise it will return -1 on error.</p>
+<h2>Parameters:</h2>
+<ul>
+<li><p><b>sockfd:</b> is a socket descriptor returned by the socket function.</p></li>
+<li><p><b>msg</b> is a pointer to the data you want to send.</p></li>
+<li><p><b>len</b> is the length of the data you want to send (in bytes).</p></li>
+<li><p><b>flags</b> is set to 0.</p></li>
+</ul>
+
+<h1>The <i>recv</i> Function:</h1>
+<p>The <i>recv</i> function is used to receive data over stream sockets or CONNECTED datagram sockets. If you want to receive data over UNCONNECTED datagram sockets you must use recvfrom().</p>
+<p>You can use <i>read()</i> system call to read the data. This call is explained in helper functions tutorial.</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+int recv(int sockfd, void *buf, int len, unsigned int flags);
+</pre></td></tr>
+</table>
+<p>This call returns the number of bytes read into the buffer otherwise it will return -1 on error.</p>
+<h2>Parameters:</h2>
+<ul>
+<li><p><b>sockfd:</b> is a socket descriptor returned by the socket function.</p></li>
+<li><p><b>buf</b> is the buffer to read the information into.</p></li>
+<li><p><b>len</b> is the maximum length of the buffer.</p></li>
+<li><p><b>flags</b> is set to 0.</p></li>
+</ul>
+<h1>The <i>sendto</i> Function:</h1>
+<p>The <i>sendto</i> function is used to send data over UNCONNECTED datagram sockets. Put simply, when you use scoket type as  SOCK_DGRAM</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+int sendto(int sockfd, const void *msg, int len, unsigned int flags,
+		   const struct sockaddr *to, int tolen);
+</pre></td></tr>
+</table>
+<p>This call returns the number of bytes sent otherwise it will return -1 on error.</p>
+<h2>Parameters:</h2>
+<ul>
+<li><p><b>sockfd:</b> is a socket descriptor returned by the socket function.</p></li>
+<li><p><b>msg</b> is a pointer to the data you want to send.</p></li>
+<li><p><b>len</b> is the length of the data you want to send (in bytes).</p></li>
+<li><p><b>flags</b> is set to 0.</p></li>
+<li><p><b>to</b> is a pointer to struct sockaddr for the host where data has to be sent.</p></li>
+<li><p><b>tolen</b> is set it to sizeof(struct sockaddr).</p></li>
+</ul>
+<h1>The <i>recvfrom</i> Function:</h1>
+<p>The <i>recvfrom</i> function is used to receive data from UNCONNECTED datagram sockets. Put simply, when you use scoket type as  SOCK_DGRAM</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+int recvfrom(int sockfd, void *buf, int len, unsigned int flags
+		     struct sockaddr *from, int *fromlen);
+</pre></td></tr>
+</table>
+<p>This call returns the number of bytes read into the buffer otherwise it will return -1 on error.</p>
+<h2>Parameters:</h2>
+<ul>
+<li><p><b>sockfd:</b> is a socket descriptor returned by the socket function.</p></li>
+<li><p><b>buf</b> is the buffer to read the information into.</p></li>
+<li><p><b>len</b> is the maximum length of the buffer.</p></li>
+<li><p><b>flags</b> is set to 0.</p></li>
+<li><p><b>from</b> is a pointer to struct sockaddr for the host where data has to be read.</p></li>
+<li><p><b>fromlen</b> is set it to sizeof(struct sockaddr).</p></li>
+</ul>
+<h1>The <i>close</i> Function:</h1>
+<p>The <i>close</i> function is used to close the communication between client and server.</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+int close( int sockfd );
+</pre></td></tr>
+</table>
+<p>This call returns  0 on success otherwise it will return -1 on error.</p>
+<h2>Parameters:</h2>
+<ul>
+<li><p><b>sockfd:</b> is a socket descriptor returned by the socket function.</p></li>
+</ul>
+<h1>The <i>shutdown</i> Function:</h1>
+<p>The <i>shutdown</i> function is used to gracefully close the communication between client and server. This function gives more control in caomparision of <i>close</i> function.</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+int shutdown(int sockfd, int how);
+</pre></td></tr>
+</table>
+<p>This call returns  0 on success otherwise it will return -1 on error.</p>
+<h2>Parameters:</h2>
+<ul>
+<li><p><b>sockfd:</b> is a socket descriptor returned by the socket function.</p></li>
+<li><p><b>how:</b> put one of the numbers:</p>
+<ul>
+<li><p><b>0</b> indicates receives disallowed,</p></li>
+<li><p><b>1</b> indicatesthat sends disallowed and</p></li>
+<li><p><b>2</b> indicates that sends and receives disallowed. When how is set to 2, it's the same thing as close().</p></li>
+</ul>
+</li>
+</ul>
+<h1>The <i>select</i> Function:</h1>
+<p>The <i>select</i> function indicates which of the specified  file descriptors  is ready for reading, ready for writing, or has an error condition pending.</p>
+<p>When an application calls <i>recv or recvfrom</i> it is blocked until data arrives for that socket. An application could be doing other useful processing while the incoming data stream is empty. Another situation is when an application receives data from multiple sockets.</p>
+<p>Calling <i>recv or recvfrom</i> on a socket that has no data in it's input queue prevents immediate reception of data from other sockets. The select function call solves this problem by allowing the program to poll all the socket handles to see if they are available for non-blocking reading and writing operations.</p>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+ int select(int  nfds,  fd_set  *readfds,  fd_set  *writefds,
+     fd_set *errorfds, struct timeval *timeout);
+</pre></td></tr>
+</table>
+<p>This call returns  0 on success otherwise it will return -1 on error.</p>
+<h2>Parameters:</h2>
+<ul>
+<li><p><b>nfds:</b> specifies the range of file descriptors to  be  tested.  The select() function tests file descriptors in the range of 0 to nfds-1</p></li>
+<li><p><b>readfds:</b>points  to an  object  of  type <i>fd_set</i> that on input specifies the file descriptors to be checked for being ready to  read,  and  on output indicates which file descriptors are ready to read. Can be NULL to indicate an empty set.</p></li>
+<li><p><b>writefds:</b>points  to an  object  of  type <i>fd_set</i> that on input specifies the file descriptors to be checked for being ready to write,  and  on output indicates which file descriptors are ready to write Can be NULL to indicate an empty set.</p></li>
+<li><p><b>exceptfds :</b>points to an  object  of  type <i>fd_set</i> that on input specifies the file descriptors to be checked for error conditions pending,  and  on output indicates which file descriptors have error conditions pending. Can be NULL to indicate an empty set.</p></li>
+<li><p><b>timeout  :</b>poins to a timeval struct that specifies how long the select call should poll the descriptors for an available I/O operation. If the timeout value is 0, then select will return immediately. If the timeout argument is NULL, then select will block until at least one file/socket handle is ready for an available I/O operation. Otherwise select will return after the amount of time in the timeout has elapsed OR when at least one file/socket descriptor is ready for an I/O operation.</p></li>
+</ul>
+<p>The return value from select is the number of handles specified in the file descriptor sets that are ready for I/O. If the time limit specified by the timeout field is reached, select return 0. The following macros exist for manipulating a file descriptor set:</p>
+<ul>
+<li><p><b>FD_CLR(fd, &amp;fdset):</b> Clears the bit for the file descriptor fd in the  file descriptor set <i>fdset</i></p></li>
+<li><p><b>FD_ISSET(fd, &amp;fdset):</b> Returns a non-zero value  if  the  bit  for  the  file descriptor  <i>fd</i>  is  set  in  the  file  descriptor set pointed to by <i>fdset</i>, and 0 otherwise.</p></li>
+<li><p><b>FD_SET(fd, &amp;fdset):</b> Sets the bit for the file descriptor fd  in  the  file descriptor set fdset.</p></li>
+<li><p><b>FD_ZERO(&amp;fdset):</b> Initializes the file descriptor set fdset to have zero bits for all file descriptors.</p></li>
+</ul>
+<p>The behavior of these macros is undefined if the fd argument is less than 0 or greater than or equal to FD_SETSIZE.</p>
+<h2>Example:</h2>
+<table class="src" cellpadding="5">
+<tr><td><pre>
+
+fd_set fds;
+
+struct timeval tv;
+
+/* do socket initialization etc.
+
+tv.tv_sec = 1;
+tv.tv_usec = 500000;
+
+/* tv now represents 1.5 seconds */
+ 
+FD_ZERO(&amp;fds);
+
+/* adds sock to the file descriptor set */
+FD_SET(sock, &amp;fds); 
+
+/* wait 1.5 seconds for any data to be read 
+   from any single socket */
+
+select(sock+1, &amp;fds, NULL, NULL, &amp;tv);
+if (FD_ISSET(sock, &amp;fds))
+{
+   recvfrom(s, buffer, buffer_len, 0, &amp;sa, &amp;sa_len);
+   /* do something */
+}
+else
+{
+   /* do something else */
+}
+</pre></td></tr>
+</table>
+<br />
+<hr />
+<a href="ip_address_functions.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="socket_helper_functions.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversione4ed.html?tutorial=unix_sockets&amp;file=socket_core_functions.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_sockets/socket_core_functions.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:01:37 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

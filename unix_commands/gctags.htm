@@ -1,0 +1,546 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/gctags.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:41 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>etags - Unix, Linux Command</title>
+<meta name="Description" Content="etags - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>etags - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<p>
+<h1 class="manpages">NAME</h1>
+etags, ctags - generate tag file for Emacs, vi
+<h1 class="manpages">SYNOPSIS</h1>
+<!-- ignored unsupported tag .hy -->
+<!-- ignored unsupported tag .na -->
+<b>etags</b> [-aCDGImRVh] [-i <i>file</i>] [-l <i>language</i>]
+<!-- ignored unsupported tag .if -->
+[-o <i>tagfile</i>] [-r <i>regexp</i>]
+<!-- Need break --><br />
+[--append] [--no-defines]
+[--no-globals] [--include=<i>file</i>]
+[--ignore-indentation] [--language=<i>language</i>]
+[--members] [--output=<i>tagfile</i>]
+[--regex=<i>regexp</i>] [--no-regex]
+[--ignore-case-regex=<i>regexp</i>]
+[--help] [--version]
+<i>file</i> ...
+<p>
+<b>ctags</b> [-aCdgImRVh] [-BtTuvwx] [-l <i>language</i>]
+<!-- ignored unsupported tag .if -->
+[-o <i>tagfile</i>] [-r <i>regexp</i>]
+<!-- Need break --><br />
+[--append] [--backward-search]
+[--cxref] [--defines] [--forward-search]
+[--globals] [--ignore-indentation]
+[--language=<i>language</i>] [--members]
+[--output=<i>tagfile</i>] [--regex=<i>regexp</i>]
+[--ignore-case-regex=<i>regexp</i>]
+[--typedefs] [--typedefs-and-c++]
+[--update] [--no-warn]
+[--help] [--version]
+<i>file</i> ...
+<!-- ignored unsupported tag .ad -->
+<!-- ignored unsupported tag .hy -->
+<h1 class="manpages">DESCRIPTION</h1>
+The <b>etags</b> program is used to create a tag table file, in a format
+understood by
+<b>emacs</b>(1)
+; the <b>ctags</b> program is used to create a similar table in a
+format understood by
+<b>vi</b>(1)
+&#46;  Both forms of the program understand
+the syntax of C, Objective C, C++, Java, Fortran, Ada, Cobol, Erlang,
+LaTeX, Emacs Lisp/Common Lisp, makefiles, Pascal, Perl, Postscript,
+Python, Prolog, Scheme and
+most assembler-like syntaxes.
+Both forms read the files specified on the command line, and write a tag
+table (defaults: <b>TAGS</b> for <b>etags</b>, <b>tags</b> for
+<b>ctags</b>) in the current working directory.
+Files specified with relative file names will be recorded in the tag
+table with file names relative to the directory where the tag table
+resides.  Files specified with absolute file names will be recorded
+with absolute file names.
+The programs recognize the language used in an input file based on its
+file name and contents.  The <b>--language</b> switch can be used to force
+parsing of the file names following the switch according to the given
+language, overriding guesses based on filename extensions.
+<h1 class="manpages">OPTIONS</h1>
+Some options make sense only for the <b>vi</b> style tag files produced
+by ctags;
+<b>etags</b> does not recognize them.
+The programs accept unambiguous abbreviations for long option names.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>-a, --append</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Append to existing tag file.  (For <b>vi</b>-format tag files, see also
+<b>--update</b>.)
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-B, --backward-search</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Tag files written in the format expected by <b>vi</b> contain regular
+expression search instructions; the <b>-B</b> option writes them using
+the delimiter &#145;<b>?</b>&#146;, to search <i>backwards</i> through files.
+The default is to use the delimiter &#145;<b>/</b>&#146;, to search <i>forwards</i>
+through files.
+Only <b>ctags</b> accepts this option.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--declarations</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+In C and derived languages, create tags for function declarations,
+and create tags for extern variables unless --no-globals is used.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-d, --defines</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Create tag entries for C preprocessor constant definitions
+and enum constants, too.  This is the
+default behavior for <b>etags</b>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-D, --no-defines</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Do not create tag entries for C preprocessor constant definitions
+and enum constants.
+This may make the tags file much smaller if many header files are tagged.
+This is the default behavior for <b>ctags</b>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-g, --globals</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Create tag entries for global variables in C, C++, Objective C, Java,
+and Perl.
+This is the default behavior for <b>etags</b>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-G, --no-globals</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Do not tag global variables.  Typically this reduces the file size by
+one fourth.  This is the default behavior for <b>ctags</b>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-i</b> <i>file</i>, <b>--include=</b><i>file</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Include a note in the tag file indicating that, when searching for a
+tag, one should also consult the tags file <i>file</i> after checking the
+current file.  This options is only accepted by <b>etags</b>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-I, --ignore-indentation</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Don&#146;t rely on indentation as much as we normally do.  Currently, this
+means not to assume that a closing brace in the first column is the
+final brace of a function or structure definition in C and C++.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-l</b> <i>language</i>, <b>--language=</b><i>language</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Parse the following files according to the given language.  More than
+one such options may be intermixed with filenames.  Use <b>--help</b>
+to get a list of the available languages and their default filename
+extensions.  The &#145;auto&#146; language can be used to restore automatic
+detection of language based on the file name.  The &#145;none&#146;
+language may be used to disable language parsing altogether; only
+regexp matching is done in this case (see the <b>--regex</b> option).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-m, --members</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Create tag entries for variables that are members of structure-like
+constructs in C++, Objective C, Java.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-M, --no-members</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Do not tag member variables.  This is the default behavior.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--packages-only</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Only tag packages in Ada files.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-o</b> <i>tagfile</i>, <b>--output=</b><i>tagfile</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Explicit name of file for tag table; overrides default <b>TAGS</b> or
+<b>tags</b>.   (But ignored with <b>-v</b> or <b>-x</b>.)
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-r</b> <i>regexp</i>, <b>--regex=</b><i>regexp</i>
+<!-- Consumed .TP -->
+<br />
+<b>--ignore-case-regex=</b><i>regexp</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Make tags based on regexp matching for each line of the files
+following this option, in addition to the tags made with the standard
+parsing based on language.  When using <b>--regex</b>, case is
+significant, while it is not with <b>--ignore-case-regex</b>. May
+be freely intermixed with filenames and the <b>-R</b> option.  The
+regexps are cumulative, i.e. each option will add to the previous
+ones.  The regexps are of the form:
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>/</b><i>tagregexp</i>[<b>/</b><i>nameregexp</i>]<b>/</b>
+<p>
+where <i>tagregexp</i> is used to match the lines that must be tagged.
+It should not match useless characters.  If the match is
+such that more characters than needed are unavoidably matched by
+<i>tagregexp</i>, it may be useful to add a <i>nameregexp</i>, to
+narrow down the tag scope.  <b>ctags</b> ignores regexps without a
+<i>nameregexp</i>.  The syntax of regexps is the same as in emacs,
+augmented with intervals of the form \{m,n\}, as in <b>ed</b> or
+<b>grep</b>.
+<!-- Need break --><br />
+Here are some examples.  All the regexps are quoted to protect them
+from shell interpretation.
+<p>
+Tag the DEFVAR macros in the emacs source files:
+<!-- Need break --><br />
+<i>--regex<blink>\=</blink>&#146;/[ \t]*DEFVAR_[A-Z_ \t(]+"\([^"]+\)"<blink>\/</blink>&#146;</i>
+<p>
+Tag VHDL files (this example is a single long line, broken here for
+formatting reasons):
+<!-- Need break --><br />
+<i>--language<blink>\=</blink>none --regex=&#146;/[ \t]*\(ARCHITECTURE\|\
+CONFIGURATION\) +[^ ]* +OF/&#146; --regex<blink>\=</blink>&#146;/[ \t]*\
+\(ATTRIBUTE\|ENTITY\|FUNCTION\|PACKAGE\( BODY\)?\
+\|PROCEDURE\|PROCESS\|TYPE\)[ \t]+\([^ \t(]+\)/\3/&#146;</i>
+<p>
+Tag TCL files (this last example shows the usage of a <i>tagregexp</i>):
+<!-- Need break --><br />
+<i>--lang<blink>\=</blink>none --regex<blink>\=</blink>&#146;/proc[ \t]+\([^ \t]+\)/\1/&#146;</i>
+<p>
+A regexp can be preceded by {<i>lang</i>}, thus restricting it to match
+lines of files of the specified language.  Use <b>etags --help</b> to obtain
+a list of the recognised languages.  This feature is particularly useful inside
+<b>regex files</b>.  A regex file contains one regex per line.  Empty lines,
+and those lines beginning with space or tab are ignored.  Lines beginning
+with @ are references to regex files whose name follows the @ sign.  Other
+lines are considered regular expressions like those following <b>--regex</b>.
+<!-- Need break --><br />
+For example, the command
+<!-- Need break --><br />
+<i>etags --regex=@regex.file *.c</i>
+<!-- Need break --><br />
+reads the regexes contained in the file regex.file.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-R, --no-regex</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Don&#146;t do any more regexp matching on the following files.  May be
+freely intermixed with filenames and the <b>--regex</b> option.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-t, --typedefs</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Record typedefs in C code as tags.  Since this is the default behaviour
+of <b>etags</b>, only <b>ctags</b> accepts this option.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-T, --typedefs-and-c++</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Generate tag entries for typedefs, struct, enum, and union tags, and
+C++ member functions.  Since this is the default behaviour
+of <b>etags</b>, only <b>ctags</b> accepts this option.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-u, --update</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Update tag entries for <i>files</i> specified on command line, leaving
+tag entries for other files in place.  Currently, this is implemented
+by deleting the existing entries for the given files and then
+rewriting the new entries at the end of the tags file.  It is often
+faster to simply rebuild the entire tag file than to use this.
+Only <b>ctags</b> accepts this option.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-v, --vgrind</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Instead of generating a tag file, write index (in <b>vgrind</b> format)
+to standard output.  Only <b>ctags</b> accepts this option.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-w, --no-warn</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Suppress warning messages about duplicate entries.  The <b>etags</b>
+program does not check for duplicate entries, so this option is not
+allowed with it.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-x, --cxref</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Instead of generating a tag file, write a cross reference (in
+<b>cxref</b> format) to standard output.  Only <b>ctags</b> accepts this option.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-h, -H, --help</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Print usage information.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-V, --version</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Print the current version of the program (same as the version of the
+emacs <b>etags</b> is shipped with).
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+Stallman.
+<!-- Need break --><br />
+<b>cxref</b>(1),
+<b>emacs</b>(1),
+<b>vgrind</b>(1),
+<b>vi</b>(1).
+<p>
+<h1 class="manpages">COPYING</h1>
+Copyright
+&#169;
+<!-- ignored unsupported tag .if -->
+1999, 2001 Free Software Foundation, Inc.
+<p>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, with no Front-Cover Texts, and no
+Back-Cover Texts.
+<p>
+This document is part of a collection distributed under the GNU Free
+Documentation License.  If you want to distribute this document
+separately from the collection, you can do so by adding a copy of the
+license to the document, as described in section 6 of the license.
+A copy of the license is included in the
+<b>gfdl</b>(1)
+man page, and in the section entitled "GNU Free Documentation
+License" in the Emacs manual.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionb7a6.html?tutorial=unix_commands&amp;file=etags.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/gctags.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:41 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

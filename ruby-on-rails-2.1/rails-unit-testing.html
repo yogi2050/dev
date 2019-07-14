@@ -1,0 +1,553 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/ruby-on-rails-2.1/rails-unit-testing.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:01:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>Ruby on Rails 2.1 -  Applications' Unit Testing</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="Keywords" content="Learning, Ruby, rails, strengths, framework, installation, examples, RubyGems, resources, Guide, actionpack, actionview, basics, directory, structure, advance, activerecord, libraries, Model, View, Controller, Embeded Ruby, Erb, Rolling, Metaprogramming,Built-in, testing, David, Black, Hansson, Heinemeier, RAA, Scaffolding" />
+<meta name="Description" content="Ruby on Rails 2.1 -  Applications' Unit Testing :  Learn Ruby on Rails in simple and easy steps using this Guide/Book/Reference Manual. You will learn its installation, framework, strengths with examples and you will learn about active resources, actionpack, actionview, activerecord, Heinemeier, Scaffolding, Controller, Heinemeier, Hansson etc." />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Learning Ruby on Rails 2.1</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="index.html">Rails 2.1 Home</a></li>
+<li><a class="left" target="_top" href="rails-preliminary.html">Rails 2.1 Preliminary</a></li>
+<li><a class="left" target="_top" href="rails-introduction.html">Rails 2.1 Introduction</a></li>
+<li><a class="left" target="_top" href="rails-installation.html">Rails 2.1 Installation</a></li>
+<li><a class="left" target="_top" href="rails-framework.html">Rails 2.1 Framework</a></li>
+<li><a class="left" target="_top" href="rails-directory-structure.html">Rails 2.1 Dir Structure</a></li>
+<li><a class="left" target="_top" href="rails-examples.html">Rails 2.1 Examples</a></li>
+<li><a class="left" target="_top" href="rails-database-setup.html">Rails 2.1 Database Setup</a></li>
+<li><a class="left" target="_top" href="rails-active-records.html">Rails 2.1 Active Records</a></li>
+<li><a class="left" target="_top" href="rails-migrations.html">Rails 2.1 Migrations</a></li>
+<li><a class="left" target="_top" href="rails-controllers.html">Rails 2.1 Controllers</a></li>
+<li><a class="left" target="_top" href="rails-views.html">Rails 2.1 Views</a></li>
+<li><a class="left" target="_top" href="rails-layouts.html">Rails 2.1 Layouts</a></li>
+<li><a class="left" target="_top" href="rails-scaffolding.html">Rails 2.1 Scaffolding</a></li>
+<li><a class="left" target="_top" href="rails-and-ajax.html">Rails 2.1 and AJAX</a></li>
+<li><a class="left" target="_top" href="rails-file-uploading.html">Rails 2.1 Uploads Files</a></li>
+<li><a class="left" target="_top" href="rails-send-emails.html">Rails 2.1 Sends Emails</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Ruby on Rails 2.1</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="rails-and-rmagick.html">Rails 2.1 RMagick Guide</a></li>
+<li><a class="left" target="_top" href="rails-http-basic-authentication.html">Rails 2.1 Basic HTTP Auth</a></li>
+<li><a class="left" target="_top" href="rails-exception-handling.html">Rails 2.1 Error Handling</a></li>
+<li><a class="left" target="_top" href="rails-routes.html">Rails 2.1 Routes System</a></li>
+<li><a class="left" target="_top" href="rails-unit-testing.html"><b>Rails 2.1 Unit Testing</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Ruby on Rails Quick Guide</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="rails-quick-guide.html" >Rails Quick Guide</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Ruby Tutorial</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../ruby/index-2.html" >Ruby Tutorial</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Ruby on Rails Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="rails-resources.html" >Ruby on Rails Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top" align="left" width="100%">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:10px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle"  cellpadding="5" cellspacing="0">
+<tr>
+<td align="left">
+<!-- PRINTING STARTS HERE -->
+<h1>Ruby on Rails 2.1 -  Applications' Unit Testing</h1>
+<hr />
+<a href="rails-routes.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="rails-quick-guide.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<!-- AddThis Bookmark Button END -->
+<hr />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<h1>Introduction:</h1>
+<p>Before proceeding let's have a quick look of few definitions:</p>
+<ul>
+<li><p>The <b>Tests</b> - They  are test applications that produce consistent result and prove that a Rails application does what it is expected to do. Tests are developed concurrently with the actual application.</p></li>
+<li><p>The <b>Assertion</b> - This is a one line of code that evaluates an object (or expression) for expected results. For example, is this value = that value? is this object nil? </p></li>
+<li><p>The <b>Test Case</b> - This is a class inherited from Test::Unit::TestCase containing a testing <i>strategy</i> comprised of contextually related tests.</p></li>
+<li><p>The <b>Test Suite</b> - This is a collection of test cases. When you run a test suite, it will, in turn, execute each test that belongs to it.</p></li>
+</ul>
+<h1>Rails Testing:</h1>
+<p>When you run the helper script <i>script/generate</i> to create <i>controllers</i> and <i>models</i>, Rails generate a framework for unit and functional tests. You can get pretty good test coverage by filling in the framework with tests for the functionality you write. There are two important points to test in a Rails application:</p>
+<ul>
+<li><p>Testing the Models.</p></li>
+<li><p>Testing the Controllers.</p></li>
+</ul>
+<p>This tutorial will cover both the testings in brief. So let's create one <i>testapp</i> to understand the concept.</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+C:\ruby&gt; rails -d mysql testapp
+</pre></td></tr></table>
+<h2>Database Setup:</h2>
+<p>Till now we have used only Rails application's development database, but now you needed to make sure that the testing database is also created and appropriate section of your config/database.yml file was set up correctly.</p>
+<p>Let's create development and testing databases as follows:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+mysql&gt; create database testapp_test;
+Query OK, 1 row affected (0.01 sec)
+
+mysql&gt; create database testapp_development;
+Query OK, 1 row affected (0.01 sec)
+
+mysql&gt; use testapp_test;
+Database changed
+
+mysql&gt; grant all privileges on testapp_test.* 
+          to '<b>root</b>'@'localhost' identified by '<b>password</b>';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.00 sec)
+</pre></td></tr></table>
+<h2>Configuring database.yml:</h2>
+<p>Configure your config/database.yml as follows:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+development:
+  adapter: mysql
+  encoding: utf8
+  database: testapp_development
+  username: <b>root</b>
+  password: <b>password</b>
+  host: localhost
+test:
+  adapter: mysql
+  encoding: utf8
+  database: testapp_test
+  username: <b>root</b>
+  password: <b>password</b>
+  host: localhost
+production:
+  adapter: mysql
+  encoding: utf8
+  database: testapp_production
+  username: <b>root</b>
+  password: <b>password</b>
+  host: localhost
+</pre></td></tr></table>
+<h2>Generate Migration:</h2>
+<p>Assume you have a table containing books, including their titles, price and a small description. The following migration sets up this table:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+testapp &gt; ruby script/generate migration books
+</pre></td></tr></table>
+<p>Now modify the testapp/db/migrate/20080616170315_books.rb file as follows:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+class Books &lt; ActiveRecord::Migration
+  def self.up
+     create_table :books do |t|
+        t.string     :title, :limit => 32, :null => false
+        t.float      :price
+        t.text       :description
+        t.timestamp  :created_at
+     end
+  end
+  def self.down
+    drop_table :books
+  end
+end
+</pre></td></tr></table>
+<p>Now run the migration as follows:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+testapp &gt; rake db:migrate
+</pre></td></tr></table>
+<p>This will create <b>books</b> table in testapp_development database. Now after this we need to set up your test database using <i>rake</i> command as follows:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+C:\ruby\testapp &gt; rake db:test:clone_structure
+</pre></td></tr></table>
+<p>This will clone <i>testapp_development</i> database into <i>testapp_test</i> database. It means whatever you have in development database, now you will have in test database as well.</p>
+<h1>Testing Models:</h1>
+<p>When you generate a <i>model</i> with the generate script, Rails also generates a unit test script for the model in the test directory. It also creates a <i>fixture</i>, a <i>YAML</i> file containing test data to be loaded into the testapp_test database. This is the data against which your unit tests will run:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+testapp &gt; ruby script/generate model Book
+      exists  app/models/
+      exists  test/unit/
+      exists  test/fixtures/
+      create  app/models/book.rb
+      <b>create  test/unit/book_test.rb</b>
+      <b>create  test/fixtures/books.yml</b>
+      create  db/migrate
+      create  db/migrate/20080616164236_create_books.rb
+</pre></td></tr></table>
+<p>As you write code in the model classes, you'll write corresponding tests in these files. So let's create two test book records using YAML in test/fixtures/books.yml as follows:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+perl_cb:
+  id: 1
+  title: 'Ruby Tutorial'
+  price: 102.00
+  description : 'This is a nice Ruby tutorial'
+java_cb:
+  id: 2
+  title: 'Java Programming'
+  price: 62.00
+  description : 'Java Programming for the beginners'
+</pre></td></tr></table>
+<p>Now let's relace exsiting code in book unit test file test/unit/book_test.rb with the following code:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+require File.dirname(__FILE__) + '/../test_helper'
+
+class BookTest &lt; ActiveSupport::TestCase
+  fixtures :books
+
+  def test_book
+
+    perl_book = Book.new :title => books(:perl_cb).title, 
+                         :price => books(:perl_cb).price,
+                         :description => books(:perl_cb).description,
+                         :created_at => books(:perl_cb).created_at
+
+    assert perl_book.save
+
+    perl_book_copy = Book.find(perl_book.id)
+
+    assert_equal perl_book.title, perl_book_copy.title
+
+    perl_book.title = "Ruby Tutorial"
+
+    assert perl_book.save
+    assert perl_book.destroy
+  end
+
+end
+</pre></td></tr></table>
+<p>Finally, run the test method as follows:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+testapp &gt; ruby test/unit/book_test.rb
+</pre></td></tr></table>
+<p>Here's the output of running the successful test case: </p>
+<table cellpadding="5" class="src"><tr><td><pre>
+testapp &gt; ruby test/unit/book_test_crud.rb 
+Loaded suite ./test/unit/book_test
+Started
+.
+Finished in 0.0625 seconds.
+
+1 tests, 4 assertions, 0 failures, 0 errors
+</pre></td></tr></table>
+<p>What has happend here:</p>
+<ul>
+<li><p>The BookTest method starts off by creating a new Book object using the title and other fields from the first record in the text fixture/books.yml. The resulting object is stored in the perl_book instance variable.</p></li>
+<li><p>The first assertion tests that saving the Book object was successful.</p></li>
+<li><p>Next, the book object is retrieved using the <i>find</i> method and stored in another instance variable named perl_book_copy. The success of this retrieval is tested in the next assertion, which compares the titles of both book objects. At this point, we've tested the ability to create and read a database record.</p></li>
+<li><p>The solution tests updating by assigning a new title to the object stored in perl_book and then asserts that saving the change is successful.</p></li>
+<li><p>Finally, the ability to destroy a Book object is tested.</p></li>
+</ul>
+<p>This is how we can test our Rails Models.</p>
+<h1>Testing Controllers:</h1>
+<p>Controller testing is also known as functional testing. Functional testing
+tests the following type of functionalities of the controllers:</p> 
+<ul>
+<li>Is the response redirected as expected ?</li>
+<li>Is the expected template rendered?</li>
+<li>Is the routing as expected</li>
+<li>Does the response contain the expected tags?</li>
+</ul>
+<p>Rails framework supports 5 types of requests and to write a functional test, you need to simulate any of the five HTTP request types that your controller will process. :</p> 
+<ul>
+<li>get</li>
+<li>post</li>
+<li>put</li>
+<li>head</li>
+<li>delete</li>
+</ul>
+<p>Request type "get" and "post" are the most commonly used in controller testing. All these methods take four arguments:</p>
+<ul>
+<li>The action of a controller</li>
+<li>An optional hash of request parameters</li>
+<li>An optional session hash</li>
+<li>An optional flash hash</li>
+</ul>
+<p>In this tutorial, we will see how to use <b>get</b> method to test our controller. You can test rest of the methods in similar way.</p>
+<p>When you generate a <i>controller</i> with generate, Rails creates a functional test script for the controller as follows:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+testapp &gt; ruby script/generate controller Book
+      exists  app/controllers/
+      exists  app/helpers/
+      create  app/views/book
+      exists  test/functional/
+      create  app/controllers/book_controller.rb
+      <b>create  test/functional/book_controller_test.rb</b>
+      create  app/helpers/book_helper.rb
+</pre></td></tr></table>
+<p>As you write code in the controller classes, you'll write corresponding tests in these files. Before that let's define our controller functions <i>list</i>, <i>show</i>, and <i>search</i>  inside <b>app/controllers/book_controller.rb</b> as follows:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+class BookController &lt; ApplicationController
+  def list
+    @book_pages, @books = paginate :books, :per_page => 10
+  end
+
+  def show
+    @book = Book.find(params[:id])
+  end
+
+  def search
+    @book = Book.find_by_title(params[:title])
+    if @book
+      redirect_to :action => 'show', :id => @book.id
+    else    
+      flash[:error] = 'No such book available'
+      redirect_to :action => 'list'
+    end
+  end
+end
+</pre></td></tr></table>
+<p><b>NOTE:</b> You would need two views templates for  <b>show</b> and <i>list</i> method. You can define those views and test them, but right we will proceed without defining those views.</p>
+<p>Now let's reuse our test fixture which is in <b>test/fixtures/books.yml</b> file as follows:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+perl_cb:
+  id: 1
+  title: 'Ruby Tutorial'
+  price: 102.00
+  description : 'This is a nice Ruby tutorial'
+java_cb:
+  id: 2
+  title: 'Java Programming'
+  price: 62.00
+  description : 'Java Programming for the beginners'
+</pre></td></tr></table>
+<p>Add the following <i>test_search_book</i> and <i>test_search_not_found</i> methods to <i>test/functional/book_controller_test.rb</i> to test the functionality of the Book Controller's search action.</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+require File.dirname(__FILE__) + '/../test_helper'
+require 'book_controller'
+
+# Re-raise errors caught by the controller.
+class BookController
+   def rescue_action(e) 
+      raise e 
+   end
+end
+
+class BookControllerTest &lt; Test::Unit::TestCase
+  fixtures :books
+  def setup
+    @controller = BookController.new
+    @request    = ActionController::TestRequest.new
+    @response   = ActionController::TestResponse.new
+  end
+
+  def test_search_book
+    get :search, :title => 'Ruby Tutorial'
+    assert_not_nil assigns(:book)
+    assert_equal books(:perl_cb).title, assigns(:book).title
+    assert_valid assigns(:book)
+    assert_redirected_to :action => 'show'
+  end
+
+ def test_search_not_found
+    get :search, :title => 'HTML Tutorial'
+    assert_redirected_to :action => 'list'
+    assert_equal 'No such book available', flash[:error]
+  end
+end
+</pre></td></tr></table>
+<p>Now run your test cases as follows:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+testapp &gt; ruby test/functional/book_controller_test.rb 
+</pre></td></tr></table>
+<p>This gives following output:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+Loaded suite test/functional/book_controller_test
+Started
+..
+Finished in 0.422 seconds.
+
+2 tests, 7 assertions, 0 failures, 0 errors
+</pre></td></tr></table>
+<p>Let's see what has happened here:</p>
+<ul>
+<li><p>The <i>setup</i> method is a default method to create controller, request and response objects. They would be used by Rails internally.</p></li>
+<li><p>The first test method <i>test_search_book</i> generates a <b>get</b> request to the search action, passing in a <i>title</i> parameter.</p></li>
+<li><p>The next two assertions verify that a <i>Book</i> object was saved in an instance variable called <i>@book</i> and that the object passes any Active Record validations that might exist.</p></li>
+<li><p>The final assertion inside first method tests that the request was redirected to the controller's show action.</p></li>
+<li><p>The second test method, <i>test_search_not_found</i>, performs another <i>get</i> request but passes in an invalid title.</p></li>
+<li><p>The first assertions test that a redirect to the <i>list</i> action was issued.</p></li>
+<li><p>If the proceeding assertions passed, there should be a message in the <i>flash</i> hash which  you can test with assert_equal.</p></li>
+</ul>
+<p>For a complete detail on Assertions ,please refere to <a href="http://api.rubyonrails.org/classes/ActionController/Assertions.html" target="_blank">Rails Standard Documentation</a>.</p>
+
+<h1>Using <i>Rake</i> for testing:</h1>
+<p>You can use <b>rake</b> utility to test your applications. Here are few important commands.</p>
+<ul>
+<li><p><b>$rake test</b> - Test all unit tests and functional tests (and integration tests, if they exist).</p></li>
+<li><p><b>$rake test:functionals</b> - Run all functional tests.</p></li>
+<li><p><b>$rake test:units</b> - Run all unit tests.</p></li>
+<li><p><b>$rake test:integration</b> - Run all integration tests.</p></li>
+<li><p><b>$rake test:plugins</b> - Run all test in ./vendor/plugins/**/test.</p></li>
+<li><p><b>$rake test:recent</b> - Run tests for models and controllers that have been modified in the last 10 minutes:</p></li>
+<li><p><b>$rake test:uncommitted</b> - For projects in Subversion, run tests for models and controllers changes since last commit:</p></li>
+</ul>
+<br />
+<hr />
+<a href="rails-routes.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="rails-quick-guide.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversiond407.html?tutorial=ruby-on-rails-2.1&amp;file=rails-unit-testing.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/ruby-on-rails-2.1/rails-unit-testing.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:01:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,945 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/syslogd.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>sysklogd - Unix, Linux Command</title>
+<meta name="Description" Content="sysklogd - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>sysklogd - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+sysklogd - Linux system logging utilities.
+<h1 class="manpages">SYNOPSIS</h1>
+<b>syslogd</b> [<b> -a </b> <i>socket</i> ]
+[<b> -d </b>] [<b> -f </b> <i>config file</i> ]
+[<b> -h </b>] [<b> -l </b> <i>hostlist</i> ]
+[<b> -m </b> <i>interval</i> ]
+[<b> -n </b>] [<b> -p</b> <i>socket</i> ]
+[<b> -r </b>] [<b> -s </b> <i>domainlist</i> ]
+[<b> -v </b>] [<b> -x </b>] <p>
+<h1 class="manpages">DESCRIPTION</h1>
+<b>Sysklogd</b> provides two system utilities which provide support for
+system logging and kernel message trapping.  Support of both internet and
+unix domain sockets enables this utility package to support both local
+and remote logging.
+<p>
+System logging is provided by a version of
+<b>syslogd</b>(8)
+derived from the
+stock BSD sources.  Support for kernel logging is provided by the
+<b>klogd</b>(8)
+utility which allows kernel logging to be conducted in either a
+standalone fashion or as a client of syslogd.
+<p>
+<b>Syslogd</b> provides a kind of logging that many modern programs use.  Every logged
+message contains at least a time and a hostname field, normally a
+program name field, too, but that depends on how trusty the logging
+program is.
+<p>
+While the
+<b>syslogd</b> sources have been heavily modified a couple of notes
+are in order.  First of all there has been a systematic attempt to
+insure that syslogd follows its default, standard BSD behavior.
+The second important concept to note is that this version of syslogd
+interacts transparently with the version of syslog found in the
+standard libraries.  If a binary linked to the standard shared
+libraries fails to function correctly we would like an example of the
+anomalous behavior.
+<p>
+The main configuration file
+<i>/etc/syslog.conf</i> or an alternative file, given with the
+<b>-f</b> option, is read at startup.  Any lines that begin with the hash mark
+(&#145;&#145;#&#146;&#146;) and empty lines are ignored.  If an error occurs during parsing
+the whole line is ignored.
+<p>
+<p>
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>-a </b><i>socket</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Using this argument you can specify additional sockets from that
+<b>syslogd</b> has to listen to.  This is needed if you&#146;re going to let some daemon
+run within a chroot() environment.  You can use up to 19 additional
+sockets.  If your environment needs even more, you have to increase
+the symbol
+<b>MAXFUNIX</b> within the syslogd.c source file.  An example for a chroot() daemon is
+described by the people from OpenBSD at
+<a href="http://www.psionic.com/papers/dns.html">http://www.psionic.com/papers/dns.html</a>.
+</td></tr>
+<tr valign="top"><td>
+<b>-d</b> </td><td valign="bottom">
+Turns on debug mode.  Using this the daemon will not proceed a
+<b>fork</b>(2)
+to set itself in the background, but opposite to that stay in the
+foreground and write much debug information on the current tty.  See the
+DEBUGGING section for more information.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-f </b><i>config file</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specify an alternative configuration file instead of
+<i>/etc/syslog.conf</i>, which is the default.
+</td></tr>
+<tr valign="top"><td>
+<b>-h </b> </td><td valign="bottom">
+By default syslogd will not forward messages it receives from remote hosts.
+Specifying this switch on the command line will cause the log daemon to
+forward any remote messages it receives to forwarding hosts which have been
+defined.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-l </b><i>hostlist</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specify a hostname that should be logged only with its simple hostname
+and not the fqdn.  Multiple hosts may be specified using the colon
+(&#145;&#145;:&#146;&#146;) separator.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-m </b><i>interval</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The
+<b>syslogd</b> logs a mark timestamp regularly.  The default
+<i>interval</i> between two <i>-- MARK --</i> lines is 20 minutes.  This can be changed
+with this option.  Setting the
+<i>interval</i> to zero turns it off entirely.
+</td></tr>
+<tr valign="top"><td>
+<b>-n</b> </td><td valign="bottom">
+Avoid auto-backgrounding.  This is needed especially if the
+<b>syslogd</b> is started and controlled by
+<b>init</b>(8).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-p </b><i>socket</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+You can specify an alternative unix domain socket instead of
+<i>/dev/log</i>. </td></tr>
+<tr valign="top"><td>
+<b>-r</b> </td><td valign="bottom">
+This option will enable the facility to receive message from the
+network using an internet domain socket with the syslog service (see
+<b>services</b>(5)).
+The default is to not receive any messages from the network.
+<p>
+This option is introduced in version 1.3 of the sysklogd
+package.  Please note that the default behavior is the opposite of
+how older versions behave, so you might have to turn this on.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-s </b><i>domainlist</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specify a domainname that should be stripped off before
+logging.  Multiple domains may be specified using the colon (&#145;&#145;:&#146;&#146;)
+separator.
+Please be advised that no sub-domains may be specified but only entire
+domains.  For example if
+<b>-s north.de</b> is specified and the host logging resolves to satu.infodrom.north.de
+no domain would be cut, you will have to specify two domains like:
+<b>-s north.de:infodrom.north.de</b>. </td></tr>
+<tr valign="top"><td>
+<b>-S</b> </td><td valign="bottom">
+Verbose logging. If specified once, the numeric facility and priority
+are logged with each locally-written message. If specified more than
+once, the names of the facility and priority are logged with each
+locally-written message.
+</td></tr>
+<tr valign="top"><td>
+<b>-v</b> </td><td valign="bottom">
+Print version and exit.
+</td></tr>
+<tr valign="top"><td>
+<b>-x</b> </td><td valign="bottom">
+Disable name lookups when receiving remote messages.
+This avoids deadlocks when the nameserver is running on
+the same machine that runs the syslog daemon.
+</td></tr>
+<!-- LP ends table -->
+</table>
+<h1 class="manpages">SIGNALS</h1>
+<b>Syslogd</b> reacts to a set of signals.  You may easily send a signal to
+<b>syslogd</b> using the following:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+kill -SIGNAL &#145;cat /var/run/syslogd.pid&#145;
+</pre></td></tr>
+</table>
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td>
+<b>SIGHUP</b> </td><td valign="bottom">
+This lets
+<b>syslogd</b> perform a re-initialization.  All open files are closed, the
+configuration file (default is
+<i>/etc/syslog.conf</i>) will be reread and the
+<b>syslog</b>(3)
+facility is started again.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>SIGTERM</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The
+<b>syslogd</b> will die.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>SIGINT</b>, <b>SIGQUIT</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+If debugging is enabled these are ignored, otherwise
+<b>syslogd</b> will die.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>SIGUSR1</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Switch debugging on/off.  This option can only be used if
+<b>syslogd</b> is started with the
+<b>-d</b> debug option.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>SIGCHLD</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Wait for childs if some were born, because of wall&#146;ing messages.
+</td></tr>
+<!-- LP ends table -->
+</table>
+<h1 class="manpages">CONFIGURATION FILE SYNTAX DIFFERENCES</h1>
+<b>Syslogd</b> uses a slightly different syntax for its configuration file than
+the original BSD sources.  Originally all messages of a specific priority
+and above were forwarded to the log file.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+For example the following line caused ALL output from daemons using
+the daemon facilities (debug is the lowest priority, so every higher
+will also match) to go into
+<i>/usr/adm/daemons</i>: </td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Sample syslog.conf
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;daemon.debug&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/usr/adm/daemons
+</pre></td></tr>
+</table>
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Under the new scheme this behavior remains the same.  The difference
+is the addition of four new specifiers, the asterisk (<b>*</b>)
+wildcard, the equation sign (<b>=</b>), the exclamation mark
+(<b>!</b>), and the minus sign (<b>-</b>).
+<p>
+The <b>*</b> specifies that all messages for the
+specified facility are to be directed to the destination.  Note that
+this behavior is degenerate with specifying a priority level of debug.
+Users have indicated that the asterisk notation is more intuitive.
+<p>
+The <b>=</b> wildcard is used to restrict logging to the specified priority
+class.  This allows, for example, routing only debug messages to a
+particular logging source.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+For example the following line in
+<i>syslog.conf</i> would direct debug messages from all sources to the
+<i>/usr/adm/debug</i> file.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Sample syslog.conf
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*.=debug&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/usr/adm/debug
+</pre></td></tr>
+</table>
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+The <b>!</b> is used to exclude logging of the specified
+priorities.  This affects all (!) possibilities of specifying priorities.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+For example the following lines would log all messages of the facility
+mail except those with the priority info to the
+<i>/usr/adm/mail</i> file.  And all messages from news.info (including) to news.crit
+(excluding) would be logged to the
+<i>/usr/adm/news</i> file.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Sample syslog.conf
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mail.*;mail.!=info&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/usr/adm/mail
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;news.info;news.!crit&nbsp;&nbsp;&nbsp;&nbsp;/usr/adm/news
+</pre></td></tr>
+</table>
+</td></tr>
+<!-- PP ends table -->
+</table>
+You may use it intuitively as an exception specifier.  The above
+mentioned interpretation is simply inverted.  Doing that you may use
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mail.none
+</pre></td></tr>
+</table>
+or
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mail.!*
+</pre></td></tr>
+</table>
+or
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mail.!debug
+</pre></td></tr>
+</table>
+<p>
+to skip every message that comes with a mail facility.  There is much
+room to play with it. :-)
+<p>
+The <b>-</b> may only be used to prefix a filename if you want to omit
+sync&#146;ing the file after every write to it.
+<p>
+This may take some acclimatization for those individuals used to the
+pure BSD behavior but testers have indicated that this syntax is
+somewhat more flexible than the BSD behavior.  Note that these changes
+should not affect standard
+<b>syslog.conf</b>(5)
+files.  You must specifically
+modify the configuration files to obtain the enhanced behavior.
+<p>
+<h1 class="manpages">SUPPORT FOR REMOTE LOGGING</h1>
+These modifications provide network support to the syslogd facility.
+Network support means that messages can be forwarded from one node
+running syslogd to another node running syslogd where they will be
+actually logged to a disk file.
+<p>
+To enable this you have to specify the
+<b>-r</b> option on the command line.  The default behavior is that
+<b>syslogd</b> won&#146;t listen to the network.
+<p>
+The strategy is to have syslogd listen on a unix domain socket for
+locally generated log messages.  This behavior will allow syslogd to
+inter-operate with the syslog found in the standard C library.  At the
+same time syslogd listens on the standard syslog port for messages
+forwarded from other hosts.  To have this work correctly the
+<b>services</b>(5)
+files (typically found in
+<i>/etc</i>) must have the following
+entry:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;syslog          514/udp
+</pre></td></tr>
+</table>
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+If this entry is missing
+<b>syslogd</b> neither can receive remote messages nor send them, because the UDP
+port cant be opened.  Instead
+<b>syslogd</b> will die immediately, blowing out an error message.
+<p>
+To cause messages to be forwarded to another host replace
+the normal file line in the
+<i>syslog.conf</i> file with the name of the host to which the messages is to be sent
+prepended with an @.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+For example, to forward
+<b>ALL</b> messages to a remote host use the
+following
+<i>syslog.conf</i> entry:
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Sample syslogd configuration file to
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# messages to a remote host forward all.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*.*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@hostname
+</pre></td></tr>
+</table>
+<p>
+To forward all <b>kernel</b> messages to a remote host the
+configuration file would be as follows:
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Sample configuration file to forward all kernel
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# messages to a remote host.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kern.*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@hostname
+</pre></td></tr>
+</table>
+</td></tr>
+<!-- PP ends table -->
+</table>
+<p>
+If the remote hostname cannot be resolved at startup, because the
+name-server might not be accessible (it may be started after syslogd)
+you don&#146;t have to worry.
+<b>Syslogd</b> will retry to resolve the name ten times and then complain.  Another
+possibility to avoid this is to place the hostname in
+<i>/etc/hosts</i>. <p>
+With normal
+<b>syslogd</b>s you would get syslog-loops if you send out messages that were received
+from a remote host to the same host (or more complicated to a third
+host that sends it back to the first one, and so on).  In my domain
+(Infodrom Oldenburg) we accidently got one and our disks filled up
+with the same single message. :-(
+<p>
+To avoid this in further times no messages that were received from a
+remote host are sent out to another (or the same) remote host
+anymore.  If there are scenarios where this doesn&#146;t make sense, please
+drop me (Joey) a line.
+<p>
+If the remote host is located in the same domain as the host,
+<b>syslogd</b> is running on, only the simple hostname will be logged instead of
+the whole fqdn.
+<p>
+In a local network you may provide a central log server to have all
+the important information kept on one machine.  If the network consists
+of different domains you don&#146;t have to complain about logging fully
+qualified names instead of simple hostnames.  You may want to use the
+strip-domain feature
+<b>-s</b> of this server.  You can tell the
+<b>syslogd</b> to strip off several domains other than the one the server is located
+in and only log simple hostnames.
+<p>
+Using the
+<b>-l</b> option there&#146;s also a possibility to define single hosts as local
+machines.  This, too, results in logging only their simple hostnames
+and not the fqdns.
+<p>
+The UDP socket used to forward messages to remote hosts or to receive
+messages from them is only opened when it is needed.  In releases
+prior to 1.3-23 it was opened every time but not opened for reading or
+forwarding respectively.
+<p>
+<h1 class="manpages">OUTPUT TO NAMED PIPES (FIFOs)</h1>
+This version of syslogd has support for logging output to named pipes
+(fifos).  A fifo or named pipe can be used as a destination for log
+messages by prepending a pipy symbol (&#145;&#145;|&#146;&#146;) to the name of the
+file.  This is handy for debugging.  Note that the fifo must be created
+with the mkfifo command before syslogd is started.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+The following configuration file routes debug messages from the
+kernel to a fifo:
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Sample configuration to route kernel debugging
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# messages ONLY to /usr/adm/debug which is a
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# named pipe.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kern.=debug&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|/usr/adm/debug
+</pre></td></tr>
+</table>
+</td></tr>
+<!-- LP ends table -->
+</table>
+<h1 class="manpages">INSTALLATION CONCERNS</h1>
+There is probably one important consideration when installing this
+version of syslogd.  This version of syslogd is dependent on proper
+formatting of messages by the syslog function.  The functioning of the
+syslog function in the shared libraries changed somewhere in the
+region of libc.so.4.[2-4].n.  The specific change was to
+null-terminate the message before transmitting it to the
+<i>/dev/log</i> socket.  Proper functioning of this version of syslogd is dependent on
+null-termination of the message.
+<p>
+This problem will typically manifest itself if old statically linked
+binaries are being used on the system.  Binaries using old versions of
+the syslog function will cause empty lines to be logged followed by
+the message with the first character in the message removed.
+Relinking these binaries to newer versions of the shared libraries
+will correct this problem.
+<p>
+Both the
+<b>syslogd</b>(8) and the 
+<b>klogd</b>(8)
+can either be run from
+<b>init</b>(8)
+or started as part of the rc.*
+sequence.  If it is started from init the option <i>-n</i> must be set,
+otherwise you&#146;ll get tons of syslog daemons started.  This is because
+<b>init</b>(8)
+depends on the process ID.
+<p>
+<h1 class="manpages">SECURITY THREATS</h1>
+There is the potential for the syslogd daemon to be
+used as a conduit for a denial of service attack.  Thanks go to John
+Morrison (<a href="mailto:jmorriso@rflab.ee.ubc.ca">jmorriso@rflab.ee.ubc.ca</a>) for alerting me to this potential.
+A rogue program(mer) could very easily flood the syslogd daemon with
+syslog messages resulting in the log files consuming all the remaining
+space on the filesystem.  Activating logging over the inet domain
+sockets will of course expose a system to risks outside of programs or
+individuals on the local machine.
+<p>
+There are a number of methods of protecting a machine:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+1.
+</td><td>
+Implement kernel firewalling to limit which hosts or networks have
+access to the 514/UDP socket.
+</td></tr>
+<tr valign="top"><td width=6%>
+2.
+</td><td>
+Logging can be directed to an isolated or non-root filesystem which,
+if filled, will not impair the machine.
+</td></tr>
+<tr valign="top"><td width=6%>
+3.
+</td><td>
+The ext2 filesystem can be used which can be configured to limit a
+certain percentage of a filesystem to usage by root only.  <b>NOTE</b>
+that this will require syslogd to be run as a non-root process.
+<b>ALSO NOTE</b> that this will prevent usage of remote logging since
+syslogd will be unable to bind to the 514/UDP socket.
+</td></tr>
+<tr valign="top"><td width=6%>
+4.
+</td><td>
+Disabling inet domain sockets will limit risk to the local machine.
+</td></tr>
+<tr valign="top"><td width=6%>
+5.
+</td><td>
+Use step 4 and if the problem persists and is not secondary to a rogue
+program/daemon get a 3.5 ft (approx. 1 meter) length of sucker rod*
+and have a chat with the user in question.
+<p>
+Sucker rod def. &#151; 3/4, 7/8 or 1in. hardened steel rod, male
+threaded on each end.  Primary use in the oil industry in Western
+North Dakota and other locations to pump &#146;suck&#146; oil from oil wells.
+Secondary uses are for the construction of cattle feed lots and for
+dealing with the occasional recalcitrant or belligerent individual.
+</td></tr>
+<!-- LP ends table -->
+</table>
+<h1 class="manpages">DEBUGGING</h1>
+When debugging is turned on using
+<b>-d</b> option then
+<b>syslogd</b> will be very verbose by writing much of what it does on stdout.  Whenever
+the configuration file is reread and re-parsed you&#146;ll see a tabular,
+corresponding to the internal data structure.  This tabular consists of
+four fields:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<i>number</i> </td><td valign="bottom">
+This field contains a serial number starting by zero.  This number
+represents the position in the internal data structure (i.e. the
+array).  If one number is left out then there might be an error in the
+corresponding line in
+<i>/etc/syslog.conf</i>. </td></tr>
+<tr valign="top"><td colspan="2">
+<i>pattern</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This field is tricky and represents the internal structure
+exactly.  Every column stands for a facility (refer to
+<b>syslog</b>(3)).
+As you can see, there are still some facilities left free for former
+use, only the left most are used.  Every field in a column represents
+the priorities (refer to
+<b>syslog</b>(3)).
+</td></tr>
+<tr valign="top"><td>
+<i>action</i> </td><td valign="bottom">
+This field describes the particular action that takes place whenever a
+message is received that matches the pattern.  Refer to the
+<b>syslog.conf</b>(5)
+manpage for all possible actions.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>arguments</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This field shows additional arguments to the actions in the last
+field.  For file-logging this is the filename for the logfile; for
+user-logging this is a list of users; for remote logging this is the
+hostname of the machine to log to; for console-logging this is the
+used console; for tty-logging this is the specified tty; wall has no
+additional arguments.
+</td></tr>
+</table>
+<h1 class="manpages">FILES</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<i>/etc/syslog.conf</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Configuration file for
+<b>syslogd</b>. See
+<b>syslog.conf</b>(5)
+for exact information.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>/dev/log</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The Unix domain socket to from where local syslog messages are read.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>/var/run/syslogd.pid</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The file containing the process id of
+<b>syslogd</b>. </td></tr>
+</table>
+<h1 class="manpages">BUGS</h1>
+If an error occurs in one line the whole rule is ignored.
+<p>
+<b>Syslogd</b> doesn&#146;t change the filemode of opened logfiles at any stage of
+process.  If a file is created it is world readable.  If you want to
+avoid this, you have to create it and change permissions on your own.
+This could be done in combination with rotating logfiles using the
+<b>savelog</b>(8)
+program that is shipped in the
+<b>smail</b> 3.x distribution.  Remember that it might be a security hole if
+everybody is able to read auth.* messages as these might contain
+passwords.
+<p>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="klogd.htm">klogd (8)</a></p></li>
+<li><p><a href="logger.htm">logger (1)</a></p></li>
+<li><p><a href="../unix_system_calls/syslog.htm">syslog (2)</a></p></li>
+<li><p><a href="savelog.html">savelog (8)</a></p></li>
+</ul>
+<h1 class="manpages">COLLABORATORS</h1>
+<b>Syslogd</b> is taken from BSD sources, Greg Wettstein (<a href="mailto:greg@wind.enjellic.com">greg@wind.enjellic.com</a>)
+performed the port to Linux, Martin Schulze (<a href="mailto:joey@linux.de">joey@linux.de</a>)
+fixed some bugs and added several new features.
+<b>Klogd</b> was originally written by Steve Lord (<a href="mailto:lord@cray.com">lord@cray.com</a>), Greg Wettstein
+made major improvements.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+Dr. Greg Wettstein
+<!-- Consumed .TP -->
+<br />
+Enjellic Systems Development
+<!-- Consumed .TP -->
+<br />
+Oncology Research Division Computing Facility
+<!-- Consumed .TP -->
+<br />
+Roger Maris Cancer Center
+<!-- Consumed .TP -->
+<br />
+Fargo, ND
+<!-- Consumed .TP -->
+<br />
+<a href="mailto:greg@wind.enjellic.com">greg@wind.enjellic.com</a>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+Stephen Tweedie
+<!-- Consumed .TP -->
+<br />
+Department of Computer Science
+<!-- Consumed .TP -->
+<br />
+Edinburgh University, Scotland
+<!-- Consumed .TP -->
+<br />
+<a href="mailto:sct@dcs.ed.ac.uk">sct@dcs.ed.ac.uk</a>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+Juha Virtanen
+<!-- Consumed .TP -->
+<br />
+<a href="mailto:jiivee@hut.fi">jiivee@hut.fi</a>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+Shane Alderton
+<!-- Consumed .TP -->
+<br />
+<a href="mailto:shane@ion.apana.org.au">shane@ion.apana.org.au</a>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+Martin Schulze
+<!-- Consumed .TP -->
+<br />
+Infodrom Oldenburg
+<!-- Consumed .TP -->
+<br />
+<a href="mailto:joey@linux.de">joey@linux.de</a>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+<!-- ignored unsupported tag .zZ -->
+</td></tr>
+</table>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion5df1.html?tutorial=unix_commands&amp;file=sysklogd.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/syslogd.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

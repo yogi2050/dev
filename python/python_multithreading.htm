@@ -1,0 +1,558 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/python/python_multithreading.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Apr 2013 19:43:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>Python Multithreaded Programming</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="description" content="Python Multithreaded Programming - Learning Python in simple and easy steps : A beginner's tutorial containing complete knowledge of Python Syntax Object Oriented Language, Methods, Tuples, Tools/Utilities, Exceptions Handling, Sockets, GUI, Extentions, XML Programming" />
+<meta name="Keywords" content="Python, Tutorials, Learning, Beginners, Basics, Object Oriented Language, Methods, Overriding, Networking, Multithreading,Methods, Tuples, Tools/Utilities, Exceptions Handling, Sockets, GUI, Extentions, XML, Programming" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+#topmenu a:link {text-decoration:none;color:#000 !important;background-color:transparent;font-weight:bold;}
+#topmenu a:visited {text-decoration:none;color:#000 !important;background-color:transparent;font-weight:bold;}
+#topmenu a:hover {text-decoration:none;color:#fff !important;background-color:transparent;font-weight:bold;}
+#header{ 
+   background:#3777ab !important;
+}
+#topmenu
+{
+   background-color:#fbc62f !important;
+}
+#leftcol ul.menu li.heading 
+{
+   background:#3777ab !important;
+   border:1px solid #fbc62f !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1250px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+   _uacct = "UA-232293-6";
+   urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index.htm">Tutorials Point Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index.htm" target="_top">HOME </a>
+<a href="../java/index.htm" target="_top">JAVA </a>
+<a href="../php/index.htm" target="_top">PHP </a>
+<a href="index.htm" target="_top">Python </a>
+<a href="../ruby/index.htm" target="_top">Ruby </a>
+<a href="../perl/index.htm" target="_top">Perl </a>
+<a href="../html/index.htm" target="_top">HTML </a>
+<a href="../css/index.htm" target="_top">CSS </a>
+<a href="../javascript/index.htm" target="_top">Javascript </a>
+<a href="../mysql/index.htm" target="_top">MySQL </a>
+<a href="../cplusplus/index.htm" target="_top">C++ </a>
+<a href="../unix/index.htm" target="_top">UNIX </a>
+<a href="../more.htm" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.htm" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.htm" target="_top">ABOUT</a> |
+<a href="../about/contact_us.htm" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/python-mini.png" alt="Python tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">Python Basic Tutorial</li>
+<li><a target="_top" href="index.htm">Python - Home</a></li>
+<li><a target="_top" href="python_overview.htm">Python - Overview</a></li>
+<li><a target="_top" href="python_environment.htm">Python - Environment</a></li>
+<li><a target="_top" href="python_basic_syntax.htm">Python - Basic Syntax</a></li>
+<li><a target="_top" href="python_variable_types.htm">Python - Variable Types</a></li>
+<li><a target="_top" href="python_basic_operators.htm">Python - Basic Operators</a></li>
+<li><a target="_top" href="python_decision_making.htm">Python - Decision Making</a></li>
+<li><a target="_top" href="python_loops.htm">Python - Loops</a></li>
+<li><a target="_top" href="python_numbers.htm">Python - Numbers</a></li>
+<li><a target="_top" href="python_strings.htm">Python - Strings</a></li>
+<li><a target="_top" href="python_lists.htm">Python - Lists</a></li>
+<li><a target="_top" href="python_tuples.htm">Python - Tuples</a></li>
+<li><a target="_top" href="python_dictionary.htm">Python - Dictionary</a></li>
+<li><a target="_top" href="python_date_time.htm">Python - Date &amp; Time</a></li>
+<li><a target="_top" href="python_functions.htm">Python - Functions</a></li>
+<li><a target="_top" href="python_modules.htm">Python - Modules</a></li>
+<li><a target="_top" href="python_files_io.htm">Python - Files I/O</a></li>
+<li><a target="_top" href="python_exceptions.htm">Python - Exceptions</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Python Advanced Tutorial</li>
+<li><a target="_top" href="python_classes_objects.htm">Python - Classes/Objects</a></li>
+<li><a target="_top" href="python_reg_expressions.htm">Python - Reg Expressions</a></li>
+<li><a target="_top" href="python_cgi_programming.htm">Python - CGI Programming</a></li>
+<li><a target="_top" href="python_database_access.htm">Python - Database Access</a></li>
+<li><a target="_top" href="python_networking.htm">Python - Networking</a></li>
+<li><a target="_top" href="python_sending_email.htm">Python - Sending Email</a></li>
+<li><a target="_top" href="python_multithreading.htm"><b>Python - Multithreading</b></a></li>
+<li><a target="_top" href="python_xml_processing.htm">Python - XML Processing</a></li>
+<li><a target="_top" href="python_gui_programming.htm">Python - GUI Programming</a></li>
+<li><a target="_top" href="python_further_extensions.htm">Python - Further Extensions</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Python  Useful Resources</li>
+<li><a target="_top" href="python_quick_guide.htm">Python - Quick Guide</a></li>
+<li><a target="_top" href="python_tools_utilities.htm">Python - Tools/Utilities</a></li>
+<li><a target="_top" href="python_useful_resources.htm">Python Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>Python Multithreaded Programming</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="python_sending_email.htm">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="python_xml_processing.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>Running several threads is similar to running several different programs concurrently, but with the following benefits:</p>
+<ul class="list">
+<li><p>Multiple threads within a process share the same data space with the main thread and can therefore share information or communicate with each other more easily than if they were separate processes.</p></li>
+<li><p>Threads sometimes called light-weight processes and they do not require much memory overhead; theycare cheaper than processes.</p></li>
+</ul>
+<p>A thread has a beginning, an execution sequence, and a conclusion. It has an instruction pointer that keeps track of where within its context it is currently running.</p>
+<ul class="list">
+<li><p>It can be pre-empted (interrupted)</p></li>
+<li><p>It can temporarily be put on hold (also known as sleeping) while other threads are running - this is called yielding.</p></li>
+</ul>
+<h2>Starting a New Thread:</h2>
+<p>To spawn another thread, you need to call following method available in <i>thread</i> module:</p>
+<pre class="prettyprint">
+thread.start_new_thread ( function, args[, kwargs] )
+</pre>
+<p>This method call enables a fast and efficient way to create new threads in both Linux and Windows.</p>
+<p>The method call returns immediately and the child thread starts and calls function with the passed list of <i>agrs</i>. When function returns, the thread terminates.</p>
+<p>Here <i>args</i> is a tuple of arguments; use an empty tuple to call function without passing any arguments. <i>kwargs</i> is an optional dictionary of keyword arguments.</p>
+<h3>Example:</h3>
+<pre class="prettyprint">
+#!/usr/bin/python
+
+import thread
+import time
+
+# Define a function for the thread
+def print_time( threadName, delay):
+   count = 0
+   while count &lt; 5:
+      time.sleep(delay)
+      count += 1
+      print "%s: %s" % ( threadName, time.ctime(time.time()) )
+
+# Create two threads as follows
+try:
+   thread.start_new_thread( print_time, ("Thread-1", 2, ) )
+   thread.start_new_thread( print_time, ("Thread-2", 4, ) )
+except:
+   print "Error: unable to start thread"
+
+while 1:
+   pass
+</pre>
+<p>When the above code is  executed, it produces following result:</p>
+<pre class="result">
+Thread-1: Thu Jan 22 15:42:17 2009
+Thread-1: Thu Jan 22 15:42:19 2009
+Thread-2: Thu Jan 22 15:42:19 2009
+Thread-1: Thu Jan 22 15:42:21 2009
+Thread-2: Thu Jan 22 15:42:23 2009
+Thread-1: Thu Jan 22 15:42:23 2009
+Thread-1: Thu Jan 22 15:42:25 2009
+Thread-2: Thu Jan 22 15:42:27 2009
+Thread-2: Thu Jan 22 15:42:31 2009
+Thread-2: Thu Jan 22 15:42:35 2009
+</pre>
+<p>Although it is very effective for low-level threading, but the <i>thread</i> module is very limited compared to the newer threading module.</p>
+<h2>The <i>Threading</i> Module:</h2>
+<p>The newer threading module included with Python 2.4 provides much more powerful, high-level support for threads than the thread module discussed in the previous section.</p>
+<p>The <i>threading</i> module exposes all the methods of the <i>thread</i> module and provides some additional methods:</p>
+<ul class="list">
+<li><p><b>threading.activeCount():</b> Returns the number of thread objects that are active.</p></li>
+<li><p><b>threading.currentThread():</b> Returns the number of thread objects in the caller's thread control.</p></li>
+<li><p><b>threading.enumerate():</b> Returns a list of all thread objects that are currently active.</p></li>
+</ul>
+<p>In addition to the methods, the threading module has the <i>Thread</i> class that implements threading. The methods provided by the <i>Thread</i> class are as follows:</p>
+<ul class="list">
+<li><p><b>run():</b> The run() method is the entry point for a thread.</p></li>
+<li><p><b>start():</b> The start() method starts a thread by calling the run method.</p></li>
+<li><p><b> join([time]):</b> The join() waits for threads to terminate.</p></li>
+<li><p><b> isAlive():</b> The isAlive() method checks whether a thread is still executing.</p></li>
+<li><p><b> getName():</b> The getName() method returns the name of a thread.</p></li>
+<li><p><b> setName():</b> The setName() method sets the name of a thread.</p></li>
+</ul>
+<h2>Creating Thread using <i>Threading</i> Module:</h2>
+<p>To implement a new thread using the threading module, you have to do the following:</p>
+<ul class="list">
+<li><p>Define a new subclass of the <i>Thread</i> class.</p></li>
+<li><p>Override the <i>__init__(self [,args])</i> method to add additional arguments.</p></li>
+<li><p>Then override the run(self [,args]) method to implement what the thread should do when started.</p></li>
+</ul>
+<p>Once you have created the new <i>Thread</i> subclass, you can create an instance of it and then start a new thread by invoking the <i>start()</i> which will in turn call <i>run()</i> method.</p>
+<h3>Example:</h3>
+<pre class="prettyprint">
+#!/usr/bin/python
+
+import threading
+import time
+
+exitFlag = 0
+
+class myThread (threading.Thread):
+    def __init__(self, threadID, name, counter):
+        threading.Thread.__init__(self)
+        self.threadID = threadID
+        self.name = name
+        self.counter = counter
+    def run(self):
+        print "Starting " + self.name
+        print_time(self.name, self.counter, 5)
+        print "Exiting " + self.name
+
+def print_time(threadName, delay, counter):
+    while counter:
+        if exitFlag:
+            thread.exit()
+        time.sleep(delay)
+        print "%s: %s" % (threadName, time.ctime(time.time()))
+        counter -= 1
+
+# Create new threads
+thread1 = myThread(1, "Thread-1", 1)
+thread2 = myThread(2, "Thread-2", 2)
+
+# Start new Threads
+thread1.start()
+thread2.start()
+
+print "Exiting Main Thread"
+</pre>
+<p>When the above code is  executed, it produces following result:</p>
+<pre class="result">
+Starting Thread-1
+Starting Thread-2
+Exiting Main Thread
+Thread-1: Thu Mar 21 09:10:03 2013
+Thread-1: Thu Mar 21 09:10:04 2013
+Thread-2: Thu Mar 21 09:10:04 2013
+Thread-1: Thu Mar 21 09:10:05 2013
+Thread-1: Thu Mar 21 09:10:06 2013
+Thread-2: Thu Mar 21 09:10:06 2013
+Thread-1: Thu Mar 21 09:10:07 2013
+Exiting Thread-1
+Thread-2: Thu Mar 21 09:10:08 2013
+Thread-2: Thu Mar 21 09:10:10 2013
+Thread-2: Thu Mar 21 09:10:12 2013
+Exiting Thread-2
+</pre>
+<h2>Synchronizing Threads:</h2>
+<p>The threading module provided with Python includes a simple-to-implement locking mechanism that will allow you to synchronize threads. A new lock is created by calling the <i>Lock()</i> method, which returns the new lock.</p>
+<p>The <i>acquire(blocking)</i> method the new lock object would be used to force threads to run synchronously. The optional <i>blocking</i> parameter enables you to control whether the thread will wait to acquire the lock.</p>
+<p>If <i>blocking</i> is set to 0, the thread will return immediately with a 0 value if the lock cannot be acquired and with a 1 if the lock was acquired. If blocking is set to 1, the thread will block and wait for the lock to be released.</p>
+<p>The <i>release()</i> method of the the new lock object would be used to release the lock when it is no longer required.</p>
+<h3>Example:</h3>
+<pre class="prettyprint">
+#!/usr/bin/python
+
+import threading
+import time
+
+class myThread (threading.Thread):
+    def __init__(self, threadID, name, counter):
+        threading.Thread.__init__(self)
+        self.threadID = threadID
+        self.name = name
+        self.counter = counter
+    def run(self):
+        print "Starting " + self.name
+        # Get lock to synchronize threads
+        threadLock.acquire()
+        print_time(self.name, self.counter, 3)
+        # Free lock to release next thread
+        threadLock.release()
+
+def print_time(threadName, delay, counter):
+    while counter:
+        time.sleep(delay)
+        print "%s: %s" % (threadName, time.ctime(time.time()))
+        counter -= 1
+
+threadLock = threading.Lock()
+threads = []
+
+# Create new threads
+thread1 = myThread(1, "Thread-1", 1)
+thread2 = myThread(2, "Thread-2", 2)
+
+# Start new Threads
+thread1.start()
+thread2.start()
+
+# Add threads to thread list
+threads.append(thread1)
+threads.append(thread2)
+
+# Wait for all threads to complete
+for t in threads:
+    t.join()
+print "Exiting Main Thread"
+</pre>
+<p>When the above code is  executed, it produces following result:</p>
+<pre class="result">
+Starting Thread-1
+Starting Thread-2
+Thread-1: Thu Mar 21 09:11:28 2013
+Thread-1: Thu Mar 21 09:11:29 2013
+Thread-1: Thu Mar 21 09:11:30 2013
+Thread-2: Thu Mar 21 09:11:32 2013
+Thread-2: Thu Mar 21 09:11:34 2013
+Thread-2: Thu Mar 21 09:11:36 2013
+Exiting Main Thread
+</pre>
+<h2>Multithreaded Priority Queue:</h2>
+<p>The <i>Queue</i> module allows you to create a new queue object that can hold a specific number of items. There are following methods to control the Queue:</p>
+<ul class="list">
+<li><p><b>get():</b> The get() removes and returns an item from the queue.</p></li>
+<li><p><b>put():</b> The put adds item to a queue.</p></li>
+<li><p><b>qsize() :</b> The qsize() returns the number of items that are currently in the queue.</p></li>
+<li><p><b>empty():</b> The empty( ) returns True if queue is empty; otherwise, False.</p></li>
+<li><p><b>full():</b> the full() returns True if queue is full; otherwise, False.</p></li>
+</ul>
+<h3>Example:</h3>
+<pre class="prettyprint">
+#!/usr/bin/python
+
+import Queue
+import threading
+import time
+
+exitFlag = 0
+
+class myThread (threading.Thread):
+    def __init__(self, threadID, name, q):
+        threading.Thread.__init__(self)
+        self.threadID = threadID
+        self.name = name
+        self.q = q
+    def run(self):
+        print "Starting " + self.name
+        process_data(self.name, self.q)
+        print "Exiting " + self.name
+
+def process_data(threadName, q):
+    while not exitFlag:
+        queueLock.acquire()
+        if not workQueue.empty():
+            data = q.get()
+            queueLock.release()
+            print "%s processing %s" % (threadName, data)
+        else:
+            queueLock.release()
+        time.sleep(1)
+
+threadList = ["Thread-1", "Thread-2", "Thread-3"]
+nameList = ["One", "Two", "Three", "Four", "Five"]
+queueLock = threading.Lock()
+workQueue = Queue.Queue(10)
+threads = []
+threadID = 1
+
+# Create new threads
+for tName in threadList:
+    thread = myThread(threadID, tName, workQueue)
+    thread.start()
+    threads.append(thread)
+    threadID += 1
+
+# Fill the queue
+queueLock.acquire()
+for word in nameList:
+    workQueue.put(word)
+queueLock.release()
+
+# Wait for queue to empty
+while not workQueue.empty():
+    pass
+
+# Notify threads it's time to exit
+exitFlag = 1
+
+# Wait for all threads to complete
+for t in threads:
+    t.join()
+print "Exiting Main Thread"
+</pre>
+<p>When the above code is  executed, it produces following result:</p>
+<pre class="result">
+Starting Thread-1
+Starting Thread-2
+Starting Thread-3
+Thread-1 processing One
+Thread-2 processing Two
+Thread-3 processing Three
+Thread-1 processing Four
+Thread-2 processing Five
+Exiting Thread-3
+Exiting Thread-1
+Exiting Thread-2
+Exiting Main Thread
+</pre>
+<hr />
+<div class="pre-btn">
+<a href="python_sending_email.htm">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/python_multithreading.pdf" alt="Python Multithreaded Programming" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="python_xml_processing.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.htm" target="_top">ASP.NET </a> |
+<a href="../jquery/index.htm" target="_top">jQuery </a> |
+<a href="../ajax/index.htm" target="_top">AJAX </a> |
+<a href="../ant/index.htm" target="_top">ANT</a> |
+<a href="../jsp/index.htm" target="_top">JSP </a> |
+<a href="../servlets/index.htm" target="_top">Servlets </a> |
+<a href="../log4j/index.htm" target="_top">log4j </a> |
+<a href="../ibatis/index.htm" target="_top">iBATIS </a> |
+<a href="../hibernate/index.htm" target="_top">Hibernate </a> |
+<a href="../jdbc/index.htm" target="_top">JDBC </a> |
+<a href="../struts_2/index.htm" target="_top">Struts </a> |
+<a href="../html5/index.htm" target="_top">HTML5 </a> |
+<a href="../sql/index.htm" target="_top">SQL </a> |
+<a href="../mysql/index.htm" target="_top">MySQL </a> |
+<a href="../cplusplus/index.htm" target="_top">C++ </a> |
+<a href="../unix/index.htm" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/python/python_multithreading.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Apr 2013 19:43:46 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

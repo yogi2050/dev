@@ -1,0 +1,356 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/spring/spring_transaction_management.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Apr 2013 20:56:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>Spring Transaction Management</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="description" content="Spring Transaction Management - Learn Java Spring Framework version 3.1.0 starting from environment setup, inversion of control (IoC), dependency injection, bean scopes, bean life cycle, inner beans, autowiring, different modules, aspect oriented programming (AOP), database access (JDBC), Transaction Management, Web MVC framework, Web Flow, Exception handling, EJB integration and Sending email etc." />
+<meta name="keywords" content="Free, Spring, Tutorials, beginners, Framework, Web Flow,  Reference, Manual, Guide, transaction, Management" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+/* Spring Scheme */
+#header{ 
+   background:#c1cc22 !important;
+}
+#topmenu
+{
+   background-color:#387b2c !important;
+}
+#leftcol ul.menu li.heading 
+{
+   background:#c1cc22 !important;
+   border:1px solid #387b2c !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1300px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+   _uacct = "UA-232293-6";
+   urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index.htm">Tutorials Point Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index.htm" target="_top">HOME </a>
+<a href="../java/index.htm" target="_top">JAVA </a>
+<a href="../php/index.htm" target="_top">PHP </a>
+<a href="../python/index.htm" target="_top">Python </a>
+<a href="../ruby/index.htm" target="_top">Ruby </a>
+<a href="../perl/index.htm" target="_top">Perl </a>
+<a href="../html/index.htm" target="_top">HTML </a>
+<a href="../css/index.htm" target="_top">CSS </a>
+<a href="../javascript/index.htm" target="_top">Javascript </a>
+<a href="../mysql/index.htm" target="_top">MySQL </a>
+<a href="../cplusplus/index.htm" target="_top">C++ </a>
+<a href="../unix/index.htm" target="_top">UNIX </a>
+<a href="../more.htm" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.htm" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.htm" target="_top">ABOUT</a> |
+<a href="../about/contact_us.htm" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/spring-mini-logo.png" alt="Spring tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">Spring Core Basics</li>
+<li><a target="_top" href="index.htm">Home</a></li>
+<li><a target="_top" href="spring_overview.htm">Overview</a></li>
+<li><a target="_top" href="spring_architecture.htm">Architecture</a></li>
+<li><a target="_top" href="spring_environment_setup.htm">Environment Setup</a></li>
+<li><a target="_top" href="spring_hello_world_example.htm">Hello World Example</a></li>
+<li><a target="_top" href="spring_ioc_containers.htm">IoC Containers</a></li>
+<li><a target="_top" href="spring_bean_definition.htm">Bean Definition</a></li>
+<li><a target="_top" href="spring_bean_scopes.htm">Bean Scopes</a></li>
+<li><a target="_top" href="spring_bean_life_cycle.htm">Bean Life Cycle</a></li>
+<li><a target="_top" href="spring_bean_post_processors.htm">Bean Post Processors</a></li>
+<li><a target="_top" href="spring_bean_definition_inheritance.htm">Bean Definition Inheritance</a></li>
+<li><a target="_top" href="spring_dependency_injection.htm">Dependency Injection</a></li>
+<li><a target="_top" href="spring_injecting_inner_beans.htm">Injecting Inner Beans</a></li>
+<li><a target="_top" href="spring_injecting_collection.htm">Injecting Collection</a></li>
+<li><a target="_top" href="spring_beans_autowiring.htm">Spring Beans Auto-Wiring</a></li>
+<li><a target="_top" href="spring_annotation_based_configuration.htm">Annotation Based Configuration</a></li>
+<li><a target="_top" href="spring_java_based_configuration.htm">Java Based Configuration</a></li>
+<li><a target="_top" href="event_handling_in_spring.htm">Event Handling in Spring</a></li>
+<li><a target="_top" href="custom_events_in_spring.htm">Custom Events in Spring</a></li>
+<li><a target="_top" href="aop_with_spring.htm">AOP with Spring Framework</a></li>
+<li><a target="_top" href="spring_jdbc_framework.htm">Spring JDBC Framework</a></li>
+<li><a target="_top" href="spring_transaction_management.htm"><b>Transaction Management</b></a></li>
+<li><a target="_top" href="spring_web_mvc_framework.htm">Spring Web MVC Framework</a></li>
+<li><a target="_top" href="logging_with_log4j.htm">Spring Logging with Log4J</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Spring Useful Resources</li>
+<li><a target="_top" href="spring_quick_guide.htm">Spring Quick Guide</a></li>
+<li><a target="_top" href="spring_useful_resources.htm">Spring Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>Spring Transaction Management</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="spring_jdbc_framework.htm">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="spring_web_mvc_framework.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>A database transaction is a sequence of actions that are treated as a single unit of work. These actions should either complete entirely or take no effect at all. Transaction management is an important part of and RDBMS oriented enterprise applications to ensure data integrity and consistency. The concept of transactions can be described with following four key properties described as <b>ACID</b>:</p>
+<ol class="list">
+<li><p><b>Atomicity:</b> A transaction should be treated as a single unit of operation which means either the entire sequence of operations is successful or unsuccessful.</p></li>
+<li><p><b>Consistency:</b>  This represents the consistency of the referential integrity of the database, unique primary keys in tables etc.</p></li>
+<li><p><b>Isolation:</b> There may be many transactions processing with the same data set at the same time, each transaction should be isolated from others to prevent data corruption.</p></li>
+<li><p><b>Durability:</b> Once a transaction has completed, the results of this transaction have to be made permanent and cannot be erased from the database due to system failure.</p></li>
+</ol>
+<p>A real RDBMS database system will guarantee all the four properties for each transaction. The simplistic view of a transaction issued to the database using SQL is as follows:</p>
+<ul class="list">
+<li><p>Begin the transaction using <i>begin transaction</i> command.</p></li>
+<li><p>Perform various deleted, update or insert operations using SQL queries.</p></li>
+<li><p>If all the operation are successful then perform <i>commit</i> otherwise <i>rollback</i> all the operations.</p></li>
+</ul>
+<p>Spring framework provides an abstract layer on top of different underlying transaction management APIs. The Spring's transaction support aims to provide an alternative to EJB transactions by adding transaction capabilities to POJOs. Spring supports both programmatic and declarative transaction management. EJBs requires an application server, but Spring transaction management can be implemented without a need of application server.</p>
+<h2>Local vs. Global Transactions</h2>
+<p>Local transactions are specific to a single transactional resource like a JDBC connection, whereas global transactions can span multiple transactional resources like transaction in a distributed system.</p>
+<p>Local transaction management can be useful in a centralized computing environment where application components and resources are located at a single site, and transaction management only involves a local data manager running on a single machine. Local transactions are easier to be implemented.</p>
+<p>Global transaction management is required in a distributed computing environment where all the resources are distributed across multiple systems. In such a case transaction management needs to be done both at local and global levels. A distributed or a global transaction is executed across multiple systems, and its execution requires coordination between the global transaction management system and all the local data managers of all the involved systems.</p>
+<h2>Programmatic vs. Declarative</h2>
+<p>Spring supports two types of  transaction management:</p>
+<ol class="list">
+<li><p><a href="programmatic_management.htm">Programmatic transaction management:</a> This means that you have manage the transaction with the help of programming. That gives you extreme flexibility, but it is difficult to maintain.</p></li>
+<li><p><a href="declarative_management.htm">Declarative transaction management:</a> This means you separate transaction management from the business code. You only use annotations or XML based configuration to manage the transactions.</p></li>
+</ol>
+<p>Declarative transaction management is preferable over  programmatic transaction management though it is less flexible than programmatic transaction management, which allows you to control transactions through your code. But as a kind of crosscutting concern, declarative transaction management can be modularized with the AOP approach. Spring supports declarative transaction management through the Spring AOP framework.</p>
+<h2>Spring Transaction Abstractions</h2>
+<p>The key to the Spring transaction abstraction is defined by the <i>org.springframework.transaction.PlatformTransactionManager</i> interface, which is as follows:</p>
+<pre class="prettyprint">
+public interface PlatformTransactionManager {
+   TransactionStatus getTransaction(TransactionDefinition definition);
+   throws TransactionException;
+   void commit(TransactionStatus status) throws TransactionException;
+   void rollback(TransactionStatus status) throws TransactionException;
+}
+</pre>
+<table class="src">
+<tr><th class="fivepct">S.N.</th><th>Method &amp; Description</th></tr>
+<tr><td>1</td><td><b>TransactionStatus getTransaction(TransactionDefinition definition)</b><br>This method returns a currently active transaction or create a new one, according to the specified propagation behavior.</td></tr>
+<tr><td>2</td><td><b>void commit(TransactionStatus status)</b><br>This method commits the given transaction, with regard to its status.</td></tr>
+<tr><td>3</td><td><b>void rollback(TransactionStatus status)</b><br>This method performs a rollback of the given transaction.</td></tr>
+</table>
+<p>The <i>TransactionDefinition</i> is the core interface of the transaction support in Spring and it is defined as below:</p>
+<pre class="prettyprint">
+public interface TransactionDefinition {
+   int getPropagationBehavior();
+   int getIsolationLevel();
+   String getName();
+   int getTimeout();
+   boolean isReadOnly();
+}
+</pre>
+<table class="src">
+<tr><th class="fivepct">S.N.</th><th>Method &amp; Description</th></tr>
+<tr><td>1</td><td><b>int getPropagationBehavior()</b><br>This method returns the propagation behavior. Spring offers all of the transaction propagation options familiar from EJB CMT.</td></tr>
+<tr><td>2</td><td><b>int getIsolationLevel()</b><br>This method returns the degree to which this transaction is isolated from the work of other transactions.</td></tr>
+<tr><td>3</td><td><b>String getName()</b><br>This method returns the name of this transaction.</td></tr>
+<tr><td>4</td><td><b>int getTimeout()</b><br>This method returns the time in seconds in which the transaction must complete.</td></tr>
+<tr><td>5</td><td><b>boolean isReadOnly()</b><br>This method returns whether the transaction is read-only.</td></tr>
+</table>
+<p>Following are the possible values for isolation level:</p>
+<table class="src">
+<tr><th class="fivepct">S.N.</th><th>Isolation &amp; Description</th></tr>
+<tr><td>1</td><td><b>TransactionDefinition.ISOLATION_DEFAULT</b><br>This is the default isolation level.</td></tr>
+<tr><td>2</td><td><b>TransactionDefinition.ISOLATION_READ_COMMITTED</b><br> Indicates that dirty reads are prevented; non-repeatable reads and phantom reads can occur.</td></tr>
+<tr><td>3</td><td><b>TransactionDefinition.ISOLATION_READ_UNCOMMITTED</b><br>Indicates that dirty reads, non-repeatable reads and phantom reads can occur.</td></tr>
+<tr><td>4</td><td><b>TransactionDefinition.ISOLATION_REPEATABLE_READ</b><br>Indicates that dirty reads and non-repeatable reads are prevented; phantom reads can occur.</td></tr>
+<tr><td>5</td><td><b>TransactionDefinition.ISOLATION_SERIALIZABLE</b><br>Indicates that dirty reads, non-repeatable reads and phantom reads are prevented.</td></tr>
+</table>
+<p>Following are the possible values for propagation types:</p>
+<table class="src">
+<tr><th class="fivepct">S.N.</th><th>Propagation &amp; Description</th></tr>
+<tr><td>1</td><td><b>TransactionDefinition.PROPAGATION_MANDATORY</b><br>Support a current transaction; throw an exception if no current transaction exists.</td></tr>
+<tr><td>2</td><td><b>TransactionDefinition.PROPAGATION_NESTED </b><br>Execute within a nested transaction if a current transaction exists.</td></tr>
+<tr><td>3</td><td><b>TransactionDefinition.PROPAGATION_NEVER </b><br>Do not support a current transaction; throw an exception if a current transaction exists.</td></tr>
+<tr><td>4</td><td><b>TransactionDefinition.PROPAGATION_NOT_SUPPORTED </b><br>Do not support a current transaction; rather always execute non-transactionally.</td></tr>
+<tr><td>5</td><td><b>TransactionDefinition.PROPAGATION_REQUIRED  </b><br>Support a current transaction; create a new one if none exists.</td></tr>
+<tr><td>6</td><td><b>TransactionDefinition.PROPAGATION_REQUIRES_NEW  </b><br>Create a new transaction, suspending the current transaction if one exists.</td></tr>
+<tr><td>7</td><td><b>TransactionDefinition.PROPAGATION_SUPPORTS  </b><br> Support a current transaction; execute non-transactionally if none exists.</td></tr>
+<tr><td>8</td><td><b>TransactionDefinition.TIMEOUT_DEFAULT   </b><br>  Use the default timeout of the underlying transaction system, or none if timeouts are not supported.</td></tr>
+</table>
+<p>The <i>TransactionStatus</i> interface provides a simple way for transactional code to control transaction execution and query transaction status.</p>
+<pre class="prettyprint">
+public interface TransactionStatus extends SavepointManager {
+   boolean isNewTransaction();
+   boolean hasSavepoint();
+   void setRollbackOnly();
+   boolean isRollbackOnly();
+   boolean isCompleted();
+}
+</pre>
+<table class="src">
+<tr><th class="fivepct">S.N.</th><th>Method &amp; Description</th></tr>
+<tr><td>1</td><td><b>boolean hasSavepoint()</b><br>This method returns whether this transaction internally carries a savepoint, that is, has been created as nested transaction based on a savepoint.</td></tr>
+<tr><td>2</td><td><b>boolean isCompleted()</b><br>This method returns whether this transaction is completed, that is, whether it has already been committed or rolled back.</td></tr>
+<tr><td>3</td><td><b>boolean isNewTransaction()</b><br>This method returns true in case the present transaction is new.</td></tr>
+<tr><td>4</td><td><b>boolean isRollbackOnly()</b><br>This method returns whether the transaction has been marked as rollback-only.</td></tr>
+<tr><td>5</td><td><b>void setRollbackOnly() </b><br>This method sets the transaction rollback-only.</td></tr>
+</table>
+<hr />
+<div class="pre-btn">
+<a href="spring_jdbc_framework.htm">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/spring_transaction_management.pdf" alt="Spring Transaction Management" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="spring_web_mvc_framework.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.htm" target="_top">ASP.NET </a> |
+<a href="../jquery/index.htm" target="_top">jQuery </a> |
+<a href="../ajax/index.htm" target="_top">AJAX </a> |
+<a href="../ant/index.htm" target="_top">ANT</a> |
+<a href="../jsp/index.htm" target="_top">JSP </a> |
+<a href="../servlets/index.htm" target="_top">Servlets </a> |
+<a href="../log4j/index.htm" target="_top">log4j </a> |
+<a href="../ibatis/index.htm" target="_top">iBATIS </a> |
+<a href="../hibernate/index.htm" target="_top">Hibernate </a> |
+<a href="../jdbc/index.htm" target="_top">JDBC </a> |
+<a href="../struts_2/index.htm" target="_top">Struts </a> |
+<a href="../html5/index.htm" target="_top">HTML5 </a> |
+<a href="../sql/index.htm" target="_top">SQL </a> |
+<a href="../mysql/index.htm" target="_top">MySQL </a> |
+<a href="../cplusplus/index.htm" target="_top">C++ </a> |
+<a href="../unix/index.htm" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/spring/spring_transaction_management.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Apr 2013 20:56:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

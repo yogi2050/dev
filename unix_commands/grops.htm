@@ -1,0 +1,1081 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/grops.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>grops - Unix, Linux Command</title>
+<meta name="Description" Content="grops - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>grops - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- ignored unsupported tag .mso -->
+<h1 class="manpages">NAME</h1>
+grops - PostScript driver for groff
+<h1 class="manpages">SYNOPSIS</h1>
+<!-- ignored unsupported tag .ad -->
+<!-- ignored unsupported tag .in -->
+&nbsp; &nbsp;<b>grops</b> <!-- ignored unsupported tag .ie -->
+[ <b>-glmv</b> ] <!-- ignored unsupported tag .ie -->
+[ <b>-b</b> ] <!-- ignored unsupported tag .ie -->
+[ <b>-c</b> ] <!-- ignored unsupported tag .ie -->
+[ <b>-F</b> ] <!-- ignored unsupported tag .ie -->
+[ <b>-p</b> ] <!-- ignored unsupported tag .ie -->
+[ <b>-P</b> ] <!-- ignored unsupported tag .ie -->
+[ <b>-w</b> ] [ <i>files...</i> ] <!-- ignored unsupported tag .ad -->
+<p>
+It is possible to have whitespace between a command line option and its
+parameter.
+<h1 class="manpages">DESCRIPTION</h1>
+<b>grops</b> translates the output of GNU
+<b>troff</b> to PostScript.
+Normally
+<b>grops</b> should be invoked by using the groff command
+with a
+<b>-Tps</b> option.
+<!-- ignored unsupported tag .if -->
+If no files are given,
+<b>grops</b> will read the standard input.
+A filename of
+<b>-</b> will also cause
+<b>grops</b> to read the standard input.
+PostScript output is written to the standard output.
+When
+<b>grops</b> is run by
+<b>groff</b> options can be passed to
+<b>grops</b> using the
+<b>groff</b> <b>-P</b> option.
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-b</b><i>n</i> </td><td valign="bottom">
+Workaround broken spoolers and previewers.
+Normally
+<b>grops</b> produces output that conforms
+the Document Structuring Conventions version 3.0.
+Unfortunately some spoolers and previewers can&#146;t handle such output.
+The value of~
+<i>n</i> controls what
+<b>grops</b> does to its output acceptable to such programs.
+A value of~0 will cause grops not to employ any workarounds.
+Add~1 if no
+<b>%%BeginDocumentSetup</b> and
+<b>%%EndDocumentSetup</b> comments should be generated;
+this is needed for early versions of TranScript that get confused by
+anything between the
+<b>%%EndProlog</b> comment and the first
+<b>%%Page</b> comment.
+Add~2 if lines in included files beginning with
+<b>%!</b> should be stripped out; this is needed for Sun&#146;s pageview previewer.
+Add~4 if
+<b>%%Page</b>, <b>%%Trailer</b> and
+<b>%%EndProlog</b> comments should be
+stripped out of included files; this is needed for spoolers that
+don&#146;t understand the
+<b>%%BeginDocument</b> and
+<b>%%EndDocument</b> comments.
+Add~8 if the first line of the PostScript output should be
+<b>%!PS-Adobe-2.0</b> rather than
+<b>%!PS-Adobe-3.0</b>; this is needed when using Sun&#146;s Newsprint with a printer that requires
+page reversal.
+The default value can be specified by a
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<b>broken </b><i>n</i> </td></tr>
+<!-- LP ends table -->
+</table>
+command in the DESC file.
+Otherwise the default value is~0.
+</td></tr>
+<tr valign="top"><td>
+<b>-c</b><i>n</i> </td><td valign="bottom">
+Print
+<i>n</i> copies of each page.
+</td></tr>
+<tr valign="top"><td>
+<b>-F</b><i>dir</i> </td><td valign="bottom">
+Prepend directory
+<i>dir</i><b>/dev</b><i>name</i> to the search path for prologue, font, and device description files;
+<i>name</i> is the name of the device, usually
+<b>ps</b>. </td></tr>
+<tr valign="top"><td>
+<b>-g</b> </td><td valign="bottom">
+Guess the page length.
+This generates PostScript code that guesses the page length.
+The guess will be correct only if the imageable area is vertically
+centered on the page.
+This option allows you to generate documents that can be printed
+both on letter (8.5&#215;11) paper and on A4 paper without change.
+</td></tr>
+<tr valign="top"><td>
+<b>-l</b> </td><td valign="bottom">
+Print the document in landscape format.
+</td></tr>
+<tr valign="top"><td>
+<b>-m</b> </td><td valign="bottom">
+Turn manual feed on for the document.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-p</b><i>paper-size</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set physical dimension of output medium.
+This overrides the
+<b>papersize</b> and
+<b>paperlength</b> commands in the
+<b>DESC</b> file; it accepts the same arguments as the
+<b>papersize</b> command.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-P</b><i>prologue-file</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Use the file
+<i>prologue-file</i> (in the font path) as the prologue instead of the default prologue file
+<b>prologue</b>. This option overrides the environment variable
+<font size="-1">GROPS_PROLOGUE.</font> </td></tr>
+<tr valign="top"><td>
+<b>-w</b><i>n</i> </td><td valign="bottom">
+Lines should be drawn using a thickness of
+<i>n</i>~ thousandths of an em.
+If this option is not given, the line thickness defaults to 0.04~em.
+</td></tr>
+<tr valign="top"><td>
+<b>-v</b> </td><td valign="bottom">
+Print the version number.
+</td></tr>
+</table>
+<h1 class="manpages">USAGE</h1>
+There are styles called
+<b>R</b>, <b>I</b>, <b>B</b>, and
+<b>BI</b> mounted at font positions 1 to~4.
+The fonts are grouped into families
+<b>A</b>, <b>BM</b>, <b>C</b>, <b>H</b>, <b>HN</b>, <b>N</b>, <b>P</b> and~
+<b>T</b> having members in each of these styles:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>AR</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+AvantGarde-Book
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>AI</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+AvantGarde-BookOblique
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>AB</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+AvantGarde-Demi
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>ABI</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+AvantGarde-DemiOblique
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>BMR</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+Bookman-Light
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>BMI</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+Bookman-LightItalic
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>BMB</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+Bookman-Demi
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>BMBI</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+Bookman-DemiItalic
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>CR</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+Courier
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>CI</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+Courier-Oblique
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>CB</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+Courier-Bold
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>CBI</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+Courier-BoldOblique
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>HR</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+Helvetica
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>HI</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+Helvetica-Oblique
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>HB</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+Helvetica-Bold
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>HBI</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+Helvetica-BoldOblique
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>HNR</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+Helvetica-Narrow
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>HNI</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+Helvetica-Narrow-Oblique
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>HNB</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+Helvetica-Narrow-Bold
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>HNBI</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+Helvetica-Narrow-BoldOblique
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>NR</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+NewCenturySchlbk-Roman
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>NI</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+NewCenturySchlbk-Italic
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>NB</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+NewCenturySchlbk-Bold
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>NBI</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+NewCenturySchlbk-BoldItalic
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>PR</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+Palatino-Roman
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>PI</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+Palatino-Italic
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>PB</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+Palatino-Bold
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>PBI</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+Palatino-BoldItalic
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>TR</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+Times-Roman
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>TI</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+Times-Italic
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>TB</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+Times-Bold
+<!-- ignored unsupported tag .if -->
+</td></tr>
+<tr valign="top"><td>
+<b>TBI</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+Times-BoldItalic
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<p>
+There is also the following font which is not a member of a family:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>ZCMI</b> </td><td valign="bottom">
+<!-- ignored unsupported tag .if -->
+ZapfChancery-MediumItalic
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<p>
+There are also some special fonts called
+<b>SS</b> and~
+<b>S</b>. Zapf Dingbats is available as
+<b>ZD</b> and a reversed version of ZapfDingbats (with symbols pointing in the opposite
+direction) is available as
+<b>ZDR</b>; most characters in these fonts are unnamed and must be accessed using
+<b>[rs]N</b>. <p>
+The default color for
+<b>[rs]m</b> and
+<b>[rs]M</b> is black; for colors defined in the &#145;rgb&#146; color space,
+<b>setrgbcolor</b> is used, for &#145;cmy&#146; and &#145;cmyk&#146;
+<b>setcmykcolor</b>, and for &#145;gray&#146;
+<b>setgray</b>. <p>
+<b>grops</b> understands various X~commands produced using the
+<b>[rs]X</b> escape sequence;
+<b>grops</b> will only interpret commands that begin with a
+<b>ps:</b> tag.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>[rs]X&#146;ps: exec </b><i>code</i><b>&#146;</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This executes the arbitrary PostScript commands in
+<i>code</i>. The PostScript currentpoint will be set to the position of the
+<b>[rs]X</b> command before executing
+<i>code</i>. The origin will be at the top left corner of the page,
+and y~coordinates will increase down the page.
+A procedure~
+<b>u</b> will be defined that converts groff units
+to the coordinate system in effect.
+For example,
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<b></b> &#46;nr x 1i
+<!-- Need break --><br />
+<b></b> [rs]X&#146;ps: exec [rs]nx u 0 rlineto stroke&#146;
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+will draw a horizontal line one inch long.
+<i>code</i> may make changes to the graphics state,
+but any changes will persist only to the
+end of the page.
+A dictionary containing the definitions specified by the
+<b>def</b> and
+<b>mdef</b> will be on top of the dictionary stack.
+If your code adds definitions to this dictionary,
+you should allocate space for them using
+<b>[rs]X&#146;ps mdef</b><i> n</i><b>&#146;</b>. Any definitions will persist only until the end of the page.
+If you use the
+<b>[rs]Y</b> escape sequence with an argument that names a macro,
+<i>code</i> can extend over multiple lines.
+For example,
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<b>&#46;nr x 1i
+&#46;de y
+ps: exec
+[rs]nx u 0 rlineto
+stroke
+&#46;.
+[rs]Yy
+</pre></td></tr>
+</table>
+</b></td></tr>
+<!-- LP ends table -->
+</table>
+is another way to draw a horizontal line one inch long.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>[rs]X&#146;ps: file </b><i>name</i><b>&#146;</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This is the same as the
+<b>exec</b> command except that the PostScript code is read from file
+<i>name</i>. </td></tr>
+<tr valign="top"><td colspan="2">
+<b>[rs]X&#146;ps: def </b><i>code</i><b>&#146;</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Place a PostScript definition contained in
+<i>code</i> in the prologue.
+There should be at most one definition per
+<b>[rs]X</b> command.
+Long definitions can be split over several
+<b>[rs]X</b> commands;
+all the
+<i>code</i> arguments are simply joined together separated by newlines.
+The definitions are placed in a dictionary which is automatically
+pushed on the dictionary stack when an
+<b>exec</b> command is executed.
+If you use the
+<b>[rs]Y</b> escape sequence with an argument that names a macro,
+<i>code</i> can extend over multiple lines.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>[rs]X&#146;ps: mdef </b><i>n code</i><b>&#146;</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Like
+<b>def</b>, except that
+<i>code</i> may contain up to
+<i>n</i>~ definitions.
+<b>grops</b> needs to know how many definitions
+<i>code</i> contains
+so that it can create an appropriately sized PostScript dictionary
+to contain them.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>[rs]X&#146;ps: import </b><i>file llx lly urx ury width </i>[ height ]<b>&#146;</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Import a PostScript graphic from
+<i>file</i>. The arguments
+<i>llx</i>, <i>lly</i>, <i>urx</i>, and
+<i>ury</i> give the bounding box of the graphic in the default PostScript
+coordinate system; they should all be integers;
+<i>llx</i> and
+<i>lly</i> are the x and y~coordinates of the lower left
+corner of the graphic;
+<i>urx</i> and
+<i>ury</i> are the x and y~coordinates of the upper right corner of the graphic;
+<i>width</i> and
+<i>height</i> are integers that give the desired width and height in groff
+units of the graphic.
+The graphic will be scaled so that it has this width and height
+and translated so that the lower left corner of the graphic is
+located at the position associated with
+<b>[rs]X</b> command.
+If the height argument is omitted it will be scaled uniformly in the
+x and y~directions so that it has the specified width.
+Note that the contents of the
+<b>[rs]X</b> command are not interpreted by
+<b>troff</b>; so vertical space for the graphic is not automatically added,
+and the
+<i>width</i> and
+<i>height</i> arguments are not allowed to have attached scaling indicators.
+If the PostScript file complies with the Adobe Document Structuring
+Conventions and contains a
+<b>%%BoundingBox</b> comment, then the bounding box can be automatically
+extracted from within groff by using the
+<b>psbb</b> request.
+<p>
+The
+<b>-mps</b> macros (which are automatically loaded when
+<b>grops</b> is run by the groff command) include a
+<b>PSPIC</b> macro which allows a picture to be easily imported.
+This has the format
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<b>.PSPIC</b> [<b>-L</b>|<b>-R</b>|<b>-I</b> <i>n</i>] <i>file</i> [<i>width</i> [<i>height</i>]]
+</td></tr>
+<!-- LP ends table -->
+</table>
+<i>file</i> is the name of the file containing the illustration;
+<i>width</i> and
+<i>height</i> give the desired width and height of the graphic.
+The
+<i>width</i> and
+<i>height</i> arguments may have scaling indicators attached;
+the default scaling indicator is~
+<b>i</b>. This macro will scale the graphic uniformly
+in the x and y~directions so that it is no more than
+<i>width</i> wide
+and
+<i>height</i> high.
+By default, the graphic will be horizontally centered.
+The
+<b>-L</b> and
+<b>-R</b> cause the graphic to be left-aligned and right-aligned
+respectively.
+The
+<b>-I</b> option causes the graphic to be indented by~
+<i>n</i>. </td></tr>
+<tr valign="top"><td colspan="2">
+<b>[rs]X&#146;ps: invis&#146;</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ns -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>[rs]X&#146;ps: endinvis&#146;</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+No output will be generated for text and drawing commands
+that are bracketed with these
+<b>[rs]X</b> commands.
+These commands are intended for use when output from
+<b>troff</b> will be previewed before being processed with
+<b>grops</b>; if the previewer is unable to display certain characters
+or other constructs, then other substitute characters or constructs
+can be used for previewing by bracketing them with these
+<b>[rs]X</b> commands.
+<p>
+For example,
+<b>gxditview</b> is not able to display a proper
+<b>[rs](em</b> character because the standard X11 fonts do not provide it;
+this problem can be overcome by executing the following
+request
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<b><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&#46;char [rs](em [rs]X&#146;ps: invis&#146;[rs]
+[rs]Z&#146;[rs]v&#146;-.25m&#146;[rs]h&#146;.05m&#146;[rs]D&#146;l .9m 0&#146;[rs]h&#146;.05m&#146;&#146;[rs]
+[rs]X&#146;ps: endinvis&#146;[rs](em
+</b></pre></td></tr>
+</table>
+</td></tr>
+<!-- LP ends table -->
+</table>
+In this case,
+<b>gxditview</b> will be unable to display the
+<b>[rs](em</b> character and will draw the line,
+whereas
+<b>grops</b> will print the
+<b>[rs](em</b> character
+and ignore the line.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+The input to
+<b>grops</b> must be in the format output by
+<b>troff</b>(1).
+This is described in
+<b>groff_out</b>(5).
+In addition the device and font description files for the device used
+must meet certain requirements.
+The device and font description files supplied for
+<b>ps</b> device meet all these requirements.
+<b>afmtodit</b>(1)
+can be used to create font files from AFM files.
+The resolution must be an integer multiple of~72 times the
+<b>sizescale</b>. The
+<b>ps</b> device uses a resolution of 72000 and a sizescale of 1000.
+The device description file should contain a command
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<b>paperlength </b><i>n</i> </td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+which says that output should be generated which is suitable for
+printing on a page whose length is
+<i>n</i>~ machine units.
+Common values are 792000 for letter paper and 841890 for paper in A4 format.
+Alternatively, it can contain
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<b>papersize </b><i>string</i> </td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+to specify a paper size; see
+<b>groff_font</b>(5)
+for more information.
+Each font description file must contain a command
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<b>internalname </b><i>psname</i> </td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+which says that the PostScript name of the font is
+<i>psname</i>. It may also contain a command
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<b>encoding </b><i>enc_file</i> </td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+which says that
+the PostScript font should be reencoded using the encoding described in
+<i>enc_file</i>; this file should consist of a sequence of lines of the form:
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<i></i> pschar code
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+where
+<i>pschar</i> is the PostScript name of the character,
+and
+<i>code</i> is its position in the encoding expressed as a decimal integer.
+Lines starting with
+<b>#</b> and blank lines are ignored.
+The code for each character given in the font file must correspond
+to the code for the character in encoding file, or to the code in the default
+encoding for the font if the PostScript font is not to be reencoded.
+This code can be used with the
+<b>[rs]N</b> escape sequence in
+<b>troff</b> to select the character,
+even if the character does not have a groff name.
+Every character in the font file must exist in the PostScript font, and
+the widths given in the font file must match the widths used
+in the PostScript font.
+<b>grops</b> will assume that a character with a groff name of
+<b>space</b> is blank (makes no marks on the page);
+it can make use of such a character to generate more efficient and
+compact PostScript output.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+<b>grops</b> can automatically include the downloadable fonts necessary
+to print the document.
+Any downloadable fonts which should, when required, be included by
+<b>grops</b> must be listed in the file
+<b>/usr/share/groff/1.18.1.1/font/devps/download</b>; this should consist of lines of the form
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<i></i> font filename
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+where
+<i>font</i> is the PostScript name of the font,
+and
+<i>filename</i> is the name of the file containing the font;
+lines beginning with
+<b>#</b> and blank lines are ignored;
+fields may be separated by tabs or spaces;
+<i>filename</i> will be searched for using the same mechanism that is used
+for groff font metric files.
+The
+<b>download</b> file itself will also be searched for using this mechanism;
+currently, only the first found file in the font path is used.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+If the file containing a downloadable font or imported document
+conforms to the Adobe Document Structuring Conventions,
+then
+<b>grops</b> will interpret any comments in the files sufficiently to ensure that its
+own output is conforming.
+It will also supply any needed font resources that are listed in the
+<b>download</b> file
+as well as any needed file resources.
+It is also able to handle inter-resource dependencies.
+For example, suppose that you have a downloadable font called Garamond,
+and also a downloadable font called Garamond-Outline
+which depends on Garamond
+(typically it would be defined to copy Garamond&#146;s font dictionary,
+and change the PaintType),
+then it is necessary for Garamond to be appear before Garamond-Outline
+in the PostScript document.
+<b>grops</b> will handle this automatically
+provided that the downloadable font file for Garamond-Outline
+indicates its dependence on Garamond by means of
+the Document Structuring Conventions,
+for example by beginning with the following lines
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<b></b> %!PS-Adobe-3.0 Resource-Font
+<!-- Need break --><br />
+<b></b> %%DocumentNeededResources: font Garamond
+<!-- Need break --><br />
+<b></b> %%EndComments
+<!-- Need break --><br />
+<b></b> %%IncludeResource: font Garamond
+</td></tr>
+<!-- LP ends table -->
+</table>
+In this case both Garamond and Garamond-Outline would need to be listed
+in the
+<b>download</b> file.
+A downloadable font should not include its own name in a
+<b>%%DocumentSuppliedResources</b> comment.
+<p>
+<b>grops</b> will not interpret
+<b>%%DocumentFonts</b> comments.
+The
+<b>%%DocumentNeededResources</b>, <b>%%DocumentSuppliedResources</b>, <b>%%IncludeResource</b>, <b>%%BeginResource</b> and
+<b>%%EndResource</b> comments
+(or possibly the old
+<b>%%DocumentNeededFonts</b>, <b>%%DocumentSuppliedFonts</b>, <b>%%IncludeFont</b>, <b>%%BeginFont</b> and
+<b>%%EndFont</b> comments)
+should be used.
+<h2><i>TrueType fonts</i></h2>
+TrueType fonts can be used with
+<b>grops</b> if converted first to
+<b>Type 42</b> format, an especial PostScript wrapper equivalent to the
+PFA format mentioned in
+<b>pfbtops</b>(1).
+There are several different methods to generate a type42
+wrapper and most of them involve the use of a PostScript
+interpreter such as Ghostscript &#151; see
+<b>gs</b>(1).
+Yet, the easiest method involves the use of the application
+<b>ttftot42</b>. This program uses
+<b>freetype</b>(3)
+(version 1.3.1) to generate type42
+font wrappers and well-formed AFM files that can be fed to
+the
+<b>afmtodit</b>(1)
+script to create appropriate metric files.
+The resulting font wrappers should be added to the
+<b>download</b> file.
+<b>ttftot42</b> source code can be downloaded from
+<!-- ignored unsupported tag .URL -->
+<br />
+     ftp://<blink>\:</blink>www.giga.or.at/<blink>\:</blink>pub/<blink>\:</blink>nih/<blink>\:</blink>ttftot42/ .
+<h1 class="manpages">ENVIRONMENT</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<font size="-1"></font> <b>GROPS_PROLOGUE</b> </td><td valign="bottom">
+If this is set to
+<i>foo</i>, then
+<b>grops</b> will use the file
+<i>foo</i> (in the font path) instead of the default prologue file
+<b>prologue</b>. The option
+<b>-P</b> overrides this environment variable.
+</td></tr>
+</table>
+<h1 class="manpages">FILES</h1>
+<!-- ignored unsupported tag .ie -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>/usr/share/groff/1.18.1.1/font/devps/DESC</b> </td><td valign="bottom">
+Device description file.
+</td></tr>
+<tr valign="top"><td>
+<b>/usr/share/groff/1.18.1.1/font/devps/</b><i>F</i> </td><td valign="bottom">
+Font description file for font
+<i>F</i>. </td></tr>
+<tr valign="top"><td>
+<b>/usr/share/groff/1.18.1.1/font/devps/download</b> </td><td valign="bottom">
+List of downloadable fonts.
+</td></tr>
+<tr valign="top"><td>
+<b>/usr/share/groff/1.18.1.1/font/devps/text.enc</b> </td><td valign="bottom">
+Encoding used for text fonts.
+</td></tr>
+<tr valign="top"><td>
+<b>/usr/share/groff/1.18.1.1/tmac/ps.tmac</b> </td><td valign="bottom">
+Macros for use with
+<b>grops</b>; automatically loaded by
+<b>troffrc</b> </td></tr>
+<tr valign="top"><td>
+<b>/usr/share/groff/1.18.1.1/tmac/pspic.tmac</b> </td><td valign="bottom">
+Definition of
+<b>PSPIC</b> macro,
+automatically loaded by
+<b>ps.tmac</b>. </td></tr>
+<tr valign="top"><td>
+<b>/usr/share/groff/1.18.1.1/tmac/psold.tmac</b> </td><td valign="bottom">
+Macros to disable use of characters not present in older
+PostScript printers (e.g. &#145;eth&#146; or &#145;thorn&#146;).
+</td></tr>
+<tr valign="top"><td>
+<b>/tmp/grops</b><i>XXXXXX</i> </td><td valign="bottom">
+Temporary file.
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="afmtodit.html">afmtodit (1)</a></p></li>
+<li><p><a href="groff.htm">groff (1)</a></p></li>
+<li><p><a href="troff.htm">troff (1)</a></p></li>
+<li><p><a href="psbb.html">psbb (1)</a></p></li>
+</ul>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion619d.html?tutorial=unix_commands&amp;file=grops.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/grops.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

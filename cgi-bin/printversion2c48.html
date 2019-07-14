@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=php&file=php_sending_emails.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:02:53 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>Sending Emails using PHP</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="Keywords" content="Learning, PHP, Programming, Language, Built-in Function, Library, Web Design,Object Oriented PHP, PHP Variables, Scalars, Arrays, Hash, File I/O, Looping, Regular Expressions, Subroutines, Coding Standard, Writing Modules, File Management, Socket, Examples, Reference, Special Variables, Syntax Overview, Advanced PHP, Tutorial, Tutorials, Operators, GET, POST, Predefined" />
+<meta name="Description" content="Sending Emails using PHP - A simple and short PHP tutorial and complete reference manual for all built-in PHP functions. This tutorial is designed for beginners to adavnced developers. You will learn PHP Built-in Function Predefined Variables Examples Object Oriented Numbers Scalars Arrays Hash File I/O IF ELSEIF Do While Loops Operators Regular Expressions GET POST Subroutines Coding Standard Modules File Management Socket Communication  Reference Special Variables Syntax Overview Advanced PHP" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../print.css"/>
+</head>
+<body>
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+<h1>PHP - Sending Emails</h1>
+<a href="../php/php_sessions.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../php/php_file_uploading.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<br />
+<p>PHP must be configured correctly in the <b>php.ini</b> file with the details of how your system sends email. Open php.ini file available in <b>/etc/</b> directory and find the section headed <b>[mail function]</b>.</p>
+<p>Windows users should ensure that two directives are supplied. The first is called SMTP that defines your email server address. The second is called sendmail_from which defines your own email address.</p>
+<p>The configuration for Windows should look something like this:</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+[mail function]
+; For Win32 only.
+SMTP = smtp.secureserver.net
+
+; For win32 only
+sendmail_from = webmaster@tutorialspoint.com
+</pre></td></tr></table>
+<p>Linux users simply need to let PHP know the location of their <b>sendmail</b> application. The path and any desired switches should be specified to the sendmail_path directive.</p>
+<p>The configuration for Linux should look something like this:</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+[mail function]
+; For Win32 only.
+SMTP = 
+
+; For win32 only
+sendmail_from = 
+
+; For Unix only
+sendmail_path = /usr/sbin/sendmail -t -i
+</pre></td></tr></table>
+<p>Now you are ready to go:</p>
+<h2>Sending plain text email:</h2>
+<p>PHP makes use of <b>mail()</b> function to send an email. This function requires three mandatory arguments that specify the recipient's email address, the subject of the the message and the actual message additionally there are other two optional parameters.</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+mail( to, subject, message, headers, parameters );
+</pre></td></tr></table>
+<p>Here is the description for each parameters.</p>
+<table class="src" cellpadding="5" border="1">
+  <tr>
+    <th align="left" valign="top" width="20%">Parameter</th>
+    <th align="left" valign="top" width="80%">Description</th>
+  </tr>  
+  <tr>
+    <td valign="top">to</td>
+    <td valign="top">Required. Specifies the receiver / receivers of the email</td>
+  </tr>
+  <tr>
+    <td valign="top">subject</td>
+    <td valign="top">Required. Specifies 
+	the subject of the email. This parameter cannot contain any newline characters</td>
+  </tr>
+  <tr>
+    <td valign="top">message</td>
+    <td valign="top">Required. Defines the message to be sent. Each line should 
+	be separated with a LF (\n). Lines should not exceed 70 characters</td>
+  </tr>
+  <tr>
+    <td valign="top">headers</td>
+    <td valign="top">Optional. Specifies additional headers, like From, Cc, and 
+	Bcc. The additional headers should be separated with a CRLF (\r\n)</td>
+  </tr>
+  <tr>
+    <td valign="top">parameters</td>
+    <td valign="top">Optional. Specifies an additional parameter to the sendmail program</td>
+  </tr>
+  </table>
+<p>As soon as the mail function is called PHP will attempt to send the email then it will return true if successful or false if it is failed.</p>
+<p>Multiple recipients can be specified as the first argument to the mail() function in a comma separated list.</p>
+<h2>Example:</h2>
+<p>Following example will send an HTML email message to xyz@somedomain.com. You can code this program in such a way that it should receive all content from the user and then it should send an email.</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Sending email using PHP&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;?php
+   $to = "xyz@somedomain.com";
+   $subject = "This is subject";
+   $message = "This is simple text message.";
+   $header = "From:abc@somedomain.com \r\n";
+   $retval = mail ($to,$subject,$message,$header);
+   if( $retval == true )  
+   {
+      echo "Message sent successfully...";
+   }
+   else
+   {
+      echo "Message could not be sent...";
+   }
+?&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr></table>
+<h2>Sending HTML email:</h2>
+<p>When you send a text message using PHP then all the content will be treated as simple text. Even if you will include HTML tags in a text message, it will be displayed as simple text and HTML tags will not be formatted according to HTML syntax. But PHP provides option to send an HTML message as actual HTML message.</p>
+<p>While sending an email message you can specify a Mime version, content type  and character set to send an HTML email.</p>
+<h2>Example:</h2>
+<p>Following example will send an HTML email message to xyz@somedomain.com copying it to afgh@somedomain.com. You can code this program in such a way that it should recieve all content from the user and then it should send an email.</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Sending HTML email using PHP&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;?php
+   $to = "xyz@somedomain.com";
+   $subject = "This is subject";
+   $message = "&lt;b&gt;This is HTML message.&lt;/b&gt;";
+   $message .= "&lt;h1&gt;This is headline.&lt;/h1&gt;";
+   $header = "From:abc@somedomain.com \r\n";
+   $header = "Cc:afgh@somedomain.com \r\n";
+   $header .= "MIME-Version: 1.0\r\n";
+   $header .= "Content-type: text/html\r\n";
+   $retval = mail ($to,$subject,$message,$header);
+   if( $retval == true )
+   {
+      echo "Message sent successfully...";
+   }
+   else
+   {
+      echo "Message could not be sent...";
+   }
+?&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr></table>
+<h2>Sending attachments with email:</h2>
+<p>To send an email with mixed content requires to set <b>Content-type</b> header to <b>multipart/mixed</b>. Then text and attachment sections can be specified within <b>boundaries</b>.</p>
+<p>A boundary is started with two hyphens followed by a unique number which can not appear in the message part of the email. A PHP function <b>md5()</b> is used to create a 32 digit hexadecimal number to create unique number. A final boundary denoting the email's final section must also end with two hyphens.</p>
+<p>Attached files should be encoded with the <b>base64_encode()</b> function for safer transmission and are best split into chunks with the <b>chunk_split()</b> function. This adds <b>\r\n</b> inside the file at regular intervals, normally every 76 characters.</p>
+<p>Following is the example which will send  a file <b>/tmp/test.txt</b> as an attachment. you can code your program to receive an uploaded file and send it.</p>
+<table class="src" cellpadding="5"><tr><td><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Sending attachment using PHP&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;?php
+  $to = "xyz@somedomain.com";
+  $subject = "This is subject";
+  $message = "This is test message.";
+  # Open a file
+  $file = fopen( "/tmp/test.txt", "r" );
+  if( $file == false )
+  {
+     echo "Error in opening file";
+     exit();
+  }
+  # Read the file into a variable
+  $size = filesize("/tmp/test.txt");
+  $content = fread( $file, $size);
+
+  # encode the data for safe transit
+  # and insert \r\n after every 76 chars.
+  $encoded_content = chunk_split( base64_encode($content));
+  
+  # Get a random 32 bit number using time() as seed.
+  $num = md5( time() );
+
+  # Define the main headers.
+  $header = "From:xyz@somedomain.com\r\n";
+  $header .= "MIME-Version: 1.0\r\n";
+  $header .= "Content-Type: multipart/mixed; ";
+  $header .= "boundary=$num\r\n";
+  $header .= "--$num\r\n";
+
+  # Define the message section
+  $header .= "Content-Type: text/plain\r\n";
+  $header .= "Content-Transfer-Encoding:8bit\r\n\n";
+  $header .= "$message\r\n";
+  $header .= "--$num\r\n";
+
+  # Define the attachment section
+  $header .= "Content-Type:  multipart/mixed; ";
+  $header .= "name=\"test.txt\"\r\n";
+  $header .= "Content-Transfer-Encoding:base64\r\n";
+  $header .= "Content-Disposition:attachment; ";
+  $header .= "filename=\"test.txt\"\r\n\n";
+  $header .= "$encoded_content\r\n";
+  $header .= "--$num--";
+
+  # Send email now
+  $retval = mail ( $to, $subject, "", $header );
+  if( $retval == true )
+   {
+      echo "Message sent successfully...";
+   }
+   else
+   {
+      echo "Message could not be sent...";
+   }
+?&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr></table>
+<p>You try all the above examples. If you face any problem then you can post that problem in discussion forum.</p>
+<a href="../php/php_sessions.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../php/php_file_uploading.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=php&file=php_sending_emails.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:02:53 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

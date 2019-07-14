@@ -1,0 +1,373 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+<!-- Mirrored from www.tutorialspoint.com/ruby-on-rails/rails-and-ajax.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:01:15 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>AJAX on Rails Tutorial</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="Keywords" content="Learning, Ruby, rails, strengths, framework, installation, examples, RubyGems, resources, Guide, actionpack, actionview, basics, directory, structure, advance, activerecord, libraries, Model, View, Controller, Embeded Ruby, Erb, Rolling, Metaprogramming,Built-in, testing, David, Black, Hansson, Heinemeier, RAA, Scaffolding" />
+<meta name="Description" content="AJAX on Rails  Tutorial -  Learn Ruby on Rails in simple and easy steps. You will learn its installation, framework, strengths with examples and you will learn about actionpack, actionview, activerecord, Heinemeier, Scaffolding, Controller, Heinemeier, Hansson, Rakefile etc." />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Learning Ruby on Rails</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="index.html">Rails Home</a></li>
+<li><a class="left" target="_top" href="rails-introduction.html">Rails Introduction</a></li>
+<li><a class="left" target="_top" href="rails-installation.html">Rails Installation</a></li>
+<li><a class="left" target="_top" href="rails-framework.html">Rails Framework</a></li>
+<li><a class="left" target="_top" href="rails-directory-structure.html">Rails Dir Structure</a></li>
+<li><a class="left" target="_top" href="rails-examples.html">Rails Examples</a></li>
+<li><a class="left" target="_top" href="rails-database-setup.html">Rails Database Setup</a></li>
+<li><a class="left" target="_top" href="rails-active-records.html">Rails Active Records</a></li>
+<li><a class="left" target="_top" href="rails-migrations.html">Rails Migrations</a></li>
+<li><a class="left" target="_top" href="rails-controllers.html">Rails Controllers</a></li>
+<li><a class="left" target="_top" href="rails-views.html">Rails Views</a></li>
+<li><a class="left" target="_top" href="rails-layouts.html">Rails Layouts</a></li>
+<li><a class="left" target="_top" href="rails-scaffolding.html">Rails Scaffolding</a></li>
+<li><a class="left" target="_top" href="rails-and-ajax.html"><b>Rails and AJAX</b></a></li>
+<li><a class="left" target="_top" href="rails-file-uploading.html">Rails Uploads File</a></li>
+<li><a class="left" target="_top" href="rails-send-email.html">Rails Sends Email</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Ruby on Rails Quick Guide</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="rails-quick-guide.html" >Ruby on Rails Quick Guide</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Ruby Tutorial</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../ruby/index-2.html" >Ruby Tutorial</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Ruby on Rails Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="rails-resources.html" >Ruby on Rails Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top" align="left" width="100%">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:10px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle"  cellpadding="5" cellspacing="0">
+<tr>
+<td align="left">
+<!-- PRINTING STARTS HERE -->
+<h1>AJAX on Rails Tutorial</h1>
+<hr />
+<a href="rails-scaffolding.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="rails-file-uploading.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<hr />
+<p>Ajax stands for Asynchronous JavaScript and XML. Ajax is not a single technology; it is a suite of several technologies. Ajax incorporates the following:</p>
+<ul>
+<li>XHTML for the markup of web pages</li>
+<li>CSS for the styling</li>
+<li>Dynamic display and interaction using the DOM</li>
+<li>Data manipulation and interchange using XML</li>
+<li>Data retrieval using XMLHttpRequest</li>
+<li>JavaScript as the glue that meshes all this together</li>
+</ul>
+<p>Ajax enables you to retrieve data for a web page without having to refresh the contents of the entire page. In the basic web architecture, the user clicks a link or submits a form. The form is submitted to the server, which then sends back a response.  The response is then displayed for the user on a new page.</p>
+<p>When you interact with an Ajax-powered web page, it loads an Ajax engine in the background.  The engine is written in JavaScript and its responsibility is to both communicate with the web server and display the results to the user. When you submit data using an Ajax-powered form, the server returns an HTML fragment that contains the server's response and displays only the data that is new or changed as opposed to refreshing the entire page.</p>
+<p>For a complete detail on AJAX you can go through our <a href="../ajax/index-2.html">AJAX Tutorial</a></p>
+<h2>How Rails Implements Ajax:</h2>
+<p>Rails has a simple, consistent model for how it implements Ajax operations. Once the browser has rendered and displayed the initial web page, different user actions cause it to display a new web page (like any traditional web application) or trigger an Ajax operation:</p>
+<ul>
+<li><p><b>Some trigger fires :</b>This trigger could be the user clicking on a button or link, the user making changes to the data on a form or in a field, or just a periodic trigger (based on a timer)</p></li>
+<li><p><b>The web client calls the server:</b> A JavaScript method, <i>XMLHttpRequest</i>, sends data associated with the trigger to an action handler on the server. The data might be the ID of a checkbox, the text in an entry field, or a whole form.</p></li>
+<li><p><b>The server does processing:</b> The server-side action handler ( Rails controller action )-- does something with the data and returns an HTML fragment to the web client.</p></li>
+<li><p><b>The client receives the response:</b> The client-side JavaScript, which Rails creates automatically, receives the HTML fragment and uses it to update a specified part of the current page's HTML, often the content of a &lt;div&gt; tag.</p></li>
+</ul>
+<p>These steps are the simplest way to use Ajax in a Rails application, but with a little extra work, you can have the server return any kind of data in response to an Ajax request, and you can create custom JavaScript in the browser to perform more involved interactions.</p>
+<h1>AJAX Example:</h1>
+<p>While discussing rest of the Rails concepts, we have taken an example of Library. There we have a table called <b>subject</b> and we had added few subjects at the time of Migration. Till now we have not provided any procedure to add and delete subjects in this table.</p>
+<p>In this example we will provide, list, show and create operations on subject table. If you don't have any understanding on Library Info System explained in previous chapters then I would suggest you to complete previous chapters first and then continue with AJAX on Rails.</p>
+<h2>Creating Controller:</h2>
+<p>So lets start with creation of a controller for subject, this will be done as follows:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+C:\ruby\library&gt; ruby script/generate controller Subject
+</pre></td></tr></table>
+<p>This command creates a controller file app/controllers/subject_controller.rb. Open this file in any text editor and modify it to have following content.</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+class SubjectController &lt; ApplicationController
+   layout 'standard'
+   def list
+   end
+   def show
+   end
+   def create
+   end
+end
+</pre></td></tr></table>
+<p>Now we will give implementation for all these functions in the same way we had given in previous chapters.</p>
+<h3>The list method implementation:</h3>
+<table cellpadding="5" class="src"><tr><td><pre>
+   def list
+       @subjects = Subject.find(:all)
+   end
+</pre></td></tr></table>
+<p>This is similar to the example explained earlier and will be used to list down all the subjects available in our database.</p>
+<h3>The show method implementation:</h3>
+<table cellpadding="5" class="src"><tr><td><pre>
+   def show
+       @subject = Subject.find(params[:id])
+   end
+</pre></td></tr></table>
+<p>This is also similar to the example explained earlier and will be used to display a particular subject corresponding to passed ID.</p>
+<h3>The create method implementation:</h3>
+<table cellpadding="5" class="src"><tr><td><pre>
+   def create
+      @subject = Subject.new(params[:subject])
+      if @subject.save
+         render :partial =&gt; 'subject', :object =&gt; @subject
+      end
+   end
+</pre></td></tr></table>
+<p>This is bit new here. Here we are not redirecting page to any other page but just rendering only changed part instead of whole page.</p>
+<p>This happens possible only when using <b>partial</b>. We don't write complete view file, instead we will write a partial in /app/view/subject directory. We will see it in a moment. First let's create view files for other methods.</p>
+<h2>Creating Views:</h2>
+<p>Now we will create view files for all the methods except for create method for which we will create a partial.</p>
+<h3>Creating view for list method:</h3>
+<p>Create a file list.rhtml in /app/view/subject and populate it with the following code.</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+&lt;h1&gt;Listing Subjects&lt;/h1&gt;
+&lt;ul id="subject_list"&gt;
+&lt;% @subjects.each do |c| %&gt;
+&lt;li&gt;&lt;%= link_to c.name, :action =&gt; 'show', :id =&gt; c.id %&gt;
+&lt;%= "(#{c.books.count})" -%&gt;&lt;/li&gt;
+&lt;% end %&gt;
+&lt;/ul&gt;
+</pre></td></tr></table>
+<p>Here you are iterating through the @subjects array and outputting a &lt;li&gt; element containing a link to the subject it is referencing for each item in the array. Additionally, you are outputting the number of books in that specific subject inside parentheses. Rails' associations make it easy to step through a relationship and get information like this.</p>
+<p>Now try browsing your Subject list using http://localhost:3000/subject/list. It will show you following screen.</p>
+<center>
+<p><img src="../images/list-subjects-ajax.html" alt="List Subjects" style="border:1px dotted #aaa;" /></p>
+</center>
+<h3>Creating view for show method:</h3>
+<p>Create a file show.rhtml in /app/view/subject and populate it with the following code.</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+&lt;h1&gt;&lt;%= @subject.name -%&gt;&lt;/h1&gt;
+&lt;ul&gt;
+&lt;% @subject.books.each do |c| %&gt;
+&lt;%= link_to c.title, :controller =&gt; "book", 
+                        :action =&gt; "show",:id =&gt; c.id -%&gt;
+&lt;% end %&gt;
+&lt;/ul&gt;
+</pre></td></tr></table>
+<p>Now try clicking on any subject and you will find a listing of all the books available under that subject.</p>
+<h3>Creating view for <i>create</i> method:</h3>
+<p>We would not create view for <b>create</b> method because we are using <b>partial</b> instead of view. So in next section we will create a partial for create method.</p>
+<h1>Adding Ajax Support:</h1>
+<p>To get Ajax support in the Rails application, you need to include the necessary JavaScript files in the layout. Rails is bundled with several libraries that make using Ajax very easy.  Two libraries prototype and script.aculo.us are very popular.</p>
+<p>To add Prototype and script.aculo.us support to the application, open up the standard.rhtml layout file in app/views/layouts, add the following line just before the &lt;/head&gt; tag, and save your changes:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+&lt;%= javascript_include_tag :defaults %&gt;
+</pre></td></tr></table>
+<p>This includes both the Prototype and script.aculo.us libraries in the template so their effects will be accessible from any of the views.</p>
+<p>Now add the following code at the bottom of  app/views/subject/list.rhtml</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+&lt;p id="add_link"&gt;&lt;%= link_to_function("Add a Subject",
+"Element.remove('add_link'); Element.show('add_subject')")%&gt;&lt;/p&gt;
+
+&lt;div id="add_subject" style="display:none;"&gt;
+&lt;%= form_remote_tag(:url =&gt; {:action =&gt; 'create'},
+    :update =&gt; "subject_list", :position =&gt; :bottom,
+    :html =&gt; {:id =&gt; 'subject_form'})%&gt;
+Name: &lt;%= text_field "subject", "name" %&gt;
+&lt;%= submit_tag 'Add' %&gt;
+&lt;%= end_form_tag %&gt;
+&lt;/div&gt;
+</pre></td></tr></table>
+<p>We are using link_to_function instead of link_to method because The link_to_function method enables you to harness the power of the Prototype JavaScript library to do some neat DOM manipulations.</p>
+<p>The second section is the creation of the add_subject &lt;div&gt;. Notice that you set its visibility to be hidden by default using the CSS display property. The preceding link_to_function is what will change this property and show the &lt;div&gt; to the user to take input required to add a new subject.</p>
+<p>Next, you are creating the Ajax form using the <b>form_remote_tag</b>. This Rails helper is similar to the <b>start_form_tag</b> tag, but it is used here to let the Rails framework know that it needs to trigger an Ajax action for this method.  The form_remote_tag takes the <b>:action</b> parameter just like start_form_tag.</p>
+<p>You also have two additional parameters: <b>:update</b> and <b>:position</b>. </p>
+<ul>
+<li><p>The <b>:update</b> parameter tells Rails' Ajax engine which element to update based on its id. In this case, it's the &lt;ul&gt; tag.</p></li>
+<li><p>The <b>:position</b> parameter tells the engine where to place the newly added object in the DOM. You can set it to be at the bottom of the unordered list (:bottom) or at the top (:top).</p></li>
+</ul>
+<p>Next, you create the standard form fields and submit buttons as before and then wrap things up with an end_form_tag to close the &lt;form&gt; tag. Make sure that things are semantically correct and valid XHTML.</p>
+<h2>Creating partial for <i>create</i> method:</h2>
+<p>As we are calling <i>create</i> method while adding a subject and inside this create method we are using one partial. So lets implement this <b>partial</b> before going for actual practical.</p>
+<p>Under app/views/subject, create a new file called <b>_subject.rhtml</b>. Notice that all the partials are named with an underscore (_) at the beginning.</p>
+<p>Add the following code into this file:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+&lt;li id="subject_&lt;%= subject.id %&gt;"&gt;
+&lt;%= link_to subject.name, :action =&gt; 'show', :id =&gt; subject.id %&gt;
+&lt;%= "(#{subject.books.count})" -%&gt;
+&lt;/li&gt;
+</pre></td></tr></table>
+<p>You are done now....you can now easily add several subjects without having to wait for the page to refresh after each subject is added. Now try browsing your Subject list using http://localhost:3000/subject/list. It will show you following screen. Try to add some subject.  </p>
+<center>
+<p><img src="../images/add-subject.html" alt="Add Subject" style="border:1px dotted #aaa;" /></p>
+</center>
+<p>When you press Add button, subject would be added at the bottom of all available subjects and you would not have a feel of page refresh.</p>
+<hr />
+<a href="rails-scaffolding.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="rails-file-uploading.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion9e20.html?tutorial=ruby-on-rails&amp;file=rails-and-ajax.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/ruby-on-rails/rails-and-ajax.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:01:15 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/ntpd.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>ntpd - Unix, Linux Command</title>
+<meta name="Description" Content="ntpd - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>ntpd - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+ntpd - Network Time Protocol (NTP) daemon
+<h1 class="manpages"></h1>
+<p>
+<h1 class="manpages">SYNOPSIS</h1>
+<b>ntpd [ -46aAbdDgLnNqx ] [ -c </b><i>conffile</i><b> ] [ -f </b><i>driftfile</i><b> ] [ -i </b><i>jaildir</i><b> ] [ -k </b><i>keyfile</i><b> ] [ -l </b><i>logfile</i><b> ] [ -p </b><i>pidfile</i><b> ] [ -P </b><i>priority</i><b> ] [ -r </b><i>broadcastdelay</i><b> ] [ -s </b><i>statsdir</i><b> ] [ -t </b><i>key</i><b> ] [ -u </b><i>user</i><b>[:</b><i>group</i><b>] ] [ -v </b><i>variable</i><b> ] [ -V </b><i>variable</i><b> ]</b>
+<p>
+<h1 class="manpages">DESCRIPTION</h1>
+<p>
+The <b>ntpd</b> program is an operating system daemon which sets and maintains the system time of day in synchronism with Internet standard time servers. It is a complete implementation of the Network Time Protocol (NTP) version 4, but also retains compatibility with version 3, as defined by RFC-1305, and version 1 and 2, as defined by RFC-1059 and RFC-1119, respectively. <b>ntpd</b> does most computations in 64-bit floating point arithmetic and does relatively clumsy 64-bit fixed point operations only when necessary to preserve the ultimate precision, about 232 picoseconds. While the ultimate precision is not achievable with ordinary workstations and networks of today, it may be required with future gigahertz CPU clocks and gigabit LANs.
+<p>
+<h1 class="manpages">HOW NTP OPERATES</h1>
+<p>
+The <b>ntpd</b> program operates by exchanging messages with one or more configured servers at designated poll intervals. When started, whether for the first or subsequent times, the program requires several exchanges from the majority of these servers so the signal processing and mitigation algorithms can accumulate and groom the data and set the clock. In order to protect the network from bursts, the initial poll interval for each server is delayed an interval randomized over a few seconds. At the default initial poll interval of 64s, several minutes can elapse before the clock is set. The initial delay to set the clock can be reduced using the <b>iburst</b> keyword with the <b>server</b> configuration command, as described on the Configuration Options page.
+<p>
+Most operating systems and hardware of today incorporate a time-of-year (TOY) chip to maintain the time during periods when the power is off. When the machine is booted, the chip is used to initialize the operating system time. After the machine has synchronized to a NTP server, the operating system corrects the chip from time to time. In case there is no TOY chip or for some reason its time is more than 1000s from the server time, <b>ntpd</b> assumes something must be terribly wrong and the only reliable action is for the operator to intervene and set the clock by hand. This causes <b>ntpd</b> to exit with a panic message to the system log. The <b>-g</b> option overrides this check and the clock will be set to the server time regardless of the chip time. However, and to protect against broken hardware, such as when the CMOS battery fails or the clock counter becomes defective, once the clock has been set, an error greater than 1000s will cause <b>ntpd</b> to exit anyway.
+<p>
+Under ordinary conditions, <b>ntpd</b> adjusts the clock in small steps so that the timescale is effectively continuous and without discontinuities. Under conditions of extreme network congestion, the roundtrip delay jitter can exceed three seconds and the synchronization distance, which is equal to one-half the roundtrip delay plus error budget terms, can become very large. The <b>ntpd</b> algorithms discard sample offsets exceeding 128 ms, unless the interval during which no sample offset is less than 128 ms exceeds 900s. The first sample after that, no matter what the offset, steps the clock to the indicated time. In practice this reduces the false alarm rate where the clock is stepped in error to a vanishingly low incidence.
+<p>
+As the result of this behavior, once the clock has been set, it very rarely strays more than 128 ms, even under extreme cases of network path congestion and jitter. Sometimes, in particular when <b>ntpd</b> is first started, the error might exceed 128 ms. This may on occasion cause the clock to be set backwards if the local clock time is more than 128 s in the future relative to the server. In some applications, this behavior may be unacceptable. If the <b>-x</b> option is included on the command line, the clock will never be stepped and only slew corrections will be used.
+<p>
+The issues should be carefully explored before deciding to use the <b>-x</b> option. The maximum slew rate possible is limited to 500 parts-per-million (PPM) as a consequence of the correctness principles on which the NTP protocol and algorithm design are based. As a result, the local clock can take a long time to converge to an acceptable offset, about 2,000 s for each second the clock is outside the acceptable range. During this interval the local clock will not be consistent with any other network clock and the system cannot be used for distributed applications that require correctly synchronized network time.
+<p>
+In spite of the above precautions, sometimes when large frequency errors are present the resulting time offsets stray outside the 128-ms range and an eventual step or slew time correction is required. If following such a correction the frequency error is so large that the first sample is outside the acceptable range, <b>ntpd</b> enters the same state as when the <b>ntp.drift</b> file is not present. The intent of this behavior is to quickly correct the frequency and restore operation to the normal tracking mode. In the most extreme cases (<b>time.ien.it</b> comes to mind), there may be occasional step/slew corrections and subsequent frequency corrections. It helps in these cases to use the <b>burst</b> keyword when configuring the server.
+<p>
+<h1 class="manpages">FREQUENCY DISCIPLINE</h1>
+<p>
+The <b>ntpd</b> behavior at startup depends on whether the frequency file, usually <b>ntp.drift</b>, exists. This file contains the latest estimate of clock frequency error. When the <b>ntpd</b> is started and the file does not exist, the <b>ntpd</b> enters a special mode designed to quickly adapt to the particular system clock oscillator time and frequency error. This takes approximately 15 minutes, after which the time and frequency are set to nominal values and the <b>ntpd</b> enters normal mode, where the time and frequency are continuously tracked relative to the server. After one hour the frequency file is created and the current frequency offset written to it. When the <b>ntpd</b> is started and the file does exist, the <b>ntpd</b> frequency is initialized from the file and enters normal mode immediately. After that the current frequency offset is written to the file at hourly intervals.
+<p>
+<h1 class="manpages">OPERATING MODES</h1>
+<p>
+<b>ntpd</b> can operate in any of several modes, including symmetric active/passive, client/server broadcast/multicast and manycast, as described in the Association Management page. It normally operates continuously while monitoring for small changes in frequency and trimming the clock for the ultimate precision. However, it can operate in a one-time mode where the time is set from an external server and frequency is set from a previously recorded frequency file. A broadcast/multicast or manycast client can discover remote servers, compute server-client propagation delay correction factors and configure itself automatically. This makes it possible to deploy a fleet of workstations without specifying configuration details specific to the local environment.
+<p>
+By default, <b>ntpd</b> runs in continuous mode where each of possibly several external servers is polled at intervals determined by an intricate state machine. The state machine measures the incidental roundtrip delay jitter and oscillator frequency wander and determines the best poll interval using a heuristic algorithm. Ordinarily, and in most operating environments, the state machine will start with 64s intervals and eventually increase in steps to 1024s. A small amount of random variation is introduced in order to avoid bunching at the servers. In addition, should a server become unreachable for some time, the poll interval is increased in steps to 1024s in order to reduce network overhead.
+<p>
+In some cases it may not be practical for <b>ntpd</b> to run continuously. A common workaround has been to run the <b>ntpdate</b> program from a <b>cron</b> job at designated times. However, this program does not have the crafted signal processing, error checking and mitigation algorithms of <b>ntpd</b>[char46] The <b>-q</b> option is intended for this purpose. Setting this option will cause <b>ntpd</b> to exit just after setting the clock for the first time. The procedure for initially setting the clock is the same as in continuous mode; most applications will probably want to specify the <b>iburst</b> keyword with the <b>server</b> configuration command. With this keyword a volley of messages are exchanged to groom the data and the clock is set in about 10 s. If nothing is heard after a couple of minutes, the daemon times out and exits. After a suitable period of mourning, the <b>ntpdate</b> program may be retired.
+<p>
+When kernel support is available to discipline the clock frequency, which is the case for stock Solaris, Tru64, Linux and FreeBSD, a useful feature is available to discipline the clock frequency. First, <b>ntpd</b> is run in continuous mode with selected servers in order to measure and record the intrinsic clock frequency offset in the frequency file. It may take some hours for the frequency and offset to settle down. Then the <b>ntpd</b> is stopped and run in one-time mode as required. At each startup, the frequency is read from the file and initializes the kernel frequency.
+<p>
+<h1 class="manpages">POLL INTERVAL CONTROL</h1>
+<p>
+This version of NTP includes an intricate state machine to reduce the network load while maintaining a quality of synchronization consistent with the observed jitter and wander. There are a number of ways to tailor the operation in order enhance accuracy by reducing the interval or to reduce network overhead by increasing it. However, the user is advised to carefully consider the consequences of changing the poll adjustment range from the default minimum of 64 s to the default maximum of 1,024 s. The default minimum can be changed with the <b>tinker minpoll</b> command to a value not less than 16 s. This value is used for all configured associations, unless overridden by the <b>minpoll</b> option on the configuration command. Note that most device drivers will not operate properly if the poll interval is less than 64 s and that the broadcast server and manycast client associations will also use the default, unless overridden.
+<p>
+In some cases involving dial up or toll services, it may be useful to increase the minimum interval to a few tens of minutes and maximum interval to a day or so. Under normal operation conditions, once the clock discipline loop has stabilized the interval will be increased in steps from the minimum to the maximum. However, this assumes the intrinsic clock frequency error is small enough for the discipline loop correct it. The capture range of the loop is 500 PPM at an interval of 64s decreasing by a factor of two for each doubling of interval. At a minimum of 1,024 s, for example, the capture range is only 31 PPM. If the intrinsic error is greater than this, the drift file <b>ntp.drift</b> will have to be specially tailored to reduce the residual error below this limit. Once this is done, the drift file is automatically updated once per hour and is available to initialize the frequency on subsequent daemon restarts.
+<p>
+<h1 class="manpages">THE HUFF-N&#146;-PUFF FILTER</h1>
+<p>
+In scenarios where a considerable amount of data are to be downloaded or uploaded over telephone modems, timekeeping quality can be seriously degraded. This occurs because the differential delays on the two directions of transmission can be quite large. In many cases the apparent time errors are so large as to exceed the step threshold and a step correction can occur during and after the data transfer is in progress.
+<p>
+The huff-n&#146;-puff filter is designed to correct the apparent time offset in these cases. It depends on knowledge of the propagation delay when no other traffic is present. In common scenarios this occurs during other than work hours. The filter maintains a shift register that remembers the minimum delay over the most recent interval measured usually in hours. Under conditions of severe delay, the filter corrects the apparent offset using the sign of the offset and the difference between the apparent delay and minimum delay. The name of the filter reflects the negative (huff) and positive (puff) correction, which depends on the sign of the offset.
+<p>
+The filter is activated by the <b>tinker</b> command and <b>huffpuff</b> keyword, as described in the Miscellaneous Options page.
+<p>
+<h1 class="manpages">NOTES</h1>
+<p>
+If NetInfo support is built into <b>ntpd</b>, then <b>ntpd</b> will attempt to read its configuration from the NetInfo if the default ntp.conf file cannot be read and no file is specified by the <b>-c</b> option.
+<p>
+In contexts where a host name is expected, a <b>-4</b> qualifier preceding the host name forces DNS resolution to the IPv4 namespace, while a <b>-6</b> qualifier forces DNS resolution to the IPv6 namespace.
+<p>
+Various internal <b>ntpd</b> variables can be displayed and configuration options altered while the <b>ntpd</b> is running using the <b>ntpq</b> and <b>ntpdc</b> utility programs.
+<p>
+When <b>ntpd</b> starts it looks at the value of <b>umask</b>, and if zero <b>ntpd</b> will set the <b>umask</b> to <b>022</b>[char46]
+<p>
+Unless the <b>-n</b> or <b>-d</b> option is used, <b>ntpd</b> changes the current working directory to the root directory, so any options or commands specifying paths need to use an absolute path or a path relative to the root.
+<p>
+<h1 class="manpages">COMMAND LINE OPTIONS</h1>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-4</b>
+</td><td valign="bottom">
+Force DNS resolution of host names to the IPv4 namespace.
+</td></tr>
+<tr valign="top"><td>
+<b>-6</b>
+</td><td valign="bottom">
+Force DNS resolution of host names to the IPv6 namespace.
+</td></tr>
+<tr valign="top"><td>
+<b>-a</b>
+</td><td valign="bottom">
+Require cryptographic authentication for broadcast client, multicast client and symmetric passive associations. This is the default.
+</td></tr>
+<tr valign="top"><td>
+<b>-A</b>
+</td><td valign="bottom">
+Do not require cryptographic authentication for broadcast client, multicast client and symmetric passive associations. This is almost never a good idea.
+</td></tr>
+<tr valign="top"><td>
+<b>-b</b>
+</td><td valign="bottom">
+Enable the client to synchronize to broadcast servers.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-c </b><i>conffile</i><b></b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Specify the name and path of the configuration file, default <b>/etc/ntp.conf</b>[char46]
+</td></tr>
+<tr valign="top"><td>
+<b>-d</b>
+</td><td valign="bottom">
+Specify debugging mode. This option may occur more than once, with each occurrence indicating greater detail of display.
+</td></tr>
+<tr valign="top"><td>
+<b>-D </b><i>level</i><b></b>
+</td><td valign="bottom">
+Specify debugging level directly.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-f </b><i>driftfile</i><b></b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Specify the name and path of the frequency file. This is the same operation as the <b>driftfile </b><i>driftfile</i><b></b> configuration command.
+</td></tr>
+<tr valign="top"><td>
+<b>-g</b>
+</td><td valign="bottom">
+Normally, <b>ntpd</b> exits with a message to the system log if the offset exceeds the panic threshold, which is 1000 s by default. This option allows the time to be set to any value without restriction; however, this can happen only once. If the threshold is exceeded after that, <b>ntpd</b> will exit with a message to the system log. This option can be used with the <b>-q</b> and <b>-x</b> options. See the <b>tinker</b> command for other options.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-i </b><i>jaildir</i><b></b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Chroot the server to the directory <i>jaildir</i>[char46] This option also implies that the server attempts to drop root privileges at startup (otherwise, chroot gives very little additional security), and it is only available if the OS supports to run the server without full root privileges. You may need to also specify a <b>-u</b> option.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-k </b><i>keyfile</i><b></b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Specify the name and path of the symmetric key file. This is the same operation as the <b>keys </b><i>keyfile</i><b></b> configuration command.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-l </b><i>logfile</i><b></b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Specify the name and path of the log file. The default is the system log file. This is the same operation as the <b>logfile </b><i>logfile</i><b></b> configuration command.
+</td></tr>
+<tr valign="top"><td>
+<b>-L</b>
+</td><td valign="bottom">
+Do not listen to virtual IPs. The default is to listen.
+</td></tr>
+<tr valign="top"><td>
+<b>-n</b>
+</td><td valign="bottom">
+Don&#146;t fork.
+</td></tr>
+<tr valign="top"><td>
+<b>-N</b>
+</td><td valign="bottom">
+To the extent permitted by the operating system, run the <b>ntpd</b> at the highest priority.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-p </b><i>pidfile</i><b></b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Specify the name and path of the file used to record the <b>ntpd</b> process ID. This is the same operation as the <b>pidfile </b><i>pidfile</i><b></b> configuration command.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-P </b><i>priority</i><b></b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+To the extent permitted by the operating system, run the <b>ntpd</b> at the specified priority.
+</td></tr>
+<tr valign="top"><td>
+<b>-q</b>
+</td><td valign="bottom">
+Exit the <b>ntpd</b> just after the first time the clock is set. This behavior mimics that of the <b>ntpdate</b> program, which is to be retired. The <b>-g</b> and <b>-x</b> options can be used with this option. Note: The kernel time discipline is disabled with this option.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-r </b><i>broadcastdelay</i><b></b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Specify the default propagation delay from the broadcast/multicast server to this client. This is necessary only if the delay cannot be computed automatically by the protocol.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-s </b><i>statsdir</i><b></b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Specify the directory path for files created by the statistics facility. This is the same operation as the <b>statsdir </b><i>statsdir</i><b></b> configuration command.
+</td></tr>
+<tr valign="top"><td>
+<b>-t </b><i>key</i><b></b>
+</td><td valign="bottom">
+Add a key number to the trusted key list. This option can occur more than once.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-u </b><i>user[:group]</i><b> </b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Specify a user, and optionally a group, to switch to. This option is only available if the OS supports to run the server without full root privileges. Currently, this option is supported under NetBSD (configure with --enable-clockctl) and Linux (configure with --enable-linuxcaps).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-v </b><i>variable</i><b></b>
+<!-- Consumed .TP 8 -->
+<br />
+<b>-V </b><i>variable</i><b></b>
+</td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Add a system variable listed by default.
+</td></tr>
+<tr valign="top"><td>
+<b>-x</b>
+</td><td valign="bottom">
+Normally, the time is slewed if the offset is less than the step threshold, which is 128 ms by default, and stepped if above the threshold. This option sets the threshold to 600 s, which is well within the accuracy window to set the clock manually. Note: Since the slew rate of typical Unix kernels is limited to 0.5 ms/s, each second of adjustment requires an amortization interval of 2000 s. Thus, an adjustment as much as 600 s will take almost 14 days to complete. This option can be used with the <b>-g</b> and <b>-q</b> options. See the <b>tinker</b> command for other options. Note: The kernel time discipline is disabled with this option.
+</td></tr>
+</table>
+<p>
+<h1 class="manpages">THE CONFIGURATION FILE</h1>
+<p>
+Ordinarily, <b>ntpd</b> reads the <b>ntp.conf</b> configuration file at startup time in order to determine the synchronization sources and operating modes. It is also possible to specify a working, although limited, configuration entirely on the command line, obviating the need for a configuration file. This may be particularly useful when the local host is to be configured as a broadcast/multicast client, with all peers being determined by listening to broadcasts at run time.
+<p>
+Usually, the configuration file is installed in the <b>/etc</b> directory, but could be installed elsewhere (see the <b>-c </b><i>conffile</i><b></b> command line option). The file format is similar to other Unix configuration files - comments begin with a <b>#</b> character and extend to the end of the line; blank lines are ignored.
+<p>
+Configuration commands consist of an initial keyword followed by a list of arguments, some of which may be optional, separated by whitespace. Commands may not be continued over multiple lines. Arguments may be host names, host addresses written in numeric, dotted-quad form, integers, floating point numbers (when specifying times in seconds) and text strings. Optional arguments are delimited by <b>[ ]</b> in the following descriptions, while alternatives are separated by <b>|</b>[char46] The notation <b>[ ... ]</b> means an optional, indefinite repetition of the last item before the <b>[ ... ]</b>[char46]
+<p>
+<h1 class="manpages">EXIT CODES</h1>
+<p>
+A non-zero exit code indicates an error. Any error messages are logged to the system log by default.
+<p>
+The exit code is 0 only when <b>ntpd</b> is terminated by a signal, or when the <b>-q</b> option is used and <b>ntpd</b> successfully sets the system clock.
+<p>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<a href="../ntp.conf.html">ntp.conf(5)</a>, <a href="../ntpq.html">ntpq(8)</a>, <a href="../ntpdc.html">ntpdc(8)</a>
+<p>
+Primary source of documentation: /usr/share/doc/ntp-*
+<p>
+This file was automatically generated from HTML source.
+<p>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionc055.html?tutorial=unix_commands&amp;file=ntpd.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/ntpd.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

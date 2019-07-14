@@ -1,0 +1,863 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/formail.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>formail - Unix, Linux Command</title>
+<meta name="Description" Content="formail - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>formail - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- Fake renaming reserved macro 'SH' -->
+<!-- Fake renaming reserved macro 'SS' -->
+<!-- Fake renaming reserved macro 'TP' -->
+<!-- Fake renaming reserved macro 'RS' -->
+<!-- Fake renaming reserved macro 'RE' -->
+<!-- ignored unsupported tag .ne -->
+<h1 class="manpages">NAME</h1>
+formail - mail (re)formatter
+<!-- ignored unsupported tag .ne -->
+<h1 class="manpages">SYNOPSIS</h1>
+<!-- ignored unsupported tag .na -->
+<b>formail</b> [<i></i><b>+</b>skip] [<i></i><b>-</b>total] [<b>-bczfrktedqBY</b>] [<b>-p</b> <i>prefix</i>] <!-- ignored unsupported tag .if -->
+[<b>-D</b> <i>maxlen idcache</i>] <!-- ignored unsupported tag .if -->
+[<b>-l</b> <i>folder</i>] <!-- ignored unsupported tag .if -->
+[<b>-x</b> <i>headerfield</i>] [<b>-X</b> <i>headerfield</i>] <!-- ignored unsupported tag .if -->
+[<b>-a</b> <i>headerfield</i>] [<b>-A</b> <i>headerfield</i>] <!-- ignored unsupported tag .if -->
+[<b>-i</b> <i>headerfield</i>] [<b>-I</b> <i>headerfield</i>] <!-- ignored unsupported tag .if -->
+[<b>-u</b> <i>headerfield</i>] [<b>-U</b> <i>headerfield</i>] <!-- ignored unsupported tag .if -->
+[<b>-R</b> <i>oldfield</i> <i>newfield</i>] <!-- ignored unsupported tag .if -->
+[<b>-n</b> [<i>maxprocs</i> ]]
+[<b>-m</b> <i>minfields</i>] [<b>-s</b> [<i>command</i> [<i>arg</i> &#46;..]]]
+<!-- Need break --><br />
+<b>formail</b> <b>-v</b> <!-- ignored unsupported tag .ad -->
+<!-- ignored unsupported tag .ne -->
+<h1 class="manpages">DESCRIPTION</h1>
+<b>formail</b> is a filter that can be used to force mail into mailbox format, perform
+&#145;From &#146; escaping, generate auto-replying headers, do simple
+header munging/extracting or split up a
+mailbox/digest/articles file.  The mail/mailbox/article contents will be
+expected on stdin.
+<p>
+If formail is supposed to determine the sender of the mail, but is unable
+to find any, it will substitute &#145;foo@bar&#146;.
+<p>
+If formail is started without any command line options, it will force any
+mail coming from stdin into mailbox format and will escape
+<b>all</b> bogus &#145;From &#146; lines with a &#145;&gt;&#146;.
+<!-- ignored unsupported tag .ne -->
+<h1 class="manpages">OPTIONS</h1>
+<!-- ignored unsupported tag .ne -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-v</b> </td><td valign="bottom">
+Formail will print its version number and exit.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>-b</b> </td><td valign="bottom">
+Don&#146;t escape any bogus mailbox headers (i.e., lines starting with &#145;From &#146;).
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i></i><b>-p</b> prefix </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Define a different quotation prefix.  If unspecified it defaults to &#145;&gt;&#146;.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>-Y</b> </td><td valign="bottom">
+Assume traditional Berkeley mailbox format, ignoring any
+<b>Content-Length:</b> fields.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>-c</b> </td><td valign="bottom">
+Concatenate continued fields in the header.  Might be convenient when
+postprocessing mail with standard (line oriented) text utilities.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>-z</b> </td><td valign="bottom">
+Ensure a whitespace exists between field name and content.
+Zap fields which contain only a single whitespace character.
+Zap leading and trailing whitespace on fields extracted with
+<b>-x</b>. <!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>-f</b> </td><td valign="bottom">
+Force formail to simply pass along any non-mailbox format (i.e., don&#146;t
+generate a &#145;From &#146; line as the first line).
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>-r</b> </td><td valign="bottom">
+Generate an auto-reply header.  This will normally throw away all the existing
+fields (except X-Loop:) in the original message, fields you wish to preserve
+need to be named using the
+<b>-i</b> option.  If you use this option in conjunction with
+<b>-k</b>, you can prevent the body from being &#145;escaped&#146; by also specifying
+<b>-b</b>. <!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>-k</b> </td><td valign="bottom">
+When generating the auto-reply header or when extracting fields, keep
+the body as well.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>-t</b> </td><td valign="bottom">
+Trust the sender to have used a valid return address in his header.  This
+causes formail to select the
+<i>header sender</i> instead of the
+<i>envelope sender</i> for the reply.  This option should be used when generating auto-reply
+headers from news articles or when the sender of the message is
+expecting a reply.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>-s</b> </td><td valign="bottom">
+The input will be split up into separate mail messages, and piped into
+a program one by one (a new program is started for every part).
+<b>-s</b> has to be the last option specified, the first argument following it is
+expected to be the name of a program, any other arguments will be
+passed along to it.  If you omit the program, then formail will simply
+concatenate the split mails on stdout again.  See
+<b>FILENO</b>. <!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i></i><b>-n</b> [maxprocs] </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Tell formail not to wait for every program to finish before starting
+the next (causes splits to be processed in parallel).
+<i>Maxprocs</i> optionally specifies an upper limit on the number of concurrently
+running processes.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>-e</b> </td><td valign="bottom">
+Do not require empty lines to be preceding the header of a new message
+(i.e.,  the messages could start on every line).
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>-d</b> </td><td valign="bottom">
+Tell formail that the messages it is supposed to split need not be in
+strict mailbox format (i.e., allows you to split digests/articles or
+non-standard mailbox formats).  This disables recognition of the
+<b>Content-Length:</b> field.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-l folder</b> </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Generate a log summary in the same style as procmail.  This includes
+the entire "From " line, the Subject: header field, the folder, and
+the size of the message in bytes.  The mailstat command can be used
+to summarize logs in this format.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>-B</b> </td><td valign="bottom">
+Makes formail assume that it is splitting up a BABYL rmail file.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i></i><b>-m</b> minfields </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Allows you to specify the number of consecutive headerfields formail
+needs to find before it decides it found the start of a new message, it
+defaults to 2.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>-q</b> </td><td valign="bottom">
+Tells formail to (still detect but) be quiet about write errors,
+duplicate messages and mismatched
+<b>Content-Length:</b> fields.  This option is on by default, to make it display the messages
+use
+<b>-q-</b>. <!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i></i><b>-D</b> maxlen idcache </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Formail will detect if the Message-ID of the current message has
+already been seen using an
+<i>idcache</i> file of approximately
+<i>maxlen</i> size.  If not splitting, it will return success if a duplicate has been
+found.  If splitting, it will not output duplicate messages.  If used
+in conjunction with
+<b>-r</b>, formail will look at the
+<i>mail address</i> of the envelope sender
+<i>instead</i> at the Message-ID.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i></i><b>-x</b> headerfield </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Extract the contents of this
+<i>headerfield</i> from the header.  Line continuations will be left intact; if you
+want the value on a single line then you&#146;ll also need the
+<b>-c</b> option.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i></i><b>-X</b> headerfield </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Same as
+<b>-x</b>, but also preserves/includes the field name.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i></i><b>-a</b> headerfield </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Append a custom
+<i>headerfield</i> onto the header; but only if a similar field does not exist yet.  If
+you specify either one of the field names
+<b>Message-ID:</b> or
+<b>Resent-Message-ID:</b> with no field contents, then formail will generate a unique message-ID
+for you.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i></i><b>-A</b> headerfield </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Append a custom
+<i>headerfield</i> onto the header in any case.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i></i><b>-i</b> headerfield </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Same as
+<b>-A</b>, except that any existing similar fields are renamed by prepending an
+&#145;&#145;Old-&#146;&#146; prefix.  If
+<i>headerfield</i> consists only of a field-name, it will not be appended.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i></i><b>-I</b> headerfield </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Same as
+<b>-i</b>, except that any existing similar fields are simply removed.  If
+<i>headerfield</i> consists only of a field-name, it effectively deletes the field.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i></i><b>-u</b> headerfield </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Make the first occurrence of this field unique, and thus delete all
+subsequent occurrences of it.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i></i><b>-U</b> headerfield </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Make the last occurrence of this field unique, and thus delete all
+preceding occurrences of it.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i></i><b>-R</b> oldfield newfield </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Renames all occurrences of the fieldname
+<i>oldfield</i> into
+<i>newfield</i>. <!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i></i><b>+</b>skip </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Skip the first
+<i>skip</i> messages while splitting.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i></i><b>-</b>total </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Output at most
+<i>total</i> messages while splitting.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+</table>
+<h1 class="manpages">NOTES</h1>
+When renaming, removing, or extracting fields, partial fieldnames may
+be used to specify all fields that start with the specified value.
+<p>
+By default, when generating an auto-reply header procmail selects the
+envelope sender from the input message.  This is correct for vacation
+messages and other automatic replies regarding the routing or delivery
+of the original message.  If the sender is expecting a reply or the
+reply is being generated in response to the contents of the original
+message then the -t option should be used.
+<p>
+<b>RFC822</b>, the original standard governing the format of Internet mail
+messages, did not specify whether Resent header fields (those that
+begin with &#145;Resent-&#146;, such as &#145;Resent-From:&#146;) should be considered
+when generating a reply.  Since then, the recommended usage of the
+Resent headers has evolved to consider them as purely informational and
+not for use when generating a reply.  This has been codified in
+<b>RFC2822</b>, the new Internet Message Format standard, which states in part:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+Resent fields are used to identify a message as having been
+reintroduced into the transport system by a user.  The purpose of
+using resent fields is to have the message appear to the final
+recipient as if it were sent directly by the original sender, with
+all of the original fields remaining the same....They
+MUST NOT be used in the normal processing of replies or other such
+automatic actions on messages.
+</td></tr>
+<!-- PP ends table -->
+</table>
+While formail now
+ignores Resent headers when generating header replies, versions of
+formail prior to 3.14 gave such headers a high precedence.  If the old
+behavior is needed for established applications it can be specified by
+calling formail with the option &#145;-a Resent-&#146; in addition
+to the -r and -t options.  This usage is deprecated
+and should not be used in new applications.
+<!-- ignored unsupported tag .ne -->
+<h1 class="manpages">ENVIRONMENT</h1>
+<!-- ignored unsupported tag .ne -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>FILENO</b> </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+While splitting, formail assigns the message number currently being output to
+this variable.  By presetting FILENO, you can change the initial message
+number being used and the width of the zero-padded output.  If FILENO is
+unset it will default to 000.  If FILENO is non-empty and
+does not contain a number, FILENO generation is disabled.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+</table>
+<h1 class="manpages">EXAMPLES</h1>
+To split up a digest one usually uses:
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+formail +1 -ds &gt;&gt;the_mailbox_of_your_choice
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+or
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+formail +1 -ds procmail
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+<p>
+To remove all Received: fields from the header:
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+formail -I Received:
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+<p>
+To remove all fields except From: and Subject: from the header:
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+formail -k -X From: -X Subject:
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+<p>
+To supersede the Reply-To: field in a header you could use:
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+formail -i "Reply-To: foo@bar"
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+<p>
+To convert a non-standard mailbox file into a standard mailbox file you can
+use:
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+formail -ds &lt;old_mailbox &gt;&gt;new_mailbox
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+<p>
+Or, if you have a very tolerant mailer:
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+formail -a Date: -ds &lt;old_mailbox &gt;&gt;new_mailbox
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+<p>
+To extract the header from a message:
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+formail -X ""
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+or
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+sed -e &#146;/^$/ q&#146;
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+<p>
+To extract the body from a message:
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+formail -I ""
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+or
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+sed -e &#146;1,/^$/ d&#146;
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+<!-- ignored unsupported tag .ne -->
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<!-- ignored unsupported tag .nh -->
+<b>mail</b>(1),
+<b>binmail</b>(1),
+<b>sendmail</b>(8),
+<b>procmail</b>(1),
+<b>sed</b>(1),
+<b>sh</b>(1),
+<b>RFC822</b>, <b>RFC2822</b>, <b>RFC1123</b> <!-- ignored unsupported tag .hy -->
+<!-- ignored unsupported tag .ad -->
+<!-- ignored unsupported tag .ne -->
+<h1 class="manpages">DIAGNOSTICS</h1>
+<!-- ignored unsupported tag .ne -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+Can&#146;t fork
+</td><td valign="bottom">
+Too many processes on this machine.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+Content-Length: field exceeds actual length by nnn bytes
+</td></tr><tr valign="top"><td width=23%>&nbsp;</td><td>
+The Content-Length: field in the header specified a length that was longer
+than the actual body.  This causes this message to absorb a number of
+subsequent messages following it in the same mailbox.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Couldn&#146;t write to stdout
+</td><td valign="bottom">
+The program that formail was trying to pipe into didn&#146;t accept all the data
+formail sent to it; this diagnostic can be suppressed by the
+<b>-q</b> option.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Duplicate key found: x
+</td><td valign="bottom">
+The Message-ID or sender x in this message was found in the idcache; this
+diagnostic can be suppressed by the
+<b>-q</b> option.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Failed to execute "x"
+</td><td valign="bottom">
+Program not in path, or not executable.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+File table full
+</td><td valign="bottom">
+Too many open files on this machine.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Invalid field-name: "x"
+</td><td valign="bottom">
+The specified field-name "x" contains control characters, or cannot be a
+partial field-name for this option.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+</table>
+<h1 class="manpages">WARNINGS</h1>
+You can save yourself and others a lot of grief if you try to avoid using
+this autoreply feature on mails coming through mailinglists.  Depending
+on the format of the incoming mail (which in turn depends on both the
+original sender&#146;s mail agent and the mailinglist setup) formail could
+decide to generate an autoreply header that replies to the list.
+<p>
+In the tradition of UN*X utilities, formail will do exactly what
+you ask it to, even if it results in a
+non-<b>RFC822</b> compliant message.  In particular, formail will let you generate
+header fields whose name ends in a space instead of a colon.  While
+this is correct for the leading &#145;From &#146; line, that line is not a
+header field so much as the message separator for the mbox mailbox
+format.  Multiple occurrences of such a line or any other colonless
+header field will be considered by many mail programs, including
+formail itself, as the beginning of a new message.  Others will
+consider the message to be corrupt.  Because of this, you should
+not use the
+<b>-i</b> option with the &#145;From &#146; line as the resulting renamed line,
+&#145;Old-From &#146;, will probably not do what you want it to.  If
+you want to save the original &#145;From &#146; line, rename it with the
+<b>-R</b> option to a legal header field such as &#145;X-From_:&#146;.
+<!-- ignored unsupported tag .ne -->
+<h1 class="manpages">BUGS</h1>
+When formail has to generate a leading &#145;From &#146; line it normally will contain
+the current date.  If formail is given the option &#145;-a Date:&#146;,
+it will use the date from the &#145;Date:&#146; field in the header (if present).
+However, since formail copies it verbatim, the format will differ from that
+expected by most mail readers.
+<p>
+If formail is instructed to delete or rename the leading &#145;From &#146; line, it
+will not automatically regenerate it as usual.  To force formail to regenerate
+it in this case, include <b>-a &#146;From &#146;</b>.
+<p>
+If formail is not called as the first program in a pipe and it is told to
+split up the input in several messages, then formail will not terminate until
+the program it receives the input from closes its output or terminates itself.
+<p>
+If formail is instructed to generate an autoreply mail, it will
+<b>never</b> put more than one address in the &#145;To:&#146; field.
+<!-- ignored unsupported tag .ne -->
+<h1 class="manpages">MISCELLANEOUS</h1>
+Formail is eight-bit clean.
+<p>
+When formail has to determine the sender&#146;s address, every
+<b>RFC822</b> conforming
+mail address is allowed.  Formail will always strip down the address to
+its minimal form (deleting excessive comments and whitespace).
+<p>
+The regular expression that is used to find &#145;real&#146; postmarks is:
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+"&#92;n&#92;nFrom [&#92;t ]*[^&#92;t&#92;n ]+[&#92;t ]+[^&#92;n&#92;t ]"
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+<p>
+If a
+<b>Content-Length:</b> field is found in a header, formail will copy the number of specified bytes in
+the body verbatim before resuming the regular scanning for message boundaries
+(except when splitting digests or Berkeley mailbox format is assumed).
+<p>
+Any header lines immediately following the leading &#145;From &#146; line
+that start with &#145;&gt;From &#146; are considered to be a continuation
+of the &#145;From &#146; line.  If instructed to rename the &#145;From &#146; line,
+formail will change each leading &#145;&gt;&#146; into a space, thereby
+transforming those lines into normal
+<b>RFC822</b> continuations.
+<!-- ignored unsupported tag .ne -->
+<h1 class="manpages">NOTES</h1>
+Calling up formail with the -h or -? options will cause
+it to display a command-line help page.
+<h1 class="manpages">SOURCE</h1>
+This program is part of the
+<i>procmail mail-processing-package</i> (v3.22) available at <a href="http://www.procmail.org/">http://www.procmail.org</a>/ or
+ftp.procmail.org in
+<b>pub/procmail/</b>. <h1 class="manpages">MAILINGLIST</h1>
+There exists a mailinglist for questions relating to any program in the
+procmail package:
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&lt;<a href="mailto:procmail-users@procmail.org">procmail-users@procmail.org</a>&gt;
+<!-- ignored unsupported tag .na -->
+for submitting questions/answers.
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+&lt;<a href="mailto:procmail-users-request@procmail.org">procmail-users-request@procmail.org</a>&gt;
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+for subscription requests.
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+<p>
+<!-- ignored unsupported tag .ad -->
+If you would like to stay informed about new versions and official patches send
+a subscription request to
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<a href="mailto:procmail-announce-request@procmail.org">procmail-announce-request@procmail.org</a>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+(this is a readonly list).
+<!-- ignored unsupported tag .ne -->
+<h1 class="manpages">AUTHORS</h1>
+Stephen R. van den Berg
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&lt;<a href="mailto:srb@cuci.nl">srb@cuci.nl</a>&gt;
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+Philip A. Guenther
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&lt;<a href="mailto:guenther@sendmail.com">guenther@sendmail.com</a>&gt;
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+<!-- Fake renaming reserved macro 'Sh' -->
+<!-- Fake renaming reserved macro 'Ss' -->
+<!-- Fake renaming reserved macro 'Tp' -->
+<!-- Fake renaming reserved macro 'Rs' -->
+<!-- Fake renaming reserved macro 'Re' -->
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionc585.html?tutorial=unix_commands&amp;file=formail.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/formail.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

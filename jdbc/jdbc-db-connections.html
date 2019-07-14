@@ -1,0 +1,404 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/jdbc/jdbc-db-connections.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 19:46:52 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>JDBC Database Connections</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="description" content="JDBC Database Connections - Learning JDBC in simple and easy steps using this beginner's tutorial containing basic to advanced knowledge of JDBC including Drivers, Environment Setup, SQL Statement, Insert, Update, Select, Delete, Group By, Where Clause, Pagination, Result Sets, Database, Exception, Handling etc." />
+<meta name="Keywords" content="Java, JDBC, Tutorials, Learning, Beginners, Basics, Drivers, Environment, Setup, SQL, Statement, Insert, Update, Select, Delete, Group By, Where Clause, Pagination, Result Sets, Database, Exception, Handling" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+#topmenu a:hover {text-decoration:none;color:#DA406A !important;background-color:transparent;font-weight:bold;}
+#header{ 
+background:#DA406A !important;
+}
+#topmenu
+{
+background-color:#760422 !important;
+}
+#leftcol ul.menu li.heading 
+{
+background:#DA406A !important;
+border:1px solid #760422 !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1020px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index-2.html">Tutorials Point - Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index-2.html" target="_top">HOME </a>
+<a href="../java/index.html" target="_top">JAVA </a>
+<a href="../php/index.html" target="_top">PHP </a>
+<a href="../python/index.html" target="_top">Python </a>
+<a href="../ruby/index.html" target="_top">Ruby </a>
+<a href="../perl/index.html" target="_top">Perl </a>
+<a href="../html/index.html" target="_top">HTML </a>
+<a href="../css/index.html" target="_top">CSS </a>
+<a href="../javascript/index.html" target="_top">Javascript </a>
+<a href="../mysql/index.html" target="_top">MySQL </a>
+<a href="../cplusplus/index.html" target="_top">C++ </a>
+<a href="../unix/index.html" target="_top">UNIX </a>
+<a href="../more.html" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.html" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.html" target="_top">ABOUT</a> |
+<a href="../about/contact_us.html" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/jdbc-mini-logo.png" alt="JDBC Tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">JDBC Tutorial</li>
+<li><a target="_top" href="index.html">JDBC - Home</a></li>
+<li><a target="_top" href="jdbc-introduction.html">JDBC - Introduction</a></li>
+<li><a target="_top" href="jdbc-sql-syntax.html">JDBC - SQL Syntax</a></li>
+<li><a target="_top" href="jdbc-environment-setup.html">JDBC - Environment</a></li>
+<li><a target="_top" href="jdbc-sample-code.html">JDBC - Sample Code</a></li>
+<li><a target="_top" href="jdbc-driver-types.html">JDBC - Driver Types</a></li>
+<li><a target="_top" href="jdbc-db-connections.html"><b>JDBC - Connections</b></a></li>
+<li><a target="_top" href="jdbc-statements.html">JDBC - Statements</a></li>
+<li><a target="_top" href="jdbc-result-sets.html">JDBC - Result Sets</a></li>
+<li><a target="_top" href="jdbc-data-types.html">JDBC - Data Types</a></li>
+<li><a target="_top" href="jdbc-transactions.html">JDBC - Transactions</a></li>
+<li><a target="_top" href="jdbc-exceptions.html">JDBC - Exceptions</a></li>
+<li><a target="_top" href="jdbc-batch-processing.html">JDBC - Batch Processing</a></li>
+<li><a target="_top" href="jdbc-stored-procedure.html">JDBC - Stored Procedure</a></li>
+<li><a target="_top" href="jdbc-streaming-data.html">JDBC - Streaming Data</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">JDBC Examples</li>
+<li><a target="_top" href="jdbc-create-database.html">JDBC - Create Database</a></li>
+<li><a target="_top" href="jdbc-select-database.html">JDBC - Select Database</a></li>
+<li><a target="_top" href="jdbc-drop-database.html">JDBC - Drop Database</a></li>
+<li><a target="_top" href="jdbc-create-tables.html">JDBC - Create Tables</a></li>
+<li><a target="_top" href="jdbc-drop-tables.html">JDBC - Drop Tables</a></li>
+<li><a target="_top" href="jdbc-insert-records.html">JDBC - Insert Records</a></li>
+<li><a target="_top" href="jdbc-select-records.html">JDBC - Select Records</a></li>
+<li><a target="_top" href="jdbc-update-records.html">JDBC - Update Records</a></li>
+<li><a target="_top" href="jdbc-delete-records.html">JDBC - Delete Records</a></li>
+<li><a target="_top" href="jdbc-where-clause.html">JDBC - WHERE Clause</a></li>
+<li><a target="_top" href="jdbc-like-clause.html">JDBC - Like Clause</a></li>
+<li><a target="_top" href="jdbc-sorting-data.html">JDBC - Sorting Data</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">JDBC Useful Resources</li>
+<li><a target="_top" href="jdbc-quick-guide.html">JDBC - Quick Guide</a></li>
+<li><a target="_top" href="jdbc-useful-resources.html">JDBC Useful Resources</a></li>
+<li><a target="_top" href="../java/index.html">Useful Java Tutorials</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.html">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>JDBC Database Connections</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="jdbc-driver-types.html">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="jdbc-statements.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>After you've installed the appropriate driver, it's time to establish a database connection using JDBC.</p>
+<p>The programming involved to establish a JDBC connection is fairly simple. Here are these simple four steps:</p>
+<ul class="list">
+<li><p><b>Import JDBC Packages:</b> Add <b>import</b> statements to your Java program to import required classes in your Java code.</p></li>
+<li><p><b>Register JDBC Driver:</b> This step causes the JVM to load the desired driver implementation into memory so it can fulfill your JDBC requests.</p></li>
+<li><p><b>Database URL Formulation:</b> This is to create a properly formatted address that points to the database to which you wish to connect.</p></li>
+<li><p><b>Create Connection Object:</b> Finally, code a call to the <i>DriverManager</i> object's <i>getConnection( )</i> method to establish actual database connection.</p></li>
+</ul>
+<h2>Import JDBC Packages:</h2>
+<p>The <b>Import</b> statements tell the Java compiler where to find the classes you reference in your code and are placed at the very beginning of your source code.</p>
+<p>To use the standard JDBC package, which allows you to select, insert, update, and delete data in SQL tables, add the following <i>imports</i> to your source code:</p>
+<pre class="prettyprint">
+import java.sql.* ;  // for standard JDBC programs
+import java.math.* ; // for BigDecimal and BigInteger support
+</pre>
+<h2>Register JDBC Driver:</h2>
+<p>You must register the your driver in your program before you use it. Registering the driver is the process by which the Oracle driver's class file is loaded into memory
+so it can be utilized as an implementation of the JDBC interfaces.</p>
+<p>You need to do this registration only once in your program. You can register a driver in one of two ways.</p>
+<h2>Approach (I) - Class.forName():</h2>
+<p>The most common approach to register a driver is to use Java's <b>Class.forName()</b> method to dynamically load the driver's class file into memory, which automatically registers it. This method is preferable because it allows you to make the driver registration configurable and portable.</p>
+<p>The following example uses Class.forName( ) to register the Oracle driver:</p>
+<pre class="prettyprint">
+try {
+   Class.forName("oracle.jdbc.driver.OracleDriver");
+}
+catch(ClassNotFoundException ex) {
+   System.out.println("Error: unable to load driver class!");
+   System.exit(1);
+}
+</pre>
+<p>You can use <b>getInstance()</b> method to work around noncompliant JVMs, but then you'll have to code for two extra Exceptions as follows:</p>
+<pre class="prettyprint">
+try {
+   Class.forName("oracle.jdbc.driver.OracleDriver").newInstance();
+}
+catch(ClassNotFoundException ex) {
+   System.out.println("Error: unable to load driver class!");
+   System.exit(1);
+catch(IllegalAccessException ex) {
+   System.out.println("Error: access problem while loading!");
+   System.exit(2);
+catch(InstantiationException ex) {
+   System.out.println("Error: unable to instantiate driver!");
+   System.exit(3);
+}
+</pre>
+<h2>Approach (II) - DriverManager.registerDriver():</h2>
+<p>The second approach you can use to register a driver is to use the static <b>DriverManager.registerDriver()</b> method.</p>
+<p>You should use the <i>registerDriver()</i> method if you are using a non-JDK compliant JVM, such as the one provided by Microsoft.</p>
+<p>The following example uses registerDriver() to register the Oracle driver:</p>
+<pre class="prettyprint">
+try {
+   Driver myDriver = new oracle.jdbc.driver.OracleDriver();
+   DriverManager.registerDriver( myDriver );
+}
+catch(ClassNotFoundException ex) {
+   System.out.println("Error: unable to load driver class!");
+   System.exit(1);
+}
+</pre>
+<h2>Database URL Formulation:</h2>
+<p>After you've loaded the driver, you can establish a connection using the <b>DriverManager.getConnection()</b> method. For easy reference, let me list the three
+overloaded DriverManager.getConnection() methods:</p>
+<ul class="list">
+<li><p>getConnection(String url)</p></li>
+<li><p>getConnection(String url, Properties prop)</p></li>
+<li><p>getConnection(String url, String user, String password)</p></li>
+</ul>
+<p>Here each form requires a database <b>URL</b>. A database URL is an address that points to your database.</p>
+<p>Formulating a database URL is where most of the problems associated with establishing a connection occur.</p>
+<p>Following table lists down popular JDBC driver names and database URL.</p>
+<table class="src">
+<tr>
+<th style="width:10%">RDBMS</th><th style="width:35%">JDBC driver name</th><th>URL format</th>
+</tr>
+<tr><td>MySQL</td><td>com.mysql.jdbc.Driver</td><td><b>jdbc:mysql://</b>hostname/ databaseName</td></tr>
+<tr><td>ORACLE</td><td>oracle.jdbc.driver.OracleDriver</td><td><b>jdbc:oracle:thin:@</b>hostname:port Number:databaseName</td></tr>
+<tr><td>DB2</td><td>COM.ibm.db2.jdbc.net.DB2Driver</td><td><b>jdbc:db2:</b>hostname:port Number/databaseName</td></tr>
+<tr><td>Sybase</td><td>com.sybase.jdbc.SybDriver</td><td><b>jdbc:sybase:Tds:</b>hostname: port Number/databaseName</td></tr>
+</table>
+<p>All the highlighted part in URL format is static and you need to change only remaining part as per your database setup.</p>
+<h2>Create Connection Object:</h2>
+<h2>Using a database URL with a username and password:</h2>
+<p>I listed down three forms of <b>DriverManager.getConnection()</b>  method to create  a connection object. The most commonly used form of getConnection() requires you to pass a database URL, a <i>username</i>, and a <i>password</i>:</p>
+<p>Assuming you are using Oracle's <b>thin</b> driver, you'll specify a host:port:databaseName value for the database portion of the URL.</p>
+<p>If you have a host at TCP/IP address 192.0.0.1 with a host name of amrood, and your Oracle listener is configured to listen on port 1521, and your database name is EMP, then complete database URL would then be:</p>
+<pre class="prettyprint">
+jdbc:oracle:thin:@amrood:1521:EMP
+</pre>
+<p>Now you have to call getConnection() method with appropriate username and password to get a <b>Connection</b> object as follows:</p>
+<pre class="prettyprint">
+String URL = "jdbc:oracle:thin:@amrood:1521:EMP";
+String USER = "username";
+String PASS = "password"
+Connection conn = DriverManager.getConnection(URL, USER, PASS);
+</pre>
+<h2>Using only a database URL:</h2>
+<p>A second form of the DriverManager.getConnection( ) method requires only a database URL:</p>
+<pre class="prettyprint">
+DriverManager.getConnection(String url);
+</pre>
+<p>However, in this case, the database URL includes the username and password and has the following general form:</p>
+<pre class="prettyprint">
+jdbc:oracle:driver:username/password@database
+</pre>
+<p>So the above connection can be created as follows:</p>
+<pre class="prettyprint">
+String URL = "jdbc:oracle:thin:username/password@amrood:1521:EMP";
+Connection conn = DriverManager.getConnection(URL);
+</pre>
+<h2>Using a database URL and a Properties object:</h2>
+<p>A third form of the DriverManager.getConnection( ) method requires a database URL and a Properties object:</p>
+<pre class="prettyprint">
+DriverManager.getConnection(String url, Properties info);
+</pre>
+<p>A Properties object holds a set of keyword-value pairs. It's used to pass driver properties to the driver during a call to the getConnection() method.</p>
+<p>To make the same connection made by the previous examples, use the following code:</p>
+<pre class="prettyprint">
+import java.util.*;
+
+String URL = "jdbc:oracle:thin:@amrood:1521:EMP";
+Properties info = new Properties( );
+info.put( "user", "username" );
+info.put( "password", "password" );
+
+Connection conn = DriverManager.getConnection(URL, info);
+</pre>
+<h2>Closing JDBC connections:</h2>
+<p>At the end of your JDBC program, it is required explicitly close all the connections to the database to end each database session. However, if
+you forget, Java's garbage collector will close the connection when it cleans up stale objects.</p>
+<p>Relying on garbage collection, especially in database programming, is very poor programming practice. You should make a habit of always closing the connection with the close() method associated with connection object.</p>
+<p>To ensure that a connection is closed, you could provide a finally block in your code. A <i>finally</i> block always executes, regardless if an exception occurs or not.</p>
+<p>To close above opened connection you should call close() method as follows:</p>
+<pre class="prettyprint">
+conn.close();
+</pre>
+<p>Explicitly closing a connection conserves DBMS resources, which will make your database administrator happy.</p>
+<p>For a better understanding, I would suggest to study our <a href="jdbc-sample-code.html">JDBC - Sample Code</a>.</p>
+<hr />
+<div class="pre-btn">
+<a href="jdbc-driver-types.html">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/jdbc-db-connections.pdf" alt="JDBC Database Connections" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="jdbc-statements.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.html" target="_top">ASP.NET </a> |
+<a href="../jquery/index.html" target="_top">jQuery </a> |
+<a href="../ajax/index.html" target="_top">AJAX </a> |
+<a href="../ant/index.html" target="_top">ANT</a> |
+<a href="../jsp/index.html" target="_top">JSP </a> |
+<a href="../servlets/index.html" target="_top">Servlets </a> |
+<a href="../log4j/index.html" target="_top">log4j </a> |
+<a href="../ibatis/index.html" target="_top">iBATIS </a> |
+<a href="../hibernate/index.html" target="_top">Hibernate </a> |
+<a href="index.html" target="_top">JDBC </a> |
+<a href="../struts_2/index.html" target="_top">Struts </a> |
+<a href="../html5/index.html" target="_top">HTML5 </a> |
+<a href="../sql/index.html" target="_top">SQL </a> |
+<a href="../mysql/index.html" target="_top">MySQL </a> |
+<a href="../cplusplus/index.html" target="_top">C++ </a> |
+<a href="../unix/index.html" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/jdbc/jdbc-db-connections.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 19:46:56 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

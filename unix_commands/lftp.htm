@@ -1,0 +1,2198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/lftp.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:52 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>lftp - Unix, Linux Command</title>
+<meta name="Description" Content="lftp - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>lftp - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+lftp - Sophisticated file transfer program
+<h1 class="manpages">SYNTAX</h1>
+<b>lftp</b> [<b>-d</b>] [<b>-e </b><i>cmd</i>] [<b>-p </b><i>port</i>]
+[<b>-u </b><i>user</i>[<b>,</b><i>pass</i>]] [<i>site</i>]
+<!-- Need break --><br />
+<b>lftp -f </b><i>script_file</i> <!-- Need break --><br />
+<b>lftp -c </b><i>commands</i> <!-- Need break --><br />
+<b>lftp --version</b> <!-- Need break --><br />
+<b>lftp --help</b> <p>
+<h1 class="manpages">VERSION</h1>
+This man page documents lftp version 3.7.7.
+<p>
+<h1 class="manpages">DESCRIPTION</h1>
+<b>lftp</b> is a file transfer program that allows sophisticated ftp, http
+and other connections to other hosts. If <i>site</i> is specified then lftp
+will connect to that site otherwise a connection has to be established with
+the open command.
+<p>
+<b>lftp</b> can handle several file access methods - ftp, ftps, http, https,
+hftp, fish, sftp and file (https and ftps are only available when lftp is
+compiled with GNU TLS or OpenSSL library). You can specify the method to use in &#145;open
+URL&#146; command, e.g. &#145;open <a href="http://www.us.kernel.org/pub/linux">http://www.us.kernel.org/pub/linux</a>&#146;. hftp is
+ftp-over-http-proxy protocol. It can be used automatically instead of ftp
+if ftp:proxy is set to &#145;<a href="http://proxy/">http://proxy</a>[:port]&#146;. Fish is a protocol working
+over an ssh connection to a unix account. SFtp is a protocol implemented
+in ssh2 as sftp subsystem.
+<p>
+<p>
+Every operation in <b>lftp</b> is reliable, that is any not fatal error is
+ignored and the operation is repeated. So if downloading breaks, it
+will be restarted from the point automatically. Even if ftp server
+does not support REST command, <b>lftp</b> will try to retrieve the file from
+the very beginning until the file is transferred completely.
+<p>
+<b>lftp</b> has shell-like command syntax allowing you to launch several
+commands in parallel in background (&). It is also possible to group
+commands within () and execute them in background. All background jobs
+are executed in the same single process. You can bring a foreground
+job to background with ^Z (c-z) and back with command &#145;wait&#146; (or &#145;fg&#146; which
+is alias to &#145;wait&#146;). To list running jobs, use command &#145;jobs&#146;. Some
+commands allow redirecting their output (cat, ls, ...) to file or via
+pipe to external command. Commands can be executed conditionally based
+on termination status of previous command (&&, ||).
+<p>
+If you exit <b>lftp</b> when some jobs are not finished yet, <b>lftp</b> will move
+itself to nohup mode in background. The same happens when you have a
+real modem hangup or when you close an xterm.
+<p>
+<b>lftp</b> has builtin mirror which can download or update a whole directory
+tree. There is also reverse mirror (mirror -R) which uploads or
+updates a directory tree on server. Mirror can also synchronize directories
+between two remote servers, using FXP if available.
+<p>
+There is command &#145;at&#146; to launch a job at specified time in current
+context, command &#145;queue&#146; to queue commands for sequential execution
+for current server, and much more.
+<p>
+On startup, <b>lftp</b> executes <i>/etc/lftp.conf</i> and then <i>~/.lftprc</i> and
+<i>~/.lftp/rc</i>. You can place aliases and &#145;set&#146; commands there. Some
+people prefer to see full protocol debug, use &#145;debug&#146; to turn the
+debug on. Use &#145;debug 3&#146; to see only greeting messages and error
+messages.
+<p>
+<b>lftp</b> has a number of settable variables. You can use &#145;set -a&#146; to see
+all variables and their values or &#145;set -d&#146; to see list of defaults.
+Variable names can be abbreviated and prefix can be omitted unless the
+rest becomes ambiguous.
+<p>
+If lftp was compiled with OpenSSL (configure --with-openssl), then it includes software developed
+by the OpenSSL Project for use in the OpenSSL Toolkit. (<a href="http://www.openssl.org/">http://www.openssl.org</a>/)
+<p>
+<h2><i>Commands</i></h2>
+<p>
+<p>
+<b>!</b><i> shell command</i> <p>
+Launch shell or shell command.
+<p>
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+!ls
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+To do a directory listing of the local host.
+<p>
+<b>alias</b>  [<i>name</i> [<i>value</i>]] <p>
+Define or undefine alias <i>name</i>. If <i>value</i> is omitted, the alias is
+undefined, else it takes the value <i>value</i>. If no argument is given
+the current aliases are listed.
+<p>
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+alias dir ls -lF
+alias less zmore
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+<b>anon</b> <p>
+Sets the user to anonymous.  This is the default.
+<p>
+<b>at</b> <i>time</i> [ -- <i>command</i> ]  <p>
+Wait until the given time and execute given (optional) command. See also <b>at</b>(1).
+<p>
+<b>bookmark</b>  [<i>subcommand</i>] <p>
+The bookmark command controls bookmarks.
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+add &lt;name&gt; [&lt;loc&gt;]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add current place or given location
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to bookmarks and bind to given name
+del &lt;name&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remove bookmark with name
+edit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;start editor on bookmarks file
+import &lt;type&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;import foreign bookmarks
+list&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list bookmarks (default)
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+<b>cache</b>  [<i>subcommand</i>] <p>
+The cache command controls local memory cache.
+The following subcommands are recognized:
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+stat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print cache status (default)
+on|off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;turn on/off caching
+flush&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flush cache
+size <i>lim</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set memory limit, -1 means unlimited
+expire <i>Nx</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set cache expiration time to <i>N</i> seconds (<i>x</i>=s)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;minutes (<i>x</i>=m) hours (<i>x</i>=h) or days (<i>x</i>=d)
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+<p>
+<b>cat</b> <i>files</i> <p>
+cat outputs the remote file(s) to stdout.  (See also <b>more</b>,
+<b>zcat</b> and <b>zmore</b>)
+<p>
+<b>cd</b> rdir <p>
+Change current remote directory.  The previous remote directory is
+stored as &#145;-&#146;. You can do &#145;cd -&#146; to change the directory back.
+The previous directory for each site is also stored on disk,
+so you can do &#145;open site; cd -&#146; even after lftp restart.
+<p>
+<b>chmod</b> <i>mode files</i> <p>
+Change permission mask on remote files. The mode must be an octal number.
+<p>
+<b>close</b> [<b>-a</b>] <p>
+Close idle connections.  By default only with the current server, use
+-a to close all idle connections.
+<p>
+<b>cls</b> [<b>OPTS</b>] <b></b><i>files...</i> <p>
+&#145;cls&#146; tries to retrieve information about specified files or directories
+and outputs the information according to format options. The difference between
+&#145;ls&#146; and &#145;cls&#146; is that &#145;ls&#146; requests the server to format file listing, and
+&#145;cls&#146; formats it itself, after retrieving all the needed information.
+See &#145;help cls&#146; for options.
+<p>
+<b>command</b><b></b><i>cmd</i>args... <p>
+execute given command ignoring aliases.
+<p>
+<b>debug</b> [<b>-o</b> <i>file</i>] <i>level</i>|<b>off</b> <p>
+Switch debugging to <i>level</i> or turn it off.  Use -o to redirect
+the debug output to a file.
+<p>
+<b>echo</b> [<b>-n</b>] <i>string</i> <p>
+guess what it does.
+<p>
+<b>eval</b> [<b>-f</b> <i>format</i> ] <b></b><i>args...</i> <p>
+without -f it just executes given arguments as a command. With -f, arguments
+are transformed into a new command. The format can contain plain text and
+placeholders $0...$9 and $@, corresponding to the arguments.
+<p>
+<b>exit</b> [<b>bg</b>] [<b>top</b>] [<b>kill</b>] [<i>code</i>] <p>
+exit will exit from lftp or move to background if there are active jobs. If
+no job is active, <i>code</i> is passed to operating system as lftp&#146;s
+termination status. If <i>code</i> is omitted, the exit code of last
+command is used.
+<p>
+&#145;exit bg&#146; forces moving to background when cmd:move-background is false.
+&#145;exit top&#146; makes top level &#145;shell&#146; (internal lftp command executor) terminate.
+&#145;exit kill&#146; kills all numbered jobs before exiting. The options can be combined, e.g.
+&#145;at 08:00 -- exit top kill &&#146; kills all jobs and makes lftp exit at specified time.
+<p>
+<b>fg</b> <p>
+Alias for &#145;wait&#146;.
+<p>
+<b>find</b>  [<i>directory</i>]  <p>
+List files in the directory (current directory by default) recursively.
+This can help with servers lacking ls -R support. You can redirect output
+of this command.
+<p>
+<b>ftpcopy</b> <p>
+Obsolete. Use one of the following instead:
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+get <a href="ftp://.../">ftp://...</a> -o <a href="ftp://.../">ftp://...</a>
+get -O <a href="ftp://.../">ftp://...</a> file1 file2...
+put <a href="ftp://.../">ftp://...</a>
+mput <a href="ftp://.../">ftp://.../</a>*
+mget -O <a href="ftp://.../">ftp://...</a> <a href="ftp://.../">ftp://.../</a>*
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+or other combinations to get FXP transfer (directly between two ftp servers).
+lftp would fallback to plain copy (via client) if FXP transfer cannot be
+initiated or ftp:use-fxp is false.
+<p>
+<b>get</b> [<b>-E</b>] [<b>-a</b>] [<b>-c</b>] [<b>-O</b> <i>base</i>] <i>rfile</i> [<b>-o</b> <i>lfile</i>] ... <p>
+Retrieve the remote file <i>rfile</i> and store it as the local file
+<i>lfile</i>.  If -o is omitted, the file is stored to local file named as
+base name of <i>rfile</i>. You can get multiple files by specifying multiple
+instances of <i>rfile</i> (and -o <i>lfile</i>). Does not expand wildcards, use
+<b>mget</b> for that.
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+-c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue, reget
+-E&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delete source files after successful transfer
+-a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;use ascii mode (binary is the default)
+-O &lt;base&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specifies base directory or URL where files should be placed
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+Examples:
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+get README
+get README -o debian.README
+get README README.mirrors
+get README -o debian.README README.mirrors -o debian.mirrors
+get README -o <a href="ftp://some.host.org/debian.README">ftp://some.host.org/debian.README</a>
+get README -o <a href="ftp://some.host.org/debian-dir/">ftp://some.host.org/debian-dir/</a> (end slash is important)
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+<b>get1</b> [<i>OPTS</i>] <i>rfile</i> <p>
+Transfer a single file. Options:
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+-o &lt;lfile&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;destination file name (default - basename of rfile)
+-c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue, reget
+-E&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delete source files after successful transfer
+-a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;use ascii mode (binary is the default)
+--source-region=&lt;from-to&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transfer specified region of source file
+--target-position=&lt;pos&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;position in target file to write data at
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+<b>glob</b> [<b>-d</b>] [<b>-a</b>] [<b>-f</b>] <i>command patterns</i> <p>
+Glob given patterns containing metacharacters and pass result to given command.
+E.g. &#145;&#145;glob echo *&#146;&#146;.
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+-f&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;plain files (default)
+-d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;directories
+-a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;all types
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+<b>help</b> [<i>cmd</i>]
+<p>
+Print help for <i>cmd</i> or if no <i>cmd</i> was specified print a list of
+available commands.
+<p>
+<b>jobs</b> [<b>-v</b>] <p>
+List running jobs. -v means verbose, several -v can be specified.
+<p>
+<b>kill</b> all|<i>job_no</i>
+<p>
+Delete specified job with <i>job_no</i> or all jobs.
+(For <i>job_no</i> see <b>jobs</b>)
+<p>
+<b>lcd</b> <i>ldir</i>
+<p>
+Change current local directory <i>ldir</i>. The previous local
+directory is stored as &#145;-&#146;. You can do &#145;lcd -&#146; to change the directory back.
+<p>
+<b>lpwd</b> <p>
+Print current working directory on local machine.
+<p>
+<b>ls</b> <i>params</i>
+<p>
+List remote files. You can redirect output of this command to file or
+via pipe to external command.  By default, ls output is cached, to see
+new listing use
+<b>rels</b> or
+<b>cache flush.</b> <p>
+<b>mget</b> [<b>-c</b>] [<b>-d</b>] [<b>-a</b>] [<b>-E</b>] [<b>-O</b> <i>base</i>] <i>files</i> <p>
+Gets selected files with expanded wildcards.
+<p>
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+-c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue, reget.
+-d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;create directories the same as file names and get
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the files into them instead of current directory.
+-E&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delete source files after successful transfer
+-a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;use ascii mode (binary is the default)
+-O &lt;base&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specifies base directory or URL where files should be placed
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+<b>mirror</b> [<i>OPTS</i>] [<i>source</i> [<i>target</i>]] <p>
+Mirror specified source directory to local target directory. If target
+directory ends with a slash, the source base name is appended to target
+directory name. Source and/or target can be URLs pointing to directories.
+<p>
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+-c, --continue&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue a mirror job if possible
+-e, --delete&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delete files not present at remote site
+    --delete-first&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delete old files before transferring new ones
+    --depth-first&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;descend into subdirectories before transferring files
+-s, --allow-suid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set suid/sgid bits according to remote site
+    --allow-chown&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try to set owner and group on files
+    --ascii&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;use ascii mode transfers (implies --ignore-size)
+    --ignore-time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ignore time when deciding whether to download
+    --ignore-size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ignore size when deciding whether to download
+    --only-missing&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;download only missing files
+    --only-existing&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;download only files already existing at target
+-n, --only-newer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;download only newer files (-c won&#146;t work)
+    --no-empty-dirs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;don&#146;t create empty directories (implies --depth-first)
+-r, --no-recursion&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;don&#146;t go to subdirectories
+    --no-symlinks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;don&#146;t create symbolic links
+-p, --no-perms&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;don&#146;t set file permissions
+    --no-umask&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;don&#146;t apply umask to file modes
+-R, --reverse&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reverse mirror (put files)
+-L, --dereference&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;download symbolic links as files
+-N, --newer-than=SPEC&nbsp;&nbsp;&nbsp;download only files newer than specified time
+    --on-change=CMD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;execute the command if anything has been changed
+    --older-than=SPEC&nbsp;&nbsp;&nbsp;download only files older than specified time
+    --size-range=RANGE&nbsp;&nbsp;download only files with size in specified range
+-P, --parallel[=N]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;download N files in parallel
+    --use-pget[-n=N]&nbsp;&nbsp;&nbsp;&nbsp;use pget to transfer every single file
+    --loop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;loop until no changes found
+-i <i>RX</i>, --include <i>RX</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;include matching files
+-x <i>RX</i>, --exclude <i>RX</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exclude matching files
+-I <i>GP</i>, --include-glob <i>GP</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;include matching files
+-X <i>GP</i>, --exclude-glob <i>GP</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exclude matching files
+-v, --verbose[=level]&nbsp;&nbsp;&nbsp;verbose operation
+    --log=FILE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;write lftp commands being executed to FILE
+    --script=FILE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;write lftp commands to FILE, but don&#146;t execute them
+    --just-print, --dry-run&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;same as --script=-
+    --use-cache&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;use cached directory listings
+--Remove-source-files&nbsp;&nbsp;&nbsp;remove files after transfer (use with caution)
+-a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;same as --allow-chown --allow-suid --no-umask
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+When using -R, the first directory is local and the second is remote.
+If the second directory is omitted, base name of first directory is used.
+If both directories are omitted, current local and remote directories are used.
+If target directory ends with a slash (except root directory) then base
+name of source directory is appended.
+<p>
+<i>RX</i> is an extended regular expression, just like in <b>egrep</b>(1).
+<p>
+<i>GP</i> is a glob pattern, e.g. &#145;*.zip&#146;.
+<p>
+Include and exclude options can be specified multiple times. It means that
+a file or directory would be mirrored if it matches an include and does
+not match to excludes after the include, or does not match anything
+and the first check is exclude. Directories are matched with a slash appended.
+<p>
+Note that symbolic links are not created when uploading to remote server,
+because ftp protocol cannot do it. To upload files the links refer
+to, use &#145;mirror -RL&#146; command (treat symbolic links as files).
+<p>
+For option --newer-than you can either specify a file or time specification
+like that used by <b>at</b>(1) command, e.g. &#145;now-7days&#146; or &#145;week ago&#146;. If you
+specify a file, then modification time of that file will be used.
+<p>
+Verbosity level can be selected using --verbose=level option or by several
+-v options, e.g. -vvv. Levels are:
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+0 - no output (default)
+1 - print actions
+2 - +print not deleted file names (when -e is not specified)
+3 - +print directory names which are mirrored
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+--only-newer turns off file size comparison and uploads/downloads
+only newer files even if size is different. By default older files are transferred and replace newer ones.
+<p>
+You can mirror between two servers if you specify URLs instead of directories.
+FXP is used automatically for transfers between ftp servers, if possible.
+<p>
+Some ftp servers hide dot-files by default (e.g. <i>.htaccess</i>), and show
+them only when LIST command is used with -a option. In such case try to use
+&#145;set ftp:list-options -a&#146;.
+<p>
+<b>mkdir</b> [<b>-p</b>] <b></b><i>dir(s)</i> <p>
+Make remote directories. If -p is used, make all components of paths.
+<p>
+<b>module</b> <i>module </i>[<i> args </i>] <p>
+Load given module using <b>dlopen</b>(3) function. If module name does not contain
+a slash, it is searched in directories specified by module:path variable.
+Arguments are passed to module_init function. See README.modules for technical
+details.
+<p>
+<b>more</b> <i>files</i>
+<p>
+Same as &#145;cat <i>files</i> | more&#146;. if <b>PAGER</b> is set, it is used as filter.
+(See also <b>cat</b>, <b>zcat</b> and <b>zmore</b>)
+<p>
+<b>mput</b> [<b>-c</b>] [<b>-d</b>] [<b>-a</b>] [<b>-E</b>] [<b>-O</b> <i>base</i>] <i>files</i> <p>
+Upload files with wildcard expansion. By default it uses the base name of
+local name as remote one. This can be changed by &#145;-d&#146; option.
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+-c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue, reput
+-d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;create directories the same as in file names and put the
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;files into them instead of current directory
+-E&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delete source files after successful transfer (dangerous)
+-a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;use ascii mode (binary is the default)
+-O &lt;base&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specifies base directory or URL where files should be placed
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+<b>mrm</b> <i>file(s)</i>
+<p>
+Same as &#145;glob rm&#146;. Removes specified file(s) with wildcard expansion.
+<p>
+<b>mv</b> <i>file1</i> <i>file2</i>
+<p>
+Rename <i>file1</i> to <i>file2</i>.
+<p>
+<b>nlist</b> [<i>args</i>]
+<p>
+List remote file names
+<p>
+<b>open</b> [<b>-e</b> <i>cmd</i>] <b>[</b>-u<b> </b><i>user</i>[,<b></b><i>pass</i>]] <b>[</b>-p<b> </b><i>port</i>] <i>host</i>|<i>url</i> <p>
+Select an ftp server.
+<p>
+<b>pget</b> [<i>OPTS</i>] <i>rfile</i> [<i></i><b>-o</b> lfile] <p>
+Gets the specified file using several connections. This can speed up
+transfer, but loads the net and server heavily impacting other users. Use only if
+you really have to transfer the file ASAP.
+Options:
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+-c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue transfer. Requires <i>lfile.lftp-pget-status</i> file.
+-n <i>maxconn</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set maximum number of connections (default is taken from pget:default-n setting)
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+<p>
+<b>put</b> [<b>-E</b>] [<b>-a</b>] [<b>-c</b>] [<b>-O </b><i>base</i>] <i>lfile</i> [<b>-o </b><i>rfile</i>] <p>
+Upload <i>lfile</i> with remote name <i>rfile</i>. If -o omitted, the base name
+of <i>lfile</i> is used as remote name. Does not expand wildcards, use <b>mput</b> for that.
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+-o &lt;rfile&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specifies remote file name (default - basename of lfile)
+-c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue, reput
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it requires permission to overwrite remote files
+-E&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delete source files after successful transfer (dangerous)
+-a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;use ascii mode (binary is the default)
+-O &lt;base&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specifies base directory or URL where files should be placed
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+<b>pwd</b> [<b>-p</b>] <p>
+Print current remote URL. Use &#145;-p&#146; option to show password in the URL.
+<p>
+<b>queue</b> [<b>-n</b> <i>num</i> ] <i>cmd</i> <p>
+Add the given command to queue for sequential execution. Each site has its own
+queue. &#145;-n&#146; adds the command before the given item in the queue. Don&#146;t try to
+queue &#145;cd&#146; or &#145;lcd&#146; commands, it may confuse lftp. Instead
+do the cd/lcd before &#145;queue&#146; command, and it will remember the place in which
+the command is to be done. It is possible to queue up an already running job
+by &#145;queue wait &lt;jobno&gt;&#146;, but the job will continue execution even if it is not
+the first in queue.
+<p>
+&#145;queue stop&#146; will stop the queue, it will not execute any new commands,
+but already running jobs will continue to run. You can use &#145;queue stop&#146; to
+create an empty stopped queue. &#145;queue start&#146; will resume queue execution.
+When you exit lftp, it will start all stopped queues automatically.
+<p>
+&#145;queue&#146; with no arguments will either create a stopped queue or print queue
+status.
+<p>
+<b>queue</b> <b>--delete|-d </b>[<i>index or wildcard expression</i>] <p>
+Delete one or more items from the queue. If no argument is given, the last
+entry in the queue is deleted.
+<p>
+<b>queue</b> <b>--move|-m </b>&lt;<i>index or wildcard expression</i>&gt; [<i>index</i>] <p>
+Move the given items before the given queue index, or to the end if no
+destination is given.
+<p>
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+-q&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Be quiet.
+-v&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Be verbose.
+-Q&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Output in a format that can be used to re-queue.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Useful with --delete.
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&gt; get file &
+[1] get file
+&gt; queue wait 1
+&gt; queue get another_file
+&gt; cd a_directory
+&gt; queue get yet_another_file
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+queue -d 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Delete the third item in the queue.
+queue -m 6 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Move the sixth item in the queue before the fourth.
+queue -m "get*zip" 1&nbsp;&nbsp;&nbsp;&nbsp;Move all commands matching "get*zip" to the beginning
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;of the queue.  (The order of the items is preserved.)
+queue -d "get*zip"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Delete all commands matching "get*zip".
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+<b>quote</b> <i>cmd</i>
+<p>
+For FTP - send the command uninterpreted. Use with caution - it can lead to
+unknown remote state and thus will cause reconnect. You cannot
+be sure that any change of remote state because of quoted command
+is solid - it can be reset by reconnect at any time.
+<p>
+For HTTP - specific to HTTP action. Syntax: &#145;&#145;quote &lt;command&gt; [&lt;args&gt;]&#146;&#146;.
+Command may be &#145;&#145;set-cookie&#146;&#146; or &#145;&#145;post&#146;&#146;.
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+open <a href="http://www.site.net/">http://www.site.net</a>
+quote set-cookie "variable=value; othervar=othervalue"
+set http:post-content-type application/x-www-form-urlencoded
+quote post /cgi-bin/script.cgi "var=value&othervar=othervalue" &gt; local_file
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+For FISH - send the command uninterpreted. This can be used to execute
+arbitrary commands on server. The command must not take input or print ###
+at new line beginning. If it does, the protocol will become out of sync.
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+open fish://server
+quote find -name \*.zip
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+<b>reget </b><i>rfile</i> [<b>-o</b> <i>lfile</i>] <p>
+Same as &#145;get -c&#146;.
+<p>
+<b>rels</b> [<i>args</i>]
+<p>
+Same as &#145;ls&#146;, but ignores the cache.
+<p>
+<b>renlist</b> [<i>args</i>]
+<p>
+Same as &#145;nlist&#146;, but ignores the cache.
+<p>
+<b>repeat</b> [ <b>-c</b> <i>&lt;count&gt;</i>] [[<b>-d</b>] <i>delay</i>] [<i>command</i>] <p>
+Repeat the command. Between the commands a delay is inserted, by default 1 second.
+Option &#145;-c&#146; limits number of repeations. Option &#145;--while-ok&#146; breaks loop when
+command returns non-zero exit code; &#145;--until-ok&#146; breaks on zero exit code.
+<!-- ignored unsupported tag .in -->
+Examples:
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+repeat at tomorrow -- mirror
+repeat 1d mirror
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+<b>reput</b> <i>lfile</i> [<b>-o</b> <i>rfile</i>] <p>
+Same as &#145;put -c&#146;.
+<p>
+<b>rm</b> [<b>-r</b>] [<b>-f</b>] <i>files</i>
+<p>
+Remove remote files.  Does not expand wildcards, use <b>mrm</b> for
+that. -r is for recursive directory remove. Be careful, if something goes
+wrong you can lose files. -f suppress error messages.
+<p>
+<b>rmdir</b> <i>dir(s)</i>
+<p>
+Remove remote directories.
+<p>
+<b>scache</b> [<i>session</i>]
+<p>
+List cached sessions or switch to specified session.
+<p>
+<b>set</b> [<i>var</i> [<i>val</i>]]
+<p>
+Set variable to given value. If the value is omitted, unset the variable.
+Variable name has format &#145;&#145;name/closure&#146;&#146;, where closure can specify
+exact application of the setting. See below for details.
+If set is called with no variable then only altered settings are listed.
+It can be changed by options:
+<p>
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+-a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list all settings, including default values
+-d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list only default values, not necessary current ones
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+<p>
+<b>site</b> <i>site_cmd</i>
+<p>
+Execute site command <i>site_cmd</i> and output the result.
+You can redirect its output.
+<p>
+<b>sleep</b> <i>interval</i>  <p>
+Sleep given time interval and exit. Interval is in seconds by default, but
+can be suffixed with &#146;m&#146;, &#146;h&#146;, &#146;d&#146; for minutes, hours and days respectively.
+See also <b>at</b>.
+<p>
+<b>slot</b> [<i>name</i>] <p>
+Select specified slot or list all slots allocated. A slot is a connection
+to a server, somewhat like a virtual console. You can create multiple slots
+connected to different servers and switch between them. You can also use
+<i>slot:name</i> as a pseudo-URL evaluating to that slot location.
+<p>
+Default readline binding allows quick switching between slots named 0-9 using
+Meta-0 - Meta-9 keys (often you can use Alt instead of Meta).
+<p>
+<b>source</b> <i>file</i>
+<!-- Need break --><br />
+<b>source -e</b> <i>command</i>
+<p>
+Execute commands recorded in file <i>file</i> or returned by specified external command.
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+source ~/.lftp/rc
+source -e echo help
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+<p>
+<b>suspend</b> <p>
+Stop lftp process. Note that transfers will be also stopped until you
+continue the process with shell&#146;s fg or bg commands.
+<p>
+<b>user</b> <i>user</i> [<i>pass</i>]
+<!-- Need break --><br />
+<b>user</b> <i>URL</i> [<i>pass</i>]
+<p>
+Use specified info for remote login. If you specify an URL with user name,
+the entered password will be cached so that future URL references can use it.
+<p>
+<b>version</b> <p>
+Print <b>lftp</b> version.
+<p>
+<b>wait</b> [<i>jobno</i>]
+<!-- Need break --><br />
+<b>wait all</b> <p>
+Wait for specified job to terminate. If jobno is omitted, wait for last
+backgrounded job.
+<p>
+&#145;wait all&#146; waits for all jobs termination.
+<p>
+<b>zcat</b> <i>files</i>
+<p>
+Same as cat, but filter each file through zcat. (See also <b>cat</b>,
+<b>more</b> and <b>zmore</b>)
+<p>
+<b>zmore</b> <i>files</i>
+<p>
+Same as more, but filter each file through zcat. (See also <b>cat</b>,
+<b>zcat</b> and <b>more</b>)
+<p>
+<h2><i>Settings</i></h2>
+<p>
+On startup, lftp executes
+<i>~/.lftprc </i>and<i> ~/.lftp/rc</i>. You can place aliases
+and &#145;set&#146; commands there. Some people prefer to see full protocol
+debug, use &#145;debug&#146; to turn the debug on.
+<p>
+There is also a system-wide startup file in
+<i>/etc/lftp.conf</i>. It can be in different directory, see FILES section.
+<p>
+<b>lftp</b> has the following settable variables (you can also use
+&#145;set -a&#146; to see all variables and their values):
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>bmk:save-passwords</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+save plain text passwords in ~/.lftp/bookmarks on &#145;bookmark add&#146; command.
+Off by default.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>cmd:at-exit</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the commands in string are executed before lftp exits.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>cmd:csh-history</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+enables csh-like history expansion.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>cmd:default-protocol</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The value is used when &#145;open&#146; is used
+with just host name without protocol. Default is &#145;ftp&#146;.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>cmd:fail-exit</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if true, exit when an unconditional (without || and && at begin) command fails.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>cmd:long-running</b> (seconds) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+time of command execution, which is
+considered as &#145;long&#146; and a beep is done before next prompt. 0
+means off.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>cmd:ls-default</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+default ls argument
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>cmd:move-background</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+when false, lftp refuses to go to background when exiting. To force it, use &#145;exit bg&#146;.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>cmd:move-background-detach</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+when true (default), lftp detaches itself from the control terminal when
+moving to background, it is not possible to attach back; when false, lftp
+tricks the shell to move lftp to background process group and continues to
+run, then fg shell command brings lftp back to foreground unless it has
+done all jobs and terminated.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>cmd:prompt</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The prompt. lftp recognizes the following backslash-escaped special
+characters that are decoded as follows:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>&#92;@</b> </td><td valign="bottom">
+insert @ if current user is not default
+</td></tr>
+<tr valign="top"><td>
+<b>&#92;a</b> </td><td valign="bottom">
+an ASCII bell character (07)
+</td></tr>
+<tr valign="top"><td>
+<b>&#92;e</b> </td><td valign="bottom">
+an ASCII escape character (033)
+</td></tr>
+<tr valign="top"><td>
+<b>&#92;h</b> </td><td valign="bottom">
+the hostname you are connected to
+</td></tr>
+<tr valign="top"><td>
+<b>&#92;n</b> </td><td valign="bottom">
+newline
+</td></tr>
+<tr valign="top"><td>
+<b>&#92;s</b> </td><td valign="bottom">
+the name of the client (lftp)
+</td></tr>
+<tr valign="top"><td>
+<b>&#92;S</b> </td><td valign="bottom">
+current slot name
+</td></tr>
+<tr valign="top"><td>
+<b>&#92;u</b> </td><td valign="bottom">
+the username of the user you are logged in as
+</td></tr>
+<tr valign="top"><td>
+<b>&#92;U</b> </td><td valign="bottom">
+the URL of the remote site (e.g., <a href="ftp://g437.ub.gu.se/home/james/src/lftp">ftp://g437.ub.gu.se/home/james/src/lftp</a>)
+</td></tr>
+<tr valign="top"><td>
+<b>&#92;v</b> </td><td valign="bottom">
+the version of <b>lftp</b> (e.g., 2.0.3)
+</td></tr>
+<tr valign="top"><td>
+<b>&#92;w</b> </td><td valign="bottom">
+the current working directory at the remote site
+</td></tr>
+<tr valign="top"><td>
+<b>&#92;W</b> </td><td valign="bottom">
+the base name of the current working directory at the remote site
+</td></tr>
+<tr valign="top"><td>
+<b>&#92;</b><i>nnn</i> </td><td valign="bottom">
+the character corresponding to the octal number <i>nnn</i>
+</td></tr>
+<tr valign="top"><td>
+<b>&#92;&#92;</b> </td><td valign="bottom">
+a backslash
+</td></tr>
+<tr valign="top"><td>
+<b>&#92;?</b> </td><td valign="bottom">
+skips next character if previous substitution was empty.
+</td></tr>
+<tr valign="top"><td>
+<b>&#92;[</b> </td><td valign="bottom">
+begin a sequence of non-printing characters, which could be used to
+embed a terminal control sequence into the prompt
+</td></tr>
+<tr valign="top"><td>
+<b>&#92;]</b> </td><td valign="bottom">
+end a sequence of non-printing characters
+</td></tr>
+</table>
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>cmd:parallel</b> (number) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Number of jobs run in parallel in non-interactive mode. For example,
+this may be useful for scripts with multiple &#145;get&#146; commands. Note that setting
+this to a value greater than 1 changes conditional execution behaviour, basically
+makes it inconsistent.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>cmd:queue-parallel</b> (number) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Number of jobs run in parallel in a queue.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>cmd:time-style</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This setting is the default value for cls --time-style option.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>cmd:trace</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+when true, lftp prints the commands it executes (like sh -x).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>cache:cache-empty-listings</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+When false, empty listings are not cached.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>cache:enable</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+When false, cache is disabled.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>cache:expire</b> (time interval) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Positive cache entries expire in this time interval.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>cache:expire-negative</b> (time interval) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Negative cache entries expire in this time interval.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>cache:size</b> (number) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Maximum cache size. When exceeded, oldest cache entries will be removed from cache.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>cmd:remote-completion</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+a boolean to control whether or not lftp uses remote completion.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>cmd:verify-host</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if true, lftp resolves host name immediately in &#145;open&#146; command.
+It is also possible to skip the check for a single &#145;open&#146; command if &#145;&&#146; is given,
+or if ^Z is pressed during the check.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>cmd:verify-path</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if true, lftp checks the path given in &#145;cd&#146; command.
+It is also possible to skip the check for a single &#145;cd&#146; command if &#145;&&#146; is given,
+or if ^Z is pressed during the check.
+Examples:
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+set cmd:verify-path/hftp://* false
+cd directory &
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>cmd:verify-path-cached</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+When false, &#145;cd&#146; to a directory known from cache as existent will succeed immediately.
+Otherwise the verification will depend on cmd:verify-path setting.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>dns:SRV-query</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+query for SRV records and use them before gethostbyname. The SRV records
+are only used if port is not explicitly specified. See RFC2052 for details.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>dns:cache-enable</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+enable DNS cache. If it is off, lftp resolves host name each time it reconnects.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>dns:cache-expire</b> (time interval) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+time to live for DNS cache entries. It has format &lt;number&gt;&lt;unit&gt;+, e.g.
+1d12h30m5s or just 36h. To disable expiration, set it to &#145;inf&#146; or &#145;never&#146;.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>dns:cache-size</b> (number) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+maximum number of DNS cache entries.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>dns:fatal-timeout</b> (time interval) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+limit the time for DNS queries. If DNS server is unavailable too long, lftp
+will fail to resolve a given host name. Set to &#145;never&#146; to disable.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>dns:order</b> (list of protocol names) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+sets the order of DNS queries. Default is &#145;&#145;inet6 inet&#146;&#146; which means first
+look up address in inet6 family, then inet and use them in that order.
+To disable inet6 (AAAA) lookup, set this variable to &#145;&#145;inet&#146;&#146;.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>dns:use-fork</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if true, lftp will fork before resolving host address. Default is true.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>dns:max-retries</b> (number) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+If zero, there is no limit on the number of times lftp will try
+to lookup an address.
+If &gt; 0, lftp will try only this number of times to look up an address of each
+address family in dns:order.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>file:charset</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+local character set. It is set from current locale initially.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>fish:charset</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the character set used by fish server in requests, replies and file listings.
+Default is empty which means the same as local.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>fish:connect-program</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the program to use for connecting to remote server. It should support &#145;-l&#146; option
+for user name, &#145;-p&#146; for port number. Default is &#145;ssh -a -x&#146;. You can set it to
+&#145;rsh&#146;, for example.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>fish:shell</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+use specified shell on server side. Default is /bin/sh. On some systems,
+/bin/sh exits when doing cd to a non-existent directory. lftp can handle
+that but it has to reconnect. Set it to /bin/bash for such systems if
+bash is installed.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:acct</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Send this string in ACCT command after login. The result is ignored.
+The closure for this setting has format <i>user@host</i>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:anon-pass</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+sets the password used for anonymous ftp access authentication.
+Default is "-name@", where name is the username of the user running the
+program.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:anon-user</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+sets the user name used for anonymous ftp access authentication.
+Default is "anonymous".
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:auto-sync-mode</b> (regex) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if first server message matches this regex, turn on sync mode for that host.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:charset</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the character set used by ftp server in requests, replies and file listings.
+Default is empty which means the same as local. This setting is only used
+when the server does not support UTF8.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:client</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the name of ftp client to send with CLNT command, if supported by server.
+If it is empty, then no CLNT command will be sent.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:bind-data-socket</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+bind data socket to the interface of control connection (in passive mode).
+Default is true, exception is the loopback interface.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:fix-pasv-address</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if true, lftp will try to correct address returned by server for PASV command
+in case when server address is in public network and PASV returns an address
+from a private network. In this case lftp would substitute server address
+instead of the one returned by PASV command, port number would not be changed.
+Default is true.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:fxp-passive-source</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if true, lftp will try to set up source ftp server in passive mode first,
+otherwise destination one. If first attempt fails, lftp tries to set them up
+the other way. If the other disposition fails too, lftp falls back to plain
+copy. See also ftp:use-fxp.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:home</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Initial directory. Default is empty string which means auto. Set this to &#145;/&#146;
+if you don&#146;t like the look of %2F in ftp URLs. The closure for this setting
+has format <i>user@host</i>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:ignore-pasv-address</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+If true, lftp uses control connection address instead of the one returned in
+PASV reply for data connection. This can be useful for broken NATs.
+Default is false.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:list-empty-ok</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if set to false, empty lists from LIST command will be treated as incorrect,
+and another method (NLST) will be used.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:list-options</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+sets options which are always appended to LIST command. It can be
+useful to set this to &#145;-a&#146; if server does not show dot (hidden) files by default.
+Default is empty.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:nop-interval</b> (seconds) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+delay between NOOP commands when downloading tail of a file. This is useful
+for ftp servers which send "Transfer complete" message before flushing
+data transfer. In such cases NOOP commands can prevent connection timeout.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:passive-mode</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+sets passive ftp mode. This can be useful if you are behind a firewall or a
+dumb masquerading router. In passive mode lftp uses PASV command, not the
+PORT command which is used in active mode. In passive mode lftp itself
+makes the data connection to the server; in active mode the server connects
+to lftp for data transfer. Passive mode is the default.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:port-ipv4</b> (ipv4 address) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+specifies an IPv4 address to send with PORT command. Default is empty which
+means to send the address of local end of control connection.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:port-range</b> (from-to) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+allowed port range for active mode.
+Format is min-max, or &#145;full&#146; or &#145;any&#146; to indicate any port. Default is &#145;full&#146;.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:proxy</b> (URL) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+specifies ftp proxy to use.
+To disable proxy set this to empty string. Note that it is an ftp proxy which
+uses ftp protocol, not ftp over http. Default value is taken from environment
+variable <b>ftp_proxy</b> if it starts with &#145;&#145;ftp://&#146;&#146;. If your ftp proxy
+requires authentication, specify user name and password in the URL.
+If ftp:proxy starts with http:// then hftp protocol (ftp over http proxy) is used instead
+of ftp automatically.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:proxy-auth-type</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+When set to &#145;&#145;joined&#146;&#146;, lftp sends &#145;&#145;user@<a href="mailto:proxy_user@ftp.example.org">proxy_user@ftp.example.org</a>&#146;&#146; as
+user name to proxy, and &#145;&#145;password@proxy_password&#146;&#146; as password.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+When set to &#145;&#145;joined-acct&#146;&#146;, lftp sends &#145;&#145;<a href="mailto:user@ftp.example.org">user@ftp.example.org</a>
+proxy_user&#146;&#146; (with space) as user name to proxy. The site password is sent as
+usual and the proxy password is expected in the following ACCT command.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+When set to &#145;&#145;open&#146;&#146;, lftp first sends proxy user and
+proxy password and then &#145;&#145;OPEN ftp.example.org&#146;&#146; followed by &#145;&#145;USER user&#146;&#146;.
+The site password is then sent as usual.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+When set to &#145;&#145;user&#146;&#146; (default), lftp first sends proxy user and
+proxy password and then &#145;&#145;<a href="mailto:user@ftp.example.org">user@ftp.example.org</a>&#146;&#146; as user name.
+The site password is then sent as usual.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+When set to &#145;&#145;proxy-user@host&#146;&#146;, lftp first sends &#145;&#145;USER <a href="mailto:proxy_user@ftp.example.org">proxy_user@ftp.example.org</a>&#146;&#146;,
+then proxy password. The site user and password are then sent as usual.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:rest-list</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+allow usage of REST command before LIST command. This might be useful for
+large directories, but some ftp servers silently ignore REST before LIST.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:rest-stor</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if false, lftp will not try to use REST before STOR. This can be useful
+for some buggy servers which corrupt (fill with zeros) the file if REST followed
+by STOR is used.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:retry-530</b> (regex) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Retry on server reply 530 for PASS command if text matches this regular expression.
+This setting should be useful to distinguish between overloaded server
+(temporary condition) and incorrect password (permanent condition).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:retry-530-anonymous</b> (regex) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Additional regular expression for anonymous login, like ftp:retry-530.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:site-group</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Send this string in SITE GROUP command after login. The result is ignored.
+The closure for this setting has format <i>user@host</i>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:skey-allow</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+allow sending skey/opie reply if server appears to support it. On by default.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:skey-force</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+do not send plain text password over the network, use skey/opie instead. If
+skey/opie is not available, assume failed login. Off by default.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:ssl-allow</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if true, try to negotiate SSL connection with ftp server for non-anonymous
+access. Default is true. This and other ssl settings are only available if lftp was compiled
+with an ssl/tls library.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:ssl-data-use-keys</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if true, lftp loads ssl:key-file for protected data connection too. When false,
+it does not, and the server can match data and control connections by session ID.
+Default is true.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:ssl-force</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if true, refuse to send password in clear when server does not support SSL.
+Default is false.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:ssl-protect-data</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if true, request ssl connection for data transfers. This is cpu-intensive
+but provides privacy. Default is false.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:ssl-protect-fxp</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if true, request ssl connection for data transfer between two ftp servers
+in FXP mode. CPSV or SSCN command will be used in that case. If ssl connection
+fails for some reason, lftp would try unprotected FXP transfer unless
+ftp:ssl-force is set for any of the two servers. Default is false.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:ssl-protect-list</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if true, request ssl connection for file list transfers. Default is true.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:ssl-use-ccc</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if true, lftp would issue CCC command after logon, thus disable
+ssl protection layer on control connection.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:stat-interval</b> (time interval) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+interval between STAT commands. Default is 1 second.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:sync-mode</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if true, lftp will send one command at a time and wait for
+response. This might be useful if you are using a buggy ftp server or
+router. When it is off, lftp sends a pack of commands and waits for
+responses - it speeds up operation when round trip time is significant.
+Unfortunately it does not work with all ftp servers and some routers have
+troubles with it, so it is on by default.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:timezone</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Assume this timezone for time in listings returned by LIST command.
+This setting can be GMT offset [+|-]HH[:MM[:SS]] or any valid TZ value
+(e.g. Europe/Moscow or MSK-3MSD,M3.5.0,M10.5.0/3). The default is GMT.
+Set it to an empty value to assume local timezone specified by environment
+variable TZ.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:trust-feat</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+When true, assume that FEAT returned data are correct and don&#146;t use
+common protocol extensions like SIZE, MDTM, REST if they are not listed.
+Default is false.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:use-abor</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if false, lftp does not send ABOR command but closes data connection
+immediately.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:use-allo</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+when true (default), lftp sends ALLO command before uploading a file.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:use-feat</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+when true (default), lftp uses FEAT command to determine extended features of
+ftp server.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:use-fxp</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if true, lftp will try to set up direct connection between two ftp servers.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:use-hftp</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+when ftp:proxy points to an http proxy, this setting selects hftp method (GET,
+HEAD) when true, and CONNECT method when false. Default is true.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:lang</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the language selected with LANG command, if supported as indicated by FEAT
+response. Default is empty which means server default.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:use-mdtm</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+when true (default), lftp uses MDTM command to determine file modification
+time.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:use-mdtm-overloaded</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+when true, lftp uses two argument MDTM command to set file modification
+time on uploaded files. Default is false.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:use-site-idle</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+when true, lftp sends &#145;SITE IDLE&#146; command with net:idle argument. Default
+is false.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:use-site-utime</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+when true, lftp sends 5-argument &#145;SITE UTIME&#146; command to set file modification time
+on uploaded files. Default is true.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:use-site-utime2</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+when true, lftp sends 2-argument &#145;SITE UTIME&#146; command to set file modification time
+on uploaded files. Default is true.
+If 5-argument &#145;SITE UTIME&#146; is also enabled, 2-argument command is tried first.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:use-size</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+when true (default), lftp uses SIZE command to determine file size.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:use-stat</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if true, lftp sends STAT command in FXP mode transfer to know how much
+data has been transferred. See also ftp:stat-interval. Default is true.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:use-stat-for-list</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+when true, lftp uses STAT instead of LIST command. By default &#145;.&#146; is used
+as STAT argument. Using STAT, lftp avoids creating data connection for directory
+listing. Some servers require special options for STAT, use ftp:list-options
+to specify them (e.g. <b>-la</b>).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:use-telnet-iac</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+when true (default), lftp uses TELNET IAC command and follows TELNET protocol
+as specified in RFC959. When false, it does not follow TELNET protocol and
+thus does not double 255 (0xFF, 0377) character and does not prefix ABOR and
+STAT commands with TELNET IP+SYNCH signal.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:use-quit</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if true, lftp sends QUIT before disconnecting from ftp server. Default is true.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:verify-address</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+verify that data connection comes from the network address of control
+connection peer. This can possibly prevent data connection spoofing
+which can lead to data corruption. Unfortunately, this can fail
+for certain ftp servers with several network interfaces,
+when they do not set outgoing address on data socket, so it is disabled by default.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:verify-port</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+verify that data connection has port 20 (ftp-data) on its remote end.
+This can possibly prevent data connection spoofing by users of remote
+host. Unfortunately, too many windows and even unix ftp servers forget
+to set proper port on data connection, thus this check is off by default.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftp:web-mode</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+disconnect after closing data connection. This can be useful for totally
+broken ftp servers. Default is false.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ftps:initial-prot</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+specifies initial PROT setting for FTPS connections. Should be one of: C, S,
+E, P, or empty. Default is empty which means unknown, so that lftp will use
+PROT command unconditionally. If PROT command turns out to be unsupported,
+then Clear mode would be assumed.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>hftp:cache</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+allow server/proxy side caching for ftp-over-http protocol.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>hftp:cache-control</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+specify corresponding HTTP request header.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>hftp:proxy</b> (URL) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+specifies http proxy for ftp-over-http protocol (hftp). The protocol hftp
+cannot work without a http proxy, obviously.
+Default value is taken from environment
+variable <b>ftp_proxy</b> if it starts with &#145;&#145;http://&#146;&#146;, otherwise from
+environment variable <b>http_proxy</b>.  If your ftp proxy
+requires authentication, specify user name and password in the URL.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>hftp:use-authorization</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if set to off, lftp will send password as part of URL to the proxy. This
+may be required for some proxies (e.g. M-soft). Default is on, and lftp
+will send password as part of Authorization header.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>hftp:use-head</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if set to off, lftp will try to use &#145;GET&#146; instead of &#145;HEAD&#146; for hftp protocol.
+While this is slower, it may allow lftp to work with some proxies which
+don&#146;t understand or mishandle &#145;&#145;HEAD ftp://&#146;&#146; requests.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>hftp:use-mkcol</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if set to off, lftp will try to use &#145;PUT&#146; instead of &#145;MKCOL&#146; to create
+directories with hftp protocol. Default is off.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>hftp:use-propfind</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if set to off, lftp will not try to use &#145;PROPFIND&#146; to get directory contents
+with hftp protocol and use &#145;GET&#146; instead. Default is off.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>hftp:use-type</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+If set to off, lftp won&#146;t try to append &#145;;type=&#146; to URLs passed to proxy.
+Some broken proxies don&#146;t handle it correctly. Default is on.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>http:accept, http:accept-charset, http:accept-language</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+specify corresponding HTTP request headers.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>http:authorization</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the authorization to use by default, when no user is specified. The format
+is &#145;&#145;user:password&#146;&#146;. Default is empty which means no authorization.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>http:cache</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+allow server/proxy side caching.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>http:cache-control</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+specify corresponding HTTP request header.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>http:cookie</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+send this cookie to server. A closure is useful here:
+<br />
+     set cookie/www.somehost.com "param=value"
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>http:post-content-type</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+specifies value of Content-Type http request header for POST method.
+Default is &#145;&#145;application/x-www-form-urlencoded&#146;&#146;.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>http:proxy</b> (URL) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+specifies http proxy. It is used when lftp works over http protocol.
+Default value is taken from environment variable <b>http_proxy</b>.
+If your proxy requires authentication, specify user name and password
+in the URL.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>http:put-method</b> (PUT or POST) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+specifies which http method to use on put.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>http:put-content-type</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+specifies value of Content-Type http request header for PUT method.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>http:referer</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+specifies value for Referer http request header. Single dot &#145;.&#146; expands
+to current directory URL. Default is &#145;.&#146;. Set to empty string to disable
+Referer header.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>http:set-cookies</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if true, lftp modifies http:cookie variables when Set-Cookie header is received.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>http:use-mkcol</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if set to off, lftp will try to use &#145;PUT&#146; instead of &#145;MKCOL&#146; to create
+directories with http protocol. Default is on.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>http:use-propfind</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if set to off, lftp will not try to use &#145;PROPFIND&#146; to get directory contents
+with http protocol and use &#145;GET&#146; instead. Default is on.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>http:user-agent</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the string lftp sends in User-Agent header of HTTP request.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>https:proxy</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+specifies https proxy. Default value is taken from environment variable <b>https_proxy</b>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>mirror:dereference</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+when true, mirror will dereference symbolic links by default.
+You can override it by --no-dereference option. Default if false.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>mirror:exclude-regex</b> (regex) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+specifies default exclusion pattern. You can override it by --include option.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>mirror:include-regex</b> (regex) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+specifies default inclusion pattern. It is used just after mirror:exclude-regex
+is applied. It is never used if mirror:exclude-regex is empty.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>mirror:order</b> (list of patterns) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+specifies order of file transfers. E.g. setting this to "*.sfv *.sum" makes mirror to
+transfer files matching *.sfv first, then ones matching *.sum and then all other
+files. To process directories after other files, add "*/" to end of pattern list.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>mirror:parallel-directories</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if true, mirror will start processing of several directories in parallel
+when it is in parallel mode. Otherwise, it will transfer files from a single
+directory before moving to other directories.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>mirror:parallel-transfer-count</b> (number) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+specifies number of parallel transfers mirror is allowed to start. Default is 1.
+You can override it with --parallel option.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>mirror:set-permissions</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+When set to off, mirror won&#146;t try to copy file and directory permissions.
+You can override it by --perms option. Default is on.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>mirror:use-pget-n</b> (number) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+specifies -n option for pget command used to transfer every single file under
+mirror. Default is 1 which disables pget.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>module:path</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+colon separated list of directories to look for modules. Can be initialized by
+environment variable LFTP_MODULE_PATH. Default is &#145;PKGLIBDIR/VERSION:PKGLIBDIR&#146;.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>net:connection-limit</b> (number) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+maximum number of concurrent connections to the same site. 0 means unlimited.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>net:connection-takeover</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if true, foreground connections have priority over background ones and can
+interrupt background transfers to complete a foreground operation.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>net:idle</b> (time interval) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+disconnect from server after this idle time. Default is 3 minutes.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>net:limit-rate</b> (bytes per second) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+limit transfer rate on data connection. 0 means unlimited. You can specify
+two numbers separated by colon to limit download and upload rate separately.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>net:limit-max</b> (bytes) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+limit accumulating of unused limit-rate. 0 means unlimited.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>net:limit-total-rate</b> (bytes per second) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+limit transfer rate of all connections in sum. 0 means unlimited. You can specify
+two numbers separated by colon to limit download and upload rate separately.
+Note that sockets have receive buffers on them, this can lead to network
+link load higher than this rate limit just after transfer beginning. You
+can try to set net:socket-buffer to relatively small value to avoid this.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>net:limit-total-max</b> (bytes) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+limit accumulating of unused limit-total-rate. 0 means unlimited.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>net:max-retries</b> (number) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the maximum number of sequential retries of an operation without success.
+0 means unlimited.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>net:no-proxy</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+contains comma separated list of domains for which proxy should not be used.
+Default is taken from environment variable <b>no_proxy</b>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>net:persist-retries</b> (number) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+ignore this number of hard errors. Useful to login to buggy ftp servers which
+reply 5xx when there is too many users.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>net:reconnect-interval-base</b> (seconds) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+sets the base minimal time between reconnects. Actual interval depends on
+net:reconnect-interval-multiplier and number of attempts to perform an
+operation.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>net:reconnect-interval-max</b> (seconds) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+sets maximum reconnect interval. When current interval after multiplication
+by net:reconnect-interval-multiplier reachs this value (or exceeds it), it
+is reset back to net:reconnect-interval-base.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>net:reconnect-interval-multiplier</b> (real number) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+sets multiplier by which base interval is multiplied each time new attempt
+to perform an operation fails. When the interval reachs maximum, it is reset
+to base value. See net:reconnect-interval-base and net:reconnect-interval-max.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>net:socket-bind-ipv4</b> (ipv4 address) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+bind all IPv4 sockets to specified address. This can be useful to select a
+specific network interface to use. Default is empty which means not to bind
+IPv4 sockets, operating system will choose an address automatically using
+routing table.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>net:socket-bind-ipv6</b> (ipv6 address) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the same for IPv6 sockets.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>net:socket-buffer</b> (bytes) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+use given size for SO_SNDBUF and SO_RCVBUF socket options. 0 means system
+default.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>net:socket-maxseg</b> (bytes) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+use given size for TCP_MAXSEG socket option. Not all operating systems support
+this option, but linux does.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>net:timeout</b> (time interval) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+sets the network protocol timeout.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>pget:default-n</b> (number) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+default number of chunks to split the file to in pget.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>pget:save-status</b> (time interval) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+save pget transfer status this often. Set to &#145;never&#146; to disable saving of the status file.
+The status is saved to a file with suffix <i>.lftp-pget-status</i>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>sftp:charset</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the character set used by sftp server in file names and file listings.
+Default is empty which means the same as local. This setting is only used
+for sftp protocol version prior to 4. Version 4 and later always use UTF-8.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>sftp:connect-program</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the program to use for connecting to remote server. It should support &#145;-l&#146; option
+for user name, &#145;-p&#146; for port number. Default is &#145;ssh -a -x&#146;. You can set it to
+&#145;rsh&#146;, for example.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>sftp:max-packets-in-flight</b> (number) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The maximum number of unreplied packets in flight. If round trip time is
+significant, you should increase this and size-read/size-write. Default is 16.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>sftp:protocol-version</b> (number) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The protocol number to negotiate. Default is 4. The actual protocol version
+used depends on server.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>sftp:server-program</b> (string) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The server program implementing SFTP protocol. If it does not contain a slash &#145;/&#146;,
+it is considered a ssh2 subsystem and -s option is used when starting connect-program.
+Default is &#145;sftp&#146;. You can use rsh as transport level protocol like this:
+<p>
+<!-- ignored unsupported tag .in -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+set sftp:connect-program rsh
+set sftp:server-program /usr/libexec/openssh/sftp-server
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .in -->
+Similarly you can run sftp over ssh1.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>sftp:size-read</b> (number) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Block size for reading. Default is 0x8000.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>sftp:size-write</b> (number) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Block size for writing. Default is 0x8000.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ssl:ca-file</b> (path to file) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+use specified file as Certificate Authority certificate.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ssl:ca-path</b> (path to directory) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+use specified directory as Certificate Authority certificate repository (OpenSSL only).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ssl:check-hostname</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+when true, lftp checks if the host name used to connect to the server
+corresponds to the host name in its certificate.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ssl:crl-file</b> (path to file) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+use specified file as Certificate Revocation List certificate.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ssl:crl-path</b> (path to directory) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+use specified directory as Certificate Revocation List certificate repository (OpenSSL only).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ssl:key-file</b> (path to file) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+use specified file as your private key.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ssl:cert-file</b> (path to file) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+use specified file as your certificate.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ssl:verify-certificate</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if set to yes, then verify server&#146;s certificate to be signed by a known
+Certificate Authority and not be on Certificate Revocation List.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>xfer:auto-rename</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Suggested filenames provided by the server are used if user explicitly sets this option to &#146;on&#146;. As this could be security risk, default is off.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>xfer:clobber</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+if this setting is off, get commands will not overwrite existing
+files and generate an error instead. Default is off.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>xfer:destination-directory</b> (path or URL to directory) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This setting is used as default -O option for get and mget commands.
+Default is empty, which means current directory (no -O option).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>xfer:full-disk-fatal</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+when true, lftp aborts a thansfer if it cannot write target file because
+of full disk or quota; when false, lftp waits for disk space to be freed.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>xfer:eta-period</b> (seconds) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the period over which weighted average rate is calculated to produce ETA.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>xfer:eta-terse</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+show terse ETA (only high order parts). Default is true.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>xfer:log</b> (boolean) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+when true, lftp logs transfers to <i>~/.lftp/transfer_log</i>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>xfer:max-redirections</b> (number) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+maximum number of redirections. This can be useful for downloading over HTTP.
+0 prohibits redirections.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>xfer:rate-period</b> (seconds) </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+the period over which weighted average rate is calculated to be shown.
+<p>
+</td></tr>
+<!-- PP ends table -->
+</table>
+The name of a variable can be abbreviated unless it becomes
+ambiguous. The prefix before &#145;:&#146; can be omitted too. You can
+set one variable several times for different closures, and thus
+you can get a particular settings for particular state. The closure
+is to be specified after variable name separated with slash &#145;/&#146;.
+<p>
+The closure for &#145;dns:&#146;, &#145;net:&#146;, &#145;ftp:&#146;, &#145;http:&#146;, &#145;hftp:&#146; domain variables
+is currently just the host name as you specify it in the &#145;open&#146; command
+(with some exceptions where closure is meaningless, e.g. dns:cache-size).
+For some &#145;cmd:&#146; domain variables the closure is current URL without path.
+For other variables it is not currently used. See examples in the sample
+<i>lftp.conf</i>.
+<p>
+Certain commands and settings take a time interval parameter. It has
+the format Nx[Nx...], where N is time amount (floating point) and x is time unit: d - days,
+h - hours, m - minutes, s - seconds. Default unit is second. E.g. 5h30m or 5.5h.
+Also the interval can be &#145;infinity&#146;, &#145;inf&#146;, &#145;never&#146;, &#145;forever&#146; - it means
+infinite interval. E.g. &#145;sleep forever&#146; or &#145;set dns:cache-expire never&#146;.
+<p>
+Boolean settings can be one of (true, on, yes, 1, +) for a True value
+or one of (false, off, no, 0, -) for a False value.
+<p>
+Integer settings can have a suffix: k - kibi, m - mebi, g - gigi, etc.
+They can also have a prefix: 0 - octal, 0x - hexadecimal.
+<p>
+<h2><i>FTP asynchronous mode (pipelining)</i></h2>
+<p>
+<b>Lftp</b> can speed up ftp operations by sending several commands at once and
+then checking all the responses. See ftp:sync-mode variable. Sometimes
+this does not work, thus synchronous mode is the default. You can try
+to turn synchronous mode off and see if it works for you. It is known
+that some network software dealing with address translation works
+incorrectly in the case of several FTP commands in one network packet.
+<p>
+RFC959 says: &#145;&#145;The user-process sending another command before the
+completion reply would be in violation of protocol; but server-FTP
+processes should queue any commands that arrive while a preceding
+command is in progress&#146;&#146;. Also, RFC1123 says: &#145;&#145;Implementors MUST
+NOT assume any correspondence between READ boundaries on the control
+connection and the Telnet EOL sequences (CR LF).&#146;&#146; and &#145;&#145;a single READ
+from the control connection may include more than one FTP command&#146;&#146;.
+<p>
+So it must be safe to send several commands at once, which speeds up
+operation a lot and seems to work with all Unix and VMS based ftp
+servers. Unfortunately, windows based servers often cannot handle
+several commands in one packet, and so cannot some broken routers.
+<p>
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-d</b> </td><td valign="bottom">
+Switch on debugging mode
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-e</b><i> commands</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Execute given commands and don&#146;t exit.
+</td></tr>
+<tr valign="top"><td>
+<b>-p</b><i> port</i> </td><td valign="bottom">
+Use the given port to connect
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-u</b><i> user</i>[<b>,</b>pass] </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Use the given username and password to connect
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-f</b><i> script_file</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Execute commands in the file and exit
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-c</b><i> commands</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Execute the given commands and exit
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">ENVIRONMENT VARIABLES</h1>
+The following environment variables are processed by <b>lftp</b>:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>HOME</b>
+</td><td>
+Used for (local) tilde (&#145;~&#146;) expansion
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>SHELL</b>
+</td><td>
+Used by the <b>!</b> command to determine the shell to run.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>PAGER</b>
+</td><td>
+This should be the name of the pager to use.  It&#146;s used by the
+<b>more</b> and <b>zmore</b> commands.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>http_proxy</b>, <b>https_proxy</b>
+</td><td>
+Used to set initial http:proxy, hftp:proxy and https:proxy variables.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>ftp_proxy</b>
+</td><td>
+Used to set initial ftp:proxy or hftp:proxy variables, depending
+on URL protocol used in this environment variable.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>no_proxy</b>
+</td><td>
+Used to set initial net:no-proxy variable.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>LFTP_MODULE_PATH</b>
+</td><td>
+Used to set initial module:path variable.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>LFTP_HOME</b>
+</td><td>
+Used to locate the directory that stores user-specific configuration files.  If
+unset, <i>~/.lftp</i> will be used.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">FILES</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<i>/etc/lftp.conf</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+system-wide startup file. Actual location depends on --sysconfdir
+configure option. It is <i>/etc</i> when prefix is <i>/usr</i>,
+<i>/usr/local/etc</i> by default.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>~/.lftp/rc, ~/.lftprc</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+These files are executed on lftp startup after <i>/etc/lftp.conf</i>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>~/.lftp/log</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The file things are logged to when lftp moves into the background in
+nohup mode.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>~/.lftp/transfer_log</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The file transfers are logged to when xfer:log setting is set to &#145;yes&#146;.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>~/.lftp/bookmarks</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The file is used to store lftp&#146;s bookmarks.  See the <b>bookmark</b>
+command.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>~/.lftp/cwd_history</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The file is used to store last working directories for each site visited.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>~/.netrc</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The file is consulted to get default login and password to ftp server.
+Passwords are also searched here if an URL with user name but with no
+password is used.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="ftpd.html">ftpd (1)</a></p></li>
+</ul>
+RFC854 (telnet),
+RFC959 (ftp),
+RFC1123,
+RFC1945 (http/1.0),
+RFC2052 (SRV RR),
+RFC2228 (ftp security extensions),
+RFC2389 (ftp FEAT),
+RFC2428 (ftp/ipv6),
+RFC2518 (WebDAV),
+RFC2616 (http/1.1),
+RFC2617 (http/1.1 authentication),
+RFC2640 (ftp i18n),
+RFC4217 (ftp over ssl).
+<!-- ignored unsupported tag .na -->
+<!-- Need break --><br />
+<a href="http://www.ietf.org/internet-drafts/draft-ietf-ftpext-mlst-16.txt">http://www.ietf.org/internet-drafts/draft-ietf-ftpext-mlst-16.txt</a>
+(ftp extensions over RFC959),
+<!-- Need break --><br />
+<a href="http://www.ietf.org/internet-drafts/draft-ietf-secsh-filexfer-10.txt">http://www.ietf.org/internet-drafts/draft-ietf-secsh-filexfer-10.txt</a>
+(sftp).
+<!-- ignored unsupported tag .ad -->
+<p>
+<h1 class="manpages">AUTHOR</h1>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+Alexander V. Lukyanov
+<a href="mailto:lav@yars.free.net">lav@yars.free.net</a>
+</pre></td></tr>
+</table>
+<p>
+<h1 class="manpages">ACKNOWLEDGMENTS</h1>
+This manual page was originally written by Christoph Lameter
+&lt;<a href="mailto:clameter@debian.org">clameter@debian.org</a>&gt;, for the Debian GNU/Linux system. The page was
+improved and updated later by Nicolas Lichtmaier &lt;<a href="mailto:nick@Feedback.com.ar">nick@Feedback.com.ar</a>&gt;,
+James Troup &lt;<a href="mailto:J.J.Troup@comp.brad.ac.uk">J.J.Troup@comp.brad.ac.uk</a>&gt; and Alexander V. Lukyanov
+&lt;<a href="mailto:lav@yars.free.net">lav@yars.free.net</a>&gt;.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion9c00.html?tutorial=unix_commands&amp;file=lftp.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/lftp.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:53 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

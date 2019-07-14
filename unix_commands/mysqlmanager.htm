@@ -1,0 +1,1202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/mysqlmanager.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:04 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>mysqlmanager - Unix, Linux Command</title>
+<meta name="Description" Content="mysqlmanager - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>mysqlmanager - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- ignored unsupported tag .nh -->
+<!-- ignored unsupported tag .ad -->
+<h1 class="manpages">NAME</h1>
+mysqlmanager - the MySQL Instance Manager
+<h1 class="manpages">SYNOPSIS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>mysqlmanager [</b><b></b><i>options</i><b>]</b>
+</td></tr>
+</table>
+<h1 class="manpages">DESCRIPTION</h1>
+<p>
+<!-- ignored unsupported tag .it -->
+</td></tr><tr valign="top"><td width=23%>&nbsp;</td><td>
+<b>Important</b>
+<p>
+MySQL Instance Manager is been deprecated in MySQL 5.1 and is removed in MySQL 6.0.
+<p>
+<b>mysqlmanager</b>
+is the MySQL Instance Manager (IM). This program monitors and manages MySQL Database Server instances. MySQL Instance Manager is available for Unix-like operating systems, and also on Windows as of MySQL 5.0.13. It runs as a daemon that listens on a TCP/IP port. On Unix, it also listens on a Unix socket file.
+<p>
+MySQL Instance Manager is included in MySQL distributions from version 5.0.3, and can be used in place of the
+mysqld_safe
+script to start and stop one or more instances of MySQL Server. Because Instance Manager can manage multiple server instances, it can also be used in place of the
+<b>mysqld_multi</b>
+script. Instance Manager offers these capabilities:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+Instance Manager can start and stop instances, and report on the status of instances.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+Server instances can be treated as guarded or unguarded:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+When Instance Manager starts, it starts each guarded instance. If the instance crashes, Instance Manager detects this and restarts it. When Instance Manager stops, it stops the instance.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+A nonguarded instance is not started when Instance Manager starts or monitored by it. If the instance crashes after being started, Instance Manager does not restart it. When Instance Manager exits, it does not stop the instance if it is running.
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=3%>
+
+</td><td>
+Instances are guarded by default. An instance can be designated as nonguarded by including the
+<b>nonguarded</b>
+option in the configuration file.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+Instance Manager provides an interactive interface for configuring instances, so that the need to edit the configuration file manually is reduced or eliminated.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+Instance Manager provides remote instance management. That is, it runs on the host where you want to control MySQL Server instances, but you can connect to it from a remote host to perform instance-management operations.
+<p>
+</td></tr>
+</table>
+<p>
+The following sections describe MySQL Instance Manager operation in more detail.
+<h1 class="manpages">MYSQL INSTANCE MANAGER COMMAND OPTIONS</h1>
+<p>
+<!-- ignored unsupported tag .it -->
+<b>Important</b>
+<p>
+MySQL Instance Manager is been deprecated in MySQL 5.1 and is removed in MySQL 6.0.
+<p>
+The MySQL Instance Manager supports a number of command options. For a brief listing, invoke
+<b>mysqlmanager</b>
+with the
+<b>--help</b>
+option. Options may be given on the command line or in the Instance Manager configuration file. On Windows, the standard configuration file is
+<i>my.ini</i>
+in the directory where Instance Manager is installed. On Unix, the standard file is
+<i>/etc/my.cnf</i>. To specify a different configuration file, start Instance Manager with the
+<b>--defaults-file</b>
+option.
+<p>
+<b>mysqlmanager</b>
+supports the following options:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>--help</b>,
+<b>-?</b>
+<p>
+Display a help message and exit.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>--angel-pid-file=</b><b></b><i>file_name</i>
+<p>
+The file in which the angel process records its process ID when
+<b>mysqlmanager</b>
+runs in daemon mode (that is, when the
+<b>--run-as-service</b>
+option is given). The default file name is
+<i>mysqlmanager.angel.pid</i>.
+<p>
+If the
+<b>--angel-pid-file</b>
+option is not given, the default angel PID file has the same name as the PID file except that any PID file extension is replaced with an extension of
+<i>.angel.pid</i>. (For example,
+<i>mysqlmanager.pid</i>
+becomes
+<i>mysqlmanager.angel.pid</i>.)
+<p>
+This option was added in MySQL 5.0.23.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>--bind-address=</b><b></b><i>IP</i>
+<p>
+The IP address to bind to.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>--default-mysqld-path=</b><b></b><i>path</i>
+<p>
+The path name of the MySQL Server binary. This path name is used for all server instance sections in the configuration file for which no
+<b>mysqld-path</b>
+option is present. The default value of this option is the compiled-in path name, which depends on how the MySQL distribution was configured. Example:
+<b>--default-mysqld-path=/usr/sbin/mysqld</b>
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>--defaults-file=</b><b></b><i>file_name</i>
+<p>
+Read Instance Manager and MySQL Server settings from the given file. All configuration changes made by the Instance Manager will be written to this file. This must be the first option on the command line if it is used, and the file must exist.
+<p>
+If this option is not given, Instance Manager uses its standard configuration file. On Windows, the standard file is
+<i>my.ini</i>
+in the directory where Instance Manager is installed. On Unix, the standard file is
+<i>/etc/my.cnf</i>.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>--install</b>
+<p>
+On Windows, install Instance Manager as a Windows service. The service name is
+MySQL Manager. This option was added in MySQL 5.0.11.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>--log=</b><b></b><i>file_name</i>
+<p>
+The path to the Instance Manager log file. This option has no effect unless the
+<b>--run-as-service</b>
+option is also given. If the file name specified for the option is a relative name, the log file is created under the directory from which Instance Manager is started. To ensure that the file is created in a specific directory, specify it as a full path name.
+<p>
+If
+<b>--run-as-service</b>
+is given without
+<b>--log</b>, the log file is
+<i>mysqlmanager.log</i>
+in the data directory.
+<p>
+If
+<b>--run-as-service</b>
+is not given, log messages go to the standard output. To capture log output, you can redirect Instance Manager output to a file:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysqlmanager &gt; im.log
+</pre></td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>--monitoring-interval=</b><b></b><i>seconds</i>
+<p>
+The interval in seconds for monitoring server instances. The default value is 20 seconds. Instance Manager tries to connect to each monitored (guarded) instance using the non-existing
+MySQL_Instance_Manager
+user account to check whether it is alive/not hanging. If the result of the connection attempt indicates that the instance is unavailable, Instance Manager performs several attempts to restart the instance.
+<p>
+Normally, the
+MySQL_Instance_Manager
+account does not exist, so the connection attempts by Instance Manager cause the monitored instance to produce messages in its general query log similar to the following:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+Access denied for user &#146;MySQL_Instance_M&#146;@&#146;localhost&#146; (using password: YES)
+</pre></td></tr>
+</table>
+<p>
+<p>
+The
+nonguarded
+option in the appropriate server instance section disables monitoring for a particular instance. If the instance dies after being started, Instance Manager will not restart it. Instance Manager tries to connect to a nonguarded instance only when you request the instance&#146;s status (for example, with the
+SHOW INSTANCES
+status.
+<p>
+See
+the section called <blink><blink>\(</blink>lq</blink>MYSQL SERVER INSTANCE STATUS MONITORING<blink><blink>\(</blink>rq</blink>, for more information.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>--passwd</b>,
+<b>-P</b>
+<p>
+Prepare an entry for the password file, print it to the standard output, and exit. You can redirect the output from Instance Manager to a file to save the entry in the file. See also
+the section called <blink><blink>\(</blink>lq</blink>INSTANCE MANAGER USER AND PASSWORD MANAGEMENT<blink><blink>\(</blink>rq</blink>. This
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>--password-file=</b><b></b><i>file_name</i>
+<p>
+The name of the file where the Instance Manager looks for users and passwords. On Windows, the default is
+<i>mysqlmanager.passwd</i>
+in the directory where Instance Manager is installed. On Unix, the default file is
+<i>/etc/mysqlmanager.passwd</i>. See also
+the section called <blink><blink>\(</blink>lq</blink>INSTANCE MANAGER USER AND PASSWORD MANAGEMENT<blink><blink>\(</blink>rq</blink>.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>--pid-file=</b><b></b><i>file_name</i>
+<p>
+The process ID file to use. On Windows, the default file is
+<i>mysqlmanager.pid</i>
+in the directory where Instance Manager is installed. On Unix, the default is
+<i>mysqlmanager.pid</i>
+in the data directory.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>--port=</b><b></b><i>port_num</i>
+<p>
+The port number to use when listening for TCP/IP connections from clients. The default port number (assigned by IANA) is 2273.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>--print-defaults</b>
+<p>
+Print the current defaults and exit. This must be the first option on the command line if it is used.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>--remove</b>
+<p>
+On Windows, removes Instance Manager as a Windows service. This assumes that Instance Manager has been run with
+<b>--install</b>
+previously. This option was added in MySQL 5.0.11.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>--run-as-service</b>
+<p>
+On Unix, daemonize and start an angel process. The angel process monitors Instance Manager and restarts it if it crashes. (The angel process itself is simple and unlikely to crash.)
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>--socket=</b><b></b><i>path</i>
+<p>
+On Unix, the socket file to use for incoming connections. The default file is named
+<i>/tmp/mysqlmanager.sock</i>. This option has no meaning on Windows.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>--standalone</b>
+<p>
+This option is used on Windows to run Instance Manager in standalone mode. You should specify it when you start Instance Manager from the command line. This option was added in MySQL 5.0.13.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>--user=</b><b></b><i>user_name</i>
+<p>
+On Unix, the user name of the system account to use for starting and running
+<b>mysqlmanager</b>. This option generates a warning and has no effect unless you start
+<b>mysqlmanager</b>
+as
+root
+(so that it can change its effective user ID), or as the named user. It is recommended that you configure
+<b>mysqlmanager</b>
+to run using the same account used to run the
+<b>mysqld</b>
+server. (<blink><blink>\(</blink>lq</blink>User<blink><blink>\(</blink>rq</blink>
+in this context refers to a system login account, not a MySQL user listed in the grant tables.)
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>--version</b>,
+<b>-V</b>
+<p>
+Display version information and exit.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>--wait-timeout=</b><b></b><i>N</i>
+<p>
+The number of seconds to wait for activity on an incoming connection before closing it. The default is 28800 seconds (8 hours).
+<p>
+This option was added in MySQL 5.0.19. Before that, the timeout is 30 seconds and cannot be changed.
+</td></tr>
+</table>
+<h1 class="manpages">MYSQL INSTANCE MANAGER CONFIGURATION FILES</h1>
+<p>
+<!-- ignored unsupported tag .it -->
+<b>Important</b>
+<p>
+MySQL Instance Manager is been deprecated in MySQL 5.1 and is removed in MySQL 6.0.
+<p>
+Instance Manager uses its standard configuration file unless it is started with a
+<b>--defaults-file</b>
+option that specifies a different file. On Windows, the standard file is
+<i>my.ini</i>
+in the directory where Instance Manager is installed. On Unix, the standard file is
+<i>/etc/my.cnf</i>. (Prior to MySQL 5.0.10, the MySQL Instance Manager read the same configuration files as the MySQL Server, including
+<i>/etc/my.cnf</i>,
+<i>~/.my.cnf</i>, and so forth.)
+<p>
+Instance Manager reads options for itself from the
+[manager]
+section of the configuration file, and options for server instances from
+[mysqld]
+or
+[mysqld<i>N</i>]
+sections. The
+[manager]
+section contains any of the options listed in
+the section called <blink><blink>\(</blink>lq</blink>MYSQL INSTANCE MANAGER COMMAND OPTIONS<blink><blink>\(</blink>rq</blink>, except for those specified as having to be given as the first option on the command line. Here is a sample
+[manager]
+section:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+# MySQL Instance Manager options section
+[manager]
+default-mysqld-path = /usr/local/mysql/libexec/mysqld
+socket=/tmp/manager.sock
+pid-file=/tmp/manager.pid
+password-file = /home/cps/.mysqlmanager.passwd
+monitoring-interval = 2
+port = 1999
+bind-address = 192.168.1.5
+</pre></td></tr>
+</table>
+<p>
+Each
+[mysqld]
+or
+[mysqld<i>N</i>]
+instance section specifies options given by Instance Manager to a server instance at startup. These are mainly common MySQL Server options (see
+Section 1.2, <blink><blink>\(</blink>lq</blink>Server Command Options<blink><blink>\(</blink>rq</blink>). In addition, a
+[mysqld<i>N</i>]
+section can contain the options in the following list, which are specific to Instance Manager. These options are interpreted by Instance Manager itself; it does not pass them to the server when it attempts to start that server.
+<p>
+<!-- ignored unsupported tag .it -->
+<b>Warning</b>
+<p>
+The Instance Manager-specific options must not be used in a
+[mysqld]
+section. If a server is started without using Instance Manager, it will not recognize these options and will fail to start properly.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+mysqld-path = <i>path</i>
+<p>
+The path name of the
+<b>mysqld</b>
+server binary to use for the server instance.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+nonguarded
+<p>
+This option disables Instance Manager monitoring functionality for the server instance. By default, an instance is guarded: At Instance Manager start time, it starts the instance. It also monitors the instance status and attempts to restart it if it fails. At Instance Manager exit time, it stops the instance. None of these things happen for nonguarded instances.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+shutdown-delay = <i>seconds</i>
+<p>
+The number of seconds Instance Manager should wait for the server instance to shut down. The default value is 35 seconds. After the delay expires, Instance Manager assumes that the instance is hanging and attempts to terminate it. If you use
+InnoDB
+with large tables, you should increase this value.
+<p>
+</td></tr>
+</table>
+<p>
+Here are some sample instance sections:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+[mysqld1]
+mysqld-path=/usr/local/mysql/libexec/mysqld
+socket=/tmp/mysql.sock
+port=3307
+server_id=1
+skip-stack-trace
+core-file
+skip-bdb
+log-bin
+log-error
+log=mylog
+log-slow-queries
+[mysqld2]
+nonguarded
+port=3308
+server_id=2
+mysqld-path= /home/cps/mysql/trees/mysql-5.0/sql/mysqld
+socket     = /tmp/mysql.sock5
+pid-file   = /tmp/hostname.pid5
+datadir= /home/cps/mysql_data/data_dir1
+language=/home/cps/mysql/trees/mysql-5.0/sql/share/english
+log-bin
+log=/tmp/fordel.log
+</pre></td></tr>
+</table>
+<h1 class="manpages">STARTING THE MYSQL SERVER WITH MYSQL INSTANCE MANAGER</h1>
+<p>
+<!-- ignored unsupported tag .it -->
+<b>Important</b>
+<p>
+MySQL Instance Manager is been deprecated in MySQL 5.1 and is removed in MySQL 6.0.
+<p>
+This section discusses how Instance Manager starts server instances when it starts. However, before you start Instance Manager, you should set up a password file for it. Otherwise, you will not be able to connect to Instance Manager to control it after it starts. For details about creating Instance Manager accounts, see
+the section called <blink><blink>\(</blink>lq</blink>INSTANCE MANAGER USER AND PASSWORD MANAGEMENT<blink><blink>\(</blink>rq</blink>.
+<p>
+On Unix, the
+<b>mysqld</b>
+MySQL database server normally is started with the
+<b>mysql.server</b>
+script, which usually resides in the
+/etc/init.d/
+directory. In MySQL 5.0.3, this script invokes
+<b>mysqlmanager</b>
+(the MySQL Instance Manager binary) to start MySQL. (In prior versions of MySQL the
+<b>mysqld_safe</b>
+script is used for this purpose.) Starting from MySQL 5.0.4, the behavior of the startup script was changed again to incorporate both setup schemes. In version 5.0.4, the startup script uses the old scheme (invoking
+<b>mysqld_safe</b>) by default, but one can set the
+use_mysqld_safe
+variable in the script to
+0
+(zero) to use the MySQL Instance Manager to start a server.
+<p>
+Starting with MySQL 5.0.19, you can use Instance Manager if you modify the
+<i>my.cnf</i>
+configuration file by adding
+use-manager
+to the
+[mysql.server]
+section:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+[mysql.server]
+use-manager
+</pre></td></tr>
+</table>
+<p>
+When Instance Manager starts, it reads its configuration file if it exists to find server instance sections and prepare a list of instances. Instance sections have names of the form
+[mysqld]
+or
+[mysqld<i>N</i>], where
+<i>N</i>
+is an unsigned integer (for example,
+[mysqld1],
+[mysqld2], and so forth).
+<p>
+After preparing the list of instances, Instance Manager starts the guarded instances in the list. If there are no instances, Instance Manager creates an instance named
+mysqld
+and attempts to start it with default (compiled-in) configuration values. This means that the Instance Manager cannot find the
+<b>mysqld</b>
+program if it is not installed in the default location. (Section 7, <blink><blink>\(</blink>lq</blink>Installation Layouts<blink><blink>\(</blink>rq</blink>, describes default locations for components of MySQL distributions.) If you have installed the MySQL server in a non-standard location, you should create the Instance Manager configuration file.
+<p>
+Instance Manager also stops all guarded server instances when it shuts down.
+<p>
+The allowable options for
+[mysqld<i>N</i>]
+server instance sections are described in
+the section called <blink><blink>\(</blink>lq</blink>MYSQL INSTANCE MANAGER CONFIGURATION FILES<blink><blink>\(</blink>rq</blink>. In these sections, you can use a special
+<b>mysqld-path=</b><b></b><i>path-to-mysqld-binary</i>
+option that is recognized only by Instance Manager. Use this option to let Instance Manager know where the
+<b>mysqld</b>
+binary resides. If there are multiple instances, it may also be necessary to set other options such as
+<b>datadir</b>
+and
+<b>port</b>, to ensure that each instance has a different data directory and TCP/IP port number.
+Section 6, <blink><blink>\(</blink>lq</blink>Running Multiple MySQL Servers on the Same Machine<blink><blink>\(</blink>rq</blink>, discusses the configuration values that must differ for each instance when you run multiple instance on the same machine.
+<p>
+<!-- ignored unsupported tag .it -->
+<b>Warning</b>
+<p>
+The
+[mysqld]
+instance section, if it exists, must not contain any Instance Manager-specific options.
+<p>
+The typical Unix startup/shutdown cycle for a MySQL server with the MySQL Instance Manager enabled is as follows:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+1.
+</td><td valign="bottom">
+The
+<b>/etc/init.d/mysql</b>
+script starts MySQL Instance Manager.
+</td></tr>
+<tr valign="top"><td>
+2.
+</td><td valign="bottom">
+Instance Manager starts the guarded server instances and monitors them.
+</td></tr>
+<tr valign="top"><td>
+3.
+</td><td valign="bottom">
+If a server instance fails, Instance Manager restarts it.
+</td></tr>
+<tr valign="top"><td>
+4.
+</td><td valign="bottom">
+If Instance Manager is shut down (for example, with the
+<b>/etc/init.d/mysql stop</b>
+command), it shuts down all server instances.
+</td></tr>
+</table>
+<h1 class="manpages">INSTANCE MANAGER USER AND PASSWORD MANAGEMENT</h1>
+<p>
+<!-- ignored unsupported tag .it -->
+<b>Important</b>
+<p>
+MySQL Instance Manager is been deprecated in MySQL 5.1 and is removed in MySQL 6.0.
+<p>
+The Instance Manager stores its user information in a password file. On Windows, the default is
+<i>mysqlmanager.passwd</i>
+in the directory where Instance Manager is installed. On Unix, the default file is
+<i>/etc/mysqlmanager.passwd</i>. To specify a different location for the password file, use the
+<b>--password-file</b>
+option.
+<p>
+If the password file does not exist or contains no password entries, you cannot connect to the Instance Manager.
+<p>
+<!-- ignored unsupported tag .it -->
+<b>Note</b>
+<p>
+Any Instance Manager process that is running to monitor server instances does not notice changes to the password file. You must stop it and restart it after making password entry changes.
+<p>
+Entries in the password file have the following format, where the two fields are the account user name and encrypted password, separated by a colon:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+petr:*35110DC9B4D8140F5DE667E28C72DD2597B5C848
+</pre></td></tr>
+</table>
+<p>
+Instance Manager password encryption is the same as that used by MySQL Server. It is a one-way operation; no means are provided for decrypting encrypted passwords.
+<p>
+Instance Manager accounts differ somewhat from MySQL Server accounts:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+MySQL Server accounts are associated with a host name, user name, and password (see
+Section 5.1, <blink><blink>\(</blink>lq</blink>MySQL User Names and Passwords<blink><blink>\(</blink>rq</blink>).
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+Instance Manager accounts are associated with a user name and password only.
+<p>
+</td></tr>
+</table>
+<p>
+This means that a client can connect to Instance Manager with a given user name from any host. To limit connections so that clients can connect only from the local host, start Instance Manager with the
+<b>--bind-address=127.0.0.1</b>
+option so that it listens only to the local network interface. Remote clients will not be able to connect. Local clients can connect like this:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysql -h 127.0.0.1 -P 2273</b>
+</pre></td></tr>
+</table>
+<p>
+To generate a new entry, invoke Instance Manager with the
+<b>--passwd</b>
+option and append the output to the
+<i>/etc/mysqlmanager.passwd</i>
+file. Here is an example:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysqlmanager --passwd &gt;&gt; /etc/mysqlmanager.passwd</b>
+Creating record for new user.
+Enter user name: <b>mike</b>
+Enter password: <b>mikepass</b>
+Re-type password: <b>mikepass</b>
+</pre></td></tr>
+</table>
+<p>
+At the prompts, enter the user name and password for the new Instance Manager user. You must enter the password twice. It does not echo to the screen, so double entry guards against entering a different password than you intend (if the two passwords do not match, no entry is generated).
+<p>
+The preceding command causes the following line to be added to
+<i>/etc/mysqlmanager.passwd</i>:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mike:*BBF1F551DD9DD96A01E66EC7DDC073911BAD17BA
+</pre></td></tr>
+</table>
+<p>
+Use of the
+<b>--password</b>
+option fails if
+<b>mysqlmanager</b>
+is invoked directly from an IBM 5250 terminal. To work around this, use a command like the following from the command line to generate the password entry:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&lt; <b>mysql -B --skip-column-name \</b>
+         <b>-e &#146;SELECT CONCAT("</b><b></b><i>user_name</i><b>",":",PASSWORD("</b><b></b><i>pass_val</i><b>"));&#146;</b>
+</pre></td></tr>
+</table>
+<p>
+The output from the command can be used an entry in the
+<i>/etc/mysqlmanager.passwd</i>
+file.
+<h1 class="manpages">MYSQL SERVER INSTANCE STATUS MONITORING</h1>
+<p>
+<!-- ignored unsupported tag .it -->
+<b>Important</b>
+<p>
+MySQL Instance Manager is been deprecated in MySQL 5.1 and is removed in MySQL 6.0.
+<p>
+To monitor the status of each guarded server instance, the MySQL Instance Manager attempts to connect to the instance at regular intervals using the
+MySQL_Instance_Manager@localhost
+user account with a password of
+check_connection.
+<p>
+You are
+<i>not</i>
+required to create this account for MySQL Server; in fact, it is expected that it will not exist. Instance Manager can tell that a server is operational if the server accepts the connection attempt but refuses access for the account by returning a login error. However, these failed connection attempts are logged by the server to its general query log (see
+Section 2.2, <blink><blink>\(</blink>lq</blink>The General Query Log<blink><blink>\(</blink>rq</blink>).
+<p>
+Instance Manager also attempts a connection to nonguarded server instances when you use the
+SHOW INSTANCES
+or
+SHOW INSTANCE STATUS
+command. This is the only status monitoring done for nonguarded instances.
+<p>
+Instance Manager knows if a server instance fails at startup because it receives a status from the attempt. For an instance that starts but later crashes, Instance Manager receives a signal because it is the parent process of the instance.
+<h1 class="manpages">CONNECTING TO MYSQL INSTANCE MANAGER</h1>
+<p>
+<!-- ignored unsupported tag .it -->
+<b>Important</b>
+<p>
+MySQL Instance Manager is been deprecated in MySQL 5.1 and is removed in MySQL 6.0.
+<p>
+After you set up a password file for the MySQL Instance Manager and Instance Manager is running, you can connect to it. The MySQL client-server protocol is used to communicate with the Instance Manager. For example, you can connect to it using the standard
+<b>mysql</b>
+client program:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysql --port=2273 --host=im.example.org --user=mysql --password</b>
+</pre></td></tr>
+</table>
+<p>
+Instance Manager supports the version of the MySQL client-server protocol used by the client tools and libraries distributed with MySQL 4.1 or later, so other programs that use the MySQL C API also can connect to it.
+<h1 class="manpages">MYSQL INSTANCE MANAGER COMMANDS</h1>
+<p>
+<!-- ignored unsupported tag .it -->
+<b>Important</b>
+<p>
+MySQL Instance Manager is been deprecated in MySQL 5.1 and is removed in MySQL 6.0.
+<p>
+After you connect to MySQL Instance Manager, you can issue commands. The following general principles apply to Instance Manager command execution:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+Commands that take an instance name fail if the name is not a valid instance name.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+Commands that take an instance name fail if the instance does not exist.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+Instance Manager maintains information about instance configuration in an internal (in-memory) cache. Initially, this information comes from the configuration file if it exists, but some commands change the configuration of an instance. Commands that modify the configuration file fail if the file does not exist or is not accessible to Instance Manager.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+On Windows, the standard file is
+<i>my.ini</i>
+in the directory where Instance Manager is installed. On Unix, the standard configuration file is
+<i>/etc/my.cnf</i>. To specify a different configuration file, start Instance Manager with the
+<b>--defaults-file</b>
+option.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+If a
+[mysqld]
+instance section exists in the configuration file, it must not contain any Instance Manager-specific options (see
+the section called <blink><blink>\(</blink>lq</blink>MYSQL INSTANCE MANAGER CONFIGURATION FILES<blink><blink>\(</blink>rq</blink>). Therefore, you must not add any of these options if you change the configuration for an instance named
+mysqld.
+<p>
+</td></tr>
+</table>
+<p>
+The following list describes the commands that Instance Manager accepts, with examples.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+START INSTANCE <i>instance_name</i>
+<p>
+This command attempts to start an offline instance. The command is asynchronous; it does not wait for the instance to start.
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>START INSTANCE mysqld4;</b>
+Query OK, 0 rows affected (0,00 sec)
+</pre></td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+STOP INSTANCE <i>instance_name</i>
+<p>
+This command attempts to stop an instance. The command is synchronous; it waits for the instance to stop.
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>STOP INSTANCE mysqld4;</b>
+Query OK, 0 rows affected (0,00 sec)
+</pre></td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+SHOW INSTANCES
+<p>
+Shows the names and status of all loaded instances.
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>SHOW INSTANCES;</b>
++---------------+---------+
+| instance_name | status  |
++---------------+---------+
+| mysqld3       | offline |
+| mysqld4       | online  |
+| mysqld2       | offline |
++---------------+---------+
+</pre></td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+SHOW INSTANCE STATUS <i>instance_name</i>
+<p>
+Shows status and version information for an instance.
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>SHOW INSTANCE STATUS mysqld3;</b>
++---------------+--------+---------+
+| instance_name | status | version |
++---------------+--------+---------+
+| mysqld3       | online | unknown |
++---------------+--------+---------+
+</pre></td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+SHOW INSTANCE OPTIONS <i>instance_name</i>
+<p>
+Shows the options used by an instance.
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>SHOW INSTANCE OPTIONS mysqld3;</b>
++---------------+---------------------------------------------------+
+| option_name   | value                                             |
++---------------+---------------------------------------------------+
+| instance_name | mysqld3                                           |
+| mysqld-path   | /home/cps/mysql/trees/mysql-4.1/sql/mysqld        |
+| port          | 3309                                              |
+| socket        | /tmp/mysql.sock3                                  |
+| pid-file      | hostname.pid3                                     |
+| datadir       | /home/cps/mysql_data/data_dir1/                   |
+| language      | /home/cps/mysql/trees/mysql-4.1/sql/share/english |
++---------------+---------------------------------------------------+
+</pre></td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+SHOW <i>instance_name</i> LOG FILES
+<p>
+The command lists all log files used by the instance. The result set contains the path to the log file and the log file size. If no log file path is specified in the instance section of the configuration file (for example,
+log=/var/mysql.log), the Instance Manager tries to guess its placement. If Instance Manager is unable to guess the log file placement you should specify the log file location explicitly by using a log option in the appropriate instance section of the configuration file.
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>SHOW mysqld LOG FILES;</b>
++-------------+------------------------------------+----------+
+| Logfile     | Path                               | Filesize |
++-------------+------------------------------------+----------+
+| ERROR LOG   | /home/cps/var/mysql/owlet.err      | 9186     |
+| GENERAL LOG | /home/cps/var/mysql/owlet.log      | 471503   |
+| SLOW LOG    | /home/cps/var/mysql/owlet-slow.log | 4463     |
++-------------+------------------------------------+----------+
+</pre></td></tr>
+</table>
+Log options are described in
+Section 1.2, <blink><blink>\(</blink>lq</blink>Server Command Options<blink><blink>\(</blink>rq</blink>.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+SHOW <i>instance_name</i> LOG {ERROR | SLOW | GENERAL} <i>size</i>[,<i>offset_from_end</i>]
+<p>
+This command retrieves a portion of the specified log file. Because most users are interested in the latest log messages, the
+<i>size</i>
+parameter defines the number of bytes to retrieve from the end of the log. To retrieve data from the middle of the log file, specify the optional
+<i>offset_from_end</i>
+parameter. The following example retrieves 21 bytes of data, starting 23 bytes before the end of the log file and ending 2 bytes before the end:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>SHOW mysqld LOG GENERAL 21, 2;</b>
++---------------------+
+| Log                 |
++---------------------+
+| using password: YES |
++---------------------+
+</pre></td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+SET <i>instance_name</i>.<i>option_name</i>[=<i>option_value</i>]
+<p>
+This command edits the specified instance&#146;s configuration section to change or add instance options. The option is added to the section is it is not already present. Otherwise, the new setting replaces the existing one.
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>SET mysqld2.port=3322;</b>
+Query OK, 0 rows affected (0.00 sec)
+</pre></td></tr>
+</table>
+Changes made to the configuration file do not take effect until the MySQL server is restarted. In addition, these changes are not stored in the instance manager&#146;s local cache of instance settings until a
+FLUSH INSTANCES
+command is executed.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+UNSET <i>instance_name</i>.<i>option_name</i>
+<p>
+This command removes an option from an instance&#146;s configuration section.
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>UNSET mysqld2.port;</b>
+Query OK, 0 rows affected (0.00 sec)
+</pre></td></tr>
+</table>
+Changes made to the configuration file do not take effect until the MySQL server is restarted. In addition, these changes are not stored in the instance manager&#146;s local cache of instance settings until a
+FLUSH INSTANCES
+command is executed.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+FLUSH INSTANCES
+<p>
+This command forces Instance Manager reread the configuration file and to refresh internal structures. This command should be performed after editing the configuration file. The command does not restart instances.
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>FLUSH INSTANCES;</b>
+Query OK, 0 rows affected (0.04 sec)
+</pre></td></tr>
+</table>
+FLUSH INSTANCES
+is deprecated and will be removed in MySQL 5.2.
+</td></tr>
+</table>
+<h1 class="manpages">COPYRIGHT</h1>
+<p>
+Copyright 2007-2008 MySQL AB, 2009 Sun Microsystems, Inc.
+<p>
+This documentation is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; version 2 of the License.
+<p>
+This documentation is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+<p>
+You should have received a copy of the GNU General Public License along with the program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA or see <a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a>/.
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+which may already be installed locally and which is also available
+online at <a href="http://dev.mysql.com/doc">http://dev.mysql.com/doc</a>/.
+<h1 class="manpages">AUTHOR</h1>
+MySQL AB (<a href="http://www.mysql.com/">http://www.mysql.com</a>/).
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion843d.html?tutorial=unix_commands&amp;file=mysqlmanager.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/mysqlmanager.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:04 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

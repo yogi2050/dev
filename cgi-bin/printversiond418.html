@@ -1,0 +1,186 @@
+<html>
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=perl&file=perl_hashes.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>PERL Hash Variables</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="Keywords" content="Perl, Programming, Language, Object Oriented Perl, Perl Variables, Scalars, Arrays, Hash, File I/O, Looping, Regular Expressions, Subroutines, Coding Standard, Writing Modules, Process Management, Socket, Examples, References, Special Variables, Syntax Overview, Advanced Perl, Tutorial, Tutorials, Operators, Built-in Functions, Quiz">
+<meta name="Description" content="Free tutorials and references for PERL Programming Common Gateway Interface (CGI) Database Interface (DBI) with PERL Object Oriented Perl and Perl Variables Scalars Arrays Hash File I/O Looping Regular Expressions Subroutines Coding Standard Writing Modules Process Management Socket Examples References Special Variables Syntax Overview Advanced Perl Tutorial Perl Operators Built-in Functions and Quiz">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base >
+<link rel="stylesheet" type="text/css" href="../print.css"/>
+</head>
+<body>
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+<h1>PERL Hash Variable</h1>
+<a href="../perl/perl_arrays.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../perl/perl_special_variables.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<br />
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr><td valign="top">
+<p>Hashes are an advanced form of array. One of the limitations of an array is that the information contained within it can be difficult to get to. For example, imagine that you have a list of people and their ages.</p>
+<p>The hash solves this problem very neatly by allowing us to access that @ages array not by an index, but by a scalar key. For example to use age of different people we can use thier names as key to define a hash.</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+%ages = ('Martin' => 28,
+         'Sharon' => 35,
+         'Rikke' => 29,);
+
+print "Rikke is $ages{Rikke} years old\n";
+
+This will produce following result
+Rikke is 29 years old
+</pre></td></tr></table>
+<h1>Creation of Hash</h1>
+<p>Hashes are created in one of two ways. In the first, you assign a value to a named key
+on a one-by-one basis:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+$ages{Martin} = 28;
+</pre></td></tr></table>
+<p>In the second case, you use a list, which is converted by taking individual pairs from the list: the first element of the pair is used as the key, and the second, as the value. For example,</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+%hash = ('Fred' , 'Flintstone', 'Barney', 'Rubble');
+</pre></td></tr></table>
+<p>For clarity, you can use => as an alias for , to indicate the key/value pairs:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+%hash = ('Fred' => 'Flintstone',
+         'Barney' => 'Rubble');
+</pre></td></tr></table>
+<h1>Extracting Individual Elements</h1>
+<p>You can extract individual elements from a hash by specifying the key for the value that you want within braces:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+print $hash{Fred};
+
+This will print following result
+Flintstone
+</pre></td></tr></table>
+<h1>Extracting Slices</h1>
+<p>You can extract slices out of a hash just as you can extract slices from an array.  You do, however, need to use the @ prefix because the return value will be a list of corresponding values:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+#!/uer/bin/perl
+
+%hash = (-Fred => 'Flintstone', -Barney => 'Rubble');
+print join("\n",@hash{-Fred,-Barney});
+
+This will produce following result
+Flintstone
+Rubble
+</pre></td></tr></table>
+<p><b>Note</b>: Using $hash{-Fred, -Barney} would return nothing.</p>
+<h1>Extracting Keys and Values</h1>
+<p>You can get a list of all of the keys from a hash by using  keys</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+#!/usr/bin/perl 
+
+%ages = ('Martin' => 28, 'Sharon' => 35, 'Rikke' => 29);
+print "The following are in the DB: ",join(', ',values %ages),"\n";
+
+This will produce following result
+The following are in the DB: 29, 28, 35
+</pre></td></tr></table>
+<p>These can be useful in loops when you want to print all of the contents of a hash:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+#!/usr/bin/perl
+
+%ages = ('Martin' => 28, 'Sharon' => 35, 'Rikke' => 29);
+foreach $key (%ages)
+{
+  print "$key is $ages{$key} years  old\n";
+}
+
+This will produce following result
+Rikke is 29 years  old
+29 is  years  old
+Martin is 28 years  old
+28 is  years  old
+Sharon is 35 years  old
+35 is  years  old
+</pre></td></tr></table>
+<p> The problem with this approach is that (%ages) returns a list of values. So to resolve this problem we have <b>each</b> function which will retun us <b>key</b> and <b>value</b> pair as given below</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+#!/usr/bin/perl
+
+%ages = ('Martin' => 28, 'Sharon' => 35, 'Rikke' => 29);
+while (($key, $value) = each %ages)
+{
+  print "$key is $ages{$key} years old\n";
+}
+
+This will produce following result
+Rikke is 29 years old
+Martin is 28 years old
+Sharon is 35 years old
+</pre></td></tr></table>
+<h1>Checking for Existence</h1>
+<p>If you try to access a key/value pair from a hash that doesn.t exist, you.ll normally get the undefined value, and if you have warnings switched on, then you.ll get a warning generated at run time. You can get around this by using the <b>exists</b> function, which returns true if the named key exists, irrespective of what its value might be:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+#!/usr/bin/perl
+
+%ages = ('Martin' => 28, 'Sharon' => 35, 'Rikke' => 29);
+if (exists($ages{"mohammad"}))
+{
+  print "mohammad if $ages{$name} years old\n";
+}
+else
+{
+  print "I don't know the age of mohammad\n";
+}
+
+This will produce following result
+I don't know the age of mohammad
+</pre></td></tr></table>
+<h1>Sorting/Ordering Hashes</h1>
+<p>There is no way to simply guarantee that the order in which a list of keys, values, or key/value pairs will always be the same. In fact, it's best not even to rely on the order between two sequential evaluations:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+#!/usr/bin/perl
+
+print(join(', ',keys %hash),"\n");
+print(join(', ',keys %hash),"\n");
+</pre></td></tr></table>
+<p>If you want to guarantee the order, use <b>sort</b>, as, for example:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+  print(join(', ',sort keys %hash),"\n");
+</pre></td></tr></table>
+<p>If you are accessing a hash a number of times and want to use the same order, consider creating a single array to hold the sorted sequence, and then use the array (which will remain in sorted order) to iterate over the hash. For example:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+my @sortorder = sort keys %hash;
+foreach my $key (@sortorder)
+</pre></td></tr></table>
+<h1> Hash Size</h1>
+<p>You get the size - that is, the number of elements - from a hash by using scalar context on either keys or values:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+#!/usr/bin/perl
+
+%ages = ('Martin' => 28, 'Sharon' => 35, 'Rikke' => 29);
+print "Hash size: ",scalar keys %ages,"\n";
+
+This will produce following result
+Hash size: 3
+</pre></td></tr></table>
+<h1>Add & Remove Elements in Hashes</h1>
+<p>Adding a new key/value pair can be done with one line of code using simple assignment operator. But to remove an element from the hash you need to use <b>delete</b> function.</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+#!/usr/bin/perl
+
+%ages = ('Martin' => 28, 'Sharon' => 35, 'Rikke' => 29);
+
+# Add one more element in the hash
+$age{'John'} = 40;
+# Remove one element from the hash
+delete( $age{'Sharon'} );
+</pre></td></tr></table>
+</td></tr></table>
+<a href="../perl/perl_arrays.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../perl/perl_special_variables.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=perl&file=perl_hashes.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

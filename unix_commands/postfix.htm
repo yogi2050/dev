@@ -1,0 +1,661 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/postfix.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>postfix - Unix, Linux Command</title>
+<meta name="Description" Content="postfix - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>postfix - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- ignored unsupported tag .ad -->
+<h1 class="manpages">NAME</h1>
+postfix
+-
+Postfix control program
+<h1 class="manpages">SYNOPSIS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+</pre></td></tr>
+</table>
+<b>postfix</b> [<b>-Dv</b>] [<b>-c </b><i>config_dir</i>] <i>command</i>
+<h1 class="manpages">DESCRIPTION</h1>
+<!-- ignored unsupported tag .ad -->
+This command is reserved for the superuser. To submit mail,
+use the Postfix <b>sendmail</b>(1) command.
+<p>
+The <b>postfix</b>(1) command controls the operation of the Postfix
+mail system: start or stop the <b>master</b>(8) daemon, do a health
+check, and other maintenance.
+<p>
+The <b>postfix</b>(1) command sets up a standardized environment and
+runs the <b>postfix-script</b> shell script to do the actual work.
+<p>
+The following commands are implemented:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>check</b>
+</td><td>
+Warn about bad directory/file ownership or permissions,
+and create missing directories.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>start</b>
+</td><td>
+Start the Postfix mail system. This also runs the configuration
+check described above.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>stop</b>
+</td><td>
+Stop the Postfix mail system in an orderly fashion. If
+possible, running processes are allowed to terminate at
+their earliest convenience.
+<p>
+Note: in order to refresh the Postfix mail system after a
+configuration change, do not use the <b>start</b> and <b>stop</b>
+commands in succession. Use the <b>reload</b> command instead.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>abort</b>
+</td><td>
+Stop the Postfix mail system abruptly. Running processes are
+signaled to stop immediately.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>flush</b>
+</td><td>
+Force delivery: attempt to deliver every message in the deferred
+mail queue. Normally, attempts to deliver delayed mail happen at
+regular intervals, the interval doubling after each failed attempt.
+<p>
+Warning: flushing undeliverable mail frequently will result in
+poor delivery performance of all other mail.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>reload</b>
+</td><td>
+Re-read configuration files. Running processes terminate at their
+earliest convenience.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>set-permissions</b>
+</td><td>
+Set the ownership and permissions of Postfix related files and
+directories, as specified in the <b>postfix-files</b> file.
+<p>
+Specify <i>name</i>=<i>value</i> to override and update specific
+main.cf configuration parameters. Use this, for example, to
+change the <b>mail_owner</b> or <b>setgid_group</b> setting for an
+already installed Postfix system.
+<p>
+This feature is available in Postfix 2.1 and later.  With
+Postfix 2.0 and earlier, use "<b>/etc/postfix/post-install
+set-permissions</b>".
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>upgrade-configuration</b>
+</td><td>
+Update the <b>main.cf</b> and <b>master.cf</b> files with information
+that Postfix needs in order to run: add or update services, and add
+or update configuration parameter settings.
+<p>
+Specify <i>name</i>=<i>value</i> to override and update specific
+main.cf configuration parameters.
+<p>
+This feature is available in Postfix 2.1 and later.  With
+Postfix 2.0 and earlier, use "<b>/etc/postfix/post-install
+upgrade-configuration</b>".
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+The following options are implemented:
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-c </b><i>config_dir</i>
+</td><td>
+Read the <b>main.cf</b> and <b>master.cf</b> configuration files in
+the named directory instead of the default configuration directory.
+Use this to distinguish between multiple Postfix instances on the
+same host.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-D</b> (with <b>postfix start</b> only)
+</td><td>
+Run each Postfix daemon under control of a debugger as specified
+via the <b>debugger_command</b> configuration parameter.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-v</b>
+</td><td>
+Enable verbose logging for debugging purposes. Multiple <b>-v</b>
+options make the software increasingly verbose.
+</td></tr>
+</table>
+<h1 class="manpages">ENVIRONMENT</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+The <b>postfix</b>(1) command exports the following environment
+variables before executing the <b>postfix-script</b> file:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>MAIL_CONFIG</b>
+</td><td>
+This is set when the -c command-line option is present.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>MAIL_VERBOSE</b>
+</td><td>
+This is set when the -v command-line option is present.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>MAIL_DEBUG</b>
+</td><td>
+This is set when the -D command-line option is present.
+</td></tr>
+</table>
+<h1 class="manpages">CONFIGURATION PARAMETERS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+The following <b>main.cf</b> configuration parameters are
+exported as environment variables with the same names:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>command_directory (see &#146;postconf -d&#146; output)</b>
+</td><td>
+The location of all postfix administrative commands.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>daemon_directory (see &#146;postconf -d&#146; output)</b>
+</td><td>
+The directory with Postfix support programs and daemon programs.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>config_directory (see &#146;postconf -d&#146; output)</b>
+</td><td>
+The default location of the Postfix main.cf and master.cf
+configuration files.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>queue_directory (see &#146;postconf -d&#146; output)</b>
+</td><td>
+The location of the Postfix top-level queue directory.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>mail_owner (postfix)</b>
+</td><td>
+The UNIX system account that owns the Postfix queue and most Postfix
+daemon processes.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>setgid_group (postdrop)</b>
+</td><td>
+The group ownership of set-gid Postfix commands and of group-writable
+Postfix directories.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>sendmail_path (see &#146;postconf -d&#146; output)</b>
+</td><td>
+A Sendmail compatibility feature that specifies the location of
+the Postfix <b>sendmail</b>(1) command.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>newaliases_path (see &#146;postconf -d&#146; output)</b>
+</td><td>
+Sendmail compatibility feature that specifies the location of the
+<b>newaliases</b>(1) command.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>mailq_path (see &#146;postconf -d&#146; output)</b>
+</td><td>
+Sendmail compatibility feature that specifies where the Postfix
+<b>mailq</b>(1) command is installed.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>html_directory (see &#146;postconf -d&#146; output)</b>
+</td><td>
+The location of Postfix HTML files that describe how to build,
+configure or operate a specific Postfix subsystem or feature.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>manpage_directory (see &#146;postconf -d&#146; output)</b>
+</td><td>
+Where the Postfix manual pages are installed.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>readme_directory (see &#146;postconf -d&#146; output)</b>
+</td><td>
+The location of Postfix README files that describe how to build,
+configure or operate a specific Postfix subsystem or feature.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Other configuration parameters:
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>config_directory (see &#146;postconf -d&#146; output)</b>
+</td><td>
+The default location of the Postfix main.cf and master.cf
+configuration files.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>import_environment (see &#146;postconf -d&#146; output)</b>
+</td><td>
+The list of environment parameters that a Postfix process will
+import from a non-Postfix parent process.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>syslog_facility (mail)</b>
+</td><td>
+The syslog facility of Postfix logging.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>syslog_name (postfix)</b>
+</td><td>
+The mail system name that is prepended to the process name in syslog
+records, so that "smtpd" becomes, for example, "postfix/smtpd".
+</td></tr>
+</table>
+<h1 class="manpages">FILES</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+/etc/postfix/main.cf, Postfix configuration parameters
+/etc/postfix/master.cf, Postfix daemon processes
+/etc/postfix/postfix-files, file/directory permissions
+/etc/postfix/postfix-script, administrative commands
+/etc/postfix/post-install, post-installation configuration
+</pre></td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+Commands:
+<a href="../postalias.html">postalias(1)</a>, create/update/query alias database
+<a href="../postcat.html">postcat(1)</a>, examine Postfix queue file
+<a href="../postconf-2.html">postconf(1)</a>, Postfix configuration utility
+<a href="../postfix.html">postfix(1)</a>, Postfix control program
+<a href="../postkick.html">postkick(1)</a>, trigger Postfix daemon
+<a href="../postlock.html">postlock(1)</a>, Postfix-compatible locking
+<a href="../postlog.html">postlog(1)</a>, Postfix-compatible logging
+<a href="../postmap.html">postmap(1)</a>, Postfix lookup table manager
+<a href="../postqueue.html">postqueue(1)</a>, Postfix mail queue control
+<a href="../postsuper.html">postsuper(1)</a>, Postfix housekeeping
+<a href="../mailq.html">mailq(1)</a>, Sendmail compatibility interface
+<a href="../newaliases.html">newaliases(1)</a>, Sendmail compatibility interface
+<a href="../sendmail.html">sendmail(1)</a>, Sendmail compatibility interface
+<p>
+Postfix configuration:
+<a href="../bounce.html">bounce(5)</a>, Postfix bounce message templates
+<a href="../master.html">master(5)</a>, Postfix master.cf file syntax
+<a href="../postconf.html">postconf(5)</a>, Postfix main.cf file syntax
+<p>
+Table-driven mechanisms:
+<a href="../access-2.html">access(5)</a>, Postfix SMTP access control table
+<a href="../aliases.html">aliases(5)</a>, Postfix alias database
+<a href="../canonical.html">canonical(5)</a>, Postfix input address rewriting
+<a href="../generic.html">generic(5)</a>, Postfix output address rewriting
+<a href="../header_checks.html">header_checks(5)</a>, <a href="../body_checks.html">body_checks(5)</a>, Postfix content inspection
+<a href="../relocated.html">relocated(5)</a>, Users that have moved
+<a href="../transport.html">transport(5)</a>, Postfix routing table
+<a href="../virtual.html">virtual(5)</a>, Postfix virtual aliasing
+<p>
+Table lookup mechanisms:
+<a href="../cidr_table.html">cidr_table(5)</a>, Associate CIDR pattern with value
+<a href="../ldap_table.html">ldap_table(5)</a>, Postfix LDAP client
+<a href="../mysql_table.html">mysql_table(5)</a>, Postfix MYSQL client
+<a href="../nisplus_table.html">nisplus_table(5)</a>, Postfix NIS+ client
+<a href="../pcre_table.html">pcre_table(5)</a>, Associate PCRE pattern with value
+<a href="../pgsql_table.html">pgsql_table(5)</a>, Postfix PostgreSQL client
+<a href="../regexp_table.html">regexp_table(5)</a>, Associate POSIX regexp pattern with value
+<a href="../tcp_table.html">tcp_table(5)</a>, Postfix client-server table lookup
+<p>
+Daemon processes:
+<a href="../anvil.html">anvil(8)</a>, Postfix connection/rate limiting
+<a href="../bounce-2.html">bounce(8)</a>, <a href="../defer.html">defer(8)</a>, <a href="../trace.html">trace(8)</a>, Delivery status reports
+<a href="../cleanup.html">cleanup(8)</a>, canonicalize and enqueue message
+<a href="../discard.html">discard(8)</a>, Postfix discard delivery agent
+<a href="../error.html">error(8)</a>, Postfix error delivery agent
+<a href="../flush.html">flush(8)</a>, Postfix fast ETRN service
+<a href="../local.html">local(8)</a>, Postfix local delivery agent
+<a href="../master-2.html">master(8)</a>, Postfix master daemon
+<a href="../oqmgr.html">oqmgr(8)</a>, old Postfix queue manager
+<a href="../pickup.html">pickup(8)</a>, Postfix local mail pickup
+<a href="../pipe-2.html">pipe(8)</a>, deliver mail to non-Postfix command
+<a href="../proxymap.html">proxymap(8)</a>, Postfix lookup table proxy server
+<a href="../qmgr.html">qmgr(8)</a>, Postfix queue manager
+<a href="../qmqpd.html">qmqpd(8)</a>, Postfix QMQP server
+<a href="../scache.html">scache(8)</a>, Postfix connection cache manager
+<a href="../showq.html">showq(8)</a>, list Postfix mail queue
+<a href="../smtp.html">smtp(8)</a>, <a href="../lmtp.html">lmtp(8)</a>, Postfix SMTP+LMTP client
+<a href="../smtpd.html">smtpd(8)</a>, Postfix SMTP server
+<a href="../spawn.html">spawn(8)</a>, run non-Postfix server
+<a href="../tlsmgr.html">tlsmgr(8)</a>, Postfix TLS cache and randomness manager
+<a href="../trivial-rewrite.html">trivial-rewrite(8)</a>, Postfix address rewriting
+<a href="../verify.html">verify(8)</a>, Postfix address verification
+<a href="../virtual-2.html">virtual(8)</a>, Postfix virtual delivery agent
+<p>
+Other:
+<a href="../syslogd.html">syslogd(8)</a>, system logging
+</pre></td></tr>
+</table>
+<h1 class="manpages">README FILES</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+Use "<b>postconf readme_directory</b>" or
+"<b>postconf html_directory</b>" to locate this information.
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+OVERVIEW, overview of Postfix commands and processes
+BASIC_CONFIGURATION_README, Postfix basic configuration
+ADDRESS_REWRITING_README, Postfix address rewriting
+SMTPD_ACCESS_README, SMTP relay/access control
+CONTENT_INSPECTION_README, Postfix content inspection
+QSHAPE_README, Postfix queue analysis
+</pre></td></tr>
+</table>
+<h1 class="manpages">LICENSE</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+The Secure Mailer license must be distributed with this software.
+<h1 class="manpages">AUTHOR(S)</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+Wietse Venema
+IBM T.J. Watson Research
+P.O. Box 704
+Yorktown Heights, NY 10598, USA
+<p>
+TLS support by:
+Lutz Jaenicke
+Brandenburg University of Technology
+Cottbus, Germany
+<p>
+Victor Duchovni
+Morgan Stanley
+<p>
+SASL support originally by:
+Till Franke
+SuSE Rhein/Main AG
+65760 Eschborn, Germany
+<p>
+LMTP support originally by:
+Philip A. Prindeville
+Mirapoint, Inc.
+USA.
+<p>
+Amos Gouaux
+University of Texas at Dallas
+P.O. Box 830688, MC34
+Richardson, TX 75083, USA
+</pre></td></tr>
+</table>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversiond745.html?tutorial=unix_commands&amp;file=postfix.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/postfix.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

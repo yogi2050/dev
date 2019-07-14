@@ -1,0 +1,884 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/pod2man.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>pod2man - Unix, Linux Command</title>
+<meta name="Description" Content="pod2man - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>pod2man - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- Not defining reserved macro 'Sh' ! -->
+<!-- ignored unsupported tag .tr -->
+<!-- ignored unsupported tag .ie -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .el\{ -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .rr -->
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .hy -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .tm -->
+<h1 class="manpages">NAME</h1>
+pod2man - Convert POD data to formatted *roff input
+<h1 class="manpages">SYNOPSIS</h1>
+<!-- ignored unsupported tag .tm -->
+pod2man [<b>--section</b>=<i>manext</i>] [<b>--release</b>=<i>version</i>]
+[<b>--center</b>=<i>string</i>] [<b>--date</b>=<i>string</i>] [<b>--fixed</b>=<i>font</i>]
+[<b>--fixedbold</b>=<i>font</i>] [<b>--fixeditalic</b>=<i>font</i>]
+[<b>--fixedbolditalic</b>=<i>font</i>] [<b>--name</b>=<i>name</i>] [<b>--official</b>]
+[<b>--lax</b>] [<b>--quotes</b>=<i>quotes</i>] [<b>--verbose</b>]
+[<i>input</i> [<i>output</i>] ...]
+<p>
+pod2man <b>--help</b>
+<h1 class="manpages">DESCRIPTION</h1>
+<!-- ignored unsupported tag .tm -->
+<b>pod2man</b> is a front-end for Pod::Man, using it to generate *roff input
+from <font size="-1">POD</font> source.  The resulting *roff code is suitable for display on a
+terminal using <i>nroff</i>(1), normally via <i>man</i>(1), or printing using <i>troff</i>(1).
+<p>
+<i>input</i> is the file to read for <font size="-1">POD</font> source (the <font size="-1">POD</font> can be embedded in
+code).  If <i>input</i> isn&#146;t given, it defaults to <font size="-1">STDIN</font>.  <i>output</i>, if given,
+is the file to which to write the formatted output.  If <i>output</i> isn&#146;t
+given, the formatted output is written to <font size="-1">STDOUT</font>.  Several <font size="-1">POD</font> files can be
+processed in the same <b>pod2man</b> invocation (saving module load and compile
+times) by providing multiple pairs of <i>input</i> and <i>output</i> files on the
+command line.
+<p>
+<b>--section</b>, <b>--release</b>, <b>--center</b>, <b>--date</b>, and <b>--official</b> can be
+used to set the headers and footers to use; if not given, Pod::Man will
+assume various defaults.  See below or Pod::Man for details.
+<p>
+<b>pod2man</b> assumes that your *roff formatters have a fixed-width font named
+<font size="-1">CW</font>.  If yours is called something else (like <font size="-1">CR</font>), use <b>--fixed</b> to specify
+it.  This generally only matters for troff output for printing.  Similarly,
+you can set the fonts used for bold, italic, and bold italic fixed-width
+output.
+<p>
+Besides the obvious pod conversions, Pod::Man, and therefore pod2man also
+takes care of formatting <i>func()</i>, func(n), and simple variable references
+like <tt>$foo</tt> or <tt>@bar</tt> so you don&#146;t have to use code escapes for them; complex
+expressions like <tt>$fred{<blink><blink>\(</blink>aq</blink>stuff<blink><blink>\(</blink>aq</blink>}</tt> will still need to be escaped, though.
+It also translates dashes that aren&#146;t used as hyphens into en dashes, makes
+long dashes&#151;like this&#151;into proper em dashes, fixes paired quotes, and
+takes care of several other troff-specific tweaks.  See Pod::Man for
+complete information.
+<h1 class="manpages">OPTIONS</h1>
+<!-- ignored unsupported tag .tm -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+<b>-c</b> <i>string</i>, <b>--center</b>=<i>string</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Sets the centered page header to <i>string</i>.  The default is User
+Contributed Perl Documentation, but also see <b>--official</b> below.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-d</b> <i>string</i>, <b>--date</b>=<i>string</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set the left-hand footer string to this value.  By default, the modification
+date of the input file will be used, or the current date if input comes from
+<font size="-1">STDIN</font>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--fixed</b>=<i>font</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The fixed-width font to use for vertabim text and code.  Defaults to <font size="-1">CW</font>.
+Some systems may want <font size="-1">CR</font> instead.  Only matters for <i>troff</i>(1) output.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--fixedbold</b>=<i>font</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Bold version of the fixed-width font.  Defaults to <font size="-1">CB</font>.  Only matters for
+<i>troff</i>(1) output.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--fixeditalic</b>=<i>font</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Italic version of the fixed-width font (actually, something of a misnomer,
+since most fixed-width fonts only have an oblique version, not an italic
+version).  Defaults to <font size="-1">CI</font>.  Only matters for <i>troff</i>(1) output.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--fixedbolditalic</b>=<i>font</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Bold italic (probably actually oblique) version of the fixed-width font.
+Pod::Man doesn&#146;t assume you have this, and defaults to <font size="-1">CB</font>.  Some systems
+(such as Solaris) have this font available as <font size="-1">CX</font>.  Only matters for <i>troff</i>(1)
+output.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-h</b>, <b>--help</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Print out usage information.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-l</b>, <b>--lax</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+No longer used.  <b>pod2man</b> used to check its input for validity as a manual
+page, but this should now be done by <i>podchecker</i>(1) instead.  Accepted for
+backwards compatibility; this option no longer does anything.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-n</b> <i>name</i>, <b>--name</b>=<i>name</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set the name of the manual page to <i>name</i>.  Without this option, the manual
+name is set to the uppercased base name of the file being converted unless
+the manual section is 3, in which case the path is parsed to see if it is a
+Perl module path.  If it is, a path like <tt>.../lib/Pod/Man.pm</tt> is converted
+into a name like <tt>Pod::Man</tt>.  This option, if given, overrides any
+automatic determination of the name.
+<p>
+<!-- ignored unsupported tag .if -->
+Note that this option is probably not useful when converting multiple <font size="-1">POD</font>
+files at once.  The convention for Unix man pages for commands is for the
+man page title to be in all-uppercase even if the command isn&#146;t.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-o</b>, <b>--official</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set the default header to indicate that this page is part of the standard
+Perl release, if <b>--center</b> is not also given.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-q</b> <i>quotes</i>, <b>--quotes</b>=<i>quotes</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Sets the quote marks used to surround C&lt;&gt; text to <i>quotes</i>.  If
+<i>quotes</i> is a single character, it is used as both the left and right
+quote; if <i>quotes</i> is two characters, the first character is used as the
+left quote and the second as the right quoted; and if <i>quotes</i> is four
+characters, the first two are used as the left quote and the second two as
+the right quote.
+<p>
+<!-- ignored unsupported tag .if -->
+<i>quotes</i> may also be set to the special value <tt>none</tt>, in which case no
+quote marks are added around C&lt;&gt; text (but the font is still changed for
+troff output).
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-r</b>, <b>--release</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set the centered footer.  By default, this is the version of Perl you run
+<b>pod2man</b> under.  Note that some system an macro sets assume that the
+centered footer will be a modification date and will prepend something like
+Last modified: ; if this is the case, you may want to set <b>--release</b> to
+the last modified date and <b>--date</b> to the version number.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-s</b>, <b>--section</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set the section for the <tt>.TH</tt> macro.  The standard section numbering
+convention is to use 1 for user commands, 2 for system calls, 3 for
+functions, 4 for devices, 5 for file formats, 6 for games, 7 for
+miscellaneous information, and 8 for administrator commands.  There is a lot
+of variation here, however; some systems (like Solaris) use 4 for file
+formats, 5 for miscellaneous information, and 7 for devices.  Still others
+use 1m instead of 8, or some mix of both.  About the only section numbers
+that are reliably consistent are 1, 2, and 3.
+<p>
+<!-- ignored unsupported tag .if -->
+By default, section 1 will be used unless the file ends in .pm in which case
+section 3 will be selected.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-v</b>, <b>--verbose</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Print out the name of each output file as it is being generated.
+</td></tr>
+</table>
+<h1 class="manpages">DIAGNOSTICS</h1>
+<!-- ignored unsupported tag .tm -->
+If <b>pod2man</b> fails with errors, see Pod::Man and Pod::Parser for
+information about what those errors might mean.
+<h1 class="manpages">EXAMPLES</h1>
+<!-- ignored unsupported tag .tm -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    pod2man program &gt; program.1
+    pod2man SomeModule.pm /usr/perl/man/man3/SomeModule.3
+    pod2man --section=7 note.pod &gt; note.7
+</tt></pre></td></tr>
+</table>
+<p>
+If you would like to print out a lot of man page continuously, you probably
+want to set the C and D registers to set contiguous page numbering and
+even/odd paging, at least on some versions of <i>man</i>(7).
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    troff -man -rC1 -rD1 perl.1 perldata.1 perlsyn.1 ...
+</tt></pre></td></tr>
+</table>
+<p>
+To get index entries on stderr, turn on the F register, as in:
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    troff -man -rF1 perl.1
+</tt></pre></td></tr>
+</table>
+<p>
+The indexing merely outputs messages via <tt>.tm</tt> for each major page,
+section, subsection, item, and any <tt>X&lt;&gt;</tt> directives.  See
+Pod::Man for more details.
+<h1 class="manpages">BUGS</h1>
+<!-- ignored unsupported tag .tm -->
+Lots of this documentation is duplicated from Pod::Man.
+<h1 class="manpages">NOTES</h1>
+<!-- ignored unsupported tag .tm -->
+For those not sure of the proper layout of a man page, here are some notes
+on writing a proper man page.
+<p>
+The name of the program being documented is conventionally written in bold
+(using B&lt;&gt;) wherever it occurs, as are all program options.
+Arguments should be written in italics (I&lt;&gt;).  Functions are
+traditionally written in italics; if you write a function as <i>function()</i>,
+Pod::Man will take care of this for you.  Literal code or commands should
+be in C&lt;&gt;.  References to other man pages should be in the form
+<tt>manpage(section)</tt>, and Pod::Man will automatically format those
+appropriately.  As an exception, it&#146;s traditional not to use this form when
+referring to module documentation; use <tt>L&lt;Module::Name&gt;</tt> instead.
+<p>
+References to other programs or functions are normally in the form of man
+page references so that cross-referencing tools can provide the user with
+links and the like.  It&#146;s possible to overdo this, though, so be careful not
+to clutter your documentation with too much markup.
+<p>
+The major headers should be set out using a <tt>=head1</tt> directive, and are
+historically written in the rather startling <font size="-1">ALL</font> <font size="-1">UPPER</font> <font size="-1">CASE</font> format, although
+this is not mandatory.  Minor headers may be included using <tt>=head2</tt>, and
+are typically in mixed case.
+<p>
+The standard sections of a manual page are:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+<font size="-1">NAME</font>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Mandatory section; should be a comma-separated list of programs or functions
+documented by this podpage, such as:
+<p>
+<!-- ignored unsupported tag .if -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    foo, bar - programs to do something
+</tt></pre></td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .if -->
+Manual page indexers are often extremely picky about the format of this
+section, so don&#146;t put anything in it except this line.  A single dash, and
+only a single dash, should separate the list of programs or functions from
+the description.  Functions should not be qualified with <tt>()</tt> or the like.
+The description should ideally fit on a single line, even if a man program
+replaces the dash with a few tabs.
+</td></tr>
+<tr valign="top"><td width=4%>
+<font size="-1">SYNOPSIS</font>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+A short usage summary for programs and functions.  This section is mandatory
+for section 3 pages.
+</td></tr>
+<tr valign="top"><td width=4%>
+<font size="-1">DESCRIPTION</font>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Extended description and discussion of the program or functions, or the body
+of the documentation for man pages that document something else.  If
+particularly long, it&#146;s a good idea to break this up into subsections
+<tt>=head2</tt> directives like:
+<p>
+<!-- ignored unsupported tag .if -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    =head2 Normal Usage
+</tt></pre></td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .if -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    =head2 Advanced Features
+</tt></pre></td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .if -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    =head2 Writing Configuration Files
+</tt></pre></td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .if -->
+or whatever is appropriate for your documentation.
+</td></tr>
+<tr valign="top"><td width=4%>
+<font size="-1">OPTIONS</font>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Detailed description of each of the command-line options taken by the
+program.  This should be separate from the description for the use of things
+like Pod::Usage.  This is normally presented as a list, with
+each option as a separate <tt>=item</tt>.  The specific option string should be
+enclosed in B&lt;&gt;.  Any values that the option takes should be
+enclosed in I&lt;&gt;.  For example, the section for the option
+<b>--section</b>=<i>manext</i> would be introduced with:
+<p>
+<!-- ignored unsupported tag .if -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    =item B&lt;--section&gt;=I&lt;manext&gt;
+</tt></pre></td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .if -->
+Synonymous options (like both the short and long forms) are separated by a
+comma and a space on the same <tt>=item</tt> line, or optionally listed as their
+own item with a reference to the canonical name.  For example, since
+<b>--section</b> can also be written as <b>-s</b>, the above would be:
+<p>
+<!-- ignored unsupported tag .if -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    =item B&lt;-s&gt; I&lt;manext&gt;, B&lt;--section&gt;=I&lt;manext&gt;
+</tt></pre></td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .if -->
+(Writing the short option first is arguably easier to read, since the long
+option is long enough to draw the eye to it anyway and the short option can
+otherwise get lost in visual noise.)
+</td></tr>
+<tr valign="top"><td width=4%>
+<font size="-1">RETURN</font> <font size="-1">VALUE</font>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+What the program or function returns, if successful.  This section can be
+omitted for programs whose precise exit codes aren&#146;t important, provided
+they return 0 on success as is standard.  It should always be present for
+functions.
+</td></tr>
+<tr valign="top"><td width=4%>
+<font size="-1">ERRORS</font>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Exceptions, error return codes, exit statuses, and errno settings.
+Typically used for function documentation; program documentation uses
+<font size="-1">DIAGNOSTICS</font> instead.  The general rule of thumb is that errors printed to
+<font size="-1">STDOUT</font> or <font size="-1">STDERR</font> and intended for the end user are documented in <font size="-1">DIAGNOSTICS</font>
+while errors passed internal to the calling program and intended for other
+programmers are documented in <font size="-1">ERRORS</font>.  When documenting a function that sets
+errno, a full list of the possible errno values should be given here.
+</td></tr>
+<tr valign="top"><td width=4%>
+<font size="-1">DIAGNOSTICS</font>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+All possible messages the program can print out&#151;and what they mean.  You
+may wish to follow the same documentation style as the Perl documentation;
+see <i>perldiag</i>(1) for more details (and look at the <font size="-1">POD</font> source as well).
+<p>
+<!-- ignored unsupported tag .if -->
+If applicable, please include details on what the user should do to correct
+the error; documenting an error as indicating the input buffer is too
+small without telling the user how to increase the size of the input buffer
+(or at least telling them that it isn&#146;t possible) aren&#146;t very useful.
+</td></tr>
+<tr valign="top"><td width=4%>
+<font size="-1">EXAMPLES</font>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Give some example uses of the program or function.  Don&#146;t skimp; users often
+find this the most useful part of the documentation.  The examples are
+generally given as verbatim paragraphs.
+<p>
+<!-- ignored unsupported tag .if -->
+Don&#146;t just present an example without explaining what it does.  Adding a
+short paragraph saying what the example will do can increase the value of
+the example immensely.
+</td></tr>
+<tr valign="top"><td width=4%>
+<font size="-1">ENVIRONMENT</font>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Environment variables that the program cares about, normally presented as a
+list using <tt>=over</tt>, <tt>=item</tt>, and <tt>=back</tt>.  For example:
+<p>
+<!-- ignored unsupported tag .if -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    =over 6
+</tt></pre></td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .if -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    =item HOME
+</tt></pre></td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .if -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    Used to determine the user&#146;s home directory.  F&lt;.foorc&gt; in this
+    directory is read for configuration details, if it exists.
+</tt></pre></td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .if -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    =back
+</tt></pre></td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .if -->
+Since environment variables are normally in all uppercase, no additional
+special formatting is generally needed; they&#146;re glaring enough as it is.
+</td></tr>
+<tr valign="top"><td width=4%>
+<font size="-1">FILES</font>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+All files used by the program or function, normally presented as a list, and
+what it uses them for.  File names should be enclosed in F&lt;&gt;.  It&#146;s
+particularly important to document files that will be potentially modified.
+</td></tr>
+<tr valign="top"><td width=4%>
+<font size="-1">CAVEATS</font>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Things to take special care with, sometimes called <font size="-1">WARNINGS</font>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<font size="-1">BUGS</font>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Things that are broken or just don&#146;t work quite right.
+</td></tr>
+<tr valign="top"><td width=4%>
+<font size="-1">RESTRICTIONS</font>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Bugs you don&#146;t plan to fix.  :-)
+</td></tr>
+<tr valign="top"><td width=4%>
+<font size="-1">NOTES</font>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Miscellaneous commentary.
+</td></tr>
+<tr valign="top"><td width=4%>
+<font size="-1">SEE</font> <font size="-1">ALSO</font>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Other man pages to check out, like <i>man</i>(1), <i>man</i>(7), <i>makewhatis</i>(8), or
+<i>catman</i>(8).  Normally a simple list of man pages separated by commas, or a
+paragraph giving the name of a reference work.  Man page references, if they
+use the standard <tt>name(section)</tt> form, don&#146;t have to be enclosed in
+L&lt;&gt; (although it&#146;s recommended), but other things in this section
+probably should be when appropriate.
+<p>
+<!-- ignored unsupported tag .if -->
+If the package has a mailing list, include a <font size="-1">URL</font> or subscription
+instructions here.
+<p>
+<!-- ignored unsupported tag .if -->
+If the package has a web site, include a <font size="-1">URL</font> here.
+</td></tr>
+<tr valign="top"><td width=4%>
+<font size="-1">AUTHOR</font>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Who wrote it (use <font size="-1">AUTHORS</font> for multiple people).  Including your current
+e-mail address (or some e-mail address to which bug reports should be sent)
+so that users have a way of contacting you is a good idea.  Remember that
+program documentation tends to roam the wild for far longer than you expect
+and pick an e-mail address that&#146;s likely to last if possible.
+</td></tr>
+<tr valign="top"><td width=4%>
+<font size="-1">COPYRIGHT</font> <font size="-1">AND</font> <font size="-1">LICENSE</font>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+For copyright
+<p>
+<!-- ignored unsupported tag .if -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    Copyright YEAR(s) by YOUR NAME(s)
+</tt></pre></td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .if -->
+(No, (C) is not needed.  No, all rights reserved is not needed.)
+<p>
+<!-- ignored unsupported tag .if -->
+For licensing the easiest way is to use the same licensing as Perl itself:
+<p>
+<!-- ignored unsupported tag .if -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+    This library is free software; you may redistribute it and/or modify
+    it under the same terms as Perl itself.
+</tt></pre></td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .if -->
+This makes it easy for people to use your module with Perl.  Note that
+this licensing is neither an endorsement or a requirement, you are of
+course free to choose any licensing.
+</td></tr>
+<tr valign="top"><td width=4%>
+<font size="-1">HISTORY</font>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Programs derived from other sources sometimes have this, or you might keep
+a modification log here.  If the log gets overly long or detailed,
+consider maintaining it in a separate file, though.
+</td></tr>
+<!-- PP ends table -->
+</table>
+In addition, some systems use <font size="-1">CONFORMING</font> <font size="-1">TO</font> to note conformance to relevant
+standards and MT-LEVEL to note safeness for use in threaded programs or
+signal handlers.  These headings are primarily useful when documenting parts
+of a C library.  Documentation of object-oriented libraries or modules may
+use <font size="-1">CONSTRUCTORS</font> and <font size="-1">METHODS</font> sections for detailed documentation of the
+parts of the library and save the <font size="-1">DESCRIPTION</font> section for an overview; other
+large modules may use <font size="-1">FUNCTIONS</font> for similar reasons.  Some people use
+<font size="-1">OVERVIEW</font> to summarize the description if it&#146;s quite long.
+<p>
+Section ordering varies, although <font size="-1">NAME</font> should <i>always</i> be the first section
+(you&#146;ll break some man page systems otherwise), and <font size="-1">NAME</font>, <font size="-1">SYNOPSIS</font>,
+<font size="-1">DESCRIPTION</font>, and <font size="-1">OPTIONS</font> generally always occur first and in that order if
+present.  In general, <font size="-1">SEE</font> <font size="-1">ALSO</font>, <font size="-1">AUTHOR</font>, and similar material should be left
+for last.  Some systems also move <font size="-1">WARNINGS</font> and <font size="-1">NOTES</font> to last.  The order
+given above should be reasonable for most purposes.
+<p>
+Finally, as a general note, try not to use an excessive amount of markup.
+As documented here and in Pod::Man, you can safely leave Perl variables,
+function names, man page references, and the like unadorned by markup and
+the <font size="-1">POD</font> translators will figure it out for you.  This makes it much easier
+to later edit the documentation.  Note that many existing translators
+(including this one currently) will do the wrong thing with e-mail addresses
+or URLs when wrapped in L&lt;&gt;, so don&#146;t do that.
+<p>
+For additional information that may be more accurate for your specific
+system, see either <i>man</i>(5) or <i>man</i>(7) depending on your system manual
+section numbering conventions.
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+Pod::Man, Pod::Parser, <i>man</i>(1), <i>nroff</i>(1), <i>podchecker</i>(1),
+<i>troff</i>(1), <i>man</i>(7)
+<p>
+The man page documenting the an macro set may be <i>man</i>(5) instead of
+<i>man</i>(7) on your system.
+<p>
+The current version of this script is always available from its web site at
+&lt;<a href="http://www.eyrie.org/~eagle/software/podlators">http://www.eyrie.org/~eagle/software/podlators</a>/&gt;.  It is also part of the
+Perl core distribution as of 5.6.0.
+<h1 class="manpages">AUTHOR</h1>
+<!-- ignored unsupported tag .tm -->
+Russ Allbery &lt;<a href="mailto:rra@stanford.edu">rra@stanford.edu</a>&gt;, based <i>very</i> heavily on the original
+<b>pod2man</b> by Larry Wall and Tom Christiansen.  Large portions of this
+documentation, particularly the sections on the anatomy of a proper man
+page, are taken from the <b>pod2man</b> documentation by Tom.
+<h1 class="manpages">COPYRIGHT AND LICENSE</h1>
+<!-- ignored unsupported tag .tm -->
+Copyright 1999, 2000, 2001 by Russ Allbery &lt;<a href="mailto:rra@stanford.edu">rra@stanford.edu</a>&gt;.
+<p>
+This program is free software; you may redistribute it and/or modify it
+under the same terms as Perl itself.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion8c37.html?tutorial=unix_commands&amp;file=pod2man.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/pod2man.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

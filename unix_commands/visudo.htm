@@ -1,0 +1,495 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/visudo.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:37 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>visudo - Unix, Linux Command</title>
+<meta name="Description" Content="visudo - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>visudo - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- Not defining reserved macro 'Sh' ! -->
+<!-- ignored unsupported tag .tr -->
+<!-- ignored unsupported tag .ie -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .el\{ -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .rr -->
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .hy -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .tm -->
+<h1 class="manpages">NAME</h1>
+visudo - edit the sudoers file
+<h1 class="manpages">SYNOPSIS</h1>
+<!-- ignored unsupported tag .tm -->
+<b>visudo</b> [<b>-c</b>] [<b>-q</b>] [<b>-s</b>] [<b>-V</b>] [<b>-f</b> <i>sudoers</i>]
+<h1 class="manpages">DESCRIPTION</h1>
+<!-- ignored unsupported tag .tm -->
+<b>visudo</b> edits the <i>sudoers</i> file in a safe fashion, analogous to
+<i>vipw</i>(8).  <b>visudo</b> locks the <i>sudoers</i> file against multiple
+simultaneous edits, provides basic sanity checks, and checks
+for parse errors.  If the <i>sudoers</i> file is currently being
+edited you will receive a message to try again later.
+<p>
+There is a hard-coded list of editors that <b>visudo</b> will use set
+at compile-time that may be overridden via the <i>editor</i> <i>sudoers</i>
+<tt>Default</tt> variable.  This list defaults to the path to <i>vi</i>(1) on
+your system, as determined by the <i>configure</i> script.  Normally,
+<b>visudo</b> does not honor the <tt>VISUAL</tt> or <tt>EDITOR</tt> environment
+variables unless they contain an editor in the aforementioned editors
+list.  However, if <b>visudo</b> is configured with the <i>--with-enveditor</i>
+flag or the <i>env_editor</i> <tt>Default</tt> variable is set in <i>sudoers</i>,
+<b>visudo</b> will use any the editor defines by <tt>VISUAL</tt> or <tt>EDITOR</tt>.
+Note that this can be a security hole since it allows the user to
+execute any program they wish simply by setting <tt>VISUAL</tt> or <tt>EDITOR</tt>.
+<p>
+<b>visudo</b> parses the <i>sudoers</i> file after the edit and will
+not save the changes if there is a syntax error.  Upon finding
+an error, <b>visudo</b> will print a message stating the line number(s)
+where the error occurred and the user will receive the
+What now? prompt.  At this point the user may enter e
+to re-edit the <i>sudoers</i> file, x to exit without
+saving the changes, or Q to quit and save changes.  The
+Q option should be used with extreme care because if <b>visudo</b>
+believes there to be a parse error, so will <b>sudo</b> and no one
+will be able to <b>sudo</b> again until the error is fixed.
+If e is typed to edit the  <i>sudoers</i> file after a parse error
+has been detected, the cursor will be placed on the line where the
+error occurred (if the editor supports this feature).
+<h1 class="manpages">OPTIONS</h1>
+<!-- ignored unsupported tag .tm -->
+<b>visudo</b> accepts the following command line options:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+-c
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Enable <b>check-only</b> mode.  The existing <i>sudoers</i> file will be
+checked for syntax and a message will be printed to the
+standard output detailing the status of <i>sudoers</i>.
+If the syntax check completes successfully, <b>visudo</b> will
+exit with a value of 0.  If a syntax error is encountered,
+<b>visudo</b> will exit with a value of 1.
+</td></tr>
+<tr valign="top"><td width=4%>
+-f
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Specify and alternate <i>sudoers</i> file location.  With this option
+<b>visudo</b> will edit (or check) the <i>sudoers</i> file of your choice,
+instead of the default, <i>/etc/sudoers</i>.  The lock file used
+is the specified <i>sudoers</i> file with .tmp appended to it.
+</td></tr>
+<tr valign="top"><td width=4%>
+-q
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Enable <b>quiet</b> mode.  In this mode details about syntax errors
+are not printed.  This option is only useful when combined with
+the <b>-c</b> flag.
+</td></tr>
+<tr valign="top"><td width=4%>
+-s
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Enable <b>strict</b> checking of the <i>sudoers</i> file.  If an alias is
+used before it is defined, <b>visudo</b> will consider this a parse
+error.  Note that it is not possible to differentiate between an
+alias and a hostname or username that consists solely of uppercase
+letters, digits, and the underscore (&#146;_&#146;) character.
+</td></tr>
+<tr valign="top"><td width=4%>
+-V
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The <b>-V</b> (version) option causes <b>visudo</b> to print its version number
+and exit.
+</td></tr>
+</table>
+<h1 class="manpages">ENVIRONMENT</h1>
+<!-- ignored unsupported tag .tm -->
+The following environment variables are used only if <b>visudo</b>
+was configured with the <i>--with-env-editor</i> option:
+<!-- ignored unsupported tag .ie -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=16%>
+<tt>VISUAL</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Invoked by visudo as the editor to use
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=16%>
+<tt>EDITOR</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Used by visudo if <font size="-1">VISUAL</font> is not set
+</td></tr>
+</table>
+<h1 class="manpages">FILES</h1>
+<!-- ignored unsupported tag .tm -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=24%>
+<i>/etc/sudoers</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+List of who can run what
+</td></tr>
+<tr valign="top"><td width=24%>
+<i>/etc/sudoers.tmp</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Lock file for visudo
+</td></tr>
+</table>
+<h1 class="manpages">DIAGNOSTICS</h1>
+<!-- ignored unsupported tag .tm -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+sudoers file busy, try again later.
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Someone else is currently editing the <i>sudoers</i> file.
+</td></tr>
+<tr valign="top"><td width=4%>
+/etc/sudoers.tmp: Permission denied
+</td><td>
+<!-- ignored unsupported tag .tm -->
+You didn&#146;t run <b>visudo</b> as root.
+</td></tr>
+<tr valign="top"><td width=4%>
+Can&#146;t find you in the passwd database
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Your userid does not appear in the system passwd file.
+</td></tr>
+<tr valign="top"><td width=4%>
+Warning: undeclared Alias referenced near ...
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Either you are using a {User,Runas,Host,Cmnd}_Alias before
+defining it or you have a user or hostname listed that
+consists solely of uppercase letters, digits, and the
+underscore (&#146;_&#146;) character.  If the latter, you can ignore
+the warnings (<b>sudo</b> will not complain).  In <b>-s</b> (strict)
+mode these are errors, not warnings.
+</td></tr>
+<tr valign="top"><td width=4%>
+Warning: runas_default set after old value is in use ...
+</td><td>
+<!-- ignored unsupported tag .tm -->
+You have a <i>runas_default</i> Defaults setting listed in the <i>sudoers</i>
+file after its value has already been used.  This means that entries
+prior to the <i>runas_default</i> setting will match based on the default
+value of <i>runas_default</i> (<tt>root</tt>) whereas entries
+<b>after</b> the <i>runas_default</i> setting will match based on the new
+value.  This is usually unintentional and in most cases the
+&lt;runas_default&gt; setting should be placed before any <tt>Runas_Alias</tt>
+or User specifications.  In <b>-s</b> (strict) mode this is an error,
+not a warning.
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<i>vi</i>(1), <i>sudoers</i>(5), <i>sudo</i>(8), <i>vipw</i>(8)
+<h1 class="manpages">AUTHOR</h1>
+<!-- ignored unsupported tag .tm -->
+Many people have worked on <i>sudo</i> over the years; this version of
+<b>visudo</b> was written by:
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+ Todd Miller
+</tt></pre></td></tr>
+</table>
+<p>
+See the <font size="-1">HISTORY</font> file in the sudo distribution or visit
+<a href="http://www.sudo.ws/sudo/history.html">http://www.sudo.ws/sudo/history.html</a> for more details.
+<h1 class="manpages">CAVEATS</h1>
+<!-- ignored unsupported tag .tm -->
+There is no easy way to prevent a user from gaining a root shell if
+the editor used by <b>visudo</b> allows shell escapes.
+<h1 class="manpages">BUGS</h1>
+<!-- ignored unsupported tag .tm -->
+If you feel you have found a bug in <b>visudo</b>, please submit a bug report
+at <a href="http://www.sudo.ws/sudo/bugs">http://www.sudo.ws/sudo/bugs</a>/
+<h1 class="manpages">SUPPORT</h1>
+<!-- ignored unsupported tag .tm -->
+Limited free support is available via the sudo-users mailing list,
+see <a href="http://www.sudo.ws/mailman/listinfo/sudo-users">http://www.sudo.ws/mailman/listinfo/sudo-users</a> to subscribe or
+search the archives.
+<h1 class="manpages">DISCLAIMER</h1>
+<!-- ignored unsupported tag .tm -->
+<b>visudo</b> is provided &#145;&#145;<font size="-1">AS</font> <font size="-1">IS</font>&#146;&#146; and any express or implied warranties,
+including, but not limited to, the implied warranties of merchantability
+and fitness for a particular purpose are disclaimed.  See the <font size="-1">LICENSE</font>
+file distributed with <b>sudo</b> or <a href="http://www.sudo.ws/sudo/license.html">http://www.sudo.ws/sudo/license.html</a>
+for complete details.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion5c90.html?tutorial=unix_commands&amp;file=visudo.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/visudo.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:37 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

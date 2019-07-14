@@ -1,0 +1,771 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/setserial.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:24 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>setserial - Unix, Linux Command</title>
+<meta name="Description" Content="setserial - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>setserial - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+setserial - get/set Linux serial port information
+<h1 class="manpages">SYNOPSIS</h1>
+<b>setserial</b> <b>[ -abqvVWz ]</b> device
+<b>[ </b>parameter1<b> [ </b>arg<b> ] ] ...</b> <p>
+<b>setserial -g</b> <b>[ -abGv ]</b> device1 ...
+<h1 class="manpages">DESCRIPTION</h1>
+<b>setserial</b> is a program designed to set and/or report the configuration information
+associated with a serial port.  This information includes what I/O
+port and IRQ a particular serial port is using, and whether or not the
+break key should be interpreted as the Secure Attention Key, and so
+on.
+<p>
+During the normal bootup process, only COM ports 1-4 are initialized,
+using the default I/O ports and IRQ values, as listed below.  In order
+to initialize any additional serial ports, or to change the COM 1-4
+ports to a nonstadard configuration, the
+<b>setserial</b> program should be used.  Typically it is called from an
+<i>rc.serial</i> script, which is usually run out of
+<i>/etc/rc.local</i>. <p>
+The
+<i>device</i> argument or arguments specifies the serial device which should be configured or
+interrogated.  It will usually have the following form:
+<b>/dev/cua[0-3]</b>. <p>
+If no parameters are specified,
+<b>setserial</b> will print out the port type (i.e., 8250, 16450, 16550, 16550A, etc.), the
+hardware I/O port, the hardware IRQ line, its "baud base," and some of
+its operational flags.
+<p>
+If the
+<b>-g</b> option is given, the arguments to setserial are interpreted as a list
+of devices for which the characteristics of those devices should be
+printed. 
+<p>
+Without the
+<b>-g</b> option, the first argument to setserial is interpreted as the device
+to be modified or characteristics to be printed, and any additional
+arguments are interpreted as parameters which should be assigned
+to that serial device.
+<p>
+For the most part, superuser privilege is required to set the
+configuration parameters of a serial port.  A few serial port parameters
+can be set by normal users, however, and these will be noted as
+exceptions in this manual page.
+<p>
+<h1 class="manpages">OPTIONS</h1>
+<b>Setserial</b> accepts the following options:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-a</b> </td><td valign="bottom">
+When reporting the configuration of a serial device, print all
+available information.
+</td></tr>
+<tr valign="top"><td>
+<b>-b</b> </td><td valign="bottom">
+When reporting the configuration of a serial device, print a summary
+of the device&#146;s configuration, which might be suitable for printing
+during the bootup process, during the /etc/rc script.
+</td></tr>
+<tr valign="top"><td>
+<b>-G</b> </td><td valign="bottom">
+Print out the configuration information of the serial port in a form which
+can be fed back to setserial as command-line arguments.
+</td></tr>
+<tr valign="top"><td>
+<b>-q</b> </td><td valign="bottom">
+Be quiet. 
+<b>Setserial</b> will print fewer lines of output.
+</td></tr>
+<tr valign="top"><td>
+<b>-v</b> </td><td valign="bottom">
+Be verbose.
+<b>Setserial</b> will print additional status output.
+</td></tr>
+<tr valign="top"><td>
+<b>-V</b> </td><td valign="bottom">
+Display version and exit.
+</td></tr>
+<tr valign="top"><td>
+<b>-W</b> </td><td valign="bottom">
+Do wild interrupt initialization and exit.  This option is no longer
+relevant in Linux kernels after version 2.1.
+</td></tr>
+<tr valign="top"><td>
+<b>-z</b> </td><td valign="bottom">
+Zero out the serial flags before starting to set flags.  This is related
+to the automatic saving of serial flags using the -G flag.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">PARAMETERS</h1>
+The following parameters can be assigned to a serial port.
+<p>
+All argument values are assumed to be in decimal unless preceeded by "0x".
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>port</b> port_number </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The
+<b>port</b> option sets the I/O port, as described above.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>irq</b> irq_number </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The
+<b>irq</b> option sets the hardware IRQ, as described above.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>uart</b> uart_type </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This option is used to set the UART type.  The permitted types are
+<b>none</b>, 8250, 16450, 16550, 16550A, 16650, 16650V2, 16654, 16750, 16850, 16950, and
+16954.
+Using UART type
+<b>none</b> will disable the port.
+<p>
+Some internal modems are billed as having a "16550A UART with a 1k
+buffer".  This is a lie.  They do not have really have a 16550A
+compatible UART; instead what they have is a 16450 compatible UART
+with a 1k receive buffer to prevent receiver overruns.  This is
+important, because they do not have a transmit FIFO.  Hence, they are
+not compatible with a 16550A UART, and the autoconfiguration process
+will correctly identify them as 16450&#146;s.  If you attempt to override
+this using the
+<b>uart</b> parameter, you will see dropped characters during file transmissions.
+These UART&#146;s usually have other problems: the
+<b>skip_test</b> parameter also often must be specified.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>autoconfig</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+When this parameter is given,
+<b>setserial</b> will ask the kernel to attempt to automatically configure the serial
+port.  The I/O port must be correctly set; the kernel will attempt to
+determine the UART type, and if the
+<b>auto_irq</b> parameter is set, Linux will attempt to automatically determine the
+IRQ.  The
+<b>autoconfig</b> parameter should be given after the
+<b>port</b>,<b>auto_irq</b>, and <b>skip_test</b> parameters have been specified.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>auto_irq</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+During autoconfiguration, try to determine the IRQ.  This feature is
+not guaranteed to always produce the correct result; some hardware
+configurations will fool the Linux kernel.  It is generally safer not
+to use the
+<b>auto_irq</b> feature, but rather to specify the IRQ to be used explicitly, using
+the
+<b>irq</b> parameter.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>^auto_irq</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+During autoconfiguration, do
+<i>not</i> try to determine the IRQ.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>skip_test</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+During autoconfiguration, skip the UART test.  Some internal modems do
+not have National Semiconductor compatible UART&#146;s, but have cheap
+imitations instead.  Some of these cheasy imitations UART&#146;s do not
+fully support the loopback detection mode, which is used by the kernel
+to make sure there really is a UART at a particular address before
+attempting to configure it.  So for certain internal modems you will
+need to specify this parameter so Linux can initialize the UART
+correctly.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>^skip_test</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+During autoconfiguration, do
+<i>not</i> skip the UART test.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>baud_base</b> baud_base </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This option sets the base baud rate, which is the clock frequency divided
+by 16.  Normally this value is 115200, which is also the fastest baud
+rate which the UART can support.
+</td></tr>
+<tr valign="top"><td>
+<b></b> </td><td valign="bottom">
+spd_hi
+Use 57.6kb when the application requests 38.4kb. 
+This parameter may be specified by a non-privileged user.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>spd_vhi</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Use 115kb when the application requests 38.4kb.
+This parameter may be specified by a non-privileged user.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>spd_shi</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Use 230kb when the application requests 38.4kb.
+This parameter may be specified by a non-privileged user.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>spd_warp</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Use 460kb when the application requests 38.4kb.
+This parameter may be specified by a non-privileged user.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>spd_cust</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Use the custom divisor to set the speed when the application requests
+38.4kb.  In this case, the baud rate is the
+<b>baud_base</b> divided by the
+<b>divisor</b>. This parameter may be specified by a non-privileged user.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>spd_normal</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Use 38.4kb when the application requests 38.4kb.
+This parameter may be specified by a non-privileged user.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>divisor</b> divisor </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This option sets the custom divison.  This divisor will be used then the
+<b>spd_cust</b> option is selected and the serial port is set to 38.4kb by the
+application.
+This parameter may be specified by a non-privileged user.
+</td></tr>
+<tr valign="top"><td>
+<b>sak</b> </td><td valign="bottom">
+Set the break key at the Secure Attention Key.
+</td></tr>
+<tr valign="top"><td>
+<b>^sak</b> </td><td valign="bottom">
+disable the Secure Attention Key.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>fourport</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Configure the port as an AST Fourport card.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>^fourport</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Disable AST Fourport configuration.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>close_delay</b> delay </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specify the amount of time, in hundredths of a second, that DTR should
+remain low on a serial line after the callout device is closed, before
+the blocked dialin device raises DTR again.  The default value of this
+option is 50, or a half-second delay.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>closing_wait</b> delay </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specify the amount of time, in hundredths of a second, that the kernel
+should wait for data to be transmitted from the serial port while
+closing the port.  If "none" is
+specified, no delay will occur. If "infinite" is specified the kernel
+will wait indefinitely  for the buffered data to be transmitted. 
+The default setting is 3000 or 30 seconds of delay. 
+This default is generally appropriate for most devices.  If too long
+a delay is selected, then
+the serial port may hang for a long time if when a serial port which
+is not connected, and has data pending, is closed.  If too short a
+delay is selected, then there is a risk that some of the transmitted
+data is output at all.  If the device is extremely slow, like a plotter,
+the closing_wait may need to be larger. 
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>session_lockout</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Lock out callout port (/dev/cuaXX) accesses across different sessions.
+That is, once a process has opened a port, do not allow a process with
+a different session ID to open that port until the first process has
+closed it.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>^session_lockout</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Do not lock out callout port accesses across different sessions.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>pgrp_lockout</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Lock out callout port (/dev/cuaXX) accesses across different process groups.
+That is, once a process has opened a port, do not allow a process in a
+different process group to open that port until the first process has
+closed it.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>^pgrp_lockout</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Do not lock out callout port accesses across different process groups.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>hup_notify</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Notify a process blocked on opening a dial in line when a process has
+finished using a callout line (either by closing it or by the serial
+line being hung up) by returning EAGAIN to the open. 
+<p>
+The application of this parameter is for getty&#146;s which are blocked on
+a serial port&#146;s dial in line.  This allows the getty to reset the
+modem (which may have had its configuration modified by the
+application using the callout device) before blocking on the open again.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>^hup_notify</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Do not notify a process blocked on opening a dial in line when the
+callout device is hung up.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>split_termios</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Treat the termios settings used by the callout device and the termios
+settings used by the dialin devices as separate. 
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>^split_termios</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Use the same termios structure to store both the dialin and callout
+ports.  This is the default option.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>callout_nohup</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+If this particular serial port is opened as a callout device, do not
+hangup the tty when carrier detect is dropped.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>^callout_nohup</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Do not skip hanging up the tty when a serial port is opened as a
+callout device.  Of course, the HUPCL termios flag must be enabled if
+the hangup is to occur.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>low_latency</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Minimize the receive latency of the serial device at the cost of
+greater CPU utilization.  (Normally there is an average of 5-10ms
+latency before characters are handed off to the line discpline to
+minimize overhead.)  This is off by default, but certain real-time
+applications may find this useful.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>^low_latency</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Optimize for efficient CPU processing of serial characters at the cost of
+paying an average of 5-10ms of latency before the characters are processed.
+This is the default.
+</td></tr>
+</table>
+<h1 class="manpages">CONSIDERATIONS OF CONFIGURING SERIAL PORTS</h1>
+It is important to note that setserial merely tells the Linux kernel
+where it should expect to find the I/O port and IRQ lines of a
+particular serial port.  It does *not* configure the hardware, the
+actual serial board, to use a particular I/O port.  In order to do
+that, you will need to physically program the serial board, usually by
+setting some jumpers or by switching some DIP switches.
+<p>
+This section will provide some pointers in helping you decide how you
+would like to configure your serial ports.
+<p>
+The "standard MS-DOS" port associations are given below:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+/dev/ttys0 (COM1), port 0x3f8, irq 4
+/dev/ttys1 (COM2), port 0x2f8, irq 3
+/dev/ttys2 (COM3), port 0x3e8, irq 4
+/dev/ttys3 (COM4), port 0x2e8, irq 3
+</pre></td></tr>
+</table>
+<p>
+Due to the limitations in the design of the AT/ISA bus architecture,
+normally an IRQ line may not be shared between two or more serial
+ports.  If you attempt to do this, one or both serial ports will
+become unreliable if you try to use both simultaneously.  This
+limitation can be overcome by special multi-port serial port boards,
+which are designed to share multiple serial ports over a single IRQ
+line.  Multi-port serial cards supported by Linux include the AST
+FourPort, the Accent Async board, the Usenet Serial II board, the
+Bocaboard BB-1004, BB-1008, and BB-2016 boards, and the HUB-6 serial
+board.
+<p>
+The selection of an alternative IRQ line
+is difficult, since most of them are already used.  The following table
+lists the "standard MS-DOS" assignments of available IRQ lines:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+IRQ 3: COM2
+IRQ 4: COM1
+IRQ 5: LPT2
+IRQ 7: LPT1
+</pre></td></tr>
+</table>
+<p>
+Most people find that IRQ 5 is a good choice, assuming that there is
+only one parallel port active in the computer.  Another good choice is
+IRQ 2 (aka IRQ 9); although this IRQ is sometimes used by network
+cards, and very rarely VGA cards will be configured to use IRQ 2 as a
+vertical retrace interrupt.  If your VGA card is configured this way;
+try to disable it so you can reclaim that IRQ line for some other
+card.  It&#146;s not necessary for Linux and most other Operating systems.
+<p>
+The only other available IRQ lines are 3, 4, and 7, and these are
+probably used by the other serial and parallel ports.  (If your serial
+card has a 16bit card edge connector, and supports higher interrupt
+numbers, then IRQ 10, 11, 12, and 15 are also available.)
+<p>
+On AT class machines, IRQ 2 is seen as IRQ 9, and Linux will interpret it
+in this manner.
+<p>
+IRQ&#146;s other than 2 (9), 3, 4, 5, 7, 10, 11, 12, and 15, should
+<i>not</i> be used, since they are assigned to other hardware and cannot, in general,
+be changed.  Here are the "standard" assignments:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+IRQ  0      Timer channel 0
+IRQ  1      Keyboard
+IRQ  2      Cascade for controller 2
+IRQ  3      Serial port 2
+IRQ  4      Serial port 1
+IRQ  5      Parallel port 2 (Reserved in PS/2)
+IRQ  6      Floppy diskette
+IRQ  7      Parallel port 1
+IRQ  8      Real-time clock
+IRQ  9      Redirected to IRQ2
+IRQ 10      Reserved
+IRQ 11      Reserved
+IRQ 12      Reserved (Auxillary device in PS/2)
+IRQ 13      Math coprocessor
+IRQ 14      Hard disk controller
+IRQ 15      Reserved
+</pre></td></tr>
+</table>
+<p>
+<h1 class="manpages">MULTIPORT CONFIGURATION</h1>
+<p>
+Certain multiport serial boards which share multiple ports on a single
+IRQ use one or more ports to indicate whether or not there are any
+pending ports which need to be serviced.  If your multiport board
+supports these ports, you should make use of them to avoid potential
+lockups if the interrupt gets lost.
+<p>
+In order to set these ports specify
+<b>set_multiport</b> as a parameter, and follow it with the multiport parameters.  The
+multiport parameters take the form of specifying the
+<i>port</i> that should be checked, a
+<i>mask</i> which indicate which bits in the register are significant, and finally, a
+<i>match</i> parameter which specifies what the significant bits in that register must
+match when there is no more pending work to be done.
+<p>
+Up to four such port/mask/match combinations may be specified.  The
+first such combinations should be specified by setting the parameters
+<b>port1</b>, <b>mask1</b>, and
+<b>match1</b>. The second such combination should be specified with
+<b>port2</b>, <b>mask2</b>, and
+<b>match2</b>, and so on.  In order to disable this multiport checking, set
+<b>port1</b> to be zero.
+<p>
+In order to view the current multiport settings, specify the parameter
+<b>get_multiport</b> on the command line.
+<p>
+Here are some multiport settings for some common serial boards:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+AST FourPort    port1 0x1BF mask1 0xf match1 0xf
+<p>
+Boca BB-1004/8  port1 0x107 mask1 0xff match1 0
+<p>
+Boca BB-2016    port1 0x107 mask1 0xff match1 0
+                port2 0x147 mask2 0xff match2 0
+</pre></td></tr>
+</table>
+<p>
+<h1 class="manpages">Hayes ESP Configuration</h1>
+<b>Setserial</b> may also be used to configure ports on a Hayes ESP serial board.
+<p>
+The following parameters when configuring ESP ports:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>rx_trigger</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This is the trigger level (in bytes) of the receive FIFO. Larger
+values may result in fewer interrupts and hence better performance;
+however, a value too high could result in data loss. Valid values
+are 1 through 1023.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>tx_trigger</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This is the trigger level (in bytes) of the transmit FIFO. Larger
+values may result in fewer interrupts and hence better performance;
+however, a value too high could result in degraded transmit
+performance. Valid values are 1 through 1023.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>flow_off</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This is the level (in bytes) at which the ESP port will "flow off"
+the remote transmitter (i.e. tell him to stop stop sending more
+bytes).  Valid values are 1 through 1023.  This value should be
+greater than the receive trigger level and the flow on level.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>flow_on</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This is the level (in bytes) at which the ESP port will "flow on"
+the remote transmitter (i.e. tell him to resume sending bytes) after
+having flowed it off.  Valid values are 1 through 1023.  This value
+should be less than the flow off level, but greater than the receive
+trigger level.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>rx_timeout</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This is the amount of time that the ESP port will wait after
+receiving the final character before signaling an interrupt.  Valid
+values are 0 through 255.  A value too high will increase latency,
+and a value too low will cause unnecessary interrupts.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">CAUTION</h1>
+CAUTION: Configuring a serial port to use an incorrect I/O port
+can lock up your machine.
+<h1 class="manpages">FILES</h1>
+<b>/etc/rc.local</b> <b>/etc/rc.serial</b> <h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<h1 class="manpages">AUTHOR</h1>
+The original version of setserial was written by Rick Sladkey
+(<a href="mailto:jrs@world.std.com">jrs@world.std.com</a>), and was modified by Michael K. Johnson
+(<a href="mailto:johnsonm@stolaf.edu">johnsonm@stolaf.edu</a>).
+<p>
+This version has since been rewritten from scratch by Theodore Ts&#146;o
+(<a href="mailto:tytso@mit.edu">tytso@mit.edu</a>) on 1/1/93.  Any bugs or problems are solely his
+responsibility.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion38e2.html?tutorial=unix_commands&amp;file=setserial.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/setserial.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:24 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

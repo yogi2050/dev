@@ -1,0 +1,612 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/hexdump.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:46 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>hexdump - Unix, Linux Command</title>
+<meta name="Description" Content="hexdump - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>hexdump - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+<b> hexdump</b>
+- ascii, decimal, hexadecimal, octal dump
+<h1 class="manpages">SYNOPSIS</h1>
+<b>hexdump</b>
+[-<b>bcCdovx</b>]
+<br />.Bk -words
+[-<b>e</b><i> format_string</i>]
+<br />.Ek 
+<br />.Bk -words
+[-<b>f</b><i> format_file</i>]
+<br />.Ek 
+<br />.Bk -words
+[-<b>n</b><i> length</i>]
+<br />.Ek 
+<br />.Bk -words
+[-<b>s</b><i> skip</i>]
+<br />.Ek 
+<i> file ...</i>
+<h1 class="manpages">DESCRIPTION</h1>
+The hexdump utility is a filter which displays the specified files, or
+the standard input, if no files are specified, in a user specified
+format.
+<p>
+The options are as follows:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>-<b>b</b> 
+</td><td>
+<i> One-byte octal display</i>.
+Display the input offset in hexadecimal, followed by sixteen
+space-separated, three column, zero-filled, bytes of input data,
+in octal, per line.
+</td></tr>
+<tr valign="top"><td>-<b>c</b> 
+</td><td>
+<i> One-byte character display</i>.
+Display the input offset in hexadecimal, followed by sixteen
+space-separated, three column, space-filled, characters of input
+data per line.
+</td></tr>
+<tr valign="top"><td>-<b>C</b> 
+</td><td>
+<i> Canonical hex+ASCII display</i>.
+Display the input offset in hexadecimal, followed by sixteen
+space-separated, two column, hexadecimal bytes, followed by the
+same sixteen bytes in %_p format enclosed in &#145;&#145;|&#146;&#146; characters.
+</td></tr>
+<tr valign="top"><td>-<b>d</b> 
+</td><td>
+<i> Two-byte decimal display</i>.
+Display the input offset in hexadecimal, followed by eight
+space-separated, five column, zero-filled, two-byte units
+of input data, in unsigned decimal, per line.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>e</b> <i> format_string</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specify a format string to be used for displaying data.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>f</b> <i> format_file</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specify a file that contains one or more newline separated format strings.
+Empty lines and lines whose first non-blank character is a hash mark
+(<b> #</b>)
+are ignored.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>n</b> <i> length</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Interpret only
+<i> length</i>
+bytes of input.
+</td></tr>
+<tr valign="top"><td>-<b>o</b> 
+</td><td>
+<i> Two-byte octal display</i>.
+Display the input offset in hexadecimal, followed by eight
+space-separated, six column, zero-filled, two byte quantities of
+input data, in octal, per line.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>s</b> <i> offset</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Skip
+<i> offset</i>
+bytes from the beginning of the input.
+By default,
+<i> offset</i>
+is interpreted as a decimal number.
+With a leading
+<b> 0x</b>
+or
+<b> 0X</b>,
+<i> offset</i>
+is interpreted as a hexadecimal number,
+otherwise, with a leading
+<b> 0</b>,
+<i> offset</i>
+is interpreted as an octal number.
+Appending the character
+<b> b</b>,
+<b> k</b>,
+or
+<b> m</b>
+to
+<i> offset</i>
+causes it to be interpreted as a multiple of
+512,
+1024,
+or
+1048576,
+respectively.
+</td></tr>
+<tr valign="top"><td>-<b>v</b> 
+</td><td>
+The
+-<b>v</b> 
+option causes hexdump to display all input data.
+Without the
+-<b>v</b> 
+option, any number of groups of output lines, which would be
+identical to the immediately preceding group of output lines (except
+for the input offsets), are replaced with a line comprised of a
+single asterisk.
+</td></tr>
+<tr valign="top"><td>-<b>x</b> 
+</td><td>
+<i> Two-byte hexadecimal display</i>.
+Display the input offset in hexadecimal, followed by eight, space
+separated, four column, zero-filled, two-byte quantities of input
+data, in hexadecimal, per line.
+</td></tr>
+</table>
+<p>
+For each input file,
+<b>hexdump</b>
+sequentially copies the input to standard output, transforming the
+data according to the format strings specified by the
+-<b>e</b> 
+and
+-<b>f</b> 
+options, in the order that they were specified.
+<h2><i>Formats</i></h2>
+A format string contains any number of format units, separated by
+whitespace.
+A format unit contains up to three items: an iteration count, a byte
+count, and a format.
+<p>
+The iteration count is an optional positive integer, which defaults to
+one.
+Each format is applied iteration count times.
+<p>
+The byte count is an optional positive integer.
+If specified it defines the number of bytes to be interpreted by
+each iteration of the format.
+<p>
+If an iteration count and/or a byte count is specified, a single slash
+must be placed after the iteration count and/or before the byte count
+to disambiguate them.
+Any whitespace before or after the slash is ignored.
+<p>
+The format is required and must be surrounded by double quote
+(" ") marks.
+It is interpreted as a fprintf-style format string (see
+<b>fprintf</b>(3)),
+with the
+following exceptions:
+<ul>
+<LI>An asterisk (*) may not be used as a field width or precision.
+<LI>A byte count or field precision
+<i> is</i>
+required for each &#145;&#145;s&#146;&#146; conversion
+character (unlike the
+<b>fprintf</b>(3)
+default which prints the entire string if the precision is unspecified).
+<LI>The conversion characters &#145;&#145;h&#146;&#146;, &#145;&#145;l&#146;&#146;, &#145;&#145;n&#146;&#146;, &#145;&#145;p&#146;&#146; and &#145;&#145;q&#146;&#146; are
+not supported.
+<LI>The single character escape sequences
+described in the C standard are supported:
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+</pre></td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2"> NUL &#92;0
+<br />
+ &lt;alert character&gt; &#92;a
+<br />
+ &lt;backspace&gt; &#92;b
+<br />
+ &lt;form-feed&gt; &#92;f
+<br />
+ &lt;newline&gt; &#92;n
+<br />
+ &lt;carriage return&gt; &#92;r
+<br />
+ &lt;tab&gt; &#92;t
+<br />
+ &lt;vertical tab&gt; &#92;v
+</td></tr><tr><td>&nbsp;</td><td>
+</td></tr>
+</table>
+</ul>
+<p>
+Hexdump also supports the following additional conversion strings:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2"><b> _a </b>[<b>dox</b>]
+</td></tr><tr><td>&nbsp;</td><td>
+Display the input offset, cumulative across input files, of the
+next byte to be displayed.
+The appended characters
+<b> d</b>,
+<b> o</b>,
+and
+<b> x</b>
+specify the display base
+as decimal, octal or hexadecimal respectively.
+</td></tr>
+<tr valign="top"><td colspan="2"><b> _A </b>[<b>dox</b>]
+</td></tr><tr><td>&nbsp;</td><td>
+Identical to the
+<b> _a</b>
+conversion string except that it is only performed
+once, when all of the input data has been processed.
+</td></tr>
+<tr valign="top"><td><b> _c</b>
+</td><td>
+Output characters in the default character set.
+Nonprinting characters are displayed in three character, zero-padded
+octal, except for those representable by standard escape notation
+(see above),
+which are displayed as two character strings.
+</td></tr>
+<tr valign="top"><td><b> _p</b>
+</td><td>
+Output characters in the default character set.
+Nonprinting characters are displayed as a single
+"<b>&#46;</b>".
+</td></tr>
+<tr valign="top"><td><b> _u</b>
+</td><td>
+Output US ASCII characters, with the exception that control characters are
+displayed using the following, lower-case, names.
+Characters greater than 0xff, hexadecimal, are displayed as hexadecimal
+strings.
+</td></tr>
+<tr valign="top"><td colspan="2"> 000 nul&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;001 soh&nbsp;002 stx&nbsp;003 etx&nbsp;004 eot&nbsp;005 enq
+<br />
+ 006 ack&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;007 bel&nbsp;008 bs&nbsp;&nbsp;009 ht&nbsp;&nbsp;00A lf&nbsp;&nbsp;00B vt
+<br />
+ 00C ff&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;00D cr&nbsp;&nbsp;00E so&nbsp;&nbsp;00F si&nbsp;&nbsp;010 dle&nbsp;011 dc1
+<br />
+ 012 dc2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;013 dc3&nbsp;014 dc4&nbsp;015 nak&nbsp;016 syn&nbsp;017 etb
+<br />
+ 018 can&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;019 em&nbsp;&nbsp;01A sub&nbsp;01B esc&nbsp;01C fs&nbsp;&nbsp;01D gs
+<br />
+ 01E rs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;01F us&nbsp;&nbsp;0FF del
+</td></tr><tr><td>&nbsp;</td><td>
+</td></tr>
+</table>
+<p>
+The default and supported byte counts for the conversion characters
+are as follows:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td> %_c, %_p, %_u, %c
+</td><td>
+One byte counts only.
+</td></tr>
+<tr valign="top"><td colspan="2">%d, %i, %o,
+%u, %X, %x
+</td></tr><tr><td>&nbsp;</td><td>
+Four byte default, one, two and four byte counts supported.
+</td></tr>
+<tr valign="top"><td colspan="2">%E, %e, %f,
+%G, %g
+</td></tr><tr><td>&nbsp;</td><td>
+Eight byte default, four byte counts supported.
+</td></tr>
+</table>
+<p>
+The amount of data interpreted by each format string is the sum of the
+data required by each format unit, which is the iteration count times the
+byte count, or the iteration count times the number of bytes required by
+the format if the byte count is not specified.
+<p>
+The input is manipulated in &#145;&#145;blocks&#146;&#146;, where a block is defined as the
+largest amount of data specified by any format string.
+Format strings interpreting less than an input block&#146;s worth of data,
+whose last format unit both interprets some number of bytes and does
+not have a specified iteration count, have the iteration count
+incremented until the entire input block has been processed or there
+is not enough data remaining in the block to satisfy the format string.
+<p>
+If, either as a result of user specification or hexdump modifying
+the iteration count as described above, an iteration count is
+greater than one, no trailing whitespace characters are output
+during the last iteration.
+<p>
+It is an error to specify a byte count as well as multiple conversion
+characters or strings unless all but one of the conversion characters
+or strings is
+<b> _a</b>
+or
+<b> _A</b>.
+<p>
+If, as a result of the specification of the
+-<b>n</b> 
+option or end-of-file being reached, input data only partially
+satisfies a format string, the input block is zero-padded sufficiently
+to display all available data (i.e. any format units overlapping the
+end of data will display some number of the zero bytes).
+<p>
+Further output by such format strings is replaced by an equivalent
+number of spaces.
+An equivalent number of spaces is defined as the number of spaces
+output by an
+<b> s</b>
+conversion character with the same field width
+and precision as the original conversion character or conversion
+string but with any
+"+",
+" ",
+"#"
+conversion flag characters
+removed, and referencing a NULL string.
+<p>
+If no format strings are specified, the default display is equivalent
+to specifying the
+-<b>x</b> 
+option.
+<p>
+<b>hexdump</b>
+exits 0 on success and &gt;0 if an error occurred.
+<h1 class="manpages">EXAMPLES</h1>
+Display the input in perusal format:
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+"%06.6_ao "  12/1 "%3_u "
+"&#92;t&#92;t" "%_p "
+"&#92;n"
+</pre></td></tr>
+</table>
+<p>
+Implement the -x option:
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+"%07.7_Ax&#92;n"
+"%07.7_ax  " 8/2 "%04x " "&#92;n"
+</pre></td></tr>
+</table>
+<h1 class="manpages">STANDARDS</h1>
+The
+<b>hexdump</b>
+utility is expected to be
+<i> -p1003.2</i>
+compatible.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion8b31.html?tutorial=unix_commands&amp;file=hexdump.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/hexdump.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:46 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

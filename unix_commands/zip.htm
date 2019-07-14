@@ -1,0 +1,1679 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/zip.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:41 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>zip - Unix, Linux Command</title>
+<meta name="Description" Content="zip - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>zip - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+zip, zipcloak, zipnote, zipsplit - package and compress (archive) files
+<h1 class="manpages">SYNOPSIS</h1>
+<b>zip</b> [<b>-aABcdDeEfFghjklLmoqrRSTuvVwXyz!@$</b>] [<b>-b path</b>] [<b>-n suffixes</b>] [<b>-t mmddyyyy</b>] [<b>-tt mmddyyyy</b>] <i>[ zipfile</i> <i>[ file1</i> <i>file2</i> ...<i>]]</i> [<b>-xi list</b>] <p>
+<b>zipcloak</b> [<b>-dhL</b>] [<b>-b path</b>] <i>zipfile</i> <p>
+<b>zipnote</b> [<b>-hwL</b>] [<b>-b path</b>] <i>zipfile</i> <p>
+<b>zipsplit</b> [<b>-hiLpst</b>] [<b>-n size</b>] [<b>-b path</b>] <i>zipfile</i> <h1 class="manpages">DESCRIPTION</h1>
+<i>zip</i> is a compression and file packaging utility for Unix, VMS, MSDOS,
+OS/2, Windows NT, Minix, Atari and Macintosh, Amiga and Acorn RISC OS.
+<p>
+It is analogous to a combination of the UNIX commands
+<b>tar</b>(1)
+and
+<b>compress</b>(1)
+and is compatible with PKZIP (Phil Katz&#146;s ZIP for MSDOS systems).
+<p>
+A companion program
+(<i>unzip</i>(1L)), unpacks
+<i>zip</i> archives.
+The
+<i>zip</i> and
+<b>unzip</b>(1L)
+programs can work with archives produced by PKZIP,
+and PKZIP and PKUNZIP can work with archives produced by
+<i>zip</i>. <i>zip</i> version 2.31 is compatible with PKZIP 2.04.
+Note that PKUNZIP 1.10 cannot extract files produced by PKZIP 2.04
+or
+<i>zip</i> 2.31. You must use PKUNZIP 2.04g or
+<i>unzip</i> 5.0p1 (or later versions) to extract them.
+<p>
+For a brief help on
+<i>zip</i> and
+<i>unzip,</i> run each without specifying any parameters on the command line.
+<p>
+The program is useful for packaging a set of files for distribution;
+for archiving files;
+and for saving disk space by temporarily
+compressing unused files or directories.
+<p>
+The
+<i>zip</i> program puts one or more compressed files into a single
+<i>zip</i> archive,
+along with information about the files
+(name, path, date, time of last modification, protection,
+and check information to verify file integrity).
+An entire directory structure can be packed into a
+<i>zip</i> archive with a single command.
+Compression ratios of 2:1 to 3:1 are common for text files.
+<i>zip</i> has one compression method (deflation) and can also store files without
+compression.
+<i>zip</i> automatically chooses the better of the two for each file to be compressed.
+<p>
+When given the name of an existing
+<i>zip</i> archive,
+<i>zip</i> will replace identically named entries in the
+<i>zip</i> archive or add entries for new names.
+For example,
+if
+<i>foo.zip</i> exists and contains
+<i>foo/file1</i> and
+<i>foo/file2</i>, and the directory
+<i>foo</i> contains the files
+<i>foo/file1</i> and
+<i>foo/file3</i>, then:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip -r foo foo</tt>
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+will replace
+<i>foo/file1</i> in
+<i>foo.zip</i> and add
+<i>foo/file3</i> to
+<i>foo.zip</i>. After this,
+<i>foo.zip</i> contains
+<i>foo/file1</i>, <i>foo/file2</i>, and
+<i>foo/file3</i>, with
+<i>foo/file2</i> unchanged from before.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+If the file list is specified as
+<b>-@</b>, [Not on MacOS]
+<i>zip</i> takes the list of input files from standard input.
+Under UNIX,
+this option can be used to powerful effect in conjunction with the
+<b>find</b>(1)
+command.
+For example,
+to archive all the C source files in the current directory and
+its subdirectories:
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>find . -name "*.[ch]" -print | zip source -@</tt>
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+(note that the pattern must be quoted to keep the shell from expanding it).
+<i>zip</i> will also accept a single dash ("-") as the zip file name, in which case it
+will write the zip file to standard output, allowing the output to be piped
+to another program. For example:
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip -r - . | dd of=/dev/nrst0 obs=16k</tt>
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+would write the zip output directly to a tape with the specified block size
+for the purpose of backing up the current directory.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+<i>zip</i> also accepts a single dash ("-") as the name of a file to be compressed, in
+which case it will read the file from standard input, allowing zip to take
+input from another program. For example:
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>tar cf - . | zip backup -</tt>
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+would compress the output of the tar command for the purpose of backing up
+the current directory. This generally produces better compression than
+the previous example using the
+<b>-r</b> option, because
+<i>zip</i> can take advantage of redundancy between files. The backup can be restored
+using the command
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>unzip -p backup | tar xf -</tt>
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+When no zip file name is given and stdout is not a terminal,
+<i>zip</i> acts as a filter, compressing standard input to standard output.
+For example,
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>tar cf - . | zip | dd of=/dev/nrst0 obs=16k</tt>
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+is equivalent to
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>tar cf - . | zip - - | dd of=/dev/nrst0 obs=16k</tt>
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+<i>zip</i> archives created in this manner can be extracted with the program
+<i>funzip</i> which is provided in the
+<i>unzip</i> package, or by
+<i>gunzip</i> which is provided in the
+<i>gzip</i> package. For example:
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>dd if=/dev/nrst0  ibs=16k | funzip | tar xvf -</tt>
+</td></tr>
+<!-- LP ends table -->
+</table>
+When changing an existing
+<i>zip</i> archive,
+<i>zip</i> will write a temporary file with the new contents,
+and only replace the old one when the process of creating the new version
+has been completed without error.
+<p>
+If the name of the
+<i>zip</i> archive does not contain an extension, the extension
+<i>.zip</i> is added. If the name already contains an extension other than
+<i>.zip</i> the existing extension is kept unchanged.
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-a</b> </td><td valign="bottom">
+[Systems using EBCDIC] Translate file to ASCII format.
+</td></tr>
+<tr valign="top"><td>
+<b>-A</b> </td><td valign="bottom">
+Adjust self-extracting executable archive.
+A self-extracting executable archive is created by prepending
+the SFX stub to an existing archive. The
+<b>-A</b> option tells
+<i>zip</i> to adjust the entry offsets stored
+in the archive to take into account this "preamble" data.
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+Note: self-extracting archives for the Amiga are a special case.
+At present, only the Amiga port of Zip is capable of adjusting
+or updating these without corrupting them.
+<b>-J</b> can be used to remove the SFX stub if other updates need to be made.
+</td></tr>
+<tr valign="top"><td>
+<b>-B</b> </td><td valign="bottom">
+[VM/CMS and MVS] force file to be read binary (default is text).
+</td></tr>
+<tr valign="top"><td>
+<b>-Bn</b> </td><td valign="bottom">
+[TANDEM] set Edit/Enscribe formatting options with n defined as
+bit  0: Don&#146;t add delimiter (Edit/Enscribe)
+bit 1: Use LF rather than CR/LF as delimiter (Edit/Enscribe)
+bit  2: Space fill record to maximum record length (Enscribe)
+bit  3: Trim trailing space (Enscribe)
+bit 8: Force 30K (Expand) large read for unstructured files
+</td></tr>
+<tr valign="top"><td>
+<b>-b path</b> </td><td valign="bottom">
+Use the specified
+<i>path</i> for the temporary
+<i>zip</i> archive. For example:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip -b /tmp stuff *</tt>
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+will put the temporary
+<i>zip</i> archive in the directory
+<i>/tmp</i>, copying over
+<i>stuff.zip</i> to the current directory when done. This option is only useful when
+updating an existing archive, and the file system containing this
+old archive does not have enough space to hold both old and new archives
+at the same time.
+</td></tr>
+<tr valign="top"><td>
+<b>-c</b> </td><td valign="bottom">
+Add one-line comments for each file.
+File operations (adding, updating) are done first,
+and the user is then prompted for a one-line comment for each file.
+Enter the comment followed by return, or just return for no comment.
+</td></tr>
+<tr valign="top"><td>
+<b>-d</b> </td><td valign="bottom">
+Remove (delete) entries from a
+<i>zip</i> archive.
+For example:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip -d foo foo/tom/junk foo/harry/\* \*.o</tt>
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+will remove the entry
+<i>foo/tom/junk</i>, all of the files that start with
+<i>foo/harry/</i>, and all of the files that end with
+<i>&#46;o</i> (in any path).
+Note that shell pathname expansion has been inhibited with backslashes,
+so that
+<i>zip</i> can see the asterisks,
+enabling
+<i>zip</i> to match on the contents of the
+<i>zip</i> archive instead of the contents of the current directory.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+Under systems where the shell does not expand wildcards, such as MSDOS,
+the backslashes are not needed.  The above would then be
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip -d foo foo/tom/junk foo/harry/* *.o</tt>
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+Under MSDOS,
+<b>-d</b> is case sensitive when it matches names in the
+<i>zip</i> archive.
+This requires that file names be entered in upper case if they were
+zipped by PKZIP on an MSDOS system.
+</td></tr>
+<tr valign="top"><td>
+<b>-df</b> </td><td valign="bottom">
+[MacOS] Include only data-fork of files zipped into the archive.
+Good for exporting files to foreign operating-systems.
+Resource-forks will be ignored at all.
+</td></tr>
+<tr valign="top"><td>
+<b>-D</b> </td><td valign="bottom">
+Do not create entries in the
+<i>zip</i> archive for directories.  Directory entries are created by default so that
+their attributes can be saved in the zip archive.
+The environment variable ZIPOPT can be used to change the default options. For
+example under Unix with sh:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+ZIPOPT="-D"; export ZIPOPT
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+(The variable ZIPOPT can be used for any option except
+<b>-i</b> and
+<b>-x</b> and can include several options.) The option
+<b>-D</b> is a shorthand
+for
+<b>-x</b> "*/" but the latter cannot be set as default in the ZIPOPT environment
+variable.
+</td></tr>
+<tr valign="top"><td>
+<b>-e</b> </td><td valign="bottom">
+Encrypt the contents of the
+<i>zip</i> archive using a password which is entered on the terminal in response
+to a prompt
+(this will not be echoed; if standard error is not a tty,
+<i>zip</i> will exit with an error).
+The password prompt is repeated to save the user from typing errors.
+</td></tr>
+<tr valign="top"><td>
+<b>-E</b> </td><td valign="bottom">
+[OS/2] Use the .LONGNAME Extended Attribute (if found) as filename.
+</td></tr>
+<tr valign="top"><td>
+<b>-f</b> </td><td valign="bottom">
+Replace (freshen) an existing entry in the
+<i>zip</i> archive only if it has been modified more recently than the
+version already in the
+<i>zip</i> archive;
+unlike the update option
+(<b>-u</b>) this will not add files that are not already in the
+<i>zip</i> archive.
+For example:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip -f foo</tt>
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+This command should be run from the same directory from which the original
+<i>zip</i> command was run,
+since paths stored in
+<i>zip</i> archives are always relative.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+Note that the timezone environment variable TZ should be set according to
+the local timezone in order for the
+<b>-f</b> ,
+<b>-u</b> and
+<b>-o</b> options to work correctly.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+The reasons behind this are somewhat subtle but have to do with the differences
+between the Unix-format file times (always in GMT) and most of the other
+operating systems (always local time) and the necessity to compare the two.
+A typical TZ value is &#145;&#145;MET-1MEST&#146;&#146; (Middle European time with automatic
+adjustment for &#145;&#145;summertime&#146;&#146; or Daylight Savings Time).
+</td></tr>
+<tr valign="top"><td>
+<b>-F</b> </td><td valign="bottom">
+Fix the
+<i>zip</i> archive. This option can be used if some portions of the archive
+are missing. It is not guaranteed to work, so you MUST make a backup
+of the original archive first.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+When doubled as in
+<b>-FF</b> the compressed sizes given inside the damaged archive are not trusted
+and zip scans for special signatures to identify the limits between
+the archive members. The single
+<b>-F</b> is more reliable if the archive is not too much damaged, for example
+if it has only been truncated, so try this option first.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+Neither option will recover archives that have been incorrectly
+transferred in ascii mode instead of binary. After the repair, the
+<b>-t</b> option of
+<i>unzip</i> may show that some files have a bad CRC. Such files cannot be recovered;
+you can remove them from the archive using the
+<b>-d</b> option of
+<i>zip.</i> </td></tr>
+<tr valign="top"><td>
+<b>-g</b> </td><td valign="bottom">
+Grow (append to) the specified
+<i>zip</i> archive, instead of creating a new one. If this operation fails,
+<i>zip</i> attempts to restore the archive to its original state. If the restoration
+fails, the archive might become corrupted. This option is ignored when
+there&#146;s no existing archive or when at least one archive member must be
+updated or deleted.
+</td></tr>
+<tr valign="top"><td>
+<b>-h</b> </td><td valign="bottom">
+Display the
+<i>zip</i> help information (this also appears if
+<i>zip</i> is run with no arguments).
+</td></tr>
+<tr valign="top"><td>
+<b>-i files</b> </td><td valign="bottom">
+Include only the specified files, as in:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip -r foo . -i \*.c</tt>
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+which will include only the files that end in
+<i></i>.c in the current directory and its subdirectories. (Note for PKZIP
+users: the equivalent command is
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>pkzip -rP foo *.c</tt>
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+PKZIP does not allow recursion in directories other than the current one.)
+The backslash avoids the shell filename substitution, so that the
+name matching is performed by
+<i>zip</i> at all directory levels.  Not escaping wildcards on shells that do
+wildcard substitution before zip gets the command line may seem to
+work but files in subdirectories matching the pattern will never be
+checked and so not matched.  For shells, such as Win32 command
+prompts, that do not replace file patterns containing wildcards
+with the respective file names,
+<i>zip</i> will do the recursion and escaping the wildcards is not needed.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+Also possible:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip -r foo  . <a href="mailto:-i@include.lst">-i@include.lst</a></tt>
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+which will only include the files in the current directory and its
+subdirectories that match the patterns in the file include.lst.
+</td></tr>
+<tr valign="top"><td>
+<b>-I</b> </td><td valign="bottom">
+[Acorn RISC OS] Don&#146;t scan through Image files.  When used,
+<i>zip</i> will not
+consider Image files (eg. DOS partitions or Spark archives when SparkFS
+is loaded) as directories but will store them as single files.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+For example, if you have SparkFS loaded, zipping a Spark archive will result
+in a zipfile containing a directory (and its content) while using the &#146;I&#146;
+option will result in a zipfile containing a Spark archive. Obviously this
+second case will also be obtained (without the &#146;I&#146; option) if SparkFS isn&#146;t
+loaded.
+</td></tr>
+<tr valign="top"><td>
+<b>-j</b> </td><td valign="bottom">
+Store just the name of a saved file (junk the path), and do not store
+directory names. By default,
+<i>zip</i> will store the full path (relative to the current path).
+</td></tr>
+<tr valign="top"><td>
+<b>-jj</b> </td><td valign="bottom">
+[MacOS] record Fullpath (+ Volname). The complete path including
+volume will be stored. By default the relative path will be stored.
+</td></tr>
+<tr valign="top"><td>
+<b>-J</b> </td><td valign="bottom">
+Strip any prepended data (e.g. a SFX stub) from the archive.
+</td></tr>
+<tr valign="top"><td>
+<b>-k</b> </td><td valign="bottom">
+Attempt to convert the names and paths to conform to MSDOS,
+store only the MSDOS attribute (just the user write attribute from UNIX),
+and mark the entry as made under MSDOS (even though it was not);
+for compatibility with PKUNZIP under MSDOS which cannot handle certain
+names such as those with two dots.
+</td></tr>
+<tr valign="top"><td>
+<b>-l</b> </td><td valign="bottom">
+Translate the Unix end-of-line character LF into the
+MSDOS convention CR LF. This option should not be used on binary files.
+This option can be used on Unix if the zip file is intended for PKUNZIP
+under MSDOS. If the input files already contain CR LF, this option adds
+an extra CR. This ensures that
+<i>unzip -a</i> on Unix will get back an exact copy of the original file,
+to undo the effect of
+<i>zip -l.</i> See the note on binary detection for
+<b>-ll</b> below.
+</td></tr>
+<tr valign="top"><td>
+<b>-ll</b> </td><td valign="bottom">
+Translate the MSDOS end-of-line CR LF into Unix LF.
+This option should not be used on binary files and a warning will be
+issued when a file is converted that later is detected to be binary.
+This option can be used on MSDOS if the zip file is intended for unzip
+under Unix.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+In Zip 2.31 binary detection has been changed from a simple percentage
+of binary characters being considered binary to a more selective method
+that should consider files in many character sets, including <i>UTF-8</i>,
+that only include text characters in that character set to be text.
+This allows
+<i>unzip -a</i> to convert these files.
+</td></tr>
+<tr valign="top"><td>
+<b>-L</b> </td><td valign="bottom">
+Display the
+<i>zip</i> license.
+</td></tr>
+<tr valign="top"><td>
+<b>-m</b> </td><td valign="bottom">
+Move the specified files into the
+<i>zip</i> archive; actually,
+this deletes the target directories/files after making the specified
+<i>zip</i> archive. If a directory becomes empty after removal of the files, the
+directory is also removed. No deletions are done until
+<i>zip</i> has created the archive without error.
+This is useful for conserving disk space,
+but is potentially dangerous so it is recommended to use it in
+combination with
+<b>-T</b> to test the archive before removing all input files.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-n suffixes</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Do not attempt to compress files named with the given
+<i>suffixes.</i> Such files are simply stored (0% compression) in the output zip file,
+so that
+<i>zip</i> doesn&#146;t waste its time trying to compress them.
+The suffixes are separated by
+either colons or semicolons.  For example:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip -rn .Z:.zip:.tiff:.gif:.snd  foo foo</tt>
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+will copy everything from
+<i>foo</i> into
+<i>foo.zip</i>, but will store any files that end in
+<i>.Z</i>, <i>.zip</i>, <i>.tiff</i>, <i>.gif</i>, or
+<i>.snd</i> without trying to compress them
+(image and sound files often have their own specialized compression methods).
+By default,
+<i>zip</i> does not compress files with extensions in the list
+<i>.Z:.zip:.zoo:.arc:.lzh:.arj.</i> Such files are stored directly in the output archive.
+The environment variable ZIPOPT can be used to change the default options. For
+example under Unix with csh:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>setenv ZIPOPT "-n .gif:.zip"</tt>
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+To attempt compression on all files, use:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip -n : foo</tt>
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+The maximum compression option
+<b>-9</b> also attempts compression on all files regardless of extension.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+On Acorn RISC OS systems the suffixes are actually filetypes (3 hex digit
+format). By default, zip does not compress files with filetypes in the list
+DDC:D96:68E (i.e. Archives, CFS files and PackDir files).
+</td></tr>
+<tr valign="top"><td>
+<b>-N</b> </td><td valign="bottom">
+[Amiga, MacOS] Save Amiga or MacOS filenotes as zipfile comments. They can be
+restored by using the
+<b>-N</b> option of unzip. If
+<b>-c</b> is used also, you are prompted for comments only for those files that do not
+have filenotes.
+</td></tr>
+<tr valign="top"><td>
+<b>-o</b> </td><td valign="bottom">
+Set the "last modified" time of the
+<i>zip</i> archive to the latest (oldest) "last modified" time
+found among the entries in the
+<i>zip</i> archive.
+This can be used without any other operations, if desired.
+For example:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip -o foo</tt>
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+will change the last modified time of
+<i>foo.zip</i> to the latest time of the entries in
+<i>foo.zip</i>. </td></tr>
+<tr valign="top"><td colspan="2">
+<b>-P</b> <i>password</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+use <i>password</i> to encrypt zipfile entries (if any).  <b>THIS IS
+INSECURE!</b>  Many multi-user operating systems provide ways for any user to
+see the current command line of any other user; even on stand-alone systems
+there is always the threat of over-the-shoulder peeking.  Storing the plaintext
+password as part of a command line in an automated script is even worse.
+Whenever possible, use the non-echoing, interactive prompt to enter passwords.
+(And where security is truly important, use strong encryption such as Pretty
+Good Privacy instead of the relatively weak encryption provided by standard
+zipfile utilities.)
+</td></tr>
+<tr valign="top"><td>
+<b>-q</b> </td><td valign="bottom">
+Quiet mode;
+eliminate informational messages and comment prompts.
+(Useful, for example, in shell scripts and background tasks).
+</td></tr>
+<tr valign="top"><td>
+<b>-Qn</b> </td><td valign="bottom">
+[QDOS] store information about the file in the file header with n defined as
+bit  0: Don&#146;t add headers for any file
+bit  1: Add headers for all files
+bit  2: Don&#146;t wait for interactive key press on exit
+</td></tr>
+<tr valign="top"><td>
+<b>-r</b> </td><td valign="bottom">
+Travel the directory structure recursively;
+for example:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip -r foo foo</tt>
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+In this case, all the files and directories in
+<i>foo</i> are saved in a
+<i>zip</i> archive named
+<i>foo.zip</i>, including files with names starting with ".",
+since the recursion does not use the shell&#146;s file-name substitution mechanism.
+If you wish to include only a specific subset of the files in directory
+<i>foo</i> and its subdirectories, use the
+<b>-i</b> option to specify the pattern of files to be included.
+You should not use
+<b>-r</b> with the name ".*",
+since that matches ".."
+which will attempt to zip up the parent directory
+(probably not what was intended).
+</td></tr>
+<tr valign="top"><td>
+<b>-R</b> </td><td valign="bottom">
+Travel the directory structure recursively starting at the
+current directory;
+for example:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip -R foo &#146;*.c&#146;</tt>
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+In this case, all the files matching *.c in the tree starting at the
+current directory are stored into a
+<i>zip</i> archive named
+<i>foo.zip</i>. Note for PKZIP users: the equivalent command is
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>pkzip -rP foo *.c</tt>
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td>
+<b>-S</b> </td><td valign="bottom">
+[MSDOS, OS/2, WIN32 and ATARI] Include system and hidden files.
+[MacOS] Includes finder invisible files, which are ignored otherwise.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-t mmddyyyy</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Do not operate on files modified prior to the specified date,
+where
+<i>mm</i> is the month (0-12),
+<i>dd</i> is the day of the month (1-31),
+and
+<i>yyyy</i> is the year.
+The
+<i>ISO 8601</i> date format
+<i>yyyy-mm-dd</i> is also accepted.
+For example:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip -rt 12071991 infamy foo</tt>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip -rt 1991-12-07 infamy foo</tt>
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+will add all the files in
+<i>foo</i> and its subdirectories that were last modified on or after 7 December 1991,
+to the
+<i>zip</i> archive
+<i>infamy.zip</i>. </td></tr>
+<tr valign="top"><td colspan="2">
+<b>-tt mmddyyyy</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Do not operate on files modified after or at the specified date,
+where
+<i>mm</i> is the month (0-12),
+<i>dd</i> is the day of the month (1-31),
+and
+<i>yyyy</i> is the year.
+The
+<i>ISO 8601</i> date format
+<i>yyyy-mm-dd</i> is also accepted.
+For example:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip -rtt 11301995 infamy foo</tt>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip -rtt 1995-11-30 infamy foo</tt>
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+will add all the files in
+<i>foo</i> and its subdirectories that were last modified before the 30 November 1995,
+to the
+<i>zip</i> archive
+<i>infamy.zip</i>. </td></tr>
+<tr valign="top"><td>
+<b>-T</b> </td><td valign="bottom">
+Test the integrity of the new zip file. If the check fails, the old zip file
+is unchanged and (with the
+<b>-m</b> option) no input files are removed.
+</td></tr>
+<tr valign="top"><td>
+<b>-u</b> </td><td valign="bottom">
+Replace (update) an existing entry in the
+<i>zip</i> archive only if it has been modified more recently
+than the version already in the
+<i>zip</i> archive.
+For example:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip -u stuff *</tt>
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+will add any new files in the current directory,
+and update any files which have been modified since the
+<i>zip</i> archive
+<i>stuff.zip</i> was last created/modified (note that
+<i>zip</i> will not try to pack
+<i>stuff.zip</i> into itself when you do this).
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+Note that the
+<b>-u</b> option with no arguments acts like the
+<b>-f</b> (freshen) option.
+</td></tr>
+<tr valign="top"><td>
+<b>-v</b> </td><td valign="bottom">
+Verbose mode or print diagnostic version info.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+Normally, when applied to real operations, this option enables the display of a
+progress indicator during compression and requests verbose diagnostic
+info about zipfile structure oddities.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+When
+<b>-v</b> is the only command line argument, and either stdin or stdout is
+not redirected to a file,
+a diagnostic screen is printed. In addition to the help screen header
+with program name, version, and release date, some pointers to the Info-ZIP
+home and distribution sites are given. Then, it shows information about the
+target environment (compiler type and version, OS version, compilation date
+and the enabled optional features used to create the
+<i>zip</i> executable.
+</td></tr>
+<tr valign="top"><td>
+<b>-V</b> </td><td valign="bottom">
+[VMS] Save VMS file attributes and use portable form.
+<i>zip</i> archives created with this option are truncated at EOF but still may not be
+usable on other systems depending on the file types being zipped.
+</td></tr>
+<tr valign="top"><td>
+<b>-VV</b> </td><td valign="bottom">
+[VMS] Save VMS file attributes.
+<i>zip</i> archives created with this option include the entire file and should be able
+to recreate most VMS files on VMS systems but these archives will generally
+not be usable on other systems.
+</td></tr>
+<tr valign="top"><td>
+<b>-w</b> </td><td valign="bottom">
+[VMS] Append the version number of the files to the name,
+including multiple versions of files.  (default: use only
+the most recent version of a specified file).
+</td></tr>
+<tr valign="top"><td>
+<b>-x files</b> </td><td valign="bottom">
+Explicitly exclude the specified files, as in:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip -r foo foo -x \*.o</tt>
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+which will include the contents of
+<i>foo</i> in
+<i>foo.zip</i> while excluding all the files that end in <i>.o</i>.
+The backslash avoids the shell filename substitution, so that the
+name matching is performed by
+<i>zip</i> at all directory levels.  If you do not escape wildcards in patterns
+it may seem to work but files in subdirectories will not be checked
+for matches.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+Also possible:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip -r foo foo <a href="mailto:-x@exclude.lst">-x@exclude.lst</a></tt>
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+which will include the contents of
+<i>foo</i> in
+<i>foo.zip</i> while excluding all the files that match the patterns in the file exclude.lst
+(each file pattern on a separate line).
+</td></tr>
+<tr valign="top"><td>
+<b>-X</b> </td><td valign="bottom">
+Do not save extra file attributes (Extended Attributes on OS/2, uid/gid
+and file times on Unix).
+</td></tr>
+<tr valign="top"><td>
+<b>-y</b> </td><td valign="bottom">
+Store symbolic links as such in the
+<i>zip</i> archive,
+instead of compressing and storing the file referred to by the link
+(UNIX only).
+</td></tr>
+<tr valign="top"><td>
+<b>-z</b> </td><td valign="bottom">
+Prompt for a multi-line comment for the entire
+<i>zip</i> archive.
+The comment is ended by a line containing just a period,
+or an end of file condition (^D on UNIX, ^Z on MSDOS, OS/2, and VAX/VMS).
+The comment can be taken from a file:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip -z foo &lt; foowhat</tt>
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td>
+<b>-#</b> </td><td valign="bottom">
+Regulate the speed of compression using the specified digit
+<i>#</i>, where
+<b>-0</b> indicates no compression (store all files),
+<b>-1</b> indicates the fastest compression method (less compression)
+and
+<b>-9</b> indicates the slowest compression method (optimal compression, ignores
+the suffix list). The default compression level is
+<b>-6.</b> </td></tr>
+<tr valign="top"><td>
+<b>-!</b> </td><td valign="bottom">
+[WIN32] Use priviliges (if granted) to obtain all aspects of WinNT security.
+</td></tr>
+<tr valign="top"><td>
+<b>-@</b> </td><td valign="bottom">
+Take the list of input files from standard input. Only one filename per line.
+</td></tr>
+<tr valign="top"><td>
+<b>-$</b> </td><td valign="bottom">
+[MSDOS, OS/2, WIN32] Include the volume label for the drive holding
+the first file to be compressed.  If you want to include only the volume
+label or to force a specific drive, use the drive name as first file name,
+as in:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip -$ foo a: c:bar</tt>
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+</table>
+<h1 class="manpages">EXAMPLES</h1>
+The simplest example:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip stuff *</tt>
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+creates the archive
+<i>stuff.zip</i> (assuming it does not exist)
+and puts all the files in the current directory in it, in compressed form
+(the
+<i>&#46;zip</i> suffix is added automatically,
+unless that archive name given contains a dot already;
+this allows the explicit specification of other suffixes).
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Because of the way the shell does filename substitution,
+files starting with "." are not included;
+to include these as well:
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip stuff .* *</tt>
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+Even this will not include any subdirectories from the current directory.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+To zip up an entire directory, the command:
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip -r foo foo</tt>
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+creates the archive
+<i>foo.zip</i>, containing all the files and directories in the directory
+<i>foo</i> that is contained within the current directory.
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+You may want to make a
+<i>zip</i> archive that contains the files in
+<i>foo</i>, without recording the directory name,
+<i>foo</i>. You can use the
+<b>-j</b> option to leave off the paths,
+as in:
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip -j foo foo/*</tt>
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+If you are short on disk space,
+you might not have enough room to hold both the original directory
+and the corresponding compressed
+<i>zip</i> archive.
+In this case, you can create the archive in steps using the
+<b>-m</b> option.
+If
+<i>foo</i> contains the subdirectories
+<i>tom</i>, <i>dick</i>, and
+<i>harry</i>, you can:
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<tt>zip -rm foo foo/tom</tt>
+<!-- Need break --><br />
+<tt>zip -rm foo foo/dick</tt>
+<!-- Need break --><br />
+<tt>zip -rm foo foo/harry</tt>
+</td></tr>
+<!-- LP ends table -->
+</table>
+where the first command creates
+<i>foo.zip</i>, and the next two add to it.
+At the completion of each
+<i>zip</i> command,
+the last created archive is deleted,
+making room for the next
+<i>zip</i> command to function.
+<h1 class="manpages">PATTERN MATCHING</h1>
+This section applies only to UNIX, though the ?, *, and [] special
+characters are implemented on other systems including MSDOS and Win32.
+Watch this space for details on MSDOS and VMS operation.
+<p>
+The UNIX shells
+(<i>sh</i>(1) and
+<b>csh</b>(1))
+do filename substitution on command arguments.
+The special characters are:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>?</b> </td><td valign="bottom">
+match any single character
+</td></tr>
+<tr valign="top"><td>
+<b>*</b> </td><td valign="bottom">
+match any number of characters (including none)
+</td></tr>
+<tr valign="top"><td>
+<b>[]</b> </td><td valign="bottom">
+match any character in the range indicated within the brackets
+(example: [a-f], [0-9]).
+</td></tr>
+<!-- LP ends table -->
+</table>
+When these characters are encountered
+(without being escaped with a backslash or quotes),
+the shell will look for files relative to the current path
+that match the pattern,
+and replace the argument with a list of the names that matched.
+<p>
+The
+<i>zip</i> program can do the same matching on names that are in the
+<i>zip</i> archive being modified or,
+in the case of the
+<b>-x</b> (exclude) or
+<b>-i</b> (include) options, on the list of files to be operated on, by using
+backslashes or quotes to tell the shell not to do the name expansion.
+In general, when
+<i>zip</i> encounters a name in the list of files to do, it first looks for the name in
+the file system.  If it finds it, it then adds it to the list of files to do.
+If it does not find it, it looks for the name in the
+<i>zip</i> archive being modified (if it exists), using the pattern matching characters
+described above, if present.  For each match, it will add that name to the
+list of files to be processed, unless this name matches one given
+with the
+<b>-x</b> option, or does not match any name given with the
+<b>-i</b> option.
+<p>
+The pattern matching includes the path,
+and so patterns like \*.o match names that end in ".o",
+no matter what the path prefix is.
+Note that the backslash must precede every special character (i.e. ?*[]),
+or the entire argument must be enclosed in double quotes ("").
+<p>
+In general, use backslash to make
+<i>zip</i> do the pattern matching with the
+<b>-f</b> (freshen) and
+<b>-d</b> (delete) options,
+and sometimes after the
+<b>-x</b> (exclude) option when used with an appropriate operation (add,
+<b>-u</b>, <b>-f</b>, or
+<b>-d</b>). <h1 class="manpages">ENVIRONMENT</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>ZIPOPT</b> </td><td valign="bottom">
+contains default options that will be used when running
+<i>zip</i> </td></tr>
+<tr valign="top"><td>
+<b>ZIP</b> </td><td valign="bottom">
+[Not on RISC OS and VMS] see ZIPOPT
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>Zip$Options</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+[RISC OS] see ZIPOPT
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>Zip$Exts</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+[RISC OS] contains extensions separated by a : that will cause
+native filenames with one of the specified extensions to
+be added to the zip file with basename and extension swapped.
+<i>zip</i> </td></tr>
+<tr valign="top"><td colspan="2">
+<b>ZIP_OPTS</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+[VMS] see ZIPOPT
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<a href="../shar.html">shar(1L)</a>,
+<a href="../tar.html">tar(1)</a>,
+<a href="../unzip.html">unzip(1L)</a>,
+<a href="../gzip-2.html">gzip(1L)</a>
+<h1 class="manpages">DIAGNOSTICS</h1>
+The exit status (or error level) approximates the exit codes defined by PKWARE
+and takes on the following values, except under VMS:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+0
+</td><td>
+normal; no errors or warnings detected.
+</td></tr>
+<tr valign="top"><td width=6%>
+2
+</td><td>
+unexpected end of zip file.
+</td></tr>
+<tr valign="top"><td width=6%>
+3
+</td><td>
+a generic error in the zipfile format was detected.  Processing may have
+completed successfully anyway; some broken zipfiles created by other
+archivers have simple work-arounds.
+</td></tr>
+<tr valign="top"><td width=6%>
+4
+</td><td>
+<i>zip</i> was unable to allocate memory for one or more buffers during
+program initialization.
+</td></tr>
+<tr valign="top"><td width=6%>
+5
+</td><td>
+a severe error in the zipfile format was detected.  Processing probably
+failed immediately.
+</td></tr>
+<tr valign="top"><td width=6%>
+6
+</td><td>
+entry too large to split (with <i>zipsplit</i>), read, or write
+</td></tr>
+<tr valign="top"><td width=6%>
+7
+</td><td>
+invalid comment format
+</td></tr>
+<tr valign="top"><td width=6%>
+8
+</td><td>
+<i>zip -T</i> failed or out of memory
+</td></tr>
+<tr valign="top"><td width=6%>
+9
+</td><td>
+the user aborted <i>zip</i> prematurely with control-C (or similar)
+</td></tr>
+<tr valign="top"><td width=6%>
+10
+</td><td>
+<i>zip</i> encountered an error while using a temp file
+</td></tr>
+<tr valign="top"><td width=6%>
+11
+</td><td>
+read or seek error
+</td></tr>
+<tr valign="top"><td width=6%>
+12
+</td><td>
+<i>zip</i> has nothing to do
+</td></tr>
+<tr valign="top"><td width=6%>
+13
+</td><td>
+missing or empty zip file
+</td></tr>
+<tr valign="top"><td width=6%>
+14
+</td><td>
+error writing to a file
+</td></tr>
+<tr valign="top"><td width=6%>
+15
+</td><td>
+<i>zip</i> was unable to create a file to write to
+</td></tr>
+<tr valign="top"><td width=6%>
+16
+</td><td>
+bad command line parameters
+</td></tr>
+<tr valign="top"><td width=6%>
+18
+</td><td>
+<i>zip</i> could not open a specified file to read
+</td></tr>
+</table>
+<p>
+VMS interprets standard Unix (or PC) return values as other, scarier-looking
+things, so <i>zip</i> instead maps them into VMS-style status codes.  The
+current mapping is as follows:   1 (success) for normal exit,
+<br />
+ and (0x7fff000? + 16*normal_zip_exit_status) for all errors, where the
+&#145;?&#146; is 0 (warning) for <i>zip</i> value 12, 2 (error) for the
+<i>zip</i> values 3, 6, 7, 9, 13, 16, 18,
+and 4 (fatal error) for the remaining ones.
+<h1 class="manpages">BUGS</h1>
+<i>zip</i> 2.31 is not compatible with PKUNZIP 1.10. Use
+<i>zip</i> 1.1 to produce
+<i>zip</i> files which can be extracted by PKUNZIP 1.10.
+<p>
+<i>zip</i> files produced by
+<i>zip</i> 2.31 must not be
+<i>updated</i> by
+<i>zip</i> 1.1 or PKZIP 1.10, if they contain
+encrypted members or if they have been produced in a pipe or on a non-seekable
+device. The old versions of
+<i>zip</i> or PKZIP would create an archive with an incorrect format.
+The old versions can list the contents of the zip file
+but cannot extract it anyway (because of the new compression algorithm).
+If you do not use encryption and use regular disk files, you do
+not have to care about this problem.
+<p>
+Under VMS,
+not all of the odd file formats are treated properly.
+Only stream-LF format
+<i>zip</i> files are expected to work with
+<i>zip</i>. Others can be converted using Rahul Dhesi&#146;s BILF program.
+This version of
+<i>zip</i> handles some of the conversion internally.
+When using Kermit to transfer zip files from Vax to MSDOS, type "set
+file type block" on the Vax.  When transfering from MSDOS to Vax, type
+"set file type fixed" on the Vax.  In both cases, type "set file type
+binary" on MSDOS.
+<p>
+Under VMS, zip hangs for file specification that uses DECnet syntax
+<i>foo::*.*.</i> <p>
+On OS/2, zip cannot match some names, such as those including an
+exclamation mark or a hash sign.  This is a bug in OS/2 itself: the
+32-bit DosFindFirst/Next don&#146;t find such names.  Other programs such
+as GNU tar are also affected by this bug.
+<p>
+Under OS/2, the amount of Extended Attributes displayed by DIR is (for
+compatibility) the amount returned by the 16-bit version of
+DosQueryPathInfo(). Otherwise OS/2 1.3 and 2.0 would report different
+EA sizes when DIRing a file.
+However, the structure layout returned by the 32-bit DosQueryPathInfo()
+is a bit different, it uses extra padding bytes and link pointers (it&#146;s
+a linked list) to have all fields on 4-byte boundaries for portability
+to future RISC OS/2 versions. Therefore the value reported by
+<i>zip</i> (which uses this 32-bit-mode size) differs from that reported by DIR.
+<i>zip</i> stores the 32-bit format for portability, even the 16-bit
+MS-C-compiled version running on OS/2 1.3, so even this one shows the
+32-bit-mode size.
+<p>
+Development of Zip 3.0 is underway.  See that source distribution for
+many new features and the latest bug fixes.
+<h1 class="manpages">AUTHORS</h1>
+Copyright (C) 1997-2005 Info-ZIP.
+<p>
+Copyright (C) 1990-1997 Mark Adler, Richard B. Wales, Jean-loup Gailly,
+Onno van der Linden, Kai Uwe Rommel, Igor Mandrichenko, John Bush and
+Paul Kienitz.
+Permission is granted to any individual or institution to use, copy, or
+redistribute this software so long as all of the original files are included,
+that it is not sold for profit, and that this copyright notice
+is retained.
+<p>
+LIKE ANYTHING ELSE THAT&#146;S FREE, ZIP AND ITS ASSOCIATED UTILITIES ARE
+PROVIDED AS IS AND COME WITH NO WARRANTY OF ANY KIND, EITHER EXPRESSED OR
+IMPLIED. IN NO EVENT WILL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY DAMAGES
+RESULTING FROM THE USE OF THIS SOFTWARE.
+<p>
+Please send bug reports and comments to:
+<i>zip-bugs</i> at
+<i>www.info-zip.org</i>. For bug reports, please include the version of
+<i>zip</i> (see <i>zip -h</i>),
+the make options used to compile it (see <i>zip -v</i>),
+the machine and operating system in use,
+and as much additional information as possible.
+<h1 class="manpages">ACKNOWLEDGEMENTS</h1>
+Thanks to R. P. Byrne for his
+<i>Shrink.Pas</i> program, which inspired this project,
+and from which the shrink algorithm was stolen;
+to Phil Katz for placing in the public domain the
+<i>zip</i> file format, compression format, and .ZIP filename extension, and for
+accepting minor changes to the file format; to Steve Burg for
+clarifications on the deflate format; to Haruhiko Okumura and Leonid
+Broukhis for providing some useful ideas for the compression
+algorithm; to Keith Petersen, Rich Wales, Hunter Goatley and Mark
+Adler for providing a mailing list and
+<i>ftp</i> site for the Info-ZIP group to use; and most importantly, to the
+Info-ZIP group itself (listed in the file
+<i>infozip.who</i>) without whose tireless testing and bug-fixing efforts a portable
+<i>zip</i> would not have been possible.
+Finally we should thank (blame) the first Info-ZIP moderator,
+David Kirschbaum,
+for getting us into this mess in the first place.
+The manual page was rewritten for UNIX by R. P. C. Rodgers.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion6915.html?tutorial=unix_commands&amp;file=zip.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/zip.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:41 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,540 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/smbpasswd.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>smbpasswd - Unix, Linux Command</title>
+<meta name="Description" Content="smbpasswd - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>smbpasswd - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- ignored unsupported tag .nh -->
+<!-- ignored unsupported tag .ad -->
+<h1 class="manpages">NAME</h1>
+smbpasswd - change a user&#146;s SMB password
+<h1 class="manpages">SYNOPSIS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+smbpasswd [-a] [-c &lt;config file&gt;] [-x] [-d] [-e] [-D debuglevel] [-n] [-r &lt;remote machine&gt;] [-R &lt;name resolve order&gt;] [-m] [-U username[%password]] [-h] [-s] [-w pass] [-W] [-i] [-L] [username]
+</td></tr>
+</table>
+<h1 class="manpages">DESCRIPTION</h1>
+<p>
+This tool is part of the
+<b>samba</b>(7)
+suite&#46;
+<p>
+The smbpasswd program has several different functions, depending on whether it is run by the
+<i>root</i>
+user or not&#46; When run as a normal user it allows the user to change the password used for their SMB sessions on any machines that store SMB passwords&#46;
+<p>
+By default (when run with no arguments) it will attempt to change the current user&#39;s SMB password on the local machine&#46; This is similar to the way the
+passwd(1)
+program works&#46;
+smbpasswd
+differs from how the passwd program works however in that it is not
+<i>setuid root</i>
+but works in a client-server mode and communicates with a locally running
+<b>smbd</b>(8)&#46; As a consequence in order for this to succeed the smbd daemon must be running on the local machine&#46; On a UNIX machine the encrypted SMB passwords are usually stored in the
+<b>smbpasswd</b>(5)
+file&#46;
+<p>
+When run by an ordinary user with no options, smbpasswd will prompt them for their old SMB password and then ask them for their new password twice, to ensure that the new password was typed correctly&#46; No passwords will be echoed on the screen whilst being typed&#46; If you have a blank SMB password (specified by the string "NO PASSWORD" in the smbpasswd file) then just press the &lt;Enter&gt; key when asked for your old password&#46;
+<p>
+smbpasswd can also be used by a normal user to change their SMB password on remote machines, such as Windows NT Primary Domain Controllers&#46; See the (<i>-r</i>) and
+<i>-U</i>
+options below&#46;
+<p>
+When run by root, smbpasswd allows new users to be added and deleted in the smbpasswd file, as well as allows changes to the attributes of the user in this file to be made&#46; When run by root,
+smbpasswd
+accesses the local smbpasswd file directly, thus enabling changes to be made even if smbd is not running&#46;
+<h1 class="manpages">OPTIONS</h1>
+<p>
+-a
+This option specifies that the username following should be added to the local smbpasswd file, with the new password typed (type &lt;Enter&gt; for the old password)&#46; This option is ignored if the username following already exists in the smbpasswd file and it is treated like a regular change password command&#46; Note that the default passdb backends require the user to already exist in the system password file (usually
+<i>/etc/passwd</i>), else the request to add the user will fail&#46;
+<p>
+This option is only available when running smbpasswd as root&#46;
+<p>
+-c
+This option can be used to specify the path and file name of the
+<i>smb&#46;conf</i>
+configuration file when it is important to use other than the default file and / or location&#46;
+<p>
+-x
+This option specifies that the username following should be deleted from the local smbpasswd file&#46;
+<p>
+This option is only available when running smbpasswd as root&#46;
+<p>
+-d
+This option specifies that the username following should be
+<b>disabled</b>
+in the local smbpasswd file&#46; This is done by writing a
+<b>&#39;D&#39;</b>
+flag into the account control space in the smbpasswd file&#46; Once this is done all attempts to authenticate via SMB using this username will fail&#46;
+<p>
+If the smbpasswd file is in the &#39;old&#39; format (pre-Samba 2&#46;0 format) there is no space in the user&#39;s password entry to write this information and the command will FAIL&#46; See
+<b>smbpasswd</b>(5)
+for details on the &#39;old&#39; and new password file formats&#46;
+<p>
+This option is only available when running smbpasswd as root&#46;
+<p>
+-e
+This option specifies that the username following should be
+<b>enabled</b>
+in the local smbpasswd file, if the account was previously disabled&#46; If the account was not disabled this option has no effect&#46; Once the account is enabled then the user will be able to authenticate via SMB once again&#46;
+<p>
+If the smbpasswd file is in the &#39;old&#39; format, then
+smbpasswd
+will FAIL to enable the account&#46; See
+<b>smbpasswd</b>(5)
+for details on the &#39;old&#39; and new password file formats&#46;
+<p>
+This option is only available when running smbpasswd as root&#46;
+<p>
+-D debuglevel
+<i>debuglevel</i>
+is an integer from 0 to 10&#46; The default value if this parameter is not specified is zero&#46;
+<p>
+The higher this value, the more detail will be logged to the log files about the activities of smbpasswd&#46; At level 0, only critical errors and serious warnings will be logged&#46;
+<p>
+Levels above 1 will generate considerable amounts of log data, and should only be used when investigating a problem&#46; Levels above 3 are designed for use only by developers and generate HUGE amounts of log data, most of which is extremely cryptic&#46;
+<p>
+-n
+This option specifies that the username following should have their password set to null (i&#46;e&#46; a blank password) in the local smbpasswd file&#46; This is done by writing the string "NO PASSWORD" as the first part of the first password stored in the smbpasswd file&#46;
+<p>
+Note that to allow users to logon to a Samba server once the password has been set to "NO PASSWORD" in the smbpasswd file the administrator must set the following parameter in the [global] section of the
+<i>smb&#46;conf</i>
+file :
+<p>
+null passwords = yes
+<p>
+This option is only available when running smbpasswd as root&#46;
+<p>
+-r remote machine name
+This option allows a user to specify what machine they wish to change their password on&#46; Without this parameter smbpasswd defaults to the local host&#46; The
+<i>remote machine name</i>
+is the NetBIOS name of the SMB/CIFS server to contact to attempt the password change&#46; This name is resolved into an IP address using the standard name resolution mechanism in all programs of the Samba suite&#46; See the
+<i>-R name resolve order</i>
+parameter for details on changing this resolving mechanism&#46;
+<p>
+The username whose password is changed is that of the current UNIX logged on user&#46; See the
+<i>-U username</i>
+parameter for details on changing the password for a different username&#46;
+<p>
+Note that if changing a Windows NT Domain password the remote machine specified must be the Primary Domain Controller for the domain (Backup Domain Controllers only have a read-only copy of the user account database and will not allow the password change)&#46;
+<p>
+<i>Note</i>
+that Windows 95/98 do not have a real password database so it is not possible to change passwords specifying a Win95/98 machine as remote machine target&#46;
+<p>
+-R name resolve order
+This option allows the user of smbpasswd to determine what name resolution services to use when looking up the NetBIOS name of the host being connected to&#46;
+<p>
+The options are :"lmhosts", "host", "wins" and "bcast"&#46; They cause names to be resolved as follows:
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>lmhosts</b>: Lookup an IP address in the Samba lmhosts file&#46; If the line in lmhosts has no name type attached to the NetBIOS name (see the
+<b>lmhosts</b>(5)
+for details) then any name type matches for lookup&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>host</b>: Do a standard host name to IP address resolution, using the system
+<i>/etc/hosts </i>, NIS, or DNS lookups&#46; This method of name resolution is operating system depended for instance on IRIX or Solaris this may be controlled by the
+<i>/etc/nsswitch&#46;conf</i>
+file)&#46; Note that this method is only used if the NetBIOS name type being queried is the 0x20 (server) name type, otherwise it is ignored&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>wins</b>: Query a name with the IP address listed in the
+<i>wins server</i>
+parameter&#46; If no WINS server has been specified this method will be ignored&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>bcast</b>: Do a broadcast on each of the known local interfaces listed in the
+<i>interfaces</i>
+parameter&#46; This is the least reliable of the name resolution methods as it depends on the target host being on a locally connected subnet&#46;
+<p>
+</td></tr>
+</table>
+The default order is
+lmhosts, host, wins, bcast
+and without this parameter or any entry in the
+<b>smb.conf</b>(5)
+file the name resolution methods will be attempted in this order&#46;
+<p>
+-m
+This option tells smbpasswd that the account being changed is a MACHINE account&#46; Currently this is used when Samba is being used as an NT Primary Domain Controller&#46;
+<p>
+This option is only available when running smbpasswd as root&#46;
+<p>
+-U username
+This option may only be used in conjunction with the
+<i>-r</i>
+option&#46; When changing a password on a remote machine it allows the user to specify the user name on that machine whose password will be changed&#46; It is present to allow users who have different user names on different systems to change these passwords&#46;
+<p>
+-h
+This option prints the help string for
+smbpasswd, selecting the correct one for running as root or as an ordinary user&#46;
+<p>
+-s
+This option causes smbpasswd to be silent (i&#46;e&#46; not issue prompts) and to read its old and new passwords from standard input, rather than from
+<i>/dev/tty</i>
+(like the
+passwd(1)
+program does)&#46; This option is to aid people writing scripts to drive smbpasswd
+<p>
+-w password
+This parameter is only available if Samba has been compiled with LDAP support&#46; The
+<i>-w</i>
+switch is used to specify the password to be used with the
+<i>ldap admin dn</i>&#46; Note that the password is stored in the
+<i>secrets&#46;tdb</i>
+and is keyed off of the admin&#39;s DN&#46; This means that if the value of
+<i>ldap admin dn</i>
+ever changes, the password will need to be manually updated as well&#46;
+<p>
+-W
+NOTE:
+This option is same as "-w" except that the password should be entered using stdin&#46;
+<p>
+This parameter is only available if Samba has been compiled with LDAP support&#46; The
+<i>-W</i>
+switch is used to specify the password to be used with the
+<i>ldap admin dn</i>&#46; Note that the password is stored in the
+<i>secrets&#46;tdb</i>
+and is keyed off of the admin&#39;s DN&#46; This means that if the value of
+<i>ldap admin dn</i>
+ever changes, the password will need to be manually updated as well&#46;
+<p>
+-i
+This option tells smbpasswd that the account being changed is an interdomain trust account&#46; Currently this is used when Samba is being used as an NT Primary Domain Controller&#46; The account contains the info about another trusted domain&#46;
+<p>
+This option is only available when running smbpasswd as root&#46;
+<p>
+-L
+Run in local mode&#46;
+<p>
+username
+This specifies the username for all of the
+<i>root only</i>
+options to operate on&#46; Only root can specify this parameter as only root has the permission needed to modify attributes directly in the local smbpasswd file&#46;
+<h1 class="manpages">NOTES</h1>
+<p>
+Since
+smbpasswd
+works in client-server mode communicating with a local smbd for a non-root user then the smbd daemon must be running for this to work&#46; A common problem is to add a restriction to the hosts that may access the
+smbd
+running on the local machine by specifying either
+<i>allow hosts</i>
+or
+<i>deny hosts</i>
+entry in the
+<b>smb.conf</b>(5)
+file and neglecting to allow "localhost" access to the smbd&#46;
+<p>
+In addition, the smbpasswd command is only useful if Samba has been set up to use encrypted passwords&#46;
+<h1 class="manpages">VERSION</h1>
+<p>
+This man page is correct for version 3&#46;0 of the Samba suite&#46;
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<b>smbpasswd</b>(5),
+<b>Samba</b>(7)&#46;
+<h1 class="manpages">AUTHOR</h1>
+<p>
+The original Samba software and related utilities were created by Andrew Tridgell&#46; Samba is now developed by the Samba Team as an Open Source project similar to the way the Linux kernel is developed&#46;
+<p>
+The original Samba man pages were written by Karl Auer&#46; The man page sources were converted to YODL format (another excellent piece of Open Source software, available at
+<a href="ftp://ftp/">ftp://ftp</a>&#46;icce&#46;rug&#46;nl/pub/unix/) and updated for the Samba 2&#46;0 release by Jeremy Allison&#46; The conversion to DocBook for Samba 2&#46;2 was done by Gerald Carter&#46; The conversion to DocBook XML 4&#46;2 for Samba 3&#46;0 was done by Alexander Bokovoy&#46;
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionfab7.html?tutorial=unix_commands&amp;file=smbpasswd.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/smbpasswd.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

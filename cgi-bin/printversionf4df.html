@@ -1,0 +1,219 @@
+<html>
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=perl&file=perl_loops.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>PERL Loops</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="Keywords" content="Perl, Programming, Language, Object Oriented Perl, Perl Variables, Scalars, Arrays, Hash, File I/O, Looping, Regular Expressions, Subroutines, Coding Standard, Writing Modules, Process Management, Socket, Examples, References, Special Variables, Syntax Overview, Advanced Perl, Tutorial, Tutorials, Operators, Built-in Functions, Quiz">
+<meta name="Description" content="Free tutorials and references for PERL Programming Common Gateway Interface (CGI) Database Interface (DBI) with PERL Object Oriented Perl and Perl Variables Scalars Arrays Hash File I/O Looping Regular Expressions Subroutines Coding Standard Writing Modules Process Management Socket Examples References Special Variables Syntax Overview Advanced Perl Tutorial Perl Operators Built-in Functions and Quiz">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base >
+<link rel="stylesheet" type="text/css" href="../print.css"/>
+</head>
+<body>
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+<h1>PERL Loops</h1>
+<a href="../perl/perl_conditions.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../perl/perl_operators.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<br />
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr><td valign="top">
+<p>Perl supports four main loop types:</p>
+<ol>
+<li><p>while</p></li>
+<li><p>for</p></li>
+<li><p>until</p></li>
+<li><p>foreach</p></li>
+</ol>
+<p>In each case, the execution of the loop continues until the evaluation of the supplied expression changes.</p>
+<ul>
+<li>In the case of a <b>while</b> loop execution continues while the expression evaluates to true.</li>
+<li>The until loop executes while the loop expression is false and only stops when the expression evaluates to a true value.</li>
+<li>The list forms of the <b>for</b> and <b>foreach</b> loop are special cases. They continue until the end of the supplied list is reached.</li>
+</ul>
+<h1>while Loops</h1>
+<p>The while loop has three forms:</p>
+<pre>
+while EXPRLABEL
+while (EXPR) BLOCKLABEL
+while (EXPR) BLOCK continue BLOCK
+</pre>
+<p>In first form, the expression is evaluated first, and then the statement to which it applies is evaluated. For example, the following line increases the value of $linecount as long as we continue to read lines from a given file:</p>
+<p>For example, the following line increases the value of $linecount as long as we continue to read lines from a given file:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+$linecount++ while (<FILE>);
+</pre></td></tr></table>
+<p>To create a loop that executes statements first, and then tests an expression, you need to combine while with a preceding <b>do {}</b> statement. For example:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+do
+{
+   $calc += ($fact*$ivalue);
+} while $calc &lt;100;
+</pre></td></tr></table>
+<p>In this case, the code block is executed first, and the conditional expression is only evaluated at the end of each loop iteration.</p>
+<p>The second two forms of the while loop repeatedly execute the code block as long as the result from the conditional expression is true. For example, you could rewrite the preceding example as:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+while($calc &lt; 100)
+{
+   $calc += ($fact*$ivalue);
+}
+</pre></td></tr></table>
+<P>The <b>continue</b> block is executed immediately after the main block and is primarily used as a method for executing a given statement (or statements) for each iteration, irrespective of how the current iteration terminated. It is somehow equivalent to for loop</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+{
+   my $i = 0;
+   while ($i &lt;100)
+   { ... }
+   continue
+   {
+      $i++;
+   }
+}
+
+This is equivalent to 
+for (my $i = 0; $i &lt; 100; $i++)
+{ ... }
+</pre></td></tr></table>
+<h1>for Loops</h1>
+<p>A for loop is basically a while loop with an additional expression used to reevaluate the original conditional expression. The basic format is:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+LABEL for (EXPR; EXPR; EXPR) BLOCK
+</pre></td></tr></table>
+<p>The first EXPR is the initialization - the value of the variables before the loop starts iterating. The second is the expression to be executed for each iteration of the loop as a test. The third expression is executed for each iteration and should be a modifier for the loop variables.</P>
+<p>Thus, you can write a loop to iterate 100 times like this:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+for ($i=0;$i&lt;100;$i++)
+{
+...
+}
+</pre></td></tr></table>
+<p>You can place multiple variables into the expressions using the standard list operator (the comma):</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+for ($i=0, $j=0;$i&lt;100;$i++,$j++)
+</pre></td></tr></table>
+<p>You can create an infinite loop like this:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+for(;;)
+{
+...
+}
+</pre></td></tr></table>
+<h1>until Loops</h1>
+<p>The inverse of the while loop is the until loop, which evaluates the conditional expression and reiterates over the loop only when the expression returns false.  Once the expression returns true, the loop ends.</p>
+<p>In the case of a do.until loop, the conditional expression is only evaluated at the end of the code block. In an until (EXPR) BLOCK loop, the expression is evaluated before the block executes. Using an until loop, you could rewrite the previous example as:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+do
+{
+  $calc += ($fact*$ivalue);
+} until $calc &gt;= 100;
+
+This is equivalent to 
+
+do
+{
+  $calc += ($fact*$ivalue);
+} while $calc &lt;100;
+</pre></td></tr></table>
+<h1>foreach Loops</h1>
+<p>The last loop type is the foreach loop, which has a format like this:</p>
+<pre>
+LABEL foreach VAR (LIST) BLOCK
+LABEL foreach VAR (LIST) BLOCK continue BLOCK
+</pre>
+<p>Using a for loop, you can iterate through the list using:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+for ($index=0;$index&lt;@months;$index++)
+{
+   print "$months[$index]\n";
+}
+</pre></td></tr></table>
+<p>This is messy, because you're manually selecting the individual elements from the array and using an additional variable, $index, to extract the information. Using a foreach loop, you can simplify the process:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+foreach (@months)
+{
+   print "$_\n";
+}
+</pre></td></tr></table>
+<p>The foreach loop can even be used to iterate through a hash, providing you return the list of values or keys from the hash as the list:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+foreach $key (keys %monthstonum)
+{
+   print "Month $monthstonum{$key} is $key\n";
+}
+</pre></td></tr></table>
+<h1>Labled Loops</h1>
+<p>Labels can be applied to any block, but they make the most sense on loops. By giving your loop a name, you allow the loop control keywords to specify which loop their operation should be applied to.  The format for a labeled loop is:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+LABEL: loop (EXPR) BLOCK ...
+</pre></td></tr></table>
+<p>For example, to label a for loop:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+ITERATE: for (my $i=1; $i&lt;100; $i++)
+{
+   print "Count: $i\n";
+}
+</pre></td></tr></table>
+<h1>Loop Control - next, last and redo</h1>
+<p>There are three loop control keywords: next, last, and redo.</p>
+<p>The <b>next</b> keyword skips the remainder of the code block, forcing the loop to proceed to the next value in the
+loop. For example:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+while (&lt;DATA&gt;)
+{
+   next if /^#/;
+}
+</pre></td></tr></table>
+<p>Above code would skip lines from the file if they started with a hash symbol. If there is a <b>continue</b> block, it is executed before execution proceeds to the next iteration of the loop.</p>
+<p>The <b>last</b> keyword ends the loop entirely, skipping the remaining statements in the code block, as well as dropping out of the loop. The last keyword is therefore identical to the break keyword in C and Shellscript. For example:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+while (<DATA>)
+{
+   last if ($found);
+}
+</pre></td></tr></table>
+<p>Would exit the loop if the value of $found was true, whether the end of the file had actually been reached or not. The <b>continue</b> block is not executed.</p>
+<p>The <b>redo</b> keyword reexecutes the code block without reevaluating the conditional statement for the loop. This skips the remainder of the code block and also the <b>continue</b> block before the main code block is reexecuted. For example, the following code would read the next line from a file if the current line terminates with a backslash:</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+while(&lt;DATA&gt;)
+{
+   if (s#\\$#)
+   {
+      $_ .= &lt;DATA&gt;;
+      redo;
+   }
+}
+</pre></td></tr></table>
+<p>Here is an example showing how labels are used in inner and outer loops</p>
+<table cellpadding=5 class="src"><tr><td><pre>
+OUTER:
+   while(&lt;DATA&gt;)
+   {
+      chomp;
+      @linearray=split;
+      foreach $word (@linearray)
+      {
+         next OUTER if ($word =~ /next/i)
+      }
+   }
+</pre></td></tr></table>
+<h1>goto Statement</h1>
+<P>There are three basic forms: <b>goto LABEL, goto EXPR,</b> and <b>goto &NAME</b>. In each case, execution is moved from the current location to the destination.</p>
+<p>In the case of goto <b>LABEL</b>, execution stops at the current point and resumes at the point of the label specified.</p>
+<p>The <b>goto &NAME</b> statement is more complex. It allows you to replace the currently executing subroutine with a call to the specified subroutine instead.</p>
+</td></tr></table>
+<br>
+<a href="../perl/perl_conditions.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../perl/perl_operators.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=perl&file=perl_loops.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

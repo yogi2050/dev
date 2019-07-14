@@ -1,0 +1,576 @@
+<html>
+
+<!-- Mirrored from www.tutorialspoint.com/perl/perl_database.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Apr 2013 19:47:29 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>Perl Database Management - DBI, DBD and OraPerl</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="Keywords" content="Perl, Programming, Language, Object Oriented Perl, Perl Variables, Scalars, Arrays, Hash, File I/O, Looping, Regular Expressions, Subroutines, Coding Standard, Writing Modules, Process Management, Socket, Examples, References, Special Variables, Syntax Overview, Advanced Perl, Tutorial, Tutorials, Operators, Built-in Functions, Quiz">
+<meta name="Description" content="Free tutorials and references for PERL Programming Common Gateway Interface (CGI) Database Interface (DBI) with PERL Object Oriented Perl and Perl Variables Scalars Arrays Hash File I/O Looping Regular Expressions Subroutines Coding Standard Writing Modules Process Management Socket Examples References Special Variables Syntax Overview Advanced Perl Tutorial Perl Operators Built-in Functions and Quiz">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base >
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<table border=0 class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index.htm"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="18" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br>
+&nbsp;&nbsp;<b>PERL Tutorial</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="index.htm">PERL HOME</a></li>
+<li><a class="left" target="_top" href="perl_introduction.htm" >PERL Introduction</a></li>
+<li><a class="left" target="_top" href="perl_syntax.htm" >Syntax Overview</a></li>
+<li><a class="left" target="_top" href="perl_variables.htm" >Perl Variables</a></li>
+<li><a class="left" target="_top" href="perl_scalars.htm" >Perl Scalars</a></li>
+<li><a class="left" target="_top" href="perl_arrays.htm" >Perl Arrays</a></li>
+<li><a class="left" target="_top" href="perl_hashes.htm" >Perl Hashes</a></li>
+<li><a class="left" target="_top" href="perl_special_variables.htm" >Special Variables</a></li>
+<li><a class="left" target="_top" href="perl_conditions.htm" >Perl IF..ELSE..</a></li>
+<li><a class="left" target="_top" href="perl_loops.htm" >Perl Loopings</a></li>
+<li><a class="left" target="_top" href="perl_operators.htm" >Perl Operators</a></li>
+<li><a class="left" target="_top" href="perl_files.htm" >Perl Files & I/O</a></li>
+<li><a class="left" target="_top" href="perl_regular_expression.htm" >Regular Expressions</a></li>
+<li><a class="left" target="_top" href="perl_subroutines.htm" >Perl Subroutines</a></li>
+<li><a class="left" target="_top" href="perl_format.htm" >Perl Formats</a></li>
+<li><a class="left" target="_top" href="perl_error_handeling.htm" >Perl Error Handeling</a></li>
+<li><a class="left" target="_top" href="perl_coding_standard.htm" >Perl Coding Standard</a></li>
+</ul>
+</div>
+<br>
+&nbsp;&nbsp;<b>Advanced PERL</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="perl_socket.htm" >Perl Sockets</a></li>
+<li><a class="left" target="_top" href="perl_modules.htm" >Writing Perl Modules</a></li>
+<li><a class="left" target="_top" href="perl_oo_perl.htm" >Object Oriented Perl</a></li>
+<li><a class="left" target="_top" href="perl_database.htm" ><b>Database Management</b></a></li>
+<li><a class="left" target="_top" href="perl_cgi.htm" >CGI Programming</a></li>
+</ul>
+</div>
+<br>
+&nbsp;&nbsp;<b>PERL References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="perl_function_references.htm" >Perl Functions</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.htm">Computer Glossary</b></a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br><br>
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index.htm">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.htm">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.htm">About TP</a>&nbsp;&nbsp;
+</td>
+<td  style="width:10px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/about_advertising.htm">Advertising</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle"  cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>Database Management in PERL - DBI</h1>
+<a href="perl_oo_perl.htm"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="perl_cgi.htm"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<hr />
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="top">
+<p>This session will teach you how to access Oracle Database and other databases using PERL.</p>
+<ul>
+<li><p>Oraperl Module to access Oracle. Check <a href="oraperl_manual.htm">Oraperl Mnual</a></li>
+<li><p>DBI module to access databases in generic way. We will discuss this module in this chapter.</p></li>
+</ul>
+<p>Starting from Perl 5 it has become very easy to write database applications using DBI. DBI stands for Database independent interface for Perl which means DBI provides an abstraction layer between the Perl code and the underlying database, allowing you to switch database implementations really easily.</p>
+<p>The DBI is a database access module for the Perl programming language. It defines a set of methods, variables, and conventions that provide a consistent database interface, independent of the actual database being used.</p>
+<h2>Architecture of a DBI Application</h2>
+<p>DBI is independent of any database available in backend. You can use DBI whether you are working with Oracle, MySQL or Informix etc. This is clear from the following architure diagram.</p>
+<img src="../images/dbiarch.gif" alt="DBI Architecture">
+<p>Here DBI is responsible of taking all SQL commands through the API, or Application Programming Interface, and to dispatch them to the appropriate driver for actual execution. And finally DBI is responsible of taking results from the driver and giving back it to the calling scritp.</p>
+<h2>Notation and Conventions</h2>
+<p>Throughout this chapter following notations will be used and it is recommended that you should also follow the same convention.</p>
+<table class="src"><tr><td><pre>
+  $dsn    Database source name
+  $dbh    Database handle object
+  $sth    Statement handle object
+  $h      Any of the handle types above ($dbh, $sth, or $drh)
+  $rc     General Return Code  (boolean: true=ok, false=error)
+  $rv     General Return Value (typically an integer)
+  @ary    List of values returned from the database.
+  $rows   Number of rows processed (if available, else -1)
+  $fh     A filehandle
+  undef   NULL values are represented by undefined values in Perl
+  \%attr  Reference to a hash of attribute values passed to methods
+</pre></td></tr></table>
+<h1>Database Connection</h1>
+<p>Assuming we are going to work with MySQL database. Before connecting to a database make sure followings:</p>
+<ul>
+<li><p>You have created a database TESTDB.</p></li>
+<li><p>You have created TEST_TABLE in TESTDB.</p></li>
+<li><p>This table is having fields FIRST_NAME, LAST_NAME, AGE, SEX and INCOME.</p></li>
+<li><p>User ID "testuser" and password "test123" are set to access TESTDB</p></li>
+<li><p>Perl Module DBI is installed properly on your machine.</p></li>
+<li><p>You have gone through MySQL tutorial to understand MySQL Basics.</p>
+</ul>
+<p>Following is the example of connecting with MySQL database "TESTDB"</p>
+<table class="src"><tr><td><pre>
+#!/usr/bin/perl
+
+use DBI
+use strict;
+
+  my $driver = "mysql"; 
+  my $database = "TESTDB";
+  my $dsn = "DBI:$driver:database=$database";
+  my $userid = "testuser";
+  my $password = "test123";
+  my $dbh = DBI->connect($dsn, $userid, $password ) 
+              or die $DBI::errstr;
+</pre></td></tr></table>
+<p>If a connection is established with the datasource then a Database Handle is returned and saved into $dbh for further use otherwise $dbh is set to <i>undef</i> value and $DBI::errstr returns an error string.</P>
+<h1>INSERT Operation</h1>
+<p>INSERT operation is required when you want to create your records into TEST_TABLE. So once our database connection is established, we are ready to create records into TEST_TABLE. Following is the procedure to create single record into TEST_TABLE. You can create many records in similar fashion.</p>
+<p>Record creation takes following steps</p>
+<ul>
+<li><p>Prearing SQL statement with INSERT statement. This will be done using <b>prepare()</b> API.</p></li>
+<li><p>Executing SQL query to select all the results from the database. This will be done using <b>execute()</b> API.</p></li>
+<li><p>Releasing Stattement handle. This will be done using <b>finish()</b> API</b>
+<li><p>If everything goes fine then <b>commit</b> this operation otherwise you can <b>rollback</b> complete transaction. Commit and Rollback are explained in next sections.</p></li>
+</ul>
+<table class="src"><tr><td><pre>
+ my $sth = $dbh->prepare("INSERT INTO TEST_TABLE
+                          (FIRST_NAME, LAST_NAME, SEX, AGE, INCOME )
+                           values
+                          ('john', 'poul', 'M', 30, 13000)");
+ $sth->execute() or die $DBI::errstr;
+ $sth->finish();
+ $dbh->commit or die $DBI::errstr;
+</pre></td></tr></table>
+<h2>Using Bind Values</h2>
+<p>There may be a case when  values to be entered is not given in advance. In such case binding values are used. A question mark is used in place of actual value and then actual values are passed through execute() API. Following is the example.
+</p>
+<table class="src"><tr><td><pre>
+ my $first_name = "john";
+ my $last_name = "poul";
+ my $sex = "M";
+ my $income = 13000;
+ my $age = 30;
+ my $sth = $dbh->prepare("INSERT INTO TEST_TABLE
+                          (FIRST_NAME, LAST_NAME, SEX, AGE, INCOME )
+                           values
+                          (?,?,?,?)");
+ $sth->execute($first_name,$last_name,$sex, $age, $income) 
+             or die $DBI::errstr;
+ $sth->finish();
+ $dbh->commit or die $DBI::errstr;
+</pre></td></tr></table>
+<h1>READ Operation</h1>
+<p>READ Operation on any databasse means to fetch some useful information from the database. So once our database connection is established, we are ready to make a query into this database. Following is the procedure to query all the records having AGE greater than 20. This will take four steps</p>
+<ul>
+<li><p>Prearing SQL query based on required conditions. This will be done using <b>prepare()</b> API.</p></li>
+<li><p>Executing SQL query to select all the results from the database. This will be done using <b>execute()</b> API.</p></li>
+<li><p>Fetching all the results one by one and printing those results.This will be done using <b>fetchrow_array()</b> API.</p></li>
+<li><p>Releasing Stattement handle. This will be done using <b>finish()</b> API</b>
+</ul>
+<table class="src"><tr><td><pre>
+  my $sth = $dbh->prepare("SELECT FIRST_NAME, LAST_NAME
+                           FROM TEST_TABLE 
+                           WHERE AGE > 20");
+  $sth->execute() or die $DBI::errstr;
+  print "Number of rows found :" + $sth->rows;
+  while (my @row = $sth->fetchrow_array()) {
+     my ($first_name, $last_name ) = @row;
+     print "First Name = $first_name, Last Name = $last_name\n";
+  }
+  $sth->finish();
+</pre></td></tr></table>
+<h2>Using Bind Values</h2>
+<p>There may be a case when condition is not given in advance. In such case binding values are used. A question mark is used in place of actual value and then actual value is passed through <b>execute()</b> API. Following is the example.</p>
+<table class="src"><tr><td><pre>
+  $age = 20;
+  my $sth = $dbh->prepare("SELECT FIRST_NAME, LAST_NAME
+                           FROM TEST_TABLE
+                           WHERE AGE > <b>?</b>");
+  $sth->execute( $age ) or die $DBI::errstr;
+  print "Number of rows found :" + $sth->rows;
+  while (my @row = $sth->fetchrow_array()) {
+     my ($first_name, $last_name ) = @row;
+     print "First Name = $first_name, Last Name = $last_name\n";
+  }
+  $sth->finish();
+</pre></td></tr></table>
+<h1>UPDATE Operation</h1>
+<p>UPDATE Operation on any databasse means to update one or more records already available in the database. Following is the procedure to update all the records having SEX as 'M'. Here we will increase AGE of all the males by one year. This will take three steps</p>
+<ul>
+<li><p>Prearing SQL query based on required conditions. This will be done using <b>prepare()</b> API.</p></li>
+<li><p>Executing SQL query to select all the results from the database. This will be done using <b>execute()</b> API.</p></li>
+<li><p>Releasing Stattement handle. This will be done using <b>finish()</b> API</b>
+<li><p>If everything goes fine then <b>commit</b> this operation otherwise you can <b>rollback</b> complete transaction. See next section for commit and rollback APIs.</p>
+</ul>
+<table class="src"><tr><td><pre>
+  my $sth = $dbh->prepare("UPDATE TEST_TABLE
+                           SET   AGE = AGE + 1 
+                           WHERE SEX = 'M'");
+  $sth->execute() or die $DBI::errstr;
+  print "Number of rows updated :" + $sth->rows;
+  $sth->finish();
+  $dbh->commit or die $DBI::errstr;
+</pre></td></tr></table>
+<h2>Using Bind Values</h2>
+<p>There may be a case when condition is not given in advance. In such case binding values are used. A question mark is used in place of actual value and then actual value is passed through <b>execute()</b> API. Following is the example.</p>
+<table class="src"><tr><td><pre>
+  $sex = 'M';
+  my $sth = $dbh->prepare("UPDATE TEST_TABLE
+                           SET   AGE = AGE + 1
+                           WHERE SEX = <b>?</b>");
+  $sth->execute('$sex') or die $DBI::errstr;
+  print "Number of rows updated :" + $sth->rows;
+  $sth->finish();
+  $dbh->commit or die $DBI::errstr;
+</pre></td></tr></table>
+<p>In some case you would like to set a value which is not given in advance so you can use binding value as follows. In this example income of all males will be set to 10000.</p>
+<table class="src"><tr><td><pre>
+  $sex = 'M';
+  $income = 10000;
+  my $sth = $dbh->prepare("UPDATE TEST_TABLE
+                           SET   INCOME = ?
+                           WHERE SEX = <b>?</b>");
+  $sth->execute( $income, '$sex') or die $DBI::errstr;
+  print "Number of rows updated :" + $sth->rows;
+  $sth->finish();
+</pre></td></tr></table>
+<h1>DELETE Operation</h1>
+<p>DELETE operation is required when you want to delete some records from your database. Following is the  procedure to delete all the records  from TEST_TABLE where AGE is equal to 30. This operation will take following steps.</p>
+<ul>
+<li><p>Prearing SQL query based on required conditions. This will be done using <b>prepare()</b> API.</p></li>
+<li><p>Executing SQL query to delete required records from the database. This will be done using <b>execute()</b> API.</p></li>
+<li><p>Releasing Stattement handle. This will be done using <b>finish()</b> API</b>
+<li><p>If everything goes fine then <b>commit</b> this operation otherwise you can <b>rollback</b> complete transaction.</p>
+</ul>
+<table class="src"><tr><td><pre>
+  $age = 30;
+  my $sth = $dbh->prepare("DELETE FROM TEST_TABLE
+                           WHERE AGE = <b>?</b>");
+  $sth->execute( $age ) or die $DBI::errstr;
+  print "Number of rows deleted :" + $sth->rows;
+  $sth->finish();
+  $dbh->commit or die $DBI::errstr;
+</pre></td></tr></table>
+<h2>Using <b>do</b> Statement</h2>
+<p>If you're doing an UPDATE, INSERT, or DELETE there is no data that comes back from the database, so there is a short cut to perform this operation. You can use <b>do</b> statement to execute any of the command as follows.</p>
+<table class="src"><tr><td><pre>
+$dbh->do('DELETE FROM TEST_TABLE WHERE age =30');
+</pre></td></tr></table>
+<p><b>do</b> returns a true value if it succeeded, and a false value if it failed. Actually, if it succeeds it returns the number of affected rows. In the example it would return the number of rows that were actually deleted.</p>
+<h1>COMMIT Operation</h1>
+</p>Commit is the operation which gives a green signal to database to finalize the changes and after this operation no change can be reverted back.</p>
+<p>Here is a simple example to call <b>commit</b> API.</p>
+<table class="src"><tr><td><pre>
+$dbh->commit or die $dbh->errstr;
+</pre></td></tr></table>
+<h1>ROLLBACK Operation</h1>
+<p>If you are not satisfied with all the changes and you want to revert back those changes then use <b>rollback</b> API.</p>
+<p>Here is a simple example to call <b>rollback</b> API.</p>
+<table class="src"><tr><td><pre>
+$dbh->rollback or die $dbh->errstr;
+</pre></td></tr></table>
+<h1>Begin Transaction</h1>
+<p>Many databases support transactions. This means that you can make a whole bunch of queries which would modify the databases, but none of the changes are actually made. Then at the end you issue the special SQL query COMMIT, and all the changes are made simultaneously. Alternatively, you can issue the query ROLLBACK, in which case all the queries are thrown away.</p>
+<p><b>begin_work</b> API enables transactions (by turning AutoCommit off) until the next call to commit or rollback. After the next commit or rollback, AutoCommit will automatically be turned on again.</p>
+<table class="src"><tr><td><pre>
+$rc  = $dbh->begin_work   or die $dbh->errstr;
+</pre></td></tr></table>
+<h1>AutoCommit Option</h1>
+<p>If your transactions are simple, you can save yourself the trouble of having to issue a lot of commits. When you make the connect call, you can specify an AutoCommit option which will perform an automatic commit operation after every successful query. Here's what it looks like:</p>
+<table class="src"><tr><td><pre>
+my $dbh = DBI->connect($dsn, $userid, $password,
+              {AutoCommit => 1}) 
+              or die $DBI::errstr;
+</pre></td></tr></table>
+<p>Here AutoCommit can take value 1 or 0.</p>
+<h1>Automatic Error Handling</h1>
+<p>When you make the connect call, you can specify a RaiseErrors option that handles errors for you automatically. When an error occurs, DBI will abort your program instead of returning a failure code. If all you want is to abort the program on an error, this can be convenient. Here's what it looks like:</p>
+<table class="src"><tr><td>
+<pre>my $dbh = DBI->connect($dsn, $userid, $password,
+              {RaiseError => 1})
+              or die $DBI::errstr;
+</pre></td></tr></table>
+<p>Here RaiseError can take value 1 or 0.</p>
+<h1>Disconnecting Database</h1>
+<p>To disconnect Database connection, use <b>disconnect</b> API.</p>
+<br>
+<table class="src"><tr><td><pre>
+$rc = $dbh->disconnect  or warn $dbh->errstr;
+</pre></td></tr></table>
+<p>The transaction behaviour of the disconnect method is, sadly, undefined. Some database systems (such as Oracle and Ingres) will automatically commit any outstanding changes, but others (such as Informix) will rollback any outstanding changes. Applications not using AutoCommit should explicitly call commit or rollback before calling disconnect.</p>
+<h1>Using NULL values</h1>
+<p>Undefined values, or undef, are used to indicate NULL values. You can insert and update columns with a NULL value as you would a non-NULL value. These examples insert and update the column age with a NULL value:</p>
+<table class="src"><tr><td><pre>
+$sth = $dbh->prepare(qq{
+       INSERT INTO TEST_TABLE (FIRST_NAME, AGE) VALUES (?, ?)
+       });
+ $sth->execute("Joe", undef);
+</pre></td></tr></table>
+<p>Here <b>qq{}</b> is used to return q quoted string to <b>prepare</b> API.</p>
+<p>However, care must be taken when trying to use NULL values in a WHERE clause. Consider:</p>
+<table class="src"><tr><td><pre>
+SELECT FIRST_NAME FROM TEST_TABLE WHERE age = ?
+</pre></td></tr></table>
+<p>Binding an undef (NULL) to the placeholder will not select rows which have a NULL age! At least for database engines that conform to the SQL standard. Refer to the SQL manual for your database engine or any SQL book for the reasons for this. To explicitly select NULLs you have to say "WHERE age IS NULL".</p>
+<p>A common issue is to have a code fragment handle a value that could be either defined or undef (non-NULL or NULL) at runtime. A simple technique is to prepare the appropriate statement as needed, and substitute the placeholder for non-NULL cases:</p>
+<table class="src"><tr><td><pre>
+$sql_clause = defined $age? "age = ?" : "age IS NULL";
+$sth = $dbh->prepare(qq{
+       SELECT FIRST_NAME FROM TEST_TABLE WHERE $sql_clause
+       });
+$sth->execute(defined $age ? $age : ());
+</pre></td></tr></table>
+<h1>Some other DBI functions</h1>
+<h2>available_drivers</h2>
+<table class="src"><tr><td><pre>
+@ary = DBI->available_drivers;
+@ary = DBI->available_drivers($quiet);
+</pre></td></tr></table>
+<p>Returns a list of all available drivers by searching for DBD::* modules through the directories in @INC. By default, a warning is given if some drivers are hidden by others of the same name in earlier directories. Passing a true value for $quiet will inhibit the warning.</p>
+<h2>installed_drivers</h2>
+<table class="src"><tr><td><pre>
+%drivers = DBI->installed_drivers();
+</pre></td></tr></table>
+<p>Returns a list of driver name and driver handle pairs for all drivers 'installed' (loaded) into the current process. The driver name does not include the 'DBD::' prefix.</p>
+<h2>data_sources</h2>
+<table class="src"><tr><td><pre>
+@ary = DBI->data_sources($driver);
+</pre></td></tr></table>
+<p>Returns a list of data sources (databases) available via the named driver. If $driver is empty or undef, then the value of the DBI_DRIVER environment variable is used.</p>
+<h2>quote</h2>
+<table class="src"><tr><td><pre>
+$sql = $dbh->quote($value);
+$sql = $dbh->quote($value, $data_type);
+</pre></td></tr></table>
+<p>Quote a string literal for use as a literal value in an SQL statement, by escaping any special characters (such as quotation marks) contained within the string and adding the required type of outer quotation marks.</p>
+<table class="src"><tr><td><pre>
+$sql = sprintf "SELECT foo FROM bar WHERE baz = %s",
+                $dbh->quote("Don't");
+</pre></td></tr></table>
+<p>For most database types, quote would return 'Don''t' (including the outer quotation marks). It is valid for the quote() method to return an SQL expression that evaluates to the desired string. For example:</p>
+<table class="src"><tr><td><pre>
+$quoted = $dbh->quote("one\ntwo\0three")
+
+may produce results which will be equivalent to
+
+CONCAT('one', CHAR(12), 'two', CHAR(0), 'three')
+</pre></td></tr></table>
+<h1>Methods Common to all Handles</h1>
+<h2>err</h2>
+<table class="src"><tr><td><pre>
+$rv = $h->err;
+or
+$rv = $DBI::err
+or
+$rv = $h->err
+</pre></td></tr></table>
+<p>Returns the native database engine error code from the last driver method called. The code is typically an integer but you should not assume that. This is equivalent to $DBI::err or $h->err.</p>
+<h2>errstr</h2>
+<table class="src"><tr><td><pre>
+$str = $h->errstr;
+or
+$str = $DBI::errstr
+or
+$str = $h->errstr
+</pre></td></tr></table>
+<p>Returns the native database engine error message from the last DBI method called. This has the same lifespan issues as the "err" method described above. This is equivalent to $DBI::errstr or $h->errstr.</p>
+<h2>rows</h2>
+<table class="src"><tr><td><pre>
+$rv = $h->rows;
+or
+$rv = $DBI::rows
+</pre></td></tr></table>
+<p>This returns the number of rows effected by previous SQL statement and equivalent to $DBI::rows.</p>
+<h2>trace</h2>
+<table class="src"><tr><td><pre>
+$h->trace($trace_settings);
+</pre></td></tr></table>
+<p>DBI sports an extremely useful ability to generate runtime tracing information of what it's doing,
+which can be a huge time-saver when trying to track down strange problems in your DBI programs. You can use different values to set trace level. These values varies from 0 to 4. The value 0 means disable trace and 4 means generate complete trace.</p>
+<h1>Interpolated Statements are Prohebited</h1>
+<p>It is highly recommended not to use interpolated statements as follows:</p>
+<table class="src"><tr><td><pre>
+while ($first_name = &lt;&gt;) {
+   my $sth = $dbh->prepare("SELECT * 
+                            FROM TEST_TABLE 
+                            WHERE FIRST_NAME = '$first_name'");
+   $sth->execute();
+   # and so on ...
+}
+</pre></td></tr></table>
+<p>There are following reasons to avoid interploated statements:</p>
+<ul>
+<li><p>First, prepare calls can take a long time. The database server has to compile the SQL and figure out how it is going to run the query. If you have many similar queries, that is a waste of time.</p></li>
+<li><p>Second, it will not work if $first_name contains a name like O'Brien or D'Fecto or some other name with an '. The ' has a special meaning in SQL, and the database will not understand when you ask it to prepare an SQL statement.</p></li>
+<li><p>Finally, if you're going to be constructing your query based on a user input then it's unsafe to simply interpolate the input directly into the query, because the user can construct a strange input in an attempt to trick your program into doing something it didn't expect. For example, suppose the user enters the following bizarre value for $input:<p>
+<table class="src"><tr><td><pre>
+x' or first_name = first_name or first_name = 'y
+</pre></td></tr></table>
+<p>Now our query has become something very surprising:</p>
+<table class="src"><tr><td><pre>
+SELECT * 
+FROM TEST_TABLE
+ WHERE first_name = 'x' 
+       or first_name = first_name or first_name = 'y'
+</pre></td></tr></table>
+<p>The part of this query that our sneaky user is interested in is the second or clause. This clause selects all the records for which first_name is equal to first_name; that is, all of them.</p>
+<p>Thus don't use interpolated statement instead use <b>bind value</b> to prepare dynamic SQL statement.</p>
+</td>
+</tr></table>
+<br>
+<hr />
+<a href="perl_oo_perl.htm"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="perl_cgi.htm"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion5824.html?tutorial=perl&amp;file=perl_database.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<hr />
+<br />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/perl/perl_database.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Apr 2013 19:47:31 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

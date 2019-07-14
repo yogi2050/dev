@@ -1,0 +1,679 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/dig.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>dig - Unix, Linux Command</title>
+<meta name="Description" Content="dig - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>dig - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- ignored unsupported tag .hy -->
+<!-- ignored unsupported tag .ad -->
+<!-- ignored unsupported tag .nh -->
+<!-- ignored unsupported tag .ad -->
+<h1 class="manpages">NAME</h1>
+dig - DNS lookup utility
+<h1 class="manpages">SYNOPSIS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>dig</b> [@server] [<b>-b </b><b></b><i>address</i>] [<b>-c </b><b></b><i>class</i>] [<b>-f </b><b></b><i>filename</i>] [<b>-k </b><b></b><i>filename</i>] [<b>-m</b>] [<b>-p </b><b></b><i>port#</i>] [<b>-t </b><b></b><i>type</i>] [<b>-x </b><b></b><i>addr</i>] [<b>-y </b><b></b><i>name:key</i>] [<b>-4</b>] [<b>-6</b>] [name] [type] [class] [queryopt...]
+<br />
+<b>dig</b> [<b>-h</b>]
+<br />
+<b>dig</b> [global-queryopt...] [query...]
+</td></tr>
+</table>
+<h1 class="manpages">DESCRIPTION</h1>
+<p>
+<b>dig</b>
+(domain information groper) is a flexible tool for interrogating DNS name servers. It performs DNS lookups and displays the answers that are returned from the name server(s) that were queried. Most DNS administrators use
+<b>dig</b>
+to troubleshoot DNS problems because of its flexibility, ease of use and clarity of output. Other lookup tools tend to have less functionality than
+<b>dig</b>.
+<p>
+Although
+<b>dig</b>
+is normally used with command-line arguments, it also has a batch mode of operation for reading lookup requests from a file. A brief summary of its command-line arguments and options is printed when the
+<b>-h</b>
+option is given. Unlike earlier versions, the BIND 9 implementation of
+<b>dig</b>
+allows multiple lookups to be issued from the command line.
+<p>
+Unless it is told to query a specific name server,
+<b>dig</b>
+will try each of the servers listed in
+<i>/etc/resolv.conf</i>.
+<p>
+When no command line arguments or options are given,
+<b>dig</b>
+will perform an NS query for "." (the root).
+<p>
+It is possible to set per-user defaults for
+<b>dig</b>
+via
+<i>${HOME}/.digrc</i>. This file is read and any options in it are applied before the command line arguments.
+<p>
+The IN and CH class names overlap with the IN and CH top level domains names. Either use the
+<b>-t</b>
+and
+<b>-c</b>
+options to specify the type and class, or use "IN." and "CH." when looking up these top level domains.
+<h1 class="manpages">SIMPLE USAGE</h1>
+<p>
+A typical invocation of
+<b>dig</b>
+looks like:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+ dig @server name type
+</pre></td></tr>
+</table>
+<p>
+where:
+<p>
+<b>server</b>
+is the name or IP address of the name server to query. This can be an IPv4 address in dotted-decimal notation or an IPv6 address in colon-delimited notation. When the supplied
+<i>server</i>
+argument is a hostname,
+<b>dig</b>
+resolves that name before querying that name server. If no
+<i>server</i>
+argument is provided,
+<b>dig</b>
+consults
+<i>/etc/resolv.conf</i>
+and queries the name servers listed there. The reply from the name server that responds is displayed.
+<p>
+<b>name</b>
+is the name of the resource record that is to be looked up.
+<p>
+<b>type</b>
+indicates what type of query is required &#151; ANY, A, MX, SIG, etc.
+<i>type</i>
+can be any valid query type. If no
+<i>type</i>
+argument is supplied,
+<b>dig</b>
+will perform a lookup for an A record.
+<h1 class="manpages">OPTIONS</h1>
+<p>
+The
+<b>-b</b>
+option sets the source IP address of the query to
+<i>address</i>. This must be a valid address on one of the host&#146;s network interfaces or "0.0.0.0" or "::". An optional port may be specified by appending "#&lt;port&gt;"
+<p>
+The default query class (IN for internet) is overridden by the
+<b>-c</b>
+option.
+<i>class</i>
+is any valid class, such as HS for Hesiod records or CH for Chaosnet records.
+<p>
+The
+<b>-f</b>
+option makes
+<b>dig </b>
+operate in batch mode by reading a list of lookup requests to process from the file
+<i>filename</i>. The file contains a number of queries, one per line. Each entry in the file should be organized in the same way they would be presented as queries to
+<b>dig</b>
+using the command-line interface.
+<p>
+The
+<b>-m</b>
+option enables memory usage debugging.
+<p>
+If a non-standard port number is to be queried, the
+<b>-p</b>
+option is used.
+<i>port#</i>
+is the port number that
+<b>dig</b>
+will send its queries instead of the standard DNS port number 53. This option would be used to test a name server that has been configured to listen for queries on a non-standard port number.
+<p>
+The
+<b>-4</b>
+option forces
+<b>dig</b>
+to only use IPv4 query transport. The
+<b>-6</b>
+option forces
+<b>dig</b>
+to only use IPv6 query transport.
+<p>
+The
+<b>-t</b>
+option sets the query type to
+<i>type</i>. It can be any valid query type which is supported in BIND 9. The default query type is "A", unless the
+<b>-x</b>
+option is supplied to indicate a reverse lookup. A zone transfer can be requested by specifying a type of AXFR. When an incremental zone transfer (IXFR) is required,
+<i>type</i>
+is set to
+ixfr=N. The incremental zone transfer will contain the changes made to the zone since the serial number in the zone&#146;s SOA record was
+<i>N</i>.
+<p>
+Reverse lookups &#151; mapping addresses to names &#151; are simplified by the
+<b>-x</b>
+option.
+<i>addr</i>
+is an IPv4 address in dotted-decimal notation, or a colon-delimited IPv6 address. When this option is used, there is no need to provide the
+<i>name</i>,
+<i>class</i>
+and
+<i>type</i>
+arguments.
+<b>dig</b>
+automatically performs a lookup for a name like
+11.12.13.10.in-addr.arpa
+and sets the query type and class to PTR and IN respectively. By default, IPv6 addresses are looked up using nibble format under the IP6.ARPA domain. To use the older RFC1886 method using the IP6.INT domain specify the
+<b>-i</b>
+option. Bit string labels (RFC2874) are now experimental and are not attempted.
+<p>
+To sign the DNS queries sent by
+<b>dig</b>
+and their responses using transaction signatures (TSIG), specify a TSIG key file using the
+<b>-k</b>
+option. You can also specify the TSIG key itself on the command line using the
+<b>-y</b>
+option;
+<i>name</i>
+is the name of the TSIG key and
+<i>key</i>
+is the actual key. The key is a base-64 encoded string, typically generated by
+<b>dnssec-keygen</b>(8). Caution should be taken when using the
+<b>-y</b>
+option on multi-user systems as the key can be visible in the output from
+<b>ps</b>(1 )
+or in the shell&#146;s history file. When using TSIG authentication with
+<b>dig</b>, the name server that is queried needs to know the key and algorithm that is being used. In BIND, this is done by providing appropriate
+<b>key</b>
+and
+<b>server</b>
+statements in
+<i>named.conf</i>.
+<h1 class="manpages">QUERY OPTIONS</h1>
+<p>
+<b>dig</b>
+provides a number of query options which affect the way in which lookups are made and the results displayed. Some of these set or reset flag bits in the query header, some determine which sections of the answer get printed, and others determine the timeout and retry strategies.
+<p>
+Each query option is identified by a keyword preceded by a plus sign (+). Some keywords set or reset an option. These may be preceded by the string
+no
+to negate the meaning of that keyword. Other keywords assign values to options like the timeout interval. They have the form
+<b>+keyword=value</b>. The query options are:
+<p>
+<b>+[no]tcp</b>
+Use [do not use] TCP when querying name servers. The default behavior is to use UDP unless an AXFR or IXFR query is requested, in which case a TCP connection is used.
+<p>
+<b>+[no]vc</b>
+Use [do not use] TCP when querying name servers. This alternate syntax to
+<i>+[no]tcp</i>
+is provided for backwards compatibility. The "vc" stands for "virtual circuit".
+<p>
+<b>+[no]ignore</b>
+Ignore truncation in UDP responses instead of retrying with TCP. By default, TCP retries are performed.
+<p>
+<b>+domain=somename</b>
+Set the search list to contain the single domain
+<i>somename</i>, as if specified in a
+<b>domain</b>
+directive in
+<i>/etc/resolv.conf</i>, and enable search list processing as if the
+<i>+search</i>
+option were given.
+<p>
+<b>+[no]search</b>
+Use [do not use] the search list defined by the searchlist or domain directive in
+<i>resolv.conf</i>
+(if any). The search list is not used by default.
+<p>
+<b>+[no]defname</b>
+Deprecated, treated as a synonym for
+<i>+[no]search</i>
+<p>
+<b>+[no]aaonly</b>
+Sets the "aa" flag in the query.
+<p>
+<b>+[no]aaflag</b>
+A synonym for
+<i>+[no]aaonly</i>.
+<p>
+<b>+[no]adflag</b>
+Set [do not set] the AD (authentic data) bit in the query. The AD bit currently has a standard meaning only in responses, not in queries, but the ability to set the bit in the query is provided for completeness.
+<p>
+<b>+[no]cdflag</b>
+Set [do not set] the CD (checking disabled) bit in the query. This requests the server to not perform DNSSEC validation of responses.
+<p>
+<b>+[no]cl</b>
+Display [do not display] the CLASS when printing the record.
+<p>
+<b>+[no]ttlid</b>
+Display [do not display] the TTL when printing the record.
+<p>
+<b>+[no]recurse</b>
+Toggle the setting of the RD (recursion desired) bit in the query. This bit is set by default, which means
+<b>dig</b>
+normally sends recursive queries. Recursion is automatically disabled when the
+<i>+nssearch</i>
+or
+<i>+trace</i>
+query options are used.
+<p>
+<b>+[no]nssearch</b>
+When this option is set,
+<b>dig</b>
+attempts to find the authoritative name servers for the zone containing the name being looked up and display the SOA record that each name server has for the zone.
+<p>
+<b>+[no]trace</b>
+Toggle tracing of the delegation path from the root name servers for the name being looked up. Tracing is disabled by default. When tracing is enabled,
+<b>dig</b>
+makes iterative queries to resolve the name being looked up. It will follow referrals from the root servers, showing the answer from each server that was used to resolve the lookup.
+<p>
+<b>+[no]cmd</b>
+Toggles the printing of the initial comment in the output identifying the version of
+<b>dig</b>
+and the query options that have been applied. This comment is printed by default.
+<p>
+<b>+[no]short</b>
+Provide a terse answer. The default is to print the answer in a verbose form.
+<p>
+<b>+[no]identify</b>
+Show [or do not show] the IP address and port number that supplied the answer when the
+<i>+short</i>
+option is enabled. If short form answers are requested, the default is not to show the source address and port number of the server that provided the answer.
+<p>
+<b>+[no]comments</b>
+Toggle the display of comment lines in the output. The default is to print comments.
+<p>
+<b>+[no]stats</b>
+This query option toggles the printing of statistics: when the query was made, the size of the reply and so on. The default behavior is to print the query statistics.
+<p>
+<b>+[no]qr</b>
+Print [do not print] the query as it is sent. By default, the query is not printed.
+<p>
+<b>+[no]question</b>
+Print [do not print] the question section of a query when an answer is returned. The default is to print the question section as a comment.
+<p>
+<b>+[no]answer</b>
+Display [do not display] the answer section of a reply. The default is to display it.
+<p>
+<b>+[no]authority</b>
+Display [do not display] the authority section of a reply. The default is to display it.
+<p>
+<b>+[no]additional</b>
+Display [do not display] the additional section of a reply. The default is to display it.
+<p>
+<b>+[no]all</b>
+Set or clear all display flags.
+<p>
+<b>+time=T</b>
+Sets the timeout for a query to
+<i>T</i>
+seconds. The default timeout is 5 seconds. An attempt to set
+<i>T</i>
+to less than 1 will result in a query timeout of 1 second being applied.
+<p>
+<b>+tries=T</b>
+Sets the number of times to try UDP queries to server to
+<i>T</i>
+instead of the default, 3. If
+<i>T</i>
+is less than or equal to zero, the number of tries is silently rounded up to 1.
+<p>
+<b>+retry=T</b>
+Sets the number of times to retry UDP queries to server to
+<i>T</i>
+instead of the default, 2. Unlike
+<i>+tries</i>, this does not include the initial query.
+<p>
+<b>+ndots=D</b>
+Set the number of dots that have to appear in
+<i>name</i>
+to
+<i>D</i>
+for it to be considered absolute. The default value is that defined using the ndots statement in
+<i>/etc/resolv.conf</i>, or 1 if no ndots statement is present. Names with fewer dots are interpreted as relative names and will be searched for in the domains listed in the
+<b>search</b>
+or
+<b>domain</b>
+directive in
+<i>/etc/resolv.conf</i>.
+<p>
+<b>+bufsize=B</b>
+Set the UDP message buffer size advertised using EDNS0 to
+<i>B</i>
+bytes. The maximum and minimum sizes of this buffer are 65535 and 0 respectively. Values outside this range are rounded up or down appropriately.
+<p>
+<b>+[no]multiline</b>
+Print records like the SOA records in a verbose multi-line format with human-readable comments. The default is to print each record on a single line, to facilitate machine parsing of the
+<b>dig</b>
+output.
+<p>
+<b>+[no]fail</b>
+Do not try the next server if you receive a SERVFAIL. The default is to not try the next server which is the reverse of normal stub resolver behavior.
+<p>
+<b>+[no]besteffort</b>
+Attempt to display the contents of messages which are malformed. The default is to not display malformed answers.
+<p>
+<b>+[no]dnssec</b>
+Requests DNSSEC records be sent by setting the DNSSEC OK bit (DO) in the OPT record in the additional section of the query.
+<p>
+<b>+[no]sigchase</b>
+Chase DNSSEC signature chains. Requires dig be compiled with -DDIG_SIGCHASE.
+<p>
+<b>+trusted-key=####</b>
+Specifies a file containing trusted keys to be used with
+<b>+sigchase</b>. Each DNSKEY record must be on its own line.
+<p>
+If not specified
+<b>dig</b>
+will look for
+<i>/etc/trusted-key.key</i>
+then
+<i>trusted-key.key</i>
+in the current directory.
+<p>
+Requires dig be compiled with -DDIG_SIGCHASE.
+<p>
+<b>+[no]topdown</b>
+When chasing DNSSEC signature chains perform a top-down validation. Requires dig be compiled with -DDIG_SIGCHASE.
+<h1 class="manpages">MULTIPLE QUERIES</h1>
+<p>
+The BIND 9 implementation of
+<b>dig </b>
+supports specifying multiple queries on the command line (in addition to supporting the
+<b>-f</b>
+batch file option). Each of those queries can be supplied with its own set of flags, options and query options.
+<p>
+In this case, each
+<i>query</i>
+argument represent an individual query in the command-line syntax described above. Each consists of any of the standard options and flags, the name to be looked up, an optional query type and class and any query options that should be applied to that query.
+<p>
+A global set of query options, which should be applied to all queries, can also be supplied. These global query options must precede the first tuple of name, class, type, options, flags, and query options supplied on the command line. Any global query options (except the
+<b>+[no]cmd</b>
+option) can be overridden by a query-specific set of query options. For example:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+dig +qr www.isc.org any -x 127.0.0.1 isc.org ns +noqr
+</pre></td></tr>
+</table>
+<p>
+shows how
+<b>dig</b>
+could be used from the command line to make three lookups: an ANY query for
+www.isc.org, a reverse lookup of 127.0.0.1 and a query for the NS records of
+isc.org. A global query option of
+<i>+qr</i>
+is applied, so that
+<b>dig</b>
+shows the initial query it made for each lookup. The final query has a local query option of
+<i>+noqr</i>
+which means that
+<b>dig</b>
+will not print the initial query when it looks up the NS records for
+isc.org.
+<h1 class="manpages">FILES</h1>
+<p>
+<i>/etc/resolv.conf</i>
+<p>
+<i>${HOME}/.digrc</i>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<b>host</b>(1),
+<b>named</b>(8),
+<b>dnssec-keygen</b>(8),
+RFC1035.
+<h1 class="manpages">BUGS</h1>
+<p>
+There are probably too many query options.
+<h1 class="manpages">COPYRIGHT</h1>
+Copyright &#169; 2004-2008 Internet Systems Consortium, Inc. ("ISC")
+<!-- Need break --><br />
+Copyright &#169; 2000-2003 Internet Software Consortium.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion993a.html?tutorial=unix_commands&amp;file=dig.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/dig.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

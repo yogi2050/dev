@@ -1,0 +1,631 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/ar.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:24 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>ar - Unix, Linux Command</title>
+<meta name="Description" Content="ar - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>ar - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- Not defining reserved macro 'Sh' ! -->
+<!-- ignored unsupported tag .tr -->
+<!-- ignored unsupported tag .ie -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .el\{ -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .rr -->
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .hy -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .tm -->
+<h1 class="manpages">NAME</h1>
+ar - create, modify, and extract from archives
+<h1 class="manpages">SYNOPSIS</h1>
+<!-- ignored unsupported tag .tm -->
+ar [<b>-X32_64</b>] [<b>-</b>]<i>p</i>[<i>mod</i> [<i>relpos</i>] [<i>count</i>]] <i>archive</i> [<i>member</i>...]
+<h1 class="manpages">DESCRIPTION</h1>
+<!-- ignored unsupported tag .tm -->
+The <font size="-1">GNU</font> <b>ar</b> program creates, modifies, and extracts from
+archives.  An <i>archive</i> is a single file holding a collection of
+other files in a structure that makes it possible to retrieve
+the original individual files (called <i>members</i> of the archive).
+<p>
+The original files&#146; contents, mode (permissions), timestamp, owner, and
+group are preserved in the archive, and can be restored on
+extraction. 
+<p>
+<font size="-1">GNU</font> <b>ar</b> can maintain archives whose members have names of any
+length; however, depending on how <b>ar</b> is configured on your
+system, a limit on member-name length may be imposed for compatibility
+with archive formats maintained with other tools.  If it exists, the
+limit is often 15 characters (typical of formats related to a.out) or 16
+characters (typical of formats related to coff).
+<p>
+<b>ar</b> is considered a binary utility because archives of this sort
+are most often used as <i>libraries</i> holding commonly needed
+subroutines.
+<p>
+<b>ar</b> creates an index to the symbols defined in relocatable
+object modules in the archive when you specify the modifier <b>s</b>.
+Once created, this index is updated in the archive whenever <b>ar</b>
+makes a change to its contents (save for the <b>q</b> update operation).
+An archive with such an index speeds up linking to the library, and
+allows routines in the library to call each other without regard to
+their placement in the archive.
+<p>
+You may use <b>nm -s</b> or <b>nm --print-armap</b> to list this index
+table.  If an archive lacks the table, another form of <b>ar</b> called
+<b>ranlib</b> can be used to add just the table.
+<p>
+<font size="-1">GNU</font> <b>ar</b> is designed to be compatible with two different
+facilities.  You can control its activity using command-line options,
+like the different varieties of <b>ar</b> on Unix systems; or, if you
+specify the single command-line option <b>-M</b>, you can control it
+with a script supplied via standard input, like the <font size="-1">MRI</font> librarian
+program.
+<h1 class="manpages">OPTIONS</h1>
+<!-- ignored unsupported tag .tm -->
+<font size="-1">GNU</font> <b>ar</b> allows you to mix the operation code <i>p</i> and modifier
+flags <i>mod</i> in any order, within the first command-line argument.
+<p>
+If you wish, you may begin the first command-line argument with a
+dash.
+<p>
+The <i>p</i> keyletter specifies what operation to execute; it may be
+any of the following, but you must specify only one of them:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+<b>d</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<i>Delete</i> modules from the archive.  Specify the names of modules to
+be deleted as <i>member</i>...; the archive is untouched if you
+specify no files to delete.
+<p>
+<!-- ignored unsupported tag .if -->
+If you specify the <b>v</b> modifier, <b>ar</b> lists each module
+as it is deleted.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>m</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Use this operation to <i>move</i> members in an archive.
+<p>
+<!-- ignored unsupported tag .if -->
+The ordering of members in an archive can make a difference in how
+programs are linked using the library, if a symbol is defined in more
+than one member. 
+<p>
+<!-- ignored unsupported tag .if -->
+If no modifiers are used with <tt>m</tt>, any members you name in the
+<i>member</i> arguments are moved to the <i>end</i> of the archive;
+you can use the <b>a</b>, <b>b</b>, or <b>i</b> modifiers to move them to a
+specified place instead.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>p</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<i>Print</i> the specified members of the archive, to the standard
+output file.  If the <b>v</b> modifier is specified, show the member
+name before copying its contents to standard output.
+<p>
+<!-- ignored unsupported tag .if -->
+If you specify no <i>member</i> arguments, all the files in the archive are
+printed.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>q</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<i>Quick append</i>; Historically, add the files <i>member</i>... to the end of
+<i>archive</i>, without checking for replacement.
+<p>
+<!-- ignored unsupported tag .if -->
+The modifiers <b>a</b>, <b>b</b>, and <b>i</b> do <i>not</i> affect this
+operation; new members are always placed at the end of the archive.
+<p>
+<!-- ignored unsupported tag .if -->
+The modifier <b>v</b> makes <b>ar</b> list each file as it is appended.
+<p>
+<!-- ignored unsupported tag .if -->
+Since the point of this operation is speed, the archive&#146;s symbol table
+index is not updated, even if it already existed; you can use <b>ar s</b> or
+<b>ranlib</b> explicitly to update the symbol table index.
+<p>
+<!-- ignored unsupported tag .if -->
+However, too many different systems assume quick append rebuilds the
+index, so <font size="-1">GNU</font> <b>ar</b> implements <b>q</b> as a synonym for <b>r</b>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>r</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Insert the files <i>member</i>... into <i>archive</i> (with
+<i>replacement</i>). This operation differs from <b>q</b> in that any
+previously existing members are deleted if their names match those being
+added.
+<p>
+<!-- ignored unsupported tag .if -->
+If one of the files named in <i>member</i>... does not exist, <b>ar</b>
+displays an error message, and leaves undisturbed any existing members
+of the archive matching that name.
+<p>
+<!-- ignored unsupported tag .if -->
+By default, new members are added at the end of the file; but you may
+use one of the modifiers <b>a</b>, <b>b</b>, or <b>i</b> to request
+placement relative to some existing member.
+<p>
+<!-- ignored unsupported tag .if -->
+The modifier <b>v</b> used with this operation elicits a line of
+output for each file inserted, along with one of the letters <b>a</b> or
+<b>r</b> to indicate whether the file was appended (no old member
+deleted) or replaced.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>t</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Display a <i>table</i> listing the contents of <i>archive</i>, or those
+of the files listed in <i>member</i>... that are present in the
+archive.  Normally only the member name is shown; if you also want to
+see the modes (permissions), timestamp, owner, group, and size, you can
+request that by also specifying the <b>v</b> modifier.
+<p>
+<!-- ignored unsupported tag .if -->
+If you do not specify a <i>member</i>, all files in the archive
+are listed.
+<p>
+<!-- ignored unsupported tag .if -->
+If there is more than one file with the same name (say, <b>fie</b>) in
+an archive (say <b>b.a</b>), <b>ar t b.a fie</b> lists only the
+first instance; to see them all, you must ask for a complete
+listing---in our example, <b>ar t b.a</b>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>x</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<i>Extract</i> members (named <i>member</i>) from the archive.  You can
+use the <b>v</b> modifier with this operation, to request that
+<b>ar</b> list each name as it extracts it.
+<p>
+<!-- ignored unsupported tag .if -->
+If you do not specify a <i>member</i>, all files in the archive
+are extracted.
+</td></tr>
+<!-- PP ends table -->
+</table>
+A number of modifiers (<i>mod</i>) may immediately follow the <i>p</i>
+keyletter, to specify variations on an operation&#146;s behavior:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+<b>a</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Add new files <i>after</i> an existing member of the
+archive.  If you use the modifier <b>a</b>, the name of an existing archive
+member must be present as the <i>relpos</i> argument, before the
+<i>archive</i> specification.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>b</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Add new files <i>before</i> an existing member of the
+archive.  If you use the modifier <b>b</b>, the name of an existing archive
+member must be present as the <i>relpos</i> argument, before the
+<i>archive</i> specification.  (same as <b>i</b>).
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>c</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<i>Create</i> the archive.  The specified <i>archive</i> is always
+created if it did not exist, when you request an update.  But a warning is
+issued unless you specify in advance that you expect to create it, by
+using this modifier.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>f</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Truncate names in the archive.  <font size="-1">GNU</font> <b>ar</b> will normally permit file
+names of any length.  This will cause it to create archives which are
+not compatible with the native <b>ar</b> program on some systems.  If
+this is a concern, the <b>f</b> modifier may be used to truncate file
+names when putting them in the archive.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>i</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Insert new files <i>before</i> an existing member of the
+archive.  If you use the modifier <b>i</b>, the name of an existing archive
+member must be present as the <i>relpos</i> argument, before the
+<i>archive</i> specification.  (same as <b>b</b>).
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>l</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+This modifier is accepted but not used.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>N</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Uses the <i>count</i> parameter.  This is used if there are multiple
+entries in the archive with the same name.  Extract or delete instance
+<i>count</i> of the given name from the archive.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>o</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Preserve the <i>original</i> dates of members when extracting them.  If
+you do not specify this modifier, files extracted from the archive
+are stamped with the time of extraction.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>P</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Use the full path name when matching names in the archive.  <font size="-1">GNU</font>
+<b>ar</b> can not create an archive with a full path name (such archives
+are not <font size="-1">POSIX</font> complaint), but other archive creators can.  This option
+will cause <font size="-1">GNU</font> <b>ar</b> to match file names using a complete path
+name, which can be convenient when extracting a single file from an
+archive created by another tool.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>s</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Write an object-file index into the archive, or update an existing one,
+even if no other change is made to the archive.  You may use this modifier
+flag either with any operation, or alone.  Running <b>ar s</b> on an
+archive is equivalent to running <b>ranlib</b> on it.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>S</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Do not generate an archive symbol table.  This can speed up building a
+large library in several steps.  The resulting archive can not be used
+with the linker.  In order to build a symbol table, you must omit the
+<b>S</b> modifier on the last execution of <b>ar</b>, or you must run
+<b>ranlib</b> on the archive.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>u</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Normally, <b>ar r</b>... inserts all files
+listed into the archive.  If you would like to insert <i>only</i> those
+of the files you list that are newer than existing members of the same
+names, use this modifier.  The <b>u</b> modifier is allowed only for the
+operation <b>r</b> (replace).  In particular, the combination <b>qu</b> is
+not allowed, since checking the timestamps would lose any speed
+advantage from the operation <b>q</b>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>v</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+This modifier requests the <i>verbose</i> version of an operation.  Many
+operations display additional information, such as filenames processed,
+when the modifier <b>v</b> is appended.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>V</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+This modifier shows the version number of <b>ar</b>.
+</td></tr>
+<!-- PP ends table -->
+</table>
+<b>ar</b> ignores an initial option spelt <b>-X32_64</b>, for
+compatibility with <font size="-1">AIX</font>.  The behaviour produced by this option is the
+default for <font size="-1">GNU</font> <b>ar</b>.  <b>ar</b> does not support any of the other
+<b>-X</b> options; in particular, it does not support <b>-X32</b>
+which is the default for <font size="-1">AIX</font> <b>ar</b>.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+<b>@</b><i>file</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Read command-line options from <i>file</i>.  The options read are
+inserted in place of the original @<i>file</i> option.  If <i>file</i>
+does not exist, or cannot be read, then the option will be treated
+literally, and not removed. 
+<p>
+<!-- ignored unsupported tag .if -->
+Options in <i>file</i> are separated by whitespace.  A whitespace
+character may be included in an option by surrounding the entire
+option in either single or double quotes.  Any character (including a
+backslash) may be included by prefixing the character to be included
+with a backslash.  The <i>file</i> may itself contain additional
+@<i>file</i> options; any such options will be processed recursively.
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<i>nm</i>(1), <i>ranlib</i>(1), and the Info entries for <i>binutils</i>.
+<h1 class="manpages">COPYRIGHT</h1>
+<!-- ignored unsupported tag .tm -->
+Copyright (c) 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999,
+2000, 2001, 2002, 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
+<p>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the <font size="-1">GNU</font> Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, with no Front-Cover Texts, and with no
+Back-Cover Texts.  A copy of the license is included in the
+section entitled <font size="-1">GNU</font> Free Documentation License.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion9044-3.html?tutorial=unix_commands&amp;file=ar.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/ar.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:24 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,957 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_system_calls/fcntl.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:04 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>fcntl() - Unix, Linux System Call</title>
+<meta name="Description" Content="fcntl() - Unix, Linux System Calls Manual Pages (Manpages) ,  Learning fundamentals of UNIX in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - System Calls</b></a></li>
+<li><a class="left" target="_top" href="../unix_commands/index.html">Unix - Commands List</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>fcntl() - Unix, Linux System Call</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+<p>fcntl - manipulate file descriptor</p>
+<h1 class="manpages">SYNOPSIS</h1>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<b>#include &lt;unistd.h&gt;</b> 
+<b>#include &lt;fcntl.h&gt;</b> 
+<p>
+<b>int fcntl(int </b><i>fd</i><b>, int </b><i>cmd</i><b>);</b> 
+<b>int fcntl(int </b><i>fd</i><b>, int </b><i>cmd</i><b>, long </b><i>arg</i><b>);</b> 
+<b>int fcntl(int </b><i>fd</i><b>, int </b><i>cmd</i><b>, struct flock *</b><i>lock</i><b>);</b> 
+</pre></td></tr>
+</table>
+<h1 class="manpages">DESCRIPTION</h1>
+<p><b>fcntl</b>() performs one of the operations described below on the open file descriptor
+<i>fd</i>. The operation is determined by
+<i>cmd</i>. </p>
+<h2><i>Duplicating a file descriptor</i></h2>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td>
+<b>F_DUPFD</b> </td><td>
+Find the lowest numbered available file descriptor
+greater than or equal to
+<i>arg</i> and make it be a copy of
+<i>fd</i>. This is different from
+<b>dup2</b>(2)
+which uses exactly the descriptor specified.
+<p>
+On success, the new descriptor is returned.
+<p>
+See
+<b>dup</b>(2)
+for further details.
+</td></tr>
+</table>
+<h2><i>File descriptor flags</i></h2>
+<p>The following commands manipulate the flags associated with
+a file descriptor. 
+Currently, only one such flag is defined:
+<b>FD_CLOEXEC</b>, the close-on-exec flag.
+If the
+<b>FD_CLOEXEC</b> bit is 0, the file descriptor will remain open across an
+<b>execve</b>(2),
+otherwise it will be closed.</p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td>
+<b>F_GETFD</b> </td><td>
+Read the file descriptor flags.
+</td></tr>
+<tr><td>
+<b>F_SETFD</b> </td><td>
+Set the file descriptor flags to the value specified by
+<i>arg</i>. </td></tr>
+</table>
+<h2><i>File status flags</i></h2>
+<p>Each open file description has certain associated status flags,
+initialized by
+<b>open</b>(2)
+and possibly modified by
+<b>fcntl</b>(2).
+Duplicated file descriptors
+(made with
+<b>dup</b>(), <b>fcntl</b>(F_DUPFD), <b>fork</b>(), etc.) refer to the same open file description, and thus
+share the same file status flags.</p>
+<p>The file status flags and their semantics are described in
+<b>open</b>(2).</p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td>
+<b>F_GETFL</b> </td><td>
+Read the file status flags.
+</td></tr>
+<tr><td>
+<b>F_SETFL</b> </td><td>
+Set the file status flags to the value specified by
+<i>arg</i>. File access mode
+(<b>O_RDONLY</b>, <b>O_WRONLY</b>, <b>O_RDWR</b>) and file creation flags
+(i.e.,
+<b>O_CREAT</b>, <b>O_EXCL</b>, <b>O_NOCTTY</b>, <b>O_TRUNC</b>) in
+<i>arg</i> are ignored.
+On Linux this command can only change the
+<b>O_APPEND</b>, <b>O_ASYNC</b>, <b>O_DIRECT</b>, <b>O_NOATIME</b>, and
+<b>O_NONBLOCK</b> flags.
+</td></tr>
+</table>
+<h2><i>Advisory locking</i></h2>
+<p><b>F_GETLK</b>, <b>F_SETLK</b> and <b>F_SETLKW</b> are used to acquire, release, and test for the existence of record
+locks (also known as file-segment or file-region locks).
+The third argument
+<i>lock</i> is a pointer to a structure that has at least the following fields
+(in unspecified order).</p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<p>
+struct flock {
+    ...
+    short l_type;    /* Type of lock: F_RDLCK,
+                        F_WRLCK, F_UNLCK */
+    short l_whence;  /* How to interpret l_start:
+                        SEEK_SET, SEEK_CUR, SEEK_END */
+    off_t l_start;   /* Starting offset for lock */
+    off_t l_len;     /* Number of bytes to lock */
+    pid_t l_pid;     /* PID of process blocking our lock
+                        (F_GETLK only) */
+    ...
+};
+</pre></td></tr>
+</table>
+<p>The <i>l_whence</i>, <i>l_start</i>, and <i>l_len</i> fields of this structure specify the range of bytes we wish to lock.
+<i>l_start</i> is the starting offset for the lock, and is interpreted
+relative to either:
+the start of the file (if
+<i>l_whence</i> is
+<b>SEEK_SET</b>); the current file offset (if
+<i>l_whence</i> is
+<b>SEEK_CUR</b>); or the end of the file (if
+<i>l_whence</i> is
+<b>SEEK_END</b>). In the final two cases,
+<i>l_start</i> can be a negative number provided the
+offset does not lie before the start of the file.
+<i>l_len</i> is a non-negative integer (but see the NOTES below) specifying
+the number of bytes to be locked.
+Bytes past the end of the file may be locked,
+but not bytes before the start of the file.
+Specifying 0 for
+<i>l_len</i> has the special meaning: lock all bytes starting at the
+location specified by
+<i>l_whence</i> and <i>l_start</i> through to the end of file, no matter how large the file grows.</p>
+<p>The <i>l_type</i> field can be used to place a read
+(<b>F_RDLCK</b>) or a write
+(<b>F_WRLCK</b>) lock on a file.
+Any number of processes may hold a read lock (shared lock)
+on a file region, but only one process may hold a write lock
+(exclusive lock). An exclusive lock excludes all other locks,
+both shared and exclusive.
+A single process can hold only one type of lock on a file region;
+if a new lock is applied to an already-locked region,
+then the existing lock is converted to the new lock type.
+(Such conversions may involve splitting, shrinking, or coalescing with
+an existing lock if the byte range specified by the new lock does not
+precisely coincide with the range of the existing lock.)</p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td>
+<b>F_SETLK</b> </td><td>
+Acquire a lock (when
+<i>l_type</i> is
+<b>F_RDLCK</b> or
+<b>F_WRLCK</b>) or release a lock (when
+<i>l_type</i> is
+<b>F_UNLCK</b>) on the bytes specified by the
+<i>l_whence</i>, <i>l_start</i>, and <i>l_len</i> fields of
+<i>lock</i>. If a conflicting lock is held by another process,
+this call returns -1 and sets
+<i>errno</i> to
+<b>EACCES</b> or
+<b>EAGAIN</b>. </td></tr>
+<tr><td>
+<b>F_SETLKW</b> </td><td>
+As for
+<b>F_SETLK</b>, but if a conflicting lock is held on the file, then wait for that
+lock to be released.
+If a signal is caught while waiting, then the call is interrupted
+and (after the signal handler has returned)
+returns immediately (with return value -1 and
+<i>errno</i> set to
+<b>EINTR</b>). </td></tr>
+<tr><td>
+<b>F_GETLK</b> </td><td>
+On input to this call,
+<i>lock</i> describes a lock we would like to place on the file.
+If the lock could be placed,
+<b>fcntl</b>() does not actually place it, but returns
+<b>F_UNLCK</b> in the
+<i>l_type</i> field of
+<i>lock</i> and leaves the other fields of the structure unchanged.
+If one or more incompatible locks would prevent
+this lock being placed, then
+<b>fcntl</b>() returns details about one of these locks in the
+<i>l_type</i>, <i>l_whence</i>, <i>l_start</i>, and <i>l_len</i> fields of
+<i>lock</i> and sets
+<i>l_pid</i> to be the PID of the process holding that lock.
+</td></tr>
+</table>
+<p>In order to place a read lock,
+<i>fd</i> must be open for reading.
+In order to place a write lock,
+<i>fd</i> must be open for writing.
+To place both types of lock, open a file read-write.
+<p>As well as being removed by an explicit
+<b>F_UNLCK</b>, record locks are automatically released when the process
+terminates or if it closes
+<i>any</i> file descriptor referring to a file on which locks are held.
+This is bad: it means that a process can lose the locks on
+a file like
+<i>/etc/passwd</i> or
+<i>/etc/mtab</i> when for some reason a library function decides to open, read
+and close it.</p>
+<p>Record locks are not inherited by a child created via
+<b>fork</b>(2),
+but are preserved across an
+<b>execve</b>(2).</p>
+<p>Because of the buffering performed by the
+<b>stdio</b>(3)
+library, the use of record locking with routines in that package
+should be avoided; use
+<b>read</b>(2)
+and
+<b>write</b>(2)
+instead.</p>
+<p><h2><i>Mandatory locking</i></h2>
+(Non-POSIX.)
+The above record locks may be either advisory or mandatory,
+and are advisory by default.</p>
+<p>Advisory locks are not enforced and are useful only between
+cooperating processes.</p>
+<p>Mandatory locks are enforced for all processes. 
+If a process tries to perform an incompatible access (e.g.,
+<b>read</b>(2)
+or
+<b>write</b>(2))
+on a file region that has an incompatible mandatory lock,
+then the result depends upon whether the
+<b>O_NONBLOCK</b> flag is enabled for its open file description.
+If the
+<b>O_NONBLOCK</b> flag is not enabled, then
+system call is blocked until the lock is removed
+or converted to a mode that is compatible with the access.
+If the
+<b>O_NONBLOCK</b> flag is enabled, then the system call fails with the error
+<b>EAGAIN</b> or
+<b>EWOULDBLOCK.</b> </p>
+<p>To make use of mandatory locks, mandatory locking must be enabled
+both on the file system that contains the file to be locked,
+and on the file itself.
+Mandatory locking is enabled on a file system
+using the "-o mand" option to
+<b>mount</b>(8),
+or the
+<b>MS_MANDLOCK</b> flag for
+<b>mount</b>(2).
+Mandatory locking is enabled on a file by disabling
+group execute permission on the file and enabling the set-group-ID
+permission bit (see
+<b>chmod</b>(1)
+and
+<b>chmod</b>(2)).</p>
+<h2><i>Managing signals</i></h2>
+<p><b>F_GETOWN</b>, <b>F_SETOWN</b>, <b>F_GETSIG</b> and <b>F_SETSIG</b> are used to manage I/O availability signals:</p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td>
+<b>F_GETOWN</b> </td><td>
+Get the process ID or process group currently receiving SIGIO
+and SIGURG signals for events on file descriptor
+<i>fd</i>. Process IDs are returned as positive values;
+process group IDs are returned as negative values (but see BUGS below).
+</td></tr>
+<tr><td>
+<b>F_SETOWN</b> </td><td>
+Set the process ID or process group ID that will receive SIGIO
+and SIGURG signals for events on file descriptor
+<i>fd</i>. A process ID is specified as a positive value;
+a process group ID is specified as a negative value.
+Most commonly, the calling process specifies itself as the owner
+(that is,
+<i>arg</i> is specified as
+<b>getpid</b>()). <p>
+If you set the
+<b>O_ASYNC</b> status flag on a file descriptor (either by providing this flag with the
+<b>open</b>(2)
+call, or by using the
+<b>F_SETFL</b> command of
+<b>fcntl</b>()), a SIGIO signal is sent whenever input or output becomes possible
+on that file descriptor.
+<b>F_SETSIG</b> can be used to obtain delivery of a signal other than SIGIO.
+If this permission check fails, then the signal is
+silently discarded.
+<p>
+Sending a signal to the owner process (group) specified by
+<b>F_SETOWN</b> is subject to the same permissions checks as are described for
+<b>kill</b>(2),
+where the sending process is the one that employs
+<b>F_SETOWN</b> (but see BUGS below).
+<p>
+If the file descriptor
+<i>fd</i> refers to a socket,
+<b>F_SETOWN</b> also selects
+the recipient of SIGURG signals that are delivered when out-of-band
+data arrives on that socket.  (SIGURG is sent in any situation where
+<b>select</b>(2)
+would report the socket as having an "exceptional condition".)
+<p>
+If a non-zero value is given to
+<b>F_SETSIG</b> in a multi-threaded process running with a threading library
+that supports thread groups (e.g., NPTL),
+then a positive value given to
+<b>F_SETOWN</b> has a different meaning:
+instead of being a process ID identifying a whole process,
+it is a thread ID identifying a specific thread within a process.
+Consequently, it may be necessary to pass
+<b>F_SETOWN</b> the result of
+<b>gettid</b>() instead of
+<b>getpid</b>() to get sensible results when
+<b>F_SETSIG</b> is used.
+(In current Linux threading implementations,
+a main thread&#146;s thread ID is the same as its process ID.
+This means that a single-threaded program can equally use
+<b>gettid</b>() or
+<b>getpid</b>() in this scenario.)
+Note, however, that the statements in this paragraph do not apply
+to the SIGURG signal generated for out-of-band data on a socket:
+this signal is always sent to either a process or a process group,
+depending on the value given to
+<b>F_SETOWN</b>. Note also that Linux imposes a limit on the
+number of real-time signals that may be queued to a
+process (see
+<b>getrlimit</b>(2)
+and
+<b>signal</b>(7))
+and if this limit is reached, then the kernel reverts to
+delivering SIGIO, and this signal is delivered to the entire
+process rather than to a specific thread.
+</td></tr>
+<tr><td>
+<b>F_GETSIG</b> </td><td>
+Get the signal sent when input or output becomes possible.  A value of
+zero means SIGIO is sent.  Any other value (including SIGIO) is the
+signal sent instead, and in this case additional info is available to
+the signal handler if installed with SA_SIGINFO.
+</td></tr>
+<tr><td>
+<b>F_SETSIG</b> </td><td>
+Sets the signal sent when input or output becomes possible.  A value of
+zero means to send the default SIGIO signal.  Any other value (including
+SIGIO) is the signal to send instead, and in this case additional info
+is available to the signal handler if installed with SA_SIGINFO.
+<p>
+Additionally, passing a non-zero value to
+<b>F_SETSIG</b> changes the signal recipient from a whole process to a specific thread
+within a process.
+See the description of
+<b>F_SETOWN</b> for more details.
+<p>
+By using
+<b>F_SETSIG</b> with a non-zero value, and setting SA_SIGINFO for the
+signal handler (see
+<b>sigaction</b>(2)),
+extra information about I/O events is passed to
+the handler in a
+<i>siginfo_t</i> structure.
+If the
+<i>si_code</i> field indicates the source is SI_SIGIO, the
+<i>si_fd</i> field gives the file descriptor associated with the event.  Otherwise,
+there is no indication which file descriptors are pending, and you
+should use the usual mechanisms
+(<b>select</b>(2), <b>poll</b>(2),
+<b>read</b>(2)
+with
+<b>O_NONBLOCK</b> set etc.) to determine which file descriptors are available for I/O.
+<p>
+By selecting a real time signal (value &gt;= SIGRTMIN), multiple
+I/O events may be queued using the same signal numbers.  (Queuing is
+dependent on available memory).  Extra information is available
+if SA_SIGINFO is set for the signal handler, as above.
+</td></tr>
+</table>
+<p>Using these mechanisms, a program can implement fully asynchronous I/O
+without using
+<b>select</b>(2)
+or
+<b>poll</b>(2)
+most of the time.</p>
+<p>The use of
+<b>O_ASYNC</b>, <b>F_GETOWN</b>, <b>F_SETOWN</b> is specific to BSD and Linux.
+<b>F_GETSIG</b> and
+<b>F_SETSIG</b> are Linux-specific.  POSIX has asynchronous I/O and the
+<i>aio_sigevent</i> structure to achieve similar things; these are also available
+in Linux as part of the GNU C Library (Glibc).</p>
+<p><h2><i>Leases</i></h2>
+<b>F_SETLEASE</b> and
+<b>F_GETLEASE</b> (Linux 2.4 onwards) are used (respectively) to establish and
+retrieve the current setting of the calling process&#146;s lease on
+the file referred to by
+<i>fd</i>. A file lease provides a mechanism whereby the process holding
+the lease (the "lease holder") is notified (via delivery of a signal)
+when a process (the "lease breaker") tries to
+<b>open</b>(2)
+or
+<b>truncate</b>(2)
+that file.</p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td>
+<b>F_SETLEASE</b> </td><td>
+Set or remove a file lease according to which of the following
+values is specified in the integer
+<i>arg</i>: <p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td>
+<b>F_RDLCK</b> </td><td>
+Take out a read lease.
+This will cause the calling process to be notified when
+the file is opened for writing or is truncated.
+A read lease can only be placed on a file descriptor that
+is opened read-only.
+</td></tr>
+<tr><td>
+<b>F_WRLCK</b> </td><td>
+Take out a write lease.
+This will cause the caller to be notified when
+the file is opened for reading or writing or is truncated.
+A write lease may be placed on a file only if no other process
+currently has the file open.
+</td></tr>
+<tr><td>
+<b>F_UNLCK</b> </td><td>
+Remove our lease from the file.
+</td></tr>
+</table>
+</td></tr>
+<tr><td colspan="2">
+A process may hold only one type of lease on a file.
+</td></tr>
+<tr><td colspan="2">
+Leases may only be taken out on regular files.
+An unprivileged process may only take out a lease on a file whose
+UID matches the file system UID of the process.
+A process with the
+<b>CAP_LEASE</b> capability may take out leases on arbitrary files.
+</td></tr>
+<tr><td>
+<b>F_GETLEASE</b> </td><td>
+Indicates what type of lease we hold on the file
+referred to by
+<i>fd</i> by returning either
+<b>F_RDLCK</b>, <b>F_WRLCK</b>, or <b>F_UNLCK,</b> indicating, respectively, that the calling process holds a
+read, a write, or no lease on the file.
+(The third argument to
+<b>fcntl</b>() is omitted.)
+</td></tr>
+</table>
+<p>When a process (the "lease breaker") performs an 
+<b>open</b>() or
+<b>truncate</b>() that conflicts with a lease established via
+<b>F_SETLEASE</b>, the system call is blocked by the kernel and
+the kernel notifies the lease holder by sending it a signal
+(SIGIO by default).
+The lease holder should respond to receipt of this signal by doing
+whatever cleanup is required in preparation for the file to be
+accessed by another process (e.g., flushing cached buffers) and
+then either remove or downgrade its lease.
+A lease is removed by performing an
+<b>F_SETLEASE</b> command specifying
+<i>arg</i> as
+<b>F_UNLCK</b>. If we currently hold a write lease on the file,
+and the lease breaker is opening the file for reading,
+then it is sufficient to downgrade the lease to a read lease.
+This is done by performing an
+<b>F_SETLEASE</b> command specifying
+<i>arg</i> as
+<b>F_RDLCK</b>. </p>
+<p>If the lease holder fails to downgrade or remove the lease within
+the number of seconds specified in
+<i>/proc/sys/fs/lease-break-time</i> then the kernel forcibly removes or downgrades the lease holder&#146;s lease.</p>
+<p>Once the lease has been voluntarily or forcibly removed or downgraded,
+and assuming the lease breaker has not unblocked its system call,
+the kernel permits the lease breaker&#146;s system call to proceed.</p>
+<p>If the lease breaker&#146;s blocked 
+<b>open</b>() or
+<b>truncate</b>() is interrupted by a signal handler,
+then the system call fails with the error
+<b>EINTR</b>, but the other steps still occur as described above.
+If the lease breaker is killed by a signal while blocked in
+<b>open</b>() or
+<b>truncate</b>(), then the other steps still occur as described above.
+If the lease breaker specifies the
+<b>O_NONBLOCK</b> flag when calling
+<b>open</b>(), then the call immediately fails with the error
+<b>EWOULDBLOCK</b>, but the other steps still occur as described above.</p>
+<p>The default signal used to notify the lease holder is SIGIO,
+but this can be changed using the
+<b>F_SETSIG</b> command to
+<b>fcntl</b>(). If a
+<b>F_SETSIG</b> command is performed (even one specifying SIGIO), and the signal
+handler is established using SA_SIGINFO, then the handler will
+receive a
+<i>siginfo_t</i> structure as its second argument, and the
+<i>si_fd</i> field of this argument will hold the descriptor of the leased file
+that has been accessed by another process.
+(This is useful if the caller holds leases against multiple files).</p>
+<h2><i>File and directory change notification (dnotify)</i></h2>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td>
+<b>F_NOTIFY</b> </td><td>
+(Linux 2.4 onwards)
+Provide notification when the directory referred to by
+<i>fd</i> or any of the files that it contains is changed.
+The events to be notified are specified in
+<i>arg</i>, which is a bit mask specified by ORing together zero or more of
+the following bits:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td>Bit</td><td>Description (event in directory)</td></tr>
+<tr valign="top">
+</tr>
+<tr valign="top">
+<td><b>DN_MODIFY</b></td><td>A file was modified (write, pwrite,</td></tr>
+<tr valign="top">
+<td><b>&nbsp;</b></td><td>writev, truncate, ftruncate)</td></tr>
+<tr valign="top">
+<td><b>DN_CREATE</b></td><td>A file was created (open, creat, mknod,</td></tr>
+<tr valign="top">
+<td><b>&nbsp;</b></td><td>mkdir, link, symlink, rename)</td></tr>
+<tr valign="top">
+<td><b>DN_DELETE</b></td><td>A file was unlinked (unlink, rename to</td></tr>
+<tr valign="top">
+<td><b>&nbsp;</b></td><td>another directory, rmdir)</td></tr>
+<tr valign="top">
+<td><b>DN_RENAME</b></td><td>A file was renamed within this</td></tr>
+<tr valign="top">
+<td><b>&nbsp;</b></td><td>directory (rename)</td></tr>
+<tr valign="top">
+<td><b>DN_ATTRIB</b></td><td>The attributes of a file were changed</td></tr>
+<tr valign="top">
+<td><b>&nbsp;</b></td><td>(chown, chmod, utime[s])</td></tr>
+</table>
+<p>(In order to obtain these definitions, the _GNU_SOURCE feature test macro
+must be defined.)</p>
+<p>Directory notifications are normally "one-shot", and the application
+must re-register to receive further notifications.
+Alternatively, if
+<b>DN_MULTISHOT</b> is included in
+<i>arg</i>, then notification will remain in effect until explicitly removed.v
+<p>A series of <b>F_NOTIFY</b> requests is cumulative, with the events in
+<i>arg</i> being added to the set already monitored.
+To disable notification of all events, make an
+<b>F_NOTIFY</b> call specifying
+<i>arg</i> as 0.</p>
+<p>Notification occurs via delivery of a signal.
+The default signal is SIGIO, but this can be changed using the
+<b>F_SETSIG</b> command to
+<b>fcntl</b>(). In the latter case, the signal handler receives a
+<i>siginfo_t</i> structure as its second argument (if the handler was
+established using SA_SIGINFO) and the
+<i>si_fd</i> field of this structure contains the file descriptor which
+generated the notification (useful when establishing notification
+on multiple directories).</p>
+<p>Especially when using <b>DN_MULTISHOT</b>, a real time signal should be used for notification,
+so that multiple notifications can be queued.</p>
+<p><b>NOTE:</b> New applications should consider using the <i>inotify</i> interface (available since kernel 2.6.13),
+which provides a superior interface for obtaining notifications of
+file system events.  See <b>inotify</b>(7).</p>
+</td></tr>
+</table>
+<h1 class="manpages">RETURN VALUE</h1>
+<p>For a successful call, the return value depends on the operation:</p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>F_DUPFD</b> </td><td valign="bottom">
+The new descriptor.
+</td></tr>
+<tr valign="top"><td>
+<b>F_GETFD</b> </td><td valign="bottom">
+Value of flags.
+</td></tr>
+<tr valign="top"><td>
+<b>F_GETFL</b> </td><td valign="bottom">
+Value of flags.
+</td></tr>
+<tr valign="top"><td>
+<b>F_GETOWN</b> </td><td valign="bottom">
+Value of descriptor owner.
+</td></tr>
+<tr valign="top"><td>
+<b>F_GETSIG</b> </td><td valign="bottom">
+Value of signal sent when read or write becomes possible, or zero
+for traditional SIGIO behaviour.
+</td></tr>
+<tr><td>
+All other commands
+</td></tr><tr valign="top"><td width=9%>&nbsp;</td><td>
+Zero.
+</td></tr>
+</table>
+<p>On error, -1 is returned, and
+<i>errno</i> is set appropriately.</p>
+<h1 class="manpages">ERRORS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td>
+<b>EACCES</b> or <b>EAGAIN</b> </td><td>
+Operation is prohibited by locks held by other processes.
+</td></tr>
+<tr valign="top"><td>
+<b>EAGAIN</b> </td><td valign="bottom">
+The operation is prohibited because the file has been memory-mapped by
+another process.
+</td></tr>
+<tr valign="top"><td>
+<b>EBADF</b> </td><td valign="bottom">
+<i>fd</i> is not an open file descriptor, or the command was
+<b>F_SETLK</b> or
+<b>F_SETLKW</b> and the file descriptor open mode doesn&#146;t match with the
+type of lock requested.
+</td></tr>
+<tr><td>
+<b>EDEADLK</b> </td><td>
+It was detected that the specified
+<b>F_SETLKW</b> command would cause a deadlock.
+</td></tr>
+<tr valign="top"><td>
+<b>EFAULT</b> </td><td valign="bottom">
+<i>lock</i> is outside your accessible address space.
+</td></tr>
+<tr valign="top"><td>
+<b>EINTR</b> </td><td valign="bottom">
+For
+<b>F_SETLKW</b>, the command was interrupted by a signal.
+For
+<b>F_GETLK</b> and <b>F_SETLK</b>, the command was interrupted by a signal before the lock was checked or
+acquired.  Most likely when locking a remote file (e.g. locking over
+NFS), but can sometimes happen locally.
+</td></tr>
+<tr valign="top"><td>
+<b>EINVAL</b> </td><td valign="bottom">
+For
+<b>F_DUPFD</b>, <i>arg</i> is negative or is greater than the maximum allowable value.  For
+<b>F_SETSIG</b>, <i>arg</i> is not an allowable signal number.
+</td></tr>
+<tr valign="top"><td>
+<b>EMFILE</b> </td><td valign="bottom">
+For
+<b>F_DUPFD</b>, the process already has the maximum number of file descriptors open.
+</td></tr>
+<tr valign="top"><td>
+<b>ENOLCK</b> </td><td valign="bottom">
+Too many segment locks open, lock table is full, or a remote locking
+protocol failed (e.g. locking over NFS).
+</td></tr>
+<tr valign="top"><td>
+<b>EPERM</b> </td><td valign="bottom">
+Attempted to clear the
+<b>O_APPEND</b> flag on a file that has the append-only attribute set.
+</td></tr>
+</table>
+<h1 class="manpages">NOTES</h1>
+<p>The errors returned by
+<b>dup2</b>() are different from those returned by
+<b>F_DUPFD</b>. </p>
+<p>Since kernel 2.0, there is no interaction between the types of lock
+placed by
+<b>flock</b>(2)
+and
+<b>fcntl</b>(2).</p>
+<p>POSIX.1-2001 allows
+<i>l_len</i> to be negative. (And if it is, the interval described by the lock
+covers bytes
+<i>l_start</i>+<i>l_len</i> up to and including
+<i>l_start</i>-1.) This is supported by Linux since Linux 2.4.21 and 2.5.49.</p>
+<p>Several systems have more fields in
+<i>struct flock</i> such as e.g.
+<i>l_sysid</i>. Clearly,
+<i>l_pid</i> alone is not going to be very useful if the process holding the lock
+may live on a different machine.</p>
+<h1 class="manpages">BUGS</h1>
+<p>A limitation of the Linux system call conventions on some
+architectures (notably x86) means that if a (negative)
+process group ID to be returned by
+<b>F_GETOWN</b> falls in the range -1 to -4095, then the return value is wrongly
+interpreted by glibc as an error in the system call;
+that is, the return value of <b>fcntl</b>() will be -1, and
+<i>errno</i> will contain the (positive) process group ID.</p>
+<p>In Linux 2.4 and earlier, there is bug that can occur
+when an unprivileged process uses
+<b>F_SETOWN</b> to specify the owner
+of a socket file descriptor
+as a process (group) other than the caller.
+In this case,
+<b>fcntl</b>() can return -1 with
+<i>errno</i> set to
+<b>EPERM</b>, even when the owner process (group) is one that the caller
+has permission to send signals to.
+Despite this error return, the file descriptor owner is set,
+and signals will be sent to the owner.</p>
+<h1 class="manpages">CONFORMING TO</h1>
+<p>SVr4, 4.3BSD, POSIX.1-2001.  Only the operations F_DUPFD, F_GETFD, F_SETFD, F_GETFL, F_SETFL, F_GETLK, F_SETLK, F_SETLKW,
+F_GETOWN, and F_SETOWN are specified in POSIX.1-2001.</p>
+<p>F_GETSIG, F_SETSIG, F_NOTIFY, F_GETLEASE, and F_SETLEASE
+are Linux specific. (Define the _GNU_SOURCE macro to obtain these definitions.)</p>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="dup2.htm">dup2 (2)</a></p></li>
+<li><p><a href="flock.htm">flock (2)</a></p></li>
+<li><p><a href="open.htm">open (2)</a></p></li>
+<li><p><a href="socket.htm">socket (2)</a></p></li>
+</ul>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionbda9.html?tutorial=unix_system_calls&amp;file=fcntl.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_system_calls/fcntl.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:04 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

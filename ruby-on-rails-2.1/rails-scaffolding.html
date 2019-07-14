@@ -1,0 +1,512 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/ruby-on-rails-2.1/rails-scaffolding.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:01:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>Ruby on Rails 2.1.x Scaffolding</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="Keywords" content="Learning, Ruby, rails, strengths, framework, installation, examples, RubyGems, resources, Guide, actionpack, actionview, basics, directory, structure, advance, activerecord, libraries, Model, View, Controller, Embeded Ruby, Erb, Rolling, Metaprogramming,Built-in, testing, David, Black, Hansson, Heinemeier, RAA, Scaffolding" />
+<meta name="Description" content="Ruby on Rails 2.1.x Scaffolding -  Learn Ruby on Rails in simple and easy steps using this Guide/Book/Reference Manual. You will learn its installation, framework, strengths with examples and you will learn about active resources, actionpack, actionview, activerecord, Heinemeier, Scaffolding, Controller, Heinemeier, Hansson etc." />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Learning Ruby on Rails 2.1</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="index.html">Rails 2.1 Home</a></li>
+<li><a class="left" target="_top" href="rails-preliminary.html">Rails 2.1 Preliminary</a></li>
+<li><a class="left" target="_top" href="rails-introduction.html">Rails 2.1 Introduction</a></li>
+<li><a class="left" target="_top" href="rails-installation.html">Rails 2.1 Installation</a></li>
+<li><a class="left" target="_top" href="rails-framework.html">Rails 2.1 Framework</a></li>
+<li><a class="left" target="_top" href="rails-directory-structure.html">Rails 2.1 Dir Structure</a></li>
+<li><a class="left" target="_top" href="rails-examples.html">Rails 2.1 Examples</a></li>
+<li><a class="left" target="_top" href="rails-database-setup.html">Rails 2.1 Database Setup</a></li>
+<li><a class="left" target="_top" href="rails-active-records.html">Rails 2.1 Active Records</a></li>
+<li><a class="left" target="_top" href="rails-migrations.html">Rails 2.1 Migrations</a></li>
+<li><a class="left" target="_top" href="rails-controllers.html">Rails 2.1 Controllers</a></li>
+<li><a class="left" target="_top" href="rails-views.html">Rails 2.1 Views</a></li>
+<li><a class="left" target="_top" href="rails-layouts.html">Rails 2.1 Layouts</a></li>
+<li><a class="left" target="_top" href="rails-scaffolding.html"><b>Rails 2.1 Scaffolding</b></a></li>
+<li><a class="left" target="_top" href="rails-and-ajax.html">Rails 2.1 and AJAX</a></li>
+<li><a class="left" target="_top" href="rails-file-uploading.html">Rails 2.1 Uploads Files</a></li>
+<li><a class="left" target="_top" href="rails-send-emails.html">Rails 2.1 Sends Emails</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Ruby on Rails 2.1</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="rails-and-rmagick.html">Rails 2.1 RMagick Guide</a></li>
+<li><a class="left" target="_top" href="rails-http-basic-authentication.html">Rails 2.1 Basic HTTP Auth</a></li>
+<li><a class="left" target="_top" href="rails-exception-handling.html">Rails 2.1 Error Handling</a></li>
+<li><a class="left" target="_top" href="rails-routes.html">Rails 2.1 Routes System</a></li>
+<li><a class="left" target="_top" href="rails-unit-testing.html">Rails 2.1 Unit Testing</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Ruby on Rails Quick Guide</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="rails-quick-guide.html" >Ruby on Rails Quick Guide</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Ruby Tutorial</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../ruby/index-2.html" >Ruby Tutorial</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Ruby on Rails Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="rails-resources.html" >Ruby on Rails Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top" align="left" width="100%">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:10px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle"  cellpadding="5" cellspacing="0">
+<tr>
+<td align="left">
+<!-- PRINTING STARTS HERE -->
+<h1>Ruby on Rails 2.1.x Scaffolding</h1>
+<hr />
+<a href="rails-layouts.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="rails-and-ajax.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<!-- AddThis Bookmark Button END -->
+<hr />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<p>While you're developing Rails applications, especially those which are mainly providing you with a simple interface to data in a database, it can often be useful to use the scaffold method.</p>
+<p>Scaffolding provides more than cheap demo thrills. Here are some benefits:</p>
+<ul>
+<li>You can quickly get code in front of your users for feedback.</li>
+<li>You are motivated by faster success.</li>
+<li>You can learn how Rails works by looking at generated code.</li>
+<li>You can use the scaffolding as a foundation to jumpstarts your development.</li>
+</ul>
+<h1>Scaffolding Example:</h1>
+<p>Ruby on Rails 2.0 changes the way Rails uses scaffolding. To understand <i>scaffolding</i> lets create a database called <b>cookbook</b> and a table called <b>recipes</b>:</p>
+<h2>Creating an Empty Rails Web Application:</h2>
+<p>Open a command window and navigate to where you want to create this <b>cookbook</b> web application. I used c:\ruby. So run the following command to create complete directory structure and required <i>.yml</i> file MySQL database.</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+C:\ruby&gt; rails -d mysql cookbook
+</pre></td></tr></table>
+<p>Here we are using <b>-d mysql</b> option to specify our interest to use MySQL database. We can specify any other database name like <i>oracle</i> or <i>postgress</i> using <b>-d</b> option. By default Rails uses <b>SQLite</b> database.</p>
+<h1>Setting up the Database:</h1>
+<p>Here is the way to create database:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+mysql&gt; create database cookbook;
+Query OK, 1 row affected (0.01 sec)
+
+mysql&gt; grant all privileges on cookbook.*
+ to '<b>root</b>'@'localhost' identified by '<b>password</b>';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.00 sec)
+</pre></td></tr></table>
+<p>To tell Rails how to find the database, edit the configuration file ~\cookbook\config\database.yml and change the database name to cookbook. When you finish, it should look something like</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+development:
+  adapter: mysql
+  encoding: utf8
+  database: cookbook
+  username: <b>root</b>
+  password: <b>password</b>
+  host: localhost
+test:
+  adapter: mysql
+  encoding: utf8
+  database: cookbook
+  username: <b>root</b>
+  password: <b>password</b>
+  host: localhost
+production:
+  adapter: mysql
+  encoding: utf8
+  database: cookbook
+  username: <b>root</b>
+  password: <b>password</b>
+  host: localhost
+</pre></td></tr></table>
+<p><b>NOTE: </b> You can use similar setting for other databases adapters in case you want to use any other database except MySQL.</p>
+<p>Rails lets you run in development mode, test mode, or production mode, using different databases. This application uses the same database for each.</p>
+<h2>Database table Definition:</h2>
+<p>Assuming following structure for our <b>recipes</b> table:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+id INT(11) 
+title VARCHAR(40)
+chef VARCHAR(40)
+instructions VARCHAR(255)
+</pre></td></tr></table>
+<h1>The Generated Scaffold Code:</h1>
+<p>With the <i>scaffold</i> action, Rails generates all the code it needs dynamically. By running <i>scaffold</i> as a script, generate the model, plus scaffolding, and the database migration script needed as well as a controller, helper, and testing support files as follows</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+cookbook&gt; ruby script/generate scaffold Recipe title:string \
+chef:string instructions:text 
+</pre></td></tr></table>
+<p>Note a singular name <i>Recipe</i> to create a plural table name <i>recipes</i>. However, above command will generate following messages:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+      exists  app/models/
+      exists  app/controllers/
+      exists  app/helpers/
+      create  app/views/recipes
+      exists  app/views/layouts/
+      exists  test/functional/
+      exists  test/unit/
+      exists  public/stylesheets/
+      create  app/views/recipes/index.html.erb
+      create  app/views/recipes/show.html.erb
+      create  app/views/recipes/new.html.erb
+      create  app/views/recipes/edit.html.erb
+      create  app/views/layouts/recipes.html.erb
+      create  public/stylesheets/scaffold.css
+      create  app/controllers/recipes_controller.rb
+      create  test/functional/recipes_controller_test.rb
+      create  app/helpers/recipes_helper.rb
+       route  map.resources :recipes
+  dependency  model
+      exists    app/models/
+      exists    test/unit/
+      exists    test/fixtures/
+      create    app/models/recipe.rb
+      create    test/unit/recipe_test.rb
+      create    test/fixtures/recipes.yml
+      create    db/migrate
+      create    db/migrate/20080614192220_create_recipes.rb
+cookbook&gt;
+</pre></td></tr></table>
+<p>Now let's examine what has happened behind the scene.</p>
+<h1>The Controller:</h1>
+<p>Let's look at the code behind the controller. This all code is generated by <b>scaffold</b> generator. So if you will open app/controllers/recipes_controller.rb then you will find something as follows:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+class RecipesController &lt; ApplicationController
+  # GET /recipes
+  # GET /recipes.xml
+  def index
+    @recipes = Recipe.find(:all)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @recipes }
+    end
+  end
+
+  # GET /recipes/1
+  # GET /recipes/1.xml
+  def show
+    @recipe = Recipe.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @recipe }
+    end
+  end
+
+  # GET /recipes/new
+  # GET /recipes/new.xml
+  def new
+    @recipe = Recipe.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @recipe }
+    end
+  end
+
+  # GET /recipes/1/edit
+  def edit
+    @recipe = Recipe.find(params[:id])
+  end
+
+  # POST /recipes
+  # POST /recipes.xml
+  def create
+    @recipe = Recipe.new(params[:recipe])
+
+    respond_to do |format|
+      if @recipe.save
+        flash[:notice] = 'Recipe was successfully created.'
+        format.html { redirect_to(@recipe) }
+        format.xml  { render :xml => @recipe, 
+                      :status => :created, :location => @recipe }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @recipe.errors, 
+                      :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /recipes/1
+  # PUT /recipes/1.xml
+  def update
+    @recipe = Recipe.find(params[:id])
+
+    respond_to do |format|
+      if @recipe.update_attributes(params[:recipe])
+        flash[:notice] = 'Recipe was successfully updated.'
+        format.html { redirect_to(@recipe) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @recipe.errors, 
+                      :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /recipes/1
+  # DELETE /recipes/1.xml
+  def destroy
+    @recipe = Recipe.find(params[:id])
+    @recipe.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(recipes_url) }
+      format.xml  { head :ok }
+    end
+  end
+end
+</pre></td></tr></table>
+<p>This file have all the methods implemented automatically. You can perform any Create, Read, Delete or Edit operation using these available methods.</p>
+<p>When a user of a Rails application selects an action . e.g. "Show" - the controller will execute any code in the appropriate section - "def show" - and then by default will render a template of the same name - "show.html.erb". This default behavior  can be overwritten by overwriting the code in any template:</p>
+<p>The controller uses ActiveRecord methods such as <i>find, find_all, new, save, update_attributes, and destroy</i> to move data to and from the database tables. Note that you do not have to write any SQL statements, rails will take care of it automatically.</p>
+<h1>The Views:</h1>
+<p>All the views and corresponding controller methods  are created by <b>scaffold</b> command and they are available in app/views/recipes directory. You will have following files in this directory:</p>
+<ul>
+<li><p><b>index.html.erb</b> - This is the template file to show the default page and will be executed when you type http://127.0.0.1:3000/recipes.</p></li>
+<li><p><b>new.html.erb</b> - This is the template to create a new recipe and will be executed whenever you will try to create a new recipe.</p></li>
+<li><p><b>show.html.erb</b> - This is the template to show all the recipes in your database and will be executed whenever you will try to see all the recipes.</p></li>
+<li><p><b>edit.html.erb</b> - This is the template to edit any recipe in your database and will be executed whenever you will try to edit any recipe.</p></li>
+</ul>
+<p>I will suggest you to open these files one by one and try to understand their source code.</p>
+<h1>The Migrations:</h1>
+<p>You will find a migration file created in <b>~/cookbook/db/migrate</b> subdirectory. This file will have following content:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+class CreateRecipes &lt; ActiveRecord::Migration
+  def self.up
+    create_table :recipes do |t|
+      t.string :title
+      t.string :chef
+      t.text :instructions
+      t.timestamps
+    end
+  end
+
+  def self.down
+    drop_table :recipes
+  end
+end
+</pre></td></tr></table>
+<p>Now to create required file in your database, make use of helper script as follows.</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+cookbook&gt; rake db:migrate
+</pre></td></tr></table>
+<p>This command will create <b>recipes</b>  and <b>schema_migrations</b> tables in your <b>cookbook</b> database. Before proceeding, please make sure you have required table created successfully in your database.</p>
+<h1>Ready to Test</h1>
+<p>All the above steps bring your database table to life. This will provide with a simple interface to your data, and ways of:</p>
+<ul>
+<li>Creating new entries</li>
+<li>Editing current entries</li>
+<li>Viewing current entries</li>
+<li>Destroying current entries</li>
+</ul>
+<p>When creating or editing an entry, scaffold will do all the hard work of form generation and handling for you, and will even provide clever form generation, supporting the following types of inputs as we have seen above:</p>
+<ul>
+<li>Simple text strings</li>
+<li>Textareas (or large blocks of text)</li>
+<li>Date selectors</li>
+<li>Datetime selectors</li>
+</ul>
+<p>Now go into cookbook directory and run Web Server using following command:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+cookbook&gt; ruby script/server
+</pre></td></tr></table>
+<p>Now open a browser and navigate to http://127.0.0.1:3000/recipes/new, This will provide you a screen to create new entries in recipes table. A screen shot is shown below:</p>
+<img src="../images/recipe-create.html" alt="Create Recipe" style="border:1px dotted #aaa;" />
+<p>Now enter some values in the given text boxes, and press Create button to create a new recipe, your record is added into recipes table and it shows following result:</p>
+<img src="../images/recipe-added.html" alt="Added Recipe" style="border:1px dotted #aaa;" />
+<p>You can use either <b>Edit</b> option to edit the recipe or <b>Back</b> button to go to previous page. Assuming you press <b>Back</b> button, it will display all the recipes available in your database. Because we have only one record in our database so it will show you following screen:</p>
+<img src="../images/recipe-back.html" alt="Back Recipe" style="border:1px dotted #aaa;" />
+<p>This screen gives you option to see complete detail of the recipe and to delete this recipe and to edit the recipe.</p>
+<h1>Enhancing the Model:</h1>
+<p>Rails gives you a lot of error handling for free. To understand this, add some validation rules to the empty recipe model:</p>
+<p>Modify <b>~/cookbook/app/models/recipe.rb</b> as follows and then test your application:</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+class Recipe &lt; ActiveRecord::Base
+   validates_length_of :title, :within => 1..20
+   validates_uniqueness_of :title, :message => "already exists"
+end
+</pre></td></tr></table>
+<p>These entries will give automatic checking that:</p>
+<ul>
+<li><p><b>validates_length_of:</b> the field is not blank and not too long</p></li>
+<li><p><b>validates_uniqueness_of:</b> duplicate values are trapped. I don't like the default Rails error message - so I have given my custom message.</p></li>
+</ul>
+<p>Here I'm trying to give a bigger title while editing exiting record, its giving me following error message just because now I have added above validations:</p>
+<img src="../images/recipe-error.html" alt="Added Error" style="border:1px dotted #aaa;" />
+<h1>How Scaffolding is Different?</h1>
+<p>If you have gone through previous chapters then you must have seen that we had created methods to list, show, delete and create data etc but scaffolding does that job automatically.</p>
+<br />
+<hr />
+<a href="rails-layouts.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="rails-and-ajax.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion6726.html?tutorial=ruby-on-rails-2.1&amp;file=rails-scaffolding.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/ruby-on-rails-2.1/rails-scaffolding.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:01:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

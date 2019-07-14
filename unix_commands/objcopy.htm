@@ -1,0 +1,1291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/objcopy.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>objcopy - Unix, Linux Command</title>
+<meta name="Description" Content="objcopy - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>objcopy - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- Not defining reserved macro 'Sh' ! -->
+<!-- ignored unsupported tag .tr -->
+<!-- ignored unsupported tag .ie -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .el\{ -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .rr -->
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .hy -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .tm -->
+<h1 class="manpages">NAME</h1>
+objcopy - copy and translate object files
+<h1 class="manpages">SYNOPSIS</h1>
+<!-- ignored unsupported tag .tm -->
+objcopy [<b>-F</b> <i>bfdname</i>|<b>--target=</b><i>bfdname</i>]
+<br />
+        [<b>-I</b> <i>bfdname</i>|<b>--input-target=</b><i>bfdname</i>]
+<br />
+        [<b>-O</b> <i>bfdname</i>|<b>--output-target=</b><i>bfdname</i>]
+<br />
+        [<b>-B</b> <i>bfdarch</i>|<b>--binary-architecture=</b><i>bfdarch</i>]
+<br />
+        [<b>-S</b>|<b>--strip-all</b>]
+<br />
+        [<b>-g</b>|<b>--strip-debug</b>]
+<br />
+        [<b>-K</b> <i>symbolname</i>|<b>--keep-symbol=</b><i>symbolname</i>]
+<br />
+        [<b>-N</b> <i>symbolname</i>|<b>--strip-symbol=</b><i>symbolname</i>]
+<br />
+        [<b>--strip-unneeded-symbol=</b><i>symbolname</i>]
+<br />
+        [<b>-G</b> <i>symbolname</i>|<b>--keep-global-symbol=</b><i>symbolname</i>]
+<br />
+        [<b>--localize-hidden</b>]
+<br />
+        [<b>-L</b> <i>symbolname</i>|<b>--localize-symbol=</b><i>symbolname</i>]
+<br />
+        [<b>--globalize-symbol=</b><i>symbolname</i>]
+<br />
+        [<b>-W</b> <i>symbolname</i>|<b>--weaken-symbol=</b><i>symbolname</i>]
+<br />
+        [<b>-w</b>|<b>--wildcard</b>]
+<br />
+        [<b>-x</b>|<b>--discard-all</b>]
+<br />
+        [<b>-X</b>|<b>--discard-locals</b>]
+<br />
+        [<b>-b</b> <i>byte</i>|<b>--byte=</b><i>byte</i>]
+<br />
+        [<b>-i</b> <i>interleave</i>|<b>--interleave=</b><i>interleave</i>]
+<br />
+        [<b>-j</b> <i>sectionname</i>|<b>--only-section=</b><i>sectionname</i>]
+<br />
+        [<b>-R</b> <i>sectionname</i>|<b>--remove-section=</b><i>sectionname</i>]
+<br />
+        [<b>-p</b>|<b>--preserve-dates</b>]
+<br />
+        [<b>--debugging</b>]
+<br />
+        [<b>--gap-fill=</b><i>val</i>]
+<br />
+        [<b>--pad-to=</b><i>address</i>]
+<br />
+        [<b>--set-start=</b><i>val</i>]
+<br />
+        [<b>--adjust-start=</b><i>incr</i>]
+<br />
+        [<b>--change-addresses=</b><i>incr</i>]
+<br />
+        [<b>--change-section-address</b> <i>section</i>{=,+,-}<i>val</i>]
+<br />
+        [<b>--change-section-lma</b> <i>section</i>{=,+,-}<i>val</i>]
+<br />
+        [<b>--change-section-vma</b> <i>section</i>{=,+,-}<i>val</i>]
+<br />
+        [<b>--change-warnings</b>] [<b>--no-change-warnings</b>]
+<br />
+        [<b>--set-section-flags</b> <i>section</i>=<i>flags</i>]
+<br />
+        [<b>--add-section</b> <i>sectionname</i>=<i>filename</i>]
+<br />
+        [<b>--rename-section</b> <i>oldname</i>=<i>newname</i>[,<i>flags</i>]]
+<br />
+        [<b>--change-leading-char</b>] [<b>--remove-leading-char</b>]
+<br />
+        [<b>--srec-len=</b><i>ival</i>] [<b>--srec-forceS3</b>]
+<br />
+        [<b>--redefine-sym</b> <i>old</i>=<i>new</i>]
+<br />
+        [<b>--redefine-syms=</b><i>filename</i>]
+<br />
+        [<b>--weaken</b>]
+<br />
+        [<b>--keep-symbols=</b><i>filename</i>]
+<br />
+        [<b>--strip-symbols=</b><i>filename</i>]
+<br />
+        [<b>--strip-unneeded-symbols=</b><i>filename</i>]
+<br />
+        [<b>--keep-global-symbols=</b><i>filename</i>]
+<br />
+        [<b>--localize-symbols=</b><i>filename</i>]
+<br />
+        [<b>--globalize-symbols=</b><i>filename</i>]
+<br />
+        [<b>--weaken-symbols=</b><i>filename</i>]
+<br />
+        [<b>--alt-machine-code=</b><i>index</i>]
+<br />
+        [<b>--prefix-symbols=</b><i>string</i>]
+<br />
+        [<b>--prefix-sections=</b><i>string</i>]
+<br />
+        [<b>--prefix-alloc-sections=</b><i>string</i>]
+<br />
+        [<b>--add-gnu-debuglink=</b><i>path-to-file</i>]
+<br />
+        [<b>--keep-file-symbols</b>]
+<br />
+        [<b>--only-keep-debug</b>]
+<br />
+        [<b>--writable-text</b>]
+<br />
+        [<b>--readonly-text</b>]
+<br />
+        [<b>--pure</b>]
+<br />
+        [<b>--impure</b>]
+<br />
+        [<b>-v</b>|<b>--verbose</b>]
+<br />
+        [<b>-V</b>|<b>--version</b>] 
+<br />
+        [<b>--help</b>] [<b>--info</b>]
+<br />
+        <i>infile</i> [<i>outfile</i>]
+<h1 class="manpages">DESCRIPTION</h1>
+<!-- ignored unsupported tag .tm -->
+The <font size="-1">GNU</font> <b>objcopy</b> utility copies the contents of an object
+file to another.  <b>objcopy</b> uses the <font size="-1">GNU</font> <font size="-1">BFD</font> Library to
+read and write the object files.  It can write the destination object
+file in a format different from that of the source object file.  The
+exact behavior of <b>objcopy</b> is controlled by command-line options.
+Note that <b>objcopy</b> should be able to copy a fully linked file
+between any two formats. However, copying a relocatable object file
+between any two formats may not work as expected.
+<p>
+<b>objcopy</b> creates temporary files to do its translations and
+deletes them afterward.  <b>objcopy</b> uses <font size="-1">BFD</font> to do all its
+translation work; it has access to all the formats described in <font size="-1">BFD</font>
+and thus is able to recognize most formats without being told
+explicitly. 
+<p>
+<b>objcopy</b> can be used to generate S-records by using an output
+target of <b>srec</b> (e.g., use <b>-O srec</b>).
+<p>
+<b>objcopy</b> can be used to generate a raw binary file by using an
+output target of <b>binary</b> (e.g., use <b>-O binary</b>).  When
+<b>objcopy</b> generates a raw binary file, it will essentially produce
+a memory dump of the contents of the input object file.  All symbols and
+relocation information will be discarded.  The memory dump will start at
+the load address of the lowest section copied into the output file.
+<p>
+When generating an S-record or a raw binary file, it may be helpful to
+use <b>-S</b> to remove sections containing debugging information.  In
+some cases <b>-R</b> will be useful to remove sections which contain
+information that is not needed by the binary file.
+<p>
+Note---<b>objcopy</b> is not able to change the endianness of its input
+files.  If the input format has an endianness (some formats do not),
+<b>objcopy</b> can only copy the inputs into file formats that have the
+same endianness or which have no endianness (e.g., <b>srec</b>).
+<h1 class="manpages">OPTIONS</h1>
+<!-- ignored unsupported tag .tm -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+<i>infile</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<i>outfile</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+The input and output files, respectively.
+If you do not specify <i>outfile</i>, <b>objcopy</b> creates a
+temporary file and destructively renames the result with
+the name of <i>infile</i>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-I</b> <i>bfdname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--input-target=</b><i>bfdname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Consider the source file&#146;s object format to be <i>bfdname</i>, rather than
+attempting to deduce it. 
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-O</b> <i>bfdname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--output-target=</b><i>bfdname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Write the output file using the object format <i>bfdname</i>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-F</b> <i>bfdname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--target=</b><i>bfdname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Use <i>bfdname</i> as the object format for both the input and the output
+file; i.e., simply transfer data from source to destination with no
+translation. 
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-B</b> <i>bfdarch</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--binary-architecture=</b><i>bfdarch</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Useful when transforming a raw binary input file into an object file.
+In this case the output architecture can be set to <i>bfdarch</i>. This
+option will be ignored if the input file has a known <i>bfdarch</i>. You
+can access this binary data inside a program by referencing the special
+symbols that are created by the conversion process.  These symbols are
+called _binary_<i>objfile</i>_start, _binary_<i>objfile</i>_end and
+_binary_<i>objfile</i>_size.  e.g. you can transform a picture file into
+an object file and then access it in your code using these symbols.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-j</b> <i>sectionname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--only-section=</b><i>sectionname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Copy only the named section from the input file to the output file.
+This option may be given more than once.  Note that using this option
+inappropriately may make the output file unusable.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-R</b> <i>sectionname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--remove-section=</b><i>sectionname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Remove any section named <i>sectionname</i> from the output file.  This
+option may be given more than once.  Note that using this option
+inappropriately may make the output file unusable.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-S</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--strip-all</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Do not copy relocation and symbol information from the source file.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-g</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--strip-debug</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Do not copy debugging symbols or sections from the source file.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--strip-unneeded</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Strip all symbols that are not needed for relocation processing.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-K</b> <i>symbolname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--keep-symbol=</b><i>symbolname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+When stripping symbols, keep symbol <i>symbolname</i> even if it would
+normally be stripped.  This option may be given more than once.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-N</b> <i>symbolname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--strip-symbol=</b><i>symbolname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Do not copy symbol <i>symbolname</i> from the source file.  This option
+may be given more than once.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--strip-unneeded-symbol=</b><i>symbolname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Do not copy symbol <i>symbolname</i> from the source file unless it is needed
+by a relocation.  This option may be given more than once.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-G</b> <i>symbolname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--keep-global-symbol=</b><i>symbolname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Keep only symbol <i>symbolname</i> global.  Make all other symbols local
+to the file, so that they are not visible externally.  This option may
+be given more than once.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--localize-hidden</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+In an <font size="-1">ELF</font> object, mark all symbols that have hidden or internal visibility
+as local.  This option applies on top of symbol-specific localization options
+such as <b>-L</b>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-L</b> <i>symbolname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--localize-symbol=</b><i>symbolname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Make symbol <i>symbolname</i> local to the file, so that it is not
+visible externally.  This option may be given more than once.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-W</b> <i>symbolname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--weaken-symbol=</b><i>symbolname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Make symbol <i>symbolname</i> weak. This option may be given more than once.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--globalize-symbol=</b><i>symbolname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Give symbol <i>symbolname</i> global scoping so that it is visible
+outside of the file in which it is defined.  This option may be given
+more than once.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-w</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--wildcard</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Permit regular expressions in <i>symbolname</i>s used in other command
+line options.  The question mark (?), asterisk (*), backslash (&#92;) and
+square brackets ([]) operators can be used anywhere in the symbol
+name.  If the first character of the symbol name is the exclamation
+point (!) then the sense of the switch is reversed for that symbol.
+For example:
+<p>
+<!-- ignored unsupported tag .if -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+          -w -W !foo -W fo*
+</tt></pre></td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .if -->
+would cause objcopy to weaken all symbols that start with fo
+except for the symbol foo.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-x</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--discard-all</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Do not copy non-global symbols from the source file.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-X</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--discard-locals</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Do not copy compiler-generated local symbols.
+(These usually start with <b>L</b> or <b>.</b>.)
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-b</b> <i>byte</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--byte=</b><i>byte</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Keep only every <i>byte</i>th byte of the input file (header data is not
+affected).  <i>byte</i> can be in the range from 0 to <i>interleave</i>-1,
+where <i>interleave</i> is given by the <b>-i</b> or <b>--interleave</b>
+option, or the default of 4.  This option is useful for creating files
+to program <font size="-1">ROM</font>.  It is typically used with an <tt>srec</tt> output
+target.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-i</b> <i>interleave</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--interleave=</b><i>interleave</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Only copy one out of every <i>interleave</i> bytes.  Select which byte to
+copy with the <b>-b</b> or <b>--byte</b> option.  The default is 4.
+<b>objcopy</b> ignores this option if you do not specify either <b>-b</b> or
+<b>--byte</b>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-p</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--preserve-dates</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set the access and modification dates of the output file to be the same
+as those of the input file.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--debugging</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Convert debugging information, if possible.  This is not the default
+because only certain debugging formats are supported, and the
+conversion process can be time consuming.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--gap-fill</b> <i>val</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Fill gaps between sections with <i>val</i>.  This operation applies to
+the <i>load address</i> (<font size="-1">LMA</font>) of the sections.  It is done by increasing
+the size of the section with the lower address, and filling in the extra
+space created with <i>val</i>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--pad-to</b> <i>address</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Pad the output file up to the load address <i>address</i>.  This is
+done by increasing the size of the last section.  The extra space is
+filled in with the value specified by <b>--gap-fill</b> (default zero).
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--set-start</b> <i>val</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set the start address of the new file to <i>val</i>.  Not all object file
+formats support setting the start address.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--change-start</b> <i>incr</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--adjust-start</b> <i>incr</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Change the start address by adding <i>incr</i>.  Not all object file
+formats support setting the start address.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--change-addresses</b> <i>incr</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--adjust-vma</b> <i>incr</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Change the <font size="-1">VMA</font> and <font size="-1">LMA</font> addresses of all sections, as well as the start
+address, by adding <i>incr</i>.  Some object file formats do not permit
+section addresses to be changed arbitrarily.  Note that this does not
+relocate the sections; if the program expects sections to be loaded at a
+certain address, and this option is used to change the sections such
+that they are loaded at a different address, the program may fail.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--change-section-address</b> <i>section</i><b>{=,+,-}</b><i>val</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--adjust-section-vma</b> <i>section</i><b>{=,+,-}</b><i>val</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set or change both the <font size="-1">VMA</font> address and the <font size="-1">LMA</font> address of the named
+<i>section</i>.  If <b>=</b> is used, the section address is set to
+<i>val</i>.  Otherwise, <i>val</i> is added to or subtracted from the
+section address.  See the comments under <b>--change-addresses</b>,
+above. If <i>section</i> does not exist in the input file, a warning will
+be issued, unless <b>--no-change-warnings</b> is used.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--change-section-lma</b> <i>section</i><b>{=,+,-}</b><i>val</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set or change the <font size="-1">LMA</font> address of the named <i>section</i>.  The <font size="-1">LMA</font>
+address is the address where the section will be loaded into memory at
+program load time.  Normally this is the same as the <font size="-1">VMA</font> address, which
+is the address of the section at program run time, but on some systems,
+especially those where a program is held in <font size="-1">ROM</font>, the two can be
+different.  If <b>=</b> is used, the section address is set to
+<i>val</i>.  Otherwise, <i>val</i> is added to or subtracted from the
+section address.  See the comments under <b>--change-addresses</b>,
+above.  If <i>section</i> does not exist in the input file, a warning
+will be issued, unless <b>--no-change-warnings</b> is used. 
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--change-section-vma</b> <i>section</i><b>{=,+,-}</b><i>val</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set or change the <font size="-1">VMA</font> address of the named <i>section</i>.  The <font size="-1">VMA</font>
+address is the address where the section will be located once the
+program has started executing.  Normally this is the same as the <font size="-1">LMA</font>
+address, which is the address where the section will be loaded into
+memory, but on some systems, especially those where a program is held in
+<font size="-1">ROM</font>, the two can be different.  If <b>=</b> is used, the section address
+is set to <i>val</i>.  Otherwise, <i>val</i> is added to or subtracted
+from the section address.  See the comments under
+<b>--change-addresses</b>, above.  If <i>section</i> does not exist in
+the input file, a warning will be issued, unless
+<b>--no-change-warnings</b> is used.  
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--change-warnings</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--adjust-warnings</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+If <b>--change-section-address</b> or <b>--change-section-lma</b> or
+<b>--change-section-vma</b> is used, and the named section does not
+exist, issue a warning.  This is the default.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--no-change-warnings</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--no-adjust-warnings</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Do not issue a warning if <b>--change-section-address</b> or
+<b>--adjust-section-lma</b> or <b>--adjust-section-vma</b> is used, even
+if the named section does not exist.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--set-section-flags</b> <i>section</i><b>=</b><i>flags</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Set the flags for the named section.  The <i>flags</i> argument is a
+comma separated string of flag names.  The recognized names are
+<b>alloc</b>, <b>contents</b>, <b>load</b>, <b>noload</b>,
+<b>readonly</b>, <b>code</b>, <b>data</b>, <b>rom</b>, <b>share</b>, and
+<b>debug</b>.  You can set the <b>contents</b> flag for a section which
+does not have contents, but it is not meaningful to clear the
+<b>contents</b> flag of a section which does have contents&#151;just remove
+the section instead.  Not all flags are meaningful for all object file
+formats.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--add-section</b> <i>sectionname</i><b>=</b><i>filename</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Add a new section named <i>sectionname</i> while copying the file.  The
+contents of the new section are taken from the file <i>filename</i>.  The
+size of the section will be the size of the file.  This option only
+works on file formats which can support sections with arbitrary names.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--rename-section</b> <i>oldname</i><b>=</b><i>newname</i><b>[,</b><i>flags</i><b>]</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Rename a section from <i>oldname</i> to <i>newname</i>, optionally
+changing the section&#146;s flags to <i>flags</i> in the process.  This has
+the advantage over usng a linker script to perform the rename in that
+the output stays as an object file and does not become a linked
+executable.
+<p>
+<!-- ignored unsupported tag .if -->
+This option is particularly helpful when the input format is binary,
+since this will always create a section called .data.  If for example,
+you wanted instead to create a section called .rodata containing binary
+data you could use the following command line to achieve it:
+<p>
+<!-- ignored unsupported tag .if -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+          objcopy -I binary -O &lt;output_format&gt; -B &lt;architecture&gt; &#92;
+           --rename-section .data=.rodata,alloc,load,readonly,data,contents &#92;
+           &lt;input_binary_file&gt; &lt;output_object_file&gt;
+</tt></pre></td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--change-leading-char</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Some object file formats use special characters at the start of
+symbols.  The most common such character is underscore, which compilers
+often add before every symbol.  This option tells <b>objcopy</b> to
+change the leading character of every symbol when it converts between
+object file formats.  If the object file formats use the same leading
+character, this option has no effect.  Otherwise, it will add a
+character, or remove a character, or change a character, as
+appropriate.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--remove-leading-char</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+If the first character of a global symbol is a special symbol leading
+character used by the object file format, remove the character.  The
+most common symbol leading character is underscore.  This option will
+remove a leading underscore from all global symbols.  This can be useful
+if you want to link together objects of different file formats with
+different conventions for symbol names.  This is different from
+<b>--change-leading-char</b> because it always changes the symbol name
+when appropriate, regardless of the object file format of the output
+file.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--srec-len=</b><i>ival</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Meaningful only for srec output.  Set the maximum length of the Srecords
+being produced to <i>ival</i>.  This length covers both address, data and
+crc fields.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--srec-forceS3</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Meaningful only for srec output.  Avoid generation of S1/S2 records,
+creating S3-only record format.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--redefine-sym</b> <i>old</i><b>=</b><i>new</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Change the name of a symbol <i>old</i>, to <i>new</i>.  This can be useful
+when one is trying link two things together for which you have no
+source, and there are name collisions.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--redefine-syms=</b><i>filename</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Apply <b>--redefine-sym</b> to each symbol pair "<i>old</i> <i>new</i>"
+listed in the file <i>filename</i>.  <i>filename</i> is simply a flat file,
+with one symbol pair per line.  Line comments may be introduced by the hash
+character.  This option may be given more than once.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--weaken</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Change all global symbols in the file to be weak.  This can be useful
+when building an object which will be linked against other objects using
+the <b>-R</b> option to the linker.  This option is only effective when
+using an object file format which supports weak symbols.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--keep-symbols=</b><i>filename</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Apply <b>--keep-symbol</b> option to each symbol listed in the file
+<i>filename</i>.  <i>filename</i> is simply a flat file, with one symbol
+name per line.  Line comments may be introduced by the hash character.
+This option may be given more than once.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--strip-symbols=</b><i>filename</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Apply <b>--strip-symbol</b> option to each symbol listed in the file
+<i>filename</i>.  <i>filename</i> is simply a flat file, with one symbol
+name per line.  Line comments may be introduced by the hash character.
+This option may be given more than once.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--strip-unneeded-symbols=</b><i>filename</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Apply <b>--strip-unneeded-symbol</b> option to each symbol listed in
+the file <i>filename</i>.  <i>filename</i> is simply a flat file, with one
+symbol name per line.  Line comments may be introduced by the hash
+character.  This option may be given more than once.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--keep-global-symbols=</b><i>filename</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Apply <b>--keep-global-symbol</b> option to each symbol listed in the
+file <i>filename</i>.  <i>filename</i> is simply a flat file, with one
+symbol name per line.  Line comments may be introduced by the hash
+character.  This option may be given more than once.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--localize-symbols=</b><i>filename</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Apply <b>--localize-symbol</b> option to each symbol listed in the file
+<i>filename</i>.  <i>filename</i> is simply a flat file, with one symbol
+name per line.  Line comments may be introduced by the hash character.
+This option may be given more than once.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--globalize-symbols=</b><i>filename</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Apply <b>--globalize-symbol</b> option to each symbol listed in the file
+<i>filename</i>.  <i>filename</i> is simply a flat file, with one symbol
+name per line.  Line comments may be introduced by the hash character.
+This option may be given more than once.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--weaken-symbols=</b><i>filename</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Apply <b>--weaken-symbol</b> option to each symbol listed in the file
+<i>filename</i>.  <i>filename</i> is simply a flat file, with one symbol
+name per line.  Line comments may be introduced by the hash character.
+This option may be given more than once.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--alt-machine-code=</b><i>index</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+If the output architecture has alternate machine codes, use the
+<i>index</i>th code instead of the default one.  This is useful in case
+a machine is assigned an official code and the tool-chain adopts the
+new code, but other applications still depend on the original code
+being used.  For <font size="-1">ELF</font> based architectures if the <i>index</i>
+alternative does not exist then the value is treated as an absolute
+number to be stored in the e_machine field of the <font size="-1">ELF</font> header.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--writable-text</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Mark the output text as writable.  This option isn&#146;t meaningful for all
+object file formats.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--readonly-text</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Make the output text write protected.  This option isn&#146;t meaningful for all
+object file formats.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--pure</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Mark the output file as demand paged.  This option isn&#146;t meaningful for all
+object file formats.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--impure</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Mark the output file as impure.  This option isn&#146;t meaningful for all
+object file formats.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--prefix-symbols=</b><i>string</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Prefix all symbols in the output file with <i>string</i>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--prefix-sections=</b><i>string</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Prefix all section names in the output file with <i>string</i>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--prefix-alloc-sections=</b><i>string</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Prefix all the names of all allocated sections in the output file with
+<i>string</i>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--add-gnu-debuglink=</b><i>path-to-file</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Creates a .gnu_debuglink section which contains a reference to <i>path-to-file</i>
+and adds it to the output file.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--keep-file-symbols</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+When stripping a file, perhaps with <b>--strip-debug</b> or
+<b>--strip-unneeded</b>, retain any symbols specifying source file names,
+which would otherwise get stripped.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--only-keep-debug</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Strip a file, removing contents of any sections that would not be
+stripped by <b>--strip-debug</b> and leaving the debugging sections
+intact.
+<p>
+<!-- ignored unsupported tag .if -->
+The intention is that this option will be used in conjunction with
+<b>--add-gnu-debuglink</b> to create a two part executable.  One a
+stripped binary which will occupy less space in <font size="-1">RAM</font> and in a
+distribution and the second a debugging information file which is only
+needed if debugging abilities are required.  The suggested procedure
+to create these files is as follows:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+1.&lt;Link the executable as normal.  Assuming that is is called&gt;
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<tt>foo</tt> then...
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+1.&lt;Run <tt>objcopy --only-keep-debug foo foo.dbg</tt> to&gt;
+</td><td>
+<!-- ignored unsupported tag .tm -->
+create a file containing the debugging info.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+1.&lt;Run <tt>objcopy --strip-debug foo</tt> to create a&gt;
+</td><td>
+<!-- ignored unsupported tag .tm -->
+stripped executable.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+1.&lt;Run <tt>objcopy --add-gnu-debuglink=foo.dbg foo</tt>&gt;
+</td><td>
+<!-- ignored unsupported tag .tm -->
+to add a link to the debugging info into the stripped executable.
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .if -->
+Note - the choice of <tt>.dbg</tt> as an extension for the debug info
+file is arbitrary.  Also the <tt>--only-keep-debug</tt> step is
+optional.  You could instead do this:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+1.&lt;Link the executable as normal.&gt;
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+1.&lt;Copy <tt>foo</tt> to  <tt>foo.full</tt>&gt;
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+1.&lt;Run <tt>objcopy --strip-debug foo</tt>&gt;
+</td><td>
+<!-- ignored unsupported tag .tm -->
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+1.&lt;Run <tt>objcopy --add-gnu-debuglink=foo.full foo</tt>&gt;
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .if -->
+i.e., the file pointed to by the <b>--add-gnu-debuglink</b> can be the
+full executable.  It does not have to be a file created by the
+<b>--only-keep-debug</b> switch.
+<p>
+<!-- ignored unsupported tag .if -->
+Note - this switch is only intended for use on fully linked files.  It
+does not make sense to use it on object files where the debugging
+information may be incomplete.  Besides the gnu_debuglink feature
+currently only supports the presence of one filename containing
+debugging information, not multiple filenames on a one-per-object-file
+basis.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-V</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--version</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Show the version number of <b>objcopy</b>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-v</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--verbose</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Verbose output: list all object files modified.  In the case of
+archives, <b>objcopy -V</b> lists all members of the archive.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--help</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Show a summary of the options to <b>objcopy</b>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--info</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Display a list showing all architectures and object formats available.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>@</b><i>file</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Read command-line options from <i>file</i>.  The options read are
+inserted in place of the original @<i>file</i> option.  If <i>file</i>
+does not exist, or cannot be read, then the option will be treated
+literally, and not removed. 
+<p>
+<!-- ignored unsupported tag .if -->
+Options in <i>file</i> are separated by whitespace.  A whitespace
+character may be included in an option by surrounding the entire
+option in either single or double quotes.  Any character (including a
+backslash) may be included by prefixing the character to be included
+with a backslash.  The <i>file</i> may itself contain additional
+@<i>file</i> options; any such options will be processed recursively.
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<i>ld</i>(1), <i>objdump</i>(1), and the Info entries for <i>binutils</i>.
+<h1 class="manpages">COPYRIGHT</h1>
+<!-- ignored unsupported tag .tm -->
+Copyright (c) 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999,
+2000, 2001, 2002, 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
+<p>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the <font size="-1">GNU</font> Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, with no Front-Cover Texts, and with no
+Back-Cover Texts.  A copy of the license is included in the
+section entitled <font size="-1">GNU</font> Free Documentation License.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion8951.html?tutorial=unix_commands&amp;file=objcopy.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/objcopy.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

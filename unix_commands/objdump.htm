@@ -1,0 +1,1009 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/objdump.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>objdump - Unix, Linux Command</title>
+<meta name="Description" Content="objdump - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>objdump - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- Not defining reserved macro 'Sh' ! -->
+<!-- ignored unsupported tag .tr -->
+<!-- ignored unsupported tag .ie -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .el\{ -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .rr -->
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .hy -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .tm -->
+<h1 class="manpages">NAME</h1>
+objdump - display information from object files.
+<h1 class="manpages">SYNOPSIS</h1>
+<!-- ignored unsupported tag .tm -->
+objdump [<b>-a</b>|<b>--archive-headers</b>]
+<br />
+        [<b>-b</b> <i>bfdname</i>|<b>--target=</b><i>bfdname</i>]
+<br />
+        [<b>-C</b>|<b>--demangle</b>[=<i>style</i>] ]
+<br />
+        [<b>-d</b>|<b>--disassemble</b>]
+<br />
+        [<b>-D</b>|<b>--disassemble-all</b>]
+<br />
+        [<b>-z</b>|<b>--disassemble-zeroes</b>]
+<br />
+        [<b>-EB</b>|<b>-EL</b>|<b>--endian=</b>{big | little }]
+<br />
+        [<b>-f</b>|<b>--file-headers</b>]
+<br />
+        [<b>--file-start-context</b>]
+<br />
+        [<b>-g</b>|<b>--debugging</b>]
+<br />
+        [<b>-e</b>|<b>--debugging-tags</b>]
+<br />
+        [<b>-h</b>|<b>--section-headers</b>|<b>--headers</b>]
+<br />
+        [<b>-i</b>|<b>--info</b>]
+<br />
+        [<b>-j</b> <i>section</i>|<b>--section=</b><i>section</i>]
+<br />
+        [<b>-l</b>|<b>--line-numbers</b>]
+<br />
+        [<b>-S</b>|<b>--source</b>]
+<br />
+        [<b>-m</b> <i>machine</i>|<b>--architecture=</b><i>machine</i>]
+<br />
+        [<b>-M</b> <i>options</i>|<b>--disassembler-options=</b><i>options</i>]
+<br />
+        [<b>-p</b>|<b>--private-headers</b>]
+<br />
+        [<b>-r</b>|<b>--reloc</b>]
+<br />
+        [<b>-R</b>|<b>--dynamic-reloc</b>]
+<br />
+        [<b>-s</b>|<b>--full-contents</b>]
+<br />
+        [<b>-W</b>|<b>--dwarf</b>]
+<br />
+        [<b>-G</b>|<b>--stabs</b>]
+<br />
+        [<b>-t</b>|<b>--syms</b>]
+<br />
+        [<b>-T</b>|<b>--dynamic-syms</b>]
+<br />
+        [<b>-x</b>|<b>--all-headers</b>]
+<br />
+        [<b>-w</b>|<b>--wide</b>]
+<br />
+        [<b>--start-address=</b><i>address</i>]
+<br />
+        [<b>--stop-address=</b><i>address</i>]
+<br />
+        [<b>--prefix-addresses</b>]
+<br />
+        [<b>--[no-]show-raw-insn</b>]
+<br />
+        [<b>--adjust-vma=</b><i>offset</i>]
+<br />
+        [<b>--special-syms</b>]
+<br />
+        [<b>-V</b>|<b>--version</b>]
+<br />
+        [<b>-H</b>|<b>--help</b>]
+<br />
+        <i>objfile</i>...
+<h1 class="manpages">DESCRIPTION</h1>
+<!-- ignored unsupported tag .tm -->
+<b>objdump</b> displays information about one or more object files.
+The options control what particular information to display.  This
+information is mostly useful to programmers who are working on the
+compilation tools, as opposed to programmers who just want their
+program to compile and work.
+<p>
+<i>objfile</i>... are the object files to be examined.  When you
+specify archives, <b>objdump</b> shows information on each of the member
+object files.
+<h1 class="manpages">OPTIONS</h1>
+<!-- ignored unsupported tag .tm -->
+The long and short forms of options, shown here as alternatives, are
+equivalent.  At least one option from the list
+<b>-a,-d,-D,-e,-f,-g,-G,-h,-H,-p,-r,-R,-s,-S,-t,-T,-V,-x</b> must be given.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+<b>-a</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--archive-header</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+If any of the <i>objfile</i> files are archives, display the archive
+header information (in a format similar to <b>ls -l</b>).  Besides the
+information you could list with <b>ar tv</b>, <b>objdump -a</b> shows
+the object file format of each archive member.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--adjust-vma=</b><i>offset</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+When dumping information, first add <i>offset</i> to all the section
+addresses.  This is useful if the section addresses do not correspond to
+the symbol table, which can happen when putting sections at particular
+addresses when using a format which can not represent section addresses,
+such as a.out.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-b</b> <i>bfdname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--target=</b><i>bfdname</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Specify that the object-code format for the object files is
+<i>bfdname</i>.  This option may not be necessary; <i>objdump</i> can
+automatically recognize many formats.
+<p>
+<!-- ignored unsupported tag .if -->
+For example,
+<p>
+<!-- ignored unsupported tag .if -->
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+        objdump -b oasys -m vax -h fu.o
+</tt></pre></td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .if -->
+displays summary information from the section headers (<b>-h</b>) of
+<i>fu.o</i>, which is explicitly identified (<b>-m</b>) as a <font size="-1">VAX</font> object
+file in the format produced by Oasys compilers.  You can list the
+formats available with the <b>-i</b> option.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-C</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--demangle[=</b><i>style</i><b>]</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Decode (<i>demangle</i>) low-level symbol names into user-level names.
+Besides removing any initial underscore prepended by the system, this
+makes C<font size="-2">++</font> function names readable.  Different compilers have different
+mangling styles. The optional demangling style argument can be used to
+choose an appropriate demangling style for your compiler.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-g</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--debugging</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Display debugging information.  This attempts to parse debugging
+information stored in the file and print it out using a C like syntax.
+Only certain types of debugging information have been implemented.
+Some other types are supported by <b>readelf -w</b>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-e</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--debugging-tags</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Like <b>-g</b>, but the information is generated in a format compatible
+with ctags tool.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-d</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--disassemble</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Display the assembler mnemonics for the machine instructions from
+<i>objfile</i>.  This option only disassembles those sections which are
+expected to contain instructions.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-D</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--disassemble-all</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Like <b>-d</b>, but disassemble the contents of all sections, not just
+those expected to contain instructions.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--prefix-addresses</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+When disassembling, print the complete address on each line.  This is
+the older disassembly format.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-EB</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-EL</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--endian={big|little}</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Specify the endianness of the object files.  This only affects
+disassembly.  This can be useful when disassembling a file format which
+does not describe endianness information, such as S-records.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-f</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--file-headers</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Display summary information from the overall header of
+each of the <i>objfile</i> files.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--file-start-context</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Specify that when displaying interlisted source code/disassembly
+(assumes <b>-S</b>) from a file that has not yet been displayed, extend the
+context to the start of the file.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-h</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--section-headers</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--headers</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Display summary information from the section headers of the
+object file.
+<p>
+<!-- ignored unsupported tag .if -->
+File segments may be relocated to nonstandard addresses, for example by
+using the <b>-Ttext</b>, <b>-Tdata</b>, or <b>-Tbss</b> options to
+<b>ld</b>.  However, some object file formats, such as a.out, do not
+store the starting address of the file segments.  In those situations,
+although <b>ld</b> relocates the sections correctly, using <b>objdump
+-h</b> to list the file section headers cannot show the correct addresses.
+Instead, it shows the usual addresses, which are implicit for the
+target.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-H</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--help</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Print a summary of the options to <b>objdump</b> and exit.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-i</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--info</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Display a list showing all architectures and object formats available
+for specification with <b>-b</b> or <b>-m</b>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-j</b> <i>name</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--section=</b><i>name</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Display information only for section <i>name</i>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-l</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--line-numbers</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Label the display (using debugging information) with the filename and
+source line numbers corresponding to the object code or relocs shown.
+Only useful with <b>-d</b>, <b>-D</b>, or <b>-r</b>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-m</b> <i>machine</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--architecture=</b><i>machine</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Specify the architecture to use when disassembling object files.  This
+can be useful when disassembling object files which do not describe
+architecture information, such as S-records.  You can list the available
+architectures with the <b>-i</b> option.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-M</b> <i>options</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--disassembler-options=</b><i>options</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Pass target specific information to the disassembler.  Only supported on
+some targets.  If it is necessary to specify more than one
+disassembler option then multiple <b>-M</b> options can be used or
+can be placed together into a comma separated list.
+<p>
+<!-- ignored unsupported tag .if -->
+If the target is an <font size="-1">ARM</font> architecture then this switch can be used to
+select which register name set is used during disassembler.  Specifying
+<b>-M reg-names-std</b> (the default) will select the register names as
+used in <font size="-1">ARM</font>&#146;s instruction set documentation, but with register 13 called
+&#146;sp&#146;, register 14 called &#146;lr&#146; and register 15 called &#146;pc&#146;.  Specifying
+<b>-M reg-names-apcs</b> will select the name set used by the <font size="-1">ARM</font>
+Procedure Call Standard, whilst specifying <b>-M reg-names-raw</b> will
+just use <b>r</b> followed by the register number.
+<p>
+<!-- ignored unsupported tag .if -->
+There are also two variants on the <font size="-1">APCS</font> register naming scheme enabled
+by <b>-M reg-names-atpcs</b> and <b>-M reg-names-special-atpcs</b> which
+use the ARM/Thumb Procedure Call Standard naming conventions.  (Either
+with the normal register names or the special register names).
+<p>
+<!-- ignored unsupported tag .if -->
+This option can also be used for <font size="-1">ARM</font> architectures to force the
+disassembler to interpret all instructions as Thumb instructions by
+using the switch <b>--disassembler-options=force-thumb</b>.  This can be
+useful when attempting to disassemble thumb code produced by other
+compilers.
+<p>
+<!-- ignored unsupported tag .if -->
+For the x86, some of the options duplicate functions of the <b>-m</b>
+switch, but allow finer grained control.  Multiple selections from the
+following may be specified as a comma separated string.
+<b>x86-64</b>, <b>i386</b> and <b>i8086</b> select disassembly for
+the given architecture.  <b>intel</b> and <b>att</b> select between
+intel syntax mode and <font size="-1">AT&T</font> syntax mode.  <b>addr32</b>,
+<b>addr16</b>, <b>data32</b> and <b>data16</b> specify the default
+address size and operand size.  These four options will be overridden if
+<b>x86-64</b>, <b>i386</b> or <b>i8086</b> appear later in the
+option string.  Lastly, <b>suffix</b>, when in <font size="-1">AT&T</font> mode,
+instructs the disassembler to print a mnemonic suffix even when the
+suffix could be inferred by the operands.
+<p>
+<!-- ignored unsupported tag .if -->
+For <font size="-1">PPC</font>, <b>booke</b>, <b>booke32</b> and <b>booke64</b> select
+disassembly of BookE instructions.  <b>32</b> and <b>64</b> select
+PowerPC and PowerPC64 disassembly, respectively.  <b>e300</b> selects
+disassembly for the e300 family.
+<p>
+<!-- ignored unsupported tag .if -->
+For <font size="-1">MIPS</font>, this option controls the printing of instruction mnemonic
+names and register names in disassembled instructions.  Multiple
+selections from the following may be specified as a comma separated
+string, and invalid options are ignored:
+<!-- ignored unsupported tag .ie -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+<tt>no-aliases</tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Print the &#146;raw&#146; instruction mnemonic instead of some pseudo
+instruction mnemonic.  I.e., print &#146;daddu&#146; or &#146;or&#146; instead of &#146;move&#146;,
+&#146;sll&#146; instead of &#146;nop&#146;, etc.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>gpr-names=</tt><tt><font size="-1">ABI</font></tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Print <font size="-1">GPR</font> (general-purpose register) names as appropriate
+for the specified <font size="-1">ABI</font>.  By default, <font size="-1">GPR</font> names are selected according to
+the <font size="-1">ABI</font> of the binary being disassembled.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>fpr-names=</tt><tt><font size="-1">ABI</font></tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Print <font size="-1">FPR</font> (floating-point register) names as
+appropriate for the specified <font size="-1">ABI</font>.  By default, <font size="-1">FPR</font> numbers are printed
+rather than names.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>cp0-names=</tt><tt><font size="-1">ARCH</font></tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Print <font size="-1">CP0</font> (system control coprocessor; coprocessor 0) register names
+as appropriate for the <font size="-1">CPU</font> or architecture specified by
+<i><font size="-1">ARCH</font></i>.  By default, <font size="-1">CP0</font> register names are selected according to
+the architecture and <font size="-1">CPU</font> of the binary being disassembled.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>hwr-names=</tt><tt><font size="-1">ARCH</font></tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Print <font size="-1">HWR</font> (hardware register, used by the <tt>rdhwr</tt> instruction) names
+as appropriate for the <font size="-1">CPU</font> or architecture specified by
+<i><font size="-1">ARCH</font></i>.  By default, <font size="-1">HWR</font> names are selected according to
+the architecture and <font size="-1">CPU</font> of the binary being disassembled.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>reg-names=</tt><tt><font size="-1">ABI</font></tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Print <font size="-1">GPR</font> and <font size="-1">FPR</font> names as appropriate for the selected <font size="-1">ABI</font>.
+<!-- ignored unsupported tag .ie -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<tt>reg-names=</tt><tt><font size="-1">ARCH</font></tt><tt></tt>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Print CPU-specific register names (<font size="-1">CP0</font> register and <font size="-1">HWR</font> names)
+as appropriate for the selected <font size="-1">CPU</font> or architecture.
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .if -->
+For any of the options listed above, <i><font size="-1">ABI</font></i> or
+<i><font size="-1">ARCH</font></i> may be specified as <b>numeric</b> to have numbers printed
+rather than names, for the selected types of registers.
+You can list the available values of <i><font size="-1">ABI</font></i> and <i><font size="-1">ARCH</font></i> using
+the <b>--help</b> option.
+<p>
+<!-- ignored unsupported tag .if -->
+For <font size="-1">VAX</font>, you can specify function entry addresses with <b>-M
+entry:0xf00ba</b>.  You can use this multiple times to properly
+disassemble <font size="-1">VAX</font> binary files that don&#146;t contain symbol tables (like
+<font size="-1">ROM</font> dumps).  In these cases, the function entry mask would otherwise
+be decoded as <font size="-1">VAX</font> instructions, which would probably lead the rest
+of the function being wrongly disassembled.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-p</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--private-headers</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Print information that is specific to the object file format.  The exact
+information printed depends upon the object file format.  For some
+object file formats, no additional information is printed.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-r</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--reloc</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Print the relocation entries of the file.  If used with <b>-d</b> or
+<b>-D</b>, the relocations are printed interspersed with the
+disassembly.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-R</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--dynamic-reloc</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Print the dynamic relocation entries of the file.  This is only
+meaningful for dynamic objects, such as certain types of shared
+libraries.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-s</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--full-contents</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Display the full contents of any sections requested.  By default all
+non-empty sections are displayed.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-S</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--source</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Display source code intermixed with disassembly, if possible.  Implies
+<b>-d</b>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--show-raw-insn</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+When disassembling instructions, print the instruction in hex as well as
+in symbolic form.  This is the default except when
+<b>--prefix-addresses</b> is used.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--no-show-raw-insn</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+When disassembling instructions, do not print the instruction bytes.
+This is the default when <b>--prefix-addresses</b> is used.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-W</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--dwarf</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Displays the contents of the <font size="-1">DWARF</font> debug sections in the file, if any
+are present.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-G</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--stabs</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Display the full contents of any sections requested.  Display the
+contents of the .stab and .stab.index and .stab.excl sections from an
+<font size="-1">ELF</font> file.  This is only useful on systems (such as Solaris 2.0) in which
+<tt>.stab</tt> debugging symbol-table entries are carried in an <font size="-1">ELF</font>
+section.  In most other file formats, debugging symbol-table entries are
+interleaved with linkage symbols, and are visible in the <b>--syms</b>
+output.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--start-address=</b><i>address</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Start displaying data at the specified address.  This affects the output
+of the <b>-d</b>, <b>-r</b> and <b>-s</b> options.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--stop-address=</b><i>address</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Stop displaying data at the specified address.  This affects the output
+of the <b>-d</b>, <b>-r</b> and <b>-s</b> options.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-t</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--syms</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Print the symbol table entries of the file.
+This is similar to the information provided by the <b>nm</b> program.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-T</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--dynamic-syms</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Print the dynamic symbol table entries of the file.  This is only
+meaningful for dynamic objects, such as certain types of shared
+libraries.  This is similar to the information provided by the <b>nm</b>
+program when given the <b>-D</b> (<b>--dynamic</b>) option.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--special-syms</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+When displaying symbols include those which the target considers to be
+special in some way and which would not normally be of interest to the
+user.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-V</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--version</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Print the version number of <b>objdump</b> and exit.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-x</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--all-headers</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Display all available header information, including the symbol table and
+relocation entries.  Using <b>-x</b> is equivalent to specifying all of
+<b>-a -f -h -p -r -t</b>.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-w</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--wide</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Format some lines for output devices that have more than 80 columns.
+Also do not truncate symbol names when they are displayed.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-z</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--disassemble-zeroes</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Normally the disassembly output will skip blocks of zeroes.  This
+option directs the disassembler to disassemble those blocks, just like
+any other data.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>@</b><i>file</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Read command-line options from <i>file</i>.  The options read are
+inserted in place of the original @<i>file</i> option.  If <i>file</i>
+does not exist, or cannot be read, then the option will be treated
+literally, and not removed. 
+<p>
+<!-- ignored unsupported tag .if -->
+Options in <i>file</i> are separated by whitespace.  A whitespace
+character may be included in an option by surrounding the entire
+option in either single or double quotes.  Any character (including a
+backslash) may be included by prefixing the character to be included
+with a backslash.  The <i>file</i> may itself contain additional
+@<i>file</i> options; any such options will be processed recursively.
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<i>nm</i>(1), <i>readelf</i>(1), and the Info entries for <i>binutils</i>.
+<h1 class="manpages">COPYRIGHT</h1>
+<!-- ignored unsupported tag .tm -->
+Copyright (c) 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999,
+2000, 2001, 2002, 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
+<p>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the <font size="-1">GNU</font> Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, with no Front-Cover Texts, and with no
+Back-Cover Texts.  A copy of the license is included in the
+section entitled <font size="-1">GNU</font> Free Documentation License.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversiona77b.html?tutorial=unix_commands&amp;file=objdump.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/objdump.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

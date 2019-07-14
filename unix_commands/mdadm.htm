@@ -1,0 +1,2237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/mdadm.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:58 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>mdadm - Unix, Linux Command</title>
+<meta name="Description" Content="mdadm - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>mdadm - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+mdadm - manage MD devices
+<i>aka</i> Linux Software RAID
+<p>
+<h1 class="manpages">SYNOPSIS</h1>
+<p>
+<b>mdadm</b><i> [mode] &lt;raiddevice&gt; [options] &lt;component-devices&gt;</i> <p>
+<h1 class="manpages">DESCRIPTION</h1>
+RAID devices are virtual devices created from two or more
+real block devices. This allows multiple devices (typically disk
+drives or partitions thereof) to be combined into a single device to
+hold (for example) a single filesystem.
+Some RAID levels include redundancy and so can survive some degree of
+device failure.
+<p>
+Linux Software RAID devices are implemented through the md (Multiple
+Devices) device driver.
+<p>
+Currently, Linux supports
+<b>LINEAR</b> md devices,
+<b>RAID0</b> (striping),
+<b>RAID1</b> (mirroring),
+<b>RAID4</b>, <b>RAID5</b>, <b>RAID6</b>, <b>RAID10</b>, <b>MULTIPATH</b>, and
+<b>FAULTY</b>. <p>
+<b>MULTIPATH</b> is not a Software RAID mechanism, but does involve
+multiple devices:
+each device is a path to one common physical storage device.
+<p>
+<b>FAULTY</b> is also not true RAID, and it only involves one device.  It
+provides a layer over a true device that can be used to inject faults.
+<p>
+<p>
+<h1 class="manpages">MODES</h1>
+mdadm has several major modes of operation:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>Assemble</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Assemble the components of a previously created
+array into an active array. Components can be explicitly given
+or can be searched for.
+<i>mdadm</i> checks that the components
+do form a bona fide array, and can, on request, fiddle superblock
+information so as to assemble a faulty array.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>Build</b> </td><td valign="bottom">
+Build an array that doesn&#146;t have per-device superblocks.  For these
+sorts of arrays,
+<i>mdadm</i> cannot differentiate between initial creation and subsequent assembly
+of an array.  It also cannot perform any checks that appropriate
+components have been requested.  Because of this, the
+<b>Build</b> mode should only be used together with a complete understanding of
+what you are doing.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>Create</b> </td><td valign="bottom">
+Create a new array with per-device superblocks.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>Follow or Monitor</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Monitor one or more md devices and act on any state changes.  This is
+only meaningful for raid1, 4, 5, 6, 10 or multipath arrays, as
+only these have interesting state.  raid0 or linear never have
+missing, spare, or failed drives, so there is nothing to monitor.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>Grow</b> </td><td valign="bottom">
+Grow (or shrink) an array, or otherwise reshape it in some way.
+Currently supported growth options include changing the active size
+of component devices and changing the number of active devices in RAID
+levels 1/4/5/6, as well as adding or removing a write-intent bitmap.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>Incremental Assembly</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Add a single device to an appropriate array.  If the addition of the
+device makes the array runnable, the array will be started.
+This provides a convenient interface to a
+<i>hot-plug</i> system.  As each device is detected,
+<i>mdadm</i> has a chance to include it in some array as appropriate.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>Manage</b> </td><td valign="bottom">
+This is for doing things to specific components of an array such as
+adding new spares and removing faulty devices.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>Misc</b> </td><td valign="bottom">
+This is an &#146;everything else&#146; mode that supports operations on active
+arrays, operations on component devices such as erasing old superblocks, and
+information gathering operations.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>Auto-detect</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This mode does not act on a specific device or array, but rather it
+requests the Linux Kernel to activate any auto-detected arrays.
+</td></tr>
+</table>
+<h1 class="manpages">OPTIONS</h1>
+<p>
+<h1 class="manpages">Options for selecting a mode are:</h1>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>-A</b>, <b>--assemble</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Assemble a pre-existing array.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-B</b>, <b>--build</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Build a legacy array without superblocks.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-C</b>, <b>--create</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Create a new array.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-F</b>, <b>--follow</b>, <b>--monitor</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Select
+<b>Monitor</b> mode.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-G</b>, <b>--grow</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Change the size or shape of an active array.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-I</b>, <b>--incremental</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Add a single device into an appropriate array, and possibly start the array.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--auto-detect</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Request that the kernel starts any auto-detected arrays.  This can only
+work if
+<i>md</i> is compiled into the kernel &#151; not if it is a module.
+Arrays can be auto-detected by the kernel if all the components are in
+primary MS-DOS partitions with partition type
+<b>FD</b>. In-kernel autodetect is not recommended for new installations.  Using
+<i>mdadm</i> to detect and assemble arrays &#151; possibly in an
+<i>initrd</i> &#151; is substantially more flexible and should be preferred.
+<p>
+</td></tr>
+<!-- P ends table -->
+</table>
+If a device is given before any options, or if the first option is
+<b>--add</b>, <b>--fail</b>, or
+<b>--remove</b>, then the MANAGE mode is assumed.
+Anything other than these will cause the
+<b>Misc</b> mode to be assumed.
+<p>
+<h1 class="manpages">Options that are not mode-specific are:</h1>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>-h</b>, <b>--help</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Display general help message or, after one of the above options, a
+mode-specific help message.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--help-options</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Display more detailed help about command line parsing and some commonly
+used options.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-V</b>, <b>--version</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Print version information for mdadm.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-v</b>, <b>--verbose</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Be more verbose about what is happening.  This can be used twice to be
+extra-verbose.
+The extra verbosity currently only affects
+<b>--detail --scan</b> and
+<b>--examine --scan</b>. <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-q</b>, <b>--quiet</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Avoid printing purely informative messages.  With this,
+<i>mdadm</i> will be silent unless there is something really important to report.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-b</b>, <b>--brief</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Be less verbose.  This is used with
+<b>--detail</b> and
+<b>--examine</b>. Using
+<b>--brief</b> with
+<b>--verbose</b> gives an intermediate level of verbosity.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-f</b>, <b>--force</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Be more forceful about certain operations.  See the various modes for
+the exact meaning of this option in different contexts.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-c</b>, <b>--config=</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specify the config file.  Default is to use
+<b>/etc/mdadm.conf</b>, or if that is missing then
+<b>/etc/mdadm/mdadm.conf</b>. If the config file given is
+<b>partitions</b> then nothing will be read, but
+<i>mdadm</i> will act as though the config file contained exactly
+<b>DEVICE partitions</b> and will read
+<b>/proc/partitions</b> to find a list of devices to scan.
+If the word
+<b>none</b> is given for the config file, then
+<i>mdadm</i> will act as though the config file were empty.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-s</b>, <b>--scan</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Scan config file or
+<b>/proc/mdstat</b> for missing information.
+In general, this option gives
+<i>mdadm</i> permission to get any missing information (like component devices,
+array devices, array identities, and alert destination) from the
+configuration file (see previous option);
+one exception is MISC mode when using
+<b>--detail</b> or
+<b>--stop,</b> in which case
+<b>--scan</b> says to get a list of array devices from
+<b>/proc/mdstat</b>. <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-e ,  --metadata=</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Declare the style of superblock (raid metadata) to be used.  The
+default is 0.90 for
+<b>--create</b>, and to guess for other operations.
+The default can be overridden by setting the
+<b>metadata</b> value for the
+<b>CREATE</b> keyword in
+<b>mdadm.conf</b>. <p>
+Options are:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+0, 0.90, default
+</td><td>
+Use the original 0.90 format superblock.  This format limits arrays to
+28 component devices and limits component devices of levels 1 and
+greater to 2 terabytes.
+</td></tr>
+<tr valign="top"><td width=6%>
+1, 1.0, 1.1, 1.2
+</td><td>
+Use the new version-1 format superblock.  This has few restrictions.
+The different sub-versions store the superblock at different locations
+on the device, either at the end (for 1.0), at the start (for 1.1) or
+4K from the start (for 1.2).
+</td></tr>
+</table>
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--homehost=</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This will override any
+<b>HOMEHOST</b> setting in the config file and provides the identity of the host which
+should be considered the home for any arrays.
+<p>
+When creating an array, the
+<b>homehost</b> will be recorded in the superblock.  For version-1 superblocks, it will
+be prefixed to the array name.  For version-0.90 superblocks, part of
+the SHA1 hash of the hostname will be stored in the later half of the
+UUID.
+<p>
+When reporting information about an array, any array which is tagged
+for the given homehost will be reported as such.
+<p>
+When using Auto-Assemble, only arrays tagged for the given homehost
+will be assembled.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">For create, build, or grow:</h1>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>-n</b>, <b>--raid-devices=</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specify the number of active devices in the array.  This, plus the
+number of spare devices (see below) must equal the number of
+<i>component-devices</i> (including "<b>missing</b>" devices)
+that are listed on the command line for
+<b>--create</b>. Setting a value of 1 is probably
+a mistake and so requires that
+<b>--force</b> be specified first.  A value of 1 will then be allowed for linear,
+multipath, raid0 and raid1.  It is never allowed for raid4 or raid5.
+<!-- Need break --><br />
+This number can only be changed using
+<b>--grow</b> for RAID1, RAID5 and RAID6 arrays, and only on kernels which provide
+necessary support.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-x</b>, <b>--spare-devices=</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specify the number of spare (eXtra) devices in the initial array.
+The number of component devices listed
+on the command line must equal the number of raid devices plus the
+number of spare devices.
+<p>
+After initial array creation, new devices are added to the array using the
+<b>--add</b> command.  If you add devices in excess of the number needed for the array,
+they are automatically treated as spare devices.  For grow mode, it is
+not possible to grow the number of spare devices, instead you need to
+grow (or shrink) the number of active devices in the array.  Spare devices
+are handled automatically after initial array creation.
+<p>
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-z</b>, <b>--size=</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Amount (in Kibibytes) of space to use from each drive in RAID level 1/4/5/6.
+This must be a multiple of the chunk size, and must leave about 128Kb
+of space at the end of the drive for the RAID superblock.
+If this is not specified
+(as it normally is not) the smallest drive (or partition) sets the
+size, though if there is a variance among the drives of greater than 1%, a warning is
+issued.
+<p>
+This value can be set with
+<b>--grow</b> for RAID level 1/4/5/6. If the array was created with a size smaller
+than the currently active drives, the extra space can be accessed
+using
+<b>--grow</b>. The size can be given as
+<b>max</b> which means to choose the largest size that fits on all current drives.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-c</b>, <b>--chunk=</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specify chunk size in kibibytes.  The default is 64.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--rounding=</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specify rounding factor for linear array (==chunk size)
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-l</b>, <b>--level=</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set raid level.  When used with
+<b>--create</b>, options are: linear, raid0, 0, stripe, raid1, 1, mirror, raid4, 4,
+raid5, 5, raid6, 6, raid10, 10, multipath, mp, faulty.  Obviously some of these are synonymous.
+<p>
+When used with
+<b>--build</b>, only linear, stripe, raid0, 0, raid1, multipath, mp, and faulty are valid.
+<p>
+Not yet supported with
+<b>--grow</b>. <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-p</b>, <b>--layout=</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This option configures the fine details of data layout for raid5,
+and raid10 arrays, and controls the failure modes for
+<i>faulty</i>. <p>
+The layout of the raid5 parity block can be one of
+<b>left-asymmetric</b>, <b>left-symmetric</b>, <b>right-asymmetric</b>, <b>right-symmetric</b>, <b>la</b>, <b>ra</b>, <b>ls</b>, <b>rs</b>. The default is
+<b>left-symmetric</b>. <p>
+When setting the failure mode for level
+<i>faulty,</i> the options are:
+<b>write-transient</b>, <b>wt</b>, <b>read-transient</b>, <b>rt</b>, <b>write-persistent</b>, <b>wp</b>, <b>read-persistent</b>, <b>rp</b>, <b>write-all</b>, <b>read-fixable</b>, <b>rf</b>, <b>clear</b>, <b>flush</b>, <b>none</b>. <p>
+Each failure mode can be followed by a number, which is used as a period
+between fault generation.  Without a number, the fault is generated
+once on the first relevant request.  With a number, the fault will be
+generated after that many requests, and will continue to be generated
+every time the period elapses.
+<p>
+Multiple failure modes can be current simultaneously by using the
+<b>--grow</b> option to set subsequent failure modes.
+<p>
+"clear" or "none" will remove any pending or periodic failure modes,
+and "flush" will clear any persistent faults.
+<p>
+To set the parity with
+<b>--grow</b>, the level of the array ("faulty")
+must be specified before the fault mode is specified.
+<p>
+Finally, the layout options for RAID10 are one of &#146;n&#146;, &#146;o&#146; or &#146;f&#146; followed
+by a small number.  The default is &#146;n2&#146;.  The supported options are:
+<p>
+<i>&#146;n&#146;</i> signals &#146;near&#146; copies. Multiple copies of one data block are at
+similar offsets in different devices.
+<p>
+<i>&#146;o&#146;</i> signals &#146;offset&#146; copies.  Rather than the chunks being duplicated
+within a stripe, whole stripes are duplicated but are rotated by one
+device so duplicate blocks are on different devices.  Thus subsequent
+copies of a block are in the next drive, and are one chunk further
+down.
+<p>
+<i>&#146;f&#146;</i> signals &#146;far&#146; copies
+(multiple copies have very different offsets).
+See md(4) for more detail about &#146;near&#146; and &#146;far&#146;.
+<p>
+The number is the number of copies of each datablock.  2 is normal, 3
+can be useful.  This number can be at most equal to the number of
+devices in the array.  It does not need to divide evenly into that
+number (e.g. it is perfectly legal to have an &#146;n2&#146; layout for an array
+with an odd number of devices).
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--parity=</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+same as
+<b>--layout</b> (thus explaining the p of
+<b>-p</b>). <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-b</b>, <b>--bitmap=</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specify a file to store a write-intent bitmap in.  The file should not
+exist unless
+<b>--force</b> is also given.  The same file should be provided
+when assembling the array.  The file may not reside on a filesystem that is
+built on top of the array the bitmap file is for or else a kernel deadlock
+will occur.  This is not a bug, it&#146;s a feature.  If the word
+<b>internal</b> is given, then the bitmap is stored with the metadata on the array,
+and so is replicated on all devices.  If the word
+<b>none</b> is given with
+<b>--grow</b> mode, then any bitmap that is present is removed.
+<p>
+To help catch typing errors, the filename must contain at least one
+slash (&#146;/&#146;) if it is a real file (not &#146;internal&#146; or &#146;none&#146;).
+<p>
+Note: external bitmaps are only known to work on ext2 and ext3.
+Storing bitmap files on other filesystems may result in serious problems.
+<p>
+Note: The choice of internal versus external bitmap can have a drastic impact
+on performance.
+While an internal bitmap is the most convenient as it doesn&#146;t require
+a device totally separate from the array on which to store the bitmap
+file, it has a larger impact on performance than an external bitmap.
+This is because we can&#146;t predict which device in the array might fail, so
+we store a copy of the bitmap on every device in the array when using an
+internal bitmap.  This means that prior to allowing a write to a section of
+the array that is currently marked clean in the bitmap, we must issue a
+write to change the bit for that section of the array from clean to dirty,
+and must wait for the bitmap write to complete on all of the array devices
+before the pending write to the array data area can proceed.
+Especially if the array is under heavy load, these syncronous writes can
+drastically impact performance.  An external bitmap file is less convenient,
+but there is only one copy of the bitmap, so there is only one bitmap write
+that must complete before the pending write to the array data can proceed.
+In addition, if your bitmap file device is not heavily loaded, and the
+array is, then you will notice a considerable performance benefit
+from the fact that bitmap writes are not competing with array reads/writes.
+The performance impact of this option can be somewhat mitigated by
+appropriate selection of a bitmap chunk size (next option).
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--bitmap-chunk=</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set the chunksize of the bitmap. Each bit corresponds to that many
+Kilobytes of storage.
+When using a file based bitmap, the default is to use the smallest
+size that is at-least 4 and requires no more than 2^21 chunks.
+When using an
+<b>internal</b> bitmap, the chunksize is automatically determined to make best use of
+available space.
+<p>
+Note: This option can drastically effect performance of the array.
+The more granular the bitmap is, then the more
+frequently writes will trigger syncronous bitmap updates and be delayed
+until the bitmap update is complete.  The trade off is that a more
+granular bitmap means a shorter array resync time after any event causes
+the array to go down unclean.  Given raw drive speeds can be in excess
+of 100MB/s on modern SATA/SAS drives, any bitmap chunk up to 262144 (256MB)
+can generally be synced in a matter of just a few seconds.  Smaller chunks
+can be synced faster, but you reach a point of diminishing returns that is
+quickly offset by the increased write performance degradation seen in
+every day operation.  Considering that the smaller bitmap chunk sizes
+will only ever be a benefit on rare occasions (hopefully never), but that
+you will pay for a small bitmap chunk every single day, it is recommended
+that you select the largest bitmap chunk size you feel comforable with.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-W</b>, <b>--write-mostly</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+subsequent devices lists in a
+<b>--build</b>, <b>--create</b>, or
+<b>--add</b> command will be flagged as &#146;write-mostly&#146;.  This is valid for RAID1
+only and means that the &#146;md&#146; driver will avoid reading from these
+devices if at all possible.  This can be useful if mirroring over a
+slow link.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--write-behind=</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specify that write-behind mode should be enabled (valid for RAID1
+only). If an argument is specified, it will set the maximum number
+of outstanding writes allowed. The default value is 256.
+A write-intent bitmap is required in order to use write-behind
+mode, and write-behind is only attempted on drives marked as
+<i>write-mostly</i>. <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--assume-clean</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Tell
+<i>mdadm</i> that the array pre-existed and is known to be clean.  It can be useful
+when trying to recover from a major failure as you can be sure that no
+data will be affected unless you actually write to the array.  It can
+also be used when creating a RAID1 or RAID10 if you want to avoid the
+initial resync, however this practice &#151; while normally safe &#151; is not
+recommended.   Use this only if you really know what you are doing.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--backup-file=</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This is needed when
+<b>--grow</b> is used to increase the number of
+raid-devices in a RAID5 if there  are no spare devices available.
+See the section below on RAID_DEVICE CHANGES.  The file should be
+stored on a separate device, not on the raid array being reshaped.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-N</b>, <b>--name=</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set a
+<b>name</b> for the array.  This is currently only effective when creating an
+array with a version-1 superblock.  The name is a simple textual
+string that can be used to identify array components when assembling.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-R</b>, <b>--run</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Insist that
+<i>mdadm</i> run the array, even if some of the components
+appear to be active in another array or filesystem.  Normally
+<i>mdadm</i> will ask for confirmation before including such components in an
+array.  This option causes that question to be suppressed.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-f</b>, <b>--force</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Insist that
+<i>mdadm</i> accept the geometry and layout specified without question.  Normally
+<i>mdadm</i> will not allow creation of an array with only one device, and will try
+to create a raid5 array with one missing drive (as this makes the
+initial resync work faster).  With
+<b>--force</b>, <i>mdadm</i> will not try to be so clever.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-a</b>, <b>--auto{=no,yes,md,mdp,part,p}{NN}</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Instruct mdadm to create the device file if needed, possibly allocating
+an unused minor number.  "md" causes a non-partitionable array
+to be used.  "mdp", "part" or "p" causes a partitionable array (2.6 and
+later) to be used.  "yes" requires the named md device to have
+a &#146;standard&#146; format, and the type and minor number will be determined
+from this.  See DEVICE NAMES below.
+<p>
+The argument can also come immediately after
+"-a".  e.g. "-ap".
+<p>
+If
+<b>--auto</b> is not given on the command line or in the config file, then
+the default will be
+<b>--auto=yes</b>. <p>
+If
+<b>--scan</b> is also given, then any
+<i>auto=</i> entries in the config file will override the
+<b>--auto</b> instruction given on the command line.
+<p>
+For partitionable arrays,
+<i>mdadm</i> will create the device file for the whole array and for the first 4
+partitions.  A different number of partitions can be specified at the
+end of this option (e.g.
+<b>--auto=p7</b>). If the device name ends with a digit, the partition names add a &#146;p&#146;,
+and a number, e.g. "/dev/home1p3".  If there is no
+trailing digit, then the partition names just have a number added,
+e.g. "/dev/scratch3".
+<p>
+If the md device name is in a &#146;standard&#146; format as described in DEVICE
+NAMES, then it will be created, if necessary, with the appropriate
+number based on that name.  If the device name is not in one of these
+formats, then a unused minor number will be allocated.  The minor
+number will be considered unused if there is no active array for that
+number, and there is no entry in /dev for that number and with a
+non-standard name.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--symlink</b>=<b>no</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Normally when
+<b>--auto</b> causes
+<i>mdadm</i> to create devices in
+<b>/dev/md/</b> it will also create symlinks from
+<b>/dev/</b> with names starting with
+<b>md</b> or
+<b>md_</b>. Use
+<b>--symlink=no</b> to suppress this, or
+<b>--symlink=yes</b> to enforce this even if it is suppressing
+<i>mdadm.conf</i>. <p>
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">For assemble:</h1>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>-u</b>, <b>--uuid=</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+uuid of array to assemble. Devices which don&#146;t have this uuid are
+excluded
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-m</b>, <b>--super-minor=</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Minor number of device that array was created for.  Devices which
+don&#146;t have this minor number are excluded.  If you create an array as
+/dev/md1, then all superblocks will contain the minor number 1, even if
+the array is later assembled as /dev/md2.
+<p>
+Giving the literal word "dev" for
+<b>--super-minor</b> will cause
+<i>mdadm</i> to use the minor number of the md device that is being assembled.
+e.g. when assembling
+<b>/dev/md0</b>, <b>--super-minor=dev</b> will look for super blocks with a minor number of 0.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-N</b>, <b>--name=</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specify the name of the array to assemble.  This must be the name
+that was specified when creating the array.  It must either match
+the name stored in the superblock exactly, or it must match
+with the current
+<i>homehost</i> prefixed to the start of the given name.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-f</b>, <b>--force</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Assemble the array even if some superblocks appear out-of-date
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-R</b>, <b>--run</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Attempt to start the array even if fewer drives were given than were
+present last time the array was active.  Normally if not all the
+expected drives are found and
+<b>--scan</b> is not used, then the array will be assembled but not started.
+With
+<b>--run</b> an attempt will be made to start it anyway.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--no-degraded</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This is the reverse of
+<b>--run</b> in that it inhibits the startup of array unless all expected drives
+are present.  This is only needed with
+<b>--scan,</b> and can be used if the physical connections to devices are
+not as reliable as you would like.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-a</b>, <b>--auto{=no,yes,md,mdp,part}</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+See this option under Create and Build options.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-b</b>, <b>--bitmap=</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specify the bitmap file that was given when the array was created.  If
+an array has an
+<b>internal</b> bitmap, there is no need to specify this when assembling the array.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--backup-file=</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+If
+<b>--backup-file</b> was used to grow the number of raid-devices in a RAID5, and the system
+crashed during the critical section, then the same
+<b>--backup-file</b> must be presented to
+<b>--assemble</b> to allow possibly corrupted data to be restored.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-U</b>, <b>--update=</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Update the superblock on each device while assembling the array.  The
+argument given to this flag can be one of
+<b>sparc2.2</b>, <b>summaries</b>, <b>uuid</b>, <b>name</b>, <b>homehost</b>, <b>resync</b>, <b>byteorder</b>, <b>devicesize</b>, or
+<b>super-minor</b>. <p>
+The
+<b>sparc2.2</b> option will adjust the superblock of an array what was created on a Sparc
+machine running a patched 2.2 Linux kernel.  This kernel got the
+alignment of part of the superblock wrong.  You can use the
+<b>--examine --sparc2.2</b> option to
+<i>mdadm</i> to see what effect this would have.
+<p>
+The
+<b>super-minor</b> option will update the
+<b>preferred minor</b> field on each superblock to match the minor number of the array being
+assembled.
+This can be useful if
+<b>--examine</b> reports a different "Preferred Minor" to
+<b>--detail</b>. In some cases this update will be performed automatically
+by the kernel driver. In particular the update happens automatically
+at the first write to an array with redundancy (RAID level 1 or
+greater) on a 2.6 (or later) kernel.
+<p>
+The
+<b>uuid</b> option will change the uuid of the array.  If a UUID is given with the
+<b>--uuid</b> option that UUID will be used as a new UUID and will
+<b>NOT</b> be used to help identify the devices in the array.
+If no
+<b>--uuid</b> is given, a random UUID is chosen.
+<p>
+The
+<b>name</b> option will change the
+<i>name</i> of the array as stored in the superblock.  This is only supported for
+version-1 superblocks.
+<p>
+The
+<b>homehost</b> option will change the
+<i>homehost</i> as recorded in the superblock.  For version-0 superblocks, this is the
+same as updating the UUID.
+For version-1 superblocks, this involves updating the name.
+<p>
+The
+<b>resync</b> option will cause the array to be marked
+<i>dirty</i> meaning that any redundancy in the array (e.g. parity for raid5,
+copies for raid1) may be incorrect.  This will cause the raid system
+to perform a "resync" pass to make sure that all redundant information
+is correct.
+<p>
+The
+<b>byteorder</b> option allows arrays to be moved between machines with different
+byte-order.
+When assembling such an array for the first time after a move, giving
+<b>--update=byteorder</b> will cause
+<i>mdadm</i> to expect superblocks to have their byteorder reversed, and will
+correct that order before assembling the array.  This is only valid
+with original (Version 0.90) superblocks.
+<p>
+The
+<b>summaries</b> option will correct the summaries in the superblock. That is the
+counts of total, working, active, failed, and spare devices.
+<p>
+The
+<b>devicesize</b> will rarely be of use.  It applies to version 1.1 and 1.2 metadata
+only (where the metadata is at the start of the device) and is only
+useful when the component device has changed size (typically become
+larger).  The version 1 metadata records the amount of the device that
+can be used to store data, so if a device in a version 1.1 or 1.2
+array becomes larger, the metadata will still be visible, but the
+extra space will not.  In this case it might be useful to assemble the
+array with
+<b>--update=devicesize</b>. This will cause
+<i>mdadm</i> to determine the maximum usable amount of space on each device and
+update the relevant field in the metadata.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--auto-update-homehost</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This flag is only meaningful with auto-assembly (see discussion below).
+In that situation, if no suitable arrays are found for this homehost,
+<i>mdadm</i> will rescan for any arrays at all and will assemble them and update the
+homehost to match the current host.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">For Manage mode:</h1>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>-a</b>, <b>--add</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+add listed devices to a live array.  When the array is in a degraded state
+and you add a device, the device will be added as a spare device and
+reconstruction on to the spare device will commence.  Upon completion of
+the reconstruction, the device will be transitioned to an active device.
+If you add more devices than the array&#146;s normal capacity of active devices,
+then they are automatically added as hot spare devices.  In order to
+utilize the spare devices, use the Grow mode of mdadm to increase the number
+of active devices in the array.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>--re-add</b> </td><td valign="bottom">
+re-add a device that was recently removed from an array.  This only applies
+to devices that were part of an array built without a persistent superblock,
+and for which a write intent bitmap exists.  In this isolated case, the
+kernel will treat this device as a previous member of the array even though
+there is no superblock to tell it to do so.  For all add operations involving
+arrays with persistent superblocks, use the --add command above and the
+kernel will automatically determine whether a full resync or partial resync
+is needed based upon the superblock state and the write intent bitmap
+state (if it exists).
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-r</b>, <b>--remove</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+remove listed devices.  They must not be active.  i.e. they should
+be failed or spare devices.  As well as the name of a device file
+(e.g.
+<b>/dev/sda1</b>) the words
+<b>failed</b> and
+<b>detached</b> can be given to
+<b>--remove</b>. The first causes all failed device to be removed.  The second causes
+any device which is no longer connected to the system (i.e an &#146;open&#146;
+returns
+<b>ENXIO</b>) to be removed.  This will only succeed for devices that are spares or
+have already been marked as failed.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-f</b>, <b>--fail</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+mark listed devices as faulty.
+As well as the name of a device file, the word
+<b>detached</b> can be given.  This will cause any device that has been detached from
+the system to be marked as failed.  It can then be removed.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--set-faulty</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+same as
+<b>--fail</b>. <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--write-mostly</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Subsequent devices that are added or re-added will have the &#146;write-mostly&#146;
+flag set.  This is only valid for RAID1 and means that the &#146;md&#146; driver
+will avoid reading from these devices if possible.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--readwrite</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Subsequent devices that are added or re-added will have the &#146;write-mostly&#146;
+flag cleared.
+<p>
+<p>
+</td></tr>
+<!-- P ends table -->
+</table>
+Each of these options require that the first device listed is the array
+to be acted upon, and the remainder are component devices to be added,
+removed, or marked as faulty.  Several different operations can be
+specified for different devices, e.g.
+<!-- ignored unsupported tag .in -->
+mdadm /dev/md0 --add /dev/sda1 --fail /dev/sdb1 --remove /dev/sdb1
+<!-- ignored unsupported tag .in -->
+Each operation applies to all devices listed until the next
+operation.
+<p>
+If an array is using a write-intent bitmap, then devices which have
+been removed can be re-added in a way that avoids a full
+reconstruction but instead just updates the blocks that have changed
+since the device was removed.  For arrays with persistent metadata
+(superblocks) this is done automatically.  For arrays created with
+<b>--build</b> mdadm needs to be told that this device was removed recently by using
+<b>--re-add</b> instead of
+<b>--add</b> command (see above).
+<p>
+Devices can only be removed from an array if they are not in active
+use, i.e. they must be spares or failed devices.  To remove an active
+device, it must first be marked as
+<b>faulty.</b> <p>
+<h1 class="manpages">For Misc mode:</h1>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>-Q</b>, <b>--query</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Examine a device to see
+(1) if it is an md device and (2) if it is a component of an md
+array.
+Information about what is discovered is presented.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-D</b>, <b>--detail</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Print detail of one or more md devices.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-Y</b>, <b>--export</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+When used with
+<b>--detail</b> or
+<b>--examine</b>, output will be formatted as
+<b>key=value</b> pairs for easy import into the environment.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-E</b>, <b>--examine</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Print content of md superblock on device(s).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--sparc2.2</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+If an array was created on a 2.2 Linux kernel patched with RAID
+support, the superblock will have been created incorrectly, or at
+least incompatibly with 2.4 and later kernels.  Using the
+<b>--sparc2.2</b> flag with
+<b>--examine</b> will fix the superblock before displaying it.  If this appears to do
+the right thing, then the array can be successfully assembled using
+<b>--assemble --update=sparc2.2</b>. <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-X</b>, <b>--examine-bitmap</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Report information about a bitmap file.
+The argument is either an external bitmap file or an array component
+in case of an internal bitmap.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-R</b>, <b>--run</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+start a partially built array.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-S</b>, <b>--stop</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+deactivate array, releasing all resources.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-o</b>, <b>--readonly</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+mark array as readonly.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-w</b>, <b>--readwrite</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+mark array as readwrite.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--zero-superblock</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+If the device contains a valid md superblock, the block is
+overwritten with zeros.  With
+<b>--force</b> the block where the superblock would be is overwritten even if it
+doesn&#146;t appear to be valid.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-t</b>, <b>--test</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+When used with
+<b>--detail</b>, the exit status of
+<i>mdadm</i> is set to reflect the status of the device.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-W</b>, <b>--wait</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+For each md device given, wait for any resync, recovery, or reshape
+activity to finish before returning.
+<i>mdadm</i> will return with success if it actually waited for every device
+listed, otherwise it will return failure.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">For Incremental Assembly mode:</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>--rebuild-map</b>, <b>-r</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Rebuild the map file
+(<b>/var/run/mdadm/map</b>) that
+<i>mdadm</i> uses to help track which arrays are currently being assembled.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--run</b>, <b>-R</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Run any array assembled as soon as a minimal number of devices are
+available, rather than waiting until all expected devices are present.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--scan</b>, <b>-s</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Only meaningful with
+<b>-R</b> this will scan the
+<b>map</b> file for arrays that are being incrementally assembled and will try to
+start any that are not already started.  If any such array is listed
+in
+<b>mdadm.conf</b> as requiring an external bitmap, that bitmap will be attached first.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">For Monitor mode:</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>-m</b>, <b>--mail</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Give a mail address to send alerts to.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-p</b>, <b>--program</b>, <b>--alert</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Give a program to be run whenever an event is detected.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-y</b>, <b>--syslog</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Cause all events to be reported through &#146;syslog&#146;.  The messages have
+facility of &#146;daemon&#146; and varying priorities.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-d</b>, <b>--delay</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Give a delay in seconds.
+<i>mdadm</i> polls the md arrays and then waits this many seconds before polling
+again.  The default is 60 seconds.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-f</b>, <b>--daemonise</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Tell
+<i>mdadm</i> to run as a background daemon if it decides to monitor anything.  This
+causes it to fork and run in the child, and to disconnect form the
+terminal.  The process id of the child is written to stdout.
+This is useful with
+<b>--scan</b> which will only continue monitoring if a mail address or alert program
+is found in the config file.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-i</b>, <b>--pid-file</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+When
+<i>mdadm</i> is running in daemon mode, write the pid of the daemon process to
+the specified file, instead of printing it on standard output.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-1</b>, <b>--oneshot</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Check arrays only once.  This will generate
+<b>NewArray</b> events and more significantly
+<b>DegradedArray</b> and
+<b>SparesMissing</b> events.  Running
+<!-- ignored unsupported tag .in -->
+<b>   mdadm --monitor --scan -1</b> <!-- ignored unsupported tag .in -->
+from a cron script will ensure regular notification of any degraded arrays.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-t</b>, <b>--test</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Generate a
+<b>TestMessage</b> alert for every array found at startup.  This alert gets mailed and
+passed to the alert program.  This can be used for testing that alert
+message do get through successfully.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">ASSEMBLE MODE</h1>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+Usage:
+<b>mdadm --assemble</b> <i>md-device options-and-component-devices...</i> <br />
+Usage:
+<b>mdadm --assemble --scan</b> <i>md-devices-and-options...</i> <br />
+Usage:
+<b>mdadm --assemble --scan</b> <i>options...</i> <p>
+</td></tr>
+<!-- PP ends table -->
+</table>
+This usage assembles one or more raid arrays from pre-existing components.
+For each array, mdadm needs to know the md device, the identity of the
+array, and a number of component-devices. These can be found in a number of ways.
+<p>
+In the first usage example (without the
+<b>--scan</b>) the first device given is the md device.
+In the second usage example, all devices listed are treated as md
+devices and assembly is attempted.
+In the third (where no devices are listed) all md devices that are
+listed in the configuration file are assembled.
+<p>
+If precisely one device is listed, but
+<b>--scan</b> is not given, then
+<i>mdadm</i> acts as though
+<b>--scan</b> was given and identity information is extracted from the configuration file.
+<p>
+The identity can be given with the
+<b>--uuid</b> option, with the
+<b>--super-minor</b> option, will be taken from the md-device record in the config file, or
+will be taken from the super block of the first component-device
+listed on the command line.
+<p>
+Devices can be given on the
+<b>--assemble</b> command line or in the config file. Only devices which have an md
+superblock which contains the right identity will be considered for
+any array.
+<p>
+The config file is only used if explicitly named with
+<b>--config</b> or requested with (a possibly implicit)
+<b>--scan</b>. In the later case,
+<b>/etc/mdadm.conf</b> is used.
+<p>
+If
+<b>--scan</b> is not given, then the config file will only be used to find the
+identity of md arrays.
+<p>
+Normally the array will be started after it is assembled.  However if
+<b>--scan</b> is not given and insufficient drives were listed to start a complete
+(non-degraded) array, then the array is not started (to guard against
+usage errors).  To insist that the array be started in this case (as
+may work for RAID1, 4, 5, 6, or 10), give the
+<b>--run</b> flag.
+<p>
+If the md device does not exist, then it will be created providing the
+intent is clear. i.e. the name must be in a standard form, or the
+<b>--auto</b> option must be given to clarify how and whether the device should be
+created.
+This can be useful for handling partitioned devices (which don&#146;t have
+a stable device number &#151; it can change after a reboot) and when using
+"udev" to manage your
+<b>/dev</b> tree (udev cannot handle md devices because of the unusual device
+initialisation conventions).
+<p>
+If the option to "auto" is "mdp" or "part" or (on the command line
+only) "p", then mdadm will create a partitionable array, using the
+first free one that is not in use and does not already have an entry
+in /dev (apart from numeric /dev/md* entries).
+<p>
+If the option to "auto" is "yes" or "md" or (on the command line)
+nothing, then mdadm will create a traditional, non-partitionable md
+array.
+<p>
+It is expected that the "auto" functionality will be used to create
+device entries with meaningful names such as "/dev/md/home" or
+"/dev/md/root", rather than names based on the numerical array number.
+<p>
+When using option "auto" to create a partitionable array, the device
+files for the first 4 partitions are also created. If a different
+number is required it can be simply appended to the auto option.
+e.g. "auto=part8".  Partition names are created by appending a digit
+string to the device name, with an intervening "p" if the device name
+ends with a digit.
+<p>
+The
+<b>--auto</b> option is also available in Build and Create modes.  As those modes do
+not use a config file, the "auto=" config option does not apply to
+these modes.
+<p>
+<h2><i>Auto Assembly</i></h2>
+When
+<b>--assemble</b> is used with
+<b>--scan</b> and no devices are listed,
+<i>mdadm</i> will first attempt to assemble all the arrays listed in the config
+file.
+<p>
+If a
+<b>homehost</b> has been specified (either in the config file or on the command line),
+<i>mdadm</i> will look further for possible arrays and will try to assemble
+anything that it finds which is tagged as belonging to the given
+homehost.  This is the only situation where
+<i>mdadm</i> will assemble arrays without being given specific device name or
+identity information for the array.
+<p>
+If
+<i>mdadm</i> finds a consistent set of devices that look like they should comprise
+an array, and if the superblock is tagged as belonging to the given
+home host, it will automatically choose a device name and try to
+assemble the array.  If the array uses version-0.90 metadata, then the
+<b>minor</b> number as recorded in the superblock is used to create a name in
+<b>/dev/md/</b> so for example
+<b>/dev/md/3</b>. If the array uses version-1 metadata, then the
+<b>name</b> from the superblock is used to similarly create a name in
+<b>/dev/md</b> (the name will have any &#146;host&#146; prefix stripped first).
+<p>
+If
+<i>mdadm</i> cannot find any array for the given host at all, and if
+<b>--auto-update-homehost</b> is given, then
+<i>mdadm</i> will search again for any array (not just an array created for this
+host) and will assemble each assuming
+<b>--update=homehost</b>. This will change the host tag in the superblock so that on the next run,
+these arrays will be found without the second pass.  The intention of
+this feature is to support transitioning a set of md arrays to using
+homehost tagging.
+<p>
+The reason for requiring arrays to be tagged with the homehost for
+auto assembly is to guard against problems that can arise when moving
+devices from one host to another.
+<p>
+<h1 class="manpages">BUILD MODE</h1>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+Usage:
+<b>mdadm --build</b> <i>md-device</i> <b>--chunk=</b><i>X</i> <b>--level=</b><i>Y</i> <b>--raid-devices=</b><i>Z</i> <i>devices</i> <p>
+</td></tr>
+<!-- PP ends table -->
+</table>
+This usage is similar to
+<b>--create</b>. The difference is that it creates an array without a superblock. With
+these arrays there is no difference between initially creating the array and
+subsequently assembling the array, except that hopefully there is useful
+data there in the second case.
+<p>
+The level may raid0, linear, multipath, or faulty, or one of their
+synonyms. All devices must be listed and the array will be started
+once complete.
+<p>
+<h1 class="manpages">CREATE MODE</h1>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+Usage:
+<b>mdadm --create</b> <i>md-device</i> <b>--chunk=</b><i>X</i> <b>--level=</b><i>Y</i> </td></tr><tr valign="top"><td width=12%>&nbsp;</td><td>
+<b>--raid-devices=</b><i>Z</i> <i>devices</i> <p>
+</td></tr>
+<!-- PP ends table -->
+</table>
+This usage will initialise a new md array, associate some devices with
+it, and activate the array.
+<p>
+If the
+<b>--auto</b> option is given (as described in more detail in the section on
+Assemble mode), then the md device will be created with a suitable
+device number if necessary.
+<p>
+As devices are added, they are checked to see if they contain raid
+superblocks or filesystems. They are also checked to see if the variance in
+device size exceeds 1%.
+<p>
+If any discrepancy is found, the array will not automatically be run, though
+the presence of a
+<b>--run</b> can override this caution.
+<p>
+To create a "degraded" array in which some devices are missing, simply
+give the word "<b>missing</b>"
+in place of a device name.  This will cause
+<i>mdadm</i> to leave the corresponding slot in the array empty.
+For a RAID4 or RAID5 array at most one slot can be
+"<b>missing</b>"; for a RAID6 array at most two slots.
+For a RAID1 array, only one real device needs to be given.  All of the
+others can be
+"<b>missing</b>".
+<p>
+When creating a RAID5 array,
+<i>mdadm</i> will automatically create a degraded array with an extra spare drive.
+This is because building the spare into a degraded array is in general faster than resyncing
+the parity on a non-degraded, but not clean, array.  This feature can
+be overridden with the
+<b>--force</b> option.
+<p>
+When creating an array with version-1 metadata a name for the array is
+required.
+If this is not given with the
+<b>--name</b> option,
+<i>mdadm</i> will choose a name based on the last component of the name of the
+device being created.  So if
+<b>/dev/md3</b> is being created, then the name
+<b>3</b> will be chosen.
+If
+<b>/dev/md/home</b> is being created, then the name
+<b>home</b> will be used.
+<p>
+When creating a partition based array, using
+<i>mdadm</i> with version-1.x metadata, the partition type should be set to
+<b>0xDA</b> (non fs-data). This type selection allows for greater precision since
+using any other [RAID auto-detect (0xFD) or a GNU/Linux partition (0x83)],
+might create problems in the event of array recovery through a live cdrom.
+<p>
+A new array will normally get a randomly assigned 128bit UUID which is
+very likely to be unique.  If you have a specific need, you can choose
+a UUID for the array by giving the
+<b>--uuid=</b> option.  Be warned that creating two arrays with the same UUID is a
+recipe for disaster.  Also, using
+<b>--uuid=</b> when creating a v0.90 array will silently override any
+<b>--homehost=</b> setting.
+<p>
+The General Management options that are valid with
+<b>--create</b> are:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>--run</b> </td><td valign="bottom">
+insist on running the array even if some devices look like they might
+be in use.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--readonly</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+start the array readonly &#151; not supported yet.
+<p>
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">MANAGE MODE</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+Usage:
+<b>mdadm</b> <i>device</i> <i>options... devices...</i> </td></tr>
+<!-- PP ends table -->
+</table>
+<p>
+This usage will allow individual devices in an array to be failed,
+removed or added.  It is possible to perform multiple operations with
+on command. For example:
+<!-- Need break --><br />
+<b>  mdadm /dev/md0 -f /dev/hda1 -r /dev/hda1 -a /dev/hda1</b> <!-- Need break --><br />
+will firstly mark
+<b>/dev/hda1</b> as faulty in
+<b>/dev/md0</b> and will then remove it from the array and finally add it back
+in as a spare.  However only one md array can be affected by a single
+command.
+<p>
+<h1 class="manpages">MISC MODE</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+Usage:
+<b>mdadm</b> <i>options ...</i> <i>devices ...</i> </td></tr>
+<!-- PP ends table -->
+</table>
+<p>
+MISC mode includes a number of distinct operations that
+operate on distinct devices.  The operations are:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>--query</b> </td><td valign="bottom">
+The device is examined to see if it is
+(1) an active md array, or
+(2) a component of an md array.
+The information discovered is reported.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--detail</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The device should be an active md device.
+<b>mdadm</b> will display a detailed description of the array.
+<b>--brief</b> or
+<b>--scan</b> will cause the output to be less detailed and the format to be
+suitable for inclusion in
+<b>/etc/mdadm.conf</b>. The exit status of
+<i>mdadm</i> will normally be 0 unless
+<i>mdadm</i> failed to get useful information about the device(s); however, if the
+<b>--test</b> option is given, then the exit status will be:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+0
+</td><td valign="bottom">
+The array is functioning normally.
+</td></tr>
+<tr valign="top"><td>
+1
+</td><td valign="bottom">
+The array has at least one failed device.
+</td></tr>
+<tr valign="top"><td>
+2
+</td><td valign="bottom">
+The array has multiple failed devices such that it is unusable.
+</td></tr>
+<tr valign="top"><td>
+4
+</td><td valign="bottom">
+There was an error while trying to get information about the device.
+</td></tr>
+</table>
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--examine</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The device should be a component of an md array.
+<i>mdadm</i> will read the md superblock of the device and display the contents.
+If
+<b>--brief</b> or
+<b>--scan</b> is given, then multiple devices that are components of the one array
+are grouped together and reported in a single entry suitable
+for inclusion in
+<b>/etc/mdadm.conf</b>. <p>
+Having
+<b>--scan</b> without listing any devices will cause all devices listed in the
+config file to be examined.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>--stop</b> </td><td valign="bottom">
+The devices should be active md arrays which will be deactivated, as
+long as they are not currently in use.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>--run</b> </td><td valign="bottom">
+This will fully activate a partially assembled md array.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--readonly</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This will mark an active array as read-only, providing that it is
+not currently being used.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--readwrite</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This will change a
+<b>readonly</b> array back to being read/write.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>--scan</b> </td><td valign="bottom">
+For all operations except
+<b>--examine</b>, <b>--scan</b> will cause the operation to be applied to all arrays listed in
+<b>/proc/mdstat</b>. For
+<b>--examine,</b> <b>--scan</b> causes all devices listed in the config file to be examined.
+<p>
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">MONITOR MODE</h1>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+Usage:
+<b>mdadm --monitor</b> <i>options... devices...</i> <p>
+</td></tr>
+<!-- PP ends table -->
+</table>
+This usage causes
+<i>mdadm</i> to periodically poll a number of md arrays and to report on any events
+noticed.
+<i>mdadm</i> will never exit once it decides that there are arrays to be checked,
+so it should normally be run in the background.
+<p>
+As well as reporting events,
+<i>mdadm</i> may move a spare drive from one array to another if they are in the
+same
+<b>spare-group</b> and if the destination array has a failed drive but no spares.
+<p>
+If any devices are listed on the command line,
+<i>mdadm</i> will only monitor those devices. Otherwise all arrays listed in the
+configuration file will be monitored.  Further, if
+<b>--scan</b> is given, then any other md devices that appear in
+<b>/proc/mdstat</b> will also be monitored.
+<p>
+The result of monitoring the arrays is the generation of events.
+These events are passed to a separate program (if specified) and may
+be mailed to a given E-mail address.
+<p>
+When passing events to a program, the program is run once for each event,
+and is given 2 or 3 command-line arguments: the first is the
+name of the event (see below), the second is the name of the
+md device which is affected, and the third is the name of a related
+device if relevant (such as a component device that has failed).
+<p>
+If
+<b>--scan</b> is given, then a program or an E-mail address must be specified on the
+command line or in the config file.  If neither are available, then
+<i>mdadm</i> will not monitor anything.
+Without
+<b>--scan,</b> <i>mdadm</i> will continue monitoring as long as something was found to monitor.  If
+no program or email is given, then each event is reported to
+<b>stdout</b>. <p>
+The different events are:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>DeviceDisappeared</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+An md array which previously was configured appears to no longer be
+configured. (syslog priority: Critical)
+<p>
+If
+<i>mdadm</i> was told to monitor an array which is RAID0 or Linear, then it will
+report
+<b>DeviceDisappeared</b> with the extra information
+<b>Wrong-Level</b>. This is because RAID0 and Linear do not support the device-failed,
+hot-spare and resync operations which are monitored.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>RebuildStarted</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+An md array started reconstruction. (syslog priority: Warning)
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>Rebuild</b><i>NN</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Where
+<i>NN</i> is 20, 40, 60, or 80, this indicates that rebuild has passed that many
+percentage of the total. (syslog priority: Warning)
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>RebuildFinished</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+An md array that was rebuilding, isn&#146;t any more, either because it
+finished normally or was aborted. (syslog priority: Warning)
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>Fail</b> </td><td valign="bottom">
+An active component device of an array has been marked as
+faulty. (syslog priority: Critical)
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>FailSpare</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+A spare component device which was being rebuilt to replace a faulty
+device has failed. (syslog priority: Critical)
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>SpareActive</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+A spare component device which was being rebuilt to replace a faulty
+device has been successfully rebuilt and has been made active.
+(syslog priority: Info)
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>NewArray</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+A new md array has been detected in the
+<b>/proc/mdstat</b> file.   (syslog priority: Info)
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>DegradedArray</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+A newly noticed array appears to be degraded.  This message is not
+generated when
+<i>mdadm</i> notices a drive failure which causes degradation, but only when
+<i>mdadm</i> notices that an array is degraded when it first sees the array.
+(syslog priority: Critical)
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>MoveSpare</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+A spare drive has been moved from one array in a
+<b>spare-group</b> to another to allow a failed drive to be replaced.
+(syslog priority: Info)
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>SparesMissing</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+If
+<i>mdadm</i> has been told, via the config file, that an array should have a certain
+number of spare devices, and
+<i>mdadm</i> detects that it has fewer than this number when it first sees the
+array, it will report a
+<b>SparesMissing</b> message.
+(syslog priority: Warning)
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>TestMessage</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+An array was found at startup, and the
+<b>--test</b> flag was given.
+(syslog priority: Info)
+</td></tr>
+</table>
+<p>
+Only
+<b>Fail,</b> <b>FailSpare,</b> <b>DegradedArray,</b> <b>SparesMissing</b> and
+<b>TestMessage</b> cause Email to be sent.  All events cause the program to be run.
+The program is run with two or three arguments: the event
+name, the array device and possibly a second device.
+<p>
+Each event has an associated array device (e.g.
+<b>/dev/md1</b>) and possibly a second device.  For
+<b>Fail</b>, <b>FailSpare</b>, and
+<b>SpareActive</b> the second device is the relevant component device.
+For
+<b>MoveSpare</b> the second device is the array that the spare was moved from.
+<p>
+For
+<i>mdadm</i> to move spares from one array to another, the different arrays need to
+be labeled with the same
+<b>spare-group</b> in the configuration file.  The
+<b>spare-group</b> name can be any string; it is only necessary that different spare
+groups use different names.
+<p>
+When
+<i>mdadm</i> detects that an array in a spare group has fewer active
+devices than necessary for the complete array, and has no spare
+devices, it will look for another array in the same spare group that
+has a full complement of working drive and a spare.  It will then
+attempt to remove the spare from the second drive and add it to the
+first.
+If the removal succeeds but the adding fails, then it is added back to
+the original array.
+<p>
+<h1 class="manpages">GROW MODE</h1>
+The GROW mode is used for changing the size or shape of an active
+array.
+For this to work, the kernel must support the necessary change.
+Various types of growth are being added during 2.6 development,
+including restructuring a raid5 array to have more active devices.
+<p>
+Currently the only support available is to
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+o
+</td><td>
+change the "size" attribute
+for RAID1, RAID5 and RAID6.
+</td></tr>
+<tr valign="top"><td width=4%>
+o
+</td><td>
+increase the "raid-devices" attribute of RAID1, RAID5, and RAID6.
+</td></tr>
+<tr valign="top"><td width=4%>
+o
+</td><td>
+add a write-intent bitmap to any array which supports these bitmaps, or
+remove a write-intent bitmap from such an array.
+</td></tr>
+<!-- PP ends table -->
+</table>
+<p>
+<h2><i>SIZE CHANGES</i></h2>
+Normally when an array is built the "size" it taken from the smallest
+of the drives.  If all the small drives in an arrays are, one at a
+time, removed and replaced with larger drives, then you could have an
+array of large drives with only a small amount used.  In this
+situation, changing the "size" with "GROW" mode will allow the extra
+space to start being used.  If the size is increased in this way, a
+"resync" process will start to make sure the new parts of the array
+are synchronised.
+<p>
+Note that when an array changes size, any filesystem that may be
+stored in the array will not automatically grow to use the space.  The
+filesystem will need to be explicitly told to use the extra space.
+<p>
+<h2><i>RAID-DEVICES CHANGES</i></h2>
+<p>
+A RAID1 array can work with any number of devices from 1 upwards
+(though 1 is not very useful).  There may be times when you want to
+increase or decrease the number of active devices.  Note that this is
+different than hot-add or hot-remove which changes the number of
+inactive devices.
+<p>
+When reducing the number of devices in a RAID1 array, the slots which
+are to be removed from the array must already be vacant.  That is, the
+devices which were in those slots must be failed and removed.
+<p>
+When the number of devices is increased, any hot spares that are
+present will be activated immediately.
+<p>
+Increasing the number of active devices in a RAID5 is much more
+work.  Every block in the array will need to be moved to a new location.
+From 2.6.17, the Linux Kernel is able to do this safely, including
+restarting an interrupted "reshape".
+<p>
+When relocating the first few stripes on a raid5, it is not possible
+to keep the data on disk completely consistent and crash-proof.  To
+provide the required safety, mdadm disables writes to the array while
+this "critical section" is reshaped, and makes a backup of the data
+that is in that section.  This backup is normally stored in any spare
+devices that the array has, however it can also be stored in a
+separate file specified with the
+<b>--backup-file</b> option.  If this option is used, and the system does crash during the
+critical period, the same file must be passed to
+<b>--assemble</b> to restore the backup and reassemble the array.
+<p>
+<h2><i>BITMAP CHANGES</i></h2>
+<p>
+A write-intent bitmap can be added to, or removed from, an active
+array.  Either internal bitmaps or an external bitmap stored in a file
+can be added.  In the case of internal bitmaps, there is one copy of the
+bitmap per device (since you never know what device might fail, you need
+a copy on every device).  The bitmap is stored between the array data
+and the superblock, which limits the total number of bits available.
+For a bitmap in an external file, only one copy is needed, but this
+assumes that the bitmap file is not on an array device or else failure
+of that device would take the only copy of the bitmap with it.  For
+this reason, the fact that the kernel will deadlock if you attempt
+to use a file that resides on the array it is the bitmap for is
+considered a safety feature.
+<p>
+<h1 class="manpages">INCREMENTAL MODE</h1>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+Usage:
+<b>mdadm --incremental</b> [<b>--run</b>] [<b>--quiet</b>] <i>component-device</i> <br />
+Usage:
+<b>mdadm --incremental --rebuild</b> <br />
+Usage:
+<b>mdadm --incremental --run --scan</b> <p>
+<p>
+</td></tr>
+<!-- PP ends table -->
+</table>
+This mode is designed to be used in conjunction with a device
+discovery system.  As devices are found in a system, they can be
+passed to
+<b>mdadm --incremental</b> to be conditionally added to an appropriate array.
+<p>
+<i>mdadm</i> performs a number of tests to determine if the device is part of an
+array, and which array it should be part of.  If an appropriate array
+is found, or can be created,
+<i>mdadm</i> adds the device to the array and conditionally starts the array.
+<p>
+Note that
+<i>mdadm</i> will only add devices to an array which were previously working
+(active or spare) parts of that array.  It does not currently support
+automatic inclusion of a new drive as a spare in some array.
+<p>
+<b>mdadm --incremental</b> requires a bug-fix in all kernels through 2.6.19.
+Hopefully, this will be fixed in 2.6.20; alternately, apply the patch
+which is included with the mdadm source distribution.  If
+<i>mdadm</i> detects that this bug is present, it will abort any attempt to use
+<b>--incremental</b>. <p>
+The tests that
+<i>mdadm</i> makes are as follow:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
++
+</td><td>
+Is the device permitted by
+<b>mdadm.conf</b>? That is, is it listed in a
+<b>DEVICES</b> line in that file.  If
+<b>DEVICES</b> is absent then the default it to allow any device.  Similar if
+<b>DEVICES</b> contains the special word
+<b>partitions</b> then any device is allowed.  Otherwise the device name given to
+<i>mdadm</i> must match one of the names or patterns in a
+<b>DEVICES</b> line.
+<p>
+</td></tr>
+<tr valign="top"><td width=6%>
++
+</td><td>
+Does the device have a valid md superblock.  If a specific metadata
+version is request with
+<b>--metadata</b> or
+<b>-e</b> then only that style of metadata is accepted, otherwise
+<i>mdadm</i> finds any known version of metadata.  If no
+<i>md</i> metadata is found, the device is rejected.
+<p>
+</td></tr>
+<tr valign="top"><td width=6%>
++
+</td><td>
+Does the metadata match an expected array?
+The metadata can match in two ways.  Either there is an array listed
+in
+<b>mdadm.conf</b> which identifies the array (either by UUID, by name, by device list,
+or by minor-number), or the array was created with a
+<b>homehost</b> specified and that
+<b>homehost</b> matches the one in
+<b>mdadm.conf</b> or on the command line.
+If
+<i>mdadm</i> is not able to positively identify the array as belonging to the
+current host, the device will be rejected.
+<p>
+</td></tr>
+<tr valign="top"><td width=6%>
++
+</td><td>
+<i>mdadm</i> keeps a list of arrays that it has partially assembled in
+<b>/var/run/mdadm/map</b> (or
+<b>/var/run/mdadm.map</b> if the directory doesn&#146;t exist).  If no array exists which matches
+the metadata on the new device,
+<i>mdadm</i> must choose a device name and unit number.  It does this based on any
+name given in
+<b>mdadm.conf</b> or any name information stored in the metadata.  If this name
+suggests a unit number, that number will be used, otherwise a free
+unit number will be chosen.  Normally
+<i>mdadm</i> will prefer to create a partitionable array, however if the
+<b>CREATE</b> line in
+<b>mdadm.conf</b> suggests that a non-partitionable array is preferred, that will be
+honoured.
+<p>
+</td></tr>
+<tr valign="top"><td width=6%>
++
+</td><td>
+Once an appropriate array is found or created and the device is added,
+<i>mdadm</i> must decide if the array is ready to be started.  It will
+normally compare the number of available (non-spare) devices to the
+number of devices that the metadata suggests need to be active.  If
+there are at least that many, the array will be started.  This means
+that if any devices are missing the array will not be restarted.
+<p>
+As an alternative,
+<b>--run</b> may be passed to
+<i>mdadm</i> in which case the array will be run as soon as there are enough
+devices present for the data to be accessible.  For a raid1, that
+means one device will start the array.  For a clean raid5, the array
+will be started as soon as all but one drive is present.
+<p>
+Note that neither of these approaches is really ideal.  If it can
+be known that all device discovery has completed, then
+<!-- Need break --><br />
+<b>   mdadm -IRs</b> <!-- Need break --><br />
+can be run which will try to start all arrays that are being
+incrementally assembled.  They are started in "read-auto" mode in
+which they are read-only until the first write request.  This means
+that no metadata updates are made and no attempt at resync or recovery
+happens.  Further devices that are found before the first write can
+still be added safely.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">EXAMPLES</h1>
+<p>
+<b>  mdadm --query /dev/name-of-device</b> <!-- Need break --><br />
+This will find out if a given device is a raid array, or is part of
+one, and will provide brief information about the device.
+<p>
+<b>  mdadm --assemble --scan</b> <!-- Need break --><br />
+This will assemble and start all arrays listed in the standard config
+file.  This command will typically go in a system startup file.
+<p>
+<b>  mdadm --stop --scan</b> <!-- Need break --><br />
+This will shut down all arrays that can be shut down (i.e. are not
+currently in use).  This will typically go in a system shutdown script.
+<p>
+<b>  mdadm --follow --scan --delay=120</b> <!-- Need break --><br />
+If (and only if) there is an Email address or program given in the
+standard config file, then
+monitor the status of all arrays listed in that file by
+polling them ever 2 minutes.
+<p>
+<b>  mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/hd[ac]1</b> <!-- Need break --><br />
+Create /dev/md0 as a RAID1 array consisting of /dev/hda1 and /dev/hdc1.
+<p>
+<b>  echo &#146;DEVICE /dev/hd*[0-9] /dev/sd*[0-9]&#146; &gt; mdadm.conf</b> <!-- Need break --><br />
+<b>  mdadm --detail --scan &gt;&gt; mdadm.conf</b> <!-- Need break --><br />
+This will create a prototype config file that describes currently
+active arrays that are known to be made from partitions of IDE or SCSI drives.
+This file should be reviewed before being used as it may
+contain unwanted detail.
+<p>
+<b>  echo &#146;DEVICE /dev/hd[a-z] /dev/sd*[a-z]&#146; &gt; mdadm.conf</b> <!-- Need break --><br />
+<b>  mdadm --examine --scan --config=mdadm.conf &gt;&gt; mdadm.conf</b> <!-- Need break --><br />
+This will find arrays which could be assembled from existing IDE and
+SCSI whole drives (not partitions), and store the information in the
+format of a config file.
+This file is very likely to contain unwanted detail, particularly
+the
+<b>devices=</b> entries.  It should be reviewed and edited before being used as an
+actual config file.
+<p>
+<b>  mdadm --examine --brief --scan --config=partitions</b> <!-- Need break --><br />
+<b>  mdadm -Ebsc partitions</b> <!-- Need break --><br />
+Create a list of devices by reading
+<b>/proc/partitions</b>, scan these for RAID superblocks, and printout a brief listing of all
+that were found.
+<p>
+<b>  mdadm -Ac partitions -m 0 /dev/md0</b> <!-- Need break --><br />
+Scan all partitions and devices listed in
+<b>/proc/partitions</b> and assemble
+<b>/dev/md0</b> out of all such devices with a RAID superblock with a minor number of 0.
+<p>
+<b>  mdadm --monitor --scan --daemonise &gt; /var/run/mdadm</b> <!-- Need break --><br />
+If config file contains a mail address or alert program, run mdadm in
+the background in monitor mode monitoring all md devices.  Also write
+pid of mdadm daemon to
+<b>/var/run/mdadm</b>. <p>
+<b>  mdadm -Iq /dev/somedevice</b> <!-- Need break --><br />
+Try to incorporate newly discovered device into some array as
+appropriate.
+<p>
+<b>  mdadm --incremental --rebuild --run --scan</b> <!-- Need break --><br />
+Rebuild the array map from any current arrays, and then start any that
+can be started.
+<p>
+<b>  mdadm /dev/md4 --fail detached --remove detached</b> <!-- Need break --><br />
+Any devices which are components of /dev/md4 will be marked as faulty
+and then remove from the array.
+<p>
+<b>  mdadm --create --help</b> <!-- Need break --><br />
+Provide help about the Create mode.
+<p>
+<b>  mdadm --config --help</b> <!-- Need break --><br />
+Provide help about the format of the config file.
+<p>
+<b>  mdadm --help</b> <!-- Need break --><br />
+Provide general help.
+<p>
+<p>
+<h1 class="manpages">FILES</h1>
+<p>
+<h2><i>/proc/mdstat</i></h2>
+<p>
+If you&#146;re using the
+<b>/proc</b> filesystem,
+<b>/proc/mdstat</b> lists all active md devices with information about them.
+<i>mdadm</i> uses this to find arrays when
+<b>--scan</b> is given in Misc mode, and to monitor array reconstruction
+on Monitor mode.
+<p>
+<p>
+<h2><i>/etc/mdadm.conf</i></h2>
+<p>
+The config file lists which devices may be scanned to see if
+they contain MD super block, and gives identifying information
+(e.g. UUID) about known MD arrays.  See
+<b>mdadm.conf</b>(5)
+for more details.
+<p>
+<h2><i>/var/run/mdadm/map</i></h2>
+When
+<b>--incremental</b> mode is used, this file gets a list of arrays currently being created.
+If
+<b>/var/run/mdadm</b> does not exist as a directory, then
+<b>/var/run/mdadm.map</b> is used instead.
+<p>
+<h1 class="manpages">DEVICE NAMES</h1>
+<p>
+While entries in the /dev directory can have any format you like,
+<i>mdadm</i> has an understanding of &#146;standard&#146; formats which it uses to guide its
+behaviour when creating device files via the
+<b>--auto</b> option.
+<p>
+The standard names for non-partitioned arrays (the only sort of md
+array available in 2.4 and earlier) are either of
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+/dev/mdNN
+<!-- Need break --><br />
+/dev/md/NN
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+where NN is a number.
+The standard names for partitionable arrays (as available from 2.6
+onwards) are either of
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+/dev/md/dNN
+<!-- Need break --><br />
+/dev/md_dNN
+</td></tr>
+<!-- PP ends table -->
+</table>
+Partition numbers should be indicated by added "pMM" to these, thus "/dev/md/d1p2".
+<p>
+<h1 class="manpages">NOTE</h1>
+<i>mdadm</i> was previously known as
+<i>mdctl</i>. <p>
+<i>mdadm</i> is completely separate from the
+<i>raidtools</i> package, and does not use the
+<i>/etc/raidtab</i> configuration file at all.
+<p>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+RAID, see:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<b><a href="http://linux-raid.osdl.org/">http://linux-raid.osdl.org</a>/</b> </td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+(based upon Jakob <blink><blink>\(</blink>/O</blink>stergaard&#146;s Software-RAID.HOWTO)
+</td></tr>
+<!-- Found tag IP -->
+<tr><td colspan="2">
+The latest version of
+<i>mdadm</i> should always be available from
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<b><a href="http://www.kernel.org/pub/linux/utils/raid/mdadm">http://www.kernel.org/pub/linux/utils/raid/mdadm</a>/</b> </td></tr>
+<!-- PP ends table -->
+</table>
+Related man pages:
+<p>
+<b>mdadm.conf</b>(5),
+<b>md</b>(4).
+<p>
+<b>raidtab</b>(5),
+<b>raid0run</b>(8),
+<b>raidstop</b>(8),
+<b>mkraid</b>(8).
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversiond3a4.html?tutorial=unix_commands&amp;file=mdadm.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/mdadm.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:58 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

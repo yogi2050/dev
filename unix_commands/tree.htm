@@ -1,0 +1,515 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/tree.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>tree - Unix, Linux Command</title>
+<meta name="Description" Content="tree - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>tree - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- ignored unsupported tag ... -->
+<h1 class="manpages">NAME</h1>
+tree - list contents of directories in a tree-like format.
+<h1 class="manpages">SYNOPSIS</h1>
+<b>tree</b> [<b>-adfgilnopqrstuxACDFNS</b>] [<b>-L</b> <i>level</i> [<b>-R</b>]] [<b>-H</b> <i>baseHREF</i>] [<b>-T</b> <i>title</i>] [<b>-o</b> <i>filename</i>] [<b>--nolinks</b>] [<b>-P</b> <i>pattern</i>] [<b>-I</b> <i>pattern</i>] [<b>--inodes</b>] [<b>--device</b>] [<b>--noreport</b>] [<b>--dirsfirst</b>] [<b>--version</b>] [<b>--help</b>] [<i>directory</i> ...]
+<h1 class="manpages">DESCRIPTION</h1>
+<i>Tree</i> is a recursive directory listing program that produces a depth
+indented listing of files.  Color is supported ala <i>dircolors</i> if the <b>LS_COLORS</b>
+environment variable is set, output is to a tty, and the <b>-C</b> flag is used.  With no arguments,
+<i>tree</i> lists the files in the current directory.  When directory
+arguments are given, <i>tree</i> lists all the files and/or directories found
+in the given directories each in turn.  Upon completion of listing all
+files/directories found, <i>tree</i> returns the total number of files and/or
+directories listed.
+<p>
+By default, when a symbolic link is encountered, the path that the symbolic
+link refers to is printed after the name of the link in the format:
+<p>
+    name -&gt; real-path
+<p>
+If the &#145;<b>-l</b>&#146; option is given and the symbolic link refers to an actual
+directory, then <i>tree</i> will follow the path of the symbolic link as if
+it were a real directory.
+<p>
+<h1 class="manpages">OPTIONS</h1>
+<i>Tree</i> understands the following command line switches:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>--help</b> </td><td valign="bottom">
+Outputs a verbose usage listing.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--version</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Outputs the version of tree.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td>
+<b>-a</b> </td><td valign="bottom">
+All files are printed.  By default tree does not print hidden files (those
+beginning with a dot &#145;.&#146;).  In no event does tree print the file system
+constructs &#145;.&#146; (current directory) and &#145;..&#146; (previous directory).
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td>
+<b>-d</b> </td><td valign="bottom">
+List directories only.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td>
+<b>-f</b> </td><td valign="bottom">
+Prints the full path prefix for each file.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td>
+<b>-i</b> </td><td valign="bottom">
+Makes tree not print the indentation lines, useful when used in conjunction
+with the <b>-f</b> option.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td>
+<b>-l</b> </td><td valign="bottom">
+Follows symbolic links if they point to directories, as if they were
+directories. Symbolic links that will result in recursion are avoided when
+detected.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td>
+<b>-x</b> </td><td valign="bottom">
+Stay on the current file-system only.  Ala <b>find </b><i>-xdev</i>.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-P </b><i>pattern</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+List only those files that match the wild-card <i>pattern</i>.  Note: you must use
+the <i>-a</i> option to also consider those files beginning with a dot &#145;.&#146; for
+matching.  Valid wildcard operators are &#145;*&#146; (any zero or more characters), &#145;?&#146; (any
+single character), &#145;[...]&#146; (any single character listed between brackets (optional -
+(dash) for character range may be used: ex: [A-Z]), and &#145;[^...]&#146; (any single character
+not listed in brackets) and &#145;|&#146; separates alternate patterns.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-I </b><i>pattern</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Do not list those files that match the wild-card <i>pattern</i>.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--noreport</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Omits printing of the file and directory report at the end of the tree
+listing.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td>
+<b>-p</b> </td><td valign="bottom">
+Print the protections for each file (as per ls -l).
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td>
+<b>-s</b> </td><td valign="bottom">
+Print the size of each file along with the name.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td>
+<b>-u</b> </td><td valign="bottom">
+Print the username, or UID # if no username is available, of the file.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td>
+<b>-g</b> </td><td valign="bottom">
+Print the group name, or GID # if no group name is available, of the file.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td>
+<b>-D</b> </td><td valign="bottom">
+Print the date of the last modification time for the file listed.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--inodes</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Prints the inode number of the file or directory
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--device</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Prints the device number to which the file or directory belongs
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td>
+<b>-F</b> </td><td valign="bottom">
+Append a &#145;/&#146; for directories, a &#145;=&#146; for socket files, a &#145;*&#146; for executable files
+and a &#145;|&#146; for FIFO&#146;s, as per ls -F
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td>
+<b>-q</b> </td><td valign="bottom">
+Print non-printable characters in filenames as question marks instead of the default
+caret notation.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td>
+<b>-N</b> </td><td valign="bottom">
+Print non-printable characters as is instead of the default caret notation.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td>
+<b>-r</b> </td><td valign="bottom">
+Sort the output in reverse alphabetic order.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td>
+<b>-t</b> </td><td valign="bottom">
+Sort the output by last modification time instead of alphabetically.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--dirsfirst</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+List directories before files.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td>
+<b>-n</b> </td><td valign="bottom">
+Turn colorization off always, over-ridden by the <b>-C</b> option.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td>
+<b>-C</b> </td><td valign="bottom">
+Turn colorization on always, using built-in color defaults if the LS_COLORS
+environment variable is not set.  Useful to colorize output to a pipe.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td>
+<b>-A</b> </td><td valign="bottom">
+Turn on ANSI line graphics hack when printing the indentation lines.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td>
+<b>-S</b> </td><td valign="bottom">
+Turn on ASCII line graphics (useful when using linux console mode fonts). This
+option is now equivalent to &#145;--charset=IBM437&#146; and will eventually be
+depreciated.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-L </b><i>level</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Max display depth of the directory tree.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td>
+<b>-R</b> </td><td valign="bottom">
+Recursively cross down the tree each <i>level</i> directories (see <b>-L</b>
+option), and at each of them execute <b>tree</b> again adding &#145;-o 00Tree.html&#146;
+as a new option.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-H </b><i>baseHREF</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Turn on HTML output, including HTTP references. Useful for ftp sites.
+<i>baseHREF</i> gives the base ftp location when using HTML output. That is, the local
+directory may be &#145;/local/ftp/pub&#146;, but it must be referenced as
+&#145;<a href="ftp://hostname.organization.domain/pub">ftp://hostname.organization.domain/pub</a>&#146; (<i>baseHREF</i> should be
+&#145;<a href="ftp://hostname.organization.domain/">ftp://hostname.organization.domain</a>&#146;). Hint: don&#146;t use ANSI lines with this option,
+and don&#146;t give more than one directory in the directory list. If you wish to
+use colors via CCS stylesheet, use the -C option in addition to this option
+to force color output.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-T </b><i>title</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Sets the title and H1 header string in HTML output mode.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--charset </b><i>charset</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Set the character set to use when outputting HTML and for line drawing.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>--nolinks</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Turns off hyperlinks in HTML output.
+<!-- suppressed PP before TP -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-o </b><i>filename</i> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Send output to <i>filename</i>.
+</td></tr>
+<!-- PP ends table -->
+</table>
+<h1 class="manpages">FILES</h1>
+/etc/DIR_COLORS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System color database.
+<!-- Need break --><br />
+~/.dircolors&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Users color database.
+<p>
+<h1 class="manpages">ENVIRONMENT</h1>
+<b>LS_COLORS</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Color information created by dircolors
+<!-- Need break --><br />
+<b>TREE_CHARSET</b>&nbsp;&nbsp;&nbsp;&nbsp;Character set for tree to use in HTML mode.
+<!-- Need break --><br />
+<b>LC_CTYPE</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Locale for filename output.
+<p>
+<h1 class="manpages">AUTHOR</h1>
+Steve Baker (<a href="mailto:ice@mama.indstate.edu">ice@mama.indstate.edu</a>)
+<!-- Need break --><br />
+HTML output hacked by Francesc Rocher (<a href="mailto:rocher@econ.udg.es">rocher@econ.udg.es</a>)
+<!-- Need break --><br />
+Charsets and OS/2 support by Kyosuke Tokoro (<a href="mailto:NBG01720@nifty.ne.jp">NBG01720@nifty.ne.jp</a>)
+<p>
+<h1 class="manpages">BUGS</h1>
+Tree does not prune "empty" directories when the -P and -I options are used.
+Tree prints directories as it comes to them, so cannot accumulate information
+on files and directories beneath the directory it is printing. Probably more.
+<p>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="dircolors.htm">dircolors (1)</a></p></li>
+<li><p><a href="ls.htm">ls (1)</a></p></li>
+<li><p><a href="find.htm">find (1)</a></p></li>
+</ul>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionebc0.html?tutorial=unix_commands&amp;file=tree.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/tree.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

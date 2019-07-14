@@ -1,0 +1,553 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/ruby/ruby_multithreading.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 16:00:00 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>Ruby Multithreading</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="Keywords" content="Ruby, Tutorials, Learning, Beginners, Basics, Scripting Language, Syntax, Classes, , Variables, Comments, Loops, File, I/O, Functions, Objects, TK, Ranges, iterators, arrays, strings, methods, blocks, Exception, Multi-Threading, Hashes, Modules, LDAP, Web Services, Web Programming." />
+<meta name="description" content="Ruby Multithreading - Learning Ruby in simple and easy steps - A beginner's tutorial containing complete knowledge of Ruby Syntax Syntax, Classes, , Variables, Comments, Loops, File, I/O, Functions, Objects, TK, Ranges, iterators, arrays, strings, methods, blocks, Exception, Multi-Threading, Hashes, Modules, LDAP, Web Services, Web Programming." />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+/* Ruby Scheme */
+#topmenu a:link {text-decoration:none;color:#fff !important;background-color:transparent;font-weight:bold;}
+#topmenu a:visited {text-decoration:none;color:#fff !important;background-color:transparent;font-weight:bold;}
+#topmenu a:hover {text-decoration:none;color:#C83932 !important;background-color:transparent;font-weight:bold;}
+#header{ 
+background:#C83932 !important;
+}
+#topmenu
+{
+background-color:#5E0500 !important;
+}
+#leftcol ul.menu li.heading 
+{
+background:#C83932 !important;
+border:1px solid #964800 !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1500px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index-2.html">Tutorials Point - Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index-2.html" target="_top">HOME </a>
+<a href="../java/index.html" target="_top">JAVA </a>
+<a href="../php/index.html" target="_top">PHP </a>
+<a href="../python/index.html" target="_top">Python </a>
+<a href="index.html" target="_top">Ruby </a>
+<a href="../perl/index.html" target="_top">Perl </a>
+<a href="../html/index.html" target="_top">HTML </a>
+<a href="../css/index.html" target="_top">CSS </a>
+<a href="../javascript/index.html" target="_top">Javascript </a>
+<a href="../mysql/index.html" target="_top">MySQL </a>
+<a href="../cplusplus/index.html" target="_top">C++ </a>
+<a href="../unix/index.html" target="_top">UNIX </a>
+<a href="../more.html" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.html" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.html" target="_top">ABOUT</a> |
+<a href="../about/contact_us.html" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/ruby-mini-logo.png" alt="Ruby Tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">Ruby Basics</li>
+<li><a class="left" target="_top" href="index.html">Ruby Home</a></li>
+<li><a class="left" target="_top" href="ruby_overview.html">Ruby Overview</a></li>
+<li><a class="left" target="_top" href="ruby_environment.html">Ruby Environment</a></li>
+<li><a class="left" target="_top" href="ruby_syntax.html">Ruby Syntax</a></li>
+<li><a class="left" target="_top" href="ruby_classes.html">Ruby Classes</a></li>
+<li><a class="left" target="_top" href="ruby_variables.html">Ruby Variables</a></li>
+<li><a class="left" target="_top" href="ruby_operators.html">Ruby Operators</a></li>
+<li><a class="left" target="_top" href="ruby_comments.html">Ruby Comments</a></li>
+<li><a class="left" target="_top" href="ruby_if_else.html">Ruby IF...ELSE</a></li>
+<li><a class="left" target="_top" href="ruby_loops.html">Ruby Loops</a></li>
+<li><a class="left" target="_top" href="ruby_methods.html">Ruby Methods</a></li>
+<li><a class="left" target="_top" href="ruby_blocks.html">Ruby Blocks</a></li>
+<li><a class="left" target="_top" href="ruby_modules.html">Ruby Modules</a></li>
+<li><a class="left" target="_top" href="ruby_strings.html">Ruby Strings</a></li>
+<li><a class="left" target="_top" href="ruby_arrays.html">Ruby Arrays</a></li>
+<li><a class="left" target="_top" href="ruby_hashes.html">Ruby Hashes</a></li>
+<li><a class="left" target="_top" href="ruby_date_time.html">Ruby Date &amp; Time</a></li>
+<li><a class="left" target="_top" href="ruby_ranges.html">Ruby Ranges</a></li>
+<li><a class="left" target="_top" href="ruby_iterators.html">Ruby Iterators</a></li>
+<li><a class="left" target="_top" href="ruby_input_output.html">Ruby File I/O</a></li>
+<li><a class="left" target="_top" href="ruby_exceptions.html">Ruby Exceptions</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Ruby Advanced</li>
+<li><a class="left" target="_top" href="ruby_object_oriented.html">Ruby Object Oriented</a></li>
+<li><a class="left" target="_top" href="ruby_regular_expressions.html">Ruby Regular Expressions</a></li>
+<li><a class="left" target="_top" href="ruby_database_access.html">Ruby Database Access</a></li>
+<li><a class="left" target="_top" href="ruby_web_applications.html">Ruby Web Applications</a></li>
+<li><a class="left" target="_top" href="ruby_sending_email.html">Ruby Sending Email</a></li>
+<li><a class="left" target="_top" href="ruby_socket_programming.html">Ruby Socket Programming</a></li>
+<li><a class="left" target="_top" href="ruby_xml_xslt.html">Ruby/XML, XSLT</a></li>
+<li><a class="left" target="_top" href="ruby_web_services.html">Ruby Web Services</a></li>
+<li><a class="left" target="_top" href="ruby_tk_guide.html">Ruby/Tk Guide</a></li>
+<li><a class="left" target="_top" href="ruby_ldap.html">Ruby/LDAP Tutorial</a></li>
+<li><a class="left" target="_top" href="ruby_multithreading.html"><b>Ruby Multithreading</b></a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Ruby Useful Resources</li>
+<li><a class="left" target="_top" href="ruby_quick_guide.html">Ruby Quick Guide</a></li>
+<li><a class="left" target="_top" href="ruby_builtin_functions.html">Ruby Built-in Functions</a></li>
+<li><a class="left" target="_top" href="ruby_predefined_variables.html">Ruby Predefined Variables</a></li>
+<li><a class="left" target="_top" href="ruby_predefined_constants.html">Ruby Predefined Constants</a></li>
+<li><a class="left" target="_top" href="ruby_associated_tools.html">Ruby Associated Tools</a></li>
+<li><a class="left" target="_top" href="ruby_resources.html">Ruby Useful Resources</a></li>
+<li><a class="left" target="_top" href="../ruby-on-rails/index.html">Ruby on Rails Tutorial</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.html">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>Ruby Multithreading</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="ruby_ldap.html">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="ruby_quick_guide.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>Traditional programs have a single <i>thread of execution</i>: the statements or instructions that comprise the program are executed sequentially until the program terminates. </p>
+<p>A multithreaded program has more than one thread of execution. Within each thread, statements are executed sequentially, but the threads themselves may be executed in parallel.on a multicore CPU, for example. Often on a single CPU machine, multiple threads are not actually executed in parallel, but parallelism is simulated by interleaving the execution of the threads.</p>
+<p>Ruby makes it easy to write multi-threaded programs with the <i>Thread</i> class. Ruby threads are a lightweight and efficient way to achieve parallelism in your code.</p>
+<h2>Creating Ruby Threads:</h2>
+<p>To start a new thread, just associate a block with a call to <i>Thread.new</i>. A new thread will be created to execute the code in the block, and the original thread will return from <i>Thread.new</i> immediately and resume execution with the next statement:</p>
+<pre class="prettyprint">
+# Thread #1 is running here
+Thread.new {
+  # Thread #2 runs this code
+}
+# Thread #1 runs this code
+</pre>
+<h2>Example:</h2>
+<p>Here is an example which shows, how we can use multi-threaded Ruby program.</p>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+def func1
+   i=0
+   while i&lt;=2
+      puts "func1 at: #{Time.now}"
+      sleep(2)
+      i=i+1
+   end
+end
+
+def func2
+   j=0
+   while j&lt;=2
+      puts "func2 at: #{Time.now}"
+      sleep(1)
+      j=j+1
+   end
+end
+
+puts "Started At #{Time.now}"
+t1=Thread.new{func1()}
+t2=Thread.new{func2()}
+t1.join
+t2.join
+puts "End at #{Time.now}"
+</pre>
+<p>This will produce following result:</p>
+<pre class="prettyprint">
+Press ENTER or type command to continue
+Started At Wed May 14 08:21:54 -0700 2008
+func1 at: Wed May 14 08:21:54 -0700 2008
+func2 at: Wed May 14 08:21:54 -0700 2008
+func2 at: Wed May 14 08:21:55 -0700 2008
+func1 at: Wed May 14 08:21:56 -0700 2008
+func2 at: Wed May 14 08:21:56 -0700 2008
+func1 at: Wed May 14 08:21:58 -0700 2008
+End at Wed May 14 08:22:00 -0700 2008
+</pre>
+<h2>Thread Lifecycle:</h2>
+<p>A new threads are created with <i>Thread.new</i>. You can also use the synonyms <i>Thread.start</i> and <i>Thread.fork</i>. </p>
+<p>There is no need to start a thread after creating it, it begins running automatically when CPU resources become available.</p>
+<p>The Thread class defines a number of methods to query and manipulate the thread while it is running. A thread runs the code in the block associated with the call to <i>Thread.new</i> and then it stops running.</p>
+<p>The value of the last expression in that block is the value of the thread, and can be obtained by calling the <i>value</i> method of the Thread object. If the thread has run to completion, then the value returns the thread's value right away. Otherwise, the <i>value</i> method blocks and does not return until the thread has completed.</p>
+<p>The class method <i>Thread.current</i> returns the Thread object that represents the current thread. This allows threads to manipulate themselves. The class method <i>Thread.main</i> returns the Thread object that represents the main thread.this is the initial thread of execution that began when the Ruby program was started.</p>
+<p>You can wait for a particular thread to finish by calling that thread's <i>Thread.join</i> method. The calling thread will block until the given thread is finished.</p>
+<h2>Threads and Exceptions:</h2>
+<p>If an exception is raised in the main thread, and is not handled anywhere, the Ruby interpreter prints a message and exits. In threads other than the main thread, unhandled exceptions cause the thread to stop running.</p>
+<p>If a thread t exits because of an unhandled exception, and another thread <b>s</b> calls <i>t.join or t.value,</i> then the exception that occurred in <b>t</b> is raised in the thread <b>s</b>.</p>
+<p>If <i>Thread.abort_on_exception</i> is <i>false</i>, the default condition, an unhandled exception simply kills the current thread and all the rest continue to run.</p>
+<p>If you would like any unhandled exception in any thread to cause the interpreter to exit, set the class method <i>Thread.abort_on_exception</i> to <i>true</i>.</p>
+<pre class="prettyprint">
+t = Thread.new { ... }
+t.abort_on_exception = true
+</pre>
+<h2>Thread Variables:</h2>
+<p>A thread can normally access any variables that are in scope when the thread is created. Variables local to the block of a thread
+are local to the thread, and are not shared.</p>
+<p>Thread class features a special facility that allows thread-local variables to be created and accessed by name. You simply treat the thread object as if it were a Hash, writing to elements using []= and reading them back using [].</p>
+<p>In this example, each thread records the current value of the variable count in a threadlocal variable with the key <i>mycount</i>.</p>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+count = 0
+arr = []
+
+10.times do |i|
+   arr[i] = Thread.new {
+      sleep(rand(0)/10.0)
+      Thread.current["mycount"] = count
+      count += 1
+   }
+end
+
+arr.each {|t| t.join; print t["mycount"], ", " }
+puts "count = #{count}"
+</pre>
+<p>This produces following result:</p>
+<pre class="prettyprint">
+8, 0, 3, 7, 2, 1, 6, 5, 4, 9, count = 10
+</pre>
+<p>The main thread waits for the subthreads to finish and then prints out the value of <i>count</i> captured by each.</p>
+<h2>Thread Priorities:</h2>
+<p>The first factor that affects thread scheduling is thread priority: high-priority threads are scheduled before low-priority threads. More precisely, a thread will only get CPU time if there are no higher-priority threads waiting to run.</p>
+<p>You can set and query the priority of a Ruby Thread object with <i>priority=</i> and <i>priority</i>.  A newly created thread starts at the same priority as the thread that created it. The main thread starts off at priority 0.</p>
+<p>There is no way to set the priority of a thread before it starts running. A thread can, however, raise or lower its own priority as the first action it takes.</p>
+<h2>Thread Exclusion:</h2>
+<p>If two threads share access to the same data, and at least one of the threads modifies that data, you must take special care to ensure that no thread can ever see the data in an inconsistent state. This is called <i>thread exclusion</i>.</p>
+<p><b>Mutex</b> is a class that implements a simple semaphore lock for mutually exclusive access to some shared resource. That is, only one thread may hold the lock at a given time. Other threads may choose to wait in line for the lock to become available, or may simply choose to get an immediate error indicating that the lock is not available.</p>
+<p>By placing all accesses to the shared data under control of a <i>mutex</i>, we ensure consistency and atomic operation. Let's try to examples, first one without mutax and second one with mutax:</p>
+<h2>Example without Mutax:</h2>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+require 'thread'
+
+count1 = count2 = 0
+difference = 0
+counter = Thread.new do
+   loop do
+      count1 += 1
+      count2 += 1
+   end
+end
+spy = Thread.new do
+   loop do
+      difference += (count1 - count2).abs
+   end
+end
+sleep 1
+puts "count1 :  #{count1}"
+puts "count2 :  #{count2}"
+puts "difference : #{difference}"
+</pre>
+<p>This will produce following result:</p>
+<pre class="prettyprint">
+count1 :  1583766
+count2 :  1583766
+difference : 637992
+</pre>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+require 'thread'
+mutex = Mutex.new
+
+count1 = count2 = 0
+difference = 0
+counter = Thread.new do
+   loop do
+      mutex.synchronize do
+         count1 += 1
+         count2 += 1
+      end
+    end
+end
+spy = Thread.new do
+   loop do
+       mutex.synchronize do
+          difference += (count1 - count2).abs
+       end
+   end
+end
+sleep 1
+mutex.lock
+puts "count1 :  #{count1}"
+puts "count2 :  #{count2}"
+puts "difference : #{difference}"
+</pre>
+<p>This will produce following result:</p>
+<pre class="prettyprint">
+count1 :  696591
+count2 :  696591
+difference : 0
+</pre>
+<h2>Handling Deadlock:</h2>
+<p>When we start using <i>Mutex</i> objects for thread exclusion we must be careful to avoid <i>deadlock</i>. Deadlock is the condition that occurs when all threads are waiting to acquire a resource held by another thread. Because all threads are blocked, they cannot release the locks they hold. And because they cannot release the locks, no other thread can acquire those locks.</p>
+<p>This is where <i>condition variables</i> come into picture. A <i>condition variable</i> is simply a semaphore that is associated with a resource and is used within the protection of a particular <i>mutex</i>. When you need a resource that's unavailable, you wait on a condition variable. That action releases the lock on the corresponding <i>mutex</i>. When some other thread signals that the resource is available, the original thread comes off the wait and simultaneously regains the lock on the critical region.</p>
+<h2>Example:</h2>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+require 'thread'
+mutex = Mutex.new
+
+cv = ConditionVariable.new
+a = Thread.new {
+   mutex.synchronize {
+      puts "A: I have critical section, but will wait for cv"
+      cv.wait(mutex)
+      puts "A: I have critical section again! I rule!"
+   }
+}
+
+puts "(Later, back at the ranch...)"
+
+b = Thread.new {
+   mutex.synchronize {
+      puts "B: Now I am critical, but am done with cv"
+      cv.signal
+      puts "B: I am still critical, finishing up"
+   }
+}
+a.join
+b.join
+</pre>
+<p>This will produce following result:</p>
+<pre class="prettyprint">
+A: I have critical section, but will wait for cv
+(Later, back at the ranch...)
+B: Now I am critical, but am done with cv
+B: I am still critical, finishing up
+A: I have critical section again! I rule!
+</pre>
+<h2>Thread States:</h2>
+<p>There are five possible return values corresponding to the five possible states as shown in the following table.  The <i>status</i> method returns the state of the thread.</p>
+<table class="src">
+<tr><th style="width:50%">Thread state</th><th>Return value</th></tr>
+<tr><td>Runnable</td><td>run</td></tr>
+<tr><td>Sleeping</td><td>Sleeping</td></tr>
+<tr><td>Aborting</td><td>aborting</td></tr>
+<tr><td>Terminated normally</td><td>false </td></tr>
+<tr><td>Terminated with exception</td><td>nil </td></tr>
+</table>
+<h2>Thread Class Methods:</h2>
+<p>Following methods are provided by <i>Thread</i> class  and they are applicable to all the threads available in the program. These methods will be called as using <i>Thread</i> class name as follows:</p>
+<pre class="prettyprint">
+Thread.abort_on_exception = true
+</pre>
+<p>Here is complete list of all the class methods available:</p>
+<table class="src">
+<tr><th style="width:5%">SN</th><th>Methods with Description</th></tr>
+<tr><td>1</td><td><b>Thread.abort_on_exception</b><br />Returns the status of the global <i>abort on exception</i> condition. The default is <i>false</i>. When set to <i>true</i>, will cause all threads to abort (the process will exit(0)) if an exception is raised in any thread.</td></tr>
+<tr><td>2</td><td><b>Thread.abort_on_exception=</b><br />When set to <i>true</i>, all threads will abort if an exception is raised. Returns the new state.</td></tr>
+<tr><td>3</td><td><b>Thread.critical</b><br />Returns the status of the global <i>thread critical</i> condition.</td></tr>
+<tr><td>4</td><td><b>Thread.critical=</b><br />Sets the status of the global <i>thread critical</i> condition and returns it. When set to <i>true</i>, prohibits scheduling of any existing thread. Does not block new threads from being created and run. Certain thread operations (such as stopping or killing a thread, sleeping in the current thread, and raising an exception) may cause a thread to be scheduled even when in a critical section.</td></tr>
+<tr><td>5</td><td><b>Thread.current</b><br />Returns the currently executing thread.</td></tr>
+<tr><td>6</td><td><b>Thread.exit</b><br />Terminates the currently running thread and schedules another thread to be run. If this thread is already marked to be killed, <i>exit</i> returns the <i>Thread.</i> If this is the main thread, or the last thread, exit the process.</td></tr>
+<tr><td>7</td><td><b>Thread.fork { block }</b><br />Synonym for Thread.new .</td></tr>
+<tr><td>8</td><td><b>Thread.kill( aThread )</b><br />Causes the given <i>aThread</i> to exit</td></tr>
+<tr><td>9</td><td><b>Thread.list</b><br />Returns an array of <i>Thread</i> objects for all threads that are either runnable or stopped.
+Thread.</td></tr>
+<tr><td>10</td><td><b>Thread.main</b><br />Returns the main thread for the process.</td></tr>
+<tr><td>11</td><td><b>Thread.new( [ arg ]* ) {| args | block }</b><br />Creates a new thread to execute the instructions given in block, and begins running it. Any arguments passed to <i>Thread.new</i> are passed into the block.</td></tr>
+<tr><td>12</td><td><b>Thread.pass</b><br />Invokes the thread scheduler to pass execution to another thread.</td></tr>
+<tr><td>13</td><td><b>Thread.start( [ args ]* ) {| args | block }</b><br />Basically the same as <i>Thread.new</i> . However, if class <i>Thread</i> is subclassed, then calling <i>start</i> in that subclass will not invoke the subclass's <i>initialize</i> method.</td></tr>
+<tr><td>14</td><td><b>Thread.stop</b><br />Stops execution of the current thread, putting it into a <i>sleep</i> state, and schedules execution of another thread. Resets the <i>critical</i> condition to false.</td></tr>
+</table>
+<h2>Thread Instance Methods:</h2>
+<p>These methods are applicable to an instance of a thread. These methods will be called as using an instance of a  <i>Thread</i> as follows:</p>
+<pre class="prettyprint">
+#!/usr/bin/ruby
+
+thr = Thread.new do   # Calling a class method <i>new</i>
+   puts "In second thread"
+   raise "Raise exception"
+end
+thr.join   # Calling an instance method <i>join</i>
+</pre>
+<p>Here is complete list of all the instance methods available:</p>
+<table class="src">
+<tr><th style="width:5%">SN</th><th>Methods with Description</th></tr>
+<tr><td>1</td><td><b>thr[ aSymbol ]</b><br />Attribute Reference - Returns the value of a thread-local variable, using either a
+symbol or a <i>aSymbol</i> name. If the specified variable does not exist, returns <i>nil</i>.</td></tr>
+<tr><td>2</td><td><b>thr[ aSymbol ] =</b><br />Attribute Assignment - Sets or creates the value of a thread-local variable, using
+either a symbol or a string.</td></tr>
+<tr><td>3</td><td><b>thr.abort_on_exception</b><br />Returns the status of the <i>abort on exception</i> condition for <i>thr</i>. The default is <i>false</i>.</td></tr>
+<tr><td>4</td><td><b>thr.abort_on_exception=</b><br />When set to <i>true</i>, causes all threads (including the main program) to abort if an exception is raised in <i>thr</i>. The process will effectively <i>exit(0)</i>.</td></tr>
+<tr><td>5</td><td><b>thr.alive?</b><br />Returns <i>true</i> if <i>thr</i> is running or sleeping.</td></tr>
+<tr><td>6</td><td><b>thr.exit</b><br />Terminates <i>thr</i> and schedules another thread to be run. If this thread is already
+marked to be killed, <i>exit</i> returns the <i>Thread</i>. If this is the main thread, or the last thread, exits the process.</td></tr>
+<tr><td>7</td><td><b>thr.join</b><br />The calling thread will suspend execution and run <i>thr</i>. Does not return until <i>thr</i> exits. Any threads not joined will be killed when the main program exits.</td></tr>
+<tr><td>8</td><td><b>thr.key?</b><br />Returns <i>true</i> if the given string (or symbol) exists as a thread-local variable.</td></tr>
+<tr><td>9</td><td><b>thr.kill</b><br />Synonym for <i>Thread.exit</i> .</td></tr>
+<tr><td>10</td><td><b>thr.priority</b><br />Returns the priority of <i>thr</i>. Default is zero; higher-priority threads will run before lower priority threads.</td></tr>
+<tr><td>11</td><td><b>thr.priority=</b><br />Sets the priority of <i>thr</i> to an Integer. Higher-priority threads will run before lower priority threads.</td></tr>
+<tr><td>12</td><td><b>thr.raise( anException )</b><br />Raises an exception from <i>thr</i>. The caller does not have to be <i>thr</i>.</td></tr>
+<tr><td>13</td><td><b>thr.run</b><br />Wakes up <i>thr</i>, making it eligible for scheduling. If not in a critical section, then invokes the scheduler.</td></tr>
+<tr><td>14</td><td><b>thr.safe_level</b><br />Returns the safe level in effect for <i>thr</i>.</td></tr>
+<tr><td>15</td><td><b>thr.status</b><br />Returns the status of <i>thr</i>: <i>sleep</i> if <i>thr</i> is sleeping or waiting on I/O, <i>run</i> if <i>thr</i> is executing, false if <i>thr</i> terminated normally, and <i>nil</i> if <i>thr</i> terminated with an exception.</td></tr>
+<tr><td>16</td><td><b>thr.stop?</b><br />Returns <i>true</i> if <i>thr</i> is dead or sleeping.</td></tr>
+<tr><td>17</td><td><b>thr.value</b><br />Waits for thr to complete via <i>Thread.join</i> and returns its value.</td></tr>
+<tr><td>18</td><td><b>thr.wakeup</b><br />Marks <i>thr</i> as eligible for scheduling, it may still remain blocked on I/O, however.</td></tr>
+</table>
+<hr />
+<div class="pre-btn">
+<a href="ruby_ldap.html">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/ruby_multithreading.pdf" alt="Ruby Multithreading" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="ruby_quick_guide.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.html" target="_top">ASP.NET </a> |
+<a href="../jquery/index.html" target="_top">jQuery </a> |
+<a href="../ajax/index.html" target="_top">AJAX </a> |
+<a href="../ant/index.html" target="_top">ANT</a> |
+<a href="../jsp/index.html" target="_top">JSP </a> |
+<a href="../servlets/index.html" target="_top">Servlets </a> |
+<a href="../log4j/index.html" target="_top">log4j </a> |
+<a href="../ibatis/index.html" target="_top">iBATIS </a> |
+<a href="../hibernate/index.html" target="_top">Hibernate </a> |
+<a href="../jdbc/index.html" target="_top">JDBC </a> |
+<a href="../struts_2/index.html" target="_top">Struts </a> |
+<a href="../html5/index.html" target="_top">HTML5 </a> |
+<a href="../sql/index.html" target="_top">SQL </a> |
+<a href="../mysql/index.html" target="_top">MySQL </a> |
+<a href="../cplusplus/index.html" target="_top">C++ </a> |
+<a href="../unix/index.html" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/ruby/ruby_multithreading.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 16:00:10 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

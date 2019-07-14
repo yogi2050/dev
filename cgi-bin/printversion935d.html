@@ -1,0 +1,357 @@
+<html>
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=perl&file=perl_regular_expression.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>PERL Regular Expressions</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="Keywords" content="Perl, Programming, Language, Object Oriented Perl, Perl Variables, Scalars, Arrays, Hash, File I/O, Looping, Regular Expressions, Subroutines, Coding Standard, Writing Modules, Process Management, Socket, Examples, References, Special Variables, Syntax Overview, Advanced Perl, Tutorial, Tutorials, Operators, Built-in Functions, Quiz">
+<meta name="Description" content="Free tutorials and references for PERL Programming Common Gateway Interface (CGI) Database Interface (DBI) with PERL Object Oriented Perl and Perl Variables Scalars Arrays Hash File I/O Looping Regular Expressions Subroutines Coding Standard Writing Modules Process Management Socket Examples References Special Variables Syntax Overview Advanced Perl Tutorial Perl Operators Built-in Functions and Quiz">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base >
+<link rel="stylesheet" type="text/css" href="../print.css"/>
+</head>
+<body>
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+<h1>PERL Regular Expressions</h1>
+<a href="../perl/perl_files.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../perl/perl_subroutines.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<br />
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr><td valign="top">
+<p>A regular expression is a string of characters that define the pattern or patterns you are viewing. The syntax of regular expressions in Perl is very similar to what you will find within other regular expression.supporting programs, such as <b>sed</b>, <b>grep</b>, and <b>awk</b>.</P>
+<p>The basic method for applying a regular expression is to use the pattern binding operators =~ and !~. The first operator is a test and assignment operator. </P>
+<p>There are three regular expression operators within Perl</p>
+<ul> 
+<li> Match Regular Expression - m//</li>
+<li> Substitute Regular Expression - s///</li>
+<li> Transliterate Regular Expression - tr///</li>
+</ul>
+<p>The forward slashes in each case act as delimiters for the regular expression (regex) that you are specifying. If you are comfortable with any other delimiter then you can use in place of forward slash.</P>
+<h1>The Match Operator</h1>
+<p>The match operator, m//, is used to match a string or statement to a regular expression.  For example, to match the character sequence "foo" against the scalar $bar, you might use a statement like this:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+if ($bar =~ /foo/)
+</pre></td></tr></table>
+<p>The m// actually works in the same fashion as the q// operator series.you can use any combination of naturally matching characters to act as delimiters for the expression.  For example, m{}, m(), and m&gt;&lt; are all valid.</p>
+<p>You can omit the m from m// if the delimiters are forward slashes, but for all other delimiters you must use the m prefix.</p>
+<p>Note that the entire match expression.that is the expression on the left of =~ or !~ and the match operator, returns true (in a scalar context) if the expression matches.  Therefore the statement:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+$true = ($foo =~ m/foo/);
+</pre></td></tr></table>
+<p>Will set $true to 1 if $foo matches the regex, or 0 if the match fails.</p>
+<p>In a list context, the match returns the contents of any grouped expressions. For example, when
+extracting the hours, minutes, and seconds from a time string, we can use:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+my ($hours, $minutes, $seconds) = ($time =~ m/(\d+):(\d+):(\d+)/);
+</pre></td></tr></table>
+<h1>Match Operator Modifiers</h1>
+<p>The match operator supports its own set of modifiers. The /g modifier allows for global matching. The /i modifier will make the match case insensitive. Here is the complete list of modifiers</p>
+<table class="src" cellpadding=5><tr><td><pre>
+<b>Modifier	Description</b>
+i 	Makes the match case insensitive
+m 	Specifies that if the string has newline or carriage
+	return characters, the ^ and $ operators will now
+	match against a newline boundary, instead of a
+	string boundary
+o 	Evaluates the expression only once
+s 	Allows use of . to match a newline character
+x 	Allows you to use white space in the expression for clarity
+g 	Globally finds all matches
+cg 	Allows the search to continue even after a global match fails
+</pre></td></tr></table>
+<h1>Matching Only Once</h1>
+<p>There is also a simpler version of the match operator - the ?PATTERN? operator. This is basically identical to the m// operator except that it only matches once within the string you are searching between each call to reset.</p>
+<p>For example, you can use this to get the first and last elements within a list:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+#!/usr/bin/perl
+
+@list = qw/food foosball subeo footnote terfoot canic footbrdige/;
+
+foreach (@list)
+{
+   $first = $1 if ?(foo.*)?;
+   $last = $1 if /(foo.*)/;
+}
+print "First: $first, Last: $last\n";
+
+This will produce following result
+First: food, Last: footbrdige
+</pre></td></tr></table>
+<h1>The Substitution Operator</h1>
+<p>The substitution operator, s///, is really just an extension of the match operator that
+allows you to replace the text matched with some new text. The basic form of the
+operator is:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+s/PATTERN/REPLACEMENT/;
+</pre></td></tr></table>
+<p>The PATTERN is the regular expression for the text that we are looking for. The REPLACEMENT is a specification for the text or regular expression that we want to use to replace the found text with.</p>
+<p>For example, we can replace all occurrences of .dog. with .cat. using</p>
+<table class="src" cellpadding=5><tr><td><pre>
+$string =~ s/dog/cat/;
+</pre></td></tr></table>
+<p>Another example:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+#/user/bin/perl
+
+$string = 'The cat sat on the mat';
+$string =~ s/cat/dog/;
+
+print "Final Result is $string\n";
+
+This will produce following result
+
+The dog sat on the mat
+</pre></td></tr></table>
+<h1>Substitution Operator Modifiers</h1>
+<p>Here is the list of all modifiers used with substitution operator</p>
+<table class="src" cellpadding=5><tr><td><pre>
+<b>Modifier	Description</b>
+i 	Makes the match case insensitive
+m 	Specifies that if the string has newline or carriage
+	return characters, the ^ and $ operators will now
+	match against a newline boundary, instead of a
+	string boundary
+o 	Evaluates the expression only once
+s 	Allows use of . to match a newline character
+x 	Allows you to use white space in the expression
+	for clarity
+g 	Replaces all occurrences of the found expression
+	with the replacement text
+e 	Evaluates the replacement as if it were a Perl statement,
+	and uses its return value as the replacement text
+</pre></td></tr></table>
+<h1>Translation</h1>
+<p>Translation is similar, but not identical, to the principles of substitution, but unlike substitution, translation (or transliteration) does not use regular expressions for its search on replacement values. The translation operators are:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+tr/SEARCHLIST/REPLACEMENTLIST/cds
+y/SEARCHLIST/REPLACEMENTLIST/cds
+</pre></td></tr></table>
+<p>The translation replaces all occurrences of the characters in SEARCHLIST with the corresponding characters in REPLACEMENTLIST. For example, using the "The cat sat on the mat." string we have been using in this chapter:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+#/user/bin/perl
+
+$string = 'The cat sat on the mat';
+$string =~ tr/a/o/;
+
+print "$string\n";
+
+This will produce following result
+
+The cot sot on the mot.
+</pre></td></tr></table>
+</p>Standard Perl ranges can also be used, allowing you to specify ranges of characters
+either by letter or numerical value. To change the case of the string, you might use following syntax in place of the <b>uc</b> function.</p>
+<table class="src" cellpadding=5><tr><td><pre>
+$string =~ tr/a-z/A-Z/;
+</pre></td></tr></table>
+<h1>Translation Operator Modifiers</h1>
+<p>Following is the list of operators related to translation</p>
+<table class="src" cellpadding=5><tr><td><pre>
+Modifier 	Description
+c 	Complement SEARCHLIST.
+d 	Delete found but unreplaced characters.
+s 	Squash duplicate replaced characters.
+</pre></td></tr></table>
+<p>The /d modifier deletes the characters matching SEARCHLIST that do not have a corresponding entry in REPLACEMENTLIST. For example:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+#!/usr/bin/perl 
+
+$string = 'the cat sat on the mat.';
+$string =~ tr/a-z/b/d;
+
+print "$string\n";
+
+This will produce following result
+b b   b.
+</pre></td></tr></table>
+<p>The last modifier, /s, removes the duplicate sequences of characters that were replaced, so:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+#!/usr/bin/perl
+
+$string = 'food';
+$string = 'food';
+$string =~ tr/a-z/a-z/s;
+
+print $string;
+
+This will produce following result
+fod
+</pre></td></tr></table>
+<h1>More complex regular expressions</h1>
+<p>You don't just have to match on fixed strings.  In fact, you can match on just about anything you could dream of by using more complex regular expressions.  Here's a quick cheat sheet:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+<b>Character		Description</b>
+.              a single character
+\s             a whitespace character (space, tab, newline)
+\S             non-whitespace character
+\d             a digit (0-9)
+\D             a non-digit
+\w             a word character (a-z, A-Z, 0-9, _)
+\W             a non-word character
+[aeiou]        matches a single character in the given set
+[^aeiou]       matches a single character outside the given set
+(foo|bar|baz)  matches any of the alternatives specified
+</pre></td></tr></table>
+<p>Quantifiers can be used to specify how many of the previous thing you want to match on, where "thing" means either a literal character, one of the metacharacters listed above, or a group of characters or metacharacters in parentheses.</p>
+<table class="src" cellpadding=5><tr><td><pre>
+<b>Character            Description</b>
+*              zero or more of the previous thing
++              one or more of the previous thing
+?              zero or one of the previous thing
+{3}            matches exactly 3 of the previous thing
+{3,6}          matches between 3 and 6 of the previous thing
+{3,}           matches 3 or more of the previous thing
+</pre></td></tr></table>
+<p>The ^ metacharacter matches the beginning of the string and the $ metasymbol matches the end of the string.</p>
+<p>Here are some brief examples</p>
+<table class="src" cellpadding=5><tr><td><pre>
+# nothing in the string (start and end are adjacent)
+/^$/   
+
+# a three digits, each followed by a whitespace
+# character (eg "3 4 5 ")
+/(\d\s){3}/  
+
+# matches a string in which every
+# odd-numbered letter is a (eg "abacadaf")
+/(a.)+/  
+
+# string starts with one or more digits
+/^\d+/
+
+# string that ends with one or more digits
+/\d+$/
+</pre></td></tr></table>
+
+<p>Lets have alook at another example</p>
+<table class="src" cellpadding=5><tr><td><pre>
+#!/usr/bin/perl
+
+$string = "Cats go Catatonic\nWhen given Catnip";
+($start) = ($string =~ /\A(.*?) /);
+@lines = $string =~ /^(.*?) /gm;
+print "First word: $start\n","Line starts: @lines\n";
+
+
+This will produce following result
+First word: Cats
+Line starts: Cats When
+</pre></td></tr></table>
+<h1>Matching Boundaries</h1>
+<p>The <b>\b</b> matches at any word boundary, as defined by the difference between the \w class and the \W class. Because \w includes the characters for a word, and \W the opposite, this normally means the termination of a word. The <b>\B</b> assertion matches any position that is not a word boundary. For example:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+/\bcat\b/ # Matches 'the cat sat' but not 'cat on the mat'
+/\Bcat\B/ # Matches 'verification' but not 'the cat on the mat'
+/\bcat\B/ # Matches 'catatonic' but not 'polecat'
+/\Bcat\b/ # Matches 'polecat' but not 'catatonic'
+</pre></td></tr></table>
+<h1>Selecting Alternatives</h1>
+<p>The | character is just like the standard or bitwise OR within Perl. It specifies alternate matches within a regular expression or group. For example, to match "cat" or "dog" in an expression, you might use this:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+if ($string =~ /cat|dog/)
+</pre></td></tr></table>
+<p>You can group individual elements of an expression together in order to support
+complex matches. Searching for two people.s names could be achieved with two
+separate tests, like this:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+if (($string =~ /Martin Brown/) ||
+   ($string =~ /Sharon Brown/))
+
+This could be written as follows
+
+if ($string =~ /(Martin|Sharon) Brown/)
+</pre></td></tr></table>
+<h1>Grouping Matching</h1>
+<p>From a regular-expression point of view, there is no difference between except, perhaps, that the former is slightly clearer.</p>
+<table class="src" cellpadding=5><tr><td><pre>
+$string =~ /(\S+)\s+(\S+)/;
+
+and 
+
+$string =~ /\S+\s+\S+/;
+</pre></td></tr></table>
+<p>However, the benefit of grouping is that it allows us to extract a sequence from a regular expression. Groupings are returned as a list in the order in which they appear in the original. For example, in the following fragment we have pulled out the hours, minutes, and seconds from a string.</p>
+<table class="src" cellpadding=5><tr><td><pre>
+my ($hours, $minutes, $seconds) = ($time =~ m/(\d+):(\d+):(\d+)/);
+</pre></td></tr></table>
+<p>As well as this direct method, matched groups are also available within the special $x variables, where x is the number of the group within the regular expression. We could therefore rewrite the preceding example as follows:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+$time =~ m/(\d+):(\d+):(\d+)/;
+my ($hours, $minutes, $seconds) = ($1, $2, $3);
+</pre></td></tr></table>
+<p>When groups are used in substitution expressions, the $x syntax can be used in the
+replacement text. Thus, we could reformat a date string using this:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+#!/usr/bin/perl
+
+$date = '03/26/1999';
+$date =~ s#(\d+)/(\d+)/(\d+)#$3/$1/$2#;
+
+print "$date";
+
+This will produce following result
+1999/03/26
+</pre></td></tr></table>
+<h1>Using the \G Assertion</h1>
+<p>The \G assertion allows you to continue searching from the point where the last match
+occurred.</p>
+<p>For example, in the following code we have used \G so that we can search to the
+correct position and then extract some information, without having to create a more
+complex, single regular expression:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+#!/usr/bin/perl
+
+$string = "The time is: 12:31:02 on 4/12/00";
+
+$string =~ /:\s+/g;
+($time) = ($string =~ /\G(\d+:\d+:\d+)/);
+$string =~ /.+\s+/g;
+($date) = ($string =~ m{\G(\d+/\d+/\d+)});
+
+print "Time: $time, Date: $date\n";
+
+This will produce following result
+Time: 12:31:02, Date: 4/12/00
+</pre></td></tr></table>
+<p>The \G assertion is actually just the metasymbol equivalent of the pos function, so between regular expression calls you can continue to use pos, and even modify the value of pos (and therefore \G) by using pos as an lvalue subroutine:</p>
+<h1>Regular Expression Variables</h1>
+<p>Regular expression variables include <b>$</b>, which contains whatever the last grouping
+match matched; <b>$&</b>, which contains the entire matched string; <b>$`</b>, which contains
+everything before the matched string; and <b>$'</b>, which contains everything after the
+matched string.</p>
+<p>The following code demonstrates the result:</p>
+<table class="src" cellpadding=5><tr><td><pre>
+#!/usr/bin/perl
+
+$string = "The food is in the salad bar";
+$string =~ m/foo/;
+print "Before: $`\n";
+print "Matched: $&\n";
+print "After: $'\n";
+
+This code prints the following when executed:
+Before: The
+Matched: foo
+After: d is in the salad bar
+</pre></td></tr></table>
+
+
+
+
+</td></tr></table>
+<br>
+<a href="../perl/perl_files.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../perl/perl_subroutines.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=perl&file=perl_regular_expression.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

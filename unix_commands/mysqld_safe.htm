@@ -1,0 +1,1171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/mysqld_safe.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:04 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>mysqld_safe - Unix, Linux Command</title>
+<meta name="Description" Content="mysqld_safe - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>mysqld_safe - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- ignored unsupported tag .nh -->
+<!-- ignored unsupported tag .ad -->
+<h1 class="manpages">NAME</h1>
+mysqld_safe - MySQL server startup script
+<h1 class="manpages">SYNOPSIS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>mysqld_safe </b><b></b><i>options</i>
+</td></tr>
+</table>
+<h1 class="manpages">DESCRIPTION</h1>
+<p>
+<b>mysqld_safe</b>
+is the recommended way to start a
+<b>mysqld</b>
+server on Unix and NetWare&#46;
+<b>mysqld_safe</b>
+adds some safety features such as restarting the server when an error occurs and logging runtime information to an error log file&#46; Descriptions of error logging and NetWare-specific behaviors are given later in this section&#46;
+<!-- ignored unsupported tag .if -->
+<p>
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .it -->
+<font size="1"><b>Note</b>
+</font><p>
+In MySQL 5&#46;1&#46;20 (only), the default error logging behavior with
+<b>mysqld_safe</b>
+is to write errors to
+syslog
+on systems that support the
+<b>logger</b>
+program&#46; This differs from the default behavior of writing an error log file for other versions&#46;
+<p>
+<b>In 5&#46;1&#46;20, logging to </b><b>syslog</b><b> may fail to operate correctly in some cases; if so, use </b><b></b><b>--skip-syslog</b><b> to use the default log file or </b><b></b><b>--log-error=</b><b></b><i>file_name</i><b> to specify a log file name explicitly&#46;</b>
+<p>
+<p>
+<b>mysqld_safe</b>
+tries to start an executable named
+<b>mysqld</b>&#46; To override the default behavior and specify explicitly the name of the server you want to run, specify a
+<b>--mysqld</b>
+or
+<b>--mysqld-version</b>
+option to
+<b>mysqld_safe</b>&#46; You can also use
+<b>--ledir</b>
+to indicate the directory where
+<b>mysqld_safe</b>
+should look for the server&#46;
+<p>
+Many of the options to
+<b>mysqld_safe</b>
+are the same as the options to
+<b>mysqld</b>&#46; See
+Section 5.1.2, <blink><blink>\(</blink>lq</blink>Server Command Options<blink><blink>\(</blink>rq</blink>&#46;
+<p>
+Options unknown to
+<b>mysqld_safe</b>
+are passed to
+<b>mysqld</b>
+if they are specified on the command line, but ignored if they are specified in the
+[mysqld_safe]
+group of an option file&#46; See
+Section 4.2.3.3, <blink><blink>\(</blink>lq</blink>Using Option Files<blink><blink>\(</blink>rq</blink>&#46;
+<p>
+<b>mysqld_safe</b>
+reads all options from the
+[mysqld],
+[server], and
+[mysqld_safe]
+sections in option files&#46; For example, if you specify a
+[mysqld]
+section like this,
+<b>mysqld_safe</b>
+will find and use the
+<b>--log-error</b>
+option:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+[mysqld]
+log-error=error&#46;log
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+For backward compatibility,
+<b>mysqld_safe</b>
+also reads
+[safe_mysqld]
+sections, although you should rename such sections to
+[mysqld_safe]
+in MySQL 5&#46;1 installations&#46;
+<p>
+<b>mysqld_safe</b>
+supports the options in the following list&#46; It also reads option files and supports the options for processing them described at
+Section 4.2.3.3.1, <blink><blink>\(</blink>lq</blink>Command-Line Options that Affect Option-File Handling<blink><blink>\(</blink>rq</blink>&#46;
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--help</b>
+<p>
+Display a help message and exit&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--autoclose</b>
+<p>
+(NetWare only) On NetWare,
+<b>mysqld_safe</b>
+provides a screen presence&#46; When you unload (shut down) the
+<b>mysqld_safe</b>
+NLM, the screen does not by default go away&#46; Instead, it prompts for user input:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+*&lt;NLM has terminated; Press any key to close the screen&gt;*
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+<p>
+If you want NetWare to close the screen automatically instead, use the
+<b>--autoclose</b>
+option to
+<b>mysqld_safe</b>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--basedir=</b><b></b><i>path</i>
+<p>
+The path to the MySQL installation directory&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--core-file-size=</b><b></b><i>size</i>
+<p>
+The size of the core file that
+<b>mysqld</b>
+should be able to create&#46; The option value is passed to
+<b>ulimit -c</b>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--datadir=</b><b></b><i>path</i>
+<p>
+The path to the data directory&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--defaults-extra-file=</b><b></b><i>path</i>
+<p>
+The name of an option file to be read in addition to the usual option files&#46; This must be the first option on the command line if it is used&#46; If the file does not exist or is otherwise inaccessible, the server will exit with an error&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--defaults-file=</b><b></b><i>file_name</i>
+<p>
+The name of an option file to be read instead of the usual option files&#46; This must be the first option on the command line if it is used&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--ledir=</b><b></b><i>path</i>
+<p>
+If
+<b>mysqld_safe</b>
+cannot find the server, use this option to indicate the path name to the directory where the server is located&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--log-error=</b><b></b><i>file_name</i>
+<p>
+Write the error log to the given file&#46; See
+Section 5.2.2, <blink><blink>\(</blink>lq</blink>The Error Log<blink><blink>\(</blink>rq</blink>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--mysqld=</b><b></b><i>prog_name</i>
+<p>
+The name of the server program (in the
+ledir
+directory) that you want to start&#46; This option is needed if you use the MySQL binary distribution but have the data directory outside of the binary distribution&#46; If
+<b>mysqld_safe</b>
+cannot find the server, use the
+<b>--ledir</b>
+option to indicate the path name to the directory where the server is located&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--mysqld-version=</b><b></b><i>suffix</i>
+<p>
+This option is similar to the
+<b>--mysqld</b>
+option, but you specify only the suffix for the server program name&#46; The basename is assumed to be
+<b>mysqld</b>&#46; For example, if you use
+<b>--mysqld-version=debug</b>,
+<b>mysqld_safe</b>
+starts the
+<b>mysqld-debug</b>
+program in the
+ledir
+directory&#46; If the argument to
+<b>--mysqld-version</b>
+is empty,
+<b>mysqld_safe</b>
+uses
+<b>mysqld</b>
+in the
+ledir
+directory&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--nice=</b><b></b><i>priority</i>
+<p>
+Use the
+nice
+program to set the server&#39;s scheduling priority to the given value&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--no-defaults</b>
+<p>
+Do not read any option files&#46; This must be the first option on the command line if it is used&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--open-files-limit=</b><b></b><i>count</i>
+<p>
+The number of files that
+<b>mysqld</b>
+should be able to open&#46; The option value is passed to
+<b>ulimit -n</b>&#46; Note that you need to start
+<b>mysqld_safe</b>
+as
+root
+for this to work properly!
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--pid-file=</b><b></b><i>file_name</i>
+<p>
+The path name of the process ID file&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--port=</b><b></b><i>port_num</i>
+<p>
+The port number that the server should use when listening for TCP/IP connections&#46; The port number must be 1024 or higher unless the server is started by the
+root
+system user&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--skip-kill-mysqld</b>
+<p>
+Do not try to kill stray
+<b>mysqld</b>
+processes at startup&#46; This option works only on Linux&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--socket=</b><b></b><i>path</i>
+<p>
+The Unix socket file that the server should use when listening for local connections&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--syslog</b>,
+<b>--skip-syslog</b>
+<p>
+<b>--syslog</b>
+causes error messages to be sent to
+syslog
+on systems that support the
+<b>logger</b>
+program&#46;
+--skip-syslog
+suppresses the use of
+syslog; messages are written to an error log file&#46; These options were added in MySQL 5&#46;1&#46;20&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--syslog-tag=</b><b></b><i>tag</i>
+<p>
+For logging to
+syslog, messages from
+<b>mysqld_safe</b>
+and
+<b>mysqld</b>
+are written with a tag of
+mysqld_safe
+and
+mysqld, respectively&#46; To specify a suffix for the tag, use
+<b>--syslog-tag=</b><b></b><i>tag</i>, which modifies the tags to be
+mysqld_safe-<i>tag</i>
+and
+mysqld-<i>tag</i>&#46; This option was added in MySQL 5&#46;1&#46;21&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--timezone=</b><b></b><i>timezone</i>
+<p>
+Set the
+TZ
+time zone environment variable to the given option value&#46; Consult your operating system documentation for legal time zone specification formats&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--user={</b><b></b><i>user_name</i><b>|</b><b></b><i>user_id</i><b>}</b>
+<p>
+Run the
+<b>mysqld</b>
+server as the user having the name
+<i>user_name</i>
+or the numeric user ID
+<i>user_id</i>&#46; (<blink><blink>\(</blink>lq</blink>User<blink><blink>\(</blink>rq</blink>
+in this context refers to a system login account, not a MySQL user listed in the grant tables&#46;)
+</td></tr>
+</table>
+<p>
+If you execute
+<b>mysqld_safe</b>
+with the
+<b>--defaults-file</b>
+or
+<b>--defaults-extra-file</b>
+option to name an option file, the option must be the first one given on the command line or the option file will not be used&#46; For example, this command will not use the named option file:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>mysqld_safe --port=</b><b></b><i>port_num</i><b> --defaults-file=</b><b></b><i>file_name</i>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+Instead, use the following command:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>mysqld_safe --defaults-file=</b><b></b><i>file_name</i><b> --port=</b><b></b><i>port_num</i>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+The
+<b>mysqld_safe</b>
+script is written so that it normally can start a server that was installed from either a source or a binary distribution of MySQL, even though these types of distributions typically install the server in slightly different locations&#46; (See
+Section 2.1.5, <blink><blink>\(</blink>lq</blink>Installation Layouts<blink><blink>\(</blink>rq</blink>&#46;)
+<b>mysqld_safe</b>
+expects one of the following conditions to be true:
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+The server and databases can be found relative to the working directory (the directory from which
+<b>mysqld_safe</b>
+is invoked)&#46; For binary distributions,
+<b>mysqld_safe</b>
+looks under its working directory for
+bin
+and
+data
+directories&#46; For source distributions, it looks for
+libexec
+and
+var
+directories&#46; This condition should be met if you execute
+<b>mysqld_safe</b>
+from your MySQL installation directory (for example,
+/usr/local/mysql
+for a binary distribution)&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+If the server and databases cannot be found relative to the working directory,
+<b>mysqld_safe</b>
+attempts to locate them by absolute path names&#46; Typical locations are
+/usr/local/libexec
+and
+/usr/local/var&#46; The actual locations are determined from the values configured into the distribution at the time it was built&#46; They should be correct if MySQL is installed in the location specified at configuration time&#46;
+</td></tr>
+</table>
+<p>
+Because
+<b>mysqld_safe</b>
+tries to find the server and databases relative to its own working directory, you can install a binary distribution of MySQL anywhere, as long as you run
+<b>mysqld_safe</b>
+from the MySQL installation directory:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>cd </b><b></b><i>mysql_installation_directory</i>
+shell&gt; <b>bin/mysqld_safe &</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+If
+<b>mysqld_safe</b>
+fails, even when invoked from the MySQL installation directory, you can specify the
+<b>--ledir</b>
+and
+<b>--datadir</b>
+options to indicate the directories in which the server and databases are located on your system&#46;
+<p>
+When you use
+<b>mysqld_safe</b>
+to start
+<b>mysqld</b>,
+<b>mysqld_safe</b>
+arranges for error (and notice) messages from itself and from
+<b>mysqld</b>
+to go to the same destination&#46;
+<p>
+As of MySQL 5&#46;1&#46;20, there are several
+<b>mysqld_safe</b>
+options for controlling the destination of these messages:
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--syslog</b>: Write error messages to
+syslog
+on systems that support the
+<b>logger</b>
+program&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--skip-syslog</b>: Do not write error messages to
+syslog&#46; Messages are written to the default error log file (<i>host_name</i>&#46;err
+in the data directory), or to a named file if the
+<b>--log-error</b>
+option is given&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--log-error=</b><b></b><i>file_name</i>: Write error messages to the named error file&#46;
+</td></tr>
+</table>
+<p>
+If none of these options is given, the default is
+<b>--skip-syslog</b>&#46;
+<!-- ignored unsupported tag .if -->
+<p>
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .it -->
+<font size="1"><b>Note</b>
+</font><p>
+In MySQL 5&#46;1&#46;20
+<i>only</i>, the default is
+<b>--syslog</b>&#46; This differs from logging behavior for other versions of MySQL, for which the default is to write messages to the default error log file&#46;
+<p>
+<p>
+If
+<b>--syslog</b>
+and
+<b>--log-error</b>
+are both given, a warning is issued and
+<b>--log-error</b>
+takes precedence&#46;
+<p>
+When
+<b>mysqld_safe</b>
+writes a message, notices go to the logging destination (syslog
+or the error log file) and
+stdout&#46; Errors go to the logging destination and
+stderr&#46;
+<p>
+Before MySQL 5&#46;1&#46;20, error logging is controlled only with the
+<b>--log-error</b>
+option&#46; If it is given, messages go to the named error file&#46; Otherwise, messages go to the default error file&#46;
+<p>
+Normally, you should not edit the
+<b>mysqld_safe</b>
+script&#46; Instead, configure
+<b>mysqld_safe</b>
+by using command-line options or options in the
+[mysqld_safe]
+section of a
+my&#46;cnf
+option file&#46; In rare cases, it might be necessary to edit
+<b>mysqld_safe</b>
+to get it to start the server properly&#46; However, if you do this, your modified version of
+<b>mysqld_safe</b>
+might be overwritten if you upgrade MySQL in the future, so you should make a copy of your edited version that you can reinstall&#46;
+<p>
+On NetWare,
+<b>mysqld_safe</b>
+is a NetWare Loadable Module (NLM) that is ported from the original Unix shell script&#46; It starts the server as follows:
+<p>
+<!-- ignored unsupported tag .ie -->
+ 1.
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4.2%>
+  1.
+</td><td>
+<!-- ignored unsupported tag .\} -->
+Runs a number of system and option checks&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+ 2.
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4.2%>
+  2.
+</td><td>
+<!-- ignored unsupported tag .\} -->
+Runs a check on
+MyISAM
+tables&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+ 3.
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4.2%>
+  3.
+</td><td>
+<!-- ignored unsupported tag .\} -->
+Provides a screen presence for the MySQL server&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+ 4.
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4.2%>
+  4.
+</td><td>
+<!-- ignored unsupported tag .\} -->
+Starts
+<b>mysqld</b>, monitors it, and restarts it if it terminates in error&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+ 5.
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4.2%>
+  5.
+</td><td>
+<!-- ignored unsupported tag .\} -->
+Sends error messages from
+<b>mysqld</b>
+to the
+<i>host_name</i>&#46;err
+file in the data directory&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+ 6.
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4.2%>
+  6.
+</td><td>
+<!-- ignored unsupported tag .\} -->
+Sends
+<b>mysqld_safe</b>
+screen output to the
+<i>host_name</i>&#46;safe
+file in the data directory&#46;
+</td></tr>
+</table>
+<h1 class="manpages">COPYRIGHT</h1>
+<p>
+Copyright &#169; 1997, 2011, Oracle and/or its affiliates. All rights reserved.
+<p>
+This documentation is free software; you can redistribute it and/or modify it only under the terms of the GNU General Public License as published by the Free Software Foundation; version 2 of the License.
+<p>
+This documentation is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+<p>
+You should have received a copy of the GNU General Public License along with the program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA or see <a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a>/.
+<p>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+which may already be installed locally and which is also available
+online at <a href="http://dev.mysql.com/doc">http://dev.mysql.com/doc</a>/.
+<h1 class="manpages">AUTHOR</h1>
+Oracle Corporation (<a href="http://dev.mysql.com/">http://dev.mysql.com</a>/).
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion6330.html?tutorial=unix_commands&amp;file=mysqld_safe.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/mysqld_safe.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:04 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

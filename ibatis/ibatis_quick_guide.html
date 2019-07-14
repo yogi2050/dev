@@ -1,0 +1,513 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/ibatis/ibatis_quick_guide.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 19:44:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>iBATIS| iBATIS Quick Guide  | iBATIS Reference Manual| iBATIS in 5 minutes</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="description" content="iBATIS| iBATIS Quick Guide  | iBATIS Reference Manual| iBATIS in 5 minutes - Free iBATIS Tutorials, Reference Manual, and Guide for beginners. Learn how iBATIS framework works starting from environment setup, reading, writing, updating, deleting database records using result maps, dynamic  and inline SQL." />
+<meta name="Keywords" content="Free, iBATIS, Tutorials, Reference, Manual, Guide, Beginners" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+#topmenu a:hover {text-decoration:none;color:#d8b525 !important;background-color:transparent;font-weight:bold;}
+#header{ 
+background:#d8b525 !important;
+}
+#topmenu
+{
+background-color:#8C730C !important;
+}
+#leftcol ul.menu li.heading 
+{
+background:#d8b525 !important;
+border:1px solid #8C730C !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1520px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index-2.html">Tutorials Point - Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index-2.html" target="_top">HOME </a>
+<a href="../java/index.html" target="_top">JAVA </a>
+<a href="../php/index.html" target="_top">PHP </a>
+<a href="../python/index.html" target="_top">Python </a>
+<a href="../ruby/index.html" target="_top">Ruby </a>
+<a href="../perl/index.html" target="_top">Perl </a>
+<a href="../html/index.html" target="_top">HTML </a>
+<a href="../css/index.html" target="_top">CSS </a>
+<a href="../javascript/index.html" target="_top">Javascript </a>
+<a href="../mysql/index.html" target="_top">MySQL </a>
+<a href="../cplusplus/index.html" target="_top">C++ </a>
+<a href="../unix/index.html" target="_top">UNIX </a>
+<a href="../more.html" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.html" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.html" target="_top">ABOUT</a> |
+<a href="../about/contact_us.html" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/ibatis-mini-logo.png" alt="iBATIS Tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">iBATIS Tutorial</li>
+<li><a target="_top" href="index.html">iBATIS - Home</a></li>
+<li><a target="_top" href="ibatis_overview.html">iBATIS - Overview</a></li>
+<li><a target="_top" href="ibatis_environment.html">iBATIS - Environment</a></li>
+<li><a target="_top" href="ibatis_create_operation.html">iBATIS - Create Operation</a></li>
+<li><a target="_top" href="ibatis_read_operation.html">iBATIS - Read Operation</a></li>
+<li><a target="_top" href="ibatis_update_operation.html">iBATIS - Update Operation</a></li>
+<li><a target="_top" href="ibatis_delete_operation.html">iBATIS - Delete Operation</a></li>
+<li><a target="_top" href="ibatis_result_maps.html">iBATIS - Result Maps</a></li>
+<li><a target="_top" href="ibatis_stored_procedures.html">iBATIS - Stored Procedures</a></li>
+<li><a target="_top" href="ibatis_dynamic_sql.html">iBATIS - Dynamic SQL</a></li>
+<li><a target="_top" href="ibatis_debugging.html">iBATIS - Debugging</a></li>
+<li><a target="_top" href="ibatis_vs_hibernate.html">iBATIS - Hibernate</a></li>
+<li><a target="_top" href="ibator_introduction.html">iBATOR- Introduction</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">iBATIS Useful Resources</li>
+<li><a target="_top" href="ibatis_quick_guide.html"><b>iBATIS - Quick Guide</b></a></li>
+<li><a target="_top" href="ibatis_useful_resources.html">iBATIS - Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.html">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>iBATIS - Quick Guide</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="ibator_introduction.html">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="ibatis_useful_resources.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>iBATIS is a persistence framework which automates the mapping between SQL databases and objects in Java, .NET, and Ruby on Rails. The mappings are decoupled from the application logic by packaging the SQL statements in XML configuration files.</p>
+<h2>iBATIS Design Philosophies:</h2>
+<p>iBATIS comes with the following design philosophies:</p>
+<ul class="list">
+<li><p><b>Simplicity:</b> iBATIS is widely regarded as being one of the simplest persistence frameworks available today.</p></li>
+<li><p><b>Fast Development:</b> iBATIS's philosophy is to do all it can to facilitate hyper-fast development.</p></li>
+<li><p><b>Portability:</b> iBATIS can be implemented for nearly any language or platform like Java, Ruby, and C# for Microsoft .NET.</p></li>
+<li><p><b>Independent Interfaces:</b> iBATIS provides database-independent interfaces and APIs that help the rest of the application remain independent of any persistence-related resources,</p></li>
+<li><p><b>Open source:</b> iBATIS is free and an open source software.</p></li>
+</ul>
+<h2>Advantages of IBATIS</h2>
+<p>Here are few advantages of using IBATIS:</p>
+<ul class="list">
+<li><p><b>Suppports Stored procedures:</b> iBATIS encapsulates SQL in the form of stored procedures so that business logic is kept out of the database, and the application is easier to deploy and test, and is more portable.</p></li>
+<li><p><b>Supports Inline SQL:</b> No precompiler is needed, and you have full access to all of the features of SQL.</p></li>
+<li><p><b>Supports Dynamic SQL:</b> iBATIS provides features for dynamically building SQL queries based on parameters.</p></li>
+<li><p><b>Supports O/RM:</b> iBATIS supports many of the same features as an O/RM tool, such as lazy loading, join fetching, caching, runtime code generation, and inheritance</p></li>
+</ul>
+<h2>iBATIS vs Hibernate:</h2>
+<p>There are major differences between iBatis and Hibernate but both the solutions work well, given their specific domain. Personally I would suggest you should use iBATIS if:</p>
+<ul class="list">
+<li><p>You want to create your own SQL's and are willing to maintain them.</p></li>
+<li><p>your environment is driven by relational data model.</p></li>
+<li><p>you have to work existing and complex schema's.</p></li>
+</ul>
+<p>And simply use Hibernate if:</p>
+<ul class="list">
+<li><p>Your environment is driven by object model and wants generates SQL automatically.</p></li>
+</ul>
+<p>To count there are few differences:</p>
+<ul class="list">
+<li><b>iBATIS is:</b>
+	<ul class="list">
+	<li><p>Simpler</p></li>
+	<li><p>Faster development time</p></li>
+	<li><p>Flixable</p></li>
+	<li><p>Much smaller in package size</p></li>
+	</ul>
+</li>
+</ul>
+<ul class="list">
+<li><b>Hibernate:</b>
+        <ul class="list">
+	<li><p>Generates SQL for you which means you don't spend time on SQL</p></li> 
+	<li><p>Provides much more advance cache</p></li>
+	<li><p>Highly scalable</p></li>
+        </ul>
+</li>
+</ul>
+<p>Other difference is that iBATIS makes use of SQL which could be database dependent where as Hibernate makes use of HQL which is relatively independent of databases and it is easier to change db in Hibernate.</p>
+<p>Hibernate maps your Java POJO objects to the Database tables where as iBatis maps the ResultSet from JDBC API to your POJO Objets.</p>
+<p>If you are using stored procedures, well you can do it in Hibernate but it is little difficult in comparision of iBATIS. As an alternative solution iBATIS maps results sets to objects, so no need to care about table structures. This works very well for stored procedures, works very well for reporting applications, etc</p>
+<p>Finally, Hibernate and iBATIS both are open source Object Relational Mapping(ORM) tools available in the industry. Use of each of these tools depends on the context you are using them. Hibernate and iBatis both also have good support from SPRING framework so it should not be a problem to chose one of them.</p>
+<h2>iBATIS Installation:</h2>
+<p>Here are the simple steps you would need to carry out to install iBATIS on your Linux machine:</p>
+<ul class="list">
+<li><p>Download latest version of iBATIS from <a href="http://ibatis.apache.org/java.cgi" target="_blank">Download iBATIS</a>.</p></li>
+<li><p>Unzip the downloaded file to extract .jar file from the bundle and keep it in appropriate lib directory.</p></li>
+<li><p>Set PATH and CLASSPATH variables at the extracted .jar file(s) appropriately.</p></li>
+</ul>
+<p>Here are the steps I carried out on my linux machine after downloading iBATIS binary file:</p>
+<pre class="prettyprint">
+$ unzip ibatis-2.3.4.726.zip
+  inflating: META-INF/MANIFEST.MF
+   creating: doc/
+   creating: lib/
+   creating: simple_example/
+   creating: simple_example/com/
+   creating: simple_example/com/mydomain/
+   creating: simple_example/com/mydomain/data/
+   creating: simple_example/com/mydomain/domain/
+   creating: src/
+  inflating: doc/dev-javadoc.zip
+  inflating: doc/user-javadoc.zip
+  inflating: jar-dependencies.txt
+  inflating: lib/ibatis-2.3.4.726.jar
+  inflating: license.txt
+  inflating: notice.txt
+  inflating: release.txt
+$pwd
+/var/home/ibatis
+$set PATH=$PATH:/var/home/ibatis/
+$set CLASSPATH=$CLASSPATH:/var/home/ibatis\
+                       /lib/ibatis-2.3.4.726.jar
+</pre>
+<h2>Create SqlMapConfig.xml</h2>
+<p>Consider the following:</p>
+<ul class="list">
+<li><p>We are going to use JDBC to access the database <b>testdb</b>.</p></li> 
+<li><p>JDBC driver for MySQL is "com.mysql.jdbc.Driver".</p></li>
+<li><p>Connection URL is "jdbc:mysql://localhost:3306/testdb".</p></li>
+<li><p>We would use username and password is "root" and "root".</p></li>
+<li><p>Our sql statement mappings for all the operations would be described in "Employee.xml".</p></li> 
+</ul>
+<p>Based on the above assumption we have to create an XML configuration file with name <b>SqlMapConfig.xml</b> with the following content. This is where you need to provide all configurations required for iBatis:</p>
+<p>It is important that both the files SqlMapConfig.xml and Employee.xml should be present in the class path. For now we would keep Employee.xml file empty and we would conver its content in subsequent chapters.</p>
+<pre class="prettyprint">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE sqlMapConfig
+PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-config-2.dtd"&gt;
+
+&lt;sqlMapConfig&gt;
+     &lt;settings useStatementNamespaces="true"/&gt;
+     &lt;transactionManager type="JDBC"&gt;
+        &lt;dataSource type="SIMPLE"&gt;
+          &lt;property name="JDBC.Driver" 
+               value="com.mysql.jdbc.Driver"/&gt;
+          &lt;property name="JDBC.ConnectionURL"
+               value="jdbc:mysql://localhost:3306/testdb"/&gt;
+          &lt;property name="JDBC.Username" value="root"/&gt;
+          &lt;property name="JDBC.Password" value="root"/&gt;
+        &lt;/dataSource&gt;
+      &lt;/transactionManager&gt;
+     &lt;sqlMap resource="Employee.xml"/&gt; 
+&lt;/sqlMapConfig&gt;
+</pre>
+<h2>iBATIS Practical Exmaple:</h2>
+<p>This example would show you how you can UPDATE and READ records from a MySQL database table using iBATIS.</p>
+<p>Consider we have following EMPLOYEE table in MySQL database:</p>
+<pre class="prettyprint">
+CREATE TABLE EMPLOYEE (
+   id INT NOT NULL auto_increment,
+   first_name VARCHAR(20) default NULL,
+   last_name  VARCHAR(20) default NULL,
+   salary     INT  default NULL,
+   PRIMARY KEY (id)
+);
+</pre>
+<p>This table is having only one record as follows:</p>
+<pre class="prettyprint">
+mysql&gt; select * from EMPLOYEE;
++----+------------+-----------+--------+
+| id | first_name | last_name | salary |
++----+------------+-----------+--------+
+|  1 | Zara       | Ali       |   5000 |
++----+------------+-----------+--------+
+1 row in set (0.00 sec)
+</pre>
+<h2>Employee POJO Class:</h2>
+<p>Write the following Employee.java file:</p>
+<pre class="prettyprint">
+public class Employee {
+  private int id;
+  private String first_name; 
+  private String last_name;   
+  private int salary;  
+
+  /* Define constructors for the Employee class. */
+  public Employee() {}
+  
+  public Employee(String fname, String lname, int salary) {
+    this.first_name = fname;
+    this.last_name = lname;
+    this.salary = salary;
+  }
+
+ /* Here are the required method definitions */
+  public int getId() {
+    return id;
+  }
+  public void setId(int id) {
+    this.id = id;
+  }
+  public String getFirstName() {
+    return first_name;
+  }
+  public void setFirstName(String fname) {
+    this.first_name = fname;
+  }
+  public String getLastName() {
+    return last_name;
+  }
+  public void setlastName(String lname) {
+    this.last_name = lname;
+  }
+  public int getSalary() {
+    return salary;
+  }
+  public void setSalary(int salary) {
+    this.salary = salary;
+  }
+
+ } /* End of Employee */
+</pre>
+<h2>Employee.xml File:</h2>
+<p>To define SQL mapping statement using iBATIS, we would add &lt;update&gt; and &lt;select&gt; tags in Employee.xml file and inside these tag definition we would define their IDs which will be used in IbatisUpdate.java file for executing SQL UPDATE and READ queries on database.</p>
+<pre class="prettyprint">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE sqlMap 
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd"&gt;
+
+&lt;sqlMap namespace="Employee"&gt;
+
+&lt;select id="getAll" resultClass="Employee"&gt;
+   SELECT * FROM EMPLOYEE
+&lt;/select&gt;
+
+&lt;update id="update" parameterClass="Employee"&gt;
+   UPDATE EMPLOYEE
+   SET    first_name = #first_name#
+   WHERE  id = #id#
+&lt;/update&gt;
+
+&lt;/sqlMap&gt;
+</pre>
+<h2>IbatisUpdate.java File:</h2>
+<p>This file would have application level logic to update and read records from the Employee table:</p>
+<pre class="prettyprint">
+import com.ibatis.common.resources.Resources;
+import com.ibatis.sqlmap.client.SqlMapClient;
+import com.ibatis.sqlmap.client.SqlMapClientBuilder;
+import java.io.*;
+import java.sql.SQLException;
+import java.util.*;
+
+public class IbatisUpdate{
+  public static void main(String[] args)
+   throws IOException,SQLException{
+   Reader rd = Resources.getResourceAsReader("SqlMapConfig.xml");
+   SqlMapClient smc = SqlMapClientBuilder.buildSqlMapClient(rd);
+
+   /* This would update one record in Employee table. */
+   System.out.println("Going to update record.....");
+   Employee rec = new Employee();
+   rec.setId(1);
+   rec.setFirstName( "Roma");
+   smc.update("Employee.update", rec );
+   System.out.println("Record updated Successfully ");
+
+   System.out.println("Going to read records.....");
+   List &lt;Employee&gt; ems = (List&lt;Employee&gt;)
+                  smc.queryForList("Employee.getAll", null);
+   Employee em = null;
+   for (Employee e : ems) {
+      System.out.print("  " + e.getId());
+      System.out.print("  " + e.getFirstName());
+      System.out.print("  " + e.getLastName());
+      System.out.print("  " + e.getSalary());
+      em = e; 
+      System.out.println("");
+   }    
+
+   System.out.println("Records Read Successfully ");
+
+  }
+} 
+</pre>
+<h2>Compilation and Run:</h2>
+<p>Here are the steps to compile and run the above mentioned software. Make sure you have set PATH and CLASSPATH appropriately before proceeding for the compilation and execution.</p>
+<ul class="list">
+<li><p>Create SqlMapConfig.xml as shown above.</p></li>
+<li><p>Create Employee.xml as shown above.</p></li>
+<li><p>Create Employee.java as shown above and compile it.</p></li>
+<li><p>Create IbatisUpdate.java  as shown above and compile it.</p></li>
+<li><p>Execute IbatisUpdate binary to run the program.</p></li>
+</ul>
+<p>You would get following result, and a record would be updated in EMPLOYEE table and later same record would be read from the EMPLOYEE table.</p>
+<pre class="prettyprint">
+Going to update record.....
+Record updated Successfully
+Going to read records.....
+  1  Roma  Ali  5000
+Records Read Successfully
+</pre>
+<hr />
+<div class="pre-btn">
+<a href="ibator_introduction.html">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/ibatis_quick_guide.pdf" alt="iBATIS| iBATIS Quick Guide  | iBATIS Reference Manual| iBATIS in 5 minutes" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="ibatis_useful_resources.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.html" target="_top">ASP.NET </a> |
+<a href="../jquery/index.html" target="_top">jQuery </a> |
+<a href="../ajax/index.html" target="_top">AJAX </a> |
+<a href="../ant/index.html" target="_top">ANT</a> |
+<a href="../jsp/index.html" target="_top">JSP </a> |
+<a href="../servlets/index.html" target="_top">Servlets </a> |
+<a href="../log4j/index.html" target="_top">log4j </a> |
+<a href="index.html" target="_top">iBATIS </a> |
+<a href="../hibernate/index.html" target="_top">Hibernate </a> |
+<a href="../jdbc/index.html" target="_top">JDBC </a> |
+<a href="../struts_2/index.html" target="_top">Struts </a> |
+<a href="../html5/index.html" target="_top">HTML5 </a> |
+<a href="../sql/index.html" target="_top">SQL </a> |
+<a href="../mysql/index.html" target="_top">MySQL </a> |
+<a href="../cplusplus/index.html" target="_top">C++ </a> |
+<a href="../unix/index.html" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/ibatis/ibatis_quick_guide.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 19:44:38 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

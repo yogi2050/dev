@@ -1,0 +1,512 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/plsql/plsql_collections.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:01:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>PL/SQL Collections (Nested table, Index-by)</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="description" content="PL/SQL Collections (Nested table, Index-by) - Learn PL/SQL programming in simple and easy steps starting with PL/SQL syntax, data types, variables, constants, records, conditional statements, iterative statements, cursors, precedures, functions, exception handling, triggers, packages, collections, external procedures, arrays, strings, dbms output, object oriented." />
+<meta name="keywords" content="PL/SQL, syntax, data types, variables, constants, records, conditional statements, decision making, iterative statements, loops, cursors, precedures, functions, exception handling, triggers, packages, collections, external procedures, object oriented" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<script type="text/javascript" src="../scripts/lang-sql.html"></script>
+<style media="screen" type="text/css">
+/* Pascal Scheme */
+#header{ 
+   background:#dd1f20 !important;
+}
+#topmenu
+{
+   background-color:#454545 !important;
+}
+#leftcol ul.menu li.heading 
+{
+   background:#dd1f20 !important;
+   border:1px solid #454545 !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1250px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+   _uacct = "UA-232293-6";
+   urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index-2.html">Tutorials Point Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index-2.html" target="_top">HOME </a>
+<a href="../java/index.html" target="_top">JAVA </a>
+<a href="../php/index.html" target="_top">PHP </a>
+<a href="../python/index.html" target="_top">Python </a>
+<a href="../ruby/index.html" target="_top">Ruby </a>
+<a href="../perl/index.html" target="_top">Perl </a>
+<a href="../html/index.html" target="_top">HTML </a>
+<a href="../css/index.html" target="_top">CSS </a>
+<a href="../javascript/index.html" target="_top">Javascript </a>
+<a href="../mysql/index.html" target="_top">MySQL </a>
+<a href="../cplusplus/index.html" target="_top">C++ </a>
+<a href="../unix/index.html" target="_top">UNIX </a>
+<a href="../more.html" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.html" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.html" target="_top">ABOUT</a> |
+<a href="../about/contact_us.html" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/plsql-mini.png" alt="PL/SQL tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">PL/SQL Tutorial</li>
+<li><a target="_top" href="index.html">PL/SQL - Home</a></li>
+<li><a target="_top" href="plsql_overview.html">PL/SQL - Overview</a></li>
+<li><a target="_top" href="plsql_environment_setup.html">PL/SQL - Environment</a></li>
+<li><a target="_top" href="plsql_basic_syntax.html">PL/SQL - Basic Syntax</a></li>
+<li><a target="_top" href="plsql_data_types.html">PL/SQL - Data Types</a></li>
+<li><a target="_top" href="plsql_variable_types.html">PL/SQL - Variables</a></li>
+<li><a target="_top" href="plsql_constants.html">PL/SQL - Constants</a></li>
+<li><a target="_top" href="plsql_operators.html">PL/SQL - Operators</a></li>
+<li><a target="_top" href="plsql_conditional_control.html">PL/SQL - Conditions</a></li>
+<li><a target="_top" href="plsql_loops.html">PL/SQL - Loops </a></li>
+<li><a target="_top" href="plsql_strings.html">PL/SQL - Strings</a></li>
+<li><a target="_top" href="plsql_arrays.html">PL/SQL - Arrays</a></li>
+<li><a target="_top" href="plsql_procedures.html">PL/SQL - Procedures</a></li>
+<li><a target="_top" href="plsql_functions.html">PL/SQL - Functions</a></li>
+<li><a target="_top" href="plsql_cursors.html">PL/SQL - Cursors</a></li>
+<li><a target="_top" href="plsql_records.html">PL/SQL - Records</a></li>
+<li><a target="_top" href="plsql_exceptions.html">PL/SQL - Exceptions</a></li>
+<li><a target="_top" href="plsql_triggers.html">PL/SQL - Triggers</a></li>
+<li><a target="_top" href="plsql_packages.html">PL/SQL - Packages</a></li>
+<li><a target="_top" href="plsql_collections.html"><b>PL/SQL - Collections</b></a></li>
+<li><a target="_top" href="plsql_transactions.html">PL/SQL - Transactions</a></li>
+<li><a target="_top" href="plsql_date_time.html">PL/SQL - Date &amp; Time</a></li>
+<li><a target="_top" href="plsql_dbms_output.html">PL/SQL - DBMS Output</a></li>
+<li><a target="_top" href="plsql_object_oriented.html">PL/SQL - Object Oriented</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">PL/SQL  Useful Resources</li>
+<li><a target="_top" href="plsql_quick_guide.html">PL/SQL - Quick Guide</a></li>
+<li><a target="_top" href="plsql_useful_resources.html">PL/SQL - Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.html">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>PL/SQL - Collections</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="plsql_packages.html">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="plsql_transactions.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>A collection is an ordered group of elements having the same data type. Each element is identified by a unique subscript that represents its position in the collection. </p>
+<p>PL/SQL provides three collection types:</p>
+<ul class="list">
+<li><p>Index-by tables or Associative array</p></li>
+<li><p>Nested table</p></li>
+<li><p>Variable-size array or Varray</p></li>
+</ul>
+<p>Oracle documentation provides the following characteristics for each type of collections:</p>
+<table class="src">
+<tr><th style="width:20%;">Collection Type</th><th>Number of Elements</th><th>Subscript Type</th><th>Dense or Sparse</th><th>Where Created</th><th>Can Be Object Type Attribute</th></tr>
+<tr><td>Associative array (or index-by table)</td><td>Unbounded</td><td>String or integer</td><td>Either</td><td>Only in PL/SQL block</td><td>No</td></tr>
+<tr><td>Nested table</td><td>Unbounded</td><td>Integer</td><td>Starts dense, can become sparse</td><td>Either in PL/SQL block or at schema level</td><td>Yes</td></tr>
+<tr><td>Variable-size array (Varray)</td><td>Bounded</td><td>Integer</td><td>Always dense</td><td>Either in PL/SQL block or at schema level</td><td>Yes</td></tr>
+</table>
+<p>We have already discussed varray in the chapter 'PL/SQL arrays'. In this chapter, we will discuss PL/SQL tables. </p>
+<p>Both types of PL/SQL tables i.e., index-by tables and nested tables have the same structure and their rows are accessed using the subscript notation. However, these two types of tables differ in one aspect; the nested tables can be stored in a database column and the index-by tables cannot.</p>
+<h2>Index-By Table</h2>
+<p>An <b>index-by</b> table (also called an associative array) is a set of <b>key-value</b> pairs. Each key is unique, and is used to locate the corresponding value. The key can be either an integer or a string.</p>
+<p>An index-by table is created using the following syntax. Here we are creating  an index-by table named <b>table_name</b> whose keys will be of <i>subscript_type</i> and associated values will be of <i>element_type</i></p>
+<pre class="prettyprint lang-sql">
+TYPE type_name IS TABLE OF element_type [NOT NULL] INDEX BY subscript_type;
+
+table_name type_name;
+</pre>
+<h2>Example:</h2>
+<p>Following example how to create a table to store integer values along with names and later it prints the same list of names.</p>
+<pre class="prettyprint lang-sql">
+DECLARE
+   TYPE salary IS TABLE OF NUMBER INDEX BY VARCHAR2(20);
+   salary_list salary;
+   name   VARCHAR2(20);
+BEGIN
+   -- adding elements to the table
+   salary_list('Rajnish')  := 62000;
+   salary_list('Minakshi')  := 75000;
+   salary_list('Martin') := 100000;
+   salary_list('James') := 78000;
+
+   -- printing the table
+   name := salary_list.FIRST;
+   WHILE name IS NOT null LOOP
+      dbms_output.put_line
+      ('Salary of ' || name || ' is ' || TO_CHAR(salary_list(name)));
+      name := salary_list.NEXT(name);
+   END LOOP;
+END;
+/
+</pre>
+<p>When the above code is executed at SQL prompt, it produces following result:</p>
+<pre class="result">
+Salary of Rajnish is 62000
+Salary of Minakshi is 75000
+Salary of Martin is 100000
+Salary of James is 78000
+
+PL/SQL procedure successfully completed.
+</pre>
+<h2>Example:</h2>
+<p>Elements of an index-by table could also be a %ROWTYPE of any database table or %TYPE of any database table field. The following example illustrates the concept. We will use the CUSTOMERS table stored in our database as:</p>
+<pre class="prettyprint lang-sql">
+Select * from customers;
+
++----+----------+-----+-----------+----------+
+| ID | NAME     | AGE | ADDRESS   | SALARY   |
++----+----------+-----+-----------+----------+
+|  1 | Ramesh   |  32 | Ahmedabad |  2000.00 |
+|  2 | Khilan   |  25 | Delhi     |  1500.00 |
+|  3 | kaushik  |  23 | Kota      |  2000.00 |
+|  4 | Chaitali |  25 | Mumbai    |  6500.00 |
+|  5 | Hardik   |  27 | Bhopal    |  8500.00 |
+|  6 | Komal    |  22 | MP        |  4500.00 |
++----+----------+-----+-----------+----------+
+</pre>
+<pre class="prettyprint lang-sql">
+DECLARE
+   CURSOR c_customers is
+      select  name from customers;
+   
+   TYPE c_list IS TABLE of customers.name%type INDEX BY binary_integer;
+   name_list c_list;
+   counter integer :=0;
+BEGIN
+   FOR n IN c_customers LOOP
+      counter := counter +1;
+      name_list(counter)  := n.name;
+      dbms_output.put_line('Customer('||counter|| '):'||name_list(counter));
+  END LOOP;
+END;
+/
+</pre>
+<p>When the above code is executed at SQL prompt, it produces following result:</p>
+<pre class="result">
+Customer(1): Ramesh 
+Customer(2): Khilan 
+Customer(3): kaushik    
+Customer(4): Chaitali 
+Customer(5): Hardik 
+Customer(6): Komal
+
+PL/SQL procedure successfully completed
+</pre>
+<h2>Nested Tables</h2>
+<p>A <b>nested table</b> is like a one-dimensional array with an arbitrary number of elements. However, a nested table differs from an array in the following aspects:</p>
+<ul class="list">
+<li><p>An array has a declared number of elements, but a nested table does not. The size of a nested table can increase dynamically.</p></li>
+<li><p>An array is always dense i.e., it always has consecutive subscripts. A nested array is dense initially, but it can become sparse when elements are deleted from it.</p></li>
+</ul>
+<p>An <b>nested table</b> is created using the following syntax:</p>
+<pre class="prettyprint lang-sql">
+TYPE type_name IS TABLE OF element_type [NOT NULL];
+
+table_name type_name;
+</pre>
+<p>This declaration is similar to declaration of an <b>index-by</b> table, but there is no INDEX BY clause.</p>
+<p>A nested table can be stored in a database column and so it could be used for simplifying SQL operations where you join a single-column table with a larger table. An associative array cannot be stored in the database.</p>
+<h2>Example:</h2>
+<p>The following examples illustrate the use of nested table:</p>
+<pre class="prettyprint lang-sql">
+DECLARE
+   TYPE names_table IS TABLE OF VARCHAR2(10);
+   TYPE grades IS TABLE OF INTEGER;
+
+   names names_table;
+   marks grades;
+   total integer;
+BEGIN
+   names := names_table('Kavita', 'Pritam', 'Ayan', 'Rishav', 'Aziz');
+   marks:= grades(98, 97, 78, 87, 92);
+   total := names.count;
+   dbms_output.put_line('Total '|| total || ' Students');
+   FOR i IN 1 .. total LOOP
+      dbms_output.put_line('Student:'||names(i)||', Marks:' || marks(i));
+   end loop;
+END;
+/
+</pre>
+<p>When the above code is executed at SQL prompt, it produces following result:</p>
+<pre class="result">
+Total 5 Students
+Student:Kavita, Marks:98
+Student:Pritam, Marks:97
+Student:Ayan, Marks:78
+Student:Rishav, Marks:87
+Student:Aziz, Marks:92
+
+PL/SQL procedure successfully completed.
+</pre>
+<h2>Example:</h2>
+<p>Elements of an <b>nested table</b> table could also be a %ROWTYPE of any database table or %TYPE of any database table field. The following example illustrates the concept.  We will use the CUSTOMERS table stored in our database as:</p>
+<pre class="prettyprint lang-sql">
+Select * from customers;
+
++----+----------+-----+-----------+----------+
+| ID | NAME     | AGE | ADDRESS   | SALARY   |
++----+----------+-----+-----------+----------+
+|  1 | Ramesh   |  32 | Ahmedabad |  2000.00 |
+|  2 | Khilan   |  25 | Delhi     |  1500.00 |
+|  3 | kaushik  |  23 | Kota      |  2000.00 |
+|  4 | Chaitali |  25 | Mumbai    |  6500.00 |
+|  5 | Hardik   |  27 | Bhopal    |  8500.00 |
+|  6 | Komal    |  22 | MP        |  4500.00 |
++----+----------+-----+-----------+----------+
+</pre>
+<pre class="prettyprint lang-sql">
+DECLARE
+   CURSOR c_customers is 
+      SELECT  name FROM customers;
+
+   TYPE c_list IS TABLE of customers.name%type;
+   name_list c_list := c_list();
+   counter integer :=0;
+BEGIN
+   FOR n IN c_customers LOOP
+      counter := counter +1;
+      name_list.extend;
+      name_list(counter)  := n.name;
+      dbms_output.put_line('Customer('||counter||'):'||name_list(counter));
+   END LOOP;
+END;
+/
+</pre>
+<p>When the above code is executed at SQL prompt, it produces following result:</p>
+<pre class="result">
+Customer(1): Ramesh 
+Customer(2): Khilan 
+Customer(3): kaushik    
+Customer(4): Chaitali 
+Customer(5): Hardik 
+Customer(6): Komal
+
+PL/SQL procedure successfully completed.
+</pre>
+<h2>Collection Methods</h2>
+<p>PL/SQL provides the built-in collection methods that make collections easier to use. The following table lists the methods and their purpose:</p>
+<table class="src">
+<tr><th style="width:5%;">S.N.</th><th>Method Name &amp; Purpose</th></tr>
+<tr><td>1</td><td><b>EXISTS(n)</b><br>
+Returns TRUE if the nth element in a collection exists; otherwise returns FALSE.
+</td></tr>
+<tr><td>2</td><td><b>COUNT</b><br>
+Returns the number of elements that a collection currently contains.
+</td></tr>
+<tr><td>3</td><td><b>LIMIT</b><br>
+Checks the Maximum Size of a Collection.
+</td></tr>
+<tr><td>4</td><td><b>FIRST</b><br>
+Returns the first (smallest) index numbers in a collection that uses integer subscripts.
+</td></tr>
+<tr><td>5</td><td><b>LAST</b><br>
+Returns the last (largest) index numbers in a collection that uses integer subscripts.
+</td></tr>
+<tr><td>6</td><td><b>PRIOR(n)</b><br>
+Returns the index number that precedes index n in a collection.
+</td></tr>
+<tr><td>7</td><td><b>NEXT(n)</b><br>
+Returns the index number that succeeds index n.
+</td></tr>
+<tr><td>8</td><td><b>EXTEND</b><br>
+Appends one null element to a collection.
+</td></tr>
+<tr><td>9</td><td><b>EXTEND(n)</b><br>
+Appends n null elements to a collection.
+</td></tr>
+<tr><td>10</td><td><b>EXTEND(n,i)</b><br>
+Appends n copies of the ith element to a collection.
+</td></tr>
+<tr><td>11</td><td><b>TRIM</b><br>
+Removes one element from the end of a collection.
+</td></tr>
+<tr><td>12</td><td><b>TRIM(n)</b><br>
+Removes n elements from the end of a collection.
+</td></tr>
+<tr><td>13</td><td><b>DELETE</b><br>
+Removes all elements from a collection, setting COUNT to 0.
+</td></tr>
+<tr><td>14</td><td><b>DELETE(n)</b><br>
+Removes the nth element from an associative array with a numeric key or a nested table. If the associative array has a string key, the element corresponding to the key value is deleted. If n is null, DELETE(n) does nothing.
+</td></tr>
+<tr><td>15</td><td><b>DELETE(m,n)</b><br>
+Removes all elements in the range m..n from an associative array or nested table. If m is larger than n or if m or n is null, DELETE(m,n) does nothing.
+</td></tr>
+</table>
+<h2>Collection Exceptions</h2>
+<p>The following table provides the collection exceptions and when they are raised:</p>
+<table class="src">
+<tr><th style="width:25%;">Collection Exception</th><th>Raised in Situations</th></tr>
+<tr><td>COLLECTION_IS_NULL</td><td>You try to operate on an atomically null collection.</td></tr>
+<tr><td>NO_DATA_FOUND</td><td>A subscript designates an element that was deleted, or a nonexistent element of an associative array.</td></tr>
+<tr><td>SUBSCRIPT_BEYOND_COUNT</td><td>A subscript exceeds the number of elements in a collection.</td></tr>
+<tr><td>SUBSCRIPT_OUTSIDE_LIMIT</td><td>A subscript is outside the allowed range.</td></tr>
+<tr><td>VALUE_ERROR</td><td>A subscript is null or not convertible to the key type. 
+This exception might occur if the key is defined as a PLS_INTEGER range, and the subscript is outside this range.</td></tr>
+</table>
+<hr />
+<div class="pre-btn">
+<a href="plsql_packages.html">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/plsql_collections.html" alt="PL/SQL Collections (Nested table, Index-by)" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="plsql_transactions.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.html" target="_top">ASP.NET </a> |
+<a href="../jquery/index.html" target="_top">jQuery </a> |
+<a href="../ajax/index.html" target="_top">AJAX </a> |
+<a href="../ant/index.html" target="_top">ANT</a> |
+<a href="../jsp/index.html" target="_top">JSP </a> |
+<a href="../servlets/index.html" target="_top">Servlets </a> |
+<a href="../log4j/index.html" target="_top">log4j </a> |
+<a href="../ibatis/index.html" target="_top">iBATIS </a> |
+<a href="../hibernate/index.html" target="_top">Hibernate </a> |
+<a href="../jdbc/index.html" target="_top">JDBC </a> |
+<a href="../struts_2/index.html" target="_top">Struts </a> |
+<a href="../html5/index.html" target="_top">HTML5 </a> |
+<a href="../sql/index.html" target="_top">SQL </a> |
+<a href="../mysql/index.html" target="_top">MySQL </a> |
+<a href="../cplusplus/index.html" target="_top">C++ </a> |
+<a href="../unix/index.html" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/plsql/plsql_collections.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:01:31 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,1007 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/yum.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>yum - Unix, Linux Command</title>
+<meta name="Description" Content="yum - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>yum - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+yum - Yellowdog Updater Modified
+<h1 class="manpages">SYNOPSIS</h1>
+<b>yum</b> [options] [command] [package ...]
+<h1 class="manpages">DESCRIPTION</h1>
+<p>
+<b>yum</b> is an interactive, rpm based, package manager. It can automatically
+perform system updates, including dependency analysis and obsolete processing
+based on "repository" metadata. It can also perform installation of new
+packages, removal of old packages and perform queries on the installed and/or
+available packages among many other commands/services (see below)&#46; <b>yum</b>
+is similar to other high level package managers like apt-get and smart&#46;
+<p>
+While there are some graphical interfaces directly to the <b>yum</b> code, more
+recent graphical interface development is happening with PackageKit and the
+gnome-packagekit application&#46;
+<p>
+<i>command</i> is one of:
+<!-- Need break --><br />
+<i></i> * install package1 [package2] [&#46;&#46;&#46;] <!-- Need break --><br />
+<i></i> * update [package1] [package2] [&#46;&#46;&#46;] <!-- Need break --><br />
+<i></i> * check-update <!-- Need break --><br />
+<i></i> * upgrade [package1] [package2] [&#46;&#46;&#46;] <!-- Need break --><br />
+<i></i> * remove | erase package1 [package2] [&#46;&#46;&#46;] <!-- Need break --><br />
+<i></i> * list [&#46;&#46;&#46;] <!-- Need break --><br />
+<i></i> * info [&#46;&#46;&#46;] <!-- Need break --><br />
+<i></i> * provides | whatprovides feature1 [feature2] [&#46;&#46;&#46;] <!-- Need break --><br />
+<i></i> * clean [ packages | headers | metadata | dbcache | all ] <!-- Need break --><br />
+<i></i> * makecache <!-- Need break --><br />
+<i></i> * groupinstall group1 [group2] [&#46;&#46;&#46;] <!-- Need break --><br />
+<i></i> * groupupdate group1 [group2] [&#46;&#46;&#46;] <!-- Need break --><br />
+<i></i> * grouplist [hidden] [groupwildcard] [&#46;&#46;&#46;] <!-- Need break --><br />
+<i></i> * groupremove group1 [group2] [&#46;&#46;&#46;] <!-- Need break --><br />
+<i></i> * groupinfo group1 [&#46;&#46;&#46;] <!-- Need break --><br />
+<i></i> * search string1 [string2] [&#46;&#46;&#46;] <!-- Need break --><br />
+<i></i> * shell [filename] <!-- Need break --><br />
+<i></i> * resolvedep dep1 [dep2] [&#46;&#46;&#46;] <!-- Need break --><br />
+<i></i> * localinstall rpmfile1 [rpmfile2] [&#46;&#46;&#46;] <!-- Need break --><br />
+<i></i> * localupdate rpmfile1 [rpmfile2] [&#46;&#46;&#46;] <!-- Need break --><br />
+<i></i> * reinstall package1 [package2] [&#46;&#46;&#46;] <!-- Need break --><br />
+<i></i> * downgrade package1 [package2] [&#46;&#46;&#46;] <!-- Need break --><br />
+<i></i> * deplist package1 [package2] [&#46;&#46;&#46;] <!-- Need break --><br />
+<i></i> * repolist [all|enabled|disabled] <!-- Need break --><br />
+<i></i> * help [command] <p>
+Unless the --help or -h option is given, one of the above commands
+must be present&#46;
+<p>
+Repository configuration is honored in all operations.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>install</b>
+</td><td>
+Is used to install the latest version of a package or
+group of packages while ensuring that all dependencies are
+satisfied&#46;  If no package matches the given package name(s), they are
+assumed to be a shell glob and any matches are then installed&#46; If the
+name starts with an @ character the rest of the name is used as though
+passed to the groupinstall command&#46; If the name is a file, then install works
+like localinstall&#46; If the name doesn&#146;t match a package, then package
+"provides" are searched (Eg. "_sqlitecache.so()(64bit)") as are
+filelists (Eg. "/usr/bin/yum"). Also note that for filelists, wildcards will
+match multiple packages&#46;
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>update</b>
+</td><td>
+If run without any packages, update will update every currently
+installed package.  If one or more packages or package globs are specified, Yum will
+only update the listed packages&#46;  While updating packages, <b>yum</b>
+will ensure that all dependencies are satisfied&#46; If the packages or globs
+specified match to packages which are not currently installed then update will
+not install them&#46; update operates on groups, files, provides and filelists
+just like the "install" command&#46;
+<p>
+If the main obsoletes configure option is true (default) or the --obsoletes
+flag is present <b>yum</b> will include package
+obsoletes in its calculations - this makes it better for distro-version
+changes, for example: upgrading from somelinux 8.0 to somelinux 9.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>check-update</b>
+</td><td>
+Implemented so you could know if your machine had any updates that needed to
+be applied without running it interactively. Returns exit value of 100 if
+there are packages available for an update. Also returns a list of the pkgs
+to be updated in list format. Returns 0 if no packages are available for
+update. Returns 1 if an error occurred.
+Running in verbose mode also shows obsoletes.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>upgrade</b>
+</td><td>
+Is the same as the update command with the --obsoletes flag set. See update
+for more details.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>remove</b> or <b>erase</b>
+</td><td>
+Are used to remove the specified packages from the system
+as well as removing any packages which depend on the package being
+removed&#46; remove operates on groups, files, provides and filelists just like
+the "install" command&#46;
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>list</b>
+</td><td>
+Is used to list various information about available
+packages; more complete details are available in the <i>List Options</i>
+section below&#46;
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>provides</b> or <b>whatprovides</b>
+</td><td>
+Is used to find out which package provides some feature
+or file. Just use a specific name or a file-glob-syntax wildcards to list
+the packages available or installed that provide that feature or file&#46;
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>search</b>
+</td><td>
+Is used to find any packages matching a string in the description, summary
+and package name fields of an rpm. Useful for finding a package
+you do not know by name but know by some word related to it.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>info</b>
+</td><td>
+Is used to list a description and summary information about available
+packages; takes the same arguments as in the <i>List Options</i>
+section below&#46;
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>clean</b>
+</td><td>
+Is used to clean up various things which accumulate in the
+<b>yum</b> cache directory over time.  More complete details can be found in
+the <i>Clean Options</i> section below&#46;
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>makecache</b>
+</td><td>
+Is used to download and make usable all the metadata for the currently enabled
+<b>yum</b> repos.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>groupinstall</b>
+</td><td>
+Is used to install all of the individual packages in a group, of the specified
+types (this works as if you&#146;d taken each of those package names and put them on
+the command line for a "yum install" command).
+<br />
+ The group_package_types configuration option specifies which types will
+be installed.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>groupupdate</b>
+</td><td>
+Is just an alias for groupinstall, which will do the right thing because
+"yum install X" and "yum update X" do the same thing, when X is already
+installed.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>grouplist</b>
+</td><td>
+Is used to list the available groups from all <b>yum</b> repos. Groups are marked
+as "installed" if all mandatory packages are installed, or if a group doesn&#146;t
+have any mandatory packages then it is installed if any of the optional or
+default package are installed.
+The optional "hidden" argument will also list groups marked as not being
+"user visible". If you pass the -v option, to enable verbose mode, then the
+groupid&#146;s are displayed.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>groupremove</b>
+</td><td>
+Is used to remove all of the packages in a group, unlike "groupinstall" this
+will remove everything regardless of group_package_types. It is worth pointing
+out that packages can be in more than one group, so "groupinstall X Y" followed
+by "groupremove Y" does not do give you the same result as "groupinstall X".
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>groupinfo</b>
+</td><td>
+Is used to give the description and package list of a group (and which type
+those packages are marked as). Note that you can use the yum-filter-data and
+yum-list-data plugins to get/use the data the other way around (Ie. what
+groups own packages need updating). If you pass the -v option, to enable verbose
+mode, then the package names are matched against installed/available packages
+similar to the list command.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>shell</b>
+</td><td>
+Is used to enter the &#146;yum shell&#146;, when a filename is specified the contents of
+that file is executed in yum shell mode. See <i>yum-shell(8)</i> for more info
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>resolvedep</b>
+</td><td>
+Is used to list packages providing the specified dependencies, at most one
+package is listed per dependency.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>localinstall</b>
+</td><td>
+Is used to install a set of local rpm files. If required the enabled
+repositories will be used to resolve dependencies. Note that the install command
+will do a local install, if given a filename.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>localupdate</b>
+</td><td>
+Is used to update the system by specifying local rpm files. Only the specified
+rpm files of which an older version is already installed will be installed,
+the remaining specified packages will be ignored.
+If required the enabled repositories will be used to resolve dependencies. Note
+that the update command will do a local install, if given a filename.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>reinstall</b>
+</td><td>
+Will reinstall the identically versioned package as is currently installed.
+This does not work for "installonly" packages, like Kernels. reinstall operates
+on groups, files, provides and filelists just like the "install" command&#46;
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>downgrade</b>
+</td><td>
+Will try and downgrade a package from the version currently installed to the
+previously highest version (or the specified version).
+The depsolver will not necessarily work, but if you specify all the packages it
+should work (and thus. all the simple cases will work). Also this does not
+work for "installonly" packages, like Kernels. downgrade operates
+on groups, files, provides and filelists just like the "install" command&#46;
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>deplist</b>
+</td><td>
+Produces a list of all dependencies and what packages provide those
+dependencies for the given packages.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>repolist</b>
+</td><td>
+Produces a list of configured repositories. The default is to list all
+enabled repositories. If you pass -v, for verbose mode, more information is
+listed.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>help</b>
+</td><td>
+Produces help, either for all commands or if given a command name then the help
+for that particular command&#46;
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<!-- PP ends table -->
+</table>
+<h1 class="manpages">GENERAL OPTIONS</h1>
+Most command line options can be set using the configuration file as
+well and the descriptions indicate the necessary configuration option
+to set&#46;
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>-h, --help</b>
+</td><td>
+Help; display a help message and then quit&#46;
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-y</b>
+</td><td>
+Assume yes; assume that the answer to any question which would be asked
+is yes&#46;
+<!-- Need break --><br />
+Configuration Option: <b>assumeyes</b>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-c [config file]</b>
+</td><td>
+Specifies the config file location - can take http, ftp urls and local file
+paths&#46;
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-q, --quiet</b>
+</td><td>
+Run without output.  Note that you likely also want to use -y&#46;
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-v, --verbose</b>
+</td><td>
+Run with a lot of debugging output&#46;
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-d [number]</b>
+</td><td>
+Sets the debugging level to [number] - turns up or down the amount of things that are printed&#46; Practical range: 0 - 10
+<!-- Need break --><br />
+Configuration Option: <b>debuglevel</b>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-e [number]</b>
+</td><td>
+Sets the error level to [number] Practical range 0 - 10. 0 means print only critical errors about which you must be told. 1 means print all errors, even ones that are not overly important. 1+ means print more errors (if any) -e 0 is good for cron jobs.
+<!-- Need break --><br />
+Configuration Option: <b>errorlevel</b>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-R [time in minutes]</b>
+</td><td>
+Sets the maximum amount of time yum will wait before performing a command - it randomizes over the time.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-C</b>
+</td><td>
+Tells yum to run entirely from cache - does not download or update any
+headers unless it has to to perform the requested action.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>--version</b>
+</td><td>
+Reports the <b>yum</b> version number and exits.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>--showduplicates</b>
+</td><td>
+Doesn&#146;t limit packages to their latest versions in the info, list and search
+commands (will also affect plugins which use the doPackageLists() API).
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>--installroot=root</b>
+</td><td>
+Specifies an alternative installroot, relative to which all packages will be
+installed.
+<!-- Need break --><br />
+Configuration Option: <b>installroot</b>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>--enablerepo=repoidglob</b>
+</td><td>
+Enables specific repositories by id or glob that have been disabled in the
+configuration file using the enabled=0 option.
+<!-- Need break --><br />
+Configuration Option: <b>enabled</b>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>--disablerepo=repoidglob</b>
+</td><td>
+Disables specific repositories by id or glob.
+<!-- Need break --><br />
+Configuration Option: <b>enabled</b>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>--obsoletes</b>
+</td><td>
+This option only has affect for an update, it enables <b>yum</b>&#39;s obsoletes
+processing logic. For more information see the <b>update</b> command above.
+<!-- Need break --><br />
+Configuration Option: <b>obsoletes</b>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-x, --exclude=package</b>
+</td><td>
+Exclude a specific package by name or glob from updates on all repositories.
+Configuration Option: <b>exclude</b>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>--color=[always|auto|never]</b>
+</td><td>
+Display colorized output automatically, depending on the output terminal,
+always (using ANSI codes) or never. Note that some commands (Eg. list and info)
+will do a little extra work when color is enabled.
+Configuration Option: <b>color</b>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>--disableexcludes=[all|main|repoid]</b>
+</td><td>
+Disable the excludes defined in your config files. Takes one of three options:
+<!-- Need break --><br />
+all == disable all excludes
+<!-- Need break --><br />
+main == disable excludes defined in [main] in yum.conf
+<!-- Need break --><br />
+repoid == disable excludes defined for that repo
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>--disableplugin=plugin</b>
+</td><td>
+Run with one or more plugins disabled, the argument is a comma separated list
+of wildcards to match against plugin names.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>--noplugins</b>
+</td><td>
+Run with all plugins disabled.
+<!-- Need break --><br />
+Configuration Option: <b>plugins</b>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>--nogpgcheck</b>
+</td><td>
+Run with gpg signature checking disabled.
+<!-- Need break --><br />
+Configuration Option: <b>gpgcheck</b>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>--skip-broken</b>
+</td><td>
+Resolve depsolve problems by removing packages that are causing problems
+from the transaction.
+<!-- Need break --><br />
+Configuration Option: <b>skip_broken</b>
+<!-- suppressed PP before IP -->
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-t, --tolerant</b>
+</td><td>
+This option currently does nothing.
+</td></tr>
+</table>
+<h1 class="manpages">LIST OPTIONS</h1>
+The following are the ways which you can invoke <b>yum</b> in list
+mode&#46;  Note that all <b>list</b> commands include information on the
+version of the package&#46;
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>yum list [all | glob_exp1] [glob_exp2] [&#46;&#46;&#46;]</b>
+</td><td>
+List all available and installed packages&#46;
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>yum list available [glob_exp1] [&#46;&#46;&#46;]</b>
+</td><td>
+List all packages in the yum repositories available to be installed&#46;
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>yum list updates [glob_exp1] [&#46;&#46;&#46;]</b>
+</td><td>
+List all packages with updates available in the yum repositories&#46;
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>yum list installed [glob_exp1] [&#46;&#46;&#46;]</b>
+</td><td>
+List the packages specified by <i>args</i>&#46;  If an argument does not
+match the name of an available package, it is assumed to be a
+shell-style glob and any matches are printed&#46;
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>yum list extras [glob_exp1] [&#46;&#46;&#46;]</b>
+</td><td>
+List the packages installed on the system that are not available in any yum
+repository listed in the config file.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>yum list obsoletes [glob_exp1] [&#46;&#46;&#46;]</b>
+</td><td>
+List the packages installed on the system that are obsoleted by packages
+in any yum repository listed in the config file.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>yum list recent</b>
+</td><td>
+List packages recently added into the repositories.
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>Specifying package names</b>
+</td><td>
+All the list options mentioned above take file-glob-syntax wildcards or package
+names as arguments, for example <b>yum list available &#146;foo*&#146;</b> will list
+all available packages that match &#146;foo*&#146;. (The single quotes will keep your
+shell from expanding the globs.)
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+</td></tr>
+<!-- PP ends table -->
+</table>
+<h1 class="manpages">CLEAN OPTIONS</h1>
+The following are the ways which you can invoke <b>yum</b> in clean
+mode. Note that "all files" in the commands below means
+"all files in currently enabled repositories".
+If you want to also clean any (temporarily) disabled repositories you need to
+use <b>--enablerepo=&#146;*&#146;</b> option.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>yum clean expire-cache</b>
+</td><td>
+Eliminate the local data saying when the metadata and mirrorlists were downloaded for each repo. This means yum will revalidate the cache for each repo. next time it is used. However if the cache is still valid, nothing significant was deleted.
+<p>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>yum clean packages</b>
+</td><td>
+Eliminate any cached packages from the system.  Note that packages are not automatically deleted after they are downloaded.
+<p>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>yum clean headers</b>
+</td><td>
+Eliminate all of the header files which yum uses for dependency resolution.
+<p>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>yum clean metadata</b>
+</td><td>
+Eliminate all of the files which yum uses to determine the remote
+availability of packages. Using this option will force yum to download all the
+metadata the next time it is run.
+<p>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>yum clean dbcache</b>
+</td><td>
+Eliminate the sqlite cache used for faster access to metadata.
+Using this option will force yum to recreate the cache the next time
+it is run.
+<p>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>yum clean all</b>
+</td><td>
+Runs <b>yum clean packages</b> and <b>yum clean headers</b>, <b>yum clean metadata</b> and <b>yum clean dbcache</b> as above.
+<p>
+</td></tr>
+<!-- PP ends table -->
+</table>
+<h1 class="manpages">MISC</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>Specifying package names</b>
+</td><td>
+A package can be referred to for install,update,list,remove etc with any
+of the following:
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+<b>name</b>
+<!-- Need break --><br />
+<b>name.arch</b>
+<!-- Need break --><br />
+<b>name-ver</b>
+<!-- Need break --><br />
+<b>name-ver-rel</b>
+<!-- Need break --><br />
+<b>name-ver-rel.arch</b>
+<!-- Need break --><br />
+<b>name-epoch:ver-rel.arch</b>
+<!-- Need break --><br />
+<b>epoch:name-ver-rel.arch</b>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+For example: <b>yum remove kernel-2.4.1-10.i686</b>
+<p>
+</td></tr>
+<!-- PP ends table -->
+</table>
+<h1 class="manpages">PLUGINS</h1>
+Yum can be extended through the use of plugins. A plugin is a Python ".py" file
+which is installed in one of the directories specified by the <b>pluginpath</b>
+option in yum.conf. For a plugin to work, the following conditions must be met:
+<p>
+1. The plugin module file must be installed in the plugin path as just
+described.
+<p>
+2. The global <b>plugins</b> option in /etc/yum/yum.conf must be set to &#145;1&#146;.
+<p>
+3. A configuration file for the plugin must exist in
+/etc/yum/pluginconf.d/&lt;plugin_name&gt;.conf and the <b>enabled</b> setting in this
+file must set to &#145;1&#146;. The minimal content for such a configuration file is:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+[main]
+<!-- Need break --><br />
+enabled = 1
+</td></tr>
+<!-- LP ends table -->
+</table>
+See the <b>yum.conf(5)</b> man page for more information on plugin related
+configuration options.
+<p>
+<p>
+<h1 class="manpages">FILES</h1>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+/etc/yum.conf
+/etc/yum.repos.d/
+/etc/yum/pluginconf.d/
+/var/cache/yum/
+</pre></td></tr>
+</table>
+<p>
+<p>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<i>pkcon (1)</i> <i>yum.conf (5)</i> <i>yum-updatesd (8)</i> <i>package-cleanup (1)</i> <i>repoquery (1)</i> <i>yum-complete-transaction (1)</i> <i>yumdownloader (1)</i> <i>yum-utils (1)</i> <a href="http://linux.duke.edu/yum">http://linux.duke.edu/yum</a>/
+<a href="http://wiki.linux.duke.edu/YumFaq">http://wiki.linux.duke.edu/YumFaq</a>
+yum search yum
+<p>
+<p>
+<h1 class="manpages">AUTHORS</h1>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+See the Authors file included with this program.
+</pre></td></tr>
+</table>
+<p>
+<p>
+<h1 class="manpages">BUGS</h1>
+There of course aren&#146;t any bugs, but if you find any, you should first
+consult the Faq mentioned above and then email the mailing list:
+<a href="mailto:yum@lists.linux.duke.edu">yum@lists.linux.duke.edu</a> or filed in bugzilla.
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion7522.html?tutorial=unix_commands&amp;file=yum.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/yum.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

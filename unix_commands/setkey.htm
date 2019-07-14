@@ -1,0 +1,1195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/setkey.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:24 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>setkey - Unix, Linux Command</title>
+<meta name="Description" Content="setkey - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>setkey - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+<b> setkey</b>
+- manually manipulate the IPsec SA/SP database
+<h1 class="manpages">SYNOPSIS</h1>
+<b> setkey</b>
+[-<b>knrv</b>]
+<i> file ...</i>
+<b> setkey</b>
+[-<b>knrv</b>]
+-<b>c</b> 
+<b> setkey</b>
+[-<b>krv</b>]
+-<b>f</b> <i> filename</i>
+<b> setkey</b>
+[-<b>aklPrv</b>]
+-<b>D</b> 
+<b> setkey</b>
+[-<b>Pvp</b>]
+-<b>F</b> 
+<b> setkey</b>
+[-<b>H</b>]
+-<b>x</b> 
+<b> setkey</b>
+[-<b>?V</b>]
+<h1 class="manpages">DESCRIPTION</h1>
+<b>setkey</b>
+adds, updates, dumps, or flushes
+Security Association Database (SAD) entries
+as well as Security Policy Database (SPD) entries in the kernel.
+<p>
+<b>setkey</b>
+takes a series of operations from standard input
+(
+if invoked with
+-<b>c</b> 
+)
+or the file named
+<i> filename</i>
+(
+if invoked with
+-<b>f</b> <i> filename</i>
+).
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2"> (no flag)
+</td></tr><tr><td>&nbsp;</td><td>
+Dump the SAD entries or SPD entries contained in the specified
+<i> file</i>.
+</td></tr>
+<tr valign="top"><td>-<b>?</b> 
+</td><td>
+Print short help.
+</td></tr>
+<tr valign="top"><td>-<b>a</b> 
+</td><td>
+<b>setkey</b>
+usually does not display dead SAD entries with
+-<b>D</b> .
+If
+-<b>a</b> 
+is also specified, the dead SAD entries will be displayed as well.
+A dead SAD entry is one that has expired but remains in the
+system because it is referenced by some SPD entries.
+</td></tr>
+<tr valign="top"><td>-<b>D</b> 
+</td><td>
+Dump the SAD entries.
+If
+-<b>P</b> 
+is also specified, the SPD entries are dumped.
+If
+-<b>p</b> 
+is specified, the ports are displayed.
+</td></tr>
+<tr valign="top"><td>-<b>F</b> 
+</td><td>
+Flush the SAD entries.
+If
+-<b>P</b> 
+is also specified, the SPD entries are flushed.
+</td></tr>
+<tr valign="top"><td>-<b>H</b> 
+</td><td>
+Add hexadecimal dump in
+-<b>x</b> 
+mode.
+</td></tr>
+<tr valign="top"><td>-<b>h</b> 
+</td><td>
+On
+<br />.Nx ,
+synonym for
+-<b>H</b> .
+On other systems, synonym for
+-<b>?</b> .
+</td></tr>
+<tr valign="top"><td>-<b>k</b> 
+</td><td>
+Use semantics used in kernel.
+Available only in Linux.
+See also
+-<b>r</b> .
+</td></tr>
+<tr valign="top"><td>-<b>l</b> 
+</td><td>
+Loop forever with short output on
+-<b>D</b> .
+</td></tr>
+<tr valign="top"><td>-<b>n</b> 
+</td><td>
+No action.
+The program will check validity of the input, but no changes to
+the SPD will be made.
+</td></tr>
+<tr valign="top"><td>-<b>r</b> 
+</td><td>
+Use semantics described in IPsec RFCs.
+This mode is default.
+For details see section
+RFC vs Linux kernel semantics.
+Available only in Linux.
+See also
+-<b>k</b> .
+</td></tr>
+<tr valign="top"><td>-<b>x</b> 
+</td><td>
+Loop forever and dump all the messages transmitted to the
+<tt> PF_KEY</tt>
+socket.
+-<b>xx</b> 
+prints the unformatted timestamps.
+</td></tr>
+<tr valign="top"><td>-<b>V</b> 
+</td><td>
+Print version string.
+</td></tr>
+<tr valign="top"><td>-<b>v</b> 
+</td><td>
+Be verbose.
+The program will dump messages exchanged on the
+<tt> PF_KEY</tt>
+socket, including messages sent from other processes to the kernel.
+</td></tr>
+</table>
+<h2><i>Configuration syntax</i></h2>
+With
+-<b>c</b> 
+or
+-<b>f</b> 
+on the command line,
+<b>setkey</b>
+accepts the following configuration syntax.
+Lines starting with hash signs
+(&#39;#&#39;)
+are treated as comment lines.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">add
+[-<b>46n</b>]
+<i> src</i><i> dst</i><i> protocol</i><i> spi</i>
+[<i>extensions</i>]
+<i> algorithm ...</i>
+;
+</td></tr><tr><td>&nbsp;</td><td>
+Add an SAD entry.
+add
+can fail for multiple reasons, including when the key length does
+not match the specified algorithm.
+</td></tr>
+<tr valign="top"><td colspan="2">get
+[-<b>46n</b>]
+<i> src</i><i> dst</i><i> protocol</i><i> spi</i>
+;
+</td></tr><tr><td>&nbsp;</td><td>
+Show an SAD entry.
+</td></tr>
+<tr valign="top"><td colspan="2">delete
+[-<b>46n</b>]
+<i> src</i><i> dst</i><i> protocol</i><i> spi</i>
+;
+</td></tr><tr><td>&nbsp;</td><td>
+Remove an SAD entry.
+</td></tr>
+<tr valign="top"><td colspan="2">deleteall
+[-<b>46n</b>]
+<i> src</i><i> dst</i><i> protocol</i>
+;
+</td></tr><tr><td>&nbsp;</td><td>
+Remove all SAD entries that match the specification.
+</td></tr>
+<tr valign="top"><td colspan="2">flush
+[<i>protocol</i>]
+;
+</td></tr><tr><td>&nbsp;</td><td>
+Clear all SAD entries matched by the options.
+-<b>F</b> 
+on the command line achieves the same functionality.
+</td></tr>
+<tr valign="top"><td colspan="2">dump
+[<i>protocol</i>]
+;
+</td></tr><tr><td>&nbsp;</td><td>
+Dumps all SAD entries matched by the options.
+-<b>D</b> 
+on the command line achieves the same functionality.
+</td></tr>
+<tr valign="top"><td colspan="2">spdadd
+[-<b>46n</b>]
+<i> src_range</i><i> dst_range</i><i> upperspec</i><i> label</i><i> policy</i>
+;
+</td></tr><tr><td>&nbsp;</td><td>
+Add an SPD entry.
+</td></tr>
+<tr valign="top"><td colspan="2">spdadd tagged
+<i> tag</i><i> policy</i>
+;
+</td></tr><tr><td>&nbsp;</td><td>
+Add an SPD entry based on a PF tag.
+<i> tag</i>
+must be a string surrounded by double quotes.
+</td></tr>
+<tr valign="top"><td colspan="2">spddelete
+[-<b>46n</b>]
+<i> src_range</i><i> dst_range</i><i> upperspec-<b>P</b> </i><i> direction</i>
+;
+</td></tr><tr><td>&nbsp;</td><td>
+Delete an SPD entry.
+</td></tr>
+<tr valign="top"><td colspan="2">spdflush
+;
+</td></tr><tr><td>&nbsp;</td><td>
+Clear all SPD entries.
+-<b>FP</b> 
+on the command line achieves the same functionality.
+</td></tr>
+<tr valign="top"><td colspan="2">spddump
+;
+</td></tr><tr><td>&nbsp;</td><td>
+Dumps all SPD entries.
+-<b>DP</b> 
+on the command line achieves the same functionality.
+</td></tr>
+</table>
+<p>
+Meta-arguments are as follows:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2"><i> src</i>
+<br />
+<i> dst</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Source/destination of the secure communication is specified as
+an IPv4/v6 address, and an optional port number between square
+brackets.
+<b>setkey</b>
+can resolve a FQDN into numeric addresses.
+If the FQDN resolves into multiple addresses,
+<b>setkey</b>
+will install multiple SAD/SPD entries into the kernel
+by trying all possible combinations.
+-<b>4</b> ,
+-<b>6</b> ,
+and
+-<b>n</b> 
+restrict the address resolution of FQDN in certain ways.
+-<b>4</b> 
+and
+-<b>6</b> 
+restrict results into IPv4/v6 addresses only, respectively.
+-<b>n</b> 
+avoids FQDN resolution and requires addresses to be numeric addresses.
+<p>
+</td></tr>
+<tr valign="top"><td><i> protocol</i>
+</td><td>
+<i> protocol</i>
+is one of following:
+</td></tr>
+<tr valign="top"><td> esp
+</td><td>
+ESP based on rfc2406
+</td></tr>
+<tr valign="top"><td colspan="2"> esp-old
+</td></tr><tr><td>&nbsp;</td><td>
+ESP based on rfc1827
+</td></tr>
+<tr valign="top"><td> ah
+</td><td>
+AH based on rfc2402
+</td></tr>
+<tr valign="top"><td colspan="2"> ah-old
+</td></tr><tr><td>&nbsp;</td><td>
+AH based on rfc1826
+</td></tr>
+<tr valign="top"><td colspan="2"> ipcomp
+</td></tr><tr><td>&nbsp;</td><td>
+IPComp
+</td></tr>
+<tr valign="top"><td> tcp
+</td><td>
+TCP-MD5 based on rfc2385
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td><i> spi</i>
+</td><td>
+Security Parameter Index
+(SPI)
+for the SAD and the SPD.
+<i> spi</i>
+must be a decimal number, or a hexadecimal number with a
+"0x"
+prefix.
+SPI values between 0 and 255 are reserved for future use by IANA
+and cannot be used.
+TCP-MD5 associations must use 0x1000 and therefore only have per-host
+granularity at this time.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2"><i> extensions</i>
+</td></tr><tr><td>&nbsp;</td><td>
+take some of the following:
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>m</b> <i> mode</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specify a security protocol mode for use.
+<i> mode</i>
+is one of following:
+transport, tunnel,
+or
+any.
+The default value is
+any.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>r</b> <i> size</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specify window size of bytes for replay prevention.
+<i> size</i>
+must be decimal number in 32-bit word.
+If
+<i> size</i>
+is zero or not specified, replay checks don&#146;t take place.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>u</b> <i> id</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specify the identifier of the policy entry in the SPD.
+See
+<i> policy</i>.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>f</b> <i> pad_option</i>
+</td></tr><tr><td>&nbsp;</td><td>
+defines the content of the ESP padding.
+<i> pad_option</i>
+is one of following:
+</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td> zero-pad
+</td><td>
+All the paddings are zero.
+</td></tr>
+<tr valign="top"><td colspan="2"> random-pad
+</td></tr><tr><td>&nbsp;</td><td>
+A series of randomized values are used.
+</td></tr>
+<tr valign="top"><td> seq-pad
+</td><td>
+A series of sequential increasing numbers started from 1 are used.
+</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">-<b>f</b>  nocyclic-seq
+</td></tr><tr><td>&nbsp;</td><td>
+Don&#146;t allow cyclic sequence numbers.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>lh</b> <i> time</i>
+<br />
+-<b>ls</b> <i> time</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specify hard/soft life time duration of the SA measured in seconds.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>bh</b> <i> bytes</i>
+<br />
+-<b>bs</b> <i> bytes</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specify hard/soft life time duration of the SA measured in bytes transported.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>ctx</b> <i> doi</i><i> algorithm</i><i> context-name</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specify an access control label. The access control label is interpreted
+by the LSM (e.g., SELinux). Ultimately, it enables MAC on network
+communications.
+</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td><i> doi</i>
+</td><td>
+The domain of interpretation, which is used by the
+IKE daemon to identify the domain in which negotiation takes place.
+</td></tr>
+<tr valign="top"><td colspan="2"><i> algorithm</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Indicates the LSM for which the label is generated (e.g., SELinux).
+</td></tr>
+<tr valign="top"><td colspan="2"><i> context-name</i>
+</td></tr><tr><td>&nbsp;</td><td>
+The string representation of the label that is interpreted by the LSM.
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2"><i> algorithm</i>
+</td></tr><tr><td>&nbsp;</td><td>
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>E</b> <i> ealgo</i><i> key</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specify an encryption algorithm
+<i> ealgo</i>
+for ESP.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>E</b> <i> ealgo</i><i> key</i>
+-<b>A</b> <i> aalgo</i><i> key</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specify an encryption algorithm
+<i> ealgo</i>,
+as well as a payload authentication algorithm
+<i> aalgo</i>,
+for ESP.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>A</b> <i> aalgo</i><i> key</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Specify an authentication algorithm for AH.
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>C</b> <i> calgo </i>[-<b>R</b>]
+</td></tr><tr><td>&nbsp;</td><td>
+Specify a compression algorithm for IPComp.
+If
+-<b>R</b> 
+is specified, the
+<i> spi</i>
+field value will be used as the IPComp CPI
+(compression parameter index)
+on wire as-is.
+If
+-<b>R</b> 
+is not specified,
+the kernel will use well-known CPI on wire, and
+<i> spi</i>
+field will be used only as an index for kernel internal usage.
+</td></tr>
+</table>
+<p>
+<i> key</i>
+must be a double-quoted character string, or a series of hexadecimal
+digits preceded by
+"0x".
+<p>
+Possible values for
+<i> ealgo</i>,
+<i> aalgo</i>,
+and
+<i> calgo</i>
+are specified in the
+<a href=#4> Algorithms</a>
+sections.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2"><i> src_range</i>
+<br />
+<i> dst_range</i>
+</td></tr><tr><td>&nbsp;</td><td>
+These select the communications that should be secured by IPsec.
+They can be an IPv4/v6 address or an IPv4/v6 address range, and
+may be accompanied by a TCP/UDP port specification.
+This takes the following form:
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<i> address</i>
+<i> address/prefixlen</i>
+<i> address[port]</i>
+<i> address/prefixlen[port]</i>
+</pre></td></tr>
+</table>
+<p>
+<i> prefixlen</i>
+and
+<i> port</i>
+must be decimal numbers.
+The square brackets around
+<i> port</i>
+are really necessary,
+they are not man page meta-characters.
+For FQDN resolution, the rules applicable to
+<i> src</i>
+and
+<i> dst</i>
+apply here as well.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2"><i> upperspec</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Upper-layer protocol to be used.
+You can use one of the words in
+<tt> /etc/protocols</tt>
+as
+<i> upperspec</i>,
+or
+icmp6,
+ip4,
+or
+any.
+any
+stands for
+"any protocol".
+You can also use the protocol number.
+You can specify a type and/or a code of ICMPv6 when the
+upper-layer protocol is ICMPv6.
+The specification can be placed after
+icmp6.
+A type is separated from a code by single comma.
+A code must always be specified.
+When a zero is specified, the kernel deals with it as a wildcard.
+Note that the kernel can not distinguish a wildcard from an ICPMv6
+type of zero.
+For example, the following means that the policy doesn&#146;t require IPsec
+for any inbound Neighbor Solicitation.
+<p>&nbsp; &nbsp; <tt> spdadd ::/0 ::/0 icmp6 135,0 -P in none</tt>;<p>
+
+<p>
+<i> Note</i>:
+<i> upperspec</i>
+does not work against forwarding case at this moment,
+as it requires extra reassembly at the forwarding node
+(not implemented at this moment).
+There are many protocols in
+<tt> /etc/protocols</tt>,
+but all protocols except of TCP, UDP, and ICMP may not be suitable
+to use with IPsec.
+You have to consider carefully what to use.
+<p>
+</td></tr>
+<tr valign="top"><td><i> label</i>
+</td><td>
+<i> label</i>
+is the access control label for the policy. This label is interpreted
+by the LSM (e.g., SELinux). Ultimately, it enables MAC on network
+communications. When a policy contains an access control label, SAs
+negotiated with this policy will contain the label. It&#146;s format:
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>ctx</b> <i> doi</i><i> algorithm</i><i> context-name</i>
+</td></tr><tr><td>&nbsp;</td><td>
+</td></tr>
+<tr valign="top"><td><i> doi</i>
+</td><td>
+The domain of interpretation, which is used by the
+IKE daemon to identify the domain in which negotiation takes place.
+</td></tr>
+<tr valign="top"><td colspan="2"><i> algorithm</i>
+</td></tr><tr><td>&nbsp;</td><td>
+Indicates the LSM for which the label is generated (e.g., SELinux).
+</td></tr>
+<tr valign="top"><td colspan="2"><i> context-name</i>
+</td></tr><tr><td>&nbsp;</td><td>
+The string representation of the label that is interpreted by the LSM.
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2"><i> policy</i>
+</td></tr><tr><td>&nbsp;</td><td>
+<i> policy</i>
+is in one of the following three formats:
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+</td></tr>
+<tr valign="top"><td colspan="2">-<b>P</b> <i> direction [priority specification] discard</i>
+<br />
+-<b>P</b> <i> direction [priority specification] none</i>
+<tr valign="top"><td colspan="2"><i> protocol/mode/src-dst/level </i>[...]
+</td></tr><tr><td>&nbsp;</td><td>
+</pre></td></tr>
+</table>
+<p>
+You must specify the direction of its policy as
+<i> direction</i>.
+Either
+<i> out</i>,
+<i> in</i>,
+or
+<i> fwd</i>
+can be used.
+<p>
+<i> priority specification</i>
+is used to control the placement of the policy within the SPD.
+Policy position is determined by
+a signed integer where higher priorities indicate the policy is placed
+closer to the beginning of the list and lower priorities indicate the
+policy is placed closer to the end of the list.
+Policies with equal priorities are added at the end of groups
+of such policies.
+<p>
+Priority can only
+be specified when setkey has been compiled against kernel headers that
+support policy priorities (Linux Gt]= 2.6.6).
+If the kernel does not support priorities, a warning message will
+be printed the first time a priority specification is used.
+Policy priority takes one of the following formats:
+</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2"><i> {priority,prio} offset</i>
+</td></tr><tr><td>&nbsp;</td><td>
+<i> offset</i>
+is an integer in the range from -2147483647 to 214783648.
+</td></tr>
+<tr valign="top"><td colspan="2"><i> {priority,prio} base {+,-} offset</i>
+</td></tr><tr><td>&nbsp;</td><td>
+<i> base</i>
+is either
+low (-1073741824),
+def (0),
+or
+high (1073741824)
+<p>
+<i> offset</i>
+is an unsigned integer.
+It can be up to 1073741824 for
+positive offsets, and up to 1073741823 for negative offsets.
+</td></tr>
+</table>
+<p>
+discard
+means the packet matching indexes will be discarded.
+none
+means that IPsec operation will not take place onto the packet.
+ipsec
+means that IPsec operation will take place onto the packet.
+<p>
+The
+<i> protocol/mode/src-dst/level</i>
+part specifies the rule how to process the packet.
+Either
+ah,
+esp,
+or
+ipcomp
+must be used as
+<i> protocol</i>.
+<i> mode</i>
+is either
+transport
+or
+tunnel.
+If
+<i> mode</i>
+is
+tunnel,
+you must specify the end-point addresses of the SA as
+<i> src</i>
+and
+<i> dst</i>
+with
+&#39;-&#39;
+between these addresses, which is used to specify the SA to use.
+If
+<i> mode</i>
+is
+transport,
+both
+<i> src</i>
+and
+<i> dst</i>
+can be omitted.
+<i> level</i>
+is to be one of the following:
+default, use, require,
+or
+unique.
+If the SA is not available in every level, the kernel will
+ask the key exchange daemon to establish a suitable SA.
+default
+means the kernel consults the system wide default for the protocol
+you specified, e.g. the
+esp_trans_deflev
+sysctl variable, when the kernel processes the packet.
+use
+means that the kernel uses an SA if it&#146;s available,
+otherwise the kernel keeps normal operation.
+require
+means SA is required whenever the kernel sends a packet matched
+with the policy.
+unique
+is the same as
+require;
+in addition, it allows the policy to match the unique out-bound SA.
+You just specify the policy level
+unique,
+<b>racoon</b>(8)
+will configure the SA for the policy.
+If you configure the SA by manual keying for that policy,
+you can put a decimal number as the policy identifier after
+unique
+separated by a colon
+&#39;:&#39;
+like:
+unique:number
+in order to bind this policy to the SA.
+number
+must be between 1 and 32767.
+It corresponds to
+<i> extensions-<b>u</b> </i>
+of the manual SA configuration.
+When you want to use SA bundle, you can define multiple rules.
+For example, if an IP header was followed by an AH header followed
+by an ESP header followed by an upper layer protocol header, the
+rule would be:
+<p>&nbsp; &nbsp; <tt> esp/transport//require ah/transport//require</tt>;<p>
+
+The rule order is very important.
+<p>
+When NAT-T is enabled in the kernel, policy matching for ESP over
+UDP packets may be done on endpoint addresses and port
+(this depends on the system.
+System that do not perform the port check cannot support
+multiple endpoints behind the same NAT).
+When using ESP over UDP, you can specify port numbers in the endpoint
+addresses to get the correct matching.
+Here is an example:
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+spdadd 10.0.11.0/24[any] 10.0.11.33/32[any] any -P out ipsec
+    esp/tunnel/192.168.0.1[4500]-192.168.1.2[30000]/require ;
+<p>
+</pre></td></tr>
+</table>
+These ports must be left unspecified (which defaults to 0) for
+anything other than ESP over UDP.
+They can be displayed in SPD dump using
+<b>setkey</b>
+-<b>DPp</b> .
+<p>
+Note that
+"discard"
+and
+"none"
+are not in the syntax described in
+<b>ipsec_set_policy</b>(3).
+There are a few differences in the syntax.
+See
+<b>ipsec_set_policy</b>(3)
+for detail.
+<h2><i>Algorithms</i></h2>
+The following list shows the supported algorithms.
+<b> protocol</b>
+and
+<b> algorithm</b>
+are almost orthogonal.
+These authentication algorithms can be used as
+<i> aalgo</i>
+in
+-<b>A</b> <i> aalgo</i>
+of the
+<i> protocol</i>
+parameter:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+algorithm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;keylen (bits)
+hmac-md5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;128&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ah: rfc2403
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;128&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ah-old: rfc2085
+hmac-sha1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;160&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ah: rfc2404
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;160&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ah-old: 128bit ICV (no document)
+keyed-md5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;128&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ah: 96bit ICV (no document)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;128&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ah-old: rfc1828
+keyed-sha1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;160&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ah: 96bit ICV (no document)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;160&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ah-old: 128bit ICV (no document)
+null&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0 to 2048&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for debugging
+hmac-sha256&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;256&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ah: 96bit ICV
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(draft-ietf-ipsec-ciph-sha-256-00)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;256&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ah-old: 128bit ICV (no document)
+hmac-sha384&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;384&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ah: 96bit ICV (no document)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;384&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ah-old: 128bit ICV (no document)
+hmac-sha512&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;512&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ah: 96bit ICV (no document)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;512&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ah-old: 128bit ICV (no document)
+hmac-ripemd160&nbsp;&nbsp;160&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ah: 96bit ICV (RFC2857)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ah-old: 128bit ICV (no document)
+aes-xcbc-mac&nbsp;&nbsp;&nbsp;&nbsp;128&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ah: 96bit ICV (RFC3566)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;128&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ah-old: 128bit ICV (no document)
+tcp-md5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8 to 640&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tcp: rfc2385
+</pre></td></tr>
+</table>
+<p>
+These encryption algorithms can be used as
+<i> ealgo</i>
+in
+-<b>E</b> <i> ealgo</i>
+of the
+<i> protocol</i>
+parameter:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+algorithm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;keylen (bits)
+des-cbc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;esp-old: rfc1829, esp: rfc2405
+3des-cbc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;192&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rfc2451
+null&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0 to 2048&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rfc2410
+blowfish-cbc&nbsp;&nbsp;&nbsp;&nbsp;40 to 448&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rfc2451
+cast128-cbc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;40 to 128&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rfc2451
+des-deriv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ipsec-ciph-des-derived-01
+3des-deriv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;192&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no document
+rijndael-cbc&nbsp;&nbsp;&nbsp;&nbsp;128/192/256&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rfc3602
+twofish-cbc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0 to 256&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;draft-ietf-ipsec-ciph-aes-cbc-01
+aes-ctr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;160/224/288&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;draft-ietf-ipsec-ciph-aes-ctr-03
+</pre></td></tr>
+</table>
+<p>
+Note that the first 128 bits of a key for
+aes-ctr
+will be used as AES key, and the remaining 32 bits will be used as nonce.
+<p>
+These compression algorithms can be used as
+<i> calgo</i>
+in
+-<b>C</b> <i> calgo</i>
+of the
+<i> protocol</i>
+parameter:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+algorithm
+deflate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rfc2394
+</pre></td></tr>
+</table>
+<h2><i>RFC vs Linux kernel semantics</i></h2>
+The Linux kernel uses the
+<i> fwd</i>
+policy instead of the
+<i> in</i>
+policy for packets what are forwarded through that particular box.
+<p>
+In
+<i> kernel</i>
+mode,
+<b>setkey</b>
+manages and shows policies and SAs exactly as they are stored in the kernel.
+<p>
+In
+<i> RFC</i>
+mode,
+<b>setkey</b>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+</td><td>
+creates
+<i> fwd</i>
+policies for every
+<i> in</i>
+policy inserted
+</td></tr>
+<tr valign="top"><td>
+</td><td>
+(not implemented yet) filters out all
+<i> fwd</i>
+policies
+</td></tr>
+</table>
+<h1 class="manpages">RETURN VALUES</h1>
+The command exits with 0 on success, and non-zero on errors.
+<h1 class="manpages">EXAMPLES</h1>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+add 3ffe:501:4819::1 3ffe:501:481d::1 esp 123457
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-E des-cbc 0x3ffe05014819ffff ;
+<p>
+add -6 myhost.example.com yourhost.example.com ah 123456
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-A hmac-sha1 "AH SA configuration!" ;
+<p>
+add 10.0.11.41 10.0.11.33 esp 0x10001
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-E des-cbc 0x3ffe05014819ffff
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-A hmac-md5 "authentication!!" ;
+<p>
+get 3ffe:501:4819::1 3ffe:501:481d::1 ah 123456 ;
+<p>
+flush ;
+<p>
+dump esp ;
+<p>
+spdadd 10.0.11.41/32[21] 10.0.11.33/32[any] any
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-P out ipsec esp/tunnel/192.168.0.1-192.168.1.2/require ;
+<p>
+add 10.1.10.34 10.1.10.36 tcp 0x1000 -A tcp-md5 "TCP-MD5 BGP secret" ;
+<p>
+add 10.0.11.41 10.0.11.33 esp 0x10001
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-ctx 1 1 "system_u:system_r:unconfined_t:SystemLow-SystemHigh"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-E des-cbc 0x3ffe05014819ffff;
+<p>
+spdadd 10.0.11.41 10.0.11.33 any
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-ctx 1 1 "system_u:system_r:unconfined_t:SystemLow-SystemHigh"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-P out ipsec esp/transport//require ;
+</pre></td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<b>racoon</b>(8),
+<b>sysctl</b>(8)
+<br />.Rs 
+<i> Changed manual key configuration for IPsec</i>
+<!-- ignored unsupported tag .%O -->
+<!-- ignored unsupported tag .%D -->
+<br />.Re 
+<h1 class="manpages">HISTORY</h1>
+The
+<b>setkey</b>
+command first appeared in the WIDE Hydrangea IPv6 protocol stack
+kit.
+The command was completely re-designed in June 1998.
+<h1 class="manpages">BUGS</h1>
+<b>setkey</b>
+should report and handle syntax errors better.
+<p>
+For IPsec gateway configuration,
+<i> src_range</i>
+and
+<i> dst_range</i>
+with TCP/UDP port numbers does not work, as the gateway does not
+reassemble packets
+(it cannot inspect upper-layer headers).
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion51a4-2.html?tutorial=unix_commands&amp;file=setkey.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/setkey.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:24 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,632 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/getopt.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:42 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>getopt - Unix, Linux Command</title>
+<meta name="Description" Content="getopt - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>getopt - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+getopt - parse command options (enhanced)
+<h1 class="manpages">SYNOPSIS</h1>
+<b>getopt</b> optstring parameters <p>
+<b>getopt</b> [options] [<b>--</b>] optstring parameters <p>
+<b>getopt</b> [options] <b>-o</b>|<b>--options</b> optstring [options] [<b>--</b>] parameters <h1 class="manpages">DESCRIPTION</h1>
+<b>getopt</b> is used to break up
+(<i>parse</i>) options in command lines for easy parsing by
+shell procedures, and to check for legal options.
+It uses the
+<font size="-1">GNU</font> <b>getopt</b>(3)
+routines to do this.
+<p>
+The parameters
+<b>getopt</b> is called with can be divided into two parts: options
+which modify the way getopt will parse
+(<i>options</i> and
+<i>-o|--options optstring</i> in the
+<b>SYNOPSIS),</b> and the parameters which are to be
+parsed
+(<i>parameters</i> in the
+<b>SYNOPSIS).</b> The second part will start at the first non-option parameter
+that is not an option argument, or after the first occurrence of
+&#145;<b>--</b>&#146;. If no
+&#145;<b>-o</b>&#146; or
+&#145;<b>--options</b>&#146; option is found in the first part, the first
+parameter of the second part is used as the short options string.
+<p>
+If the environment variable
+<b>GETOPT_COMPATIBLE</b> is set, or if its first parameter
+is not an option (does not start with a
+&#145;<b>-</b>&#146;, this is the first format in the
+<b>SYNOPSIS),</b> <b>getopt</b> will generate output that is compatible with that of other versions of
+<b>getopt</b>(1).
+It will still do parameter shuffling and recognize optional
+arguments (see section
+<b><a href=#7>COMPATIBILITY</a></b> for more information).
+<p>
+Traditional implementations of
+<b>getopt</b>(1)
+are unable to cope with whitespace and other (shell-specific) special characters
+in arguments and non-option parameters. To solve this problem, this
+implementation can generate
+quoted output which must once again be interpreted by the shell (usually
+by using the
+<b>eval</b> command). This has the effect of preserving those characters, but
+you must call
+<b>getopt</b> in a way that is no longer compatible with other versions (the second
+or third format in the
+<b>SYNOPSIS).</b> To determine whether this enhanced version of
+<b>getopt</b>(1)
+is installed, a special test option
+(<b>-T</b>) can be used.
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+-a, --alternative
+</td><td>
+Allow long options to start with a single
+&#145;<b>-</b>&#146;. </td></tr>
+<tr valign="top"><td width=6%>
+-h, --help
+</td><td>
+Output a small usage guide and exit succesfully. No other output is generated.
+</td></tr>
+<tr valign="top"><td width=6%>
+-l, --longoptions longopts
+</td><td>
+The long (multi-character) options to be recognized.
+More than one option name
+may be specified at once, by separating the names with commas. This option
+may be given more than once, the
+<i>longopts</i> are cumulative.
+Each long option name
+in
+<i>longopts</i> may be followed by one colon to indicate it has a required argument,and by two colons to indicate it has an optional argument.
+</td></tr>
+<tr valign="top"><td width=6%>
+-n, --name progname
+</td><td>
+The name that will be used by the
+<b>getopt</b>(3)
+routines when it reports errors. Note that errors of
+<b>getopt</b>(1)
+are still reported as coming from getopt.
+</td></tr>
+<tr valign="top"><td width=6%>
+-o, --options shortopts
+</td><td>
+The short (one-character) options to be recognized. If this option is not
+found, the first parameter of
+<b>getopt</b> that does not start with
+a
+&#145;<b>-</b>&#146; (and is not an option argument) is used as the short options string.
+Each short option character
+in
+<i>shortopts</i> may be followed by one colon to indicate it has a required argument,
+and by two colons to indicate it has an optional argument.
+The first character of shortopts may be
+&#145;<b>+</b>&#146; or
+&#145;<b>-</b>&#146; to influence the way
+options are parsed and output is generated (see section
+<b>SCANNING MODES</b> for details).
+</td></tr>
+<tr valign="top"><td width=6%>
+-q, --quiet
+</td><td>
+Disable error reporting by getopt(3).
+</td></tr>
+<tr valign="top"><td width=6%>
+-Q, --quiet-output
+</td><td>
+Do not generate normal output. Errors are still reported by
+<b>getopt</b>(3),
+unless you also use
+<i>-q</i>. </td></tr>
+<tr valign="top"><td width=6%>
+-s, --shell shell
+</td><td>
+Set quoting conventions to those of shell. If no -s argument is found,
+the
+<font size="-1">BASH</font> conventions are used. Valid arguments are currently
+&#145;<b>sh</b>&#146; &#145;<b>bash</b>&#146;, &#145;<b>csh</b>&#146;, and
+&#145;<b>tcsh</b>&#146;. </td></tr>
+<tr valign="top"><td width=6%>
+-u, --unquoted
+</td><td>
+Do not quote the output. Note that whitespace and special (shell-dependent)
+characters can cause havoc in this mode (like they do with other
+<b>getopt</b>(1)
+implementations).
+</td></tr>
+<tr valign="top"><td width=6%>
+-T --test
+</td><td>
+Test if your
+<b>getopt</b>(1)
+is this enhanced version or an old version. This generates no output,
+and sets the error status to 4. Other implementations of
+<b>getopt</b>(1),
+and this version if the environment variable
+<b>GETOPT_COMPATIBLE</b> is set,
+will return
+&#145;<b>--</b>&#146; and error status 0.
+</td></tr>
+<tr valign="top"><td width=6%>
+-V, --version
+</td><td>
+Output version information and exit succesfully. No other output is generated.
+</td></tr>
+</table>
+<h1 class="manpages">PARSING</h1>
+This section specifies the format of the second part of the parameters of
+<b>getopt</b> (the
+<i>parameters</i> in the
+<b><a href=#1>SYNOPSIS</a></b>). The next section
+(<b>OUTPUT</b>) describes the output that is
+generated. These parameters were typically the parameters a shell function
+was called with.
+Care must be taken that each parameter the shell function was
+called with corresponds to exactly one parameter in the parameter list of
+<b>getopt</b> (see the
+<b><a href=#9>EXAMPLES</a></b>). All parsing is done by the GNU
+<b>getopt</b>(3)
+routines.
+<p>
+The parameters are parsed from left to right. Each parameter is classified as a
+short option, a long option, an argument to an option,
+or a non-option parameter.
+<p>
+A simple short option is a
+&#145;<b>-</b>&#146; followed by a short option character. If
+the option has a required argument, it may be written directly after the option
+character or as the next parameter (ie. separated by whitespace on the
+command line). If the
+option has an optional argument, it must be written directly after the
+option character if present.
+<p>
+It is possible to specify several short options after one
+&#145;<b>-</b>&#146;, as long as all (except possibly the last) do not have required or optional
+arguments.
+<p>
+A long option normally begins with
+&#145;<b>--</b>&#146; followed by the long option name.
+If the option has a required argument, it may be written directly after
+the long option name, separated by
+&#145;<b>=</b>&#146;, or as the next argument (ie. separated by whitespace on the command line).
+If the option has an optional argument, it must
+be written directly after the long option name, separated by
+&#145;<b>=</b>&#146;, if present (if you add the
+&#145;<b>=</b>&#146; but nothing behind it, it is interpreted
+as if no argument was present; this is a slight bug, see the
+<b><a href=#11>BUGS</a></b>). Long options may be abbreviated, as long as the abbreviation is not
+ambiguous.
+<p>
+Each parameter not starting with a
+&#145;<b>-</b>&#146;, and not a required argument of
+a previous option, is a non-option parameter. Each parameter after
+a
+&#145;<b>--</b>&#146; parameter is always interpreted as a non-option parameter.
+If the environment variable
+<b>POSIXLY_CORRECT</b> is set, or if the short
+option string started with a
+&#145;<b>+</b>&#146;, all remaining parameters are interpreted
+as non-option parameters as soon as the first non-option parameter is
+found.
+<h1 class="manpages">OUTPUT</h1>
+Output is generated for each element described in the previous section.
+Output is done
+in the same order as the elements are specified in the input, except
+for non-option parameters. Output can be done in
+<i>compatible</i> (<i>unquoted</i>) mode, or in such way that whitespace and other special characters within
+arguments and non-option parameters are preserved (see
+<b><a href=#6>QUOTING</a></b>). When the output is processed in the shell script, it will seem to be
+composed of distinct elements that can be processed one by one (by using the
+shift command in most shell languages). This is imperfect in unquoted mode,
+as elements can be split at unexpected places if they contain whitespace
+or special characters.
+<p>
+If there are problems parsing the parameters, for example because a
+required argument is not found or an option is not recognized, an error
+will be reported on stderr, there will be no output for the offending
+element, and a non-zero error status is returned.
+<p>
+For a short option, a single
+&#145;<b>-</b>&#146; and the option character are generated
+as one parameter. If the option has an argument, the next
+parameter will be the argument. If the option takes an optional argument,
+but none was found, the next parameter will be generated but be empty in
+quoting mode,
+but no second parameter will be generated in unquoted (compatible) mode.
+Note that many other
+<b>getopt</b>(1)
+implemetations do not support optional arguments.
+<p>
+If several short options were specified after a single
+&#145;<b>-</b>&#146;, each will be present in the output as a separate parameter.
+<p>
+For a long option,
+&#145;<b>--</b>&#146; and the full option name are generated as one
+parameter. This is done regardless whether the option was abbreviated or
+specified with a single
+&#145;<b>-</b>&#146; in the input. Arguments are handled as with short options.
+<p>
+Normally, no non-option parameters output is generated until all options
+and their arguments have been generated. Then
+&#145;<b>--</b>&#146; is generated as a
+single parameter, and after it the non-option parameters in the order
+they were found, each as a separate parameter.
+Only if the first character of the short options string was a
+&#145;<b>-</b>&#146;, non-option parameter output is generated at the place they are found in the
+input (this is not supported if the first format of the
+<b><a href=#1>SYNOPSIS</a></b> is used; in that case all preceding occurrences of
+&#145;<b>-</b>&#146; and
+&#145;<b>+</b>&#146; are ignored).
+<h1 class="manpages">QUOTING</h1>
+In compatible mode, whitespace or &#146;special&#146; characters in arguments or
+non-option parameters are not handled correctly. As the output is
+fed to the shell script, the script does not know how it is supposed to break
+the output into separate parameters.  To circumvent this
+problem, this implementation offers quoting. The idea is that output
+is generated with quotes around each parameter. When this output is once
+again fed to the shell (usually by a shell
+<b>eval</b> command), it is split correctly into separate parameters.
+<p>
+Quoting is not enabled if the environment variable
+<b>GETOPT_COMPATIBLE</b> is set, if the first form of the
+<b><a href=#1>SYNOPSIS</a></b> is used, or if the option
+&#145;<b>-u</b>&#146; is found.
+<p>
+Different shells use different quoting conventions. You can use the
+&#145;<b>-s</b>&#146; option to select the shell you are using. The following shells are
+currently supported:
+&#145;<b>sh</b>&#146;, &#145;<b>bash</b>&#146;, &#145;<b>csh</b>&#146; and
+&#145;<b>tcsh</b>&#146;. Actually, only two &#145;flavors&#146; are distinguished: sh-like quoting conventions
+and csh-like quoting conventions. Chances are that if you use another shell
+script language, one of these flavors can still be used.
+<p>
+<h1 class="manpages">SCANNING MODES</h1>
+The first character of the short options string may be a
+&#145;<b>-</b>&#146; or a
+&#145;<b>+</b>&#146; to indicate a special scanning mode. If the first calling form
+in the
+<b><a href=#1>SYNOPSIS</a></b> is used they are ignored; the environment variable
+<b>POSIXLY_CORRECT</b> is still examined, though.
+<p>
+If the first character is
+&#145;<b>+</b>&#146;, or if the environment variable
+<b>POSIXLY_CORRECT</b> is set, parsing stops as soon as the first non-option parameter
+(ie. a parameter that does not start with a
+&#145;<b>-</b>&#146;) is found that
+is not an option argument. The remaining parameters are all interpreted as
+non-option parameters.
+<p>
+If the first character is a
+&#145;<b>-</b>&#146;, non-option parameters are outputed at the place where they are found; in normal
+operation, they are all collected at the end of output after a
+&#145;<b>--</b>&#146; parameter has been generated. Note that this
+&#145;<b>--</b>&#146; parameter is still generated, but it will always be the last parameter in
+this mode.
+<h1 class="manpages">COMPATIBILITY</h1>
+This version of
+<b>getopt</b>(1)
+is written to be as compatible as possible to
+other versions. Usually you can just replace them with this version
+without any modifications, and with some advantages.
+<p>
+If the first character of the first parameter of getopt is not a
+&#145;<b>-</b>&#146;, getopt goes into compatibility mode. It will interpret its first parameter as
+the string of short options, and all other arguments will be parsed. It
+will still do parameter shuffling (ie. all non-option parameters are outputed
+at the end), unless the environment variable
+<b>POSIXLY_CORRECT</b> is set.
+<p>
+The environment variable
+<b>GETOPT_COMPATIBLE</b> forces
+<b>getopt</b> into compatibility mode. Setting both this environment variable and
+<b>POSIXLY_CORRECT</b> offers 100% compatibility for &#145;difficult&#146; programs. Usually, though,
+neither is needed.
+<p>
+In compatibility mode, leading
+&#145;<b>-</b>&#146; and
+&#145;<b>+</b>&#146; characters in the short options string are ignored.
+<h1 class="manpages">RETURN CODES</h1>
+<b>getopt</b> returns error code
+<b>0</b> for succesful parsing,
+<b>1</b> if
+<b>getopt</b>(3)
+returns errors,
+<b>2</b> if it does not understand its own parameters,
+<b>3</b> if an internal error occurs like out-of-memory, and
+<b>4</b> if it is called with
+<b>-T</b>. <h1 class="manpages">EXAMPLES</h1>
+Example scripts for (ba)sh and (t)csh are provided with the
+<b>getopt</b>(1)
+distribution, and are optionally installed in
+<b>/usr/local/lib/getopt</b> or
+<b>/usr/lib/getopt</b>. <h1 class="manpages">ENVIRONMENT</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+POSIXLY_CORRECT
+</td><td>
+This environment variable is examined by the
+<b>getopt</b>(3)
+routines.
+If it is set, parsing stops as soon as a parameter
+is found that is not an option or an option argument. All remaining
+parameters are also interpreted as non-option parameters, regardless
+whether they start with a
+&#145;<b>-</b>&#146;. </td></tr>
+<tr valign="top"><td width=6%>
+GETOPT_COMPATIBLE
+</td><td>
+Forces
+<b>getopt</b> to use the first calling format as specified in the
+<b><a href=#1>SYNOPSIS</a></b>. </td></tr>
+</table>
+<h1 class="manpages">BUGS</h1>
+<b>getopt</b>(3)
+can parse long options with optional arguments that are given an empty optional
+argument (but can not do this for short options). This
+<b>getopt</b>(1)
+treats optional arguments that are empty as if they were not present.
+<p>
+The syntax if you do not want any short option variables at all is
+not very intuitive (you have to set them explicitely to the empty
+string).
+<p>
+<h1 class="manpages">AUTHOR</h1>
+Frodo Looijaard &lt;<a href="mailto:frodo@frodo.looijaard.name">frodo@frodo.looijaard.name</a>&gt;
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="bash.htm">bash (1)</a></p></li>
+<li><p><a href="tcsh.htm">tcsh (1)</a></p></li>
+</ul>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion5de3.html?tutorial=unix_commands&amp;file=getopt.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/getopt.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:42 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

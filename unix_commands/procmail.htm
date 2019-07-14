@@ -1,0 +1,1434 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/procmail.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:15 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>procmail - Unix, Linux Command</title>
+<meta name="Description" Content="procmail - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>procmail - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- Fake renaming reserved macro 'SH' -->
+<!-- Fake renaming reserved macro 'SS' -->
+<!-- Fake renaming reserved macro 'TP' -->
+<!-- Fake renaming reserved macro 'RS' -->
+<!-- Fake renaming reserved macro 'RE' -->
+<!-- ignored unsupported tag .na -->
+<!-- ignored unsupported tag .ne -->
+<h1 class="manpages">NAME</h1>
+procmail - autonomous mail processor
+<!-- ignored unsupported tag .ne -->
+<h1 class="manpages">SYNOPSIS</h1>
+<b>procmail</b> [<b>-ptoY</b>] [<b>-f </b><i>fromwhom</i>] <!-- ignored unsupported tag .if -->
+[<i>parameter</i><b>=</b>value |<i> rcfile</i>] &#46;..
+<!-- Need break --><br />
+<b>procmail</b> [<b>-toY</b>] [<b>-f </b><i>fromwhom</i>] [<b>-a </b><i>argument</i>] &#46;..
+<!-- ignored unsupported tag .if -->
+<b>-d</b> <i>recipient</i> &#46;..
+<!-- Need break --><br />
+<b>procmail</b> [<b>-ptY</b>] <b>-m</b> [<i>parameter</i><b>=</b>value] &#46;..
+<i>rcfile</i> <!-- ignored unsupported tag .if -->
+[<i>argument</i>] &#46;..
+<!-- Need break --><br />
+<b>procmail</b> [<b>-toY</b>] [<b>-a  </b><i>argument</i>] <b>-z</b> <!-- Need break --><br />
+<b>procmail</b> <b>-v</b> <!-- ignored unsupported tag .ad -->
+<!-- ignored unsupported tag .ne -->
+<h1 class="manpages">DESCRIPTION</h1>
+For a quick start, see
+<b><a href=#12>NOTES</a></b> at the end.
+<p>
+<b>Procmail</b> should be invoked automatically over the
+<b>.forward</b> file mechanism as soon as mail arrives.  Alternatively, when installed by
+a system administrator (and in the standard Red Hat Linux configuration), it
+can be invoked from within the mailer immediately.  When invoked, it
+first sets some environment variables to default values, reads the mail message from
+stdin until an EOF, separates the body from the header, and then, if no command line
+arguments are present, it starts to look for a file named
+<b>$HOME/.procmailrc</b>. According to the processing recipes in this file,
+the mail message that just arrived gets distributed into the right folder
+(and more).  If no rcfile is found, or processing of the rcfile falls off
+the end, procmail will store the mail in the default system
+mailbox.
+<p>
+If no rcfiles and no
+<b>-p</b> have been specified on the command line, procmail will, prior to reading $HOME/.procmailrc, interpret commands from
+<b>/etc/procmailrc</b> (if present).
+Care must be taken when creating /etc/procmailrc, because, if circumstances permit, it will be executed with root privileges (contrary to the $HOME/.procmailrc file of course).
+<p>
+If running suid root or with root privileges, procmail will be able to
+perform as a functionally enhanced, backwards compatible mail delivery agent.
+<p>
+Procmail can also be used as a general purpose mail filter, i.e., provisions
+have been made to enable procmail to be invoked in a special sendmail rule.
+<p>
+The rcfile format is described in detail in the
+<b>procmailrc</b>(5)
+man page.
+<p>
+The weighted scoring technique is described in detail in the
+<b>procmailsc</b>(5)
+man page.
+<p>
+Examples for rcfile recipes can be looked up in the
+<b>procmailex</b>(5)
+man page.
+<!-- ignored unsupported tag .ne -->
+<h2><i>Signals</i></h2>
+<!-- ignored unsupported tag .ne -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>TERMINATE</b> </td><td valign="bottom">
+Terminate prematurely and requeue the mail.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>HANGUP</b> </td><td valign="bottom">
+Terminate prematurely and bounce the mail.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>INTERRUPT</b> </td><td valign="bottom">
+Terminate prematurely and bounce the mail.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>QUIT</b> </td><td valign="bottom">
+Terminate prematurely and silently lose the mail.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>ALARM</b> </td><td valign="bottom">
+Force a timeout (see
+<b>TIMEOUT).</b> <!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>USR1</b> </td><td valign="bottom">
+Equivalent to a
+<b>VERBOSE</b>=off. <!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>USR2</b> </td><td valign="bottom">
+Equivalent to a
+<b>VERBOSE</b>=on. <!-- ignored unsupported tag .ne -->
+</td></tr>
+</table>
+<h1 class="manpages">OPTIONS</h1>
+<!-- ignored unsupported tag .ne -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-v</b> </td><td valign="bottom">
+Procmail will print its version number, display its compile time
+configuration and exit.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>-p</b> </td><td valign="bottom">
+Preserve any old environment.  Normally procmail clears the environment
+upon startup, except for the value of TZ.  However, in any case: any default values will override
+any preexisting environment variables, i.e., procmail will not pay any attention
+to any predefined environment variables, it will happily overwrite them
+with its own defaults.  For the list of environment variables that procmail
+will preset see the
+<b>procmailrc</b>(5)
+man page.  If both -p and -m are specified, the
+list of preset environment variables shrinks to just: LOGNAME, HOME, SHELL,
+ORGMAIL and MAILDIR.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>-t</b> </td><td valign="bottom">
+Make procmail fail softly, i.e., if procmail cannot deliver the mail to
+any of the destinations you gave, the mail will not bounce, but will return
+to the mailqueue.  Another delivery-attempt will be made at some time in
+the future.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i></i><b>-f</b> fromwhom </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Causes procmail to regenerate the leading &#145;From &#146; line with
+<i>fromwhom</i> as the sender (instead of -f one could use the alternate and
+obsolete -r).  If
+<i>fromwhom</i> consists merely of a single &#145;-&#146;, then procmail will only
+update the timestamp on the &#145;From &#146; line (if present, if not, it will
+generate a new one).
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>-o</b> </td><td valign="bottom">
+Instead of allowing anyone to generate &#145;From &#146; lines, simply override
+the fakes.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>-Y</b> </td><td valign="bottom">
+Assume traditional Berkeley mailbox format, ignore any
+<b>Content-Length:</b> fields.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i></i><b>-a</b> argument </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+This will set $1 to be equal to
+<i>argument</i>. Each succeeding
+<i></i><b>-a</b> argument will set the next number variable ($2, $3, etc).  It can be used
+to pass meta information along to procmail.  This is typically done
+by passing along the $@x information from the sendmail mailer rule.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i></i><b>-d</b> recipient ... </td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+This turns on explicit delivery mode, delivery will be to the local user
+<i>recipient</i>. This, of course, only is possible if procmail has root
+privileges (or if procmail is already running with the recipient&#146;s euid and egid).
+Procmail will setuid to the intended recipients and delivers the mail as
+if it were invoked by the recipient with no arguments (i.e., if no rcfile
+is found, delivery is like ordinary mail).  This option is incompatible with
+<b>-p</b>. <!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>-m</b> </td><td valign="bottom">
+Turns procmail into a general purpose mail filter.  In this mode one rcfile
+must be specified on the command line.  After the rcfile, procmail will
+accept an unlimited number of arguments.
+If the rcfile is an absolute path starting with
+<b>/etc/procmailrcs/</b> without backward references (i.e. the parent directory cannot be mentioned) procmail will, only if no security violations are found, take on the identity of the owner of the rcfile (or symbolic link).
+For some advanced usage of this option you should look in the
+<b><a href=#6>EXAMPLES</a></b> section below.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>-z</b> </td><td valign="bottom">
+This turns on LMTP mode, wherein procmail acts as an RFC2033 LMTP server.
+Delivery takes place in the same  manner and under the same restrictions as
+the delivery mode enabled  with
+<b>-d</b>. This option is incompatible with
+<b>-p</b> and
+<b>-f</b>. <p>
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+</table>
+<h1 class="manpages">ARGUMENTS</h1>
+Any arguments containing an &#146;=&#146; are considered to be environment variable
+assignments, they will
+<i>all</i> be evaluated after the default values have been
+assigned and before the first rcfile is opened.
+<p>
+Any other arguments are presumed to be rcfile paths (either absolute,
+or if they start with &#145;./&#146; relative to the current
+directory;
+<b>any other relative</b> path is relative to $HOME, unless the
+<b>-m</b> option has been given, in which case all relative paths are relative to the
+current directory); procmail will start with the first one it finds on the
+command line.  The following ones will only be parsed if the preceding ones
+have a not matching HOST-directive entry, or in case they should not exist.
+<p>
+If no rcfiles are specified, it looks for
+<b>$HOME/.procmailrc</b>. If not even that can be found, processing will continue according to
+the default settings of the environment variables and the ones specified
+on the command line.
+<!-- ignored unsupported tag .ne -->
+<h1 class="manpages">EXAMPLES</h1>
+Examples for rcfile recipes can be looked up in the
+<b>procmailex</b>(5)
+man page.
+A small sample rcfile can be found in the
+<b><a href=#12>NOTES</a></b> section below.
+<p>
+Skip the rest of this EXAMPLES section unless you are a system administrator
+who is vaguely familiar with sendmail.cf syntax.
+<p>
+The
+<b>-m</b> option is typically used when procmail is called from within a rule in the
+sendmail.cf file.  In order to be able to do this it is convenient to create
+an extra &#145;procmail&#146; mailer in your sendmail.cf file (in addition to the perhaps
+already present &#145;local&#146; mailer that starts up procmail).  To create such a
+&#145;procmail&#146; mailer I&#146;d suggest something like:
+<p>
+<!-- ignored unsupported tag .ne -->
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+Mprocmail, P=/usr/bin/procmail, F=mSDFMhun, S=11, R=21,
+        A=procmail -m $h $g $u
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+<p>
+This enables you to use rules like the following (most likely in ruleset 0)
+to filter mail through the procmail mailer (please note the leading tab
+to continue the rule, and the tab to separate the comments):
+<p>
+<!-- ignored unsupported tag .ne -->
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+R$*&lt;@some.where&gt;$*
+        $#procmail $@/etc/procmailrcs/some.rc $:$<a href="mailto:1@some.where.procmail">1@some.where.procmail</a>$2
+R$*&lt;@$*.procmail&gt;$*
+        $1&lt;@$2&gt;$3       Already filtered, map back
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+<p>
+And /etc/procmailrcs/some.rc could be as simple as:
+<p>
+<!-- ignored unsupported tag .ne -->
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+SENDER = "&lt;$1&gt;"                 # fix for empty sender addresses
+SHIFT = 1                       # remove it from $@
+<p>
+:0                              # sink all junk mail
+* ^Subject:.*junk
+/dev/null
+<p>
+:0 w                            # pass along all other mail
+! -oi -f "$SENDER" "$@"
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+<p>
+Do watch out when sending mail from within the /etc/procmailrcs/some.rc file,
+if you send mail to addresses which match the first rule again, you could
+be creating an endless mail loop.
+<!-- ignored unsupported tag .ne -->
+<h1 class="manpages">FILES</h1>
+<!-- ignored unsupported tag .ne -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>/etc/passwd</b> </td><td valign="bottom">
+to set the recipient&#146;s LOGNAME, HOME and SHELL variable defaults
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>/var/mail/$LOGNAME</b> </td><td valign="bottom">
+system mailbox; both the system mailbox and the immediate directory
+it is in will be created every time procmail starts and either one is
+not present
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>/etc/procmailrc</b> </td><td valign="bottom">
+initial global rcfile
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>/etc/procmailrcs/</b> </td><td valign="bottom">
+special privileges path for rcfiles
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>$HOME/.procmailrc</b> </td><td valign="bottom">
+default rcfile
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>/var/mail/$LOGNAME.lock</b> </td><td valign="bottom">
+lockfile for the system mailbox (not automatically used by procmail, unless
+$DEFAULT equals /var/mail/$LOGNAME and procmail is delivering to $DEFAULT)
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>/usr/sbin/sendmail</b> </td><td valign="bottom">
+default mail forwarder
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+<b>_????&#145;hostname&#145;</b> </td><td valign="bottom">
+temporary &#145;unique&#146; zero-length files created by procmail
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<!-- ignored unsupported tag .nh -->
+<b>procmailrc</b>(5),
+<b>procmailsc</b>(5),
+<b>procmailex</b>(5),
+<b>sh</b>(1),
+<b>csh</b>(1),
+<b>mail</b>(1),
+<b>mailx</b>(1),
+<b>binmail</b>(1),
+<b>uucp</b>(1),
+<b>aliases</b>(5),
+<b>sendmail</b>(8),
+<b>egrep</b>(1),
+<b>grep</b>(1),
+<b>biff</b>(1),
+<b>comsat</b>(8),
+<b>lockfile</b>(1),
+<b>formail</b>(1),
+<b>cron</b>(1)
+<!-- ignored unsupported tag .hy -->
+<!-- ignored unsupported tag .ad -->
+<!-- ignored unsupported tag .ne -->
+<h1 class="manpages">DIAGNOSTICS</h1>
+<!-- ignored unsupported tag .ne -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+Autoforwarding mailbox found
+</td></tr><tr valign="top"><td width=23%>&nbsp;</td><td>
+The system mailbox had its suid or sgid bit set, procmail terminates with
+EX_NOUSER assuming that this mailbox must not be delivered to.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Bad substitution of "x"
+</td><td valign="bottom">
+Not a valid environment variable name specified.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Closing brace unexpected
+</td><td valign="bottom">
+There was no corresponding opening brace (nesting block).
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Conflicting options
+</td><td valign="bottom">
+Not all option combinations are useful
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Conflicting x suppressed
+</td><td valign="bottom">
+Flag x is not compatible with some other flag on this recipe.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Couldn&#146;t create "x"
+</td><td valign="bottom">
+The system mailbox was missing and could not/will not be created.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+Couldn&#146;t create maildir part "x"
+</td></tr><tr valign="top"><td width=23%>&nbsp;</td><td>
+The maildir folder "x" is missing one or more required subdirectories and
+procmail could not create them.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+Couldn&#146;t create or rename temp file "x"
+</td></tr><tr valign="top"><td width=23%>&nbsp;</td><td>
+An error occurred in the mechanics of  delivering to the directory folder "x".
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+Couldn&#146;t determine implicit lockfile from "x"
+</td></tr><tr valign="top"><td width=23%>&nbsp;</td><td>
+There were no &#145;&gt;&gt;&#146; redirectors to be found, using simply &#145;$LOCKEXT&#146; as
+locallockfile.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Couldn&#146;t read "x"
+</td><td valign="bottom">
+Procmail was unable to open an rcfile or it was not a regular file, or
+procmail couldn&#146;t open an MH directory to find the highest numbered file.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Couldn&#146;t unlock "x"
+</td><td valign="bottom">
+Lockfile was already gone, or write permission to the directory where the
+lockfile is has been denied.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Deadlock attempted on "x"
+</td><td valign="bottom">
+The locallockfile specified on this recipe is equal to a still active
+$LOCKFILE.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+Denying special privileges for "x"
+</td></tr><tr valign="top"><td width=23%>&nbsp;</td><td>
+Procmail will not take on the identity that comes with the rcfile because
+a security violation was found (e.g.
+<b>-p</b> or variable assignments on the command line) or procmail had insufficient privileges to do so.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+Descriptor "x" was not open
+</td></tr><tr valign="top"><td width=23%>&nbsp;</td><td>
+As procmail was started, stdin, stdout or stderr was not connected (possibly
+an attempt to subvert security)
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+Enforcing stricter permissions on "x"
+</td></tr><tr valign="top"><td width=23%>&nbsp;</td><td>
+The system mailbox of the recipient was found to be unsecured, procmail
+secured it.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Error while writing to "x"
+</td><td valign="bottom">
+Nonexistent subdirectory, no write permission, pipe died or disk full.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Exceeded LINEBUF
+</td><td valign="bottom">
+Buffer overflow detected, LINEBUF was too small, PROCMAIL_OVERFLOW has
+been set.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+MAILDIR is not an absolute path
+<!-- Consumed .TP -->
+<br />
+MAILDIR path too long
+<!-- Consumed .TP -->
+<br />
+ORGMAIL is not an absolute path
+<!-- Consumed .TP -->
+<br />
+ORGMAIL path too long
+<!-- Consumed .TP -->
+<br />
+default rcfile is not an absolute path
+<!-- Consumed .TP -->
+<br />
+default rcfile path too long
+</td></tr><tr valign="top"><td width=23%>&nbsp;</td><td>
+The specified item&#146;s full path, when expanded, was longer than LINEBUF
+or didn&#146;t start with a file separator.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+Excessive output quenched from "x"
+</td></tr><tr valign="top"><td width=23%>&nbsp;</td><td>
+The program or filter "x" tried to produce too much output for the current
+LINEBUF, the rest was discarded and PROCMAIL_OVERFLOW has been set.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Extraneous x ignored
+</td><td valign="bottom">
+The action line or other flags on this recipe makes flag x meaningless.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Failed forking "x"
+</td><td valign="bottom">
+Process table is full (and NORESRETRY has been exhausted).
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Failed to execute "x"
+</td><td valign="bottom">
+Program not in path, or not executable.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+Forced unlock denied on "x"
+</td></tr><tr valign="top"><td width=23%>&nbsp;</td><td>
+No write permission in the directory where
+<b>lockfile</b> "x" resides, or more than one procmail trying to force a lock at exactly the
+same time.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Forcing lock on "x"
+</td><td valign="bottom">
+<b>Lockfile</b> "x" is going to be removed by force because of a timeout (see also:
+<b>LOCKTIMEOUT</b>). <!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Incomplete recipe
+</td><td valign="bottom">
+The start of a recipe was found, but it stranded in an EOF.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Insufficient privileges
+</td><td valign="bottom">
+Procmail either needs root privileges, or must have the
+right (e)uid
+<b>and</b> (e)gid to run in delivery mode.  The mail will bounce.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Invalid regexp "x"
+</td><td valign="bottom">
+The regular expression "x" contains errors (most likely some missing or
+extraneous parens).
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Kernel-lock failed
+</td><td valign="bottom">
+While trying to use the kernel-supported locking calls, one of them failed
+(usually indicates an OS error), procmail ignores this error and proceeds.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Kernel-unlock failed
+</td><td valign="bottom">
+See above.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Lock failure on "x"
+</td><td valign="bottom">
+Can only occur if you specify some real weird (and illegal) lockfilenames
+or if the
+<b>lockfile</b> could not be created because of insufficient permissions or nonexistent
+subdirectories.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Lost "x"
+</td><td valign="bottom">
+Procmail tried to clone itself but could not find back rcfile "x" (it either
+got removed or it was a relative path and you changed directory since
+procmail opened it last time).
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Missing action
+</td><td valign="bottom">
+The current recipe was found to be incomplete.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Missing closing brace
+</td><td valign="bottom">
+A nesting block was started, but never finished.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Missing name
+</td><td valign="bottom">
+The -f option needs an extra argument.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Missing argument
+</td><td valign="bottom">
+You specified the -a option but forgot the argument.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Missing rcfile
+</td><td valign="bottom">
+You specified the -m option, procmail expects the name of an
+rcfile as argument.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Missing recipient
+</td><td valign="bottom">
+You specified the -d option or called procmail under a different
+name, it expects one or more recipients as arguments.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+No space left to finish writing "x"
+</td></tr><tr valign="top"><td width=23%>&nbsp;</td><td>
+The filesystem containing "x" does not have enough free space to permit
+delivery of the message to the file.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Out of memory
+</td><td valign="bottom">
+The system is out of swap space (and NORESRETRY has been exhausted).
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Processing continued
+</td><td valign="bottom">
+The unrecognised options on the command line are ignored, proceeding as
+usual.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+Program failure (nnn) of "x"
+</td></tr><tr valign="top"><td width=23%>&nbsp;</td><td>
+Program that was started by procmail returned nnn instead of
+EXIT_SUCCESS (=0);
+if nnn is negative, then this is the signal the program died on.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+Quota exceeded while writing "x"
+</td></tr><tr valign="top"><td width=23%>&nbsp;</td><td>
+The filesize quota for the recipient on the filesystem containing "x"
+does not permit delivering the message to the file.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Renaming bogus "x" into "x"
+</td><td valign="bottom">
+The system mailbox of the recipient was found to be bogus, procmail performed
+evasive actions.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+Rescue of unfiltered data succeeded/failed
+</td></tr><tr valign="top"><td width=23%>&nbsp;</td><td>
+A filter returned unsuccessfully, procmail tried to get back the original text.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Skipped: "x"
+</td><td valign="bottom">
+Couldn&#146;t do anything with "x" in the rcfile (syntax error), ignoring it.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Suspicious rcfile "x"
+</td><td valign="bottom">
+The owner of the rcfile was not the recipient or root, the file was
+world writable, or the directory that contained it was world writable,
+or this was the default rcfile ($HOME/.procmailrc) and either it was group
+writable or the directory that contained it was group writable (the
+rcfile was not used).
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+Terminating prematurely whilst waiting for ...
+</td></tr><tr valign="top"><td width=23%>&nbsp;</td><td>
+Procmail received a signal while it was waiting for ...
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Timeout, terminating "x"
+</td><td valign="bottom">
+Timeout has occurred on program or filter "x".
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+Timeout, was waiting for "x"
+</td></tr><tr valign="top"><td width=23%>&nbsp;</td><td>
+Timeout has occurred on program, filter or file "x".  If it was a program or
+filter, then it didn&#146;t seem to be running anymore.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+Truncated file to former size
+</td></tr><tr valign="top"><td width=23%>&nbsp;</td><td>
+The file could not be delivered to successfully, so the file was truncated
+to its former size.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+Truncating "x" and retrying lock
+</td></tr><tr valign="top"><td width=23%>&nbsp;</td><td>
+"x" does not seem to be a valid filename or the file is not empty.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+Unable to treat as directory "x"
+</td></tr><tr valign="top"><td width=23%>&nbsp;</td><td>
+Either the suffix on "x" would indicate that it should be an MH or
+maildir folder, or it was listed as an second folder into which to link,
+but it already exists and is not a directory.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Unexpected EOL
+</td><td valign="bottom">
+Missing closing quote, or trying to escape EOF.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Unknown user "x"
+</td><td valign="bottom">
+The specified recipient does not have a corresponding uid.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+</table>
+<h1 class="manpages">EXTENDED DIAGNOSTICS</h1>
+Extended diagnostics can be turned on and off through setting the
+VERBOSE variable.
+<!-- ignored unsupported tag .ne -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+[pid] time & date
+</td><td valign="bottom">
+Procmail&#146;s pid and a timestamp.  Generated whenever procmail logs a
+diagnostic and at least a second has elapsed since the last timestamp.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Acquiring kernel-lock
+</td><td valign="bottom">
+Procmail now tries to kernel-lock the most recently opened file (descriptor).
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Assigning "x"
+</td><td valign="bottom">
+Environment variable assignment.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+Assuming identity of the recipient, VERBOSE=off
+</td></tr><tr valign="top"><td width=23%>&nbsp;</td><td>
+Dropping all privileges (if any), implicitly turns off extended diagnostics.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Bypassed locking "x"
+</td><td valign="bottom">
+The mail spool directory was not accessible to procmail, it relied solely
+on kernel locks.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Executing "x"
+</td><td valign="bottom">
+Starting program "x".  If it is started by procmail directly (without an
+intermediate shell), procmail will show where it separated the arguments
+by inserting commas.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+HOST mismatched "x"
+</td><td valign="bottom">
+This host was called "x", HOST contained something else.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Locking "x"
+</td><td valign="bottom">
+Creating lockfile "x".
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Linking to "x"
+</td><td valign="bottom">
+Creating a hardlink between directory folders.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Match on "x"
+</td><td valign="bottom">
+Condition matched.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Matched "x"
+</td><td valign="bottom">
+Assigned "x" to
+<b>MATCH</b>. <!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+No match on "x"
+</td><td valign="bottom">
+Condition didn&#146;t match, recipe skipped.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+Non-zero exitcode (nnn) by "x"
+</td></tr><tr valign="top"><td width=23%>&nbsp;</td><td>
+Program that was started by procmail as a condition or as the action of
+a recipe with the &#145;W&#146; flag returned nnn instead of
+EXIT_SUCCESS (=0); the usage indicates that this is not an
+entirely unexpected condition.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td colspan="2">
+Notified comsat: "$LOGNAME@offset:file"
+</td></tr><tr valign="top"><td width=23%>&nbsp;</td><td>
+Sent comsat/biff a notice that mail arrived for user $LOGNAME at &#145;offset&#146;
+in &#145;file&#146;.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Opening "x"
+</td><td valign="bottom">
+Opening file "x" for appending.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Rcfile: "x"
+</td><td valign="bottom">
+Rcfile changed to "x".
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Reiterating kernel-lock
+</td><td valign="bottom">
+While attempting several locking methods, one of these failed.  Procmail will
+reiterate until they all succeed in rapid succession.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Score: added newtotal "x"
+</td><td valign="bottom">
+This condition scored &#145;added&#146; points, which resulted in a &#145;newtotal&#146; score.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+<tr valign="top"><td>
+Unlocking "x"
+</td><td valign="bottom">
+Removing lockfile "x" again.
+<!-- ignored unsupported tag .ne -->
+</td></tr>
+</table>
+<h1 class="manpages">WARNINGS</h1>
+You should create a shell script that uses
+<b>lockfile</b>(1)
+before invoking your mail shell on any mailbox file other than the system
+mailbox (unless of course, your mail shell uses the same lockfiles (local
+or global) you specified in your rcfile).
+<p>
+In the unlikely event that you absolutely need to kill procmail before it has
+finished, first try and use the regular kill command (i.e.,
+<i>not</i> kill -9, see the subsection
+<i><a href=#3>Signals</a></i> for suggestions), otherwise some
+<i>lockfiles</i> might not get removed.
+<p>
+Beware when using the
+<b>-t</b> option, if procmail repeatedly is unable to deliver the mail (e.g., due to
+an incorrect rcfile), the system mailqueue could fill up.  This could
+aggravate both the local postmaster and other users.
+<p>
+The
+<b>/etc/procmailrc</b> file might be executed with root privileges, so be very careful of what you put in it.
+<b>SHELL</b> will be equal to that of the current recipient, so if procmail has to invoke the shell, you&#146;d better set it to some safe value first.
+See also :
+<b>DROPPRIVS</b>. <p>
+Keep in mind that if
+<b>chown</b>(1)
+is permitted on files in
+<b>/etc/procmailrcs/</b>, that they can be chowned to root (or anyone else) by their current owners.
+For maximum security, make sure this directory is
+<i>executable</i> to root only.
+<p>
+Procmail is not the proper tool for sharing one mailbox among many
+users, such as when you have one POP account for all mail to your
+domain. It can be done if you manage to configure your MTA to add some
+headers with the envelope recipient data in order to tell Procmail who
+a message is for, but this is usually not the right thing to do.
+Perhaps you want to investigate if your MTA offers &#145;virtual user
+tables&#146;, or check out the &#145;multidrop&#146; facility of Fetchmail.
+<!-- ignored unsupported tag .ne -->
+<h1 class="manpages">BUGS</h1>
+After removing a lockfile by force, procmail waits $SUSPEND seconds before
+creating a new lockfile so that another process that decides to remove the
+stale lockfile will not remove the newly created lock by mistake.
+<p>
+Procmail uses the regular TERMINATE signal to terminate any runaway filter,
+but it does not check if the filter responds to that signal and it only sends
+it to the filter itself, not to any of the filter&#146;s children.
+<p>
+A continued
+<b>Content-Length:</b> field is not handled correctly.
+<p>
+The embedded newlines in a continued header should be skipped when
+matching instead of being treated as a single space as they are now.
+<!-- ignored unsupported tag .ne -->
+<h1 class="manpages">MISCELLANEOUS</h1>
+If there is an existing
+<b>Content-Length:</b> field in the header of the mail and the
+<b>-Y</b> option is not specified, procmail will trim the field to report the correct
+size.  Procmail does not change the fieldwidth.
+<p>
+If there is no
+<b>Content-Length:</b> field or the
+<b>-Y</b> option has been specified and procmail appends to regular mailfolders, any
+lines in the body of the message that look like postmarks are prepended with
+&#145;&gt;&#146; (disarms bogus mailheaders).  The regular expression that is used
+to search for these postmarks is:
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&#145;\nFrom &#146;
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+<p>
+If the destination name used in explicit delivery mode is not in /etc/passwd,
+procmail will proceed as if explicit delivery mode was not in effect.
+If not in explicit delivery mode and
+should the uid procmail is running under, have no corresponding /etc/passwd
+entry, then HOME will default to /, LOGNAME will default to #uid,
+SHELL will default to /bin/sh, and ORGMAIL will default to
+/tmp/dead.letter.
+<p>
+When in explicit delivery mode, procmail will generate a leading &#145;From &#146;
+line if none is present.  If one is already present procmail will leave it
+intact.  If procmail is not invoked with one of the following user or group ids : root, daemon, uucp, mail, x400, network, list, slist, lists or news, but still has to generate or accept a new &#145;From &#146; line,
+it will generate an additional &#145;&gt;From &#146; line to help distinguish
+fake mails.
+<p>
+For security reasons procmail will only use an absolute or
+$HOME-relative rcfile if it is owned by the recipient or root, not
+world writable, and the directory it is contained in is not world
+writable.  The $HOME/.procmailrc file has the additional constraint of not
+being group-writable or in a group-writable directory.
+<p>
+If /var/mail/$LOGNAME is a bogus mailbox (i.e., does not belong to the
+recipient, is unwritable, is a symbolic link or is a hard link), procmail will
+upon startup try to rename it into a file starting
+with &#145;BOGUS.$LOGNAME.&#146; and
+ending in an inode-sequence-code.  If this turns out to be impossible,
+<b>ORGMAIL</b> will have
+<i>no</i> initial value, and hence will inhibit delivery without a proper rcfile.
+<p>
+If /var/mail/$LOGNAME already is a valid mailbox, but has got too loose
+permissions on it, procmail will correct this.  To prevent procmail from doing
+this make sure the u+x bit is set.
+<p>
+When delivering to directories, MH folders, or maildir folders, you
+<b>don&#146;t</b> need to use lockfiles to prevent several concurrently running procmail
+programs from messing up.
+<p>
+Delivering to MH folders is slightly more time consuming than delivering
+to normal directories or mailboxes, because procmail has to search for
+the next available number (instead of having the filename immediately
+available).
+<p>
+On general failure procmail will return EX_CANTCREAT, unless option
+<b>-t</b> is specified, in which case it will return EX_TEMPFAIL.
+<p>
+To make &#145;egrepping&#146; of headers more consistent, procmail concatenates all
+continued header fields; but only internally.  When delivering the mail, line
+breaks will appear as before.
+<p>
+If procmail is called under a name not starting with &#145;procmail&#146; (e.g., if it
+is linked to another name and invoked as such), it comes up in explicit
+delivery mode, and expects the recipients&#146; names as command line arguments
+(as if -d had been specified).
+<p>
+Comsat/biff notifications are done using udp.  They are sent off
+once when procmail generates the regular logfile entry.  The notification
+messages have the following extended format (or as close as you can get when
+final delivery was not to a file):
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+$LOGNAME@offset_of_message_in_mailbox :absolute_path_to_mailbox
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+<p>
+Whenever procmail itself opens a file to deliver to, it
+consistently uses the following kernel locking strategies :
+<b>fcntl</b>(2).
+<p>
+Procmail is NFS-resistant and eight-bit clean.
+<!-- ignored unsupported tag .ne -->
+<!-- ignored unsupported tag .ne -->
+<h1 class="manpages">NOTES</h1>
+Calling up procmail with the -h or -? options will cause
+it to display a command-line help and recipe flag quick-reference page.
+<p>
+There exists an excellent newbie FAQ about mailfilters (and procmail
+in particular); it is maintained by Nancy McGough &lt;<a href="mailto:nancym@ii.com">nancym@ii.com</a>&gt;
+and can be obtained by sending a mail to <a href="mailto:mail-server@rtfm.mit.edu">mail-server@rtfm.mit.edu</a> with
+the following in the body:
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+send usenet/news.answers/mail/filtering-faq
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+<p>
+If procmail is
+<i>not</i> installed globally as the default mail delivery agent (ask your system administrator), you have to make sure it is invoked when your mail arrives.
+In this case your $HOME/.forward (beware, it
+<b>has</b> to be world readable) file should contain the line below.  Be sure to include
+the single and double quotes, and unless you know your site to be running
+smrsh (the SendMail Restricted SHell), it must be an
+<i>absolute</i> path.
+<p>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+" |exec /usr/bin/procmail"
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+<p>
+Some mailers (notably exim) do not currently accept the above syntax.
+In such case use this instead:
+<p>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+|/usr/bin/procmail
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+<p>
+Procmail can also be invoked to postprocess an already filled system
+mailbox.  This can be useful if you don&#146;t want to or can&#146;t use a
+$HOME/.forward file (in which case the following script could
+periodically be called from within
+<b>cron</b>(1),
+or whenever you start reading mail):
+<p>
+<!-- ignored unsupported tag .ne -->
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+#!/bin/sh
+<p>
+ORGMAIL=/var/mail/$LOGNAME
+<p>
+if cd $HOME &&
+ test -s $ORGMAIL &&
+ lockfile -r0 -l1024 .newmail.lock 2&gt;/dev/null
+then
+  trap "rm -f .newmail.lock" 1 2 3 13 15
+  umask 077
+  lockfile -l1024 -ml
+  cat $ORGMAIL &gt;&gt;.newmail &&
+   cat /dev/null &gt;$ORGMAIL
+  lockfile -mu
+  formail -s procmail &lt;.newmail &&
+   rm -f .newmail
+  rm -f .newmail.lock
+fi
+exit 0
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+<p>
+<!-- ignored unsupported tag .ne -->
+<!-- ignored unsupported tag .ne -->
+<h2><i>A sample small $HOME/.procmailrc:</i></h2>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+PATH=/usr/local/bin:/usr/bin:/bin
+MAILDIR=$HOME/Mail      #you&#146;d better make sure it exists
+DEFAULT=$MAILDIR/mbox   #completely optional
+LOGFILE=$MAILDIR/from   #recommended
+<p>
+:0:
+* ^From.*berg
+from_me
+<p>
+:0
+* ^Subject:.*Flame
+/dev/null
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+<p>
+Other examples for rcfile recipes can be looked up in the
+<b>procmailex</b>(5)
+man page.
+<h1 class="manpages">SOURCE</h1>
+This program is part of the
+<i>procmail mail-processing-package</i> (v3.22) available at <a href="http://www.procmail.org/">http://www.procmail.org</a>/ or
+ftp.procmail.org in
+<b>pub/procmail/</b>. <h1 class="manpages">MAILINGLIST</h1>
+There exists a mailinglist for questions relating to any program in the
+procmail package:
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&lt;<a href="mailto:procmail-users@procmail.org">procmail-users@procmail.org</a>&gt;
+<!-- ignored unsupported tag .na -->
+for submitting questions/answers.
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+&lt;<a href="mailto:procmail-users-request@procmail.org">procmail-users-request@procmail.org</a>&gt;
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+for subscription requests.
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+<p>
+<!-- ignored unsupported tag .ad -->
+If you would like to stay informed about new versions and official patches send
+a subscription request to
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<a href="mailto:procmail-announce-request@procmail.org">procmail-announce-request@procmail.org</a>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+(this is a readonly list).
+<!-- ignored unsupported tag .ne -->
+<h1 class="manpages">AUTHORS</h1>
+Stephen R. van den Berg
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&lt;<a href="mailto:srb@cuci.nl">srb@cuci.nl</a>&gt;
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+Philip A. Guenther
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&lt;<a href="mailto:guenther@sendmail.com">guenther@sendmail.com</a>&gt;
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .ad -->
+<!-- Fake renaming reserved macro 'Sh' -->
+<!-- Fake renaming reserved macro 'Ss' -->
+<!-- Fake renaming reserved macro 'Tp' -->
+<!-- Fake renaming reserved macro 'Rs' -->
+<!-- Fake renaming reserved macro 'Re' -->
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversione41b.html?tutorial=unix_commands&amp;file=procmail.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/procmail.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:15 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

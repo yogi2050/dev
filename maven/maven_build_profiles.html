@@ -1,0 +1,468 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/maven/maven_build_profiles.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 18:18:51 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>Maven Build Profiles</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="description" content="Maven Build Profiles - Learn Apache Maven in simple and easy steps starting from Environment Setup, Build Life Cycle,  Build profiles, Repositories, POM, Plug-ins, Eclispe IDE, Creating Project, Build &amp; Test Project, External Dependencies, Project Documents, Project Templates, Build Automation, Dependency Management, Deployment Automation, Web Application NetBeans,  IntelliJ IDEA." />
+<meta name="keywords" content="Maven tutorial, Beginners, Environment Setup, Build Life Cycle,  Build profiles, Repositories, POM, Plug-ins, Eclispe IDE, Creating Project, Build &amp; Test Project, External Dependencies, Project Documents, Project Templates, Build Automation, Dependency Management, Deployment Automation, Web Application NetBeans,  IntelliJ IDEA." />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+/* Android Scheme */
+#header{ 
+background:#b2286f  !important;
+}
+#topmenu
+{
+background-color:#373337 !important;
+}
+#leftcol ul.menu li.heading 
+{
+background:#b2286f !important;
+border:1px solid #373337  !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1500px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index-2.html">Tutorials Point - Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index-2.html" target="_top">HOME </a>
+<a href="../java/index.html" target="_top">JAVA </a>
+<a href="../php/index.html" target="_top">PHP </a>
+<a href="../python/index.html" target="_top">Python </a>
+<a href="../ruby/index.html" target="_top">Ruby </a>
+<a href="../perl/index.html" target="_top">Perl </a>
+<a href="../html/index.html" target="_top">HTML </a>
+<a href="../css/index.html" target="_top">CSS </a>
+<a href="../javascript/index.html" target="_top">Javascript </a>
+<a href="../mysql/index.html" target="_top">MySQL </a>
+<a href="../cplusplus/index.html" target="_top">C++ </a>
+<a href="../unix/index.html" target="_top">UNIX </a>
+<a href="../more.html" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.html" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.html" target="_top">ABOUT</a> |
+<a href="../about/contact_us.html" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/maven-mini-logo.png" alt="Maven Tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">Maven Tutorial</li>
+<li><a target="_top" href="index.html">Home</a></li>
+<li><a target="_top" href="maven_overview.html">Maven Overview</a></li>
+<li><a target="_top" href="maven_environment_setup.html">Maven Environment Setup</a></li>
+<li><a target="_top" href="maven_pom.html">Maven POM</a></li>
+<li><a target="_top" href="maven_build_life_cycle.html">Maven Build Life Cycle</a></li>
+<li><a target="_top" href="maven_build_profiles.html"><b>Maven Build Profiles</b></a></li>
+<li><a target="_top" href="maven_repositories.html">Maven Repositories</a></li>
+<li><a target="_top" href="maven_plugins.html">Maven Plug-ins</a></li>
+<li><a target="_top" href="maven_creating_project.html">Maven Creating Project</a></li>
+<li><a target="_top" href="maven_build_test_project.html">Maven Build &amp; Test Project</a></li>
+<li><a target="_top" href="maven_external_dependencies.html">Maven External Dependencies</a></li>
+<li><a target="_top" href="maven_project_documents.html">Maven Project Documents</a></li>
+<li><a target="_top" href="maven_project_templates.html">Maven Project Templates</a></li>
+<li><a target="_top" href="maven_snapshots.html">Maven Snapshots</a></li>
+<li><a target="_top" href="maven_build_automation.html">Maven Build Automation</a></li>
+<li><a target="_top" href="maven_manage_dependencies.html">Maven Manage Dependencies</a></li>
+<li><a target="_top" href="maven_deployment_automation.html">Maven Deployment Automation</a></li>
+<li><a target="_top" href="maven_web_application.html">Maven Web Application</a></li>
+<li><a target="_top" href="maven_eclispe_ide.html">Maven Eclispe IDE</a></li>
+<li><a target="_top" href="maven_netbeans.html">Maven NetBeans</a></li>
+<li><a target="_top" href="maven_intellij_idea.html">Maven IntelliJ IDEA</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Maven Useful Resources</li>
+<li><a target="_top" href="maven_quick_guide.html">Maven Quick Guide</a></li>
+<li><a target="_top" href="maven_useful_resources.html">Maven Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.html">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>Maven Build Profiles</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="maven_build_life_cycle.html">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="maven_repositories.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<h2>What is Build Profile?</h2>
+<p>A <i>Build profile</i> is a set of configuration values which can be used to set or override default values of Maven build. Using a build profile, you can customize build for different environments such as <i>Production</i> v/s <i>Development</i> environments.</p>
+<p>Profiles are specified in pom.xml file using its activeProfiles / profiles elements and are triggered in variety of ways. Profiles modify the POM at build time, and are used to give parameters different target environments (for example, the path of the database server in the development, testing, and production environments).</p>
+<h2>Types of Build Profile</h2>
+<p>Build profiles are majorly of three types</p>
+<table class="src">
+<tr><th style="width:20%;">Type</th><th>Where it is defined</th></tr>
+<tr><td>Per Project</td><td>Defined in the project POM file, pom.xml</td></tr>
+<tr><td>Per User</td><td>Defined in Maven settings xml file (%USER_HOME%/.m2/settings.xml)</td></tr>
+<tr><td>Global</td><td>Defined in Maven global settings xml file (%M2_HOME%/conf/settings.xml)</td></tr>
+</table>
+<h2>Profile Activation</h2>
+<p>A Maven Build Profile can be activated in various ways.</p>
+<ul class="list">
+<li><p>Explicitly using command console input.</p></li>
+<li><p>Through maven settings.</p></li>
+<li><p>Based on environment variables (User/System variables).</p></li>
+<li><p>OS Settings (for example, Windows family).</p></li>
+<li><p>Present/missing files.</p></li>
+</ul>
+<h2>Profile Activation Examples</h2>
+<p>Let us assume following directory structure of your project:</p>
+<img src="../images/structure.png" alt="Maven Build Profile" />
+<p>Now, under <i>src/main/resources</i> there are three environment specific files:</p>
+<table class="src">
+<tr><th style="width:20%;">File Name</th><th>Description</th></tr>
+<tr><td>env.properties</td><td>default configuration used if no profile is mentioned.</td></tr>
+<tr><td>env.test.properties</td><td>test configuration when test profile is used.</td></tr>
+<tr><td>env.prod.properties</td><td>production configuration when prod profile is used.</td></tr>
+</table>
+<h2>Explicit Profile Activation</h2>
+<p>In the following example, We'll attach  maven-antrun-plugin:run goal to test phase. This will allow us to echo text messages for different profiles. We will be using pom.xml to define different profiles and will activate profile at command console using maven command.</p>
+<p>Assume, we've created following pom.xml in C:\MVN\project folder. </p>
+<pre class="prettyprint">
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+   http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+   &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+   &lt;groupId&gt;com.companyname.projectgroup&lt;/groupId&gt;
+   &lt;artifactId&gt;project&lt;/artifactId&gt;
+   &lt;version&gt;1.0&lt;/version&gt;
+   &lt;profiles&gt;
+      &lt;profile&gt;
+      &lt;id&gt;test&lt;/id&gt;
+      &lt;build&gt;
+      &lt;plugins&gt;
+         &lt;plugin&gt;
+            &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+            &lt;artifactId&gt;maven-antrun-plugin&lt;/artifactId&gt;
+            &lt;version&gt;1.1&lt;/version&gt;
+            &lt;executions&gt;
+               &lt;execution&gt;
+                  &lt;phase&gt;test&lt;/phase&gt;
+                  &lt;goals&gt;
+                     &lt;goal&gt;run&lt;/goal&gt;
+                  &lt;/goals&gt;
+                  &lt;configuration&gt;
+                  &lt;tasks&gt;
+                     &lt;echo&gt;Using env.test.properties&lt;/echo&gt;
+                     &lt;copy file="src/main/resources/env.test.properties" tofile="${project.build.outputDirectory}/env.properties"/&gt;
+                  &lt;/tasks&gt;
+                  &lt;/configuration&gt;
+               &lt;/execution&gt;
+            &lt;/executions&gt;
+         &lt;/plugin&gt;
+      &lt;/plugins&gt;
+      &lt;/build&gt;
+      &lt;/profile&gt;
+   &lt;/profiles&gt;
+&lt;/project&gt;
+</pre>
+<p>Now open command console, go to the folder containing pom.xml and execute the following <b>mvn</b> command. Pass the profile name as argument using -P option.</p>
+<pre class="result">
+C:\MVN\project&gt;mvn test -Ptest
+</pre>
+<p>Maven will start processing and display the result of test build profile.</p>
+<pre class="result">
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------
+[INFO] Building Unnamed - com.companyname.projectgroup:project:jar:1.0
+[INFO]    task-segment: [test]
+[INFO] ------------------------------------------------------------------
+[INFO] [resources:resources {execution: default-resources}]
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources,
+i.e. build is platform dependent!
+[INFO] Copying 3 resources
+[INFO] [compiler:compile {execution: default-compile}]
+[INFO] Nothing to compile - all classes are up to date
+[INFO] [resources:testResources {execution: default-testResources}]
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources,
+i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\MVN\project\src\test\resources
+[INFO] [compiler:testCompile {execution: default-testCompile}]
+[INFO] Nothing to compile - all classes are up to date
+[INFO] [surefire:test {execution: default-test}]
+[INFO] Surefire report directory: C:\MVN\project\target\surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+There are no tests to run.
+
+Results :
+
+Tests run: 0, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] [antrun:run {execution: default}]
+[INFO] Executing tasks
+     [echo] Using env.test.properties
+[INFO] Executed tasks
+[INFO] ------------------------------------------------------------------
+[INFO] BUILD SUCCESSFUL
+[INFO] ------------------------------------------------------------------
+[INFO] Total time: 1 second
+[INFO] Finished at: Sun Jul 08 14:55:41 IST 2012
+[INFO] Final Memory: 8M/64M
+[INFO] ------------------------------------------------------------------
+</pre>
+<p>Now as an exercise, you can do the following steps</p>
+<ul class="list">
+<li><p>Add another profile element to profiles element of pom.xml (copy existing profile element and paste it where profile elements ends).</p></li>
+<li><p>Update id of this profile element from test to normal.</p></li>
+<li><p>Update task section to echo env.properties and copy env.properties to target directory</p></li>
+<li><p>Again repeat above three steps, update id to prod and task section for env.prod.properties</p></li>
+<li><p>That's all. Now you've three build profiles ready (normal / test / prod).</p></li>
+</ul>
+<p>Now open command console, go to the folder containing pom.xml and execute the following <b>mvn</b> commands. Pass the profile names as argument using -P option.</p>
+<pre class="result">
+C:\MVN\project&gt;mvn test -Pnormal
+</pre>
+<pre class="result">
+C:\MVN\project&gt;mvn test -Pprod
+</pre> 
+<p>Check the output of build to see the difference.</p>
+<h2>Profile Activation via Maven Settings</h2>
+<p>Open Maven <b>settings.xml</b> file available in %USER_HOME%/.m2 directory where <b>%USER_HOME%</b> represents user home directory. If settings.xml file is not there then create a new one.</p>
+<p>Add test profile as an active profile using activeProfiles node as shown below in example</p>
+<pre class="prettyprint">
+&lt;settings xmlns="http://maven.apache.org/POM/4.0.0"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+   http://maven.apache.org/xsd/settings-1.0.0.xsd"&gt;
+   &lt;mirrors&gt;
+      &lt;mirror&gt;
+         &lt;id&gt;maven.dev.snaponglobal.com&lt;/id&gt;
+         &lt;name&gt;Internal Artifactory Maven repository&lt;/name&gt;
+         &lt;url&gt;http://repo1.maven.org/maven2/&lt;/url&gt;
+         &lt;mirrorOf&gt;*&lt;/mirrorOf&gt;
+      &lt;/mirror&gt;
+   &lt;/mirrors&gt;
+   &lt;activeProfiles&gt;
+      &lt;activeProfile&gt;test&lt;/activeProfile&gt;
+   &lt;/activeProfiles&gt;
+&lt;/settings&gt;
+</pre>
+<p>Now open command console, go to the folder containing pom.xml and execute the following <b>mvn</b> command. Do not pass the profile name using -P option.Maven will display result of test profile being an active profile.</p>
+<pre class="result">
+C:\MVN\project&gt;mvn test
+</pre>
+<h2>Profile Activation via Environment Variables</h2>
+<p>Now remove active profile from maven settings.xml and update the test profile mentioned in pom.xml. Add activation element to profile element as shown below. </p>
+<p>The test profile will trigger when the system property "env" is specified with the value "test". Create a environment variable "env" and set its value as "test". </p>
+<pre class="prettyprint">
+&lt;profile&gt;
+   &lt;id&gt;test&lt;/id&gt;
+   &lt;activation&gt;
+      &lt;property&gt;
+         &lt;name&gt;env&lt;/name&gt;
+         &lt;value&gt;test&lt;/value&gt;
+      &lt;/property&gt;
+   &lt;/activation&gt;
+&lt;/profile&gt;
+</pre>
+<p>Let's open command console, go to the folder containing pom.xml and execute the following <b>mvn</b> command.</p>
+<pre class="result">
+C:\MVN\project&gt;mvn test
+</pre>
+<h2>Profile Activation via Operating System</h2>
+<p>Activation element to include os details as shown below. This test profile will trigger when the system is windows XP.</p>
+<pre class="prettyprint">
+&lt;profile&gt;
+   &lt;id&gt;test&lt;/id&gt;
+   &lt;activation&gt;
+      &lt;os&gt;
+         &lt;name&gt;Windows XP&lt;/name&gt;
+         &lt;family&gt;Windows&lt;/family&gt;
+         &lt;arch&gt;x86&lt;/arch&gt;
+         &lt;version&gt;5.1.2600&lt;/version&gt;
+      &lt;/os&gt;
+   &lt;/activation&gt;
+&lt;/profile&gt;
+</pre>
+<p>Now open command console, go to the folder containing pom.xml and execute the following <b>mvn</b> commands. Do not pass the profile name using -P option.Maven will display result of test profile being an active profile.</p>
+<pre class="result">
+C:\MVN\project&gt;mvn test
+</pre>
+<h2>Profile Activation via Present/Missing File</h2>
+<p>Now activation element to include os details as shown below. The test profile will trigger when <i>target/generated-sources/axistools/wsdl2java/com/companyname/group</i> is missing.</p>
+<pre class="prettyprint">
+&lt;profile&gt;
+   &lt;id&gt;test&lt;/id&gt;
+   &lt;activation&gt;
+      &lt;file&gt;
+         &lt;missing&gt;target/generated-sources/axistools/wsdl2java/com/companyname/group&lt;/missing&gt;
+      &lt;/file&gt;
+   &lt;/activation&gt;
+&lt;/profile&gt;
+</pre>
+<p>Now open command console, go to the folder containing pom.xml and execute the following <b>mvn</b> commands. Do not pass the profile name using -P option.Maven will display result of test profile being an active profile.</p>
+<pre class="result">
+C:\MVN\project&gt;mvn test
+</pre>
+<hr />
+<div class="pre-btn">
+<a href="maven_build_life_cycle.html">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/maven_build_profiles.pdf" alt="Maven Build Profiles" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="maven_repositories.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.html" target="_top">ASP.NET </a> |
+<a href="../jquery/index.html" target="_top">jQuery </a> |
+<a href="../ajax/index.html" target="_top">AJAX </a> |
+<a href="../ant/index.html" target="_top">ANT</a> |
+<a href="../jsp/index.html" target="_top">JSP </a> |
+<a href="../servlets/index.html" target="_top">Servlets </a> |
+<a href="../log4j/index.html" target="_top">log4j </a> |
+<a href="../ibatis/index.html" target="_top">iBATIS </a> |
+<a href="../hibernate/index.html" target="_top">Hibernate </a> |
+<a href="../jdbc/index.html" target="_top">JDBC </a> |
+<a href="../struts_2/index.html" target="_top">Struts </a> |
+<a href="../html5/index.html" target="_top">HTML5 </a> |
+<a href="../sql/index.html" target="_top">SQL </a> |
+<a href="../mysql/index.html" target="_top">MySQL </a> |
+<a href="../cplusplus/index.html" target="_top">C++ </a> |
+<a href="../unix/index.html" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/maven/maven_build_profiles.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 14 Apr 2013 18:18:58 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

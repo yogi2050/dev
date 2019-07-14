@@ -1,0 +1,486 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/authconfig.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:25 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>authconfig - Unix, Linux Command</title>
+<meta name="Description" Content="authconfig - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>authconfig - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- ignored unsupported tag .UC -->
+<h1 class="manpages">NAME</h1>
+authconfig, authconfig-tui - an interface for configuring system authentication resources
+<h1 class="manpages">SYNOPSIS</h1>
+<b>authconfig</b>
+<!-- ignored unsupported tag .in -->
+[--nostart]
+<!-- Need break --><br />
+[--enablecache] [--disablecache]
+<!-- Need break --><br />
+[--enablenis
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[--nisdomain <i>domain</i>] [--nisserver <i>namelist</i>] ]
+<!-- Need break --><br />
+[--disablenis]
+<!-- Need break --><br />
+[--enableshadow] [--disableshadow]
+<!-- Need break --><br />
+[--enablemd5] [--disablemd5]
+<!-- Need break --><br />
+[--enableldap
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[--enableldapauth] [--enableldaptls]
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[--ldapserver <i>namelist</i>] [--ldapbasedn <i>basedn</i>]]
+<!-- Need break --><br />
+[--disableldap] [--disableldapauth]
+<!-- Need break --><br />
+[--enablekrb5
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ --krb5realm <i>realm</i> ] [--krb5kdc <i>namelist</i>]
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[--krb5adminserver <i>namelist</i>] [--enablekrb5kdcdns]
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[--disablekrb5kdcdns] [--enablekrb5realmdns] [--disablekrb5realmdns] ]
+<!-- Need break --><br />
+[--disablekrb5]
+<!-- Need break --><br />
+[--enablehesiod
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[--hesiodlhs <i>lhs</i>] [--hesiodrhs <i>rhs</i>] ]
+[--disablehesiod]
+<!-- Need break --><br />
+[--enablesmbauth
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[--smbworkgroup <i>workgroup</i>]
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[--smbservers <i>namelist</i>]]
+[--disablesmbauth]
+<!-- Need break --><br />
+[--enablewinbind
+<!-- Need break --><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[--enablewinbindauth] [--smbsecurity {user|server|domain|ads}]
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[--smbrealm <i>realm</i>]
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[--smbidmapuid=<i>range</i>] [--smbidmapgid=<i>range</i>]
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[--winbindseparator=<i>&#92;</i>]
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[--winbindtemplateprimarygroup=<i>group</i>]
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[--winbindtemplatehomedir=<i>directory</i>]
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[--winbindtemplateshell=<i>path</i>] ]
+<!-- Need break --><br />
+[--disablewinbind] [--disablewinbindauth]
+<!-- Need break --><br />
+[--enablewinbindusedefaultdomain]
+<!-- Need break --><br />
+[--disablewinbindusedefaultdomain]
+<!-- Need break --><br />
+[--winbindjoin <i>admin</i>] [--enablewins] [--disablewins]
+<!-- Need break --><br />
+{--test|--update|--probe}
+<!-- ignored unsupported tag .in -->
+<h1 class="manpages">DESCRIPTION</h1>
+<b>authconfig</b> provides a simple method of configuring
+/etc/sysconfig/network to handle NIS, as well as /etc/passwd and
+/etc/shadow, the files used for shadow password support.  Basic LDAP,
+Kerberos 5, and SMB (authentication) client configuration is also provided.
+<p>
+If <b>--test</b> action is specified, <b>authconfig</b> can be run by
+users other then root, and any configuration changes are not saved but printed
+instead.
+If <b>--update</b> action is specified, <b>authconfig</b> must be run by
+root (or through console helper), and configuration changes are saved.
+The <b>--probe</b> action instructs <b>authconfig</b> to use DNS and other means
+to guess at configuration information for the current host, print its guesses
+if it finds them to standard output, and exit.
+<p>
+If <b>--nostart</b> is specified (which is what the install program does),
+ypbind or other daemons will not be started or stopped immediately following
+program execution, but only enabled to start or stop at boot time.
+<p>
+The <b>--enablenis</b>, <b>--enableldap</b>, <b>--enablewinbind</b>,
+and <b>--enablehesiod</b> options
+are used to configure user information services in <b>/etc/nsswitch.conf</b>,
+the <b>--enablecache</b> option is used to configure naming services caching,
+and the <b>--enableshadow</b>, <b>--enablemd5</b>, <b>--enableldapauth</b>,
+<b>--enablekrb5</b>, <b>--enablewinbindauth</b>,
+and <b>--enablesmbauth</b> options are used to configure
+authentication functions via <b>/etc/pam.d/system-auth</b>.  Each
+<b>--enable</b> has a matching <b>--disable</b> option that disables the service
+if it is already enabled. The respective services have parameters which configure
+their server names etc.
+<p>
+The algorithm used for storing new password hashes can be specified by
+the <b>--passalgo</b> option which takes one of the following possible values as
+a parameter: <b>descrypt</b>, <b>bigcrypt</b>, <b>md5</b>, <b>sha256</b>, and
+<b>sha512</b>.
+<p>
+The <b>--enablelocauthorize</b> option allows to bypass checking network
+authentication services for authorization and the <b>--enablesysnetauth</b>
+allows authentication of system accounts (with uid &lt; 500) by these services.
+<p>
+The list of options mentioned here in the manual page is not exhaustive, please
+refer to <b>authconfig --help</b> for the complete list of the options.
+<p>
+The <b>authconfig-tui</b> supports all options of authconfig but it implies
+<b>--update</b> as the default action. Its window contains a <b>Cancel</b>
+button by default. If <b>--back</b> option is specified at run time, a <b>Back</b>
+button is presented instead. If <b>--kickstart</b> is specified, no interactive
+screens will be seen. The values the program will use will be those specified by
+the other options (<b>--passalgo</b>, <b>--enableshadow</b>, etc.).
+<p>
+For <i>namelist<blink>\R</blink> you may substitute either a single name or a
+comma-separated list of names.
+<h1 class="manpages">NOTES</h1>
+The </i><b>authconfig-tui</b> is deprecated. No new configuration settings will be
+supported by its text user interface. Use <b>system-config-authentication</b> GUI
+application or the command line options instead.
+<p>
+<h1 class="manpages">RETURN CODES</h1>
+<b>authconfig</b> returns 0 on success, 2 on error.
+<p>
+<b>authconfig-tui</b> returns 0 on success, 2 on error, and 1 if the user cancelled
+the program (by using either the <b>Cancel</b> or <b>Back</b> button).
+<p>
+<h1 class="manpages">FILES</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>/etc/sysconfig/authconfig</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Used to track whether or not particular authentication mechanisms are enabled.
+Currently includes variables named USESHADOW, USEMD5, USEKERBEROS, USELDAPAUTH,
+USESMBAUTH, USEWINBIND, USEWINBINDAUTH, USEHESIOD, USENIS, USELDAP, and others.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>/etc/passwd,</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Used for shadow password support.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>/etc/yp.conf</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Configuration file for NIS support.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>/etc/sysconfig/network</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Another configuration file for NIS support.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>/etc/ldap.conf</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+<i>/etc/openldap/ldap.conf</i>
+Used to configure LDAP (and OpenLDAP, respectively).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>/etc/krb5.conf</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Used to configure Kerberos 5.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>/etc/krb.conf</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Used to configure Kerberos IV (write-only).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>/etc/hesiod.conf</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Used to configure Hesiod.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>/etc/pam_smb.conf</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Used to configure SMB authentication.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>/etc/samba/smb.conf</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Used to configure winbind authentication.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>/etc/nsswitch.conf</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Used to configure user information services.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>/etc/pam.d/system-auth</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Common PAM configuration for system services which include it using the
+<b>include</b> directive. It is created as symlink and not relinked if
+it points to another file.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>/etc/pam.d/system-auth-ac</i>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Contains the actual PAM configuration for system services and is the
+default target of the <b>/etc/pam.d/system-auth</b> symlink. If a local configuration
+of PAM is created (and symlinked from <b>system-auth</b> file) this file can be <b>include</b>d
+there.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<a href="../nsswitch.conf.html">nsswitch.conf(5)</a>, <a href="../smb.conf.html">smb.conf(5)</a>
+<p>
+<h1 class="manpages">AUTHORS</h1>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+Nalin Dahyabhai &lt;<a href="mailto:nalin@redhat.com">nalin@redhat.com</a>&gt;, Preston Brown &lt;<a href="mailto:pbrown@redhat.com">pbrown@redhat.com</a>&gt;,
+Matt Wilson &lt;<a href="mailto:msw@redhat.com">msw@redhat.com</a>&gt;, Tomas Mraz &lt;<a href="mailto:tmraz@redhat.com">tmraz@redhat.com</a>&gt;
+</pre></td></tr>
+</table>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion1fd3.html?tutorial=unix_commands&amp;file=authconfig.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/authconfig.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:25 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

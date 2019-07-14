@@ -1,0 +1,406 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/spring/spring_web_mvc_framework.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Apr 2013 20:56:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>Spring Web MVC Framework</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="description" content="Spring Web MVC Framework - Learn Java Spring Framework version 3.1.0 starting from environment setup, inversion of control (IoC), dependency injection, bean scopes, bean life cycle, inner beans, autowiring, different modules, aspect oriented programming (AOP), database access (JDBC), Transaction Management, Web MVC framework, Web Flow, Exception handling, EJB integration and Sending email etc." />
+<meta name="keywords" content="Free, Spring, Tutorials, beginners, Framework, Web Flow,  Reference, Manual, Guide, transaction, Management" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+/* Spring Scheme */
+#header{ 
+   background:#c1cc22 !important;
+}
+#topmenu
+{
+   background-color:#387b2c !important;
+}
+#leftcol ul.menu li.heading 
+{
+   background:#c1cc22 !important;
+   border:1px solid #387b2c !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1300px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+   _uacct = "UA-232293-6";
+   urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index.htm">Tutorials Point Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index.htm" target="_top">HOME </a>
+<a href="../java/index.htm" target="_top">JAVA </a>
+<a href="../php/index.htm" target="_top">PHP </a>
+<a href="../python/index.htm" target="_top">Python </a>
+<a href="../ruby/index.htm" target="_top">Ruby </a>
+<a href="../perl/index.htm" target="_top">Perl </a>
+<a href="../html/index.htm" target="_top">HTML </a>
+<a href="../css/index.htm" target="_top">CSS </a>
+<a href="../javascript/index.htm" target="_top">Javascript </a>
+<a href="../mysql/index.htm" target="_top">MySQL </a>
+<a href="../cplusplus/index.htm" target="_top">C++ </a>
+<a href="../unix/index.htm" target="_top">UNIX </a>
+<a href="../more.htm" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.htm" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.htm" target="_top">ABOUT</a> |
+<a href="../about/contact_us.htm" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/spring-mini-logo.png" alt="Spring tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">Spring Core Basics</li>
+<li><a target="_top" href="index.htm">Home</a></li>
+<li><a target="_top" href="spring_overview.htm">Overview</a></li>
+<li><a target="_top" href="spring_architecture.htm">Architecture</a></li>
+<li><a target="_top" href="spring_environment_setup.htm">Environment Setup</a></li>
+<li><a target="_top" href="spring_hello_world_example.htm">Hello World Example</a></li>
+<li><a target="_top" href="spring_ioc_containers.htm">IoC Containers</a></li>
+<li><a target="_top" href="spring_bean_definition.htm">Bean Definition</a></li>
+<li><a target="_top" href="spring_bean_scopes.htm">Bean Scopes</a></li>
+<li><a target="_top" href="spring_bean_life_cycle.htm">Bean Life Cycle</a></li>
+<li><a target="_top" href="spring_bean_post_processors.htm">Bean Post Processors</a></li>
+<li><a target="_top" href="spring_bean_definition_inheritance.htm">Bean Definition Inheritance</a></li>
+<li><a target="_top" href="spring_dependency_injection.htm">Dependency Injection</a></li>
+<li><a target="_top" href="spring_injecting_inner_beans.htm">Injecting Inner Beans</a></li>
+<li><a target="_top" href="spring_injecting_collection.htm">Injecting Collection</a></li>
+<li><a target="_top" href="spring_beans_autowiring.htm">Spring Beans Auto-Wiring</a></li>
+<li><a target="_top" href="spring_annotation_based_configuration.htm">Annotation Based Configuration</a></li>
+<li><a target="_top" href="spring_java_based_configuration.htm">Java Based Configuration</a></li>
+<li><a target="_top" href="event_handling_in_spring.htm">Event Handling in Spring</a></li>
+<li><a target="_top" href="custom_events_in_spring.htm">Custom Events in Spring</a></li>
+<li><a target="_top" href="aop_with_spring.htm">AOP with Spring Framework</a></li>
+<li><a target="_top" href="spring_jdbc_framework.htm">Spring JDBC Framework</a></li>
+<li><a target="_top" href="spring_transaction_management.htm">Transaction Management</a></li>
+<li><a target="_top" href="spring_web_mvc_framework.htm"><b>Spring Web MVC Framework</b></a></li>
+<li><a target="_top" href="logging_with_log4j.htm">Spring Logging with Log4J</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Spring Useful Resources</li>
+<li><a target="_top" href="spring_quick_guide.htm">Spring Quick Guide</a></li>
+<li><a target="_top" href="spring_useful_resources.htm">Spring Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>Spring Web MVC Framework</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="spring_transaction_management.htm">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="logging_with_log4j.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>The Spring web MVC framework provides model-view-controller architecture and ready components that can be used to develop flexible and loosely coupled web applications. The MVC pattern results in separating the different aspects of the application (input logic, business logic, and UI logic), while providing a loose coupling between these elements.</p>
+<ul class="list">
+<li><p>The <b>Model</b> encapsulates the application data and in general they will consist of POJO.</p></li>
+<li><p>The <b>View</b> is responsible for rendering the model data and in general it generates HTML output that the client's browser can interpret.</p></li>
+<li><p>The <b>Controller</b> is responsible for processing user requests and building appropriate model and passes it to the view for rendering.</p></li>
+</ul>
+<h2>The DispatcherServlet</h2>
+<p>The Spring Web model-view-controller (MVC) framework is designed around a <i>DispatcherServlet</i> that handles all the HTTP requests and responses. The request processing workflow of the Spring Web MVC <i>DispatcherServlet</i> is illustrated in the following diagram:</p>
+<img src="../images/spring_dispatcherservlet.png" alt="Spring DispatcherServlet" />
+<p>Following is the sequence of events corresponding to an incoming HTTP request to <i>DispatcherServlet</i>:</p>
+<ol class="list">
+<li><p>After receiving an HTTP request, <i>DispatcherServlet</i> consults the <i>HandlerMapping</i>  to call the appropriate <i>Controller</i>. </p></li>
+<li><p>The <i>Controller</i> takes the request and calls the appropriate service methods based on used GET or POST method. The service method will set model data based on defined business logic and returns view name to the <i>DispatcherServlet</i>.</p></li>
+<li><p>The <i>DispatcherServlet</i> will take help from <i>ViewResolver</i> to pickup the defined view for the request.</p></li>
+<li><p>Once view is finalized, The <i>DispatcherServlet</i> passes the model data to the view  which is finally rendered on the browser.</p></li>
+</ol>
+<p>All the above mentioned components  ie. HandlerMapping, Controller and ViewResolver are parts of <i>WebApplicationContext</i> which is an extension of the plain <i>ApplicationContext</i> with some extra features necessary for web applications.</p>
+<h2>Required Configuration</h2>
+<p>You need to map requests that you want the <i>DispatcherServlet</i> to handle, by using a URL mapping in the <b>web.xml</b> file. The following is an example to show declaration and mapping for <b>HelloWeb</b> <i>DispatcherServlet</i> example:</p>
+<pre class="prettyprint">
+&lt;web-app id="WebApp_ID" version="2.4"
+    xmlns="http://java.sun.com/xml/ns/j2ee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+    http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"&gt;
+ 
+    &lt;display-name&gt;Spring MVC Application&lt;/display-name&gt;
+
+   &lt;servlet&gt;
+      &lt;servlet-name&gt;HelloWeb&lt;/servlet-name&gt;
+      &lt;servlet-class&gt;
+         org.springframework.web.servlet.DispatcherServlet
+      &lt;/servlet-class&gt;
+      &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+   &lt;/servlet&gt;
+
+   &lt;servlet-mapping&gt;
+      &lt;servlet-name&gt;HelloWeb&lt;/servlet-name&gt;
+      &lt;url-pattern&gt;*.jsp&lt;/url-pattern&gt;
+   &lt;/servlet-mapping&gt;
+
+&lt;/web-app&gt;
+</pre>
+<p>The <b>web.xml</b> file will be kept <i>WebContent/WEB-INF</i> directory of your web application. OK, upon initialization of <b>HelloWeb</b> <i>DispatcherServlet</i>, the framework will try to load the application context from a file named <b>[servlet-name]-servlet.xml</b> located in the application's <i>WebContent/WEB-INF</i> directory. In this case our file will be <b>HelloWeb-servlet.xml</b>.</p>
+<p>Next, &lt;servlet-mapping&gt; tag indicates what URLs will be handled by the which DispatcherServlet.  Here all the HTTP requests ending with <b>.jsp</b> will be handled by the <b>HelloWeb</b> DispatcherServlet.</p>
+<p>If you do not want to go with default filename as <i>[servlet-name]-servlet.xml</i> and default location as <i>WebContent/WEB-INF</i>, you can customize this file name and location by adding the servlet listener <i>ContextLoaderListener</i> in your web.xml file as follows:</p>
+<pre class="prettyprint">
+&lt;web-app...&gt;
+
+&lt;!-------- <i>DispatcherServlet</i> definition goes here-----&gt;
+....
+&lt;context-param&gt;
+   &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+   &lt;param-value&gt;/WEB-INF/HelloWeb-servlet.xml&lt;/param-value&gt;
+&lt;/context-param&gt;
+
+&lt;listener&gt;
+   &lt;listener-class&gt;
+      org.springframework.web.context.ContextLoaderListener
+   &lt;/listener-class&gt;
+&lt;/listener&gt;
+&lt;/web-app&gt;
+</pre>
+<p>Now, let us check the required configuration for <b>HelloWeb-servlet.xml</b> file, placed in your web application's <i>WebContent/WEB-INF</i> directory:</p>
+<pre class="prettyprint">
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="
+   http://www.springframework.org/schema/beans     
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/context 
+   http://www.springframework.org/schema/context/spring-context-3.0.xsd"&gt;
+
+   &lt;context:component-scan base-package="com.tutorialspoint" /&gt;
+
+   &lt;bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt;
+      &lt;property name="prefix" value="/WEB-INF/jsp/" /&gt;
+      &lt;property name="suffix" value=".jsp" /&gt;
+   &lt;/bean&gt;
+
+&lt;/beans&gt;
+</pre>
+<p>Following are the important points about <b>HelloWeb-servlet.xml</b> file:</p>
+<ul class="list">
+<li><p>The <i>[servlet-name]-servlet.xml</i> file will be used to create the beans defined, overriding the definitions of any beans defined with the same name in the global scope.</p></li>
+<li><p>The <i>&lt;context:component-scan...&gt;</i> tag will be use to activate Spring MVC annotation scanning capability which allows to make use of annotations like @Controller and @RequestMapping etc.</p></li>
+<li><p>The  <i>InternalResourceViewResolver</i> will have rules defined to resolve the view names. As per the above defined rule, a logical view named <b>hello</b> is delegated to a view implementation located at <i>/WEB-INF/jsp/hello.jsp</i> .</p></li>
+</ul>
+<p>Next section will show you how to create your actual components ie. Controller, Model and View.</p>
+<h2>Defining a Controller</h2>
+<p>DispatcherServlet delegates the request to the controllers to execute the functionality specific to it. The <b>@Controller</b> annotation indicates that a particular class serves the role of a controller. The <b>@RequestMapping</b> annotation is used to map a URL to either an entire class or a particular handler method.</p>
+<pre class="prettyprint">
+@Controller
+@RequestMapping("/hello")
+public class HelloController{
+ 
+   @RequestMapping(method = RequestMethod.GET)
+   public String printHello(ModelMap model) {
+      model.addAttribute("message", "Hello Spring MVC Framework!");
+      return "hello";
+   }
+
+}
+</pre>
+<p>The <b>@Controller</b> annotation defines the class as a Spring MVC controller. Here, the first usage of <b>@RequestMapping</b> indicates that all handling methods on this controller are relative to the <b>/hello</b> path. Next annotation <b>@RequestMapping(method = RequestMethod.GET)</b> is used to declare the <i>printHello()</i> method as the controller's default service method to handle HTTP GET request. You can define another method to handle any POST request at the same URL.</p>
+<p>You can write above controller in another form where you can add additional attributes in <i>@RequestMapping</i> as follows:</p>
+<pre class="prettyprint">
+@Controller
+public class HelloController{
+ 
+   @RequestMapping(value = "/hello", method = RequestMethod.GET)
+   public String printHello(ModelMap model) {
+      model.addAttribute("message", "Hello Spring MVC Framework!");
+      return "hello";
+   }
+
+}
+</pre>
+<p>The <b>value</b> attribute indicates the URL to which the handler method is mapped and the <b>method</b> attribute defines the service method to handle HTTP GET request. There are following important points to be noted about the controller defined above:</p>
+<ul class="list">
+<li><p>You will defined required business logic inside a service method. You can call another methods inside this method as per requirement.</p></li>
+<li><p>Based on the business logic defined, you will create a <b>model</b> within this method. You can setter different model attributes and these attributes will be accessed by the view to  present the final result. This example creates a model with its attribute "message".</p></li>
+<li><p>A defined service method can return a String which contains the name of the <b>view</b> to be used to render the model. This example returns "hello" as logical view name.</p></li>
+</ul>
+<h2>Creating JSP Views</h2>
+<p>Spring MVC supports many types of views for different presentation technologies. These include - JSPs, HTML, PDF, Excel worksheets, XML, Velocity templates, XSLT, JSON, Atom and RSS feeds, JasperReports etc.  But most commonly we use JSP templates written with JSTL. So let us write a simple <b>hello</b> view in /WEB-INF/hello/hello.jsp:</p>
+<pre class="prettyprint">
+&lt;html&gt;
+   &lt;head&gt;
+   &lt;title&gt;Hello Spring MVC&lt;/title&gt;
+   &lt;/head&gt;
+   &lt;body&gt;
+   &lt;h2&gt;${message}&lt;/h2&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>Here <b>${message}</b> is the attribute which we have setup inside the Controller. You can have multiple attributes to be displayed inside your view.</p>
+<h2>Spring Web MVC Framework Examples:</h2>
+<p>Based on the above concepts, let us check few important examples which will help you in building your Spring Web Applications:</p>
+<table class="src">
+<tr><th style="width:5%">S.N.</th><th>Example &amp; Description</th></tr>
+<tr><td>1</td><td><a href="spring_mvc_hello_world_example.htm">Spring MVC Hello World Example</a><br>This example will explain how to write a simple Spring Web Hello World application.</td></tr>
+<tr><td>2</td><td><a href="spring_mvc_form_handling_example.htm">Spring MVC Form Handling Example</a><br>This example will explain how to write a Spring Web application using HTML forms to submit the data to the controller and display back a processed result.</td></tr>
+<tr><td>3</td><td><a href="spring_page_redirection_example.htm">Spring Page Redirection Example</a><br>Learn how to use page redirection functionality in Spring MVC Framework.</td></tr>
+<tr><td>4</td><td><a href="spring_static_pages_example.htm">Spring Static Pages Example</a><br>Learn how to access static pages along with dynamic pages in Spring MVC Framework.</td></tr>
+<tr><td>5</td><td><a href="spring_exception_handling_example.htm">Spring Exception Handling Example</a><br>Learn how to handle exceptions in Spring MVC Framework.</td></tr>
+</table>
+<hr />
+<div class="pre-btn">
+<a href="spring_transaction_management.htm">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/spring_web_mvc_framework.pdf" alt="Spring Web MVC Framework" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="logging_with_log4j.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.htm" target="_top">ASP.NET </a> |
+<a href="../jquery/index.htm" target="_top">jQuery </a> |
+<a href="../ajax/index.htm" target="_top">AJAX </a> |
+<a href="../ant/index.htm" target="_top">ANT</a> |
+<a href="../jsp/index.htm" target="_top">JSP </a> |
+<a href="../servlets/index.htm" target="_top">Servlets </a> |
+<a href="../log4j/index.htm" target="_top">log4j </a> |
+<a href="../ibatis/index.htm" target="_top">iBATIS </a> |
+<a href="../hibernate/index.htm" target="_top">Hibernate </a> |
+<a href="../jdbc/index.htm" target="_top">JDBC </a> |
+<a href="../struts_2/index.htm" target="_top">Struts </a> |
+<a href="../html5/index.htm" target="_top">HTML5 </a> |
+<a href="../sql/index.htm" target="_top">SQL </a> |
+<a href="../mysql/index.htm" target="_top">MySQL </a> |
+<a href="../cplusplus/index.htm" target="_top">C++ </a> |
+<a href="../unix/index.htm" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/spring/spring_web_mvc_framework.htm by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Apr 2013 20:56:20 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,1423 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/jarsigner.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:49 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>jarsigner - Unix, Linux Command</title>
+<meta name="Description" Content="jarsigner - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>jarsigner - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+jarsigner - JAR signing and verification tool
+<h1 class="manpages">SYNOPSIS</h1>
+<b>jarsigner</b> [
+<b>options</b> ] 
+jar-file alias
+<!-- Need break --><br />
+<b>jarsigner</b> <b>-verify</b> [
+<b>options</b> ]
+jar-file alias
+<h1 class="manpages">DESCRIPTION</h1>
+<!-- ignored unsupported tag .IX -->
+<!-- ignored unsupported tag .IX -->
+The
+<b>jarsigner</b> tool is used for two purposes:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+1.
+</td><td valign="bottom">
+to sign Java ARchive (JAR) files, and
+</td></tr>
+<tr valign="top"><td>
+2.
+</td><td valign="bottom">
+to verify the signatures and integrity of signed JAR files.
+</td></tr>
+<!-- LP ends table -->
+</table>
+The JAR feature enables the packaging of class files, images,
+sounds, and other digital data in a single file for faster and
+easier distribution. A tool named
+<b>jar</b> enables developers to
+produce JAR files.
+<p>
+A digital signature is a string of bits that is computed from some
+data (the data being "signed") and the private key of an entity (a
+person, company, etc.). Like a handwritten signature, a digital
+signature has many useful characteristics:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+Its authenticity can be verified, via a computation that uses
+the public key corresponding to the private key used to
+generate the signature.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+It cannot be forged, assuming the private key is kept secret.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+It is a function of the data signed and thus can&#146;t be claimed
+to be the signature for other data as well.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+The signed data cannot be changed; if it is, the signature
+will no longer verify as being authentic.
+</td></tr>
+<!-- LP ends table -->
+</table>
+In order for an entity&#146;s signature to be generated for a file, the
+entity must first have a public/private key pair associated with
+it, and also one or more certificates authenticating its public
+key. A certificate is a digitally signed statement from one
+entity, saying that the public key of some other entity has a
+particular value.
+<p>
+<b>jarsigner</b> uses key and certificate information from a keystore to
+generate digital signatures for JAR files. A keystore is a
+database of private keys and their associated X.509 certificate
+chains authenticating the corresponding public keys. The
+<b>keytool</b> utility is used to create and administer keystores.
+<p>
+<b>jarsigner</b> uses an entity&#146;s private key to generate a signature.
+The signed JAR file contains, among other things, a copy of the
+certificate from the keystore for the public key corresponding to
+the private key used to sign the file.
+<b>jarsigner</b> can verify the
+digital signature of the signed JAR file using the certificate
+inside it (in its signature block file).
+<p>
+At this time,
+<b>jarsigner</b> can only sign JAR files created by the JDK
+<b>jar</b> tool or zip files. (JAR files are the same as zip files,
+except they also have a
+<b>META-INF/MANIFEST.MF</b> file. Such a file
+will automatically be created when
+<b>jarsigner</b> signs a zip file.)
+<p>
+The default
+<b>jarsigner</b> behavior is to sign a JAR file. Use the
+<b>-verify</b> option to instead have it verify a signed JAR file.
+<h2><i>Compatibility with JDK 1.1</i></h2>
+<!-- ignored unsupported tag .IX -->
+The
+<b>keytool</b> and
+<b>jarsigner</b> tools completely replace
+the
+<b>javakey</b> tool provided in JDK 1.1. These new tools provide more
+features than
+<b>javakey</b>, including the ability to protect the
+keystore and private keys with passwords, and the ability to
+verify signatures in addition to generating them.
+<p>
+The new keystore architecture replaces the identity
+database that
+<b>javakey</b> created and managed. There is no
+backwards compatibility between the keystore format and
+the database format used by
+<b>javakey</b> in 1.1. However:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+It is possible to import the information from an
+identity database into a keystore, via the
+<b>keytool -identitydb</b> command
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>jarsigner</b> can sign JAR files also previously signed
+using
+<b>javakey</b> </td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>jarsigner</b> can verify JAR files signed using
+<b>javakey</b> Thus, it recognizes and can work with
+signer aliases that are from a JDK 1.1 identity
+database rather than a JDK 1.2 keystore.
+</td></tr>
+<!-- LP ends table -->
+</table>
+The following table explains how JAR files that were
+signed in JDK 1.1.x are treated in the Java 2 Platform.
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<b><p>
+                         Trusted
+                        Identity
+                        imported     Policy File
+JAR File  Identity in   into 1.2       grants        Privileges
+  Type   1.1 database   keystore    privileges to     Granted
+                        from 1.1   Identity/Alias
+                        database
+                           (4)
+<p>
+Signed                                             Default
+JAR      NO            NO         NO               privaleges
+                                                   granted to
+                                                   all code.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+Unsigned                                           Default
+JAR      NO            NO         NO               privileges
+                                                   granted to
+                                                   all code.
+<p>
+Signed                                             Default
+JAR      NO            YES        NO               privileges
+                                                   granted to
+                                                   all code.
+<p>
+Signed                                             Default
+JAR      YES/Untrusted NO         NO               privileges
+                                                   granted to
+                                                   all code. (3)
+<p>
+Signed                                             Default
+JAR      YES/Untrusted NO         YES              privileges
+                                                   granted to
+                                                   all code.
+                                                   (1,3)
+<p>
+Signed                                             Default
+JAR      NO            YES        YES              privileges
+                                                   granted to
+                                                   all code plus
+                                                   privileges
+                                                   granted in
+                                                   policy file.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+Signed                                             Default
+JAR      YES/Trusted   YES        YES              privileges
+                                                   granted to
+                                                   all code plus
+                                                   privileges
+                                                   granted in
+                                                   policy file.
+                                                   (2)
+<p>
+Signed                                             All
+JAR      YES/Trusted   NO         NO               privileges
+<p>
+Signed                                             All
+JAR      YES/Trusted   YES        NO               privileges
+                                                   (1)
+<p>
+Signed                                             All
+JAR      YES/Trusted   NO         YES              privileges
+                                                   (1)
+<p>
+</pre></td></tr>
+</table>
+</b><p>
+Notes:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+1.
+</td><td valign="bottom">
+If an identity/alias is mentioned in the policy
+file, it must be imported into the keystore for the
+policy file to have any effect on privileges
+granted.
+</td></tr>
+<tr valign="top"><td>
+1.
+</td><td valign="bottom">
+If an identity/alias is mentioned in the policy
+file, it must be imported into the keystore for the
+policy file to have any effect on privileges
+granted.
+</td></tr>
+<tr valign="top"><td>
+2.
+</td><td valign="bottom">
+The policy file/keystore combination has precedence
+over a trusted identity in the identity database.
+</td></tr>
+<tr valign="top"><td>
+3.
+</td><td valign="bottom">
+Untrusted identities are ignored in the Java 2 platform.
+</td></tr>
+<tr valign="top"><td>
+4.
+</td><td valign="bottom">
+Only trusted identities can be imported into Java 2 SDK
+keystores.
+</td></tr>
+</table>
+<h2><i>Keystore Aliases</i></h2>
+<!-- ignored unsupported tag .IX -->
+<p>
+All keystore entities are accessed via unique aliases.
+<p>
+When using
+<b>jarsigner</b> to sign a JAR file, you must
+specify the alias for the keystore entry containing the
+private key needed to generate the signature. For
+example, the following will sign the JAR file named
+<b>MyJARFile.jar</b>, using the private key associated with
+the alias
+<b>duke</b> in the keystore named
+<b>mystore</b> in the
+"working" directory. Since no output file is specified,
+it overwrites
+<b>MyJARFile.jar</b> with the signed JAR file.
+<p>
+<b><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+jarsigner -keystore /working/mystore -storepass
+   myspass -keypass dukekeypasswd MyJARFile.jar duke
+</pre></td></tr>
+</table>
+</b><p>
+Keystores are protected with a password, so the store
+password (in this case
+<b>myspass</b>) must be specified. You
+will be prompted for it if you don&#146;t specify it on the
+command line. Similarly, private keys are protected in a
+keystore with a password, so the private key&#146;s password
+(in this case
+<b>dukekeypasswd</b>) must be specified, and
+you will be prompted for it if you don&#146;t specify it on
+the command line and it isn&#146;t the same as the store
+password.
+<h2><i>Keystore Location</i></h2>
+<!-- ignored unsupported tag .IX -->
+<b>jarsigner</b> has a
+<b>-keystore</b> option for specifying the name
+and location of the keystore to be used. The keystore is
+by default stored in a file named
+<b>.keystore</b> in the
+user&#146;s home directory, as determined by the
+<b>user.home</b> system property.
+<p>
+Note that the input stream from
+the -keystore option is passed to the
+<b>KeyStore.load</b> method.
+If NONE is specified as the URL, then a null stream is passed
+to the
+<b>KeyStore.load</b> method. NONE should be specified if the
+KeyStore is not file-based, for example, if it resides on a
+hardware token device.
+<h2><i>Keystore Implementation</i></h2>
+<!-- ignored unsupported tag .IX -->
+The KeyStore class provided in the
+<b>java.security</b> package supplies well-defined
+interfaces to access and modify the information
+in a keystore. It is possible for
+there to be multiple different concrete
+implementations, where each
+implementation is that for a particular type of keystore.
+<p>
+Currently, there are two command-line tools that make
+use of
+<b>KeyStore</b>: <b>keytool</b> and
+<b>jarsigner</b>, and also a
+GUI-based tool named
+<b>policytool</b>. Since
+<b>KeyStore</b> is
+publicly available, JDK users can write additional
+security applications that use it.
+<p>
+There is a built-in default implementation, provided by
+Sun Microsystems. It implements the keystore as a file,
+utilizing a proprietary keystore type (format) named
+"JKS". It protects each private key with its individual
+password, and also protects the integrity of the entire
+keystore with a (possibly different) password.
+<p>
+Keystore implementations are provider-based. More
+specifically, the application interfaces supplied by
+<b>KeyStore</b> are implemented in terms of a "Service Provider
+Interface" (SPI). That is, there is a corresponding
+abstract
+<b>KeystoreSpi</b> class, also in the
+<b>java.security</b> package, which defines the Service Provider Interface
+methods that "providers" must implement. (The term
+"provider" refers to a package or a set of packages that
+supply a concrete implementation of a subset of services
+that can be accessed by the Java Security API.) Thus, to
+provide a keystore implementation, clients must
+implement a provider and supply a
+<b>KeystoreSpi</b> subclass
+implementation, as described in
+<i>How to Implement a Provider for the Java Cryptography Architecture</i>. <p>
+Applications can choose different types of keystore
+implementations from different providers, using the
+<b>getInstance</b> factory method supplied in the
+<b>KeyStore</b> class. A keystore type defines the storage and data
+format of the keystore information, and the algorithms
+used to protect private keys in the keystore and the
+integrity of the keystore itself. Keystore
+implementations of different types are not compatible.
+<p>
+<b>keytool</b> works on any file-based keystore implementation.
+(It treats the keytore location that is passed to it at
+the command line as a filename and converts it to a
+<b>FileInputStream</b>, from which it loads the keystore
+information.) The
+<b>jarsigner</b> and
+<b>policytool</b> tools, on the
+other hand, can read a keystore from any location that
+can be specified using a URL.
+<p>
+For
+<b>jarsigner</b> and
+<b>keytool</b>, you can specify a keystore
+type at the command line, via the
+<b>-storetype</b> option. For
+<b>policytool</b>, you can specify a keystore type via the
+"Change Keystore" command in the Edit menu.
+<p>
+If you don&#146;t explicitly specify a keystore type, the
+tools choose a keystore implementation based simply on
+the value of the
+<b>keystore.type</b> property specified in the
+security properties file.
+The security properties file
+is called
+<b>java.security</b>, and it resides in the
+security properties directory,
+<b>java.home/lib/security</b>, where
+<b>java.home</b> is the
+runtime environment&#146;s directory
+(the jre directory in the SDK or the
+top-level directory of the Java 2 Runtime Environment).
+<p>
+Each tool gets the
+<b>keystore.type</b> value and then examines
+all the currently-installed providers until it finds one
+that implements keystores of that type. It then uses the
+keystore implementation from that provider.
+<p>
+The
+<b>KeyStore</b> class defines a static method named
+<b>getDefaultType</b> that lets applications and applets
+retrieve the value of the
+<b>keystore.type</b> property. The
+following line of code creates an instance of the
+default keystore type (as specified in the
+<b>keystore.type</b> property):
+<p>
+<b>KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());</b> <p>
+The default keystore type is "jks" (the proprietary type
+of the keystore implementation provided by Sun). This is
+specified by the following line in the security
+properties file:
+<p>
+<b>keystore.type=jks</b> <p>
+To have the tools utilize a keystore implementation
+other than the default, change that line to specify a
+different keystore type.
+<p>
+For example, if you have a provider package that
+supplies a keystore implementation for a keystore type
+called "pkcs12", change the line to
+<p>
+<b>keystore.type=pkcs12</b> <p>
+Note: case doesn&#146;t matter in keystore type designations.
+For example, "JKS" would be considered the same as
+"jks".
+<h2><i>Supported Algorithms and Key Sizes</i></h2>
+<!-- ignored unsupported tag .IX -->
+<p>
+At this time,
+<b>jarsigner</b> can sign a JAR file using either
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+DSA (Digital Signature Algorithm) with the SHA-1
+digest algorithm, or
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+the RSA algorithm with the MD5 digest algorithm.
+</td></tr>
+<!-- LP ends table -->
+</table>
+That is, if the signer&#146;s public and private keys are DSA
+keys,
+<b>jarsigner</b> will attempt to sign the JAR file using the
+SHA-1/DSA algorithm. If the signer&#146;s keys are RSA keys,
+<b>jarsigner</b> will sign the JAR file using the MD5/RSA
+algorithm. This is only possible if there is a
+statically installed provider supplying an
+implementation for the MD5/RSA algorithm. (There is
+always a SHA-1/DSA algorithm available, from the default
+"SUN" provider.)
+<p>
+<h2><i>The Signed JAR File</i></h2>
+<!-- ignored unsupported tag .IX -->
+<p>
+When
+<b>jarsigner</b> is used to sign a JAR file, the output
+signed JAR file is exactly the same as the input JAR
+file, except that it has two additional files placed in
+the
+<b>META-INF</b> directory:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+a signature file, with a
+<b>.SF</b> extension, and
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+a signature block file, with a
+<b>.DSA</b> extension.
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+The base file names for these two files come from the
+value of the
+<b>-sigFile</b> option. For example, if the option
+appears as
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+<b>-sigFile MKSIGN</b> </td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+the files are named
+<b>MKSIGN.SF</b> and
+<b>MKSIGN.DSA</b>. </td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+If no
+<b>-sigfile</b> option appears on the command line, the
+base file name for the
+<b>.SF</b> and
+<b>.DSA</b> files will be the
+first 8 characters of the alias name specified on the
+command line, all converted to upper case. If the alias
+name has fewer than 8 characters, the full alias name is
+used. If the alias name contains any characters that are
+not allowed in a signature file name, each such
+character is converted to an underscore ("_") character
+in forming the file name. Legal characters include
+letters, digits, underscores, and hyphens.
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+The Signature (<b>.SF</b>)
+File
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+A signature file (the
+<b>.SF</b> file) looks similar
+to the manifest file that is always included
+in a JAR file generated by the
+<b>jar</b> tool. That
+is, for each source file included in the JAR
+file, the
+<b>.SF</b> file has three lines, just as in
+the manifest file, listing the following:
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+the file name,
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+the name of the digest algorithm used
+(SHA), and
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+a SHA digest value.
+</td></tr>
+<!-- LP ends table -->
+</table>
+In the manifest file, the SHA digest value for
+each source file is the digest (hash) of the
+binary data in the source file. In the
+<b>.SF</b> file, on the other hand, the digest value for
+a given source file is the hash of the three
+lines in the manifest file for the source
+file.
+<p>
+The signature file also, by default, includes
+a header containing a hash of the whole
+manifest file. The presence of the header
+enables verification optimization, as
+described in JAR File Verification.
+<p>
+The Signature Block (<b>.DSA</b>) File
+<p>
+The
+<b>.SF</b> file is signed and the signature is
+placed in the
+<b>.DSA</b> file. The
+<b>.DSA</b> file also
+contains, encoded inside it, a certificate
+authenticating the public key corresponding to
+the private key used for signing.
+<p>
+<h2><i>JAR File Verification</i></h2>
+<!-- ignored unsupported tag .IX -->
+<p>
+A successful JAR file verification occurs if the
+signature(s) are valid, and none of the files that were
+in the JAR file when the signatures were generated have
+been changed since then. JAR file verification involves
+the following steps:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+1.
+</td><td valign="bottom">
+Verify the signature of the
+<b>.SF</b> file itself.
+<p>
+That is, the verification ensures that the
+signature stored in each signature block (<b>.DSA</b>)
+file was in fact generated using the private key
+corresponding to the public key whose certificate
+also appears in the
+<b>.DSA</b> file. It also ensures that
+the signature is a valid signature of the
+corresponding signature (<b>.SF</b>)
+file, and thus the
+<b>.SF</b> file has not been tampered with.
+</td></tr>
+<tr valign="top"><td>
+2.
+</td><td valign="bottom">
+Verify the digest listed in each entry in the
+<b>.SF</b> file with each corresponding section in the
+manifest.
+<p>
+The
+<b>.SF</b> file by default includes a header
+containing a hash of the entire manifest file. When
+the header is present, then the verification can
+check to see whether or not the hash in the header
+indeed matches the hash of the manifest file. If
+that is the case, verification proceeds to the next
+step.
+<p>
+If that is not the case, a less optimized
+verification is required to ensure that the hash in
+each source file information section in the
+<b>.SF</b> file equals the hash of its corresponding section
+in the manifest file (see The Signature (<b>.SF</b>)
+File). 
+<p>
+One reason the hash of the manifest file that is
+stored in the
+<b>.SF</b> file header may not equal the
+hash of the current manifest file would be because
+one or more files were added to the JAR file (using
+the
+<b>jar</b> tool) after the signature (and thus the
+<b>.SF</b> file) was generated. When the
+<b>jar</b> tool is used to
+add files, the manifest file is changed (sections
+are added to it for the new files), but the
+<b>.SF</b> file is not. A verification is still considered
+successful if none of the files that were in the
+JAR file when the signature was generated have been
+changed since then, which is the case if the hashes
+in the non-header sections of the
+<b>.SF</b> file equal
+the hashes of the corresponding sections in the
+manifest file.
+</td></tr>
+<tr valign="top"><td>
+3.
+</td><td valign="bottom">
+Read each file in the JAR file that has an entry in
+the
+<b>.SF</b> file. While reading, compute the file&#146;s
+digest, and then compare the result with the digest
+for this file in the manifest section. The digests
+should be the same, or verification fails.
+</td></tr>
+<!-- LP ends table -->
+</table>
+If any serious verification failures occur during the
+verification process, the process is stopped and a
+security exception is thrown. It is caught and displayed
+by
+<b>jarsigner</b>. <p>
+<h2><i>Multiple Signatures for a JAR File</i></h2>
+<!-- ignored unsupported tag .IX -->
+<p>
+A JAR file can be signed by multiple people simply by
+running the
+<b>jarsigner</b> tool on the file multiple times, specifying
+the alias for a different person each time, as in:
+<p>
+<b><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+jarsigner myBundle.jar susan
+jarsigner myBundle.jar kevin
+</pre></td></tr>
+</table>
+</b><p>
+When a JAR file is signed multiple times, there are
+multiple
+<b>.SF</b> and
+<b>.DSA</b> files in the resulting JAR file,
+one pair for each signature. Thus, in the example above,
+the output JAR file includes files with the following
+names:
+<p>
+<b><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+SUSAN.SF
+SUSAN.DSA
+KEVIN.SF
+KEVIN.DSA
+</pre></td></tr>
+</table>
+</b><p>
+Note: It is also possible for a JAR file to
+have mixed signatures, some generated by
+the JDK 1.1 javakey tool and others by
+jarsigner. That is, jarsigner can be used
+to sign JAR files already previously signed using javakey.
+<h1 class="manpages">OPTIONS</h1>
+<p>
+The various
+<b>jarsigner</b> options are listed and described below.
+Note:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+All option names are preceded by a minus sign (-).
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+The options may be provided in any order.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+Items in italics (option values) represent the actual values
+that must be supplied.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+The
+<b>-keystore</b>, <b>-storepass</b>, <b>-keypass</b>, <b>-sigfile</b>, and
+<b>-signedjar</b> options are only relevant when signing a JAR file,
+not when verifying a signed JAR file. Similarly, an alias is
+only specified on the command line when signing a JAR file.
+</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-keystore</b><i> url</i> </td><td valign="bottom">
+Specifies the URL that tells the keystore location. This
+defaults to the file
+<b>.keystore</b> in the user&#146;s home directory,
+as determined by the
+<b>user.home</b> system property.
+<p>
+A keystore is required when signing, so you must explicitly
+specify one if the default keystore does not exist (or you
+want to use one other than the default).
+<p>
+A keystore is not required when verifying, but if one is
+specified, or the default exists, and the
+<b>-verbose</b> option was
+also specified, additional information is output regarding
+whether or not any of the certificates used to verify the JAR
+file are contained in that keystore.
+<p>
+Note: the
+<b>-keystore</b> argument can actually be a file name (and
+path) specification rather than a URL, in which case it will
+be treated the same as a "file:" URL. That is,
+<p>
+<b>-keystore filePathAndName</b> <p>
+is treated as equivalent to
+<p>
+<b>-keystore file:filePathAndName</b> <p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-storetype</b><i> storetype</i> </td></tr><tr valign="top"><td width=15%>&nbsp;</td><td>
+Specifies the type of keystore to be instantiated. The
+default keystore type is the one that is specified as the
+value of the "keystore.type" property in the security
+properties file, which is returned by the static
+<b>getDefaultType</b> method in
+<b>java.security.KeyStore</b>. </td></tr>
+<tr valign="top"><td colspan="2">
+<b>-storepass</b><i> password</i> </td></tr><tr valign="top"><td width=15%>&nbsp;</td><td>
+Specifies the password which is required to access the
+keystore. This is only needed when signing (not verifying) a
+JAR file. In that case, if a
+<b>-storepass</b> option is not
+provided at the command line, the user is prompted for the
+password.
+<p>
+Note: The password shouldn&#146;t be specified on the command line
+or in a script unless it is for testing purposes, or you are
+on a secure system. Also, when typing in a password at the
+password prompt, the password is echoed (displayed exactly as
+typed), so be careful not to type it in front of anyone.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-keypass</b><i> password</i> </td></tr><tr valign="top"><td width=15%>&nbsp;</td><td>
+Specifies the password used to protect the private key of the
+keystore entry addressed by the alias specified on the
+command line. The password is required when using
+<b>jarsigner</b> to sign a JAR file. If no password is provided on the command
+line, and the required password is different from the store
+password, the user is prompted for it.
+<p>
+Note: The password shouldn&#146;t be specified on the command line
+or in a script unless it is for testing purposes, or you are
+on a secure system. Also, when typing in a password at the
+password prompt, the password is echoed (displayed exactly as
+typed), so be careful not to type it in front of anyone.
+</td></tr>
+<tr valign="top"><td>
+<b>-sigfile</b><i> file</i> </td><td valign="bottom">
+Specifies the base file name to be used for the generated
+<b>.SF</b> and
+<b>.DSA</b> files. For example, if file is
+<b>DUKESIGN</b>, the
+generated
+<b>.SF</b> and
+<b>.DSA</b> files will be named
+<b>DUKESIGN.SF</b> and
+<b>DUKESIGN.DSA</b>, and will be placed in the
+<b>META-INF</b> directory of the signed JAR file.
+<p>
+The characters in file must come from the set "a-zA-Z0-9_-".
+That is, only letters, numbers, underscore, and hyphen
+characters are allowed.
+Note: All lowercase characters will
+be converted to uppercase for the
+<b>.SF</b> and
+<b>.DSA</b> file names.
+<p>
+If no
+<b>-sigfile</b> option appears on the command line, the base
+file name for the
+<b>.SF</b> and
+<b>.DSA</b> files will be the first 8
+characters of the alias name specified on the command line,
+all converted to upper case. If the alias name has fewer than
+8 characters, the full alias name is used.  If the alias name
+contains any characters that are not legal in a signature
+file name, each such character is converted to an underscore
+("_") character in forming the file name.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-signedjar</b><i> file</i> </td></tr><tr valign="top"><td width=15%>&nbsp;</td><td>
+Specifies the name to be used for the signed JAR file.
+<p>
+If no name is specified on the command line, the name used is
+the same as the input JAR file name (the name of the JAR file
+to be signed); in other words, that file is overwritten with
+the signed JAR file.
+</td></tr>
+<tr valign="top"><td>
+<b>-verify</b> </td><td valign="bottom">
+If this appears on the command line, the specified JAR file
+will be verified, not signed. If the verification is
+successful, "jar verified" will be displayed. If you try to
+verify an unsigned JAR file, or a JAR file signed with an
+unsupported algorithm (for example, RSA when you don&#146;t have an RSA
+provider installed), the following is displayed: "jar is
+unsigned. (signatures missing or not parsable)"
+<p>
+It is possible to verify JAR files signed using either
+<b>jarsigner</b> or the JDK 1.1
+<b>javakey</b> tool, or both.
+<p>
+For further information on verification, see JAR File
+Verification.
+</td></tr>
+<tr valign="top"><td>
+<b>-certs</b> </td><td valign="bottom">
+If this appears on the command line, along with the
+<b>-verify</b> and
+<b>-verbose</b> options, the output includes certificate
+information for each signer of the JAR file. This information
+includes:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+the name of the type of certificate (stored in the
+<b>.DSA</b> file) that certifies the signer&#146;s public key
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+if the certificate is an X.509 certificate (more
+specifically, an instance of
+java.security.cert.X509Certificate): the distinguished
+name of the signer
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+The keystore is also examined. If no keystore value is
+specified on the command line, the default keystore file (if
+any) will be checked. If the public key certificate for a
+signer matches an entry in the keystore, then the following
+information will also be displayed:
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+in parentheses, the alias name for the keystore entry
+for that signer. If the signer actually comes from a JDK
+1.1 identity database instead of from a keystore, the
+alias name will appear in brackets instead of
+parentheses.
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td>
+<b>-verbose</b> </td><td valign="bottom">
+If this appears on the command line, it indicates "verbose"
+mode, which causes
+<b>jarsigner</b> to output extra information as
+to the progress of the JAR signing or verification.
+</td></tr>
+<tr valign="top"><td>
+<b>-internalsf</b> </td><td valign="bottom">
+In the past, the
+<b>.DSA</b> (signature block) file generated when a
+JAR file was signed used to include a complete encoded copy
+of the
+<b>.SF</b> file (signature file) also generated. This
+behavior has been changed. To reduce the overall size of the
+output JAR file, the
+<b>.DSA</b> file by default doesn&#146;t contain a
+copy of the
+<b>.SF</b> file anymore. But if
+<b>-internalsf</b> appears on
+the command line, the old behavior is utilized. This option
+is mainly useful for testing; in practice, it should not be
+used, since doing so eliminates a useful optimization.
+</td></tr>
+<tr valign="top"><td>
+<b>-sectionsonly</b> </td><td valign="bottom">
+If this appears on the command line, the
+<b>.SF</b> file (signature
+file) generated when a JAR file is signed does not include a
+header containing a hash of the whole manifest file. It just
+contains information and hashes related to each individual
+source file included in the JAR file, as described in The
+Signature (<b>.SF</b>)
+File .
+<p>
+By default, this header is added, as an optimization. When
+the header is present, then whenever the JAR file is
+verified, the verification can first check to see whether or
+not the hash in the header indeed matches the hash of the
+whole manifest file. If so, verification proceeds to the next
+step. If not, it is necessary to do a less optimized
+verification that the hash in each source file information
+section in the
+<b>.SF</b> file equals the hash of its corresponding
+section in the manifest file.
+<p>
+For further information, see JAR File Verification.
+<p>
+This option is mainly useful for testing; in practice, it
+should not be used, since doing so eliminates a useful
+optimization.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-provider</b><i> provider_class_name</i> </td></tr><tr valign="top"><td width=2%>&nbsp;</td><td>
+Used to specify the name
+of the cryptographic service provider&#146;s master class
+file when the service provider is not listed in
+the security properties file.
+</td></tr>
+<tr valign="top"><td>
+<b>-J</b><i>javaoption</i> </td><td valign="bottom">
+Passes the specified javaoption string directly to the runtime system.
+(<b>jarsigner</b>
+is actually a "wrapper"
+around the interpreter.) This option should not contain any
+spaces.
+It is useful for adjusting the execution environment
+or memory usage.
+For a list of possible flags, type
+<b>java -h</b> or
+<b>java -X</b> at the
+command line.
+</td></tr>
+</table>
+<h1 class="manpages">EXAMPLES</h1>
+<h2><i>Signing a JAR File</i></h2>
+<!-- ignored unsupported tag .IX -->
+Suppose you have a JAR file named
+<b>bundle.jar</b> and you&#146;d
+like to sign it using the private key of the user whose
+keystore alias is "jane" in the keystore named "mystore"
+in the "working" directory. Suppose the keystore
+password is "myspass" and the password for jane&#146;s
+private key is "j638klm". You can use the following to
+sign the JAR file and name the signed JAR file
+"sbundle.jar":
+<p>
+<b><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+jarsigner -keystore "/working/mystore" -storepass myspass
+   -keypass j638klm -signedjar sbundle.jar bundle.jar jane
+</pre></td></tr>
+</table>
+</b><p>
+Note that there is no
+<b>-sigfile</b> specified in the command
+above, so the generated
+<b>.SF</b> and
+<b>.DSA</b> files to be placed
+in the signed JAR file will have default names based on
+the alias name. That is, they will be named
+<b>JANE.SF</b> and
+<b>JANE.DSA</b>. <p>
+If you want to be prompted for the store password and
+the private key password, you could shorten the above
+command to
+<p>
+<b><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+jarsigner -keystore /working/mystore
+   -signedjar sbundle.jar bundle.jar jane
+</pre></td></tr>
+</table>
+</b><p>
+If the keystore to be used is the default keystore (the
+one named
+<b>.keystore</b> in your home directory), you don&#146;t
+need to specify a keystore, as in:
+<p>
+<b><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+jarsigner -signedjar sbundle.jar bundle.jar jane
+</pre></td></tr>
+</table>
+</b><p>
+Finally, if you want the signed JAR file to simply
+overwrite the input JAR file (bundle.jar), you don&#146;t
+need to specify a
+<b>-signedjar</b> option:
+<p>
+<b><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+jarsigner bundle.jar jane
+</pre></td></tr>
+</table>
+</b><h2><i>Verifying a Signed JAR File</i></h2>
+<!-- ignored unsupported tag .IX -->
+To verify a signed JAR file, that is, to verify that the
+signature is valid and the JAR file has not been
+tampered with, use a command such as the following:
+<p>
+<b><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+jarsigner -verify sbundle.jar
+</pre></td></tr>
+</table>
+</b><p>
+If the verification is successful,
+<p>
+<b><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+jar verified.
+</pre></td></tr>
+</table>
+</b><p>
+is displayed. Otherwise, an error message appears.
+<p>
+You can get more information if you use the
+<b>-verbose</b> option. A sample use of
+<b>jarsigner</b> with the
+<b>-verbose</b> option is shown below, along with sample output:
+<p>
+<b><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+jarsigner -verify -verbose sbundle.jar
+<p>
+             198 Fri Sep 26 16:14:06 PDT 1997 META-INF/MANIFEST.MF
+             199 Fri Sep 26 16:22:10 PDT 1997 META-INF/JANE.SF
+            1013 Fri Sep 26 16:22:10 PDT 1997 META-INF/JANE.DSA
+      smk   2752 Fri Sep 26 16:12:30 PDT 1997 AclEx.class
+      smk    849 Fri Sep 26 16:12:46 PDT 1997 test.class
+<p>
+        s = signature was verified
+        m = entry is listed in manifest
+        k = at least one certificate was found in keystore
+<p>
+      jar verified.
+</pre></td></tr>
+</table>
+</b><p>
+<h2><i>Verification with Certificate Information</i></h2>
+<!-- ignored unsupported tag .IX -->
+If you specify the
+<b>-certs</b> option when verifying, along
+with the
+<b>-verify</b> and
+<b>-verbose</b> options, the output
+includes certificate information for each signer of the
+JAR file, including the certificate type, the signer
+distinguished name information (if it&#146;s an X.509
+certificate), and, in parentheses, the keystore alias
+for the signer if the public key certificate in the JAR
+file matches that in a keystore entry. For example,
+<p>
+<b><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+example% jarsigner -keystore /working/mystore -verify -verbose -certs myTest.jar
+<p>
+      198 Fri Sep 26 16:14:06 PDT 1997 META-INF/MANIFEST.MF
+      199 Fri Sep 26 16:22:10 PDT 1997 META-INF/JANE.SF
+     1013 Fri Sep 26 16:22:10 PDT 1997 META-INF/JANE.DSA
+      208 Fri Sep 26 16:23:30 PDT 1997 META-INF/JAVATEST.SF
+     1087 Fri Sep 26 16:23:30 PDT 1997 META-INF/JAVATEST.DSA
+smk   2752 Fri Sep 26 16:12:30 PDT 1997 Tst.class
+<p>
+ X.509, CN=Test Group, OU=Java Software, O=Sun Microsystems, L=CUP, S=CA, C=US (javatest)
+ X.509, CN=Jane Smith, OU=Java Software, O=Sun, L=cup, S=ca, C=us (jane)
+<p>
+ s = signature was verified
+ m = entry is listed in manifest
+ k = at least one certificate was found in keystore
+<p>
+jar verified.
+</pre></td></tr>
+</table>
+</b><p>
+If the certificate for a signer is not an X.509
+certificate, there is no distinguished name information.
+In that case, just the certificate type and the alias
+are shown. For example, if the certificate is a PGP
+certificate, and the alias is "bob", you&#146;d get
+<p>
+<b><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+PGP, (bob)
+</pre></td></tr>
+</table>
+</b><p>
+<h2><i>Verification of a JAR File that Includes Idnetity Database Signers</i></h2>
+<!-- ignored unsupported tag .IX -->
+If a JAR file has been signed using the JDK 1.1
+<b>javakey</b> tool, and thus the signer is an alias in an identity
+database, the verification output includes an "i"
+symbol. If the JAR file has been signed by both an alias
+in an identity database and an alias in a keystore, both
+"k" and "i" appear.
+<p>
+When the
+<b>-certs</b> option is used, any identity database
+aliases are shown in square brackets rather than the
+parentheses used for keystore aliases. For example:
+<p>
+<b><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+jarsigner -keystore /working/mystore -verify -verbose -certs writeFile.jar
+<p>
+      198 Fri Sep 26 16:14:06 PDT 1997 META-INF/MANIFEST.MF
+      199 Fri Sep 26 16:22:10 PDT 1997 META-INF/JANE.SF
+     1013 Fri Sep 26 16:22:10 PDT 1997 META-INF/JANE.DSA
+      199 Fri Sep 27 12:22:30 PDT 1997 META-INF/DUKE.SF
+     1013 Fri Sep 27 12:22:30 PDT 1997 META-INF/DUKE.DSA
+smki   2752 Fri Sep 26 16:12:30 PDT 1997 writeFile.html
+<p>
+ X.509, CN=Jane Smith, OU=Java Software, O=Sun, L=cup, S=ca, C=us (jane)
+ X.509, CN=Duke, OU=Java Software, O=Sun, L=cup, S=ca, C=us [duke]
+<p>
+ s = signature was verified
+ m = entry is listed in manifest
+ k = at least one certificate was found in keystore
+ i = at least one certificate was found in identity scope
+<p>
+jar verified.
+</pre></td></tr>
+</table>
+</b><p>
+Note that the alias "duke" is in brackets to denote that
+it is an identity database alias, not a keystore alias.
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="jar.html">jar (1)</a></p></li>
+<li><p><a href="keytool.htm">keytool (1)</a></p></li>
+</ul>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion8482.html?tutorial=unix_commands&amp;file=jarsigner.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/jarsigner.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:49 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

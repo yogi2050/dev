@@ -1,0 +1,2321 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/psql.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>psql - Unix, Linux Command</title>
+<meta name="Description" Content="psql - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>psql - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- ignored unsupported tag ._DBLSLASH_ -->
+<h1 class="manpages">NAME</h1>
+psql - PostgreSQL interactive terminal
+<p>
+<h1 class="manpages">SYNOPSIS</h1>
+<p>
+<b>psql</b> [ <b></b><i>option</i><b></b><i>...</i> ]  [ <b></b><i>dbname</i><b>
+<br />
+ [ </b><i>username</i><b> ] </b> ]
+<h1 class="manpages">DESCRIPTION</h1>
+<p>
+<b>psql</b> is a terminal-based front-end to
+PostgreSQL. It enables you to type in
+queries interactively, issue them to
+PostgreSQL, and see the query results.
+Alternatively, input can be from a file. In addition, it provides a
+number of meta-commands and various shell-like features to
+facilitate writing scripts and automating a wide variety of tasks.
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-a</b>
+<!-- Consumed .TP -->
+<br />
+<b>--echo-all</b>
+</td><td valign="bottom">
+Print all input lines to standard output as they are read. This is more
+useful for script processing rather than interactive mode. This is
+equivalent to setting the variable ECHO to
+all.
+</td></tr>
+<tr valign="top"><td>
+<b>-A</b>
+<!-- Consumed .TP -->
+<br />
+<b>--no-align</b>
+</td><td valign="bottom">
+Switches to unaligned output mode. (The default output mode is
+otherwise aligned.)
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-c </b><i>command</i><b></b>
+<!-- Consumed .TP -->
+<br />
+<b>--command </b><i>command</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies that <b>psql</b> is to execute one
+command string, <i>command</i>,
+and then exit. This is useful in shell scripts.
+<p>
+<i>command</i> must be either
+a command string that is completely parsable by the server (i.e.,
+it contains no <b>psql</b> specific features),
+or a single backslash command. Thus you cannot mix
+SQL and <b>psql</b>
+meta-commands. To achieve that, you could pipe the string into
+<b>psql</b>, like this: echo "\x \\
+select * from foo;" | psql.
+<p>
+If the command string contains multiple SQL commands, they are
+processed in a single transaction, unless there are explicit
+BEGIN/COMMIT commands included in the string to divide it into
+multiple transactions. This is different from the behavior when
+the same string is fed to <b>psql</b>&#146;s standard input.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-d </b><i>dbname</i><b></b>
+<!-- Consumed .TP -->
+<br />
+<b>--dbname </b><i>dbname</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies the name of the database to connect to. This is
+equivalent to specifying <i>dbname</i> as the first non-option
+argument on the command line.
+</td></tr>
+<tr valign="top"><td>
+<b>-e</b>
+<!-- Consumed .TP -->
+<br />
+<b>--echo-queries</b>
+</td><td valign="bottom">
+Copy all SQL commands sent to the server to standard output as well.
+This is equivalent
+to setting the variable ECHO to
+queries.
+</td></tr>
+<tr valign="top"><td>
+<b>-E</b>
+<!-- Consumed .TP -->
+<br />
+<b>--echo-hidden</b>
+</td><td valign="bottom">
+Echo the actual queries generated by <b>\d</b> and other backslash
+commands. You can use this to study <b>psql</b>&#146;s
+internal operations. This is equivalent to
+setting the variable ECHO_HIDDEN from within
+<b>psql</b>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-f </b><i>filename</i><b></b>
+<!-- Consumed .TP -->
+<br />
+<b>--file </b><i>filename</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Use the file <i>filename</i>
+as the source of commands instead of reading commands interactively.
+After the file is processed, <b>psql</b>
+terminates. This is in many ways equivalent to the internal
+command <b>\i</b>.
+<p>
+If <i>filename</i> is -
+(hyphen), then standard input is read.
+<p>
+Using this option is subtly different from writing psql
+&lt; <i>filename</i>. In general,
+both will do what you expect, but using -f
+enables some nice features such as error messages with line
+numbers. There is also a slight chance that using this option will
+reduce the start-up overhead. On the other hand, the variant using
+the shell&#146;s input redirection is (in theory) guaranteed to yield
+exactly the same output that you would have gotten had you entered
+everything by hand.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-F </b><i>separator</i><b></b>
+<!-- Consumed .TP -->
+<br />
+<b>--field-separator </b><i>separator</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Use <i>separator</i> as the
+field separator for unaligned output. This is equivalent to
+<b>\pset fieldsep</b> or <b>\f</b>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-h </b><i>hostname</i><b></b>
+<!-- Consumed .TP -->
+<br />
+<b>--host </b><i>hostname</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies the host name of the machine on which the
+server is running. If the value begins
+with a slash, it is used as the directory for the Unix-domain
+socket.
+</td></tr>
+<tr valign="top"><td>
+<b>-H</b>
+<!-- Consumed .TP -->
+<br />
+<b>--html</b>
+</td><td valign="bottom">
+Turn on HTML tabular output. This is
+equivalent to \pset format html or the
+<b>\H</b> command.
+</td></tr>
+<tr valign="top"><td>
+<b>-l</b>
+<!-- Consumed .TP -->
+<br />
+<b>--list</b>
+</td><td valign="bottom">
+List all available databases, then exit. Other non-connection
+options are ignored. This is similar to the internal command
+<b>\list</b>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-L </b><i>filename</i><b></b>
+<!-- Consumed .TP -->
+<br />
+<b>--log-file </b><i>filename</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Write all query output into file <i>filename</i>, in addition to the
+normal output destination.
+</td></tr>
+<tr valign="top"><td>
+<b>-n</b>
+<!-- Consumed .TP -->
+<br />
+<b>--no-readline</b>
+</td><td valign="bottom">
+Do not use readline for line editing and do not use the history.
+This can be useful to turn off tab expansion when cutting and pasting.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-o </b><i>filename</i><b></b>
+<!-- Consumed .TP -->
+<br />
+<b>--output </b><i>filename</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Put all query output into file <i>filename</i>. This is equivalent to
+the command <b>\o</b>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-p </b><i>port</i><b></b>
+<!-- Consumed .TP -->
+<br />
+<b>--port </b><i>port</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies the TCP port or the local Unix-domain
+socket file extension on which the server is listening for
+connections. Defaults to the value of the <b>PGPORT</b>
+environment variable or, if not set, to the port specified at
+compile time, usually 5432.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-P </b><i>assignment</i><b></b>
+<!-- Consumed .TP -->
+<br />
+<b>--pset </b><i>assignment</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Allows you to specify printing options in the style of
+<b>\pset</b> on the command line. Note that here you
+have to separate name and value with an equal sign instead of a
+space. Thus to set the output format to LaTeX, you could write
+-P format=latex.
+</td></tr>
+<tr valign="top"><td>
+<b>-q</b>
+<!-- Consumed .TP -->
+<br />
+<b>--quiet</b>
+</td><td valign="bottom">
+Specifies that <b>psql</b> should do its work
+quietly. By default, it prints welcome messages and various
+informational output. If this option is used, none of this
+happens. This is useful with the <b>-c</b> option.
+Within <b>psql</b> you can also set the
+QUIET variable to achieve the same effect.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-R </b><i>separator</i><b></b>
+<!-- Consumed .TP -->
+<br />
+<b>--record-separator </b><i>separator</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Use <i>separator</i> as the
+record separator for unaligned output. This is equivalent to the
+<b>\pset recordsep</b> command.
+</td></tr>
+<tr valign="top"><td>
+<b>-s</b>
+<!-- Consumed .TP -->
+<br />
+<b>--single-step</b>
+</td><td valign="bottom">
+Run in single-step mode. That means the user is prompted before
+each command is sent to the server, with the option to cancel
+execution as well. Use this to debug scripts.
+</td></tr>
+<tr valign="top"><td>
+<b>-S</b>
+<!-- Consumed .TP -->
+<br />
+<b>--single-line</b>
+</td><td valign="bottom">
+Runs in single-line mode where a newline terminates an SQL command, as a
+semicolon does.
+<p>
+<b>Note:</b> This mode is provided for those who insist on it, but you are not
+necessarily encouraged to use it. In particular, if you mix
+SQL and meta-commands on a line the order of
+execution might not always be clear to the inexperienced user.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>-t</b>
+<!-- Consumed .TP -->
+<br />
+<b>--tuples-only</b>
+</td><td valign="bottom">
+Turn off printing of column names and result row count footers,
+etc. This is equivalent to the <b>\t</b> command.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-T </b><i>table_options</i><b></b>
+<!-- Consumed .TP -->
+<br />
+<b>--table-attr </b><i>table_options</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Allows you to specify options to be placed within the
+HTML table tag. See
+<b>\pset</b> for details.
+</td></tr>
+<tr valign="top"><td>
+<b>-u</b>
+</td><td valign="bottom">
+Forces <b>psql</b> to prompt for the user name and
+password before connecting to the database.
+<p>
+This option is deprecated, as it is conceptually flawed.
+(Prompting for a non-default user name and prompting for a
+password because the server requires it are really two different
+things.) You are encouraged to look at the <b>-U</b> and
+<b>-W</b> options instead.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-U </b><i>username</i><b></b>
+<!-- Consumed .TP -->
+<br />
+<b>--username </b><i>username</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Connect to the database as the user <i>username</i> instead of the default.
+(You must have permission to do so, of course.)
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-v </b><i>assignment</i><b></b>
+<!-- Consumed .TP -->
+<br />
+<b>--set </b><i>assignment</i><b></b>
+<!-- Consumed .TP -->
+<br />
+<b>--variable </b><i>assignment</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Perform a variable assignment, like the <b>\set</b>
+internal command. Note that you must separate name and value, if
+any, by an equal sign on the command line. To unset a variable,
+leave off the equal sign. To just set a variable without a value,
+use the equal sign but leave off the value. These assignments are
+done during a very early stage of start-up, so variables reserved
+for internal purposes might get overwritten later.
+</td></tr>
+<tr valign="top"><td>
+<b>-V</b>
+<!-- Consumed .TP -->
+<br />
+<b>--version</b>
+</td><td valign="bottom">
+Print the <b>psql</b> version and exit.
+</td></tr>
+<tr valign="top"><td>
+<b>-W</b>
+<!-- Consumed .TP -->
+<br />
+<b>--password</b>
+</td><td valign="bottom">
+Forces <b>psql</b> to prompt for a
+password before connecting to a database.
+<p>
+<b>psql</b> should automatically prompt for a
+password whenever the server requests password authentication.
+However, currently password request detection is not totally
+reliable, hence this option to force a prompt. If no password
+prompt is issued and the server requires password authentication,
+the connection attempt will fail.
+<p>
+This option will remain set for the entire session, even if you
+change the database connection with the meta-command
+<b>\connect</b>.
+</td></tr>
+<tr valign="top"><td>
+<b>-x</b>
+<!-- Consumed .TP -->
+<br />
+<b>--expanded</b>
+</td><td valign="bottom">
+Turn on the expanded table formatting mode. This is equivalent to the
+<b>\x</b> command.
+</td></tr>
+<tr valign="top"><td>
+<b>-X,</b>
+<!-- Consumed .TP -->
+<br />
+<b>--no-psqlrc</b>
+</td><td valign="bottom">
+Do not read the start-up file (neither the system-wide
+<i>psqlrc</i> file nor the user&#146;s
+<i>~/.psqlrc</i> file).
+</td></tr>
+<tr valign="top"><td>
+<b>-?</b>
+<!-- Consumed .TP -->
+<br />
+<b>--help</b>
+</td><td valign="bottom">
+Show help about <b>psql</b> command line
+arguments, and exit.
+</td></tr>
+</table>
+<h1 class="manpages">EXIT STATUS</h1>
+<p>
+<b>psql</b> returns 0 to the shell if it
+finished normally, 1 if a fatal error of its own (out of memory,
+file not found) occurs, 2 if the connection to the server went bad
+and the session was not interactive, and 3 if an error occurred in a
+script and the variable ON_ERROR_STOP was set.
+<h1 class="manpages">USAGE</h1>
+<h2><i>CONNECTING TO A DATABASE</i></h2>
+<p>
+<b>psql</b> is a regular
+PostgreSQL client application. In order
+to connect to a database you need to know the name of your target
+database, the host name and port number of the server and what user
+name you want to connect as. <b>psql</b> can be
+told about those parameters via command line options, namely
+<b>-d</b>, <b>-h</b>, <b>-p</b>, and
+<b>-U</b> respectively. If an argument is found that does
+not belong to any option it will be interpreted as the database name
+(or the user name, if the database name is already given). Not all
+these options are required; there are useful defaults. If you omit the host
+name, <b>psql</b> will connect via a Unix-domain socket
+to a server on the local host, or via TCP/IP to localhost on
+machines that don&#146;t have Unix-domain sockets. The default port number is
+determined at compile time.
+Since the database server uses the same default, you will not have
+to specify the port in most cases. The default user name is your
+Unix user name, as is the default database name. Note that you can&#146;t
+just connect to any database under any user name. Your database
+administrator should have informed you about your access rights.
+<p>
+When the defaults aren&#146;t quite right, you can save yourself
+some typing by setting the environment variables
+<b>PGDATABASE</b>, <b>PGHOST</b>,
+<b>PGPORT</b> and/or <b>PGUSER</b> to appropriate
+values. (For additional environment variables, see the documentation.) It is also convenient to have a
+<i>~/.pgpass</i> file to avoid regularly having to type in
+passwords. See the documentation for more information.
+<p>
+If the connection could not be made for any reason (e.g., insufficient
+privileges, server is not running on the targeted host, etc.),
+<b>psql</b> will return an error and terminate.
+<h2><i>ENTERING SQL COMMANDS</i></h2>
+<p>
+In normal operation, <b>psql</b> provides a
+prompt with the name of the database to which
+<b>psql</b> is currently connected, followed by
+the string =&gt;. For example,
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+$ <b>psql testdb</b>
+Welcome to psql 8.1.22, the PostgreSQL interactive terminal.
+<p>
+Type:  \copyright for distribution terms
+       \h for help with SQL commands
+       \? for help with psql commands
+       \g or terminate with semicolon to execute query
+       \q to quit
+<p>
+testdb=&gt;
+<p>
+</pre></td></tr>
+</table>
+<p>
+At the prompt, the user may type in SQL commands.
+Ordinarily, input lines are sent to the server when a
+command-terminating semicolon is reached. An end of line does not
+terminate a command. Thus commands can be spread over several lines for
+clarity. If the command was sent and executed without error, the results
+of the command are displayed on the screen.
+<p>
+Whenever a command is executed, <b>psql</b> also polls
+for asynchronous notification events generated by
+LISTEN [<b>listen</b>(7)] and
+NOTIFY [<b>notify</b>(7)].
+<h2><i>META-COMMANDS</i></h2>
+<p>
+Anything you enter in <b>psql</b> that begins
+with an unquoted backslash is a <b>psql</b>
+meta-command that is processed by <b>psql</b>
+itself. These commands help make
+<b>psql</b> more useful for administration or
+scripting. Meta-commands are more commonly called slash or backslash
+commands.
+<p>
+The format of a <b>psql</b> command is the backslash,
+followed immediately by a command verb, then any arguments. The arguments
+are separated from the command verb and each other by any number of
+whitespace characters.
+<p>
+To include whitespace into an argument you may quote it with a
+single quote. To include a single quote into such an argument,
+precede it by a backslash. Anything contained in single quotes is
+furthermore subject to C-like substitutions for
+\n (new line), \t (tab),
+\<i>digits</i> (octal), and
+\x<i>digits</i> (hexadecimal).
+<p>
+If an unquoted argument begins with a colon (:),
+it is taken as a <b>psql</b> variable and the value of the
+variable is used as the argument instead.
+<p>
+Arguments that are enclosed in backquotes (&#145;)
+are taken as a command line that is passed to the shell. The
+output of the command (with any trailing newline removed) is taken
+as the argument value. The above escape sequences also apply in
+backquotes.
+<p>
+Some commands take an SQL identifier (such as a
+table name) as argument. These arguments follow the syntax rules
+of SQL: Unquoted letters are forced to
+lowercase, while double quotes (") protect letters
+from case conversion and allow incorporation of whitespace into
+the identifier. Within double quotes, paired double quotes reduce
+to a single double quote in the resulting name. For example,
+FOO"BAR"BAZ is interpreted as fooBARbaz,
+and "A weird"" name" becomes A weird"
+name.
+<p>
+Parsing for arguments stops when another unquoted backslash occurs.
+This is taken as the beginning of a new meta-command. The special
+sequence \\ (two backslashes) marks the end of
+arguments and continues parsing SQL commands, if
+any. That way SQL and
+<b>psql</b> commands can be freely mixed on a
+line. But in any case, the arguments of a meta-command cannot
+continue beyond the end of the line.
+<p>
+The following meta-commands are defined:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>\a</b>
+</td><td valign="bottom">
+If the current table output format is unaligned, it is switched to aligned.
+If it is not unaligned, it is set to unaligned. This command is
+kept for backwards compatibility. See <b>\pset</b> for a
+more general solution.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\cd [ </b><i>directory</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Changes the current working directory to
+<i>directory</i>. Without argument, changes
+to the current user&#146;s home directory.
+<p>
+<b>Tip:</b> To print your current working directory, use \! pwd.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\C [ </b><i>title</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Sets the title of any tables being printed as the result of a
+query or unset any such title. This command is equivalent to
+\pset title <i>title</i>. (The name of
+this command derives from &#145;&#145;caption&#146;&#146;, as it was
+previously only used to set the caption in an
+HTML table.)
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\connect (or \c) [ </b><i>dbname</i><b> [ </b><i>username</i><b> ] ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Establishes a connection to a new database and/or under a user
+name. The previous connection is closed. If <i>dbname</i> is -
+the current database name is assumed.
+<p>
+If <i>username</i> is
+omitted the current user name is assumed.
+<p>
+As a special rule, <b>\connect</b> without any
+arguments will connect to the default database as the default
+user (as you would have gotten by starting
+<b>psql</b> without any arguments).
+<p>
+If the connection attempt failed (wrong user name, access
+denied, etc.), the previous connection will be kept if and only
+if <b>psql</b> is in interactive mode. When
+executing a non-interactive script, processing will immediately
+stop with an error. This distinction was chosen as a user
+convenience against typos on the one hand, and a safety
+mechanism that scripts are not accidentally acting on the wrong
+database on the other hand.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\copy </b><i>table</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Performs a frontend (client) copy. This is an operation that
+runs an SQL COPY [<b>copy</b>(7)] command, but instead of the server
+reading or writing the specified file,
+<b>psql</b> reads or writes the file and
+routes the data between the server and the local file system.
+This means that file accessibility and privileges are those of
+the local user, not the server, and no SQL superuser
+privileges are required.
+<p>
+The syntax of the command is similar to that of the
+SQL COPY [<b>copy</b>(7)] command. Note that, because of this,
+special parsing rules apply to the <b>\copy</b>
+command. In particular, the variable substitution rules and
+backslash escapes do not apply.
+<p>
+\copy <i>table</i> from <i>stdin | stdout</i>
+reads/writes based on the command input and output respectively.
+All rows are read from the same source that issued the command,
+continuing until \. is read or the stream
+reaches EOF. Output is sent to the same place as
+command output. To read/write from
+<b>psql</b>&#146;s standard input or output, use
+pstdin or pstdout. This option is useful
+for populating tables in-line within a SQL script file.
+<p>
+<b>Tip:</b> This operation is not as efficient as the SQL
+<b>COPY</b> command because all data must pass
+through the client/server connection. For large
+amounts of data the SQL command may be preferable.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\copyright</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Shows the copyright and distribution terms of
+PostgreSQL.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\d [ </b><i>pattern</i><b> ]</b>
+<!-- Consumed .TP -->
+<br />
+<b>\d+ [ </b><i>pattern</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+For each relation (table, view, index, or sequence) matching the
+<i>pattern</i>, show all
+columns, their types, the tablespace (if not the default) and any special
+attributes such as NOT NULL or defaults, if
+any. Associated indexes, constraints, rules, and triggers are
+also shown, as is the view definition if the relation is a view.
+(&#145;&#145;Matching the pattern&#146;&#146; is defined below.)
+<p>
+The command form \d+ is identical, except that
+more information is displayed: any comments associated with the
+columns of the table are shown, as is the presence of OIDs in the
+table.
+<p>
+<b>Note:</b> If <b>\d</b> is used without a
+<i>pattern</i> argument, it is
+equivalent to <b>\dtvs</b> which will show a list of
+all tables, views, and sequences. This is purely a convenience
+measure.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\da [ </b><i>pattern</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Lists all available aggregate functions, together with the data
+type they operate on. If <i>pattern</i>
+is specified, only aggregates whose names match the pattern are shown.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\db [ </b><i>pattern</i><b> ]</b>
+<!-- Consumed .TP -->
+<br />
+<b>\db+ [ </b><i>pattern</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Lists all available tablespaces. If <i>pattern</i>
+is specified, only tablespaces whose names match the pattern are shown.
+If + is appended to the command name, each object
+is listed with its associated permissions.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\dc [ </b><i>pattern</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Lists all available conversions between character-set encodings.
+If <i>pattern</i>
+is specified, only conversions whose names match the pattern are
+listed.
+</td></tr>
+<tr valign="top"><td>
+<b>\dC</b>
+</td><td valign="bottom">
+Lists all available type casts.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\dd [ </b><i>pattern</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Shows the descriptions of objects matching the <i>pattern</i>, or of all visible objects if
+no argument is given. But in either case, only objects that have
+a description are listed.
+(&#145;&#145;Object&#146;&#146; covers aggregates, functions, operators,
+types, relations (tables, views, indexes, sequences, large
+objects), rules, and triggers.) For example:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+=&gt; <b>\dd version</b>
+                     Object descriptions
+   Schema   |  Name   |  Object  |        Description
+------------+---------+----------+---------------------------
+ pg_catalog | version | function | PostgreSQL version string
+(1 row)
+<p>
+</pre></td></tr>
+</table>
+<p>
+Descriptions for objects can be created with the COMMENT [<b>comment</b>(7)]
+SQL command.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\dD [ </b><i>pattern</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Lists all available domains. If <i>pattern</i>
+is specified, only matching domains are shown.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\df [ </b><i>pattern</i><b> ]</b>
+<!-- Consumed .TP -->
+<br />
+<b>\df+ [ </b><i>pattern</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Lists available functions, together with their argument and
+return types. If <i>pattern</i>
+is specified, only functions whose names match the pattern are shown.
+If the form \df+ is used, additional information about
+each function, including language and description, is shown.
+<p>
+<b>Note:</b> <p>
+To look up functions taking argument or returning values of a specific
+type, use your pager&#146;s search capability to scroll through the \df
+output.
+<p>
+To reduce clutter, \df does not show data type I/O
+functions. This is implemented by ignoring functions that accept
+or return type <b>cstring</b>.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\dg [ </b><i>pattern</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Lists all database roles. If <i>pattern</i> is specified, only
+those roles whose names match the pattern are listed.
+(This command is now effectively the same as \du.)
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\distvS [ </b><i>pattern</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This is not the actual command name: the letters
+i, s, t,
+v, S stand for index,
+sequence, table, view, and system table, respectively. You can
+specify any or all of these letters, in any order, to obtain a
+listing of all the matching objects. The letter S restricts the
+listing to system objects; without S, only
+non-system objects are shown. If + is appended
+to the command name, each object is listed with its associated
+description, if any.
+<p>
+If <i>pattern</i> is
+specified, only objects whose names match the pattern are listed.
+</td></tr>
+<tr valign="top"><td>
+<b>\dl</b>
+</td><td valign="bottom">
+This is an alias for <b>\lo_list</b>, which shows a
+list of large objects.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\dn [ </b><i>pattern</i><b> ]</b>
+<!-- Consumed .TP -->
+<br />
+<b>\dn+ [ </b><i>pattern</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Lists all available schemas (namespaces). If <i>pattern</i> (a regular expression)
+is specified, only schemas whose names match the pattern are listed.
+Non-local temporary schemas are suppressed. If +
+is appended to the command name, each object is listed with its associated
+permissions and description, if any.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\do [ </b><i>pattern</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Lists available operators with their operand and return types.
+If <i>pattern</i> is
+specified, only operators whose names match the pattern are listed.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\dp [ </b><i>pattern</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Produces a list of all available tables, views and sequences with their
+associated access privileges.
+If <i>pattern</i> is
+specified, only tables, views and sequences whose names match the pattern are listed.
+<p>
+The commands <b>GRANT</b> and
+<b>REVOKE</b> are used to set access privileges.
+See GRANT [<b>grant</b>(7)]
+for more information.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\dT [ </b><i>pattern</i><b> ]</b>
+<!-- Consumed .TP -->
+<br />
+<b>\dT+ [ </b><i>pattern</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Lists all data types or only those that match <i>pattern</i>. The command form
+\dT+ shows extra information.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\du [ </b><i>pattern</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Lists all database roles, or only those that match <i>pattern</i>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\edit (or \e) [ </b><i>filename</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+If <i>filename</i> is
+specified, the file is edited; after the editor exits, its
+content is copied back to the query buffer. If no argument is
+given, the current query buffer is copied to a temporary file
+which is then edited in the same fashion.
+<p>
+The new query buffer is then re-parsed according to the normal
+rules of <b>psql</b>, where the whole buffer
+is treated as a single line. (Thus you cannot make scripts this
+way. Use <b>\i</b> for that.) This means also that
+if the query ends with (or rather contains) a semicolon, it is
+immediately executed. In other cases it will merely wait in the
+query buffer.
+<p>
+<b>Tip:</b> <b>psql</b> searches the environment
+variables <b>PSQL_EDITOR</b>, <b>EDITOR</b>, and
+<b>VISUAL</b> (in that order) for an editor to use. If
+all of them are unset, <i>vi</i> is used on Unix
+systems, <i>notepad.exe</i> on Windows systems.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\echo </b><i>text</i><b> [ ... ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Prints the arguments to the standard output, separated by one
+space and followed by a newline. This can be useful to
+intersperse information in the output of scripts. For example:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+=&gt; <b>\echo &#145;date&#145;</b>
+Tue Oct 26 21:40:57 CEST 1999
+<p>
+</pre></td></tr>
+</table>
+If the first argument is an unquoted -n the trailing
+newline is not written.
+<p>
+<b>Tip:</b> If you use the <b>\o</b> command to redirect your
+query output you may wish to use <b>\qecho</b>
+instead of this command.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\encoding [ </b><i>encoding</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Sets the client character set encoding. Without an argument, this command
+shows the current encoding.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\f [ </b><i>string</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Sets the field separator for unaligned query output. The default
+is the vertical bar (|). See also
+<b>\pset</b> for a generic way of setting output
+options.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\g [ { </b><i>filename</i><b> | |</b><i>command</i><b> } ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Sends the current query input buffer to the server and
+optionally stores the query&#146;s output in <i>filename</i> or pipes the output
+into a separate Unix shell executing <i>command</i>. A bare
+\g is virtually equivalent to a semicolon. A
+\g with argument is a &#145;&#145;one-shot&#146;&#146;
+alternative to the <b>\o</b> command.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\help (or \h) [ </b><i>command</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Gives syntax help on the specified SQL
+command. If <i>command</i>
+is not specified, then <b>psql</b> will list
+all the commands for which syntax help is available. If
+<i>command</i> is an
+asterisk (*), then syntax help on all
+SQL commands is shown.
+<p>
+<b>Note:</b> To simplify typing, commands that consists of several words do
+not have to be quoted. Thus it is fine to type <b>\help
+alter table</b>.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>\H</b>
+</td><td valign="bottom">
+Turns on HTML query output format. If the
+HTML format is already on, it is switched
+back to the default aligned text format. This command is for
+compatibility and convenience, but see <b>\pset</b>
+about setting other output options.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\i </b><i>filename</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Reads input from the file <i>filename</i> and executes it as
+though it had been typed on the keyboard.
+<p>
+<b>Note:</b> If you want to see the lines on the screen as they are read you
+must set the variable ECHO to
+all.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\l (or \list)</b>
+<!-- Consumed .TP -->
+<br />
+<b>\l+ (or \list+)</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+List the names, owners, and character set encodings of all the databases in
+the server. If + is appended to the command
+name, database descriptions are also displayed.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\lo_export </b><i>loid</i><b> </b><i>filename</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Reads the large object with OID <i>loid</i> from the database and
+writes it to <i>filename</i>. Note that this is
+subtly different from the server function
+<b>lo_export</b>, which acts with the permissions
+of the user that the database server runs as and on the server&#146;s
+file system.
+<p>
+<b>Tip:</b> Use <b>\lo_list</b> to find out the large object&#146;s
+OID.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\lo_import </b><i>filename</i><b> [ </b><i>comment</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Stores the file into a PostgreSQL
+large object. Optionally, it associates the given
+comment with the object. Example:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+foo=&gt; <b>\lo_import &#146;/home/peter/pictures/photo.xcf&#146; &#146;a picture of me&#146;</b>
+lo_import 152801
+<p>
+</pre></td></tr>
+</table>
+The response indicates that the large object received object ID
+152801 which one ought to remember if one wants to access the
+object ever again. For that reason it is recommended to always
+associate a human-readable comment with every object. Those can
+then be seen with the <b>\lo_list</b> command.
+<p>
+Note that this command is subtly different from the server-side
+<b>lo_import</b> because it acts as the local user
+on the local file system, rather than the server&#146;s user and file
+system.
+</td></tr>
+<tr valign="top"><td>
+<b>\lo_list</b>
+</td><td valign="bottom">
+Shows a list of all PostgreSQL
+large objects currently stored in the database,
+along with any comments provided for them.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\lo_unlink </b><i>loid</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Deletes the large object with OID
+<i>loid</i> from the
+database.
+<p>
+<b>Tip:</b> Use <b>\lo_list</b> to find out the large object&#146;s
+OID.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\o [ {</b><i>filename</i><b> | |</b><i>command</i><b>} ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Saves future query results to the file <i>filename</i> or pipes future results
+into a separate Unix shell to execute <i>command</i>. If no arguments are
+specified, the query output will be reset to the standard output.
+<p>
+&#145;&#145;Query results&#146;&#146; includes all tables, command
+responses, and notices obtained from the database server, as
+well as output of various backslash commands that query the
+database (such as <b>\d</b>), but not error
+messages.
+<p>
+<b>Tip:</b> To intersperse text output in between query results, use
+<b>\qecho</b>.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>\p</b>
+</td><td valign="bottom">
+Print the current query buffer to the standard output.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\pset </b><i>parameter</i><b> [ </b><i>value</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This command sets options affecting the output of query result
+tables. <i>parameter</i>
+describes which option is to be set. The semantics of
+<i>value</i> depend
+thereon.
+<p>
+Adjustable printing options are:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>format</b>
+</td><td valign="bottom">
+Sets the output format to one of unaligned,
+aligned, html,
+latex, or troff-ms.
+Unique abbreviations are allowed. (That would mean one letter
+is enough.)
+<p>
+&#145;&#145;Unaligned&#146;&#146; writes all columns of a row on a
+line, separated by the currently active field separator. This
+is intended to create output that might be intended to be read
+in by other programs (tab-separated, comma-separated).
+&#145;&#145;Aligned&#146;&#146; mode is the standard, human-readable,
+nicely formatted text output that is default. The
+&#145;&#145;HTML&#146;&#146; and
+&#145;&#145;LaTeX&#146;&#146; modes put out tables that are intended to
+be included in documents using the respective mark-up
+language. They are not complete documents! (This might not be
+so dramatic in HTML, but in LaTeX you must
+have a complete document wrapper.)
+</td></tr>
+<tr valign="top"><td>
+<b>border</b>
+</td><td valign="bottom">
+The second argument must be a number. In general, the higher
+the number the more borders and lines the tables will have,
+but this depends on the particular format. In
+HTML mode, this will translate directly
+into the border=... attribute, in the
+others only values 0 (no border), 1 (internal dividing lines),
+and 2 (table frame) make sense.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>expanded (or x)</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Toggles between regular and expanded format. When expanded
+format is enabled, query results are displayed in two
+columns, with the column name on the left and the data on
+the right. This mode is useful if the data wouldn&#146;t fit on the
+screen in the normal &#145;&#145;horizontal&#146;&#146; mode.
+<p>
+Expanded mode is supported by all four output formats.
+</td></tr>
+<tr valign="top"><td>
+<b>null</b>
+</td><td valign="bottom">
+The second argument is a string that should be printed
+whenever a column is null. The default is not to print
+anything, which can easily be mistaken for, say, an empty
+string. Thus, one might choose to write \pset null
+&#146;(null)&#146;.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>fieldsep</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies the field separator to be used in unaligned output
+mode. That way one can create, for example, tab- or
+comma-separated output, which other programs might prefer. To
+set a tab as field separator, type \pset fieldsep
+&#146;\t&#146;. The default field separator is
+&#146;|&#146; (a vertical bar).
+</td></tr>
+<tr valign="top"><td>
+<b>footer</b>
+</td><td valign="bottom">
+Toggles the display of the default footer (x
+rows).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>numericlocale</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Toggles the display of a locale-aware character to separate groups
+of digits to the left of the decimal marker. It also enables
+a locale-aware decimal marker.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>recordsep</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Specifies the record (line) separator to use in unaligned
+output mode. The default is a newline character.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>tuples_only (or t)</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Toggles between tuples only and full display. Full display may
+show extra information such as column headers, titles, and
+various footers. In tuples only mode, only actual table data
+is shown.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>title [ </b><i>text</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Sets the table title for any subsequently printed tables. This
+can be used to give your output descriptive tags. If no
+argument is given, the title is unset.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>tableattr (or T) [ </b><i>text</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Allows you to specify any attributes to be placed inside the
+HTML table tag. This
+could for example be cellpadding or
+bgcolor. Note that you probably don&#146;t want
+to specify border here, as that is already
+taken care of by \pset border.
+</td></tr>
+<tr valign="top"><td>
+<b>pager</b>
+</td><td valign="bottom">
+Controls use of a pager for query and <b>psql</b>
+help output. If the environment variable <b>PAGER</b>
+is set, the output is piped to the specified program.
+Otherwise a platform-dependent default (such as
+<i>more</i>) is used.
+<p>
+When the pager is off, the pager is not used. When the pager
+is on, the pager is used only when appropriate, i.e. the
+output is to a terminal and will not fit on the screen.
+(<b>psql</b> does not do a perfect job of estimating
+when to use the pager.) \pset pager turns the
+pager on and off. Pager can also be set to always,
+which causes the pager to be always used.
+</td></tr>
+</table>
+</td></tr>
+<!-- Found tag RS -->
+<tr><td colspan="2">
+<p>
+Illustrations on how these different formats look can be seen in
+the Examples [<b>psql</b>(1)] section.
+<p>
+</td></tr>
+<tr><td width=6%>&nbsp;</td><td>
+<b>Tip:</b> There are various shortcut commands for <b>\pset</b>. See
+<b>\a</b>, <b>\C</b>, <b>\H</b>,
+<b>\t</b>, <b>\T</b>, and <b>\x</b>.
+<p>
+<p>
+<b>Note:</b> It is an error to call <b>\pset</b> without
+arguments. In the future this call might show the current status
+of all printing options.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>\q</b>
+</td><td valign="bottom">
+Quits the <b>psql</b> program.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\qecho </b><i>text</i><b> [ ... ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This command is identical to <b>\echo</b> except
+that the output will be written to the query output channel, as
+set by <b>\o</b>.
+</td></tr>
+<tr valign="top"><td>
+<b>\r</b>
+</td><td valign="bottom">
+Resets (clears) the query buffer.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\s [ </b><i>filename</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Print or save the command line history to <i>filename</i>. If <i>filename</i> is omitted, the history
+is written to the standard output. This option is only available
+if <b>psql</b> is configured to use the
+GNU <b>Readline</b> library.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\set [ </b><i>name</i><b> [ </b><i>value</i><b> [ ... ] ] ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Sets the internal variable <i>name</i> to <i>value</i> or, if more than one value
+is given, to the concatenation of all of them. If no second
+argument is given, the variable is just set with no value. To
+unset a variable, use the <b>\unset</b> command.
+<p>
+Valid variable names can contain characters, digits, and
+underscores. See the section Variables [<b>psql</b>(1)] below for details.
+Variable names are case-sensitive.
+<p>
+Although you are welcome to set any variable to anything you
+want, <b>psql</b> treats several variables
+as special. They are documented in the section about variables.
+<p>
+<b>Note:</b> This command is totally separate from the SQL
+command SET [<b>set</b>(7)].
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>\t</b>
+</td><td valign="bottom">
+Toggles the display of output column name headings and row count
+footer. This command is equivalent to \pset
+tuples_only and is provided for convenience.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\T </b><i>table_options</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Allows you to specify attributes to be placed within the
+table tag in HTML tabular
+output mode. This command is equivalent to \pset
+tableattr <i>table_options</i>.
+</td></tr>
+<tr valign="top"><td>
+<b>\timing</b>
+</td><td valign="bottom">
+Toggles a display of how long each SQL statement takes, in milliseconds.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\w {</b><i>filename</i><b> | </b><i>|command</i><b>}</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Outputs the current query buffer to the file <i>filename</i> or pipes it to the Unix
+command <i>command</i>.
+</td></tr>
+<tr valign="top"><td>
+<b>\x</b>
+</td><td valign="bottom">
+Toggles expanded table formatting mode. As such it is equivalent to
+\pset expanded.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\z [ </b><i>pattern</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Produces a list of all available tables, views and sequences with their
+associated access privileges.
+If a <i>pattern</i> is
+specified, only tables,views and sequences whose names match the pattern are listed.
+<p>
+The commands <b>GRANT</b> and
+<b>REVOKE</b> are used to set access privileges.
+See GRANT [<b>grant</b>(7)] for
+more information.
+<p>
+This is an alias for <b>\dp</b> (&#145;&#145;display
+privileges&#146;&#146;).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>\! [ </b><i>command</i><b> ]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Escapes to a separate Unix shell or executes the Unix command
+<i>command</i>. The
+arguments are not further interpreted, the shell will see them
+as is.
+</td></tr>
+<tr valign="top"><td>
+<b>\?</b>
+</td><td valign="bottom">
+Shows help information about the backslash commands.
+</td></tr>
+<!-- PP ends table -->
+</table>
+<p>
+The various \d commands accept a <i>pattern</i> parameter to specify the
+object name(s) to be displayed. * means &#145;&#145;any
+sequence of characters&#146;&#146; and ? means &#145;&#145;any single
+character&#146;&#146;. (This notation is comparable to Unix shell file name
+patterns.) Advanced users can also use regular-expression
+notations such as character classes, for example [0-9]
+to match &#145;&#145;any digit&#146;&#146;. To make any of these
+pattern-matching characters be interpreted literally, surround it
+with double quotes.
+<p>
+A pattern that contains an (unquoted) dot is interpreted as a schema
+name pattern followed by an object name pattern. For example,
+\dt foo*.bar* displays all tables in schemas whose name
+starts with foo and whose table name
+starts with bar. If no dot appears, then the pattern
+matches only objects that are visible in the current schema search path.
+<p>
+Whenever the <i>pattern</i> parameter
+is omitted completely, the \d commands display all objects
+that are visible in the current schema search path. To see all objects
+in the database, use the pattern *.*.
+<h2><i>ADVANCED FEATURES</i></h2>
+<h2><i>VARIABLES</i></h2>
+<p>
+<b>psql</b> provides variable substitution
+features similar to common Unix command shells.
+Variables are simply name/value pairs, where the value
+can be any string of any length. To set variables, use the
+<b>psql</b> meta-command
+<b>\set</b>:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+testdb=&gt; <b>\set foo bar</b>
+<p>
+</pre></td></tr>
+</table>
+sets the variable foo to the value
+bar. To retrieve the content of the variable, precede
+the name with a colon and use it as the argument of any slash
+command:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+testdb=&gt; <b>\echo :foo</b>
+bar
+<p>
+</pre></td></tr>
+</table>
+<p>
+<b>Note:</b> The arguments of <b>\set</b> are subject to the same
+substitution rules as with other commands. Thus you can construct
+interesting references such as \set :foo
+&#146;something&#146; and get &#145;&#145;soft links&#146;&#146; or
+&#145;&#145;variable variables&#146;&#146; of Perl
+or PHP fame,
+respectively. Unfortunately (or fortunately?), there is no way to do
+anything useful with these constructs. On the other hand,
+\set bar :foo is a perfectly valid way to copy a
+variable.
+<p>
+<p>
+If you call <b>\set</b> without a second argument, the
+variable is set, with an empty string as value. To unset (or delete) a
+variable, use the command <b>\unset</b>.
+<p>
+<b>psql</b>&#146;s internal variable names can
+consist of letters, numbers, and underscores in any order and any
+number of them. A number of these variables are treated specially
+by <b>psql</b>. They indicate certain option
+settings that can be changed at run time by altering the value of
+the variable or represent some state of the application. Although
+you can use these variables for any other purpose, this is not
+recommended, as the program behavior might grow really strange
+really quickly. By convention, all specially treated variables
+consist of all upper-case letters (and possibly numbers and
+underscores). To ensure maximum compatibility in the future, avoid
+using such variable names for your own purposes. A list of all specially
+treated variables follows.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>AUTOCOMMIT</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+When on (the default), each SQL command is automatically
+committed upon successful completion. To postpone commit in this
+mode, you must enter a <b>BEGIN</b> or <b>START
+TRANSACTION</b> SQL command. When off or unset, SQL
+commands are not committed until you explicitly issue
+<b>COMMIT</b> or <b>END</b>. The autocommit-off
+mode works by issuing an implicit <b>BEGIN</b> for you, just
+before any command that is not already in a transaction block and
+is not itself a <b>BEGIN</b> or other transaction-control
+command, nor a command that cannot be executed inside a transaction
+block (such as <b>VACUUM</b>).
+<p>
+<b>Note:</b> In autocommit-off mode, you must explicitly abandon any failed
+transaction by entering <b>ABORT</b> or <b>ROLLBACK</b>.
+Also keep in mind that if you exit the session
+without committing, your work will be lost.
+<p>
+<p>
+<b>Note:</b> The autocommit-on mode is PostgreSQL&#146;s traditional
+behavior, but autocommit-off is closer to the SQL spec. If you
+prefer autocommit-off, you may wish to set it in the system-wide
+<i>psqlrc</i> file or your
+<i>~/.psqlrc</i> file.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>DBNAME</b>
+</td><td valign="bottom">
+The name of the database you are currently connected to. This is
+set every time you connect to a database (including program
+start-up), but can be unset.
+</td></tr>
+<tr valign="top"><td>
+<b>ECHO</b>
+</td><td valign="bottom">
+If set to all, all lines
+entered from the keyboard or from a script are written to the standard output
+before they are parsed or executed. To select this behavior on program
+start-up, use the switch <b>-a</b>. If set to
+queries,
+<b>psql</b> merely prints all queries as
+they are sent to the server. The switch for this is
+<b>-e</b>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ECHO_HIDDEN</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+When this variable is set and a backslash command queries the
+database, the query is first shown. This way you can study the
+PostgreSQL internals and provide
+similar functionality in your own programs. (To select this behavior
+on program start-up, use the switch <b>-E</b>.) If you set
+the variable to the value noexec, the queries are
+just shown but are not actually sent to the server and executed.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ENCODING</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The current client character set encoding.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>HISTCONTROL</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+If this variable is set to ignorespace,
+lines which begin with a space are not entered into the history
+list. If set to a value of ignoredups, lines
+matching the previous history line are not entered. A value of
+ignoreboth combines the two options. If
+unset, or if set to any other value than those above, all lines
+read in interactive mode are saved on the history list.
+<p>
+<b>Note:</b> This feature was shamelessly plagiarized from
+<b>Bash</b>.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>HISTFILE</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The file name that will be used to store the history list. The default
+value is <i>~/.psql_history</i>. For example, putting
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+\set HISTFILE ~/.psql_history- :DBNAME
+<p>
+</pre></td></tr>
+</table>
+in <i>~/.psqlrc</i> will cause
+<b>psql</b> to maintain a separate history for
+each database.
+<p>
+<b>Note:</b> This feature was shamelessly plagiarized from
+<b>Bash</b>.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>HISTSIZE</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The number of commands to store in the command history. The
+default value is 500.
+<p>
+<b>Note:</b> This feature was shamelessly plagiarized from
+<b>Bash</b>.
+<p>
+</td></tr>
+<tr valign="top"><td>
+<b>HOST</b>
+</td><td valign="bottom">
+The database server host you are currently connected to. This is
+set every time you connect to a database (including program
+start-up), but can be unset.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>IGNOREEOF</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+If unset, sending an EOF character (usually
+<b>Control</b>+<b>D</b>)
+to an interactive session of <b>psql</b>
+will terminate the application. If set to a numeric value,
+that many EOF characters are ignored before the
+application terminates. If the variable is set but has no
+numeric value, the default is 10.
+<p>
+<b>Note:</b> This feature was shamelessly plagiarized from
+<b>Bash</b>.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>LASTOID</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The value of the last affected OID, as returned from an
+<b>INSERT</b> or <b>lo_insert</b>
+command. This variable is only guaranteed to be valid until
+after the result of the next SQL command has
+been displayed.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ON_ERROR_ROLLBACK</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+When on, if a statement in a transaction block
+generates an error, the error is ignored and the transaction
+continues. When interactive, such errors are only
+ignored in interactive sessions, and not when reading script
+files. When off (the default), a statement in a
+transaction block that generates an error aborts the entire
+transaction. The on_error_rollback-on mode works by issuing an
+implicit <b>SAVEPOINT</b> for you, just before each command
+that is in a transaction block, and rolls back to the savepoint
+on error.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>ON_ERROR_STOP</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+By default, if non-interactive scripts encounter an error, such
+as a malformed SQL command or internal
+meta-command, processing continues. This has been the
+traditional behavior of <b>psql</b> but it
+is sometimes not desirable. If this variable is set, script
+processing will immediately terminate. If the script was called
+from another script it will terminate in the same fashion. If
+the outermost script was not called from an interactive
+<b>psql</b> session but rather using the
+<b>-f</b> option, <b>psql</b> will
+return error code 3, to distinguish this case from fatal error
+conditions (error code 1).
+</td></tr>
+<tr valign="top"><td>
+<b>PORT</b>
+</td><td valign="bottom">
+The database server port to which you are currently connected.
+This is set every time you connect to a database (including
+program start-up), but can be unset.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>PROMPT1</b>
+<!-- Consumed .TP -->
+<br />
+<b>PROMPT2</b>
+<!-- Consumed .TP -->
+<br />
+<b>PROMPT3</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+These specify what the prompts <b>psql</b>
+issues should look like. See Prompting [<b>psql</b>(1)] below.
+</td></tr>
+<tr valign="top"><td>
+<b>QUIET</b>
+</td><td valign="bottom">
+This variable is equivalent to the command line option
+<b>-q</b>. It is probably not too useful in
+interactive mode.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>SINGLELINE</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This variable is equivalent to the command line option
+<b>-S</b>.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>SINGLESTEP</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This variable is equivalent to the command line option
+<b>-s</b>.
+</td></tr>
+<tr valign="top"><td>
+<b>USER</b>
+</td><td valign="bottom">
+The database user you are currently connected as. This is set
+every time you connect to a database (including program
+start-up), but can be unset.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>VERBOSITY</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This variable can be set to the values default,
+verbose, or terse to control the verbosity
+of error reports.
+</td></tr>
+</table>
+<h2><i>SQL INTERPOLATION</i></h2>
+<p>
+An additional useful feature of <b>psql</b>
+variables is that you can substitute (&#145;&#145;interpolate&#146;&#146;)
+them into regular SQL statements. The syntax for
+this is again to prepend the variable name with a colon
+(:).
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+testdb=&gt; <b>\set foo &#146;my_table&#146;</b>
+testdb=&gt; <b>SELECT * FROM :foo;</b>
+<p>
+</pre></td></tr>
+</table>
+would then query the table my_table. The value of
+the variable is copied literally, so it can even contain unbalanced
+quotes or backslash commands. You must make sure that it makes sense
+where you put it. Variable interpolation will not be performed into
+quoted SQL entities.
+<p>
+A popular application of this facility is to refer to the last
+inserted OID in subsequent statements to build a
+foreign key scenario. Another possible use of this mechanism is to
+copy the contents of a file into a table column. First load the file into a
+variable and then proceed as above.
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+testdb=&gt; <b>\set content &#146;#146;&#146; &#145;cat my_file.txt&#145; &#146;#146;&#146;</b>
+testdb=&gt; <b>INSERT INTO my_table VALUES (:content);</b>
+<p>
+</pre></td></tr>
+</table>
+One possible problem with this approach is that <i>my_file.txt</i>
+might contain single quotes. These need to be escaped so that
+they don&#146;t cause a syntax error when the second line is processed. This
+could be done with the program <b>sed</b>:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+testdb=&gt; <b>\set content &#146;#146;&#146; &#145;sed -e "s/&#146;/\\\\\#146;/g" &lt; my_file.txt&#145; &#146;#146;&#146;</b>
+<p>
+</pre></td></tr>
+</table>
+Observe the correct number of backslashes (6)! It works
+this way: After <b>psql</b> has parsed this
+line, it passes sed -e "s/&#146;/\\#146;/g" &lt; my_file.txt
+to the shell. The shell will do its own thing inside the double
+quotes and execute <b>sed</b> with the arguments
+-e and s/&#146;/\#146;/g. When
+<b>sed</b> parses this it will replace the two
+backslashes with a single one and then do the substitution. Perhaps
+at one point you thought it was great that all Unix commands use the
+same escape character. And this is ignoring the fact that you might
+have to escape all backslashes as well because
+SQL text constants are also subject to certain
+interpretations. In that case you might be better off preparing the
+file externally.
+<p>
+Since colons may legally appear in SQL commands, the following rule
+applies: the character sequence
+&#145;&#145;:name&#146;&#146; is not changed unless &#145;&#145;name&#146;&#146; is the name
+of a variable that is currently set. In any case you can escape
+a colon with a backslash to protect it from substitution. (The
+colon syntax for variables is standard SQL for
+embedded query languages, such as <b>ECPG</b>.
+The colon syntax for array slices and type casts are
+PostgreSQL extensions, hence the
+conflict.)
+<h2><i>PROMPTING</i></h2>
+<p>
+The prompts <b>psql</b> issues can be customized
+to your preference. The three variables PROMPT1,
+PROMPT2, and PROMPT3 contain strings
+and special escape sequences that describe the appearance of the
+prompt. Prompt 1 is the normal prompt that is issued when
+<b>psql</b> requests a new command. Prompt 2 is
+issued when more input is expected during command input because the
+command was not terminated with a semicolon or a quote was not closed.
+Prompt 3 is issued when you run an SQL
+<b>COPY</b> command and you are expected to type in the
+row values on the terminal.
+<p>
+The value of the selected prompt variable is printed literally,
+except where a percent sign (%) is encountered.
+Depending on the next character, certain other text is substituted
+instead. Defined substitutions are:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>%M</b>
+</td><td valign="bottom">
+The full host name (with domain name) of the database server,
+or [local] if the connection is over a Unix
+domain socket, or
+[local:<i>/dir/name</i>],
+if the Unix domain socket is not at the compiled in default
+location.
+</td></tr>
+<tr valign="top"><td>
+<b>%m</b>
+</td><td valign="bottom">
+The host name of the database server, truncated at the
+first dot, or [local] if the connection is
+over a Unix domain socket.
+</td></tr>
+<tr valign="top"><td>
+<b>%&gt;</b>
+</td><td valign="bottom">
+The port number at which the database server is listening.
+</td></tr>
+<tr valign="top"><td>
+<b>%n</b>
+</td><td valign="bottom">
+The database session user name. (The expansion of this
+value might change during a database session as the result
+of the command <b>SET SESSION
+AUTHORIZATION</b>.)
+</td></tr>
+<tr valign="top"><td>
+<b>%/</b>
+</td><td valign="bottom">
+The name of the current database.
+</td></tr>
+<tr valign="top"><td>
+<b>%~</b>
+</td><td valign="bottom">
+Like %/, but the output is ~
+(tilde) if the database is your default database.
+</td></tr>
+<tr valign="top"><td>
+<b>%#</b>
+</td><td valign="bottom">
+If the session user is a database superuser, then a
+#, otherwise a &gt;.
+(The expansion of this value might change during a database
+session as the result of the command <b>SET SESSION
+AUTHORIZATION</b>.)
+</td></tr>
+<tr valign="top"><td>
+<b>%R</b>
+</td><td valign="bottom">
+In prompt 1 normally =, but ^ if
+in single-line mode, and ! if the session is
+disconnected from the database (which can happen if
+<b>\connect</b> fails). In prompt 2 the sequence is
+replaced by -, *, a single quote,
+a double quote, or a dollar sign, depending on whether
+<b>psql</b> expects more input because the
+command wasn&#146;t terminated yet, because you are inside a
+/* ... */ comment, or because you are inside
+a quoted or dollar-escaped string. In prompt 3 the sequence doesn&#146;t
+produce anything.
+</td></tr>
+<tr valign="top"><td>
+<b>%x</b>
+</td><td valign="bottom">
+Transaction status: an empty string when not in a transaction
+block, or * when in a transaction block, or
+! when in a failed transaction block, or ?
+when the transaction state is indeterminate (for example, because
+there is no connection).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>%</b><i>digits</i><b></b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The character with the indicated octal code is substituted.
+</td></tr>
+<tr valign="top"><td>
+<b>%:</b><i>name</i><b>:</b>
+</td><td valign="bottom">
+The value of the <b>psql</b> variable
+<i>name</i>. See the
+section Variables [<b>psql</b>(1)] for details.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>%&#145;</b><i>command</i><b>&#145;</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The output of <i>command</i>, similar to ordinary
+&#145;&#145;back-tick&#146;&#146; substitution.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>%[ ... %]</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Prompts may contain terminal control characters which, for
+example, change the color, background, or style of the prompt
+text, or change the title of the terminal window. In order for
+the line editing features of <b>Readline</b> to work properly, these
+non-printing control characters must be designated as invisible
+by surrounding them with %[ and
+%]. Multiple pairs of these may occur within
+the prompt. For example,
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+testdb=&gt; \set PROMPT1 &#146;%[%033[1;33;40m%]%n@%/%R%[%033[0m%#%] &#146;
+<p>
+</pre></td></tr>
+</table>
+results in a boldfaced (1;) yellow-on-black
+(33;40) prompt on VT100-compatible, color-capable
+terminals.
+</td></tr>
+<!-- Found tag RS -->
+<tr><td colspan="2">
+To insert a percent sign into your prompt, write
+%%. The default prompts are
+&#146;%/%R%# &#146; for prompts 1 and 2, and
+&#146;&gt;&gt; &#146; for prompt 3.
+<p>
+</td></tr>
+<tr><td width=6%>&nbsp;</td><td>
+<b>Note:</b> This feature was shamelessly plagiarized from
+<b>tcsh</b>.
+<p>
+</td></tr>
+</table>
+<h2><i>COMMAND-LINE EDITING</i></h2>
+<p>
+<b>psql</b> supports the <b>Readline</b>
+library for convenient line editing and retrieval. The command
+history is automatically saved when <b>psql</b>
+exits and is reloaded when
+<b>psql</b> starts up. Tab-completion is also
+supported, although the completion logic makes no claim to be an
+SQL parser. If for some reason you do not like the tab completion, you
+can turn it off by putting this in a file named
+<i>&#46;inputrc</i> in your home directory:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+$if psql
+set disable-completion on
+$endif
+<p>
+</pre></td></tr>
+</table>
+(This is not a <b>psql</b> but a
+<b>Readline</b> feature. Read its documentation
+for further details.)
+<h1 class="manpages">ENVIRONMENT</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>PAGER</b>
+</td><td valign="bottom">
+If the query results do not fit on the screen, they are piped
+through this command. Typical values are
+more or less. The default
+is platform-dependent. The use of the pager can be disabled by
+using the <b>\pset</b> command.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>PGDATABASE</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Default connection database
+</td></tr>
+<tr valign="top"><td>
+<b>PGHOST</b>
+<!-- Consumed .TP -->
+<br />
+<b>PGPORT</b>
+<!-- Consumed .TP -->
+<br />
+<b>PGUSER</b>
+</td><td valign="bottom">
+Default connection parameters
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>PSQL_EDITOR</b>
+<!-- Consumed .TP -->
+<br />
+<b>EDITOR</b>
+<!-- Consumed .TP -->
+<br />
+<b>VISUAL</b>
+</td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+Editor used by the <b>\e</b> command. The variables
+are examined in the order listed; the first that is set is used.
+</td></tr>
+<tr valign="top"><td>
+<b>SHELL</b>
+</td><td valign="bottom">
+Command executed by the <b>\!</b> command.
+</td></tr>
+<tr valign="top"><td>
+<b>TMPDIR</b>
+</td><td valign="bottom">
+Directory for storing temporary files. The default is
+<i>/tmp</i>.
+</td></tr>
+</table>
+<h1 class="manpages">FILES</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+Before starting up, <b>psql</b> attempts to
+read and execute commands from the system-wide
+<i>psqlrc</i> file and the user&#146;s
+<i>~/.psqlrc</i> file.
+(On Windows, the user&#146;s startup file is named
+<i>%APPDATA%\postgresql\psqlrc.conf</i>.)
+See <i>PREFIX/share/psqlrc.sample</i>
+for information on setting up the system-wide file. It could be used
+to set up the client or the server to taste (using the <b>\set
+</b>and <b>SET</b> commands).
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+Both the system-wide <i>psqlrc</i> file and the user&#146;s
+<i>~/.psqlrc</i> file can be made version-specific
+by appending a dash and the PostgreSQL
+release number, for example <i>~/.psqlrc-8.1.22</i>.
+A matching version-specific file will be read in preference to a
+non-version-specific file.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+The command-line history is stored in the file
+<i>~/.psql_history</i>, or
+<i>%APPDATA%\postgresql\psql_history</i> on Windows.
+</td></tr>
+</table>
+<h1 class="manpages">NOTES</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+In an earlier life <b>psql</b> allowed the
+first argument of a single-letter backslash command to start
+directly after the command, without intervening whitespace. For
+compatibility this is still supported to some extent,
+but we are not going to explain the details here as this use is
+discouraged. If you get strange messages, keep this in mind.
+For example
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+testdb=&gt; <b>\foo</b>
+Field separator is "oo".
+<p>
+</pre></td></tr>
+</table>
+which is perhaps not what one would expect.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+<b>psql</b> only works smoothly with servers
+of the same version. That does not mean other combinations will
+fail outright, but subtle and not-so-subtle problems might come
+up. Backslash commands are particularly likely to fail if the
+server is of a different version.
+</td></tr>
+</table>
+<h1 class="manpages">NOTES FOR WINDOWS USERS</h1>
+<p>
+<b>psql</b> is built as a &#145;&#145;console
+application&#146;&#146;. Since the Windows console windows use a different
+encoding than the rest of the system, you must take special care
+when using 8-bit characters within <b>psql</b>.
+If <b>psql</b> detects a problematic
+console code page, it will warn you at startup. To change the
+console code page, two things are necessary:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+Set the code page by entering <b>cmd.exe /c chcp
+1252</b>. (1252 is a code page that is appropriate for
+German; replace it with your value.) If you are using Cygwin,
+you can put this command in <i>/etc/profile</i>.
+</td></tr>
+<tr valign="top"><td>
+o
+</td><td valign="bottom">
+Set the console font to &#145;&#145;Lucida Console&#146;&#146;, because the
+raster font does not work with the ANSI code page.
+</td></tr>
+<!-- PP ends table -->
+</table>
+<h1 class="manpages">EXAMPLES</h1>
+<p>
+The first example shows how to spread a command over several lines of
+input. Notice the changing prompt:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+testdb=&gt; <b>CREATE TABLE my_table (</b>
+testdb(&gt; <b> first integer not null default 0,</b>
+testdb(&gt; <b> second text)</b>
+testdb-&gt; <b>;</b>
+CREATE TABLE
+<p>
+</pre></td></tr>
+</table>
+Now look at the table definition again:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+testdb=&gt; <b>\d my_table</b>
+             Table "my_table"
+ Attribute |  Type   |      Modifier
+-----------+---------+--------------------
+ first     | integer | not null default 0
+ second    | text    |
+<p>
+</pre></td></tr>
+</table>
+Now we change the prompt to something more interesting:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+testdb=&gt; <b>\set PROMPT1 &#146;%n@%m %~%R%# &#146;</b>
+peter@localhost testdb=&gt;
+<p>
+</pre></td></tr>
+</table>
+Let&#146;s assume you have filled the table with data and want to take a
+look at it:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+peter@localhost testdb=&gt; SELECT * FROM my_table;
+ first | second
+-------+--------
+     1 | one
+     2 | two
+     3 | three
+     4 | four
+(4 rows)
+<p>
+</pre></td></tr>
+</table>
+You can display tables in different ways by using the
+<b>\pset</b> command:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+peter@localhost testdb=&gt; <b>\pset border 2</b>
+Border style is 2.
+peter@localhost testdb=&gt; <b>SELECT * FROM my_table;</b>
++-------+--------+
+| first | second |
++-------+--------+
+|     1 | one    |
+|     2 | two    |
+|     3 | three  |
+|     4 | four   |
++-------+--------+
+(4 rows)
+<p>
+peter@localhost testdb=&gt; <b>\pset border 0</b>
+Border style is 0.
+peter@localhost testdb=&gt; <b>SELECT * FROM my_table;</b>
+first second
+----- ------
+    1 one
+    2 two
+    3 three
+    4 four
+(4 rows)
+<p>
+peter@localhost testdb=&gt; <b>\pset border 1</b>
+Border style is 1.
+peter@localhost testdb=&gt; <b>\pset format unaligned</b>
+Output format is unaligned.
+peter@localhost testdb=&gt; <b>\pset fieldsep ","</b>
+Field separator is ",".
+peter@localhost testdb=&gt; <b>\pset tuples_only</b>
+Showing only tuples.
+peter@localhost testdb=&gt; <b>SELECT second, first FROM my_table;</b>
+one,1
+two,2
+three,3
+four,4
+<p>
+</pre></td></tr>
+</table>
+Alternatively, use the short commands:
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+peter@localhost testdb=&gt; <b>\a \t \x</b>
+Output format is aligned.
+Tuples only is off.
+Expanded display is on.
+peter@localhost testdb=&gt; <b>SELECT * FROM my_table;</b>
+-[ RECORD 1 ]-
+first  | 1
+second | one
+-[ RECORD 2 ]-
+first  | 2
+second | two
+-[ RECORD 3 ]-
+first  | 3
+second | three
+-[ RECORD 4 ]-
+first  | 4
+second | four
+<p>
+</pre></td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversiond85c.html?tutorial=unix_commands&amp;file=psql.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/psql.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

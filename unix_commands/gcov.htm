@@ -1,0 +1,886 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/gcov.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:41 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>gcov - Unix, Linux Command</title>
+<meta name="Description" Content="gcov - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>gcov - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- Not defining reserved macro 'Sh' ! -->
+<!-- ignored unsupported tag .tr -->
+<!-- ignored unsupported tag .ie -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .el\{ -->
+<!-- ignored unsupported tag .br\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .rr -->
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .hy -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .if -->
+
+<!-- ignored unsupported tag .\} -->
+<!-- ignored unsupported tag .tm -->
+<h1 class="manpages">NAME</h1>
+gcov - coverage testing tool
+<h1 class="manpages">SYNOPSIS</h1>
+<!-- ignored unsupported tag .tm -->
+gcov [<b>-v</b>|<b>--version</b>] [<b>-h</b>|<b>--help</b>]
+<br />
+     [<b>-a</b>|<b>--all-blocks</b>]
+<br />
+     [<b>-b</b>|<b>--branch-probabilities</b>]
+<br />
+     [<b>-c</b>|<b>--branch-counts</b>]
+<br />
+     [<b>-n</b>|<b>--no-output</b>]
+<br />
+     [<b>-l</b>|<b>--long-file-names</b>]
+<br />
+     [<b>-p</b>|<b>--preserve-paths</b>]
+<br />
+     [<b>-f</b>|<b>--function-summaries</b>]
+<br />
+     [<b>-o</b>|<b>--object-directory</b> <i>directory|file</i>] <i>sourcefile</i>
+<br />
+     [<b>-u</b>|<b>--unconditional-branches</b>]
+<h1 class="manpages">DESCRIPTION</h1>
+<!-- ignored unsupported tag .tm -->
+<b>gcov</b> is a test coverage program.  Use it in concert with <font size="-1">GCC</font>
+to analyze your programs to help create more efficient, faster running
+code and to discover untested parts of your program.  You can use
+<b>gcov</b> as a profiling tool to help discover where your
+optimization efforts will best affect your code.  You can also use
+<b>gcov</b> along with the other profiling tool, <b>gprof</b>, to
+assess which parts of your code use the greatest amount of computing
+time.
+<p>
+Profiling tools help you analyze your code&#146;s performance.  Using a
+profiler such as <b>gcov</b> or <b>gprof</b>, you can find out some
+basic performance statistics, such as:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+o
+</td><td>
+how often each line of code executes
+</td></tr>
+<tr valign="top"><td width=4%>
+o
+</td><td>
+what lines of code are actually executed
+</td></tr>
+<tr valign="top"><td width=4%>
+o
+</td><td>
+how much computing time each section of code uses
+</td></tr>
+<!-- PP ends table -->
+</table>
+Once you know these things about how your code works when compiled, you
+can look at each module to see which modules should be optimized.
+<b>gcov</b> helps you determine where to work on optimization.
+<p>
+Software developers also use coverage testing in concert with
+testsuites, to make sure software is actually good enough for a release.
+Testsuites can verify that a program works as expected; a coverage
+program tests to see how much of the program is exercised by the
+testsuite.  Developers can then determine what kinds of test cases need
+to be added to the testsuites to create both better testing and a better
+final product.
+<p>
+You should compile your code without optimization if you plan to use
+<b>gcov</b> because the optimization, by combining some lines of code
+into one function, may not give you as much information as you need to
+look for &#145;hot spots&#146; where the code is using a great deal of computer
+time.  Likewise, because <b>gcov</b> accumulates statistics by line (at
+the lowest resolution), it works best with a programming style that
+places only one statement on each line.  If you use complicated macros
+that expand to loops or to other control structures, the statistics are
+less helpful---they only report on the line where the macro call
+appears.  If your complex macros behave like functions, you can replace
+them with inline functions to solve this problem.
+<p>
+<b>gcov</b> creates a logfile called <i></i><i>sourcefile</i><i>.gcov</i> which
+indicates how many times each line of a source file <i></i><i>sourcefile</i><i>.c</i>
+has executed.  You can use these logfiles along with <b>gprof</b> to aid
+in fine-tuning the performance of your programs.  <b>gprof</b> gives
+timing information you can use along with the information you get from
+<b>gcov</b>.
+<p>
+<b>gcov</b> works only on code compiled with <font size="-1">GCC</font>.  It is not
+compatible with any other profiling or test coverage mechanism.
+<h1 class="manpages">OPTIONS</h1>
+<!-- ignored unsupported tag .tm -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+<b>-h</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--help</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Display help about using <b>gcov</b> (on the standard output), and
+exit without doing any further processing.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-v</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--version</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Display the <b>gcov</b> version number (on the standard output),
+and exit without doing any further processing.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-a</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--all-blocks</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Write individual execution counts for every basic block.  Normally gcov
+outputs execution counts only for the main blocks of a line.  With this
+option you can determine if blocks within a single line are not being
+executed.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-b</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--branch-probabilities</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Write branch frequencies to the output file, and write branch summary
+info to the standard output.  This option allows you to see how often
+each branch in your program was taken.  Unconditional branches will not
+be shown, unless the <b>-u</b> option is given.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-c</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--branch-counts</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Write branch frequencies as the number of branches taken, rather than
+the percentage of branches taken.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-n</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--no-output</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Do not create the <b>gcov</b> output file.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-l</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--long-file-names</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Create long file names for included source files.  For example, if the
+header file <i>x.h</i> contains code, and was included in the file
+<i>a.c</i>, then running <b>gcov</b> on the file <i>a.c</i> will produce
+an output file called <i>a.c##x.h.gcov</i> instead of <i>x.h.gcov</i>.
+This can be useful if <i>x.h</i> is included in multiple source
+files.  If you use the <b>-p</b> option, both the including and
+included file names will be complete path names.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-p</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--preserve-paths</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Preserve complete path information in the names of generated
+<i>.gcov</i> files.  Without this option, just the filename component is
+used.  With this option, all directories are used, with <b>/</b> characters
+translated to <b>#</b> characters, <i>.</i> directory components
+removed and <i>..</i>
+components renamed to <b>^</b>.  This is useful if sourcefiles are in several
+different directories.  It also affects the <b>-l</b> option.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-f</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--function-summaries</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Output summaries for each function in addition to the file level summary.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-o</b> <i>directory|file</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--object-directory</b> <i>directory</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--object-file</b> <i>file</i>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+Specify either the directory containing the gcov data files, or the
+object path name.  The <i>.gcno</i>, and
+<i>.gcda</i> data files are searched for using this option.  If a directory
+is specified, the data files are in that directory and named after the
+source file name, without its extension.  If a file is specified here,
+the data files are named after that file, without its extension.  If this
+option is not supplied, it defaults to the current directory.
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>-u</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+</td></tr>
+<tr valign="top"><td width=4%>
+<b>--unconditional-branches</b>
+</td><td>
+<!-- ignored unsupported tag .tm -->
+When branch probabilities are given, include those of unconditional branches.
+Unconditional branches are normally not interesting.
+</td></tr>
+<!-- PP ends table -->
+</table>
+<b>gcov</b> should be run with the current directory the same as that
+when you invoked the compiler.  Otherwise it will not be able to locate
+the source files.  <b>gcov</b> produces files called
+<i></i><i>mangledname</i><i>.gcov</i> in the current directory.  These contain
+the coverage information of the source file they correspond to.
+One <i>.gcov</i> file is produced for each source file containing code,
+which was compiled to produce the data files.  The <i>mangledname</i> part
+of the output file name is usually simply the source file name, but can
+be something more complicated if the <b>-l</b> or <b>-p</b> options are
+given.  Refer to those options for details.
+<p>
+The <i>.gcov</i> files contain the <b>:</b> separated fields along with
+program source code.  The format is
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+        &lt;execution_count&gt;:&lt;line_number&gt;:&lt;source line text&gt;
+</tt></pre></td></tr>
+</table>
+<p>
+Additional block information may succeed each line, when requested by
+command line option.  The <i>execution_count</i> is <b>-</b> for lines
+containing no code and <b>#####</b> for lines which were never executed.
+Some lines of information at the start have <i>line_number</i> of zero.
+<p>
+The preamble lines are of the form
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+        -:0:&lt;tag&gt;:&lt;value&gt;
+</tt></pre></td></tr>
+</table>
+<p>
+The ordering and number of these preamble lines will be augmented as
+<b>gcov</b> development progresses --- do not rely on them remaining
+unchanged.  Use <i>tag</i> to locate a particular preamble line.
+<p>
+The additional block information is of the form
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+        &lt;tag&gt; &lt;information&gt;
+</tt></pre></td></tr>
+</table>
+<p>
+The <i>information</i> is human readable, but designed to be simple
+enough for machine parsing too.
+<p>
+When printing percentages, 0% and 100% are only printed when the values
+are <i>exactly</i> 0% and 100% respectively.  Other values which would
+conventionally be rounded to 0% or 100% are instead printed as the
+nearest non-boundary value.
+<p>
+When using <b>gcov</b>, you must first compile your program with two
+special <font size="-1">GCC</font> options: <b>-fprofile-arcs -ftest-coverage</b>.
+This tells the compiler to generate additional information needed by
+gcov (basically a flow graph of the program) and also includes
+additional code in the object files for generating the extra profiling
+information needed by gcov.  These additional files are placed in the
+directory where the object file is located.
+<p>
+Running the program will cause profile output to be generated.  For each
+source file compiled with <b>-fprofile-arcs</b>, an accompanying
+<i>.gcda</i> file will be placed in the object file directory.
+<p>
+Running <b>gcov</b> with your program&#146;s source file names as arguments
+will now produce a listing of the code along with frequency of execution
+for each line.  For example, if your program is called <i>tmp.c</i>, this
+is what you see when you use the basic <b>gcov</b> facility:
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+        $ gcc -fprofile-arcs -ftest-coverage tmp.c
+        $ a.out
+        $ gcov tmp.c
+        90.00% of 10 source lines executed in file tmp.c
+        Creating tmp.c.gcov.
+</tt></pre></td></tr>
+</table>
+<p>
+The file <i>tmp.c.gcov</i> contains output from <b>gcov</b>.
+Here is a sample:
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+                -:    0:Source:tmp.c
+                -:    0:Graph:tmp.gcno
+                -:    0:Data:tmp.gcda
+                -:    0:Runs:1
+                -:    0:Programs:1
+                -:    1:#include &lt;stdio.h&gt;
+                -:    2:
+                -:    3:int main (void)
+                1:    4:{
+                1:    5:  int i, total;
+                -:    6:
+                1:    7:  total = 0;
+                -:    8:
+               11:    9:  for (i = 0; i &lt; 10; i++)
+               10:   10:    total += i;
+                -:   11:
+                1:   12:  if (total != 45)
+            #####:   13:    printf ("Failure&#92;n");
+                -:   14:  else
+                1:   15:    printf ("Success&#92;n");
+                1:   16:  return 0;
+                -:   17:}
+</tt></pre></td></tr>
+</table>
+<p>
+When you use the <b>-a</b> option, you will get individual block
+counts, and the output looks like this:
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+                -:    0:Source:tmp.c
+                -:    0:Graph:tmp.gcno
+                -:    0:Data:tmp.gcda
+                -:    0:Runs:1
+                -:    0:Programs:1
+                -:    1:#include &lt;stdio.h&gt;
+                -:    2:
+                -:    3:int main (void)
+                1:    4:{
+                1:    4-block  0
+                1:    5:  int i, total;
+                -:    6:
+                1:    7:  total = 0;
+                -:    8:
+               11:    9:  for (i = 0; i &lt; 10; i++)
+               11:    9-block  0
+               10:   10:    total += i;
+               10:   10-block  0
+                -:   11:
+                1:   12:  if (total != 45)
+                1:   12-block  0
+            #####:   13:    printf ("Failure&#92;n");
+            $$$$$:   13-block  0
+                -:   14:  else
+                1:   15:    printf ("Success&#92;n");
+                1:   15-block  0
+                1:   16:  return 0;
+                1:   16-block  0
+                -:   17:}
+</tt></pre></td></tr>
+</table>
+<p>
+In this mode, each basic block is only shown on one line &#151; the last
+line of the block.  A multi-line block will only contribute to the
+execution count of that last line, and other lines will not be shown
+to contain code, unless previous blocks end on those lines.
+The total execution count of a line is shown and subsequent lines show
+the execution counts for individual blocks that end on that line.  After each
+block, the branch and call counts of the block will be shown, if the
+<b>-b</b> option is given.
+<p>
+Because of the way <font size="-1">GCC</font> instruments calls, a call count can be shown
+after a line with no individual blocks.
+As you can see, line 13 contains a basic block that was not executed.
+<p>
+When you use the <b>-b</b> option, your output looks like this:
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+        $ gcov -b tmp.c
+        90.00% of 10 source lines executed in file tmp.c
+        80.00% of 5 branches executed in file tmp.c
+        80.00% of 5 branches taken at least once in file tmp.c
+        50.00% of 2 calls executed in file tmp.c
+        Creating tmp.c.gcov.
+</tt></pre></td></tr>
+</table>
+<p>
+Here is a sample of a resulting <i>tmp.c.gcov</i> file:
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+                -:    0:Source:tmp.c
+                -:    0:Graph:tmp.gcno
+                -:    0:Data:tmp.gcda
+                -:    0:Runs:1
+                -:    0:Programs:1
+                -:    1:#include &lt;stdio.h&gt;
+                -:    2:
+                -:    3:int main (void)
+        function main called 1 returned 1 blocks executed 75%
+                1:    4:{
+                1:    5:  int i, total;
+                -:    6:
+                1:    7:  total = 0;
+                -:    8:
+               11:    9:  for (i = 0; i &lt; 10; i++)
+        branch  0 taken 91% (fallthrough)
+        branch  1 taken 9%
+               10:   10:    total += i;
+                -:   11:
+                1:   12:  if (total != 45)
+        branch  0 taken 0% (fallthrough)
+        branch  1 taken 100%
+            #####:   13:    printf ("Failure&#92;n");
+        call    0 never executed
+                -:   14:  else
+                1:   15:    printf ("Success&#92;n");
+        call    0 called 1 returned 100%
+                1:   16:  return 0;
+                -:   17:}
+</tt></pre></td></tr>
+</table>
+<p>
+For each function, a line is printed showing how many times the function
+is called, how many times it returns and what percentage of the
+function&#146;s blocks were executed.
+<p>
+For each basic block, a line is printed after the last line of the basic
+block describing the branch or call that ends the basic block.  There can
+be multiple branches and calls listed for a single source line if there
+are multiple basic blocks that end on that line.  In this case, the
+branches and calls are each given a number.  There is no simple way to map
+these branches and calls back to source constructs.  In general, though,
+the lowest numbered branch or call will correspond to the leftmost construct
+on the source line.
+<p>
+For a branch, if it was executed at least once, then a percentage
+indicating the number of times the branch was taken divided by the
+number of times the branch was executed will be printed.  Otherwise, the
+message never executed is printed.
+<p>
+For a call, if it was executed at least once, then a percentage
+indicating the number of times the call returned divided by the number
+of times the call was executed will be printed.  This will usually be
+100%, but may be less for functions that call <tt>exit</tt> or <tt>longjmp</tt>,
+and thus may not return every time they are called.
+<p>
+The execution counts are cumulative.  If the example program were
+executed again without removing the <i>.gcda</i> file, the count for the
+number of times each line in the source was executed would be added to
+the results of the previous run(s).  This is potentially useful in
+several ways.  For example, it could be used to accumulate data over a
+number of program runs as part of a test verification suite, or to
+provide more accurate long-term information over a large number of
+program runs.
+<p>
+The data in the <i>.gcda</i> files is saved immediately before the program
+exits.  For each source file compiled with <b>-fprofile-arcs</b>, the
+profiling code first attempts to read in an existing <i>.gcda</i> file; if
+the file doesn&#146;t match the executable (differing number of basic block
+counts) it will ignore the contents of the file.  It then adds in the
+new execution counts and finally writes the data to the file.
+<h1 class="manpages">Using <b>gcov</b> with <font size="-1">GCC</font> Optimization</h1>
+<!-- ignored unsupported tag .tm -->
+If you plan to use <b>gcov</b> to help optimize your code, you must
+first compile your program with two special <font size="-1">GCC</font> options:
+<b>-fprofile-arcs -ftest-coverage</b>.  Aside from that, you can use any
+other <font size="-1">GCC</font> options; but if you want to prove that every single line
+in your program was executed, you should not compile with optimization
+at the same time.  On some machines the optimizer can eliminate some
+simple code lines by combining them with other lines.  For example, code
+like this:
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+        if (a != b)
+          c = 1;
+        else
+          c = 0;
+</tt></pre></td></tr>
+</table>
+<p>
+can be compiled into one instruction on some machines.  In this case,
+there is no way for <b>gcov</b> to calculate separate execution counts
+for each line because there isn&#146;t separate code for each line.  Hence
+the <b>gcov</b> output looks like this if you compiled the program with
+optimization:
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+              100:   12:if (a != b)
+              100:   13:  c = 1;
+              100:   14:else
+              100:   15:  c = 0;
+</tt></pre></td></tr>
+</table>
+<p>
+The output shows that this block of code, combined by optimization,
+executed 100 times.  In one sense this result is correct, because there
+was only one instruction representing all four of these lines.  However,
+the output does not indicate how many times the result was 0 and how
+many times the result was 1.
+<p>
+Inlineable functions can create unexpected line counts.  Line counts are
+shown for the source code of the inlineable function, but what is shown
+depends on where the function is inlined, or if it is not inlined at all.
+<p>
+If the function is not inlined, the compiler must emit an out of line
+copy of the function, in any object file that needs it.  If
+<i>fileA.o</i> and <i>fileB.o</i> both contain out of line bodies of a
+particular inlineable function, they will also both contain coverage
+counts for that function.  When <i>fileA.o</i> and <i>fileB.o</i> are
+linked together, the linker will, on many systems, select one of those
+out of line bodies for all calls to that function, and remove or ignore
+the other.  Unfortunately, it will not remove the coverage counters for
+the unused function body.  Hence when instrumented, all but one use of
+that function will show zero counts.
+<p>
+If the function is inlined in several places, the block structure in
+each location might not be the same.  For instance, a condition might
+now be calculable at compile time in some instances.  Because the
+coverage of all the uses of the inline function will be shown for the
+same source lines, the line counts themselves might seem inconsistent.
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<i>gpl</i>(7), <i>gfdl</i>(7), <i>fsf-funding</i>(7), <i>gcc</i>(1) and the Info entry for <i>gcc</i>.
+<h1 class="manpages">COPYRIGHT</h1>
+<!-- ignored unsupported tag .tm -->
+Copyright (c) 1996, 1997, 1999, 2000, 2001, 2002, 2003, 2004, 2005
+Free Software Foundation, Inc.
+<p>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the <font size="-1">GNU</font> Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with the
+Invariant Sections being <font size="-1">GNU</font> General Public License and Funding
+Free Software, the Front-Cover texts being (a) (see below), and with
+the Back-Cover Texts being (b) (see below).  A copy of the license is
+included in the <i>gfdl</i>(7) man page.
+<p>
+(a) The <font size="-1">FSF</font>&#146;s Front-Cover Text is:
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+     A GNU Manual
+</tt></pre></td></tr>
+</table>
+<p>
+(b) The <font size="-1">FSF</font>&#146;s Back-Cover Text is:
+<p>
+<tt><table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ne -->
+     You have freedom to copy and modify this GNU Manual, like GNU
+     software.  Copies published by the Free Software Foundation raise
+     funds for GNU development.
+</tt></pre></td></tr>
+</table>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion371a.html?tutorial=unix_commands&amp;file=gcov.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/gcov.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:41 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

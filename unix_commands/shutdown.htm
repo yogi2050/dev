@@ -1,0 +1,448 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/shutdown.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:25 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>shutdown - Unix, Linux Command</title>
+<meta name="Description" Content="shutdown - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>shutdown - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+shutdown - bring the system down
+<h1 class="manpages">SYNOPSIS</h1>
+<b>/sbin/shutdown</b> [<b>-t</b> <i>sec</i>] [<b>-arkhncfFHP</b>] <i>time</i> [<i>warning-message</i>] <h1 class="manpages">DESCRIPTION</h1>
+<b>shutdown</b> brings the system down in a secure way.  All logged-in users are
+notified that the system is going down, and <b>login</b>(1) is blocked.
+It is possible to shut the system down immediately or after a specified delay.
+All processes are first notified that the system is going down by the
+signal <font size="-2">SIGTERM</font>.  This gives programs like <b>vi</b>(1)
+the time to save the file being edited,
+mail and news processing programs a chance to exit cleanly, etc.
+<b>shutdown</b> does its job by signalling the <b>init</b> process,
+asking it to change the runlevel.
+Runlevel <b>0</b> is used to halt the system, runlevel <b>6</b> is used
+to reboot the system, and runlevel <b>1</b> is used to put to system into
+a state where administrative tasks can be performed; this is the default
+if neither the <i>-h</i> or <i>-r</i> flag is given to <b>shutdown</b>.
+To see which actions are taken on halt or reboot see the appropriate
+entries for these runlevels in the file <i>/etc/inittab</i>.
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>-a</b>
+</td><td>
+Use <b>/etc/shutdown.allow</b>.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-t</b> <i>sec</i>
+</td><td>
+Tell <b>init</b>(8) to wait <i>sec</i> seconds between sending processes the
+warning and the kill signal, before changing to another runlevel.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-k</b>
+</td><td>
+Don&#146;t really shutdown; only send the warning messages to everybody.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-r</b>
+</td><td>
+Reboot after shutdown.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-h</b>
+</td><td>
+Halt or poweroff after shutdown.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-H</b>
+</td><td>
+Halt action is to halt or drop into boot monitor on systems that
+support it.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-P</b>
+</td><td>
+Halt action is to turn off the power.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-n</b>
+</td><td>
+[DEPRECATED] Don&#146;t call <b>init</b>(8) to do the shutdown but do it ourself.
+The use of this option is discouraged, and its results are not always what
+you&#146;d expect.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-f</b>
+</td><td>
+Skip fsck on reboot.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-F</b>
+</td><td>
+Force fsck on reboot.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-c</b>
+</td><td>
+Cancel an already running shutdown. With this option it is of course
+not possible to give the <b>time</b> argument, but you can enter a
+explanatory message on the command line that will be sent to all users.
+</td></tr>
+<tr valign="top"><td width=6%>
+<i>time</i>
+</td><td>
+When to shutdown.
+</td></tr>
+<tr valign="top"><td width=6%>
+<i>warning-message</i>
+</td><td>
+Message to send to all users.
+</td></tr>
+<!-- PP ends table -->
+</table>
+The <i>time</i> argument can have different formats.  First, it can be an
+absolute time in the format <i>hh:mm</i>, in which <i>hh</i> is the hour
+(1 or 2 digits) and <i>mm</i> is the minute of the hour (in two digits).
+Second, it can be in the format <b>+</b><i>m</i>, in which <i>m</i> is the
+number of minutes to wait.  The word <b>now</b> is an alias for <b>+0</b>.
+<p>
+If shutdown is called with a delay, it creates the advisory file
+<i>/etc/nologin</i> which causes programs such as <i>login(1)</i> to not allow new user
+logins. Shutdown removes this file if it is stopped before it
+can signal init (i.e. it is cancelled or something goes wrong).
+It also removes it before calling init to change the runlevel.
+<p>
+The <b>-f</b> flag means &#145;reboot fast&#146;.  This only creates an advisory
+file <i>/fastboot</i> which can be tested by the system when it comes
+up again.  The boot rc file can test if this file is present, and decide not
+to run <b>fsck</b>(1) since the system has been shut down in the proper way. 
+After that, the boot process should remove <i>/fastboot</i>.
+<p>
+The <b>-F</b> flag means &#145;force fsck&#146;.  This only creates an advisory
+file <i>/forcefsck</i> which can be tested by the system when it comes
+up again.  The boot rc file can test if this file is present, and decide
+to run <b>fsck</b>(1) with a special &#145;force&#146; flag so that even properly
+unmounted filesystems get checked.
+After that, the boot process should remove <i>/forcefsck</i>.
+<p>
+The <b>-n</b> flag causes <b>shutdown</b> not to call <b>init</b>,
+but to kill all running processes itself.
+<b>shutdown</b> will then turn off quota, accounting, and swapping
+and unmount all filesystems.
+<h1 class="manpages">ACCESS CONTROL</h1>
+<b>shutdown</b> can be called from <b>init</b>(8) when the magic keys
+<b>CTRL-ALT-DEL</b> are pressed, by creating an appropriate entry in
+<i>/etc/inittab</i>. This means that everyone who has physical access
+to the console keyboard can shut the system down. To prevent this,
+<b>shutdown</b> can check to see if an authorized user is logged in on
+one of the virtual consoles. If <b>shutdown</b> is called with the <b>-a</b>
+argument (add this to the invocation of shutdown in /etc/inittab),
+it checks to see if the file <i>/etc/shutdown.allow</i> is present.
+It then compares the login names in that file with the list of people
+that are logged in on a virtual console (from <i>/var/run/utmp</i>). Only
+if one of those authorized users <b>or root</b> is logged in, it will
+proceed. Otherwise it will write the message
+<p>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<b>shutdown: no authorized users logged in</b>
+</pre></td></tr>
+</table>
+<p>
+to the (physical) system console. The format of <i>/etc/shutdown.allow</i>
+is one user name per line. Empty lines and comment lines (prefixed by a
+<b>#</b>) are allowed. Currently there is a limit of 32 users in this file.
+<p>
+Note that if <i>/etc/shutdown.allow</i> is not present, the <b>-a</b>
+argument is ignored.
+<h1 class="manpages">HALT OR POWEROFF</h1>
+The <b>-H</b> option just sets the <i>init</i> environment variable
+<i>INIT_HALT</i> to <i>HALT</i>, and the <b>-P</b> option just sets
+that variable to <i>POWEROFF</i>. The shutdown script that calls
+<b>halt</b>(8) as the last thing in the shutdown sequence should
+check these environment variables and call <b>halt</b>(8) with
+the right options for these options to actually have any effect.
+Debian 3.1 (sarge) supports this.
+<h1 class="manpages">FILES</h1>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+/fastboot
+/etc/inittab
+/etc/init.d/halt
+/etc/init.d/reboot
+/etc/shutdown.allow
+</pre></td></tr>
+</table>
+<h1 class="manpages">NOTES</h1>
+A lot of users forget to give the <i>time</i> argument
+and are then puzzled by the error message <b>shutdown</b> produces. The
+<i>time</i> argument is mandatory; in 90 percent of all cases this argument
+will be the word <b>now</b>.
+<p>
+Init can only capture CTRL-ALT-DEL and start shutdown in console mode.
+If the system is running the X window System, the X server processes
+all key strokes. Some X11 environments make it possible to capture
+CTRL-ALT-DEL, but what exactly is done with that event depends on
+that environment.
+<p>
+Shutdown wasn&#146;t designed to be run setuid. /etc/shutdown.allow is
+not used to find out who is executing shutdown, it ONLY checks who
+is currently logged in on (one of the) console(s).
+<h1 class="manpages">AUTHOR</h1>
+Miquel van Smoorenburg, <a href="mailto:miquels@cistron.nl">miquels@cistron.nl</a>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+<li><p><a href="fsck.htm">fsck (8)</a></p></li>
+<li><p><a href="init.htm">init (8)</a></p></li>
+<li><p><a href="halt.htm">halt (8)</a></p></li>
+<li><p><a href="poweroff.htm">poweroff (8)</a></p></li>
+<li><p><a href="reboot.htm">reboot (8)</a></p></li>
+</ul>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion2eec.html?tutorial=unix_commands&amp;file=shutdown.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/shutdown.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:25 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

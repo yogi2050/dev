@@ -1,0 +1,657 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/postconf.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>postconf - Unix, Linux Command</title>
+<meta name="Description" Content="postconf - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>postconf - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- ignored unsupported tag .ad -->
+<h1 class="manpages">NAME</h1>
+postconf
+-
+Postfix configuration utility
+<h1 class="manpages">SYNOPSIS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+</pre></td></tr>
+</table>
+<b>postconf</b> [<b>-dhnv</b>] [<b>-c </b><i>config_dir</i>]
+[<i>parameter ...</i>]
+<p>
+<b>postconf</b> [<b>-aAmlv</b>] [<b>-c </b><i>config_dir</i>]
+<p>
+<b>postconf</b> [<b>-ev</b>] [<b>-c </b><i>config_dir</i>]
+[<i>parameter=value ...</i>]
+<p>
+<b>postconf</b> [<b>-btv</b>] [<b>-c </b><i>config_dir</i>] [<i>template_file</i>]
+<h1 class="manpages">DESCRIPTION</h1>
+<!-- ignored unsupported tag .ad -->
+The <b>postconf</b>(1) command displays the actual values
+of configuration parameters, changes configuration parameter
+values, or displays other configuration information about
+the Postfix mail system.
+<p>
+Options:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>-a</b>
+</td><td>
+List the available SASL server plug-in types.  The SASL
+plug-in type is selected with the <b>smtpd_sasl_type</b>
+configuration parameter by specifying one of the names
+listed below.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>cyrus</b>
+</td><td>
+This server plug-in is available when Postfix is built with
+Cyrus SASL support.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>dovecot</b>
+</td><td>
+This server plug-in requires the Dovecot authentication
+server.
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+This feature is available with Postfix 2.3 and later.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-A</b>
+</td><td>
+List the available SASL client plug-in types.  The SASL
+plug-in type is selected with the <b>smtp_sasl_type</b> or
+<b>lmtp_sasl_type</b> configuration parameters by specifying
+one of the names listed below.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>cyrus</b>
+</td><td>
+This client plug-in is available when Postfix is built with
+Cyrus SASL support.
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+This feature is available with Postfix 2.3 and later.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-b</b> [<i>template_file</i>]
+</td><td>
+Display the message text that appears at the beginning of
+delivery status notification (DSN) messages, with $<b>name</b>
+expressions replaced by actual values.  To override the
+built-in message text, specify a template file at the end
+of the command line, or specify a template file in main.cf
+with the <b>bounce_template_file</b> parameter.
+To force selection of the built-in message text templates,
+specify an empty template file name (in shell language: "").
+<p>
+This feature is available with Postfix 2.3 and later.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-c </b><i>config_dir</i>
+</td><td>
+The <b>main.cf</b> configuration file is in the named directory
+instead of the default configuration directory.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-d</b>
+</td><td>
+Print default parameter settings instead of actual settings.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-e</b>
+</td><td>
+Edit the <b>main.cf</b> configuration file. The file is copied
+to a temporary file then renamed into place. Parameters and
+values are specified on the command line. Use quotes in order
+to protect shell metacharacters and whitespace.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-h</b>
+</td><td>
+Show parameter values only, not the &#145;&#145;name = &#146;&#146; label
+that normally precedes the value.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-l</b>
+</td><td>
+List the names of all supported mailbox locking methods.
+Postfix supports the following methods:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>flock</b>
+</td><td>
+A kernel-based advisory locking method for local files only.
+This locking method is available on systems with a BSD
+compatible library.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>fcntl</b>
+</td><td>
+A kernel-based advisory locking method for local and remote files.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>dotlock</b>
+</td><td>
+An application-level locking method. An application locks a file
+named <i>filename</i> by creating a file named <i>filename</i><b>.lock</b>.
+The application is expected to remove its own lock file, as well as
+stale lock files that were left behind after abnormal termination.
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-m</b>
+</td><td>
+List the names of all supported lookup table types. In Postfix
+configuration files,
+lookup tables are specified as <i>type</i><b>:</b><i>name</i>, where
+<i>type</i> is one of the types listed below. The table <i>name</i>
+syntax depends on the lookup table type as described in the
+DATABASE_README document.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>btree</b>
+</td><td>
+A sorted, balanced tree structure.
+This is available on systems with support for Berkeley DB
+databases.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>cdb</b>
+</td><td>
+A read-optimized structure with no support for incremental updates.
+This is available on systems with support for CDB databases.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>cidr</b>
+</td><td>
+A table that associates values with Classless Inter-Domain Routing
+(CIDR) patterns. This is described in <b>cidr_table</b>(5).
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>dbm</b>
+</td><td>
+An indexed file type based on hashing.
+This is available on systems with support for DBM databases.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>environ</b>
+</td><td>
+The UNIX process environment array. The lookup key is the variable
+name. Originally implemented for testing, someone may find this
+useful someday.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>hash</b>
+</td><td>
+An indexed file type based on hashing.
+This is available on systems with support for Berkeley DB
+databases.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>ldap</b> (read-only)
+</td><td>
+Perform lookups using the LDAP protocol. This is described
+in <b>ldap_table</b>(5).
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>mysql</b> (read-only)
+</td><td>
+Perform lookups using the MYSQL protocol. This is described
+in <b>mysql_table</b>(5).
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>pcre</b> (read-only)
+</td><td>
+A lookup table based on Perl Compatible Regular Expressions. The
+file format is described in <b>pcre_table</b>(5).
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>pgsql</b> (read-only)
+</td><td>
+Perform lookups using the PostgreSQL protocol. This is described
+in <b>pgsql_table</b>(5).
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>proxy</b> (read-only)
+</td><td>
+A lookup table that is implemented via the Postfix
+<b>proxymap</b>(8) service. The table name syntax is
+<i>type</i><b>:</b><i>name</i>.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>regexp</b> (read-only)
+</td><td>
+A lookup table based on regular expressions. The file format is
+described in <b>regexp_table</b>(5).
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>sdbm</b>
+</td><td>
+An indexed file type based on hashing.
+This is available on systems with support for SDBM databases.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>static</b> (read-only)
+</td><td>
+A table that always returns its name as lookup result. For example,
+<b>static:foobar</b> always returns the string <b>foobar</b> as lookup
+result.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>tcp</b> (read-only)
+</td><td>
+Perform lookups using a simple request-reply protocol that is
+described in <b>tcp_table</b>(5).
+This feature is not included with Postfix 2.2.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>unix</b> (read-only)
+</td><td>
+A limited way to query the UNIX authentication database. The
+following tables are implemented:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>unix:passwd.byname</b>
+</td><td>
+The table is the UNIX password database. The key is a login name.
+The result is a password file entry in <b>passwd</b>(5) format.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>unix:group.byname</b>
+</td><td>
+The table is the UNIX group database. The key is a group name.
+The result is a group file entry in <b>group</b>(5) format.
+</td></tr>
+</table>
+</td></tr>
+</table>
+</td></tr>
+<tr valign="top"><td width=6%>
+
+</td><td>
+Other table types may exist depending on how Postfix was built.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-n</b>
+</td><td>
+Print parameter settings that are not left at their built-in
+default value, because they are explicitly specified in main.cf.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-t</b> [<i>template_file</i>]
+</td><td>
+Display the templates for delivery status notification (DSN)
+messages. To override the built-in templates, specify a
+template file at the end of the command line, or specify a
+template file in main.cf with the <b>bounce_template_file</b>
+parameter.  To force selection of the built-in templates,
+specify an empty template file name (in shell language:
+"").
+<p>
+This feature is available with Postfix 2.3 and later.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>-v</b>
+</td><td>
+Enable verbose logging for debugging purposes. Multiple <b>-v</b>
+options make the software increasingly verbose.
+</td></tr>
+</table>
+<h1 class="manpages">DIAGNOSTICS</h1>
+<!-- ignored unsupported tag .ad -->
+Problems are reported to the standard error stream.
+<h1 class="manpages">ENVIRONMENT</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>MAIL_CONFIG</b>
+</td><td>
+Directory with Postfix configuration files.
+</td></tr>
+</table>
+<h1 class="manpages">CONFIGURATION PARAMETERS</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+The following <b>main.cf</b> parameters are especially relevant to
+this program.
+<p>
+The text below provides only a parameter summary. See
+<b>postconf</b>(5) for more details including examples.
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=6%>
+<b>config_directory (see &#146;postconf -d&#146; output)</b>
+</td><td>
+The default location of the Postfix main.cf and master.cf
+configuration files.
+</td></tr>
+<tr valign="top"><td width=6%>
+<b>bounce_template_file (empty)</b>
+</td><td>
+Pathname of a configuration file with bounce message templates.
+</td></tr>
+</table>
+<h1 class="manpages">FILES</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+/etc/postfix/main.cf, Postfix configuration parameters
+</pre></td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<a href="../bounce.html">bounce(5)</a>, bounce template file format
+<a href="../postconf.html">postconf(5)</a>, configuration parameters
+</pre></td></tr>
+</table>
+<h1 class="manpages">README FILES</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+Use "<b>postconf readme_directory</b>" or
+"<b>postconf html_directory</b>" to locate this information.
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+DATABASE_README, Postfix lookup table overview
+</pre></td></tr>
+</table>
+<h1 class="manpages">LICENSE</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<!-- ignored unsupported tag .ad -->
+</pre></td></tr>
+</table>
+The Secure Mailer license must be distributed with this software.
+<h1 class="manpages">AUTHOR(S)</h1>
+<!-- ignored unsupported tag .na -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+Wietse Venema
+IBM T.J. Watson Research
+P.O. Box 704
+Yorktown Heights, NY 10598, USA
+</pre></td></tr>
+</table>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionf057.html?tutorial=unix_commands&amp;file=postconf.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/postconf.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

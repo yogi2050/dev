@@ -1,0 +1,745 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/file.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>file - Unix, Linux Command</title>
+<meta name="Description" Content="file - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>file - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+file
+- determine file type
+<h1 class="manpages">SYNOPSIS</h1>
+<b>file</b> [
+<b>-bchikLnNprsvz</b> ]
+[
+<b>-f</b> <i>namefile</i> ]
+[
+<b>-F</b> <i>separator</i> ]
+[
+<b>-m</b> <i>magicfiles</i> ]
+<i>file</i> &#46;..
+<!-- Need break --><br />
+<b>file</b> <b>-C</b> [
+<b>-m</b> magicfile ]
+<h1 class="manpages">DESCRIPTION</h1>
+This manual page documents version 4.17 of the
+<b>file</b> command.
+<p>
+<b>File</b> tests each argument in an attempt to classify it.
+There are three sets of tests, performed in this order:
+filesystem tests, magic number tests, and language tests.
+The
+<i>first</i> test that succeeds causes the file type to be printed.
+<p>
+The type printed will usually contain one of the words
+<b>text</b> (the file contains only
+printing characters and a few common control
+characters and is probably safe to read on an
+<font size="-1">ASCII</font> terminal),
+<b>executable</b> (the file contains the result of compiling a program
+in a form understandable to some <font size="-1">UNIX</font> kernel or another),
+or
+<b>data</b> meaning anything else (data is usually &#145;binary&#146; or non-printable).
+Exceptions are well-known file formats (core files, tar archives)
+that are known to contain binary data.
+When modifying the file
+<i>/usr/share/file/magic</i> or the program itself,
+<b>preserve these keywords .</b> People depend on knowing that all the readable files in a directory
+have the word &#145;&#145;text&#146;&#146; printed.
+Don&#146;t do as Berkeley did and change &#145;&#145;shell commands text&#146;&#146;
+to &#145;&#145;shell script&#146;&#146;.
+Note that the file
+<i>/usr/share/file/magic</i> is built mechanically from a large number of small files in
+the subdirectory
+<i>Magdir</i> in the source distribution of this program.
+<p>
+The filesystem tests are based on examining the return from a
+<b>stat</b>(2)
+system call.
+The program checks to see if the file is empty,
+or if it&#146;s some sort of special file.
+Any known file types appropriate to the system you are running on
+(sockets, symbolic links, or named pipes (FIFOs) on those systems that
+implement them)
+are intuited if they are defined in
+the system header file
+<i>&lt;sys/stat.h&gt;</i>. <p>
+The magic number tests are used to check for files with data in
+particular fixed formats.
+The canonical example of this is a binary executable (compiled program)
+<i>a.out</i> file, whose format is defined in
+<i>a.out.h</i> and possibly
+<i>exec.h</i> in the standard include directory.
+These files have a &#145;magic number&#146; stored in a particular place
+near the beginning of the file that tells the <font size="-1">UNIX</font> operating system
+that the file is a binary executable, and which of several types thereof.
+The concept of &#145;magic number&#146; has been applied by extension to data files.
+Any file with some invariant identifier at a small fixed
+offset into the file can usually be described in this way.
+The information identifying these files is read from the compiled
+magic file
+<i>/usr/share/file/magic.mgc ,</i> or
+<i>/usr/share/file/magic</i> if the compile file does not exist. In addition
+<b>file</b> will look in
+<i>$HOME/.magic.mgc ,</i> or
+<i>$HOME/.magic</i> for magic entries.
+<p>
+If a file does not match any of the entries in the magic file,
+it is examined to see if it seems to be a text file.
+ASCII, ISO-8859-x, non-ISO 8-bit extended-ASCII character sets
+(such as those used on Macintosh and IBM PC systems),
+UTF-8-encoded Unicode, UTF-16-encoded Unicode, and EBCDIC
+character sets can be distinguished by the different
+ranges and sequences of bytes that constitute printable text
+in each set.
+If a file passes any of these tests, its character set is reported.
+ASCII, ISO-8859-x, UTF-8, and extended-ASCII files are identified
+as &#145;&#145;text&#146;&#146; because they will be mostly readable on nearly any terminal;
+UTF-16 and EBCDIC are only &#145;&#145;character data&#146;&#146; because, while
+they contain text, it is text that will require translation
+before it can be read.
+In addition,
+<b>file</b> will attempt to determine other characteristics of text-type files.
+If the lines of a file are terminated by CR, CRLF, or NEL, instead
+of the Unix-standard LF, this will be reported.
+Files that contain embedded escape sequences or overstriking
+will also be identified.
+<p>
+Once
+<b>file</b> has determined the character set used in a text-type file,
+it will
+attempt to determine in what language the file is written.
+The language tests look for particular strings (cf
+<i>names.h</i>) that can appear anywhere in the first few blocks of a file.
+For example, the keyword
+<b>.br</b> indicates that the file is most likely a
+<b>troff</b>(1)
+input file, just as the keyword
+<b>struct</b> indicates a C program.
+These tests are less reliable than the previous
+two groups, so they are performed last.
+The language test routines also test for some miscellany
+(such as
+<b>tar</b>(1)
+archives).
+<p>
+Any file that cannot be identified as having been written
+in any of the character sets listed above is simply said to be &#145;&#145;data&#146;&#146;.
+<h1 class="manpages">OPTIONS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>-b, --brief</b> </td><td valign="bottom">
+Do not prepend filenames to output lines (brief mode).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-c, --checking-printout</b> </td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Cause a checking printout of the parsed form of the magic file.
+This is usually used in conjunction with
+<b>-m</b> to debug a new magic file before installing it.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-C, --compile</b> </td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Write a magic.mgc output file that contains a pre-parsed version of
+file.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-f, --files-from</b><i> namefile</i> </td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Read the names of the files to be examined from
+<i>namefile</i> (one per line)
+before the argument list.
+Either
+<i>namefile</i> or at least one filename argument must be present;
+to test the standard input, use &#145;&#145;-&#146;&#146; as a filename argument.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-F, --separator</b><i> separator</i> </td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Use the specified string as the separator between the filename and the
+file result returned. Defaults to &#145;&#145;:&#146;&#146;.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-h, --no-dereference</b> </td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+option causes symlinks not to be followed
+(on systems that support symbolic links). This is the default if the
+environment variable
+<i>POSIXLY_CORRECT</i> is not defined.
+</td></tr>
+<tr valign="top"><td>
+<b>-i, --mime</b> </td><td valign="bottom">
+Causes the file command to output mime type strings rather than the more
+traditional human readable ones. Thus it may say
+&#145;&#145;text/plain; charset=us-ascii&#146;&#146;
+rather
+than &#145;&#145;ASCII text&#146;&#146;.
+In order for this option to work, file changes the way
+it handles files recognised by the command itself (such as many of the
+text file types, directories etc), and makes use of an alternative
+&#145;&#145;magic&#146;&#146; file.
+(See &#145;&#145;FILES&#146;&#146; section, below).
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-k, --keep-going</b> </td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Don&#146;t stop at the first match, keep going.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-L, --dereference</b> </td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+option causes symlinks to be followed, as the like-named option in
+<b>ls</b>(1)
+(on systems that support symbolic links).
+This is the default if the environment variable
+<i>POSIXLY_CORRECT</i> is defined.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-m, --magic-file</b><i> list</i> </td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Specify an alternate list of files containing magic numbers.
+This can be a single file, or a colon-separated list of files.
+If a compiled magic file is found alongside, it will be used instead.
+With the -i or --mime option, the program adds ".mime" to each file name.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-n, --no-buffer</b> </td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Force stdout to be flushed after checking each file.
+This is only useful if checking a list of files.
+It is intended to be used by programs that want filetype output from a pipe.
+</td></tr>
+<tr valign="top"><td>
+<b>-N, --no-pad</b> </td><td valign="bottom">
+Don&#146;t pad filenames so that they align in the output.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-p, --preserve-date</b> </td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+On systems that support
+<b>utime</b>(2)
+or
+<b>utimes</b>(2), 
+attempt to preserve the access time of files analyzed, to pretend that
+<b>file</b>(2)
+never read them.
+</td></tr>
+<tr valign="top"><td>
+<b>-r, --raw</b> </td><td valign="bottom">
+Don&#146;t translate unprintable characters to &#92;ooo.
+Normally
+<b>file</b> translates unprintable characters to their octal representation.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-s, --special-files</b> </td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Normally,
+<b>file</b> only attempts to read and determine the type of argument files which
+<b>stat</b>(2)
+reports are ordinary files.
+This prevents problems, because reading special files may have peculiar
+consequences.
+Specifying the
+<b>-s</b> option causes
+<b>file</b> to also read argument files which are block or character special files.
+This is useful for determining the filesystem types of the data in raw
+disk partitions, which are block special files.
+This option also causes
+<b>file</b> to disregard the file size as reported by
+<b>stat</b>(2)
+since on some systems it reports a zero size for raw disk partitions.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-v, --version</b> </td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Print the version of the program and exit.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>-z, --uncompress</b> </td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Try to look inside compressed files.
+</td></tr>
+<tr valign="top"><td>
+<b>--help</b> </td><td valign="bottom">
+Print a help message and exit.
+</td></tr>
+</table>
+<h1 class="manpages">FILES</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<i>/usr/share/file/magic.mgc</i> </td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Default compiled list of magic numbers
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>/usr/share/file/magic</i> </td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Default list of magic numbers
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>/usr/share/file/magic.mime.mgc</i> </td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Default compiled list of magic numbers, used to output mime types when
+the -i option is specified.
+</td></tr>
+<tr valign="top"><td colspan="2">
+<i>/usr/share/file/magic.mime</i> </td></tr><tr valign="top"><td width=8%>&nbsp;</td><td>
+Default list of magic numbers, used to output mime types when the -i option
+is specified.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">ENVIRONMENT</h1>
+The environment variable
+<b>MAGIC</b> can be used to set the default magic number file name.
+If that variable is set, then
+<b>file</b> will not attempt to open
+<b>$HOME/.magic .</b> <b>file</b> adds ".mime" and/or ".mgc" to the value of this variable as appropriate.
+The environment variable
+<b>POSIXLY_CORRECT</b> controls (on systems that support symbolic links), if
+<b>file</b> will attempt to follow symlinks or not. If set, then
+<b>file</b> follows symlink, otherwise it does not. This is also controlled
+by the
+<b>L</b> and
+<b>h</b> options.
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+<b>strings</b>(1),
+<br />
+ od (1),
+<br />
+ hexdump(1) 
+- tools for examining non-textfiles.
+<h1 class="manpages">STANDARDS CONFORMANCE</h1>
+This program is believed to exceed the System V Interface Definition
+of FILE(CMD), as near as one can determine from the vague language
+contained therein.
+Its behaviour is mostly compatible with the System V program of the same name.
+This version knows more magic, however, so it will produce
+different (albeit more accurate) output in many cases.
+<p>
+The one significant difference
+between this version and System V
+is that this version treats any white space
+as a delimiter, so that spaces in pattern strings must be escaped.
+For example,
+<!-- Need break --><br />
+&gt;10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;language impress &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(imPRESS data)
+<!-- Need break --><br />
+in an existing magic file would have to be changed to
+<!-- Need break --><br />
+&gt;10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;language&#92; impress&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(imPRESS data)
+<!-- Need break --><br />
+In addition, in this version, if a pattern string contains a backslash,
+it must be escaped.
+For example
+<!-- Need break --><br />
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#92;begindata&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Andrew Toolkit document
+<!-- Need break --><br />
+in an existing magic file would have to be changed to
+<!-- Need break --><br />
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#92;&#92;begindata&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Andrew Toolkit document
+<p>
+SunOS releases 3.2 and later from Sun Microsystems include a
+<b>file</b>(1)
+command derived from the System V one, but with some extensions.
+My version differs from Sun&#146;s only in minor ways.
+It includes the extension of the &#145;&&#146; operator, used as,
+for example,
+<!-- Need break --><br />
+&gt;16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;long&0x7fffffff&nbsp;&nbsp;&gt;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;not stripped
+<h1 class="manpages">MAGIC DIRECTORY</h1>
+The magic file entries have been collected from various sources,
+mainly USENET, and contributed by various authors.
+Christos Zoulas (address below) will collect additional
+or corrected magic file entries.
+A consolidation of magic file entries
+will be distributed periodically.
+<p>
+The order of entries in the magic file is significant.
+Depending on what system you are using, the order that
+they are put together may be incorrect.
+If your old
+<b>file</b> command uses a magic file,
+keep the old magic file around for comparison purposes
+(rename it to
+<i>/usr/share/file/magic.orig</i>). <h1 class="manpages">EXAMPLES</h1>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+$ file file.c file /dev/{wd0a,hda}
+file.c:   C program text
+file:     ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV),
+          dynamically linked (uses shared libs), stripped
+/dev/wd0a: block special (0/0)
+/dev/hda: block special (3/0)
+$ file -s /dev/wd0{b,d}
+/dev/wd0b: data
+/dev/wd0d: x86 boot sector
+$ file -s /dev/hda{,1,2,3,4,5,6,7,8,9,10}
+/dev/hda:   x86 boot sector
+/dev/hda1:  Linux/i386 ext2 filesystem
+/dev/hda2:  x86 boot sector
+/dev/hda3:  x86 boot sector, extended partition table
+/dev/hda4:  Linux/i386 ext2 filesystem
+/dev/hda5:  Linux/i386 swap file
+/dev/hda6:  Linux/i386 swap file
+/dev/hda7:  Linux/i386 swap file
+/dev/hda8:  Linux/i386 swap file
+/dev/hda9:  empty
+/dev/hda10: empty
+<p>
+$ file -i file.c file /dev/{wd0a,hda}
+file.c:      text/x-c
+file:        application/x-executable, dynamically linked (uses shared libs),
+not stripped
+/dev/hda:    application/x-not-regular-file
+/dev/wd0a:   application/x-not-regular-file
+<p>
+</pre></td></tr>
+</table>
+<h1 class="manpages">HISTORY</h1>
+There has been a
+<b>file</b> command in every <font size="-1">UNIX</font> since at least Research Version 4
+(man page dated November, 1973).
+The System V version introduced one significant major change:
+the external list of magic number types.
+This slowed the program down slightly but made it a lot more flexible.
+<p>
+This program, based on the System V version,
+was written by Ian Darwin &lt;<a href="mailto:ian@darwinsys.com">ian@darwinsys.com</a>&gt;
+without looking at anybody else&#146;s source code.
+<p>
+John Gilmore revised the code extensively, making it better than
+the first version.
+Geoff Collyer found several inadequacies
+and provided some magic file entries.
+Contributions by the &#145;&&#146; operator by Rob McMahon, <a href="mailto:cudcv@warwick.ac.uk">cudcv@warwick.ac.uk</a>, 1989.
+<p>
+Guy Harris, <a href="mailto:guy@netapp.com">guy@netapp.com</a>, made many changes from 1993 to the present.
+<p>
+Primary development and maintenance from 1990 to the present by
+Christos Zoulas (<a href="mailto:christos@astron.com">christos@astron.com</a>).
+<p>
+Altered by Chris Lowth, <a href="mailto:chris@lowth.com">chris@lowth.com</a>, 2000:
+Handle the &#145;&#145;-i&#146;&#146; option to output mime type strings and using an alternative
+magic file and internal logic.
+<p>
+Altered by Eric Fischer (<a href="mailto:enf@pobox.com">enf@pobox.com</a>), July, 2000,
+to identify character codes and attempt to identify the languages
+of non-ASCII files.
+<p>
+The list of contributors to the "Magdir" directory (source for the
+<i>/usr/share/file/magic</i> file) is too long to include here.
+You know who you are; thank you.
+<h1 class="manpages">LEGAL NOTICE</h1>
+Copyright (c) Ian F. Darwin, Toronto, Canada, 1986-1999.
+Covered by the standard Berkeley Software Distribution copyright; see the file
+LEGAL.NOTICE in the source distribution.
+<p>
+The files
+<i>tar.h</i> and
+<i>is_tar.c</i> were written by John Gilmore from his public-domain
+<b>tar</b> program, and are not covered by the above license.
+<h1 class="manpages">BUGS</h1>
+There must be a better way to automate the construction of the Magic
+file from all the glop in magdir.
+What is it?
+Better yet, the magic file should be compiled into binary (say,
+<b>ndbm</b>(3)
+or, better yet, fixed-length
+<font size="-1">ASCII</font> strings for use in heterogenous network environments) for faster startup.
+Then the program would run as fast as the Version 7 program of the same name,
+with the flexibility of the System V version.
+<p>
+<b>File</b> uses several algorithms that favor speed over accuracy,
+thus it can be misled about the contents of
+text
+files.
+<p>
+The support for
+text
+files (primarily for programming languages)
+is simplistic, inefficient and requires recompilation to update.
+<p>
+There should be an &#145;&#145;else&#146;&#146; clause to follow a series of continuation lines.
+<p>
+The magic file and keywords should have regular expression support.
+Their use of
+<font size="-1">ASCII TAB</font> as a field delimiter is ugly and makes
+it hard to edit the files, but is entrenched.
+<p>
+It might be advisable to allow upper-case letters in keywords
+for e.g.,
+<b>troff</b>(1)
+commands vs man page macros.
+Regular expression support would make this easy.
+<p>
+The program doesn&#146;t grok <font size="-2">FORTRAN</font>.
+It should be able to figure <font size="-2">FORTRAN</font> by seeing some keywords which
+appear indented at the start of line.
+Regular expression support would make this easy.
+<p>
+The list of keywords in
+<i>ascmagic</i> probably belongs in the Magic file.
+This could be done by using some keyword like &#145;*&#146; for the offset value.
+<p>
+Another optimisation would be to sort
+the magic file so that we can just run down all the
+tests for the first byte, first word, first long, etc, once we
+have fetched it.
+Complain about conflicts in the magic file entries.
+Make a rule that the magic entries sort based on file offset rather
+than position within the magic file?
+<p>
+The program should provide a way to give an estimate
+of &#145;&#145;how good&#146;&#146; a guess is.
+We end up removing guesses (e.g. &#145;&#145;From &#146;&#146; as first 5 chars of file) because
+they are not as good as other guesses (e.g. &#145;&#145;Newsgroups:&#146;&#146; versus
+&#145;&#145;Return-Path:&#146;&#146;).
+Still, if the others don&#146;t pan out, it should be possible to use the
+first guess. 
+<p>
+This program is slower than some vendors&#146; file commands.
+The new support for multiple character codes makes it even slower.
+<p>
+This manual page, and particularly this section, is too long.
+<h1 class="manpages">AVAILABILITY</h1>
+You can obtain the original author&#146;s latest version by anonymous FTP
+on
+<b>ftp.astron.com</b> in the directory
+<i>/pub/file/file-X.YZ.tar.gz</i> <br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion5de0.html?tutorial=unix_commands&amp;file=file.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/file.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

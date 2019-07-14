@@ -1,0 +1,3446 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/mysql.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:03 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>mysql - Unix, Linux Command</title>
+<meta name="Description" Content="mysql - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>mysql - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<!-- ignored unsupported tag .nh -->
+<!-- ignored unsupported tag .ad -->
+<h1 class="manpages">NAME</h1>
+mysql - the MySQL command-line tool
+<h1 class="manpages">SYNOPSIS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>mysql [</b><b></b><i>options</i><b>] </b><b></b><i>db_name</i>
+</td></tr>
+</table>
+<h1 class="manpages">DESCRIPTION</h1>
+<p>
+<b>mysql</b>
+is a simple SQL shell (with GNU
+readline
+capabilities)&#46; It supports interactive and noninteractive use&#46; When used interactively, query results are presented in an ASCII-table format&#46; When used noninteractively (for example, as a filter), the result is presented in tab-separated format&#46; The output format can be changed using command options&#46;
+<p>
+If you have problems due to insufficient memory for large result sets, use the
+<b>--quick</b>
+option&#46; This forces
+<b>mysql</b>
+to retrieve results from the server a row at a time rather than retrieving the entire result set and buffering it in memory before displaying it&#46; This is done by returning the result set using the
+mysql_use_result()
+C API function in the client/server library rather than
+mysql_store_result()&#46;
+<p>
+Using
+<b>mysql</b>
+is very easy&#46; Invoke it from the prompt of your command interpreter as follows:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysql </b><b></b><i>db_name</i>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+Or:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysql --user=</b><b></b><i>user_name</i><b> --password=</b><b></b><i>your_password</i><b> </b><b></b><i>db_name</i>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+Then type an SQL statement, end it with
+<blink><blink>\(</blink>lq</blink>;<blink><blink>\(</blink>rq</blink>,
+&#92;g, or
+&#92;G
+and press Enter&#46;
+<p>
+As of MySQL 5&#46;1&#46;10, typing Control-C causes
+<b>mysql</b>
+to attempt to kill the current statement&#46; If this cannot be done, or Control-C is typed again before the statement is killed,
+<b>mysql</b>
+exits&#46; Previously, Control-C caused
+<b>mysql</b>
+to exit in all cases&#46;
+<p>
+You can execute SQL statements in a script file (batch file) like this:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysql </b><b></b><i>db_name</i><b> &lt; </b><b></b><i>script&#46;sql</i><b> &gt; </b><b></b><i>output&#46;tab</i>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+On Unix, the
+<b>mysql</b>
+client writes a record of executed statements to a history file&#46; See
+the section called <blink><blink>\(</blink>lq</blink>MYSQL HISTORY FILE<blink><blink>\(</blink>rq</blink>&#46;
+<h1 class="manpages">MYSQL OPTIONS</h1>
+<p>
+<b>mysql</b>
+supports the following options, which can be specified on the command line or in the
+[mysql]
+and
+[client]
+option file groups&#46;
+<b>mysql</b>
+also supports the options for processing option files described at
+Section 4.2.3.3.1, <blink><blink>\(</blink>lq</blink>Command-Line Options that Affect Option-File Handling<blink><blink>\(</blink>rq</blink>&#46;
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--help</b>,
+<b>-?</b>
+<p>
+Display a help message and exit&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--auto-rehash</b>
+<p>
+Enable automatic rehashing&#46; This option is on by default, which enables database, table, and column name completion&#46; Use
+<b>--disable-auto-rehash</b>
+to disable rehashing&#46; That causes
+<b>mysql</b>
+to start faster, but you must issue the
+rehash
+command if you want to use name completion&#46;
+<p>
+To complete a name, enter the first part and press Tab&#46; If the name is unambiguous,
+<b>mysql</b>
+completes it&#46; Otherwise, you can press Tab again to see the possible names that begin with what you have typed so far&#46; Completion does not occur if there is no default database&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--batch</b>,
+<b>-B</b>
+<p>
+Print results using tab as the column separator, with each row on a new line&#46; With this option,
+<b>mysql</b>
+does not use the history file&#46;
+<p>
+Batch mode results in nontabular output format and escaping of special characters&#46; Escaping may be disabled by using raw mode; see the description for the
+<b>--raw</b>
+option&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--bind-address=</b><b></b><i>ip_address</i>
+<p>
+On a computer having multiple network interfaces, this option can be used to select which interface is employed when connecting to the MySQL server&#46;
+<p>
+This option is supported only in the version of the
+<b>mysql</b>
+client that is supplied with MySQL Cluster, beginning with MySQL Cluster NDB 6&#46;3&#46;4&#46; It is not available in standard MySQL 5&#46;1 releases&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--character-sets-dir=</b><b></b><i>path</i>
+<p>
+The directory where character sets are installed&#46; See
+Section 9.5, <blink><blink>\(</blink>lq</blink>Character Set Configuration<blink><blink>\(</blink>rq</blink>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--column-names</b>
+<p>
+Write column names in results&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--column-type-info</b>,
+<b>-m</b>
+<p>
+Display result set metadata&#46; This option was added in MySQL 5&#46;1&#46;14&#46; (Before that, use
+<b>--debug-info</b>&#46;) The
+<b>-m</b>
+short option was added in MySQL 5&#46;1&#46;21&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--comments</b>,
+<b>-c</b>
+<p>
+Whether to preserve comments in statements sent to the server&#46; The default is --skip-comments (discard comments), enable with --comments (preserve comments)&#46; This option was added in MySQL 5&#46;1&#46;23&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--compress</b>,
+<b>-C</b>
+<p>
+Compress all information sent between the client and the server if both support compression&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--database=</b><b></b><i>db_name</i>,
+<b>-D </b><b></b><i>db_name</i>
+<p>
+The database to use&#46; This is useful primarily in an option file&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--debug[=</b><b></b><i>debug_options</i><b>]</b>,
+<b>-# [</b><b></b><i>debug_options</i><b>]</b>
+<p>
+Write a debugging log&#46; A typical
+<i>debug_options</i>
+string is
+&#39;d:t:o,<i>file_name</i>&#39;&#46; The default is
+&#39;d:t:o,/tmp/mysql&#46;trace&#39;&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--debug-check</b>
+<p>
+Print some debugging information when the program exits&#46; This option was added in MySQL 5&#46;1&#46;21&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--debug-info</b>,
+<b>-T</b>
+<p>
+Before MySQL 5&#46;1&#46;14, this option prints debugging information and memory and CPU usage statistics when the program exits, and also causes display of result set metadata during execution&#46; As of MySQL 5&#46;1&#46;14, use
+<b>--column-type-info</b>
+to display result set metadata&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--default-character-set=</b><b></b><i>charset_name</i>
+<p>
+Use
+<i>charset_name</i>
+as the default character set for the client and connection&#46;
+<p>
+A common issue that can occur when the operating system uses
+utf8
+or another multi-byte character set is that output from the
+<b>mysql</b>
+client is formatted incorrectly, due to the fact that the MySQL client uses the
+latin1
+character set by default&#46; You can usually fix such issues by using this option to force the client to use the system character set instead&#46;
+<p>
+See
+Section 9.5, <blink><blink>\(</blink>lq</blink>Character Set Configuration<blink><blink>\(</blink>rq</blink>, for more information&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--delimiter=</b><b></b><i>str</i>
+<p>
+Set the statement delimiter&#46; The default is the semicolon character (<blink><blink>\(</blink>lq</blink>;<blink><blink>\(</blink>rq</blink>)&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--disable-named-commands</b>
+<p>
+Disable named commands&#46; Use the
+&#92;*
+form only, or use named commands only at the beginning of a line ending with a semicolon (<blink><blink>\(</blink>lq</blink>;<blink><blink>\(</blink>rq</blink>)&#46;
+<b>mysql</b>
+starts with this option
+<i>enabled</i>
+by default&#46; However, even with this option, long-format commands still work from the first line&#46; See
+the section called <blink><blink>\(</blink>lq</blink>MYSQL COMMANDS<blink><blink>\(</blink>rq</blink>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--execute=</b><b></b><i>statement</i>,
+<b>-e </b><b></b><i>statement</i>
+<p>
+Execute the statement and quit&#46; The default output format is like that produced with
+<b>--batch</b>&#46; See
+Section 4.2.3.1, <blink><blink>\(</blink>lq</blink>Using Options on the Command Line<blink><blink>\(</blink>rq</blink>, for some examples&#46; With this option,
+<b>mysql</b>
+does not use the history file&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--force</b>,
+<b>-f</b>
+<p>
+Continue even if an SQL error occurs&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--host=</b><b></b><i>host_name</i>,
+<b>-h </b><b></b><i>host_name</i>
+<p>
+Connect to the MySQL server on the given host&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--html</b>,
+<b>-H</b>
+<p>
+Produce HTML output&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--ignore-spaces</b>,
+<b>-i</b>
+<p>
+Ignore spaces after function names&#46; The effect of this is described in the discussion for the
+IGNORE_SPACE
+SQL mode (see
+Section 5.1.7, <blink><blink>\(</blink>lq</blink>Server SQL Modes<blink><blink>\(</blink>rq</blink>)&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--line-numbers</b>
+<p>
+Write line numbers for errors&#46; Disable this with
+<b>--skip-line-numbers</b>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--local-infile[={0|1}]</b>
+<p>
+Enable or disable
+LOCAL
+capability for
+LOAD DATA INFILE&#46; With no value, the option enables
+LOCAL&#46; The option may be given as
+<b>--local-infile=0</b>
+or
+<b>--local-infile=1</b>
+to explicitly disable or enable
+LOCAL&#46; Enabling
+LOCAL
+has no effect if the server does not also support it&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--named-commands</b>,
+<b>-G</b>
+<p>
+Enable named
+<b>mysql</b>
+commands&#46; Long-format commands are permitted, not just short-format commands&#46; For example,
+quit
+and
+&#92;q
+both are recognized&#46; Use
+<b>--skip-named-commands</b>
+to disable named commands&#46; See
+the section called <blink><blink>\(</blink>lq</blink>MYSQL COMMANDS<blink><blink>\(</blink>rq</blink>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--no-auto-rehash</b>,
+<b>-A</b>
+<p>
+This has the same effect as
+<b>-skip-auto-rehash</b>&#46; See the description for
+<b>--auto-rehash</b>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--no-beep</b>,
+<b>-b</b>
+<p>
+Do not beep when errors occur&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--no-named-commands</b>,
+<b>-g</b>
+<p>
+Deprecated, use
+<b>--disable-named-commands</b>
+instead&#46;
+<b>--no-named-commands</b>
+is removed in MySQL 5&#46;5&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--no-pager</b>
+<p>
+Deprecated form of
+<b>--skip-pager</b>&#46; See the
+<b>--pager</b>
+option&#46;
+<b>--no-pager</b>
+is removed in MySQL 5&#46;5&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--no-tee</b>
+<p>
+Deprecated form of
+<b>--skip-tee</b>&#46; See the
+<b>--tee</b>
+option&#46;
+<b>--no-tee</b>
+is removed in MySQL 5&#46;5&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--one-database</b>,
+<b>-o</b>
+<p>
+Ignore statements except those that occur while the default database is the one named on the command line&#46; This option is rudimentary and should be used with care&#46; Statement filtering is based only on
+USE
+statements&#46;
+<p>
+Initially,
+<b>mysql</b>
+executes statements in the input because specifying a database
+<i>db_name</i>
+on the command line is equivalent to inserting
+USE <i>db_name</i>
+at the beginning of the input&#46; Then, for each
+USE
+statement encountered,
+<b>mysql</b>
+accepts or rejects following statements depending on whether the database named is the one on the command line&#46; The content of the statements is immaterial&#46;
+<p>
+Suppose that
+<b>mysql</b>
+is invoked to process this set of statements:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+DELETE FROM db2&#46;t2;
+USE db2;
+DROP TABLE db1&#46;t1;
+CREATE TABLE db1&#46;t1 (i INT);
+USE db1;
+INSERT INTO t1 (i) VALUES(1);
+CREATE TABLE db2&#46;t1 (j INT);
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+<p>
+If the command line is
+<b>mysql --force --one-database db1</b>,
+<b>mysql</b>
+handles the input as follows:
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+The
+DELETE
+statement is executed because the default database is
+db1, even though the statement names a table in a different database&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+The
+DROP TABLE
+and
+CREATE TABLE
+statements are not executed because the default database is not
+db1, even though the statements name a table in
+db1&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+The
+INSERT
+and
+CREATE TABLE
+statements are executed because the default database is
+db1, even though the
+CREATE TABLE
+statement names a table in a different database&#46;
+</td></tr>
+</table>
+</td></tr>
+</table>
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--pager[=</b><b></b><i>command</i><b>]</b>
+<p>
+Use the given command for paging query output&#46; If the command is omitted, the default pager is the value of your
+PAGER
+environment variable&#46; Valid pagers are
+<b>less</b>,
+<b>more</b>,
+<b>cat [&gt; filename]</b>, and so forth&#46; This option works only on Unix and only in interactive mode&#46; To disable paging, use
+<b>--skip-pager</b>&#46;
+the section called <blink><blink>\(</blink>lq</blink>MYSQL COMMANDS<blink><blink>\(</blink>rq</blink>, discusses output paging further&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--password[=</b><b></b><i>password</i><b>]</b>,
+<b>-p[</b><b></b><i>password</i><b>]</b>
+<p>
+The password to use when connecting to the server&#46; If you use the short option form (<b>-p</b>), you
+<i>cannot</i>
+have a space between the option and the password&#46; If you omit the
+<i>password</i>
+value following the
+<b>--password</b>
+or
+<b>-p</b>
+option on the command line,
+<b>mysql</b>
+prompts for one&#46;
+<p>
+Specifying a password on the command line should be considered insecure&#46; See
+Section 5.3.2.2, <blink><blink>\(</blink>lq</blink>End-User Guidelines for Password Security<blink><blink>\(</blink>rq</blink>&#46; You can use an option file to avoid giving the password on the command line&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--pipe</b>,
+<b>-W</b>
+<p>
+On Windows, connect to the server using a named pipe&#46; This option applies only if the server supports named-pipe connections&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--port=</b><b></b><i>port_num</i>,
+<b>-P </b><b></b><i>port_num</i>
+<p>
+The TCP/IP port number to use for the connection&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--prompt=</b><b></b><i>format_str</i>
+<p>
+Set the prompt to the specified format&#46; The default is
+mysql&gt;&#46; The special sequences that the prompt can contain are described in
+the section called <blink><blink>\(</blink>lq</blink>MYSQL COMMANDS<blink><blink>\(</blink>rq</blink>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--protocol={TCP|SOCKET|PIPE|MEMORY}</b>
+<p>
+The connection protocol to use for connecting to the server&#46; It is useful when the other connection parameters normally would cause a protocol to be used other than the one you want&#46; For details on the permissible values, see
+Section 4.2.2, <blink><blink>\(</blink>lq</blink>Connecting to the MySQL Server<blink><blink>\(</blink>rq</blink>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--quick</b>,
+<b>-q</b>
+<p>
+Do not cache each query result, print each row as it is received&#46; This may slow down the server if the output is suspended&#46; With this option,
+<b>mysql</b>
+does not use the history file&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--raw</b>,
+<b>-r</b>
+<p>
+For tabular output, the
+<blink><blink>\(</blink>lq</blink>boxing<blink><blink>\(</blink>rq</blink>
+around columns enables one column value to be distinguished from another&#46; For nontabular output (such as is produced in batch mode or when the
+<b>--batch</b>
+or
+<b>--silent</b>
+option is given), special characters are escaped in the output so they can be identified easily&#46; Newline, tab,
+NUL, and backslash are written as
+&#92;n,
+&#92;t,
+&#92;0, and
+&#92;&#92;&#46; The
+<b>--raw</b>
+option disables this character escaping&#46;
+<p>
+The following example demonstrates tabular versus nontabular output and the use of raw mode to disable escaping:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+% <b>mysql</b>
+mysql&gt; SELECT CHAR(92);
++----------+
+| CHAR(92) |
++----------+
+| &#92;        |
++----------+
+% <b>mysql -s</b>
+mysql&gt; SELECT CHAR(92);
+CHAR(92)
+&#92;&#92;
+% <b>mysql -s -r</b>
+mysql&gt; SELECT CHAR(92);
+CHAR(92)
+&#92;
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--reconnect</b>
+<p>
+If the connection to the server is lost, automatically try to reconnect&#46; A single reconnect attempt is made each time the connection is lost&#46; To suppress reconnection behavior, use
+<b>--skip-reconnect</b>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--safe-updates</b>,
+<b>--i-am-a-dummy</b>,
+<b>-U</b>
+<p>
+Permit only those
+UPDATE
+and
+DELETE
+statements that specify which rows to modify by using key values&#46; If you have set this option in an option file, you can override it by using
+<b>--safe-updates</b>
+on the command line&#46; See
+the section called <blink><blink>\(</blink>lq</blink>MYSQL TIPS<blink><blink>\(</blink>rq</blink>, for more information about this option&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--secure-auth</b>
+<p>
+Do not send passwords to the server in old (pre-4&#46;1&#46;1) format&#46; This prevents connections except for servers that use the newer password format&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--show-warnings</b>
+<p>
+Cause warnings to be shown after each statement if there are any&#46; This option applies to interactive and batch mode&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--sigint-ignore</b>
+<p>
+Ignore
+SIGINT
+signals (typically the result of typing Control-C)&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--silent</b>,
+<b>-s</b>
+<p>
+Silent mode&#46; Produce less output&#46; This option can be given multiple times to produce less and less output&#46;
+<p>
+This option results in nontabular output format and escaping of special characters&#46; Escaping may be disabled by using raw mode; see the description for the
+<b>--raw</b>
+option&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--skip-column-names</b>,
+<b>-N</b>
+<p>
+Do not write column names in results&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--skip-line-numbers</b>,
+<b>-L</b>
+<p>
+Do not write line numbers for errors&#46; Useful when you want to compare result files that include error messages&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--socket=</b><b></b><i>path</i>,
+<b>-S </b><b></b><i>path</i>
+<p>
+For connections to
+localhost, the Unix socket file to use, or, on Windows, the name of the named pipe to use&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--ssl*</b>
+<p>
+Options that begin with
+<b>--ssl</b>
+specify whether to connect to the server using SSL and indicate where to find SSL keys and certificates&#46; See
+Section 5.5.6.3, <blink><blink>\(</blink>lq</blink>SSL Command Options<blink><blink>\(</blink>rq</blink>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--table</b>,
+<b>-t</b>
+<p>
+Display output in table format&#46; This is the default for interactive use, but can be used to produce table output in batch mode&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--tee=</b><b></b><i>file_name</i>
+<p>
+Append a copy of output to the given file&#46; This option works only in interactive mode&#46;
+the section called <blink><blink>\(</blink>lq</blink>MYSQL COMMANDS<blink><blink>\(</blink>rq</blink>, discusses tee files further&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--unbuffered</b>,
+<b>-n</b>
+<p>
+Flush the buffer after each query&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--user=</b><b></b><i>user_name</i>,
+<b>-u </b><b></b><i>user_name</i>
+<p>
+The MySQL user name to use when connecting to the server&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--verbose</b>,
+<b>-v</b>
+<p>
+Verbose mode&#46; Produce more output about what the program does&#46; This option can be given multiple times to produce more and more output&#46; (For example,
+<b>-v -v -v</b>
+produces table output format even in batch mode&#46;)
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--version</b>,
+<b>-V</b>
+<p>
+Display version information and exit&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--vertical</b>,
+<b>-E</b>
+<p>
+Print query output rows vertically (one line per column value)&#46; Without this option, you can specify vertical output for individual statements by terminating them with
+&#92;G&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--wait</b>,
+<b>-w</b>
+<p>
+If the connection cannot be established, wait and retry instead of aborting&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>--xml</b>,
+<b>-X</b>
+<p>
+Produce XML output&#46;
+<!-- ignored unsupported tag .if -->
+<p>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .it -->
+<font size="1"><b>Note</b>
+</font><!-- Need break --><br />
+Prior to MySQL 5&#46;1&#46;12, there was no differentiation in the output when using this option between columns containing the
+NULL
+value and columns containing the string literal
+&#39;NULL&#39;; both were represented as
+<p>
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+&lt;field name="<i>column_name</i>"&gt;NULL&lt;/field&gt;
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+<p>
+Beginning with MySQL 5&#46;1&#46;12, the output when
+<b>--xml</b>
+is used with
+<b>mysql</b>
+matches that of
+<b>mysqldump </b><b></b><b>--xml</b>&#46; See
+<b>mysqldump</b>(1)
+for details&#46;
+<p>
+Beginning with MySQL 5&#46;1&#46;18, the XML output also uses an XML namespace, as shown here:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysql --xml -uroot -e "SHOW VARIABLES LIKE &#39;version%&#39;"</b>
+&lt;?xml version="1&#46;0"?&gt;
+&lt;resultset statement="SHOW VARIABLES LIKE &#39;version%&#39;" xmlns:xsi="<a href="http://www/">http://www</a>&#46;w3&#46;org/2001/XMLSchema-instance"&gt;
+&lt;row&gt;
+&lt;field name="Variable_name"&gt;version&lt;/field&gt;
+&lt;field name="Value"&gt;5&#46;0&#46;40-debug&lt;/field&gt;
+&lt;/row&gt;
+&lt;row&gt;
+&lt;field name="Variable_name"&gt;version_comment&lt;/field&gt;
+&lt;field name="Value"&gt;Source distribution&lt;/field&gt;
+&lt;/row&gt;
+&lt;row&gt;
+&lt;field name="Variable_name"&gt;version_compile_machine&lt;/field&gt;
+&lt;field name="Value"&gt;i686&lt;/field&gt;
+&lt;/row&gt;
+&lt;row&gt;
+&lt;field name="Variable_name"&gt;version_compile_os&lt;/field&gt;
+&lt;field name="Value"&gt;suse-linux-gnu&lt;/field&gt;
+&lt;/row&gt;
+&lt;/resultset&gt;
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+<p>
+(See
+<blink>\m</blink>[blue]<b>Bug#25946</b><blink>\m</blink>[]<font size="-2"><sup>[1]</sup></font>&#46;)
+</td></tr>
+</table>
+<p>
+You can also set the following variables by using
+<b>--</b><b></b><i>var_name</i><b>=</b><b></b><i>value</i>&#46; The
+<b>--set-variable</b>
+format is deprecated and is removed in MySQL 5&#46;5&#46;
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+connect_timeout
+<p>
+The number of seconds before connection timeout&#46; (Default value is
+0&#46;)
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+max_allowed_packet
+<p>
+The maximum packet length to send to or receive from the server&#46; (Default value is 16MB&#46;)
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+max_join_size
+<p>
+The automatic limit for rows in a join when using
+<b>--safe-updates</b>&#46; (Default value is 1,000,000&#46;)
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+net_buffer_length
+<p>
+The buffer size for TCP/IP and socket communication&#46; (Default value is 16KB&#46;)
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+select_limit
+<p>
+The automatic limit for
+SELECT
+statements when using
+<b>--safe-updates</b>&#46; (Default value is 1,000&#46;)
+</td></tr>
+</table>
+<h1 class="manpages">MYSQL COMMANDS</h1>
+<p>
+<b>mysql</b>
+sends each SQL statement that you issue to the server to be executed&#46; There is also a set of commands that
+<b>mysql</b>
+itself interprets&#46; For a list of these commands, type
+help
+or
+&#92;h
+at the
+mysql&gt;
+prompt:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>help</b>
+List of all MySQL commands:
+Note that all text commands must be first on line and end with &#39;;&#39;
+?         (&#92;?) Synonym for &#145;help&#39;&#46;
+clear     (&#92;c) Clear command&#46;
+connect   (&#92;r) Reconnect to the server&#46; Optional arguments are db and host&#46;
+delimiter (&#92;d) Set statement delimiter&#46;
+edit      (&#92;e) Edit command with $EDITOR&#46;
+ego       (&#92;G) Send command to mysql server, display result vertically&#46;
+exit      (&#92;q) Exit mysql&#46; Same as quit&#46;
+go        (&#92;g) Send command to mysql server&#46;
+help      (&#92;h) Display this help&#46;
+nopager   (&#92;n) Disable pager, print to stdout&#46;
+notee     (&#92;t) Don&#39;t write into outfile&#46;
+pager     (&#92;P) Set PAGER [to_pager]&#46; Print the query results via PAGER&#46;
+print     (&#92;p) Print current command&#46;
+prompt    (&#92;R) Change your mysql prompt&#46;
+quit      (&#92;q) Quit mysql&#46;
+rehash    (&#92;#) Rebuild completion hash&#46;
+source    (&#92;&#46;) Execute an SQL script file&#46; Takes a file name as an argument&#46;
+status    (&#92;s) Get status information from the server&#46;
+system    (&#92;!) Execute a system shell command&#46;
+tee       (&#92;T) Set outfile [to_outfile]&#46; Append everything into given
+               outfile&#46;
+use       (&#92;u) Use another database&#46; Takes database name as argument&#46;
+charset   (&#92;C) Switch to another charset&#46; Might be needed for processing
+               binlog with multi-byte charsets&#46;
+warnings  (&#92;W) Show warnings after every statement&#46;
+nowarning (&#92;w) Don&#39;t show warnings after every statement&#46;
+For server side help, type &#39;help contents&#39;
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+Each command has both a long and short form&#46; The long form is not case sensitive; the short form is&#46; The long form can be followed by an optional semicolon terminator, but the short form should not&#46;
+<p>
+The use of short-form commands within multi-line
+/* &#46;&#46;&#46; */
+comments is not supported&#46;
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>help [</b><b></b><i>arg</i><b>]</b>,
+<b>&#92;h [</b><b></b><i>arg</i><b>]</b>,
+<b>&#92;? [</b><b></b><i>arg</i><b>]</b>,
+<b>? [</b><b></b><i>arg</i><b>]</b>
+<p>
+Display a help message listing the available
+<b>mysql</b>
+commands&#46;
+<p>
+If you provide an argument to the
+help
+command,
+<b>mysql</b>
+uses it as a search string to access server-side help from the contents of the MySQL Reference Manual&#46; For more information, see
+the section called <blink><blink>\(</blink>lq</blink>MYSQL SERVER-SIDE HELP<blink><blink>\(</blink>rq</blink>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>charset </b><b></b><i>charset_name</i>,
+<b>&#92;C </b><b></b><i>charset_name</i>
+<p>
+Change the default character set and issue a
+SET NAMES
+statement&#46; This enables the character set to remain synchronized on the client and server if
+<b>mysql</b>
+is run with auto-reconnect enabled (which is not recommended), because the specified character set is used for reconnects&#46; This command was added in MySQL 5&#46;1&#46;7&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>clear</b>,
+<b>&#92;c</b>
+<p>
+Clear the current input&#46; Use this if you change your mind about executing the statement that you are entering&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>connect [</b><b></b><i>db_name</i><b> </b><b></b><i>host_name</i><b>]]</b>,
+<b>&#92;r [</b><b></b><i>db_name</i><b> </b><b></b><i>host_name</i><b>]]</b>
+<p>
+Reconnect to the server&#46; The optional database name and host name arguments may be given to specify the default database or the host where the server is running&#46; If omitted, the current values are used&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>delimiter </b><b></b><i>str</i>,
+<b>&#92;d </b><b></b><i>str</i>
+<p>
+Change the string that
+<b>mysql</b>
+interprets as the separator between SQL statements&#46; The default is the semicolon character (<blink><blink>\(</blink>lq</blink>;<blink><blink>\(</blink>rq</blink>)&#46;
+<p>
+The delimiter can be specified as an unquoted or quoted argument&#46; Quoting can be done with either single quote (&#39;) or douple quote (") characters&#46; To include a quote within a quoted string, either quote the string with the other quote character or escape the quote with a backslash (<blink><blink>\(</blink>lq</blink>&#92;<blink><blink>\(</blink>rq</blink>) character&#46; Backslash should be avoided outside of quoted strings because it is the escape character for MySQL&#46; For an unquoted argument, the delmiter is read up to the first space or end of line&#46; For a quoted argument, the delimiter is read up to the matching quote on the line&#46;
+<p>
+When the delimiter recognized by
+<b>mysql</b>
+is set to something other than the default of
+<blink><blink>\(</blink>lq</blink>;<blink><blink>\(</blink>rq</blink>, instances of that character are sent to the server without interpretation&#46; However, the server itself still interprets
+<blink><blink>\(</blink>lq</blink>;<blink><blink>\(</blink>rq</blink>
+as a statement delimiter and processes statements accordingly&#46; This behavior on the server side comes into play for multiple-statement execution (see
+Section 21.9.12, <blink><blink>\(</blink>lq</blink>C API Support for Multiple Statement Execution<blink><blink>\(</blink>rq</blink>), and for parsing the body of stored procedures and functions, triggers, and events (see
+Section 19.1, <blink><blink>\(</blink>lq</blink>Defining Stored Programs<blink><blink>\(</blink>rq</blink>)&#46;
+<p>
+Be careful about defining a delimiter that might occur within other words&#46; For example, if you define the delimiter as
+X, you will be unable to use the word
+INDEX
+in statements&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>edit</b>,
+<b>&#92;e</b>
+<p>
+Edit the current input statement&#46;
+<b>mysql</b>
+checks the values of the
+EDITOR
+and
+VISUAL
+environment variables to determine which editor to use&#46; The default editor is
+<b>vi</b>
+if neither variable is set&#46;
+<p>
+The
+<b>edit</b>
+command works only in Unix&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>ego</b>,
+<b>&#92;G</b>
+<p>
+Send the current statement to the server to be executed and display the result using vertical format&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>exit</b>,
+<b>&#92;q</b>
+<p>
+Exit
+<b>mysql</b>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>go</b>,
+<b>&#92;g</b>
+<p>
+Send the current statement to the server to be executed&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>nopager</b>,
+<b>&#92;n</b>
+<p>
+Disable output paging&#46; See the description for
+<b>pager</b>&#46;
+<p>
+The
+<b>nopager</b>
+command works only in Unix&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>notee</b>,
+<b>&#92;t</b>
+<p>
+Disable output copying to the tee file&#46; See the description for
+<b>tee</b>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>nowarning</b>,
+<b>&#92;w</b>
+<p>
+Enable display of warnings after each statement&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>pager [</b><b></b><i>command</i><b>]</b>,
+<b>&#92;P [</b><b></b><i>command</i><b>]</b>
+<p>
+Enable output paging&#46; By using the
+<b>--pager</b>
+option when you invoke
+<b>mysql</b>, it is possible to browse or search query results in interactive mode with Unix programs such as
+<b>less</b>,
+<b>more</b>, or any other similar program&#46; If you specify no value for the option,
+<b>mysql</b>
+checks the value of the
+PAGER
+environment variable and sets the pager to that&#46; Pager functionality works only in interactive mode&#46;
+<p>
+Output paging can be enabled interactively with the
+<b>pager</b>
+command and disabled with
+<b>nopager</b>&#46; The command takes an optional argument; if given, the paging program is set to that&#46; With no argument, the pager is set to the pager that was set on the command line, or
+stdout
+if no pager was specified&#46;
+<p>
+Output paging works only in Unix because it uses the
+popen()
+function, which does not exist on Windows&#46; For Windows, the
+<b>tee</b>
+option can be used instead to save query output, although it is not as convenient as
+<b>pager</b>
+for browsing output in some situations&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>print</b>,
+<b>&#92;p</b>
+<p>
+Print the current input statement without executing it&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>prompt [</b><b></b><i>str</i><b>]</b>,
+<b>&#92;R [</b><b></b><i>str</i><b>]</b>
+<p>
+Reconfigure the
+<b>mysql</b>
+prompt to the given string&#46; The special character sequences that can be used in the prompt are described later in this section&#46;
+<p>
+If you specify the
+prompt
+command with no argument,
+<b>mysql</b>
+resets the prompt to the default of
+mysql&gt;&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>quit</b>,
+<b>&#92;q</b>
+<p>
+Exit
+<b>mysql</b>&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>rehash</b>,
+<b>&#92;#</b>
+<p>
+Rebuild the completion hash that enables database, table, and column name completion while you are entering statements&#46; (See the description for the
+<b>--auto-rehash</b>
+option&#46;)
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>source </b><b></b><i>file_name</i>,
+<b>&#92;&#46; </b><b></b><i>file_name</i>
+<p>
+Read the named file and executes the statements contained therein&#46; On Windows, you can specify path name separators as
+/
+or
+&#92;&#92;&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>status</b>,
+<b>&#92;s</b>
+<p>
+Provide status information about the connection and the server you are using&#46; If you are running in
+<b>--safe-updates</b>
+mode,
+status
+also prints the values for the
+<b>mysql</b>
+variables that affect your queries&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>system </b><b></b><i>command</i>,
+<b>&#92;! </b><b></b><i>command</i>
+<p>
+Execute the given command using your default command interpreter&#46;
+<p>
+The
+<b>system</b>
+command works only in Unix&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>tee [</b><b></b><i>file_name</i><b>]</b>,
+<b>&#92;T [</b><b></b><i>file_name</i><b>]</b>
+<p>
+By using the
+<b>--tee</b>
+option when you invoke
+<b>mysql</b>, you can log statements and their output&#46; All the data displayed on the screen is appended into a given file&#46; This can be very useful for debugging purposes also&#46;
+<b>mysql</b>
+flushes results to the file after each statement, just before it prints its next prompt&#46; Tee functionality works only in interactive mode&#46;
+<p>
+You can enable this feature interactively with the
+<b>tee</b>
+command&#46; Without a parameter, the previous file is used&#46; The
+<b>tee</b>
+file can be disabled with the
+<b>notee</b>
+command&#46; Executing
+<b>tee</b>
+again re-enables logging&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>use </b><b></b><i>db_name</i>,
+<b>&#92;u </b><b></b><i>db_name</i>
+<p>
+Use
+<i>db_name</i>
+as the default database&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<b>warnings</b>,
+<b>&#92;W</b>
+<p>
+Enable display of warnings after each statement (if there are any)&#46;
+</td></tr>
+</table>
+<p>
+Here are a few tips about the
+<b>pager</b>
+command:
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+You can use it to write to a file and the results go only to the file:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>pager cat &gt; /tmp/log&#46;txt</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+<p>
+You can also pass any options for the program that you want to use as your pager:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>pager less -n -i -S</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+In the preceding example, note the
+<b>-S</b>
+option&#46; You may find it very useful for browsing wide query results&#46; Sometimes a very wide result set is difficult to read on the screen&#46; The
+<b>-S</b>
+option to
+<b>less</b>
+can make the result set much more readable because you can scroll it horizontally using the left-arrow and right-arrow keys&#46; You can also use
+<b>-S</b>
+interactively within
+<b>less</b>
+to switch the horizontal-browse mode on and off&#46; For more information, read the
+<b>less</b>
+manual page:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>man less</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+The
+<b>-F</b>
+and
+<b>-X</b>
+options may be used with
+<b>less</b>
+to cause it to exit if output fits on one screen, which is convenient when no scrolling is necessary:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>pager less -n -i -S -F -X</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+You can specify very complex pager commands for handling query output:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>pager cat | tee /dr1/tmp/res&#46;txt &#92;</b>
+          <b>| tee /dr2/tmp/res2&#46;txt | less -n -i -S</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+<p>
+In this example, the command would send query results to two files in two different directories on two different file systems mounted on
+/dr1
+and
+/dr2, yet still display the results onscreen using
+<b>less</b>&#46;
+</td></tr>
+</table>
+<p>
+You can also combine the
+<b>tee</b>
+and
+<b>pager</b>
+functions&#46; Have a
+<b>tee</b>
+file enabled and
+<b>pager</b>
+set to
+<b>less</b>, and you are able to browse the results using the
+<b>less</b>
+program and still have everything appended into a file the same time&#46; The difference between the Unix
+<b>tee</b>
+used with the
+<b>pager</b>
+command and the
+<b>mysql</b>
+built-in
+<b>tee</b>
+command is that the built-in
+<b>tee</b>
+works even if you do not have the Unix
+<b>tee</b>
+available&#46; The built-in
+<b>tee</b>
+also logs everything that is printed on the screen, whereas the Unix
+<b>tee</b>
+used with
+<b>pager</b>
+does not log quite that much&#46; Additionally,
+<b>tee</b>
+file logging can be turned on and off interactively from within
+<b>mysql</b>&#46; This is useful when you want to log some queries to a file, but not others&#46;
+<p>
+The
+<b>prompt</b>
+command reconfigures the default
+mysql&gt;
+prompt&#46; The string for defining the prompt can contain the following special sequences&#46;
+<table class="src" cellpadding="5" cellspacing="0" border="1"><tr valign="top">
+<td><b>Option
+</b></td><td><b>Description
+</b></td></tr>
+<tr valign="top">
+<td>&#92;c
+</td><td>A counter that increments for each statement you issue
+</td></tr>
+<tr valign="top">
+<td>&#92;D
+</td><td>The full current date
+</td></tr>
+<tr valign="top">
+<td>&#92;d
+</td><td>The default database
+</td></tr>
+<tr valign="top">
+<td>&#92;h
+</td><td>The server host
+</td></tr>
+<tr valign="top">
+<td>&#92;l
+</td><td>The current delimiter (new in 5&#46;1&#46;12)
+</td></tr>
+<tr valign="top">
+<td>&#92;m
+</td><td>Minutes of the current time
+</td></tr>
+<tr valign="top">
+<td>&#92;n
+</td><td>A newline character
+</td></tr>
+<tr valign="top">
+<td>&#92;O
+</td><td>The current month in three-letter format (Jan, Feb, &#46;..)
+</td></tr>
+<tr valign="top">
+<td>&#92;o
+</td><td>The current month in numeric format
+</td></tr>
+<tr valign="top">
+<td>&#92;P
+</td><td>am/pm
+</td></tr>
+<tr valign="top">
+<td>&#92;p
+</td><td>The current TCP/IP port or socket file
+</td></tr>
+<tr valign="top">
+<td>&#92;R
+</td><td>The current time, in 24-hour military time (0-23)
+</td></tr>
+<tr valign="top">
+<td>&#92;r
+</td><td>The current time, standard 12-hour time (1-12)
+</td></tr>
+<tr valign="top">
+<td>&#92;S
+</td><td>Semicolon
+</td></tr>
+<tr valign="top">
+<td>&#92;s
+</td><td>Seconds of the current time
+</td></tr>
+<tr valign="top">
+<td>&#92;t
+</td><td>A tab character
+</td></tr>
+<tr valign="top">
+<td>&#92;U
+</td><td>Your full
+<i>user_name</i>@<i>host_name</i>
+account name
+</td></tr>
+<tr valign="top">
+<td>&#92;u
+</td><td>Your user name
+</td></tr>
+<tr valign="top">
+<td>&#92;v
+</td><td>The server version
+</td></tr>
+<tr valign="top">
+<td>&#92;w
+</td><td>The current day of the week in three-letter format (Mon, Tue, &#46;..)
+</td></tr>
+<tr valign="top">
+<td>&#92;Y
+</td><td>The current year, four digits
+</td></tr>
+<tr valign="top">
+<td>&#92;y
+</td><td>The current year, two digits
+</td></tr>
+<tr valign="top">
+<td>&#92;_
+</td><td>A space
+</td></tr>
+<tr valign="top">
+<td>&#92; 
+</td><td>A space (a space follows the backslash)
+</td></tr>
+<tr valign="top">
+<td>&#92;&#39;
+</td><td>Single quote
+</td></tr>
+<tr valign="top">
+<td>&#92;"
+</td><td>Double quote
+</td></tr>
+<tr valign="top">
+<td>&#92;&#92;
+</td><td>A literal <blink><blink>\(</blink>lq</blink>&#92;<blink><blink>\(</blink>rq</blink> backslash character
+</td></tr>
+<tr valign="top">
+<td>&#92;<i>x</i>
+</td><td><i>x</i>, for any
+<blink><blink>\(</blink>lq</blink><i>x</i><blink><blink>\(</blink>rq</blink>
+not listed above
+</td></tr>
+</table>
+<p>
+<p>
+You can set the prompt in several ways:
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<i>Use an environment variable&#46;</i>
+You can set the
+MYSQL_PS1
+environment variable to a prompt string&#46; For example:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>export MYSQL_PS1="(&#92;u@&#92;h) [&#92;d]&gt; "</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<i>Use a command-line option&#46;</i>
+You can set the
+<b>--prompt</b>
+option on the command line to
+<b>mysql</b>&#46; For example:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysql --prompt="(&#92;u@&#92;h) [&#92;d]&gt; "</b>
+(user@host) [database]&gt;
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<i>Use an option file&#46;</i>
+You can set the
+prompt
+option in the
+[mysql]
+group of any MySQL option file, such as
+/etc/my&#46;cnf
+or the
+&#46;my&#46;cnf
+file in your home directory&#46; For example:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+[mysql]
+prompt=(&#92;&#92;u@&#92;&#92;h) [&#92;&#92;d]&gt;&#92;&#92;_
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+<p>
+In this example, note that the backslashes are doubled&#46; If you set the prompt using the
+prompt
+option in an option file, it is advisable to double the backslashes when using the special prompt options&#46; There is some overlap in the set of permissible prompt options and the set of special escape sequences that are recognized in option files&#46; (The rules for escape sequences in option files are listed in
+Section 4.2.3.3, <blink><blink>\(</blink>lq</blink>Using Option Files<blink><blink>\(</blink>rq</blink>&#46;) The overlap may cause you problems if you use single backslashes&#46; For example,
+&#92;s
+is interpreted as a space rather than as the current seconds value&#46; The following example shows how to define a prompt within an option file to include the current time in
+HH:MM:SS&gt;
+format:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+[mysql]
+prompt="&#92;&#92;r:&#92;&#92;m:&#92;&#92;s&gt; "
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+<i>Set the prompt interactively&#46;</i>
+You can change your prompt interactively by using the
+prompt
+(or
+&#92;R) command&#46; For example:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>prompt (&#92;u@&#92;h) [&#92;d]&gt;&#92;_</b>
+PROMPT set to &#39;(&#92;u@&#92;h) [&#92;d]&gt;&#92;_&#39;
+(<i>user</i>@<i>host</i>) [<i>database</i>]&gt;
+(<i>user</i>@<i>host</i>) [<i>database</i>]&gt; prompt
+Returning to default PROMPT of mysql&gt;
+mysql&gt;
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+</td></tr>
+</table>
+<h1 class="manpages">MYSQL HISTORY FILE</h1>
+<p>
+On Unix, the
+<b>mysql</b>
+client writes a record of executed statements to a history file&#46; By default, this file is named
+&#46;mysql_history
+and is created in your home directory&#46; To specify a different file, set the value of the
+MYSQL_HISTFILE
+environment variable&#46;
+<p>
+The
+&#46;mysql_history
+should be protected with a restrictive access mode because sensitive information might be written to it, such as the text of SQL statements that contain passwords&#46; See
+Section 5.3.2.2, <blink><blink>\(</blink>lq</blink>End-User Guidelines for Password Security<blink><blink>\(</blink>rq</blink>&#46;
+<p>
+It is possible to suppress logging of statements to the history file by using the
+<b>--batch</b>
+or
+<b>--execute</b>
+option&#46;
+<p>
+If you do not want to maintain a history file, first remove
+&#46;mysql_history
+if it exists, and then use either of the following techniques:
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+Set the
+MYSQL_HISTFILE
+variable to
+/dev/null&#46; To cause this setting to take effect each time you log in, put the setting in one of your shell&#39;s startup files&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+Create
+&#46;mysql_history
+as a symbolic link to
+/dev/null:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>ln -s /dev/null $HOME/&#46;mysql_history</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+<p>
+You need do this only once&#46;
+</td></tr>
+</table>
+<h1 class="manpages">MYSQL SERVER-SIDE HELP</h1>
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>help </b><b></b><i>search_string</i>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+If you provide an argument to the
+help
+command,
+<b>mysql</b>
+uses it as a search string to access server-side help from the contents of the MySQL Reference Manual&#46; The proper operation of this command requires that the help tables in the
+mysql
+database be initialized with help topic information (see
+Section 5.1.8, <blink><blink>\(</blink>lq</blink>Server-Side Help<blink><blink>\(</blink>rq</blink>)&#46;
+<p>
+If there is no match for the search string, the search fails:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>help me</b>
+Nothing found
+Please try to run &#39;help contents&#39; for a list of all accessible topics
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+Use
+<b>help contents</b>
+to see a list of the help categories:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>help contents</b>
+You asked for help about help category: "Contents"
+For more information, type &#39;help &lt;item&gt;&#39;, where &lt;item&gt; is one of the
+following categories:
+   Account Management
+   Administration
+   Data Definition
+   Data Manipulation
+   Data Types
+   Functions
+   Functions and Modifiers for Use with GROUP BY
+   Geographic Features
+   Language Structure
+   Plugins
+   Storage Engines
+   Stored Routines
+   Table Maintenance
+   Transactions
+   Triggers
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+If the search string matches multiple items,
+<b>mysql</b>
+shows a list of matching topics:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>help logs</b>
+Many help items for your request exist&#46;
+To make a more specific request, please type &#39;help &lt;item&gt;&#39;,
+where &lt;item&gt; is one of the following topics:
+   SHOW
+   SHOW BINARY LOGS
+   SHOW ENGINE
+   SHOW LOGS
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+Use a topic as the search string to see the help entry for that topic:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>help show binary logs</b>
+Name: &#39;SHOW BINARY LOGS&#39;
+Description:
+Syntax:
+SHOW BINARY LOGS
+SHOW MASTER LOGS
+Lists the binary log files on the server&#46; This statement is used as
+part of the procedure described in [purge-binary-logs], that shows how
+to determine which logs can be purged&#46;
+mysql&gt; SHOW BINARY LOGS;
++---------------+-----------+
+| Log_name      | File_size |
++---------------+-----------+
+| binlog&#46;000015 |    724935 |
+| binlog&#46;000016 |    733481 |
++---------------+-----------+
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<h1 class="manpages">EXECUTING SQL STATEMENTS FROM A TEXT FILE</h1>
+<p>
+The
+<b>mysql</b>
+client typically is used interactively, like this:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysql </b><b></b><i>db_name</i>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+However, it is also possible to put your SQL statements in a file and then tell
+<b>mysql</b>
+to read its input from that file&#46; To do so, create a text file
+<i>text_file</i>
+that contains the statements you wish to execute&#46; Then invoke
+<b>mysql</b>
+as shown here:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysql </b><b></b><i>db_name</i><b> &lt; </b><b></b><i>text_file</i>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+If you place a
+USE <i>db_name</i>
+statement as the first statement in the file, it is unnecessary to specify the database name on the command line:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysql &lt; text_file</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+If you are already running
+<b>mysql</b>, you can execute an SQL script file using the
+source
+command or
+&#92;&#46;
+command:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>source </b><b></b><i>file_name</i>
+mysql&gt; <b>&#92;&#46; </b><b></b><i>file_name</i>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+Sometimes you may want your script to display progress information to the user&#46; For this you can insert statements like this:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+SELECT &#39;&lt;info_to_display&gt;&#39; AS &#39; &#39;;
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+The statement shown outputs
+&lt;info_to_display&gt;&#46;
+<p>
+You can also invoke
+<b>mysql</b>
+with the
+<b>--verbose</b>
+option, which causes each statement to be displayed before the result that it produces&#46;
+<p>
+As of MySQL 5&#46;1&#46;23,
+<b>mysql</b>
+ignores Unicode byte order mark (BOM) characters at the beginning of input files&#46; Previously, it read them and sent them to the server, resulting in a syntax error&#46; Presence of a BOM does not cause
+<b>mysql</b>
+to change its default character set&#46; To do that, invoke
+<b>mysql</b>
+with an option such as
+<b>--default-character-set=utf8</b>&#46;
+<p>
+For more information about batch mode, see
+Section 3.5, <blink><blink>\(</blink>lq</blink>Using mysql in Batch Mode<blink><blink>\(</blink>rq</blink>&#46;
+<h1 class="manpages">MYSQL TIPS</h1>
+<p>
+This section describes some techniques that can help you use
+<b>mysql</b>
+more effectively&#46;
+<h2><i>Displaying Query Results Vertically</i></h2>
+<p>
+Some query results are much more readable when displayed vertically, instead of in the usual horizontal table format&#46; Queries can be displayed vertically by terminating the query with &#92;G instead of a semicolon&#46; For example, longer text values that include newlines often are much easier to read with vertical output:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>SELECT * FROM mails WHERE LENGTH(txt) &lt; 300 LIMIT 300,1&#92;G</b>
+*************************** 1&#46; row ***************************
+  msg_nro: 3068
+     date: 2000-03-01 23:29:50
+time_zone: +0200
+mail_from: Monty
+    reply: monty@no&#46;spam&#46;com
+  mail_to: "Thimble Smith" &lt;tim@no&#46;spam&#46;com&gt;
+      sbj: UTF-8
+      txt: &gt;&gt;&gt;&gt;&gt; "Thimble" == Thimble Smith writes:
+Thimble&gt; Hi&#46;  I think this is a good idea&#46;  Is anyone familiar
+Thimble&gt; with UTF-8 or Unicode? Otherwise, I&#39;ll put this on my
+Thimble&gt; TODO list and see what happens&#46;
+Yes, please do that&#46;
+Regards,
+Monty
+     file: inbox-jani-1
+     hash: 190402944
+1 row in set (0&#46;09 sec)
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<h2><i>Using the --safe-updates Option</i></h2>
+<p>
+For beginners, a useful startup option is
+<b>--safe-updates</b>
+(or
+<b>--i-am-a-dummy</b>, which has the same effect)&#46; It is helpful for cases when you might have issued a
+DELETE FROM <i>tbl_name</i>
+statement but forgotten the
+WHERE
+clause&#46; Normally, such a statement deletes all rows from the table&#46; With
+<b>--safe-updates</b>, you can delete rows only by specifying the key values that identify them&#46; This helps prevent accidents&#46;
+<p>
+When you use the
+<b>--safe-updates</b>
+option,
+<b>mysql</b>
+issues the following statement when it connects to the MySQL server:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+SET sql_safe_updates=1, sql_select_limit=1000, sql_max_join_size=1000000;
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+See
+Section 5.1.4, <blink><blink>\(</blink>lq</blink>Server System Variables<blink><blink>\(</blink>rq</blink>&#46;
+<p>
+The
+SET
+statement has the following effects:
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+You are not permitted to execute an
+UPDATE
+or
+DELETE
+statement unless you specify a key constraint in the
+WHERE
+clause or provide a
+LIMIT
+clause (or both)&#46; For example:
+<p>
+<!-- ignored unsupported tag .if -->
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td width=1.7%>&nbsp;</td><td>
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+UPDATE <i>tbl_name</i> SET <i>not_key_column</i>=<i>val</i> WHERE <i>key_column</i>=<i>val</i>;
+UPDATE <i>tbl_name</i> SET <i>not_key_column</i>=<i>val</i> LIMIT 1;
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+</td></tr>
+</table>
+<!-- ignored unsupported tag .\} -->
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+The server limits all large
+SELECT
+results to 1,000 rows unless the statement includes a
+LIMIT
+clause&#46;
+</td></tr>
+</table>
+<p>
+<!-- ignored unsupported tag .ie -->
+o
+<!-- ignored unsupported tag .\} -->
+
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=2.3%>
+o
+</td><td>
+<!-- ignored unsupported tag .\} -->
+The server aborts multiple-table
+SELECT
+statements that probably need to examine more than 1,000,000 row combinations&#46;
+</td></tr>
+</table>
+<p>
+To specify limits different from 1,000 and 1,000,000, you can override the defaults by using the
+<b>--select_limit</b>
+and
+<b>--max_join_size</b>
+options:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+shell&gt; <b>mysql --safe-updates --select_limit=500 --max_join_size=10000</b>
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<h2><i>Disabling mysql Auto-Reconnect</i></h2>
+<p>
+If the
+<b>mysql</b>
+client loses its connection to the server while sending a statement, it immediately and automatically tries to reconnect once to the server and send the statement again&#46; However, even if
+<b>mysql</b>
+succeeds in reconnecting, your first connection has ended and all your previous session objects and settings are lost: temporary tables, the autocommit mode, and user-defined and session variables&#46; Also, any current transaction rolls back&#46; This behavior may be dangerous for you, as in the following example where the server was shut down and restarted between the first and second statements without you knowing it:
+<p>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+mysql&gt; <b>SET @a=1;</b>
+Query OK, 0 rows affected (0&#46;05 sec)
+mysql&gt; <b>INSERT INTO t VALUES(@a);</b>
+ERROR 2006: MySQL server has gone away
+No connection&#46; Trying to reconnect&#46;&#46;&#46;
+Connection id:    1
+Current database: test
+Query OK, 1 row affected (1&#46;30 sec)
+mysql&gt; <b>SELECT * FROM t;</b>
++------+
+| a    |
++------+
+| NULL |
++------+
+1 row in set (0&#46;05 sec)
+</pre></td></tr>
+</table>
+<!-- ignored unsupported tag .if -->
+<!-- ignored unsupported tag .\} -->
+<p>
+The
+@a
+user variable has been lost with the connection, and after the reconnection it is undefined&#46; If it is important to have
+<b>mysql</b>
+terminate with an error if the connection has been lost, you can start the
+<b>mysql</b>
+client with the
+<b>--skip-reconnect</b>
+option&#46;
+<p>
+For more information about auto-reconnect and its effect on state information when a reconnection occurs, see
+Section 21.9.11, <blink><blink>\(</blink>lq</blink>Controlling Automatic Reconnection Behavior<blink><blink>\(</blink>rq</blink>&#46;
+<h1 class="manpages">COPYRIGHT</h1>
+<p>
+Copyright &#169; 1997, 2011, Oracle and/or its affiliates. All rights reserved.
+<p>
+This documentation is free software; you can redistribute it and/or modify it only under the terms of the GNU General Public License as published by the Free Software Foundation; version 2 of the License.
+<p>
+This documentation is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+<p>
+You should have received a copy of the GNU General Public License along with the program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA or see <a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a>/.
+<p>
+<h1 class="manpages">NOTES</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=4%>
+ 1.
+</td><td>
+Bug#25946
+&nbsp;<a href="http://bugs.mysql.com/bug.php">http://bugs.mysql.com/bug.php</a>?id=25946
+</td></tr>
+</table>
+<h1 class="manpages">SEE ALSO</h1>
+<ul>
+</ul>
+which may already be installed locally and which is also available
+online at <a href="http://dev.mysql.com/doc">http://dev.mysql.com/doc</a>/.
+<h1 class="manpages">AUTHOR</h1>
+Oracle Corporation (<a href="http://dev.mysql.com/">http://dev.mysql.com</a>/).
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversion31c6.html?tutorial=unix_commands&amp;file=mysql.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/mysql.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:03 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

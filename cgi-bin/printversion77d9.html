@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=javascript&file=javascript_loop_control.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:51 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>JavaScript Loop Control with break and continue</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="Keywords" content="Javascript, Tutorials, Learning, Beginners, Javascript Basics, Scripting Language, Javascript Tutorials, Functions, Objects, Usage" />
+<meta name="description" content="JavaScript Loop Control with break and continue - Learning Javascript in simple and easy steps. A beginner's tutorial containing complete knowledge of Javascript Syntax Objects Embedding with  HTML Validations Cookies Regular Expressions Literals Variables Loops Conditions." />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../print.css"/>
+</head>
+<body>
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+<h1>JavaScript Loop Control</h1>
+<a href="../javascript/javascript_forin_loop.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../javascript/javascript_functions.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<br />
+<br />
+<p>JavaScript provides you full control to handle your loops and switch statement. There may be a situation when you need to come out of a loop without reaching at its bottom. There may also be a situation when you want to skip a part of your code block and want to start next iteration of the look.</p>
+<p>To handle all such situations, JavaScript provides <b>break</b> and <b>continue</b> statements. These statements are used to immediately come out of any loop or to start the next iteration of any loop respectively.</p>
+<h1>The <i>break</i> Statement:</h1>
+<p>The <b>break</b> statement, which was briefly introduced with the <i>switch</i> statement, is used to exit a loop early, breaking out of the enclosing curly braces.</p>
+<h2>Example:</h2>
+<p>This example illustrates the use of a <b>break</b> statement with a while loop. Notice how the loop breaks out early once x reaches 5 and reaches to <i>document.write(..)</i> statement just below to closing curly brace:</p>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+&lt;script type="text/javascript"&gt;
+&lt;!--
+var x = 1;
+document.write("Entering the loop&lt;br /&gt; ");
+while (x &lt; 20)
+{
+  if (x == 5){ 
+     break;  // breaks out of loop completely
+  }
+  x = x + 1;
+  document.write( x + "&lt;br /&gt;");
+}
+document.write("Exiting the loop!&lt;br /&gt; ");
+//--&gt;
+&lt;/script&gt;
+</pre></td></tr>
+</table>
+<p>This will produce following result:</p>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+Entering the loop
+2
+3
+4
+5
+Exiting the loop!
+</pre></td></tr>
+</table>
+<p>To understand it in better way you can <a target="_blank" href="practicea45f.html?file=javascript_16">Try it yourself</a>.</p>
+<p>We already have seen the usage of <b>break</b> statement inside a  <i>switch</i> statement.</p>
+<h1>The <i>continue</i> Statement:</h1>
+<p>The <b>continue</b> statement tells the interpreter to immediately start the next iteration of the loop and skip remaining code block.</p>
+<p>When a <b>continue</b> statement is encountered, program flow will move to the loop check expression immediately and if condition remain true then it start next iteration otherwise control comes out of the loop.</p>
+<h2>Example:</h2>
+<p>This example illustrates the use of a <b>continue</b> statement with a while loop. Notice how the <b>continue</b> statement is used to skip printing when the index held in variable x reaches 5:</p>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+&lt;script type="text/javascript"&gt;
+&lt;!--
+var x = 1;
+document.write("Entering the loop&lt;br /&gt; ");
+while (x &lt; 10)
+{
+  x = x + 1;
+  if (x == 5){ 
+     continue;  // skill rest of the loop body
+  }
+  document.write( x + "&lt;br /&gt;");
+}
+document.write("Exiting the loop!&lt;br /&gt; ");
+//--&gt;
+&lt;/script&gt;
+</pre></td></tr>
+</table>
+<p>This will produce following result:</p>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+Entering the loop
+2
+3
+4
+6
+7
+8
+9
+10
+Exiting the loop!
+</pre></td></tr>
+</table>
+<p>To understand it in better way you can <a target="_blank" href="practiceea80.html?file=javascript_17">Try it yourself</a>.</p>
+<h1>Using Labels to Control the Flow:</h1>
+<p>Starting from JavaScript 1.2, a label can be used with <b>break</b> and <b>continue</b> to control the flow more precisely.</p>
+<p>A <b>label</b> is simply an identifier followed by a colon that is applied to a statement or block of code. We will see two different examples to understand label with break and continue.</p>
+<p><b>Note:</b> Line breaks are not allowed between the <i>continue</i> or <b>break</b> statement and its label name. Also, there should not be any other statement in between a label name and  associated loop.</p>
+<h2>Example 1:</h2>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+&lt;script type="text/javascript"&gt;
+&lt;!--
+document.write("Entering the loop!&lt;br /&gt; ");
+<b>outerloop:</b>   // This is the label name
+for (var i = 0; i &lt; 5; i++)
+{
+  document.write("Outerloop: " + i + "&lt;br /&gt;");
+  <b>innerloop:</b>
+  for (var j = 0; j &lt; 5; j++)
+  {
+     if (j >  3 ) break ;         // Quit the innermost loop
+     if (i == 2) break innerloop; // Do the same thing
+     if (i == 4) break outerloop; // Quit the outer loop
+     document.write("Innerloop: " + j + "  &lt;br /&gt;");
+   }
+}
+document.write("Exiting the loop!&lt;br /&gt; ");
+//--&gt;
+&lt;/script&gt;
+</pre></td></tr>
+</table>
+<p>This will produce following result:</p>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+Entering the loop!
+Outerloop: 0
+Innerloop: 0 
+Innerloop: 1 
+Innerloop: 2 
+Innerloop: 3 
+Outerloop: 1
+Innerloop: 0 
+Innerloop: 1 
+Innerloop: 2 
+Innerloop: 3 
+Outerloop: 2
+Outerloop: 3
+Innerloop: 0 
+Innerloop: 1 
+Innerloop: 2 
+Innerloop: 3 
+Outerloop: 4
+Exiting the loop!
+</pre></td></tr>
+</table>
+<p>To understand it in better way you can <a target="_blank" href="practice99ec.html?file=javascript_18">Try it yourself</a>.</p>
+<h2>Example 2:</h2>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+&lt;script type="text/javascript"&gt;
+&lt;!--
+document.write("Entering the loop!&lt;br /&gt; ");
+<b>outerloop:</b>   // This is the label name
+for (var i = 0; i &lt; 3; i++)
+{
+   document.write("Outerloop: " + i + "&lt;br /&gt;");
+   for (var j = 0; j &lt; 5; j++)
+   {
+      if (j == 3){
+         continue outerloop;
+      }
+      document.write("Innerloop: " + j + "&lt;br /&gt;");
+   } 
+}
+document.write("Exiting the loop!&lt;br /&gt; ");
+//--&gt;
+&lt;/script&gt;
+</pre></td></tr>
+</table>
+<p>This will produce following result:</p>
+<table class="src" cellpadding="5" cellspacing="5" border="1">
+<tr><td><pre>
+Entering the loop!
+Outerloop: 0
+Innerloop: 0
+Innerloop: 1
+Innerloop: 2
+Outerloop: 1
+Innerloop: 0
+Innerloop: 1
+Innerloop: 2
+Outerloop: 2
+Innerloop: 0
+Innerloop: 1
+Innerloop: 2
+Exiting the loop!
+</pre></td></tr>
+</table>
+<p>To understand it in better way you can <a target="_blank" href="practiced6fb.html?file=javascript_19">Try it yourself</a>.</p>
+<br />
+<a href="../javascript/javascript_forin_loop.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="../javascript/javascript_functions.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<br />
+<p><b>Copyright &copy; tutorialspoint.com</b></p>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/cgi-bin/printversion.cgi?tutorial=javascript&file=javascript_loop_control.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:03:51 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

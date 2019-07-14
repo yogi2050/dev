@@ -1,0 +1,1720 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/top.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:32 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>top - Unix, Linux Command</title>
+<meta name="Description" Content="top - Unix, Linux Command Manual Pages (Manpages) ,  Learning fundamentals of UNIX and Linux in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="../unix_system_calls/index.html">Unix - System Calls</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - Commands List</b></a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>top - Unix, Linux Command</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+#  ** Comment out &#146;.nr&#146; or set to 0 to eliminate WIDTH fiddlin&#146; !
+<!-- ignored unsupported tag .ll -->
+#                      Our darn Bullet style ----------------------------
+#                          - bullet continuation paragraph
+#                      New features/differences style -------------------
+#                      Commonly used strings (for consistency) ----------
+#                          - a real em-dash, darn-it
+#                          - these two are for chuckles, makes great grammar
+#                          - other misc strings for consistent usage/emphasis
+#                          - xref&#146;s that depend on commands or topic names
+<p>
+<p>
+<h1 class="manpages">NAME</h1>
+top - display Linux tasks
+<p>
+<p>
+<h1 class="manpages">SYNOPSIS</h1>
+<b>top</b> -<b>hv</b> | -<b>bcHisS</b> -<b>d</b><i> delay</i> -<b>n</b><i>
+iterations</i> -<b>p</b><i> pid</i> [,<i> pid</i> ...]
+<p>
+The traditional switches &#146;-&#146; and whitespace are optional.
+<p>
+<p>
+<h1 class="manpages">DESCRIPTION</h1>
+The <b>top</b> program provides a dynamic real-time view of a running system.
+It can display<b> system</b> summary information as well as a list of<b>
+tasks</b> currently being managed by the Linux kernel.
+The types of system summary information shown and the types, order and
+size of information displayed for tasks are all user configurable and
+that configuration can be made persistent across restarts.
+<p>
+The program provides a limited interactive interface for process
+manipulation as well as a much more extensive interface for personal
+configuration  <b>-- </b> encompassing every aspect of its operation.
+And while <b>top</b> is referred to throughout this document, you are free
+to name the program anything you wish.
+That new name, possibly an alias, will then be reflected on top&#146;s display
+and used when reading and writing a configuration file.
+<p>
+<p>
+<h1 class="manpages">OVERVIEW</h1>
+<h2><i>Documentation</i></h2>
+The remaining Table of Contents
+<br />
+    1. COMMAND-LINE Options
+<br />
+    2. FIELDS / Columns
+<br />
+       a. DESCRIPTIONS of Fields
+<br />
+       b. SELECTING and ORDERING Columns
+<br />
+    3. INTERACTIVE Commands
+<br />
+       a. GLOBAL Commands
+<br />
+       b. SUMMARY Area Commands
+<br />
+       c. TASK Area Commands
+<br />
+       d. COLOR Mapping
+<br />
+    4. ALTERNATE-DISPLAY Mode
+<br />
+       a. WINDOWS Overview
+<br />
+       b. COMMANDS for Windows
+<br />
+    5. FILES
+<br />
+       a. SYSTEM Configuration File
+<br />
+       b. PERSONAL Configuration File
+<br />
+    6. STUPID TRICKS Sampler
+<br />
+       a. Kernel Magic
+<br />
+       b. Bouncing Windows
+<br />
+       c. The Big Bird Window
+<br />
+    7. BUGS, 8. HISTORY Former top, 9. AUTHOR, 10. SEE ALSO
+<p>
+<h2><i>Operation</i></h2>
+When operating top, the two most important keys are help (&#146;h&#146; or &#146;?&#146;) and
+quit (&#146;q&#146;) key.
+Alternatively, you could simply use the traditional interrupt key (&#146;^C&#146;)
+when you&#146;re done.
+<p>
+When you start top for the first time, you&#146;ll be presented with the
+traditional screen elements: 1) Summary Area; 2) Message/Prompt Line;
+3) Columns Header; 4) Task Area.
+There will, however, be some differences when compared to the former top.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>Highlighting</b> </td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+<i>Summary_Area</i>: There is no highlighting for load/uptime and only values are highlighted for
+other elements.
+<p>
+<i>Task_Area</i>: Tasks running (or ready to run) will be highlighted, and bold is only one way
+of emphasizing such processes.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>Content/Labels</b> </td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+<i>Summary_Area</i>: The program name is shown, perhaps a symlink or alias.
+The Cpu(s) state label hints at other possibilities.
+The memory stats use a lower case &#146;k&#146;.
+<p>
+<i>Columns_Header</i>: Will show a new field and some changed labels.
+More new fields will be found as you customize your top.
+<p>
+</td></tr>
+<!-- PP ends table -->
+</table>
+<b>Note</b>: the width of top&#146;s display will be limited to 512 positions.
+Displaying all fields requires a minimum of 160 characters.
+The remaining width could be used for the &#146;Command&#146; column.
+<p>
+<h2><i>Startup Defaults</i></h2>
+The following startup defaults assume no configuration file, thus no user customizations.
+Even so, items shown with an asterisk (&#146;*&#146;) could be overridden through the
+command-line.
+<p>
+    <i>Global_defaults</i>
+<br />
+       &#146;A&#146; - Alt display      Off (full-screen)
+<br />
+     * &#146;d&#146; - Delay time       3.0 seconds
+<br />
+       &#146;I&#146; - Irix mode        On  (no, &#146;solaris&#146; smp)
+<br />
+     * &#146;p&#146; - PID monitoring   Off
+<br />
+     * &#146;s&#146; - Secure mode      Off (unsecured)
+<br />
+       &#146;B&#146; - Bold disable     Off
+<br />
+    <i>Summary_Area_defaults</i>
+<br />
+       &#146;l&#146; - Load Avg/Uptime  On  (thus program name)
+<br />
+       &#146;t&#146; - Task/Cpu states  On  (1+1 lines, see &#146;1&#146;)
+<br />
+       &#146;m&#146; - Mem/Swap usage   On  (2 lines worth)
+<br />
+       &#146;1&#146; - Single Cpu       On  (thus 1 line if smp)
+<br />
+    <i>Task_Area_defaults</i>
+<br />
+       &#146;b&#146; - Bold hilite      On  (not &#146;reverse&#146;)
+<br />
+     * &#146;c&#146; - Command line     Off (name, not cmdline)
+<br />
+     * &#146;H&#146; - Threads          Off (show all threads)
+<br />
+     * &#146;i&#146; - Idle tasks       On  (show all tasks)
+<br />
+       &#146;R&#146; - Reverse sort     On  (pids high-to-low)
+<br />
+     * &#146;S&#146; - Cumulative time  Off (no, dead children)
+<br />
+       &#146;x&#146; - Column hilite    Off (no, sort field)
+<br />
+       &#146;y&#146; - Row hilite       On  (yes, running tasks)
+<br />
+       &#146;z&#146; - color/mono       Off (no, colors)
+<p>
+<p>
+<h1 class="manpages">1. COMMAND-LINE Options</h1>
+The command-line syntax for top consists of:
+<p>
+     -<b>hv</b> | -<b>bcHisSM</b> -<b>d</b><i> delay</i> -<b>n</b><i> iterations
+</i> -<b>p</b><i> pid</i> [,<i>pid</i>...]
+<p>
+The typically mandatory switches (&#146;-&#146;) and even whitespace are completely
+optional.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+-<b>b</b> :<b> Batch mode</b> operation
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Starts top in &#146;Batch mode&#146;, which could be useful for sending output
+from top to other programs or to a file.
+In this mode, top will not accept input and runs until the iterations
+limit you&#146;ve set with the &#146;-n&#146; command-line option or until killed.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+-<b>c</b> :<b> Command line/Program name</b> toggle
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Starts top with the last remembered &#146;c&#146; state reversed.
+Thus, if top was displaying command lines, now that field will show program
+names, and visa versa.
+See the &#146;c&#146; interactive command for additional information.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+-<b>d</b> :<b> Delay time</b> interval as:  <b>-d ss.tt</b> (<i>seconds</i>.<i>tenths</i>)
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Specifies the delay between screen updates, and overrides the corresponding
+value in one&#146;s personal configuration file or the startup default.
+Later this can be changed with the &#146;d&#146; or &#146;s&#146; interactive commands.
+<p>
+Fractional seconds are honored, but a negative number is not allowed.
+In all cases, however, such changes are prohibited if top is running
+in &#146;Secure mode&#146;, except for root (unless the &#146;s&#146; command-line option was used).
+For additional information on &#146;Secure mode&#146; see topic 5a. SYSTEM Configuration File.
+<p>
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+-<b>h</b> :<b> Help</b>
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Show library version and the usage prompt, then quit.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+-<b>H</b> :<b> Threads</b> toggle
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Starts top with the last remembered &#146;H&#146; state reversed.
+When this toggle is <i>On</i>, all individual threads will be displayed.  Otherwise, top displays a summation of all threads in a process.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+-<b>i</b> :<b> Idle Processes</b> toggle
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Starts top with the last remembered &#146;i&#146; state reversed.
+When this toggle is <i>Off</i>, tasks that are idled or zombied will not be displayed.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+-<b>n</b> :<b> Number of iterations</b> limit as:<b>  -n number</b>
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Specifies the maximum number of iterations, or frames, top should
+produce before ending.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+-<b>u</b> :<b> Monitor by user</b> as:<b>  -u somebody
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Monitor only processes with an effective UID or user name
+matching that given.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+-</b><b>U</b> :<b> Monitor by user</b> as:<b>  -U somebody
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Monitor only processes with a UID or user name matching that given.
+This matches real, effective, saved, and filesystem UIDs.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+-</b><b>p</b> :<b> Monitor PIDs</b> as:<b>  -pN1 -pN2 ...</b>  or<b>  -pN1, N2 [,...]
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Monitor only processes with specified process IDs.
+This option can be given up to 20 times, or you can provide a comma delimited
+list with up to 20 pids.
+Co-mingling both approaches is permitted.
+<p>
+This is a command-line option only.
+And should you wish to return to normal operation, it is not necessary
+to quit and and restart top  </b><b>-- </b> just issue the &#146;=&#146; interactive command.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+-<b>s</b> :<b> Secure mode</b> operation
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Starts top with secure mode forced, even for root.
+This mode is far better controlled through the system configuration file
+(see topic 5. FILES).
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+-<b>S</b> :<b> Cumulative time mode</b> toggle
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Starts top with the last remembered &#146;S&#146; state reversed.
+When &#146;Cumulative mode&#146; is <i>On</i>, each process is listed with the cpu
+time that it and its dead children have used.
+See the &#146;S&#146; interactive command for additional information regarding this mode.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+-<b>v</b> :<b> Version</b>
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Show library version and the usage prompt, then quit.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+-<b>M</b> :<b> Detect memory units</b>
+</td></tr><tr valign="top"><td width=5%>&nbsp;</td><td>
+Show memory units (k/M/G) and display floating point values in the memory
+summary.
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">2. FIELDS / Columns</h1>
+<h2><i>2a. DESCRIPTIONS of Fields</i></h2>
+Listed below are top&#146;s available fields.
+They are always associated with the letter shown, regardless of the position
+you may have established for them with the &#146;o&#146; (Order fields) interactive command.
+<p>
+Any field is selectable as the sort field, and you control whether they
+are sorted high-to-low or low-to-high.
+For additional information on sort provisions see topic 3c. TASK Area Commands.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+a:<b> PID</b>  <b>-- </b> Process Id
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+The task&#146;s unique process ID, which periodically wraps,
+though never restarting at zero.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+b:<b> PPID</b>  <b>-- </b> Parent Process Pid
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+The process ID of a task&#146;s parent.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+c:<b> RUSER</b>  <b>-- </b> Real User Name
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+The real user name of the task&#146;s owner.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+d:<b> UID</b>  <b>-- </b> User Id
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+The effective user ID of the task&#146;s owner.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+e:<b> USER</b>  <b>-- </b> User Name
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+The effective user name of the task&#146;s owner.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+f:<b> GROUP</b>  <b>-- </b> Group Name
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+The effective group name of the task&#146;s owner.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+g:<b> TTY</b>  <b>-- </b> Controlling Tty
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+The name of the controlling terminal.
+This is usually the device (serial port, pty, etc.) from which the
+process was started, and which it uses for input or output.
+However, a task need not be associated with a terminal, in which case
+you&#146;ll see &#146;?&#146; displayed.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+h:<b> PR</b>  <b>-- </b> Priority
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+The priority of the task.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+i:<b> NI</b>  <b>-- </b> Nice value
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+The nice value of the task.
+A negative nice value means higher priority, whereas a positive nice value
+means lower priority.
+Zero in this field simply means priority will not be adjusted in determining a
+task&#146;s dispatchability.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+j:<b> P</b>  <b>-- </b> Last used CPU (SMP)
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+A number representing the last used processor.
+In a true SMP environment this will likely change frequently since the kernel
+intentionally uses weak affinity.
+Also, the very act of running top may break this weak affinity and cause more
+processes to change CPUs more often (because of the extra demand for
+cpu time).
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+k:<b> %CPU</b>  <b>-- </b> CPU usage
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+The task&#146;s share of the elapsed CPU time since the last screen update,
+expressed as a percentage of total CPU time.
+In a true SMP environment, if &#146;Irix mode&#146; is <i>Off</i>, top will operate
+in &#146;Solaris mode&#146; where a task&#146;s cpu usage will be divided by the total
+number of CPUs.
+You toggle &#146;Irix/Solaris&#146; modes with the &#146;I&#146; interactive command.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+l:<b> TIME</b>  <b>-- </b> CPU Time
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+Total CPU time the task has used since it started.
+When &#146;Cumulative mode&#146; is <i>On</i>, each process is listed with the cpu
+time that it and its dead children has used.
+You toggle &#146;Cumulative mode&#146; with &#146;S&#146;, which is a command-line option and an interactive command.
+See the &#146;S&#146; interactive command for additional information regarding this mode.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+m:<b> TIME+</b>  <b>-- </b> CPU Time, hundredths
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+The same as &#146;TIME&#146;, but reflecting more granularity through hundredths of
+a second.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+n:<b> %MEM</b>  <b>-- </b> Memory usage (RES)
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+A task&#146;s currently used share of available <b>physical</b> memory.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+o:<b> VIRT</b>  <b>-- </b> Virtual Image (kb)
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+The total amount of <b>virtual</b> memory used by the task.
+It includes all code, data and shared libraries plus pages that have been
+swapped out. (Note: you can define the STATSIZE=1 environment variable and the VIRT
+will be calculated from the /proc/#/state VmSize field.)
+<p>
+VIRT = SWAP + RES.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+p:<b> SWAP</b>  <b>-- </b> Swapped size (kb)
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+The swapped out portion of a task&#146;s total <b>virtual</b> memory image.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+q:<b> RES</b>  <b>-- </b> Resident size (kb)
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+The non-swapped <b>physical</b> memory a task has used.
+<p>
+RES = CODE + DATA.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+r:<b> CODE</b>  <b>-- </b> Code size (kb)
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+The amount of <b>physical</b> memory devoted to executable code, also known as
+the &#146;text resident set&#146; size or TRS.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+s:<b> DATA</b>  <b>-- </b> Data+Stack size (kb)
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+The amount of <b>physical</b> memory devoted to other than executable code, also known as
+the &#146;data resident set&#146; size or DRS.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+t:<b> SHR</b>  <b>-- </b> Shared Mem size (kb)
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+The amount of <b>shared</b> memory used by a task.
+It simply reflects memory that could be potentially shared with
+other processes.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+u:<b> nFLT</b>  <b>-- </b> Page Fault count
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+The number of<b> major</b> page faults that have occurred for a task.
+A page fault occurs when a process attempts to read from or write to a virtual
+page that is not currently present in its address space.
+A major page fault is when disk access is involved in making that
+page available.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+v:<b> nDRT</b>  <b>-- </b> Dirty Pages count
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+The number of pages that have been modified since they were last
+written to disk.
+Dirty pages must be written to disk before the corresponding physical memory
+location can be used for some other virtual page.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+w:<b> S</b>  <b>-- </b> Process Status
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+The status of the task which can be one of:
+<br />
+   &#146;<b>D</b>&#146; = uninterruptible sleep
+<br />
+   &#146;<b>R</b>&#146; = running
+<br />
+   &#146;<b>S</b>&#146; = sleeping
+<br />
+   &#146;<b>T</b>&#146; = traced or stopped
+<br />
+   &#146;<b>Z</b>&#146; = zombie
+<p>
+Tasks shown as running should be more properly thought of as &#146;ready to run&#146;
+ <b>-- </b> their task_struct is simply represented on the Linux run-queue.
+Even without a true SMP machine, you may see numerous tasks in this state
+depending on top&#146;s delay interval and nice value.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+x:<b> Command</b>  <b>-- </b> Command<b> line</b> or Program<b> name</b>
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+Display the command line used to start a task or the name of the associated
+program.
+You toggle between command<i> line</i> and<i> name</i> with &#146;c&#146;, which is both
+a command-line option and an interactive command.
+<p>
+When you&#146;ve chosen to display command lines, processes without a command
+line (like kernel threads) will be shown with only the program name in
+parentheses, as in this example:
+<br />
+      ( mdrecoveryd )
+<p>
+Either form of display is subject to potential truncation if it&#146;s too long to
+fit in this field&#146;s current width.
+That width depends upon other fields selected, their order and the current
+screen width.
+<p>
+<b>Note</b>: The &#146;Command&#146; field/column is unique, in that it is not fixed-width.
+When displayed, this column will be allocated all remaining screen width (up
+to the maximum 512 characters) to provide for the potential growth of program
+names into command lines.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+y:<b> WCHAN</b>  <b>-- </b> Sleeping in Function
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+Depending on the availability of the kernel link map (&#146;System.map&#146;), this field
+will show the name or the address of the kernel function in which the task is
+currently sleeping.
+Running tasks will display a dash (&#146;-&#146;) in this column.
+<p>
+<b>Note</b>: By displaying this field, top&#146;s own working set will be increased by
+over 700Kb.
+Your only means of reducing that overhead will be to stop and restart top.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+z:<b> Flags</b>  <b>-- </b> Task Flags
+</td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+This column represents the task&#146;s current scheduling flags which are
+expressed in hexadecimal notation and with zeros suppressed.
+These flags are officially documented in &lt;linux/sched.h&gt;.
+Less formal documentation can also be found on the &#146;Fields select&#146;
+and &#146;Order fields&#146; screens.
+<p>
+</td></tr>
+</table>
+<h2><i>2b. SELECTING and ORDERING Columns</i></h2>
+After pressing the interactive commands &#146;f&#146; (Fields select) or &#39;o&#146; (Order fields) you will
+be shown a screen containing the current <b>fields string</b> followed by names
+and descriptions for all fields.
+<p>
+Here is a sample<b> fields string</b> from one of top&#146;s four windows/field
+groups and an explanation of the conventions used:
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=3%>
+-
+</td><td>
+Sample fields string:
+<br />
+   <i>ANOPQRSTUVXbcdefgjlmyzWHIK</i>
+</td></tr>
+<tr valign="top"><td width=3%>
+-
+</td><td>
+The order of displayed fields corresponds to the order of the letters
+in that string.
+</td></tr>
+<tr valign="top"><td width=3%>
+-
+</td><td>
+If the letter is<i> upper case</i> the corresponding field itself will
+then be shown as part of the task display (screen width permitting).
+This will also be indicated by a leading asterisk (&#146;*&#146;), as in this excerpt:
+<br />
+    ...
+<br />
+    <b>* K: %CPU       = CPU usage
+<br />
+    </b>  l: TIME       = CPU Time
+<br />
+      m: TIME+      = CPU Time, hundredths
+<br />
+    <b>* N: %MEM       = Memory usage (RES)
+<br />
+    </b><b>* O: VIRT       = Virtual Image (kb)
+<br />
+    </b>...
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>Fields select</b> screen  <b>-- </b> the &#146;f&#146; interactive command </td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+You<i> toggle</i> the<b> display</b> of a field by simply pressing the
+corresponding letter.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>Order fields</b> screen  <b>-- </b> the &#146;o&#146; interactive command </td></tr><tr valign="top"><td width=3%>&nbsp;</td><td>
+You<i> move</i> a field to the<b> left</b> by pressing the corresponding<b>
+upper case</b> letter and to the<b> right</b> with the<b> lower case</b>
+letter.
+<p>
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">3. INTERACTIVE Commands</h1>
+Listed below is a brief index of commands within categories.
+Some commands appear more than once  <b>-- </b> their meaning or scope may vary
+depending on the context in which they are issued.
+<p>
+  3a.<i> GLOBAL_Commands</i>
+<br />
+        &lt;Ret/Sp&gt; ?, =, A, B, d, G, h, I, k, q, r, s, W, Z
+<br />
+  3b.<i> SUMMARY_Area_Commands</i>
+<br />
+        l, m, t, 1
+<br />
+  3c.<i> TASK_Area_Commands</i>
+<br />
+        Appearance:  b, x, y, z
+<br />
+        Content:     c, f, H, o, S, u
+<br />
+        Size:        #, i, n
+<br />
+        Sorting:     &lt;, &gt;, F, O, R
+<br />
+  3d.<i> COLOR_Mapping</i>
+<br />
+        &lt;Ret&gt;, a, B, b, H, M, q, S, T, w, z, 0 - 7
+<br />
+  4b.<i> COMMANDS_for_Windows</i>
+<br />
+        -, _, =, +, A, a, G, g, w
+<p>
+<h2><i>3a. GLOBAL Commands</i></h2>
+The global interactive commands are<b> always</b> available in both full-screen mode and alternate-display mode.
+However, some of these interactive commands are<b> not available</b> when running
+in &#146;Secure mode&#146;.
+<p>
+If you wish to know in advance whether or not your top has been secured,
+simply ask for help and view the system summary on the second line.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+  lt;<b>Enter</b>&gt; or &lt;<b>Space</b>&gt; :<i>Refresh_Display</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+These commands do nothing, they are simply ignored.
+However, they will awaken top and following receipt of any input
+the entire display will be repainted.
+<p>
+Use either of these keys if you have a large delay interval and wish to
+see current status,
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>?</b>&#39; or &#39;<b>h</b>&#39; :<i>Help</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+There are two help levels available.
+The first will provide a reminder of all the basic interactive commands.
+If top is<i> secured</i>, that screen will be abbreviated.
+<p>
+Typing &#146;h&#146; or &#146;?&#146; on that help screen will take you to help for those interactive commands
+applicable to alternate-display mode.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>=</b>&#39; :<i>Exit_Task_Limits</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+Removes restrictions on which tasks are shown.
+This command will reverse any &#146;i&#146; (idle tasks) and &#146;n&#146; (max tasks) commands
+that might be active.
+It also provides for an &#146;exit&#146; from PID monitoring.
+See the &#146;-p&#146; command-line option for a discussion of PID monitoring.
+<p>
+When operating in alternate-display mode this command has a slightly broader meaning.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>A</b>&#39; :<i>Alternate_Display_Mode_toggle</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+This command will switch between full-screen mode and alternate-display mode.
+See topic 4. ALTERNATE-DISPLAY Mode and the &#146;G&#146; interactive command for insight into
+&#39;current&#146; windows and field groups.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>B</b>&#39; :<i>Bold_Disable/Enable_toggle</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+This command will influence use of the &#146;bold&#146; terminfo capability and
+alters<b> both</b> the summary area and task area for the &#39;current&#146; window.
+While it is intended primarily for use with dumb terminals, it can be
+applied anytime.
+<p>
+<b>Note</b>: When this toggle is <i>On</i> and top is operating in monochrome mode,
+the<b> entire display</b> will appear as normal text.
+Thus, unless the &#146;x&#146; and/or &#146;y&#146; toggles are using reverse for emphasis,
+there will be no visual confirmation that they are even on.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+* &#39;<b>d</b>&#39; or &#39;<b>s</b>&#39; :<i>Change_Delay_Time_interval</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+You will be prompted to enter the delay time, in seconds, between
+display updates.
+<p>
+Fractional seconds are honored, but a negative number is not allowed.
+Entering 0 causes (nearly) continuous updates, with an unsatisfactory
+display as the system and tty driver try to keep up with top&#146;s demands.
+The delay value is inversely proportional to system loading,
+so set it with care.
+<p>
+If at any time you wish to know the current delay time, simply ask for help
+and view the system summary on the second line.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>G</b>&#39; :<i>Choose_Another_Window/Field_Group</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+You will be prompted to enter a number between 1 and 4 designating the
+window/field group which should be made the &#39;current&#146; window.
+You will soon grow comfortable with these 4 windows, especially after
+experimenting with alternate-display mode.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>I</b>&#39; :<i>Irix/Solaris_Mode_toggle</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+When operating in &#146;Solaris mode&#146; (&#146;I&#146; toggled <i>Off</i>), a task&#146;s cpu usage
+will be divided by the total number of CPUs.
+After issuing this command, you&#146;ll be informed of the new state of this toggle.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>u</b>&#39; :<i>select a user</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+You will be prompted for a UID or username. Only processes
+belonging to the selected user will be displayed. This option
+matches on the effective UID.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>U</b>&#39; :<i>select a user</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+You will be prompted for a UID or username. Only processes
+belonging to the selected user will be displayed. This option
+matches on the real, effective, saved, and filesystem UID.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+* &#39;<b>k</b>&#39; :<i>Kill_a_task</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+You will be prompted for a PID and then the signal to send.
+The default signal, as reflected in the prompt, is SIGTERM.
+However, you can send any signal, via number or name.
+<p>
+If you wish to abort the kill process, do one of the following
+depending on your progress:
+<br />
+   1) at the pid prompt, just press &lt;Enter&gt;
+<br />
+   2) at the signal prompt, type 0
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>q</b>&#39; :<i>Quit</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+* &#39;<b>r</b>&#39; :<i>Renice_a_Task</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+You will be prompted for a PID and then the value to nice it to.
+Entering a positive value will cause a process to lose priority.
+Conversely, a negative value will cause a process to be viewed more
+favorably by the kernel.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>W</b>&#39; :<i>Write_the_Configuration_File</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+This will save all of your options and toggles plus the current
+display mode and delay time.
+By issuing this command just before quitting top, you will be able restart
+later in exactly that same state.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>Z</b>&#39; :<i>Change_Color_Mapping
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+This key will take you to a separate screen where you can change the
+colors for the &#39;current&#146; window, or for all windows.
+For details regarding this interactive command see topic 3d. COLOR Mapping.
+<p>
+</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=3%>
+*
+</td><td>
+The commands shown with an asterisk (&#146;*&#146;) are not available in &#146;Secure mode&#146;,
+nor will they be shown on the level-1 help screen.
+<p>
+</td></tr>
+</table>
+<h2><i>3b. SUMMARY Area Commands</i></h2>
+The summary area interactive commands are</i><b> always available</b> in both full-screen mode and alternate-display mode.
+They affect the beginning lines of your display and will determine the position
+of messages and prompts.
+<p>
+These commands always impact just the &#39;current&#146; window/field group.
+See topic 4. ALTERNATE-DISPLAY Mode and the &#146;G&#146; interactive command for insight into
+&#39;current&#146; windows and field groups.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>l</b>&#39; :<i>Toggle_Load_Average/Uptime</i>  <b>-- </b> On/Off
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+This is also the line containing the program name (possibly an alias) when
+operating in full-screen mode or the &#39;current&#146; window name when operating in alternate-display mode.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>m</b>&#39; :<i>Toggle_Memory/Swap_Usage</i>  <b>-- </b> On/Off
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+This command affects two summary area lines.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>t</b>&#39; :<i>Toggle_Task/Cpu_States</i>  <b>-- </b> On/Off
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+This command affects from 2 to many summary area lines, depending on the state
+of the &#146;1&#146; toggle and whether or not top is running under true SMP.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>1</b>&#39; :<i>Toggle_Single/Separate_Cpu_States</i>  <b>-- </b> On/Off
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+This command affects how the &#146;t&#146; command&#146;s Cpu States portion is shown.
+Although this toggle exists primarily to serve massively-parallel SMP machines,
+it is not restricted to solely SMP environments.
+<p>
+When you see &#146;Cpu(s):&#146; in the summary area, the &#146;1&#146; toggle is <i>On</i> and all
+cpu information is gathered in a single line.
+Otherwise, each cpu is displayed separately as: &#146;Cpu0, Cpu1, ...&#146;
+<p>
+</td></tr>
+<!-- PP ends table -->
+</table>
+<b>Note</b>: If the entire summary area has been toggled <i>Off</i> for any window, you would be left
+with just the<b> message line</b>.
+In that way, you will have maximized available task rows but (temporarily)
+sacrificed the program name in full-screen mode or the &#39;current&#146; window name when in alternate-display mode.
+<p>
+<h2><i>3c. TASK Area Commands</i></h2>
+The task area interactive commands are<b> always</b> available in full-screen mode.
+<p>
+The task area interactive commands are<b> never available</b> in alternate-display mode<i> if</i> the &#39;current&#146; window&#146;s
+task display has been toggled <i>Off</i> (see topic 4. ALTERNATE-DISPLAY Mode).
+<p>
+<p>
+<b>APPEARANCE</b> of task window <!-- ignored unsupported tag .in -->
+<!-- Need break --><br />
+The following commands will also be influenced by the state of the
+global &#146;B&#146; (bold disable) toggle.
+<!-- ignored unsupported tag .in -->
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>b</b>&#39; :<i>Bold/Reverse_toggle</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+This command will impact how the &#146;x&#146; and &#146;y&#146; toggles are displayed.
+Further, it will only be available when at least one of those toggles is <i>On</i>.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>x</b>&#39; :<i>Column_Highlight_toggle</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+Changes highlighting for the current sort field.
+You probably don&#146;t need a constant visual reminder of the sort field and
+top hopes that you always run with &#146;column highlight&#146; <i>Off</i>, due to the cost
+in path-length.
+<p>
+If you forget which field is being sorted this command can serve as a quick
+visual reminder.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>y</b>&#39; :<i>Row_Highlight_toggle</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+Changes highlighting for "running" tasks.
+For additional insight into this task state, see topic 2a. DESCRIPTIONS of Fields,
+Process Status.
+<p>
+Use of this provision provides important insight into your system&#146;s health.
+The only costs will be a few additional tty escape sequences.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>z</b>&#39; :<i>Color/Monochrome_toggle</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+Switches the &#39;current&#146; window between your last used color scheme and the older form
+of black-on-white or white-on-black.
+This command will alter<b> both</b> the summary area and task area but does not affect the
+state of the &#146;x&#146;, &#146;y&#146; or &#146;b&#146; toggles.
+<p>
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+<b>CONTENT</b> of task window </td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>c</b>&#39; :<i>Command_Line/Program_Name_toggle</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+This command will be honored whether or not the &#146;Command&#146; column
+is currently visible.
+Later, should that field come into view, the change you applied will be seen.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>f</b>&#39; and &#39;<b>o</b>&#39; :<i>Fields_select</i> or <i>Order_fields</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+These keys display separate screens where you can change which
+fields are displayed and their order.
+For additional information on these interactive commands
+see topic 2b. SELECTING and ORDERING Columns.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>H</b>&#39; :<i>Threads_toggle</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+When this toggle is <i>On</i>, all individual threads will be displayed.  Otherwise, top displays a summation of all threads in a process.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>S</b>&#39; :<i>Cumulative_Time_Mode_toggle</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+When &#146;Cumulative mode&#146; is <i>On</i>, each process is listed with the cpu
+time that it and its dead children have used.
+<p>
+When <i>Off</i>, programs that fork into many separate tasks will appear
+less demanding.
+For programs like &#146;init&#146; or a shell this is appropriate but for others,
+like compilers, perhaps not.
+Experiment with two task windows sharing the same sort field but with different &#146;S&#146;
+states and see which representation you prefer.
+<p>
+After issuing this command, you&#146;ll be informed of the new state of this toggle.
+If you wish to know in advance whether or not &#146;Cumulative mode&#146; is in
+effect, simply ask for help and view the window summary on the second line.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>u</b>&#39; :<i>Show_Specific_User_Only</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+You will be prompted to enter the name of the user to display.
+Thereafter, in that task window only matching User ID&#146;s will be shown, or possibly
+no tasks will be shown.
+<p>
+Later, if you wish to monitor all tasks again, re-issue this command but
+just press &lt;Enter&gt; at the prompt, without providing a name.
+<p>
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+<b>SIZE</b> of task window </td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>i</b>&#39; :<i>Idle_Processes_toggle</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+Displays all tasks or just active tasks.
+When this toggle is <i>Off</i>, idled or zombied processes will not be displayed.
+<p>
+If this command is applied to the last task display when in alternate-display mode, then it will not
+affect the window&#146;s size, as all prior task displays will have already been painted.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>n</b>&#39; or &#39;#&#39; :<i>Set_Maximum_Tasks</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+You will be prompted to enter the number of tasks to display.
+The lessor of your number and available screen rows will be used.
+<p>
+When used in alternate-display mode, this is the command that gives you precise control over
+the size of each currently visible task display, except for the very last.
+It will not affect the last window&#146;s size, as all prior task displays will have
+already been painted.
+<p>
+<b>Note</b>: If you wish to increase the size of the last visible task display when in alternate-display mode,
+simply decrease the size of the task display(s) above it.
+<p>
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+<b>SORTING</b> of task window <!-- ignored unsupported tag .in -->
+<!-- Need break --><br />
+For compatibility, this top supports most of the former top sort keys.
+Since this is primarily a service to former top users, these commands do
+not appear on any help screen.
+<br />
+   command   sorted field                  supported
+<br />
+     A         start time (non-display)      No
+<br />
+     M         %MEM                          Yes
+<br />
+     N         PID                           Yes
+<br />
+     P         %CPU                          Yes
+<br />
+     T         TIME+                         Yes
+<p>
+Before using any of the following sort provisions, top suggests that you
+temporarily turn on column highlighting using the &#146;x&#146; interactive command.
+That will help ensure that the actual sort environment matches your intent.
+<p>
+The following interactive commands will<b> only</b> be honored when the
+current sort field is<b> visible</b>.
+The sort field might<i> not</i> be visible because:
+<br />
+     1) there is insufficient<i> Screen Width</i>
+<br />
+     2) the &#146;f&#146; interactive command turned it <i>Off</i>
+<!-- ignored unsupported tag .in -->
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>&lt;</b>&#39; :<i>Move_Sort_Field_Left</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+Moves the sort column to the left unless the current sort field is
+the first field being displayed.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>&gt;</b>&#39; :<i>Move_Sort_Field_Right</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+Moves the sort column to the right unless the current sort field is
+the last field being displayed.
+<p>
+</td></tr>
+<!-- Found tag TP -->
+<tr><td colspan="2">
+<!-- ignored unsupported tag .in -->
+The following interactive commands will<b> always</b> be honored whether or not
+the current sort field is visible.
+<!-- ignored unsupported tag .in -->
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>F</b>&#39; or &#39;<b>O</b>&#39; :<i>Select_Sort_Field</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+These keys display a separate screen where you can change which field
+is used as the sort column.
+<p>
+If a field is selected which was not previously being displayed, it will
+be forced <i>On</i> when you return to the top display.
+However, depending upon your screen width and the order of your fields,
+this sort field may not be displayable.
+<p>
+This interactive command can be a convenient way to simply verify the current sort field,
+when running top with column highlighting turned <i>Off</i>.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>R</b>&#39; :<i>Reverse/Normal_Sort_Field_toggle</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+Using this interactive command you can alternate between high-to-low and low-to-high sorts.
+<p>
+</td></tr>
+<!-- PP ends table -->
+</table>
+<!-- ignored unsupported tag .in -->
+<b>Note</b>: Field sorting uses internal values, not those in column display.
+Thus, the TTY and WCHAN fields will violate strict ASCII collating sequence.
+<!-- ignored unsupported tag .in -->
+<p>
+<h2><i>3d. COLOR Mapping</i></h2>
+When you issue the &#146;Z&#146; interactive command, you will be presented with a separate screen.
+That screen can be used to change the colors in just the &#39;current&#146; window or
+in all four windows before returning to the top display.
+<p>
+<p>
+<b>Available interactive commands</b> <br />
+    <b>4</b> upper case letters to select a<b> target</b>
+<br />
+    <b>8</b> numbers to select a<b> color</b>
+<br />
+    normal toggles available
+<br />
+        &#146;B&#146;       :bold disable/enable
+<br />
+        &#146;b&#146;       :running tasks "bold"/reverse
+<br />
+        &#146;z&#146;       :color/mono
+<br />
+    other commands available
+<br />
+        &#146;a&#146;/&#146;w&#146;   :apply, then go to next/prior
+<br />
+        &lt;Enter&gt;   :apply and exit
+<br />
+        &#146;q&#146;       :abandon current changes and exit
+<p>
+If your use &#146;a&#146; or &#146;w&#146; to cycle the targeted window, you will
+have applied the color scheme that was displayed when you left that window.
+You can, of course, easily return to any window and reapply different
+colors or turn colors <i>Off</i> completely with the &#146;z&#146; toggle.
+<p>
+The Color Mapping screen can also be used to change the &#39;current&#146; window/field group
+in either full-screen mode or alternate-display mode.
+Whatever was targeted when &#146;q&#146; or &lt;Enter&gt; was pressed will be made current
+as you return to the top display.
+<p>
+<p>
+<h1 class="manpages">4. ALTERNATE-DISPLAY Mode</h1>
+<h2><i>4a. WINDOWS Overview</i></h2>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>Field Groups/Windows</b>: </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+In full-screen mode there is a single window represented by the entire screen.
+That single window can still be changed to display 1 of 4 different<b> field
+groups</b> (see the &#146;G&#146; interactive command, repeated below).
+Each of the 4 field groups has a unique separately configurable<b> summary area</b>
+and its own configurable<b> task area</b>.
+<p>
+In alternate-display mode, those 4 underlying field groups can now be made visible
+simultaneously, or can be turned <i>Off</i> individually at your command.
+<p>
+The summary area will always exist, even if it&#146;s only the message line.
+At any given time only<i> one</i> summary area can be displayed.
+However, depending on your commands, there could be from<i> zero</i>
+to<i> four</i> separate task displays currently showing on the screen.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+<b>Current Window</b>: </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+The &#39;current&#146; window is the window associated with the summary area and the window to which
+task related commands are always directed.
+Since in alternate-display mode you can toggle the task display <i>Off</i>, some commands might be
+restricted for the &#39;current&#146; window.
+<p>
+A further complication arises when you have toggled the first summary area
+line <i>Off</i>.
+With the loss of the window name (the &#146;l&#146; toggled line), you&#146;ll not easily
+know what window is the &#39;current&#146; window.
+<p>
+</td></tr>
+</table>
+<h2><i>4b. COMMANDS for Windows</i></h2>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>-</b>&#39; and &#39;<b>_</b>&#39; :<i>Show/Hide_Window(s)_toggles</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+The &#146;-&#146; key turns the &#39;current&#146; window&#146;s task display <i>On</i> and <i>Off</i>.
+When <i>On</i>, that task area will show a minimum of the columns header you&#146;ve
+established with the &#146;f&#146; and &#146;o&#146; commands.
+It will also reflect any other task area options/toggles you&#146;ve applied yielding
+zero or more tasks.
+<p>
+The &#146;_&#146; key does the same for all task displays.
+In other words, it switches between the currently visible task display(s) and any
+task display(s) you had toggled <i>Off</i>.
+If all 4 task displays are currently visible, this interactive command will leave the summary area
+as the only display element.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+* &#39;<b>=</b>&#39; and &#39;<b>+</b>&#39; :<i>Equalize_(re-balance)_Window(s)</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+The &#146;=&#146; key forces the &#39;current&#146; window&#146;s task display to be visible.
+It also reverses any &#146;i&#146; (idle tasks) and &#146;n&#146; (max tasks) commands that might
+be active.
+<p>
+The &#146;+&#146; key does the same for all windows.
+The four task displays will reappear, evenly balanced.
+They will also have retained any customizations you had previously applied,
+except for the &#146;i&#146; (idle tasks) and &#146;n&#146; (max tasks) commands.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+* &#39;<b>A</b>&#39; :<i>Alternate_Display_Mode_toggle</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+This command will switch between full-screen mode and alternate-display mode.
+<p>
+The first time you issue this command, all four task displays will be shown.
+Thereafter when you switch modes, you will see only the task display(s) you&#146;ve
+chosen to make visible.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+* &#39;<b>a</b>&#39; and &#39;<b>w</b>&#39; :<i>Next_Window_Forward/Backward</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+This will change the &#39;current&#146; window, which in turn changes the window to which
+commands are directed.
+These keys act in a circular fashion so you can reach any desired &#39;current&#146; window
+using either key.
+<p>
+Assuming the window name is visible (you have not toggled &#146;l&#146; <i>Off</i>),
+whenever the &#39;current&#146; window name loses its emphasis/color, that&#146;s a reminder
+the task display is <i>Off</i> and many commands will be restricted.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+* &#39;<b>G</b>&#39; :<i>Choose_Another_Window/Field_Group</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+You will be prompted to enter a number between 1 and 4 designating the
+window/field group which should be made the &#39;current&#146; window.
+<p>
+In full-screen mode, this command is necessary to alter the &#39;current&#146; window.
+In alternate-display mode, it is simply a less convenient alternative to the &#146;a&#146; and &#146;w&#146;
+commands.
+<p>
+</td></tr>
+<tr valign="top"><td colspan="2">
+  &#39;<b>g</b>&#39; :<i>Change_Window/Field_Group_Name</i>
+</td></tr><tr valign="top"><td width=7%>&nbsp;</td><td>
+You will be prompted for a new name to be applied to the &#39;current&#146; window.
+It does not require that the window name be visible
+(the &#146;l&#146; toggle to be <i>On</i>).
+<p>
+</td></tr>
+</table>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=3%>
+*
+</td><td>
+The interactive commands shown with an asterisk (&#146;*&#146;) have use beyond alternate-display mode.
+<br />
+    &#39;=&#146;, &#146;A&#146;, &#146;G&#146;  are always available
+<br />
+    &#39;a&#146;, &#146;w&#146;       act the same when color mapping
+<p>
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">5. FILES</h1>
+<h2><i>5a. SYSTEM Configuration File</i></h2>
+The presence of this file will influence which version of the &#146;help&#146; screen
+is shown to an ordinary user.
+More importantly, it will limit what ordinary users are allowed
+to do when top is running.
+They will not be able to issue the following commands.
+<br />
+   k         Kill a task
+<br />
+   r         Renice a task
+<br />
+   d or s    Change delay/sleep interval
+<p>
+The system configuration file is<b> not</b> created by top.
+Rather, you create this file manually and place it in the <i>/etc</i>
+directory.
+Its name must be &#146;toprc&#146; and must have no leading &#146;.&#146; (period).
+It must have only two lines.
+<p>
+Here is an example of the contents of<i> /etc/toprc</i>:
+<br />
+   s         # line 1: &#146;secure&#146; mode switch
+<br />
+   5.0       # line 2: &#146;delay&#146;  interval in seconds
+<p>
+<h2><i>5b. PERSONAL Configuration File</i></h2>
+This file is written as &#146;$HOME/.your-name-4-top&#146; + &#146;rc&#146;.
+Use the &#146;W&#146; interactive command to create it or update it.
+<p>
+Here is the general layout:
+<br />
+   global    # line 1: the program name/alias notation
+<br />
+     "       # line 2: id,altscr,irixps,delay,curwin
+<br />
+   per ea    # line a: winname,fieldscur
+<br />
+   window    # line b: winflags,sortindx,maxtasks
+<br />
+     "       # line c: summclr,msgsclr,headclr,taskclr
+<p>
+If the $HOME variable is not present, top will try to write the
+personal configuration file to the current directory, subject to permissions.
+<p>
+<p>
+<h1 class="manpages">6. STUPID TRICKS Sampler</h1>
+Many of these &#146;tricks&#146; work best when you give top a scheduling boost.
+So plan on starting him with a nice value of -10, assuming you&#146;ve got
+the authority.
+<p>
+<h2><i>6a. Kernel Magic</i></h2>
+For these stupid tricks, top needs full-screen mode.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=5%>
+-*-
+</td><td>
+The user interface, through prompts and help, intentionally implies
+that the delay interval is limited to tenths of a second.
+However, you&#146;re free to set any desired delay.
+If you want to see Linux at his scheduling best, try a delay of .09
+seconds or less.
+<p>
+For this experiment, under x-windows open an xterm and maximize it.
+Then do the following:
+<br />
+  . provide a scheduling boost and tiny delay via:
+<br />
+      nice -n -10 top -d.09
+<br />
+  . keep sorted column highlighting <i>Off</i> to minimize
+<br />
+    path length
+<br />
+  . turn <i>On</i> reverse row highlighting for emphasis
+<br />
+  . try various sort columns (TIME/MEM work well),
+<br />
+    and normal or reverse sorts to bring the most
+<br />
+    active processes into view
+<p>
+What you&#146;ll see is a very busy Linux doing what he&#146;s always done for you,
+but there was no program available to illustrate this.
+<p>
+</td></tr>
+<tr valign="top"><td width=5%>
+-*-
+</td><td>
+Under an xterm using &#146;white-on-black&#146; colors, try setting top&#146;s task color
+to black and be sure that task highlighting is set to bold, not reverse.
+Then set the delay interval to around .3 seconds.
+<p>
+After bringing the most active processes into view, what you&#146;ll see are
+the ghostly images of just the currently running tasks.
+<p>
+</td></tr>
+<tr valign="top"><td width=5%>
+-*-
+</td><td>
+Delete the existing rcfile, or create a new symlink.
+Start this new version then type &#146;T&#146; (a secret key, see topic 3c. TASK Area
+Commands, Sorting) followed by &#146;W&#146; and &#146;q&#146;.
+Finally, restart the program with -d0 (zero delay).
+<p>
+Your display will be refreshed at three times the rate of the former top,
+a 300% speed advantage.
+As top climbs the TIME ladder, be as patient as you can while speculating
+on whether or not top will ever reach the top.
+<p>
+</td></tr>
+</table>
+<h2><i>6b. Bouncing Windows</i></h2>
+For these stupid tricks, top needs alternate-display mode.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=5%>
+-*-
+</td><td>
+With 3 or 4 task displays visible, pick any window other than the last
+and turn idle processes <i>Off</i>.
+Depending on where you applied &#146;i&#146;, sometimes several task displays are bouncing and
+sometimes it&#146;s like an accordion, as top tries his best to allocate space.
+<p>
+</td></tr>
+<tr valign="top"><td width=5%>
+-*-
+</td><td>
+Set each window&#146;s summary lines differently: one with no memory; another with
+no states; maybe one with nothing at all, just the message line.
+Then hold down &#146;a&#146; or &#146;w&#146; and watch a variation on bouncing windows  <b>-- </b>
+hopping windows.
+<p>
+</td></tr>
+<tr valign="top"><td width=5%>
+-*-
+</td><td>
+Display all 4 windows and for each, in turn, set idle processes to <i>Off</i>.
+You&#146;ve just entered the "extreme bounce" zone.
+<p>
+</td></tr>
+</table>
+<h2><i>6c. The Big Bird Window</i></h2>
+This stupid trick also requires alternate-display mode.
+<p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td width=5%>
+-*-
+</td><td>
+Display all 4 windows and make sure that 1:Def is the &#39;current&#146; window.
+Then, keep increasing window size until the all the other task displays
+are "pushed out of the nest".
+<p>
+When they&#146;ve all been displaced, toggle between all visible/invisible windows.
+Then ponder this:
+<!-- Need break --><br />
+   is top fibbing or telling honestly your imposed truth?
+<p>
+<p>
+</td></tr>
+</table>
+<h1 class="manpages">7. BUGS</h1>
+Send bug reports to:
+<br />
+   Albert D&#46; Cahalan, &lt;<a href="mailto:albert@users.sf.net">albert@users.sf.net</a>&gt;
+<p>
+The top command calculates Cpu(s) by looking at the change in CPU time values
+between samples. When you first run it, it has no previous sample to compare
+to, so these initial values are the percentages since boot. It means you need
+at least two loops or you have to ignore summary output from the first loop.
+This is problem for example for batch mode. There is a possible workaround if
+you define the CPULOOP=1 environment variable. The top command will be run one
+extra hidden loop for CPU data before standard output.
+<p>
+<h1 class="manpages">8. HISTORY Former top</h1>
+The original top was written by Roger Binns,
+based on Branko Lankester&#146;s &lt;<a href="mailto:lankeste@fwi.uva.nl">lankeste@fwi.uva.nl</a>&gt; ps program.
+<p>
+Robert Nation &lt;<a href="mailto:nation@rocket.sanders.lockheed.com">nation@rocket.sanders.lockheed.com</a>&gt;
+adapted it for the proc file system.
+<p>
+Helmut Geyer &lt;<a href="mailto:Helmut.Geyer@iwr.uni-heidelberg.de">Helmut.Geyer@iwr.uni-heidelberg.de</a>&gt;
+added support for configurable fields.
+<p>
+Plus many other individuals contributed over the years.
+<p>
+<p>
+<h1 class="manpages">9. AUTHOR</h1>
+This entirely new and enhanced replacement was written by:
+<br />
+   Jim / James C. Warner, &lt;<a href="mailto:warnerjc@worldnet.att.net">warnerjc@worldnet.att.net</a>&gt;
+<p>
+With invaluable help from:
+<br />
+   Albert D&#46; Cahalan, &lt;<a href="mailto:albert@users.sf.net">albert@users.sf.net</a>&gt;
+<br />
+   Craig Small, &lt;<a href="mailto:csmall@small.dropbear.id.au">csmall@small.dropbear.id.au</a>&gt;
+<p>
+<p>
+<h1 class="manpages">10. SEE ALSO</h1>
+<b>free</b>(1),
+<b>ps</b>(1),
+<b>uptime</b>(1),
+<b>atop</b>(1),
+<b>slabtop</b>(1),
+<b>vmstat</b>(8),
+<b>w</b>(1).
+<p>
+<p>
+<p>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversiona186.html?tutorial=unix_commands&amp;file=top.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_commands/top.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:05:32 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

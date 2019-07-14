@@ -1,0 +1,428 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.tutorialspoint.com/unix_system_calls/futex.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:05 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>futex() - Unix, Linux System Call</title>
+<meta name="Description" Content="futex() - Unix, Linux System Calls Manual Pages (Manpages) ,  Learning fundamentals of UNIX in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn  and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="Keywords" content="Unix, Tutorials, Learning, Operating, System, OS, Beginners, Basics, System Calls, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../tp.css" />
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<a name="top"></a>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="../index-2.html"><img src="../images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="search">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix for Beginners</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/index.html">Unix - Home</a></li>
+<li><a class="left" target="_top" href="../unix/unix-getting-started.html">Unix - Getting Started</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-management.html">Unix - File Management</a></li>
+<li><a class="left" target="_top" href="../unix/unix-directories.html">Unix - Directories</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-permission.html">Unix - File Permission</a></li>
+<li><a class="left" target="_top" href="../unix/unix-environment.html">Unix - Environment</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-utilities.html">Unix - Basic Utilities</a></li>
+<li><a class="left" target="_top" href="../unix/unix-pipes-filters.html">Unix - Pipes &amp; Filters</a></li>
+<li><a class="left" target="_top" href="../unix/unix-processes.html">Unix - Processes</a></li>
+<li><a class="left" target="_top" href="../unix/unix-communication.html">Unix - Communication</a></li>
+<li><a class="left" target="_top" href="../unix/unix-vi-editor.html">Unix - The vi Editor</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Shell Programming</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-shell.html">Unix - What is Shell?</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-variables.html">Unix - Using Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-special-variables.html">Unix - Special Variables</a></li>
+<li><a class="left" target="_top" href="../unix/unix-using-arrays.html">Unix - Using Arrays</a></li>
+<li><a class="left" target="_top" href="../unix/unix-basic-operators.html">Unix - Basic Operators</a></li>
+<li><a class="left" target="_top" href="../unix/unix-decision-making.html">Unix - Decision Making</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-loops.html">Unix - Shell Loops</a></li>
+<li><a class="left" target="_top" href="../unix/unix-loop-control.html">Unix - Loop Control</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-substitutions.html">Unix - Shell Substitutions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quoting-mechanisms.html">Unix - Quoting Mechanisms</a></li>
+<li><a class="left" target="_top" href="../unix/unix-io-redirections.html">Unix - IO Redirections</a></li>
+<li><a class="left" target="_top" href="../unix/unix-shell-functions.html">Unix - Shell Functions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-manpage-help.html">Unix - Manpage Help</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Unix</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-regular-expressions.html">Unix - Regular Expressions</a></li>
+<li><a class="left" target="_top" href="../unix/unix-file-system.html">Unix - File System Basics</a></li>
+<li><a class="left" target="_top" href="../unix/unix-user-administration.html">Unix - User Administration</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-performance.html">Unix - System Performance</a></li>
+<li><a class="left" target="_top" href="../unix/unix-system-logging.html">Unix - System Logging</a></li>
+<li><a class="left" target="_top" href="../unix/unix-signals-traps.html">Unix - Signals and Traps</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful References</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-commands.html">Unix - Useful Commands</a></li>
+<li><a class="left" target="_top" href="../unix/unix-quick-guide.html">Unix - Quick Guide</a></li>
+<li><a class="left" target="_top" href="../unix/unix-builtin-functions.html">Unix - Builtin Functions</a></li>
+<li><a class="left" target="_top" href="index.html"><b>Unix - System Calls</b></a></li>
+<li><a class="left" target="_top" href="../unix_commands/index.html">Unix - Commands List</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Unix Useful Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../unix/unix-useful-resources.html">Unix Useful Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2013 TutorialsPoint.COM </small>
+</td>
+<td valign="top">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../index-2.html">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../references.html">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../forums/index.html">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="../about/index.html">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle" cellpadding="5" cellspacing="0">
+<tr>
+<td>
+<!-- PRINTING STARTS HERE -->
+<h1>futex() - Unix, Linux System Call</h1>
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" rel="nofollow" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="../images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+<script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<br />
+<br />
+<hr/><div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+<hr />
+<h1 class="manpages">NAME</h1>
+<p>futex - Fast Userspace Locking system call</p>
+<h1 class="manpages">SYNOPSIS</h1>
+<table class="src" cellpadding="5" cellspacing="5">
+<tr><td><pre>
+<p>
+<b>#include &lt;linux/futex.h&gt;</b> 
+<p>
+<b>#include &lt;sys/time.h&gt;</b> 
+<p>
+<b>int futex(int *</b><i>uaddr</i><b>, int </b><i>op</i><b>, int </b><i>val</i>, const struct timespec * timeout ,
+<b>          int *</b><i>uaddr2</i><b>, int </b><i>val3</i><b>);</b> 
+</pre></td></tr>
+</table>
+<h1 class="manpages">DESCRIPTION</h1>
+<p>The <b>futex</b>() system call provides a method for
+a program to wait for a value at a given address to change, and a
+method to wake up anyone waiting on a particular address (while the
+addresses for the same memory in separate processes may not be
+equal, the kernel maps them internally so the same memory mapped in
+different locations will correspond for
+<b>futex</b>() calls).  It is typically used to
+implement the contended case of a lock in shared memory, as
+described in
+<b>futex</b>(7).</p>
+<p>When a <b>futex</b>(7)
+operation did not finish uncontended in userspace, a call needs to be made
+to the kernel to arbitrate. Arbitration can either mean putting the calling
+process to sleep or, conversely, waking a waiting process.</p>
+<p>Callers of this function are expected to adhere to the semantics as set out in 
+<b>futex</b>(7). As these semantics involve writing non-portable assembly instructions, this in turn
+probably means that most users will in fact be library authors and not
+general application developers.</p>
+<p>The <i>uaddr</i> argument needs to point to an aligned integer which stores the counter.
+The operation to execute is passed via the
+<i>op</i> parameter, along with a value
+<i>val</i>.</p>
+<p>Five operations are currently defined:</p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr valign="top"><td colspan="2">
+<b>FUTEX_WAIT</b> </td></tr><tr valign="top"><td width=6%>&nbsp;</td><td>
+This operation atomically verifies that the futex address
+<i>uaddr</i> still contains the value
+<i>val</i>, and sleeps awaiting FUTEX_WAKE on this futex address. If the
+<i>timeout</i> argument is non-NULL, its contents describe the maximum
+duration of the wait, which is infinite otherwise. The arguments
+<i>uaddr2</i> and
+<i>val3</i> are ignored.
+<p>
+For
+<b>futex</b>(7),
+this call is executed if decrementing the count gave a negative value
+(indicating contention), and will sleep until another process releases
+the futex and executes the FUTEX_WAKE operation.
+</td></tr>
+<tr><td>
+<b>FUTEX_WAKE</b> </td><td>
+This operation wakes at most <i>val</i>
+processes waiting on this futex address (ie. inside FUTEX_WAIT).
+The arguments
+<i>timeout</i>, <i>uaddr2</i> and
+<i>val3</i> are ignored.
+<p>
+For
+<b>futex</b>(7),
+this is executed if incrementing
+the count showed that there were waiters, once the futex value has been set
+to 1 (indicating that it is available).
+</td></tr>
+<tr><td>
+<b>FUTEX_FD</b> </td><td>
+To support asynchronous wakeups, this operation associates a file descriptor
+with a futex.
+If another process executes a FUTEX_WAKE, the process will receive the signal
+number that was passed in
+<i>val</i>. The calling process must close the returned file descriptor after use.
+The arguments
+<i>timeout</i>, <i>uaddr2</i> and
+<i>val3</i> are ignored.
+<p>
+To prevent race conditions, the caller should test if the futex has been upped
+after FUTEX_FD returns.
+</td></tr>
+<tr><td>
+<b>FUTEX_REQUEUE</b> (since Linux 2.5.70) </td><td>
+This operation was introduced in order to avoid a "thundering herd" effect
+when FUTEX_WAKE is used and all processes woken up need to acquire another
+futex. This call wakes up
+<i>val</i> processes, and requeues all other waiters on the futex at address
+<i>uaddr2</i>. The arguments
+<i>timeout</i> and
+<i>val3</i> are ignored.
+</td></tr>
+<tr><td>
+<b>FUTEX_CMP_REQUEUE</b> (since Linux 2.6.7) </td><td>
+There was a race in the intended use of FUTEX_REQUEUE, so
+FUTEX_CMP_REQUEUE was introduced. This is similar to FUTEX_REQUEUE,
+but first checks whether the location
+<i>uaddr</i> still contains the value
+<i>val3</i>. If not, an error EAGAIN is returned.
+The argument
+<i>timeout</i> is ignored.
+</td></tr>
+</table>
+<h1 class="manpages">RETURN VALUE</h1>
+<p>Depending on which operation was executed, the returned value can have
+differing meanings.</p>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Tag</th><th>Description</th></tr>
+<tr><td>
+<b>FUTEX_WAIT</b> </td><td>
+Returns 0 if the process was woken by a FUTEX_WAKE call. In case of timeout,
+ETIMEDOUT is returned. If the futex was not equal to the expected value,
+the operation returns EWOULDBLOCK. Signals (or other spurious wakeups)
+cause FUTEX_WAIT to return EINTR.
+</td></tr>
+<tr><td>
+<b>FUTEX_WAKE</b> </td><td>
+Returns the number of processes woken up.
+</td></tr>
+<tr><td>
+<b>FUTEX_FD</b> </td><td>
+Returns the new file descriptor associated with the futex.
+</td></tr>
+<tr><td>
+<b>FUTEX_REQUEUE</b> </td><td>
+Returns the number of processes woken up.
+</td></tr>
+<tr><td>
+<b>FUTEX_CMP_REQUEUE</b> </td><td>
+Returns the number of processes woken up.
+</td></tr>
+</table>
+<h1 class="manpages">ERRORS</h1>
+<table class="src" cellpadding="5" cellspacing="0" border="1">
+<tr><th width="25%">Error Code</th><th>Description</th></tr>
+<tr valign="top"><td>
+<b>EACCES</b> </td><td valign="bottom">
+No read access to futex memory.
+</td></tr>
+<tr valign="top"><td>
+<b>EAGAIN</b> </td><td valign="bottom">
+FUTEX_CMP_REQUEUE found an unexpected futex value.
+(This probably indicates a race;
+use the safe FUTEX_WAKE now.)
+</td></tr>
+<tr valign="top"><td>
+<b>EFAULT</b> </td><td valign="bottom">
+Error in getting
+<i>timeout</i> information from userspace.
+</td></tr>
+<tr valign="top"><td>
+<b>EINVAL</b> </td><td valign="bottom">
+An operation was not defined or error in page alignment.
+</td></tr>
+<tr valign="top"><td>
+<b>ENFILE</b> </td><td valign="bottom">
+The system limit on the total number of open files has been reached.
+</td></tr>
+</table>
+<h1 class="manpages">NOTES</h1>
+<p>To reiterate, bare futexes are not intended as an easy to use abstraction
+for end-users. Implementors are expected to be assembly literate and to have
+read the sources of the futex userspace library referenced below.</p>
+<h1 class="manpages">VERSIONS</h1>
+<p>Initial futex support was merged in Linux 2.5.7 but with different semantics
+from what was described above. A 4-parameter system call with the semantics
+given here was introduced in Linux 2.5.40. In Linux 2.5.70 one parameter
+was added. In Linux 2.6.7 a sixth parameter was added &#151; messy, especially
+on the s390 architecture.</p>
+<h1 class="manpages">CONFORMING TO</h1>
+<p>This system call is Minux specific.</p>
+<br />
+<hr />
+<a href="index.html"><img alt="previous" border="0" src="../images/previous.gif" /></a>
+<a href="index.html"><img alt="next" border="0" src="../images/next.gif" /></a>
+<a href='../cgi-bin/printversionefc9.html?tutorial=unix_system_calls&amp;file=futex.htm' target="_blank">
+<img src="../images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisements</u>
+</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="../../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix_system_calls/futex.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:04:05 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>

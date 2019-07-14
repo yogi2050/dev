@@ -1,0 +1,508 @@
+<!doctype html> 
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/spring/calling_stored_procedure.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:06:48 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<title>SQL Stored Procedure in Spring</title>
+<link rel="shortcut icon" href="../favicon.png" type="image/x-icon" />
+<meta name="description" content="SQL Stored Procedure in Spring - Learn Java Spring Framework version 3.1.0 starting from environment setup, inversion of control (IoC), dependency injection, bean scopes, bean life cycle, inner beans, autowiring, different modules, aspect oriented programming (AOP), database access (JDBC), Transaction Management, Web MVC framework, Web Flow, Exception handling, EJB integration and Sending email etc." />
+<meta name="keywords" content="Free, Spring, Tutorials, beginners, Framework, Web Flow,  Reference, Manual, Guide, transaction, Management" />
+<base  />
+<link rel="stylesheet" type="text/css" href="../scripts/style.css" />
+<link rel="stylesheet" type="text/css" href="../scripts/prettify.css" />
+<script type="text/javascript" src="../scripts/prettify.js"></script>
+<style media="screen" type="text/css">
+/* Spring Scheme */
+#header{ 
+   background:#c1cc22 !important;
+}
+#topmenu
+{
+   background-color:#387b2c !important;
+}
+#leftcol ul.menu li.heading 
+{
+   background:#c1cc22 !important;
+   border:1px solid #387b2c !important;
+}
+#leftcol, #middlecol, #rightcol {min-height:1300px; padding:0px;}
+</style>
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+   _uacct = "UA-232293-6";
+   urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="../index-2.html">Tutorials Point Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com"/>
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == 'Search this site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site...';}"/>
+<input value="FORID:11" name="cof" type="hidden"/>
+<input type="hidden" name="ie" value="ISO-8859-1" />
+<input class="submit btn" type="image" src="../images/icon-search.png" alt="Go"/>
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="left">
+<a href="../index-2.html" target="_top">HOME </a>
+<a href="../java/index.html" target="_top">JAVA </a>
+<a href="../php/index.html" target="_top">PHP </a>
+<a href="../python/index.html" target="_top">Python </a>
+<a href="../ruby/index.html" target="_top">Ruby </a>
+<a href="../perl/index.html" target="_top">Perl </a>
+<a href="../html/index.html" target="_top">HTML </a>
+<a href="../css/index.html" target="_top">CSS </a>
+<a href="../javascript/index.html" target="_top">Javascript </a>
+<a href="../mysql/index.html" target="_top">MySQL </a>
+<a href="../cplusplus/index.html" target="_top">C++ </a>
+<a href="../unix/index.html" target="_top">UNIX </a>
+<a href="../more.html" target="_top">MORE...</a>
+</div>
+<div id="right">
+<a href="../references.html" target="_top">REFERENCES</a> |
+<a href="../forums/index.html" target="_top">FORUM</a> |
+<a href="../about/index.html" target="_top">ABOUT</a> |
+<a href="../about/contact_us.html" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="../images/spring-mini-logo.png" alt="Spring tutorial" />
+</div>
+<ul class="menu">
+<li class="heading">Spring Core Basics</li>
+<li><a target="_top" href="index.html">Home</a></li>
+<li><a target="_top" href="spring_overview.html">Overview</a></li>
+<li><a target="_top" href="spring_architecture.html">Architecture</a></li>
+<li><a target="_top" href="spring_environment_setup.html">Environment Setup</a></li>
+<li><a target="_top" href="spring_hello_world_example.html">Hello World Example</a></li>
+<li><a target="_top" href="spring_ioc_containers.html">IoC Containers</a></li>
+<li><a target="_top" href="spring_bean_definition.html">Bean Definition</a></li>
+<li><a target="_top" href="spring_bean_scopes.html">Bean Scopes</a></li>
+<li><a target="_top" href="spring_bean_life_cycle.html">Bean Life Cycle</a></li>
+<li><a target="_top" href="spring_bean_post_processors.html">Bean Post Processors</a></li>
+<li><a target="_top" href="spring_bean_definition_inheritance.html">Bean Definition Inheritance</a></li>
+<li><a target="_top" href="spring_dependency_injection.html">Dependency Injection</a></li>
+<li><a target="_top" href="spring_injecting_inner_beans.html">Injecting Inner Beans</a></li>
+<li><a target="_top" href="spring_injecting_collection.html">Injecting Collection</a></li>
+<li><a target="_top" href="spring_beans_autowiring.html">Spring Beans Auto-Wiring</a></li>
+<li><a target="_top" href="spring_annotation_based_configuration.html">Annotation Based Configuration</a></li>
+<li><a target="_top" href="spring_java_based_configuration.html">Java Based Configuration</a></li>
+<li><a target="_top" href="event_handling_in_spring.html">Event Handling in Spring</a></li>
+<li><a target="_top" href="custom_events_in_spring.html">Custom Events in Spring</a></li>
+<li><a target="_top" href="aop_with_spring.html">AOP with Spring Framework</a></li>
+<li><a target="_top" href="spring_jdbc_framework.html"><b>Spring JDBC Framework</b></a></li>
+<li><a target="_top" href="spring_transaction_management.html">Transaction Management</a></li>
+<li><a target="_top" href="spring_web_mvc_framework.html">Spring Web MVC Framework</a></li>
+<li><a target="_top" href="logging_with_log4j.html">Spring Logging with Log4J</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">Spring Useful Resources</li>
+<li><a target="_top" href="spring_quick_guide.html">Spring Quick Guide</a></li>
+<li><a target="_top" href="spring_useful_resources.html">Spring Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="../developers_best_practices/index.html">Developer's Best Practices</a></li>
+<li><a target="_top" href="../computer_glossary.html">Computer Glossary</a></li>
+<li><a target="_top" href="../computer_whoiswho.html">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>SQL Stored Procedure in Spring</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="spring_jdbc_framework.html">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="spring_jdbc_framework.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>The <b>SimpleJdbcCall</b> class can be used to call a stored procedure with IN and OUT parameters. You can use this approach while working with either of the RDBMS like Apache Derby, DB2, MySQL, Microsoft SQL Server, Oracle, and Sybase.</p>
+<p>To understand the approach let us take our Student table which can be created in MySQL TEST database with the following DDL:</p>
+<pre class="prettyprint">
+CREATE TABLE Student(
+   ID   INT NOT NULL AUTO_INCREMENT,
+   NAME VARCHAR(20) NOT NULL,
+   AGE  INT NOT NULL,
+   PRIMARY KEY (ID)
+);
+</pre>
+<p>Next, consider the following MySQL stored procedure which takes student Id and returns corresponding student's name and age using OUT parameters. So let us create this stored procedure in your TEST database using MySQL command prompt:</p>
+<pre class="result">
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS `TEST`.`getRecord` $$
+CREATE PROCEDURE `TEST`.`getRecord` (
+IN in_id INTEGER,
+OUT out_name VARCHAR(20),
+OUT out_age  INTEGER)
+BEGIN
+   SELECT name, age
+   INTO out_name, out_age
+   FROM Student where id = in_id;
+END $$
+
+DELIMITER ;
+</pre>
+<p>Now let us write our Spring JDBC application which will implement simple Create and Read operations on our Student table. Let us have working Eclipse IDE in place and follow the following steps to create a Spring application:</p>
+<table class="src">
+<tr><th class="fivepct">Step</th><th>Description</th></tr>
+<tr><td>1</td><td>Create a project with a name <i>SpringExample</i> and create a package <i>com.tutorialspoint</i> under the <b>src</b> folder in the created project.</td></tr>
+<tr><td>2</td><td>Add required Spring libraries using <i>Add External JARs</i> option as explained in the <i>Spring Hello World Example</i> chapter.</td></tr>
+<tr><td>3</td><td>Add Spring JDBC specific latest libraries <b>mysql-connector-java.jar</b>, <b>org.springframework.jdbc.jar</b> and  <b>org.springframework.transaction.jar</b> in the project. You can download required libraries if you do not have them already.</td></tr>
+<tr><td>4</td><td>Create DAO interface <i>StudentDAO</i> and list down all the required methods. Though it is not required and you can directly write <i>StudentJDBCTemplate</i> class, but as a good practice, let's do it.</td></tr>
+<tr><td>5</td><td>Create other required Java classes <i>Student</i>, <i>StudentMapper</i>, <i>StudentJDBCTemplate</i> and <i>MainApp</i> under the <i>com.tutorialspoint</i> package.</td></tr>
+<tr><td>6</td><td>Make sure you already created <b>Student</b> table in TEST database. Also make sure your MySQL server is working fine and you have read/write access on the database using the given username and password.</td></tr>
+<tr><td>7</td><td>Create Beans configuration file <i>Beans.xml</i> under the <b>src</b> folder.</td></tr>
+<tr><td>8</td><td>The final step is to create the content of all the Java files and Bean Configuration file and run the application as explained below.</td></tr>
+</table>
+<p>Following is the content of the Data Access Object interface file <b>StudentDAO.java</b>:</p>
+<pre class="prettyprint">
+package com.tutorialspoint;
+
+import java.util.List;
+import javax.sql.DataSource;
+
+public interface StudentDAO {
+   /** 
+    * This is the method to be used to initialize
+    * database resources ie. connection.
+    */
+   public void setDataSource(DataSource ds);
+   /** 
+    * This is the method to be used to create
+    * a record in the Student table.
+    */
+   public void create(String name, Integer age);
+   /** 
+    * This is the method to be used to list down
+    * a record from the Student table corresponding
+    * to a passed student id.
+    */
+   public Student getStudent(Integer id);
+   /** 
+    * This is the method to be used to list down
+    * all the records from the Student table.
+    */
+   public List&lt;Student&gt; listStudents();
+
+}
+</pre>
+<p>Following is the content of the <b>Student.java</b> file:</p>
+<pre class="prettyprint">
+package com.tutorialspoint;
+
+public class Student {
+   private Integer age;
+   private String name;
+   private Integer id;
+
+   public void setAge(Integer age) {
+      this.age = age;
+   }
+   public Integer getAge() {
+      return age;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+   public String getName() {
+      return name;
+   }
+
+   public void setId(Integer id) {
+      this.id = id;
+   }
+   public Integer getId() {
+      return id;
+   }
+}
+</pre>
+<p>Following is the content of the <b>StudentMapper.java</b> file:</p>
+<pre class="prettyprint">
+package com.tutorialspoint;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import org.springframework.jdbc.core.RowMapper;
+
+public class StudentMapper implements RowMapper&lt;Student&gt; {
+   public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
+      Student student = new Student();
+      student.setId(rs.getInt("id"));
+      student.setName(rs.getString("name"));
+      student.setAge(rs.getInt("age"));
+      return student;
+   }
+}
+</pre>
+<p>Following is the implementation class file <b>StudentJDBCTemplate.java</b> for the defined DAO interface StudentDAO:</p>
+<pre class="prettyprint">
+package com.tutorialspoint;
+
+import java.util.Map;
+
+import javax.sql.DataSource;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcCall;
+
+public class StudentJDBCTemplate implements StudentDAO {
+   private DataSource dataSource;
+   private SimpleJdbcCall jdbcCall;
+
+   public void setDataSource(DataSource dataSource) {
+      this.dataSource = dataSource;
+      this.jdbcCall =  new SimpleJdbcCall(dataSource).
+                       withProcedureName("getRecord");
+   }
+
+   public void create(String name, Integer age) {
+      JdbcTemplate jdbcTemplateObject = new JdbcTemplate(dataSource);
+      String SQL = "insert into Student (name, age) values (?, ?)";
+
+      jdbcTemplateObject.update( SQL, name, age);
+      System.out.println("Created Record Name = " + name + " Age = " + age);
+      return;
+   }
+
+   public Student getStudent(Integer id) {
+      SqlParameterSource in = new MapSqlParameterSource().
+                              addValue("in_id", id);
+      Map&lt;String, Object&gt; out = jdbcCall.execute(in);
+
+      Student student = new Student();
+      student.setId(id);
+      student.setName((String) out.get("out_name"));
+      student.setAge((Integer) out.get("out_age"));
+
+      return student;
+   }
+
+   public List&lt;Student&gt; listStudents() {
+      String SQL = "select * from Student";
+      
+      List &lt;Student&gt; students = jdbcTemplateObject.query(SQL, 
+                                      new StudentMapper());
+      return students;
+   }
+
+}
+</pre>
+<p>Few words about above program: The code you write for the execution of the call involves creating an <i>SqlParameterSource</i> containing the IN parameter. It's important to match the name provided for the input value with that of the parameter name declared in the stored procedure. The <i>execute</i> method takes the IN parameters and returns a Map containing any out parameters keyed by the name as specified in the stored procedure. Now let us move with the main application file <b>MainApp.java</b>, which is as follows:</p>
+<pre class="prettyprint">
+package com.tutorialspoint;
+import java.util.List;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import com.tutorialspoint.StudentJDBCTemplate;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext context = 
+             new ClassPathXmlApplicationContext("Beans.xml");
+
+      StudentJDBCTemplate studentJDBCTemplate = 
+      (StudentJDBCTemplate)context.getBean("studentJDBCTemplate");
+      
+      System.out.println("------Records Creation--------" );
+      studentJDBCTemplate.create("Zara", 11);
+      studentJDBCTemplate.create("Nuha", 2);
+      studentJDBCTemplate.create("Ayan", 15);
+
+      System.out.println("------Listing Multiple Records--------" );
+      List&lt;Student&gt; students = studentJDBCTemplate.listStudents();
+      for (Student record : students) {
+         System.out.print("ID : " + record.getId() );
+         System.out.print(", Name : " + record.getName() );
+         System.out.println(", Age : " + record.getAge());
+      }
+
+      System.out.println("----Listing Record with ID = 2 -----" );
+      Student student = studentJDBCTemplate.getStudent(2);
+      System.out.print("ID : " + student.getId() );
+      System.out.print(", Name : " + student.getName() );
+      System.out.println(", Age : " + student.getAge());
+	  
+   }
+}
+</pre> 
+<p>Following is the configuration file <b>Beans.xml</b>:</p> 
+<pre class="prettyprint">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd "&gt;
+
+   &lt;!-- Initialization for data source --&gt;
+   &lt;bean id="dataSource" 
+      class="org.springframework.jdbc.datasource.DriverManagerDataSource"&gt;
+      &lt;property name="driverClassName" value="com.mysql.jdbc.Driver"/&gt;
+      &lt;property name="url" value="jdbc:mysql://localhost:3306/TEST"/&gt;
+      &lt;property name="username" value="root"/&gt;
+      &lt;property name="password" value="password"/&gt;
+   &lt;/bean&gt;
+
+   &lt;!-- Definition for studentJDBCTemplate bean --&gt;
+   &lt;bean id="studentJDBCTemplate" 
+      class="com.tutorialspoint.StudentJDBCTemplate"&gt;
+      &lt;property name="dataSource"  ref="dataSource" /&gt;    
+   &lt;/bean&gt;
+      
+&lt;/beans&gt;
+</pre> 
+<p>Once you are done with creating source and bean configuration files, let us run the application. If everything is fine with your application, this will print the following message:</p>
+<pre class="result">
+------Records Creation--------
+Created Record Name = Zara Age = 11
+Created Record Name = Nuha Age = 2
+Created Record Name = Ayan Age = 15
+------Listing Multiple Records--------
+ID : 1, Name : Zara, Age : 11
+ID : 2, Name : Nuha, Age : 2
+ID : 3, Name : Ayan, Age : 15
+----Listing Record with ID = 2 -----
+ID : 2, Name : Nuha, Age : 2
+</pre>
+<hr />
+<div class="pre-btn">
+<a href="spring_jdbc_framework.html">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="../cgi-bin/printpage.html" target="_blank">Print Version</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/calling_stored_procedure.html" alt="SQL Stored Procedure in Spring" target="_blank">PDF Version</a>
+</div>
+<div class="nxt-btn">
+<a href="spring_jdbc_framework.html">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr />
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="../../pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<script type="text/javascript">
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script>
+<a class="addthis_button_linkedin"></a>
+<a class="addthis_button_email"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="../../s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f661ec623a400f0"></script>
+</div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="../asp.net/index.html" target="_top">ASP.NET </a> |
+<a href="../jquery/index.html" target="_top">jQuery </a> |
+<a href="../ajax/index.html" target="_top">AJAX </a> |
+<a href="../ant/index.html" target="_top">ANT</a> |
+<a href="../jsp/index.html" target="_top">JSP </a> |
+<a href="../servlets/index.html" target="_top">Servlets </a> |
+<a href="../log4j/index.html" target="_top">log4j </a> |
+<a href="../ibatis/index.html" target="_top">iBATIS </a> |
+<a href="../hibernate/index.html" target="_top">Hibernate </a> |
+<a href="../jdbc/index.html" target="_top">JDBC </a> |
+<a href="../struts_2/index.html" target="_top">Struts </a> |
+<a href="../html5/index.html" target="_top">HTML5 </a> |
+<a href="../sql/index.html" target="_top">SQL </a> |
+<a href="../mysql/index.html" target="_top">MySQL </a> |
+<a href="../cplusplus/index.html" target="_top">C++ </a> |
+<a href="../unix/index.html" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright &copy; 2013 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/spring/calling_stored_procedure.htm by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 15 Apr 2013 05:06:48 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+</html>
